@@ -1,7 +1,7 @@
 ---
 name: "[Task] 이슈카드 제목 설정하기"
 about: "[Task] 이슈카드 제목 설정하기"
-title: '[Task] SR, Client or Server : '
+title: '[Task] SR, Client or Server : 내용 입력'
 labels: ''
 assignees: ''
 

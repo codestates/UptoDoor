@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const app = express();
-const port = 3060;
+const port = 4000;
 
 app.use(cors({
   origin: true,
@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.listen(3060, () => {
-  // eslint-disable-next-line no-console
+app.listen(4000, () => {
   console.log(`UptoDoor listening at http://localhost:${port}`);
 });

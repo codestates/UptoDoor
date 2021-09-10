@@ -5,8 +5,8 @@ import MyProfile from '../components/Mypage/MyProfile'
 function Mypage() {
   return (
     <>
-      <MyOrderList/>
       <MyProfile/>
+      <MyOrderList/>
     </>
   )
 }

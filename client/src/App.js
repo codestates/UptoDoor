@@ -13,6 +13,7 @@ import Mapper from './pages/Mapper'
 import Address from './pages/Address'
 
 //!그외 라우터페이지
+import Landing from './pages/Landing'
 import MypageEdit from './pages/MypageEdit'
 import StoreInfo from './pages/StoreInfo'
 import UserCart from './pages/UserCart'
@@ -35,7 +36,9 @@ function App() {
     <BrowserRouter>
       <Suspense fallback = {<Loading />}>
         <NavBar/>
-        
+        <Switch>
+          <Route exact path = "/"><Landing/></Route>
+        </Switch>
         <Switch>
           <Route path = "/signup"><Signup/></Route>
         </Switch>

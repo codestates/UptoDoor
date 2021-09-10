@@ -3,7 +3,10 @@ import React from 'react'
 function MapHashtag() {
   return (
     <div>
-      MapHashtag
+    <h2>MapHashtag</h2>
+      <span> food </span>
+      <span> clothes </span>
+      <span> life </span>
     </div>
   )
 }

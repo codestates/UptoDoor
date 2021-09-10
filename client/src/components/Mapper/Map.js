@@ -3,7 +3,8 @@ import React from 'react'
 function Map() {
   return (
     <div>
-      지도
+      <h2>Map</h2>
+      <p>동네지도</p>
     </div>
   )
 }

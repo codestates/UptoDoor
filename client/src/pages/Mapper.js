@@ -7,10 +7,10 @@ import MapSearchBar from '../components/Mapper/MapSearchBar'
 const Mapper = () => {
   return (
     <>
-      <Map/>
-      <MapHashtag/>
-      <MapInfo/>
       <MapSearchBar/>
+      <MapHashtag/>
+      <Map/>
+      <MapInfo/>
     </>
   )
 }

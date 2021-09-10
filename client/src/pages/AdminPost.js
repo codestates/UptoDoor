@@ -1,10 +1,11 @@
 import React from 'react'
+import AdminPostForm from '../components/AdminPost/AdminPostForm'
 
 const AdminPost = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <AdminPostForm/>
+    </>
   )
 }
 

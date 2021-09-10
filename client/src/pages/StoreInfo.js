@@ -1,11 +1,12 @@
 import React from 'react'
+import StoreData from '../components/StoreInfo/StoreData'
 
-const ReadStore = () => {
+function StoreInfo() {
   return (
     <>
-      
+      <StoreData/>
     </>
   )
 }
 
-export default ReadStore
+export default StoreInfo

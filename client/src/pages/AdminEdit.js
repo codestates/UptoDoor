@@ -1,10 +1,11 @@
 import React from 'react'
+import AdminEditForm from '../components/AdminEdit/AdminEditForm'
 
 const AdminEdit = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <AdminEditForm/>
+    </>
   )
 }
 

@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Map = () => {
+function Map() {
   return (
-    <>
-      
-    </>
+    <div>
+      지도
+    </div>
   )
 }
 

@@ -1,45 +1,84 @@
-import React from "react";
-import styled , {createGlobalStyle} from "styled-components"
+import React , {Suspense} from "react";
+import { BrowserRouter , Switch, Route } from 'react-router-dom';
+// import { useDispatch } from 'react-redux'
+// import { SIGNIN } from "./_actions/type";
+import Loading from './components/common/Loading/Loading'
+import Footer from './components/common/Footer/Footer'
+import NavBar from './components/common/NavBar/NavBar'
 
-const GlobalStyle = createGlobalStyle`
-html,body{
-  margin : 0;padding:0;
-}
-`
+//!navbar 카테고리 라우터
+import Signup from './pages/Signup'
+import Mypage from './pages/Mypage'
+import Mapper from './pages/Mapper'
+import Address from './pages/Address'
 
-const AppContainer1 = styled.div`
-background-color : #3186c4;
-color : white;
-`
-const AppContainer2 = styled.div`
-background-color : #4fc1e9;
-color : white;
-`
-const AppContainer3 = styled.div`
-background-color : #5d9cec;
-color : white;
-`
-const H1 = styled.h1`
-color : #5d9cec;
-`
+//!그외 라우터페이지
+import MypageEdit from './pages/MypageEdit'
+import StoreInfo from './pages/StoreInfo'
+import UserCart from './pages/UserCart'
+import UserOrder from './pages/UserOrder'
+import AdminPost from './pages/AdminPost'
+import AdminPage from './pages/AdminPage'
+import UserOrderInfo from './pages/UserOrderInfo'
+import AdminOrderInfo from './pages/AdminOrderInfo'
+import AdminEdit from './pages/AdminEdit'
 
 function App() {
+  // 예시 const dispatch = useDispatch();
+
+  // const handleClick = () =>{
+  //   dispatch({type : SIGNIN})
+  // }
+
   return (
     <>
-    <GlobalStyle>
-    </GlobalStyle>
-    <AppContainer1>
-      color1
-    </AppContainer1>
+    <BrowserRouter>
+      <Suspense fallback = {<Loading />}>
+        <NavBar/>
+        
+        <Switch>
+          <Route path = "/signup"><Signup/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/mypage"><Mypage/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/mapper"><Mapper/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/address"><Address/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/mypageedit"><MypageEdit/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/storeinfo"><StoreInfo/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/usercart"><UserCart/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/userorder"><UserOrder/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/adminpost"><AdminPost/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/adminpage"><AdminPage/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/userorderinfo"><UserOrderInfo/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/adminorderinfo"><AdminOrderInfo/></Route>
+        </Switch>
+        <Switch>
+          <Route path = "/adminedit"><AdminEdit/></Route>
+        </Switch>
 
-    <AppContainer2>
-      color1
-    </AppContainer2>
-
-    <AppContainer3>
-      color1
-    </AppContainer3>
-    <H1>UptoDoor</H1>
+        <Footer/>
+      </Suspense>
+    </BrowserRouter>
     </>
   );
 }

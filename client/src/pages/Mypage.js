@@ -1,7 +1,14 @@
 import React from 'react'
+import MyOrderList from '../components/Mypage/MyOrderList'
+import MyProfile from '../components/Mypage/MyProfile'
 
-const Mypage = () => {
-  return <></>;
-};
+function Mypage() {
+  return (
+    <>
+      <MyOrderList/>
+      <MyProfile/>
+    </>
+  )
+}
 
-export default Mypage;
+export default Mypage

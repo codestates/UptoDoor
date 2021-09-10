@@ -1,5 +1,6 @@
 import React , {Suspense} from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
+import { GlobalStyle } from './components/GlobalStyle'
 // import { useDispatch } from 'react-redux'
 // import { SIGNIN } from "./_actions/type";
 import Loading from './components/common/Loading/Loading'
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <>
+    <GlobalStyle/>
     <BrowserRouter>
       <Suspense fallback = {<Loading />}>
         <NavBar/>

@@ -1,7 +1,13 @@
 import React from 'react'
+import MyProfileEditWrapper from '../components/MypageEdit//MyProfileEdit'
 
-const MypageEdit = () => {
-  return <></>;
-};
+function MypageEdit() {
+  return (
+    <>
+      <MyProfileEditWrapper/>
+    </>
+  )
+}
 
-export default MypageEdit;
+export default MypageEdit
+

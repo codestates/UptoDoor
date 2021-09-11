@@ -10,16 +10,20 @@ import {
   User,
 } from "./StyledSideBar";
 
-const SideBar = () => {
+interface Iprops {
+  sidebarToggle: any;
+  isOpen: boolean;
+}
 
+const SideBar = ({ sidebarToggle, isOpen }:Iprops ) => {
   return (
-    <SidebarContainer>
+    <SidebarContainer isOpen={isOpen} onClick = { sidebarToggle } >
       <SidebarWrapper>
-        <Icon>
+        <Icon onClick={sidebarToggle}>
           <i className="fas fa-times"></i>
         </Icon>
         <Logo>UptoDoor</Logo>
-        <User>로그인(닉네임)</User>
+        <User to="/signin">로그인(닉네임)</User>
         <SidebarMenu>
           <SidebarLink to="/mapper">구독찾기</SidebarLink>
           <SidebarLink to="/address">동네인증</SidebarLink>
@@ -29,6 +33,6 @@ const SideBar = () => {
       </SidebarWrapper>
     </SidebarContainer>
   );
-}
+};
 
 export default SideBar

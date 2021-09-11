@@ -11,9 +11,11 @@ import {
   SignupLink,
 } from "./StyledNavBar";
 
-function NavBar() {
-  // const { me } = useSelector((state) => state.user);
+interface Iprops {
+  sidebarToggle: any;
+}
 
+function NavBar({ sidebarToggle }:Iprops) {
   return (
     <Header>
       <NavWrapper>
@@ -36,23 +38,26 @@ function NavBar() {
           </ul>
         </Nav>
       </NavWrapper>
-        <ButtonWrapper>
-          {/* 알림 버튼 */}
-          <IconButton type="button" aria-label="알림 버튼">
-            <i className="far fa-bell"></i>
-          </IconButton>
-          {/* 메뉴 버튼 */}
-          <IconButton type="button" aria-label="메뉴 열기 버튼">
-            <i className="fas fa-bars"></i>
-          </IconButton>
-          <MiddleButton type="button" aria-label="회원가입">
-            로그인
-          </MiddleButton>
-          <MiddleButton type="button" aria-label="회원가입">
-            <SignupLink to="/signup">회원가입</SignupLink>
-          </MiddleButton>
-        </ButtonWrapper>
-      
+      <ButtonWrapper>
+        {/* 알림 버튼 */}
+        <IconButton type="button" aria-label="알림 버튼">
+          <i className="far fa-bell"></i>
+        </IconButton>
+        {/* 메뉴 버튼 */}
+        <IconButton
+          onClick={sidebarToggle}
+          type="button"
+          aria-label="메뉴 열기 버튼"
+        >
+          <i className="fas fa-bars"></i>
+        </IconButton>
+        <MiddleButton type="button" aria-label="회원가입">
+          로그인
+        </MiddleButton>
+        <MiddleButton type="button" aria-label="회원가입">
+          <SignupLink to="/signup">회원가입</SignupLink>
+        </MiddleButton>
+      </ButtonWrapper>
     </Header>
   );
 }

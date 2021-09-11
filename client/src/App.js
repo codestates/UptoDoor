@@ -33,7 +33,7 @@ function App() {
     <>
       <GlobalStyle />
       <BrowserRouter>
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={ <Loading />}>
           <SideBar sidebarToggle={sidebarToggle} isOpen={isOpen} />
           <NavBar sidebarToggle={sidebarToggle} />
           <Switch>

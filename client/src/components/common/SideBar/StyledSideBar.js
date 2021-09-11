@@ -7,7 +7,8 @@ export const SidebarContainer = styled.aside`
   z-index: 999;
   width: 100%;
   height: 100%;
-  background: ${TextLightGrey};
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter:blur(1px);
   display: grid;
   align-items: center;
   top: 0;
@@ -15,6 +16,7 @@ export const SidebarContainer = styled.aside`
   transition: 0.3s ease-in-out;
   opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
+
   @media screen and (min-width: 767px) {
     display: none;
   }

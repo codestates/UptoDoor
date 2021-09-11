@@ -4,24 +4,33 @@ import { useHistory } from 'react-router-dom'
 import { SIGNUP } from '../../_actions/type'
 // import { signUp } from '../../_actions/user_action'
 import {SignupContainer} from './StyledSignup'
+import SignupOptions from './SignupOptions'
+import SignupTerms from './SignupTerms'
 
 function SignupWrapper() {
 
   let history = useHistory();
   const dispatch = useDispatch()
 
+  //required
   const [email, setEmail] = useState('');
   const [certEmail, setCertEmail] = useState(false);
   const [nickname , setNickname] = useState('');
   const [mobile, setMobile] = useState('');
-
   const [password , setPassword] = useState('');
   const [passwordChk, setPasswordChk] = useState('');
   const [passwordRegErr , setPasswordRegErr ] = useState(false);
   const [passwordErr , setPasswordErr ] = useState(false);
 
+  //optional
+  const [gender , setGender] = useState('');
+  const [age, setAge] = useState('');
+  const [term, setTerm] = useState(false);
+  const [termErr, setTermErr] = useState(false);
+
   let userinfo = {
-    email,password,nickname,mobile
+    email,password,nickname,mobile,
+    gender,age
   }
   const signupSubmitHandler = (e) => {
     e.preventDefault();
@@ -85,11 +94,27 @@ function SignupWrapper() {
       setMobile(mobile.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
     }
   }, [mobile]);
+  
+  //onchange select 다시보기.
+  const selectInputHandler = useCallback((e) => {
+    console.log(e.target.value)
+    setGender(e.target.value);
+    setAge(e.target.value);
+  },[])
+
+  const termHandler = useCallback((e) => {
+    setTermErr(false);
+    setTerm(e.target.checked);
+  },[])
+
+  const cancleHandler = () => {
+    history.push('/');
+  }
 
   return (
     <SignupContainer>
       <form onSubmit = {signupSubmitHandler}>
-        <label>E-mail</label>
+        <label>E-mail</label><span>필수</span><br/>
         <input 
         required
         type = 'email' 
@@ -102,8 +127,9 @@ function SignupWrapper() {
         {certEmail ? 
         <p>이메일 인증은 필수입니다.</p>
         : null}
+        <br/>
 
-        <label>Password</label>
+        <label>Password</label><span>필수</span><br/>
         <input 
         required
         type = 'password' 
@@ -115,7 +141,7 @@ function SignupWrapper() {
         <p>비밀번호는 최소 6자리에서 12자리 사이의 영문,숫자 조합이어야 합니다.</p>
         : null}
 
-        <label>Password Check</label>
+        <label>Password Check</label><span>필수</span><br/>
         <input 
         required
         type = 'password' 
@@ -127,7 +153,7 @@ function SignupWrapper() {
         <p>비밀번호가 일치하지 않습니다.</p>
         :null}
         
-        <label>Nickname</label>
+        <label>Nickname</label><span>필수</span><br/>
         <input 
         required
         type = 'text' 
@@ -136,7 +162,7 @@ function SignupWrapper() {
         onChange = {nicknameHandler}
         /><br/>
 
-        <label>Mobile</label>
+        <label>Mobile</label><span>필수</span><br/>
         <input
         required
         type = 'text' 
@@ -144,8 +170,19 @@ function SignupWrapper() {
         value = {mobile} 
         onChange = {mobileHandler}
         /><br/>
+
+        <SignupOptions 
+        selectInputHandler = {selectInputHandler}
+        />
+        <SignupTerms
+        term = {term}
+        setTerm = {setTerm}
+        termErr = {termErr}
+        termHandler = {termHandler}
+        />
+
         <button type = 'submit'>회원가입</button>
-        <button onClick = {()=>{history.back()}} >취소</button>
+        <button onClick = {cancleHandler}>취소</button>
       </form>
     </SignupContainer>
   )

@@ -5,7 +5,7 @@ import { SIGNUP } from '../../_actions/type'
 // import { signUp } from '../../_actions/user_action'
 import {SignupContainer} from './StyledSignup'
 import SignupOptions from './SignupOptions'
-import SignupTerms from './SignupTerms'
+import SignupTerm from './SignupTerm'
 
 function SignupWrapper() {
 
@@ -25,19 +25,21 @@ function SignupWrapper() {
   //optional
   const [gender , setGender] = useState('');
   const [age, setAge] = useState('');
-  const [term, setTerm] = useState(false);
+  const [term, setTerm] = useState('');
   const [termErr, setTermErr] = useState(false);
 
-  let userinfo = {
-    email,password,nickname,mobile,
-    gender,age
-  }
-  const signupSubmitHandler = (e) => {
+  const signupSubmitHandler = useCallback((e) => {
     e.preventDefault();
     if(password !== passwordChk) return setPasswordErr(true);
     if(passwordRegErr === true) return setPasswordRegErr(true);
-    if(certEmail === false) return setCertEmail(true)
-    
+    if(certEmail === false) return setCertEmail(true);
+    if(!term) return setTermErr(true);
+
+    let userinfo = {
+      email,password,nickname,mobile,
+      gender,age,term
+    }
+
     dispatch({
       type : SIGNUP,
       payload : userinfo
@@ -50,9 +52,9 @@ function SignupWrapper() {
     //     console.log('회원가입 실패');
     //   }
     // })
-  }
+  },[email,password,passwordChk,certEmail,term])
 
-  const emailHandler = useCallback((e) => {
+  const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
   },[])
 
@@ -61,25 +63,25 @@ function SignupWrapper() {
     //axios post 로 담아 보내기만하면됨. 
     //userinfo.email.then((res)=>확인모달(트루))
     //.catch((err)=>이미 존재합니다 모달(트루))
-    console.log(userinfo.email)
+    console.log(email)
   }
 
-  const pwHandler = useCallback((e) => {
+  const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
     let pwRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,12}$/;
     setPasswordRegErr(!pwRegExp.test(e.target.value));
   },[])
 
-  const pwChkHandler = useCallback((e) => {
+  const onChangePwChkHandler = useCallback((e) => {
     setPasswordChk(e.target.value);
     setPasswordErr(e.target.value !== password);
   },[password])
 
-  const nicknameHandler = useCallback((e) => {
+  const onChangeNicknameHandler = useCallback((e) => {
     setNickname(e.target.value);
   },[])
   
-  const mobileHandler = useCallback((e) => {
+  const onChangeMobileHandler = useCallback((e) => {
     let mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
       setMobile(e.target.value);
@@ -95,17 +97,18 @@ function SignupWrapper() {
     }
   }, [mobile]);
   
-  //onchange select 다시보기.
-  const selectInputHandler = useCallback((e) => {
-    console.log(e.target.value)
-    setGender(e.target.value);
-    setAge(e.target.value);
-  },[])
+  const selectInputHandler = (e,name) => {
+    if(name === '성별'){
+      setGender(e.target.value);
+    }else if(name === '연령대'){
+      setAge(e.target.value);
+    }
+  }
 
   const termHandler = useCallback((e) => {
-    setTermErr(false);
     setTerm(e.target.checked);
-  },[])
+    setTermErr(false);
+  },[]);
 
   const cancleHandler = () => {
     history.push('/');
@@ -120,7 +123,7 @@ function SignupWrapper() {
         type = 'email' 
         placeholder = 'email@email.com'
         value = {email} 
-        onChange = {emailHandler}
+        onChange = {onChangeEmailHandler}
         />
         <button onClick = {()=>certEmailHandler(certEmail)}>
           이메일 인증</button>
@@ -135,7 +138,7 @@ function SignupWrapper() {
         type = 'password' 
         placeholder = 'password'
         value = {password} 
-        onChange = {pwHandler}
+        onChange = {onChangePwHandler}
         /><br/>
         {passwordRegErr ? 
         <p>비밀번호는 최소 6자리에서 12자리 사이의 영문,숫자 조합이어야 합니다.</p>
@@ -147,7 +150,7 @@ function SignupWrapper() {
         type = 'password' 
         placeholder = 'password check'
         value = {passwordChk} 
-        onChange = {pwChkHandler}
+        onChange = {onChangePwChkHandler}
         /><br/>
         {passwordErr ? 
         <p>비밀번호가 일치하지 않습니다.</p>
@@ -159,7 +162,7 @@ function SignupWrapper() {
         type = 'text' 
         placeholder = '닉네임'
         value = {nickname} 
-        onChange = {nicknameHandler}
+        onChange = {onChangeNicknameHandler}
         /><br/>
 
         <label>Mobile</label><span>필수</span><br/>
@@ -168,18 +171,19 @@ function SignupWrapper() {
         type = 'text' 
         placeholder = '모바일'
         value = {mobile} 
-        onChange = {mobileHandler}
+        onChange = {onChangeMobileHandler}
         /><br/>
 
         <SignupOptions 
         selectInputHandler = {selectInputHandler}
         />
-        <SignupTerms
-        term = {term}
-        setTerm = {setTerm}
-        termErr = {termErr}
+
+        <SignupTerm
         termHandler = {termHandler}
         />
+        {termErr ? 
+          <p>약관에 모두 동의하셔야 합니다.</p> 
+          : null}
 
         <button type = 'submit'>회원가입</button>
         <button onClick = {cancleHandler}>취소</button>

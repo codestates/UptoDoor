@@ -1,8 +1,6 @@
 import React, { Suspense, useState } from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/GlobalStyle'
-// import { useDispatch } from 'react-redux'
-// import { SIGNIN } from "./_actions/type";
 import Loading from './components/common/Loading/Loading'
 import Footer from './components/common/Footer/Footer'
 import NavBar from './components/common/NavBar/NavBar'
@@ -30,12 +28,6 @@ function App() {
   //사이드바 모달창
   const [isOpen, setIsOpen] = useState(false);
   const sidebarToggle = () => { setIsOpen(!isOpen) };
-  
-  // 예시 const dispatch = useDispatch();
-
-  // const handleClick = () =>{
-  //   dispatch({type : SIGNIN})
-  // }
 
   return (
     <>
@@ -48,68 +40,42 @@ function App() {
             <Route exact path="/">
               <Landing />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/signup">
               <Signup />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/mypage">
               <Mypage />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/mapper">
               <Mapper />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/address">
               <Address />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/mypageedit">
               <MypageEdit />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/storeinfo">
               <StoreInfo />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/usercart">
               <UserCart />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/userorder">
               <UserOrder />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/adminpost">
               <AdminPost />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/adminpage">
               <AdminPage />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/userorderinfo">
               <UserOrderInfo />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/adminorderinfo">
               <AdminOrderInfo />
             </Route>
-          </Switch>
-          <Switch>
             <Route path="/adminedit">
               <AdminEdit />
             </Route>

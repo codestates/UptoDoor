@@ -1,4 +1,4 @@
-import React , {Suspense} from "react";
+import React, { Suspense, useState } from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/GlobalStyle'
 // import { useDispatch } from 'react-redux'
@@ -24,8 +24,13 @@ import AdminPage from './pages/AdminPage'
 import UserOrderInfo from './pages/UserOrderInfo'
 import AdminOrderInfo from './pages/AdminOrderInfo'
 import AdminEdit from './pages/AdminEdit'
+import SideBar from './components/common/SideBar/SideBar';
 
 function App() {
+  //사이드바 모달창
+  const [isOpen, setIsOpen] = useState(false);
+  const sidebarToggle = () => { setIsOpen(!isOpen) };
+  
   // 예시 const dispatch = useDispatch();
 
   // const handleClick = () =>{
@@ -34,56 +39,85 @@ function App() {
 
   return (
     <>
-    <GlobalStyle/>
-    <BrowserRouter>
-      <Suspense fallback = {<Loading />}>
-        <NavBar/>
-        <Switch>
-          <Route exact path = "/"><Landing/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/signup"><Signup/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/mypage"><Mypage/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/mapper"><Mapper/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/address"><Address/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/mypageedit"><MypageEdit/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/storeinfo"><StoreInfo/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/usercart"><UserCart/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/userorder"><UserOrder/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/adminpost"><AdminPost/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/adminpage"><AdminPage/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/userorderinfo"><UserOrderInfo/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/adminorderinfo"><AdminOrderInfo/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/adminedit"><AdminEdit/></Route>
-        </Switch>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Suspense fallback={<Loading />}>
+          <SideBar sidebarToggle={sidebarToggle} isOpen={isOpen} />
+          <NavBar sidebarToggle={sidebarToggle} />
+          <Switch>
+            <Route exact path="/">
+              <Landing />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/mypage">
+              <Mypage />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/mapper">
+              <Mapper />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/address">
+              <Address />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/mypageedit">
+              <MypageEdit />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/storeinfo">
+              <StoreInfo />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/usercart">
+              <UserCart />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/userorder">
+              <UserOrder />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/adminpost">
+              <AdminPost />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/adminpage">
+              <AdminPage />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/userorderinfo">
+              <UserOrderInfo />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/adminorderinfo">
+              <AdminOrderInfo />
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/adminedit">
+              <AdminEdit />
+            </Route>
+          </Switch>
 
-        <Footer/>
-      </Suspense>
-    </BrowserRouter>
+          <Footer />
+        </Suspense>
+      </BrowserRouter>
     </>
   );
 }

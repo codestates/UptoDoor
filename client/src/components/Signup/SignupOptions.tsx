@@ -15,7 +15,7 @@ function SignupOptions({selectInputHandler}:Options) {
       '성별',
   ]
 
-  const age: [{value: string, label: string}[], string] = [
+  let age: [{value: string, label: string}[], string] = [
       [
         { value: '선택안함', label: '선택안함' },
         { value: '10대', label: '10대' },

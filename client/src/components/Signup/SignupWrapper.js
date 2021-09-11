@@ -25,19 +25,20 @@ function SignupWrapper() {
   //optional
   const [gender , setGender] = useState('');
   const [age, setAge] = useState('');
-  const [term, setTerm] = useState('');
+  // const [term, setTerm] = useState('');
   const [termErr, setTermErr] = useState(false);
+  const [ttlTerm, setTtlTerm] = useState(false);
 
   const signupSubmitHandler = useCallback((e) => {
     e.preventDefault();
     if(password !== passwordChk) return setPasswordErr(true);
     if(passwordRegErr === true) return setPasswordRegErr(true);
     if(certEmail === false) return setCertEmail(true);
-    if(!term) return setTermErr(true);
+    // if(!term) return setTermErr(true);
 
     let userinfo = {
       email,password,nickname,mobile,
-      gender,age,term
+      gender,age,ttlTerm
     }
 
     dispatch({
@@ -52,7 +53,7 @@ function SignupWrapper() {
     //     console.log('회원가입 실패');
     //   }
     // })
-  },[email,password,passwordChk,certEmail,term])
+  },[email,password,passwordChk,certEmail])
 
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
@@ -104,11 +105,6 @@ function SignupWrapper() {
       setAge(e.target.value);
     }
   }
-
-  const termHandler = useCallback((e) => {
-    setTerm(e.target.checked);
-    setTermErr(false);
-  },[]);
 
   const cancleHandler = () => {
     history.push('/');
@@ -179,7 +175,8 @@ function SignupWrapper() {
         />
 
         <SignupTerm
-        termHandler = {termHandler}
+        setTermErr={setTermErr}
+        setTtlTerm = {setTtlTerm}
         />
         {termErr ? 
           <p>약관에 모두 동의하셔야 합니다.</p> 

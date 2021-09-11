@@ -3,7 +3,7 @@ import {
   SIGNIN 
 } from '../_actions/type'
 
-export default function ( state = {} , action) {
+export default function user_reducer( state = {} , action) {
   switch(action.type){
     case SIGNUP :
       console.log('reducer : ',state)

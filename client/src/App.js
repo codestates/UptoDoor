@@ -24,6 +24,7 @@ import AdminPage from './pages/AdminPage'
 import UserOrderInfo from './pages/UserOrderInfo'
 import AdminOrderInfo from './pages/AdminOrderInfo'
 import AdminEdit from './pages/AdminEdit'
+import SideBar from './components/common/SideBar/SideBar';
 
 function App() {
   // 예시 const dispatch = useDispatch();
@@ -36,7 +37,8 @@ function App() {
     <>
     <GlobalStyle/>
     <BrowserRouter>
-      <Suspense fallback = {<Loading />}>
+        <Suspense fallback={<Loading />}>
+          <SideBar />
         <NavBar/>
         <Switch>
           <Route exact path = "/"><Landing/></Route>

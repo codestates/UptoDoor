@@ -1,0 +1,62 @@
+import React, { useCallback,useState } from 'react'
+import { LagreButton } from '../Button/Button';
+import {
+  SigninContainer, SigninWrapper, SigninInput, LeadSignup, Icon, SignupLink, TextOr, Logo,
+} from './StyledSignin';
+import Naver from '../../../images/icon/naver.png';
+import Kakao from '../../../images/icon/kakao.png';
+
+interface Iprops {
+  modalOpen: boolean;
+  setModalOpen: any;
+  setIsOpen: any;
+}
+
+function Signin({ setIsOpen,modalOpen, setModalOpen }: Iprops) {
+  // if (!modalOpen) return null;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onChangePassword = useCallback((e) => {
+    setPassword(e.target.value);
+  }, [password]);
+  
+  const onChangeEmail = useCallback((e) => {
+    setEmail(e.target.value);
+  }, [email])
+  
+  const signinHandler = useCallback((e) => {
+    e.preventDefault();
+    console.log("제출", email, password);
+  },[email,password])
+
+  return modalOpen ? (
+    <SigninContainer>
+      <SigninWrapper>
+          <Logo>UptoDoor</Logo>
+        <Icon onClick={() => { setModalOpen(false) }}>
+          <i className="fas fa-times"></i>
+        </Icon>
+        <form onSubmit={(e) => {signinHandler(e)}}>
+<SigninInput type="email" placeholder="email" value={email} onChange={onChangeEmail} />
+        <SigninInput type="password" placeholder="password" value={password} onChange={onChangePassword} />
+        <LagreButton primary >로그인</LagreButton>
+        </form>
+        
+        <TextOr>Or</TextOr>
+        <LagreButton className="btn"><img src={Kakao} /><div>카카오 계정으로 로그인</div></LagreButton>
+        <LagreButton className="btn"><img src={Naver} /><div>네이버 계정으로 로그인</div> </LagreButton>
+        <LeadSignup>아직 회원이 아니신가요?<SignupLink to="/signup" onClick={() => {
+          setModalOpen(false);
+          setIsOpen(false);
+        }}>
+            지금 가입하기
+          </SignupLink></LeadSignup>
+        
+          
+      </SigninWrapper>
+    </SigninContainer>
+  ) : null;
+}
+
+export default Signin

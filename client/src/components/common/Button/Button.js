@@ -30,11 +30,12 @@ export const MiddleButton = styled.button`
 
 export const LagreButton = styled.button`
   width: 280px;
-  height: 40px;
+  height: 55px;
   font-size: 18px;
-  font-weight: 700px;
+  font-weight: 700;
   cursor: pointer;
-  padding: 8px;
+  margin:6px;
+  text-align: center;
   border-radius: 8px;
   border: 1px solid ${MainColor};
   text-align: center;

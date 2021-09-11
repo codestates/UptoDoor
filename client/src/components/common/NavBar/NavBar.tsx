@@ -8,7 +8,7 @@ import {
   NavWrapper,
   MiddleButton,
   IconButton,
-  SignupLink,
+  BtnLink,
 } from "./StyledNavBar";
 
 interface Iprops {
@@ -52,10 +52,10 @@ function NavBar({ sidebarToggle }:Iprops) {
           <i className="fas fa-bars"></i>
         </IconButton>
         <MiddleButton type="button" aria-label="회원가입">
-          로그인
+          <BtnLink to="/login">로그인</BtnLink>
         </MiddleButton>
         <MiddleButton type="button" aria-label="회원가입">
-          <SignupLink to="/signup">회원가입</SignupLink>
+          <BtnLink to="/signup">회원가입</BtnLink>
         </MiddleButton>
       </ButtonWrapper>
     </Header>

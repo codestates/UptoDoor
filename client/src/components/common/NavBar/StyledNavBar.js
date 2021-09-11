@@ -31,8 +31,8 @@ export const Header = styled.header`
     padding: 15px;
   }
 
-  @media screen and (min-width: 1120px) {
-    width: 1140px;
+  @media screen and (min-width: 1440px) {
+    width: 1440px;
     height: 80px;
     margin: 0px auto;
     padding: 15px;
@@ -51,6 +51,7 @@ export const NavLogo = styled(Link)`
   text-decoration: none;
   line-height: 1em;
   margin-right: 12px;
+  letter-spacing: -3px;
 
   @media screen and (min-width: 767px) {
     font-size: 40px;

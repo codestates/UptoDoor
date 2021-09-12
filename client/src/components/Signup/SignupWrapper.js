@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { SIGNUP } from '../../_actions/type'
 // import { signUp } from '../../_actions/user_action'
-import {SignupContainer} from './StyledSignup'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'
+import { H1 ,SignupContainer,Form ,Input ,Label ,SideSpan ,Button,
+  ErrMsgP } from './StyledSignup'
 
 function SignupWrapper() {
 
@@ -25,20 +26,18 @@ function SignupWrapper() {
   //optional
   const [gender , setGender] = useState('');
   const [age, setAge] = useState('');
-  // const [term, setTerm] = useState('');
-  const [termErr, setTermErr] = useState(false);
-  const [ttlTerm, setTtlTerm] = useState(false);
+  const [isAllchecked , setIsAllchecked] = useState(false);
 
   const signupSubmitHandler = useCallback((e) => {
     e.preventDefault();
-    if(password !== passwordChk) return setPasswordErr(true);
+    if(password !== passwordChk) return false;
     if(passwordRegErr === true) return setPasswordRegErr(true);
     if(certEmail === false) return setCertEmail(true);
-    // if(!term) return setTermErr(true);
+    if(isAllchecked === false ) return false;
 
     let userinfo = {
       email,password,nickname,mobile,
-      gender,age,ttlTerm
+      gender,age
     }
 
     dispatch({
@@ -112,24 +111,25 @@ function SignupWrapper() {
 
   return (
     <SignupContainer>
-      <form onSubmit = {signupSubmitHandler}>
-        <label>E-mail</label><span>필수</span><br/>
-        <input 
+      <H1>회원가입</H1>
+      <Form onSubmit = {signupSubmitHandler}>
+        <Label>E-mail</Label><SideSpan>필수</SideSpan>
+        <Button onClick = {()=>certEmailHandler(certEmail)}>
+          이메일 인증</Button>
+        <Input 
         required
         type = 'email' 
         placeholder = 'email@email.com'
         value = {email} 
         onChange = {onChangeEmailHandler}
         />
-        <button onClick = {()=>certEmailHandler(certEmail)}>
-          이메일 인증</button>
         {certEmail ? 
-        <p>이메일 인증은 필수입니다.</p>
+        <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP>
         : null}
         <br/>
 
-        <label>Password</label><span>필수</span><br/>
-        <input 
+        <Label>Password</Label><SideSpan>필수</SideSpan><br/>
+        <Input 
         required
         type = 'password' 
         placeholder = 'password'
@@ -137,11 +137,11 @@ function SignupWrapper() {
         onChange = {onChangePwHandler}
         /><br/>
         {passwordRegErr ? 
-        <p>비밀번호는 최소 6자리에서 12자리 사이의 영문,숫자 조합이어야 합니다.</p>
+        <ErrMsgP>비밀번호는 최소 6자리에서 12자리 사이의<br/> 영문,숫자 조합이어야 합니다.</ErrMsgP>
         : null}
 
-        <label>Password Check</label><span>필수</span><br/>
-        <input 
+        <Label>Password Check</Label><SideSpan>필수</SideSpan><br/>
+        <Input 
         required
         type = 'password' 
         placeholder = 'password check'
@@ -149,11 +149,11 @@ function SignupWrapper() {
         onChange = {onChangePwChkHandler}
         /><br/>
         {passwordErr ? 
-        <p>비밀번호가 일치하지 않습니다.</p>
+        <ErrMsgP>비밀번호가 일치하지 않습니다.</ErrMsgP>
         :null}
         
-        <label>Nickname</label><span>필수</span><br/>
-        <input 
+        <Label>Nickname</Label><SideSpan>필수</SideSpan><br/>
+        <Input 
         required
         type = 'text' 
         placeholder = '닉네임'
@@ -161,8 +161,8 @@ function SignupWrapper() {
         onChange = {onChangeNicknameHandler}
         /><br/>
 
-        <label>Mobile</label><span>필수</span><br/>
-        <input
+        <Label>Mobile</Label><SideSpan>필수</SideSpan><br/>
+        <Input
         required
         type = 'text' 
         placeholder = '모바일'
@@ -174,17 +174,14 @@ function SignupWrapper() {
         selectInputHandler = {selectInputHandler}
         />
 
-        <SignupTerm
-        setTermErr={setTermErr}
-        setTtlTerm = {setTtlTerm}
+        <SignupTerm 
+        setIsAllchecked = {setIsAllchecked}
+        isAllchecked = {isAllchecked}
         />
-        {termErr ? 
-          <p>약관에 모두 동의하셔야 합니다.</p> 
-          : null}
 
-        <button type = 'submit'>회원가입</button>
-        <button onClick = {cancleHandler}>취소</button>
-      </form>
+        <Button type = 'submit'>회원가입</Button>
+        <Button onClick = {cancleHandler}>취소</Button>
+      </Form>
     </SignupContainer>
   )
 }

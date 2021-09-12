@@ -1,12 +1,13 @@
-import React,{useState, useEffect} from 'react';
+import React,{ useState ,useEffect } from 'react';
 import Modal from '../common/Modal/Modal'
+import { Label ,SideSpan } from './StyledSignup'
 
-interface Terms {
-  setTtlTerm : any;
-  // setTermErr : any;
+interface Term {
+  isAllchecked : any,
+  setIsAllchecked : any,
 }
 
-function SignupTerm({setTtlTerm}:Terms ) {
+function SignupTerm({isAllchecked,setIsAllchecked}:Term) {
 
   const [openModal , setOpenModal] = useState(false);
   const [modalText , setModalText] = useState(false);
@@ -20,19 +21,28 @@ function SignupTerm({setTtlTerm}:Terms ) {
     setOpenModal(false);
   };
 
-  useEffect(() => {
-    setTtlTerm(checkedInputs.length === 4);
-  }, [checkedInputs]);
-
   const changeHandler = (checked:any, id:any) => {
     if (checked) {
       setCheckedInputs([...checkedInputs, id]);
+      console.log('--chk 반영--',checked)
     } else {
       setCheckedInputs(checkedInputs.filter((el: any) => el !== id));
+      console.log('--chk 해제반영--',checked)
     }
-    // setTermErr(true);
-    console.log(checked)
   };
+
+  //isAllchecked 가 false 라면 return false;
+  //isAllchecked 를 false 로 두고 props 로 전달받아서 유즈이펙트로 조건건후 setisallchek 이면 트루변경
+  useEffect(() => {
+    if(checkedInputs.length === 4) {
+      setIsAllchecked(true);
+    }
+  }, [checkedInputs]);
+
+  console.log('==',setIsAllchecked , isAllchecked)
+  console.log(checkedInputs)
+  // const isAllchecked = checkedInputs.length === 4
+  const termErr = !isAllchecked;
 
   //약관 : 이용자 이용약관, 개인정보 취급정책, 위치기반 서비스 이용약관, 이벤트 동의 있어야함.
   const termArr = [
@@ -60,15 +70,15 @@ function SignupTerm({setTtlTerm}:Terms ) {
     ],
     [
       `마케팅 활용동의 및 광고수신 동의`,
-      `제1조(목적)\n이 약관은 회원(이 약관에 동의한 자를 말합니다 이하 "회원"이라고 합니다.)\n
+      `이거만 옵셔널로 뺴고싶은데 모리아픔\n
+      제1조(목적)\n이 약관은 회원(이 약관에 동의한 자를 말합니다 이하 "회원"이라고 합니다.)\n
       방문자가 회원가입 시 이벤트/혜택 소식 수신여부 항목(E-Mail, SMS)이 생성됩니다. 회원은 가입 후 정보수정을 통해 수신 여부를 변경할 수 있습니다.`
     ],
   ];
 
-  //termArr 로 매핑돌리기.
   return (        
     <div>
-      <label>이용약관 동의</label><span>필수</span><br/>
+      <Label>이용약관 동의</Label><SideSpan>필수</SideSpan><br/>
       {termArr.map((el,idx)=>{
         return (
           <div key = {idx} className = 'term-array'>
@@ -76,19 +86,25 @@ function SignupTerm({setTtlTerm}:Terms ) {
             type = 'checkbox'
             name = 'terms'
             value = 'terms'
-            className = {`${idx+1}th term`}
+            className = 'terms'
             id = {`${idx+1}th term`}
-            onClick={() => termModalHandler(el[1])}
             onChange = {e=>
               {changeHandler(e.currentTarget.checked ,`${idx+1}th term` )}}
             checked={checkedInputs.includes(`${idx+1}th term` ) ? true : false}
             />
-            {el[0]}(필수)
 
+            <label htmlFor = {`${idx+1}th term`}/>
+            <span 
+            onClick={() => termModalHandler(el[1])}
+            >{el[0]}</span>
           </div>
         )
       })}
       
+      {termErr ? 
+          <p>약관에 모두 동의하셔야 합니다.</p> 
+          : null}
+
       <Modal
         openModal={openModal}
         closeModal={closeModal}
@@ -100,21 +116,3 @@ function SignupTerm({setTtlTerm}:Terms ) {
 }
 
 export default SignupTerm
-
-  {/* <label>
-        <input 
-        type = 'checkbox' 
-        onChange = {termHandler}
-        />
-      <span 
-      onClick = {()=>termModalHandler()}>최종 이용자 이용약관</span>에 동의합니다.
-      </label>
-  
-      <label>
-        <input 
-        type = 'checkbox' 
-        onChange = {termHandler}
-        />
-      <span
-      onClick = {()=>termModalHandler()}>개인정보 취급정책</span>에 동의합니다.
-      </label> */}

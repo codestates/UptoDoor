@@ -142,7 +142,7 @@ export const MiddleButton = styled.button`
   }
 `;
 
-export const SignupLink = styled(Link)`
+export const BtnLink = styled(Link)`
   text-decoration: none;
   color: #fff;
 `;

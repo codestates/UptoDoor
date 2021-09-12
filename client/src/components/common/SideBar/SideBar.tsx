@@ -1,36 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SigninModal from '../Signin/SigninModal';
 import {
   SidebarContainer,
   Icon,
   SidebarWrapper,
   SidebarMenu,
   SidebarLink,
-  // SideBtnWrapper,
   Logo,
   User,
 } from "./StyledSideBar";
 
 interface Iprops {
-  sidebarToggle: any;
+  setIsOpen: any;
   isOpen: boolean;
 }
 
-const SideBar = ({ sidebarToggle, isOpen }:Iprops ) => {
+const SideBar = ({ setIsOpen, isOpen }: Iprops) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <SidebarContainer isOpen={isOpen} onClick = { sidebarToggle } >
+    <SidebarContainer isOpen={isOpen} >
       <SidebarWrapper>
-        <Icon onClick={sidebarToggle}>
+        <Icon onClick={()=>{setIsOpen(false)}}>
           <i className="fas fa-times"></i>
         </Icon>
         <Logo>UptoDoor</Logo>
-        <User to="/signin">로그인(닉네임)</User>
+        <User onClick={() => {
+          setModalOpen(true);
+        }}>로그인(닉네임)</User>
         <SidebarMenu>
-          <SidebarLink to="/mapper">구독찾기</SidebarLink>
-          <SidebarLink to="/address">동네인증</SidebarLink>
-          <SidebarLink to="mypage">마이페이지</SidebarLink>
-          <SidebarLink to="/signup">회원가입(굳이?)</SidebarLink>
+          <SidebarLink to="/mapper" onClick={()=>{setIsOpen(false)}}>구독찾기</SidebarLink>
+          <SidebarLink to="/address" onClick={()=>{setIsOpen(false)}}>동네인증</SidebarLink>
+          <SidebarLink to="mypage" onClick={()=>{setIsOpen(false)}}>마이페이지</SidebarLink>
+          <SidebarLink to="/signup" onClick={()=>{setIsOpen(false)}}>회원가입(굳이?)</SidebarLink>
         </SidebarMenu>
       </SidebarWrapper>
+      {modalOpen ? <SigninModal setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} /> : null}
     </SidebarContainer>
   );
 };

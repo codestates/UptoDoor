@@ -1,4 +1,7 @@
-import React from 'react'
+import React,{useState } from 'react'
+import SideBar from '../SideBar/SideBar';
+import Signin from '../Signin/SigninModal';
+
 import {
   Header,
   Nav,
@@ -11,11 +14,13 @@ import {
   BtnLink,
 } from "./StyledNavBar";
 
-interface Iprops {
-  sidebarToggle: any;
-}
 
-function NavBar({ sidebarToggle }:Iprops) {
+function NavBar() {
+  //사이드바 모달창
+  const [isOpen, setIsOpen] = useState(false);
+  //로그인 모달
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <Header>
       <NavWrapper>
@@ -45,19 +50,23 @@ function NavBar({ sidebarToggle }:Iprops) {
         </IconButton>
         {/* 메뉴 버튼 */}
         <IconButton
-          onClick={sidebarToggle}
+          onClick={() => { setIsOpen(true) }}
           type="button"
           aria-label="메뉴 열기 버튼"
         >
           <i className="fas fa-bars"></i>
         </IconButton>
-        <MiddleButton type="button" aria-label="회원가입">
-          <BtnLink to="/login">로그인</BtnLink>
+        <MiddleButton type="button" aria-label="로그인"
+        onClick={()=>{setModalOpen(true)}}
+        >
+          로그인
         </MiddleButton>
         <MiddleButton type="button" aria-label="회원가입">
           <BtnLink to="/signup">회원가입</BtnLink>
         </MiddleButton>
       </ButtonWrapper>
+      <SideBar setIsOpen={setIsOpen} isOpen={isOpen} />
+      <Signin setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </Header>
   );
 }

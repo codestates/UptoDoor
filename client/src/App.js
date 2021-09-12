@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense} from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/GlobalStyle'
 // import { useDispatch } from 'react-redux'
@@ -27,9 +27,7 @@ import AdminEdit from './pages/AdminEdit'
 import SideBar from './components/common/SideBar/SideBar';
 
 function App() {
-  //사이드바 모달창
-  const [isOpen, setIsOpen] = useState(false);
-  const sidebarToggle = () => { setIsOpen(!isOpen) };
+  
   
   // 예시 const dispatch = useDispatch();
 
@@ -42,8 +40,8 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Suspense fallback={<Loading />}>
-          <SideBar sidebarToggle={sidebarToggle} isOpen={isOpen} />
-          <NavBar sidebarToggle={sidebarToggle} />
+          <SideBar />
+          <NavBar />
           <Switch>
             <Route exact path="/">
               <Landing />

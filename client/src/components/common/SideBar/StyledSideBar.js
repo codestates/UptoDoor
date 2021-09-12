@@ -4,7 +4,7 @@ import { TextLightGrey } from '../../GlobalStyle';
 
 export const SidebarContainer = styled.aside`
   position: fixed;
-  z-index: 999;
+  z-index: 998;
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.5);
@@ -13,7 +13,6 @@ export const SidebarContainer = styled.aside`
   align-items: center;
   top: 0;
   left: 0;
-  transition: 0.3s ease-in-out;
   opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
   @media screen and (min-width: 767px) {
@@ -59,9 +58,10 @@ export const Logo = styled.div`
   font-weight: 700;
   border-bottom: 1px solid ${TextLightGrey};
   margin-top: 15px;
+  letter-spacing: -2px;
 `;
 
-export const User = styled(Link)`
+export const User = styled.div`
   width: 80%;
   height: 50px;
   color: black;
@@ -100,11 +100,6 @@ export const SidebarLink = styled(Link)`
   font-weight: 500;
   color: #000;
   list-style: none;
-  transition: 0.2s ease-in-out;
   text-decoration: none;
   cursor: pointer;
-
-  &:hover {
-    color: red;
-  }
 `;

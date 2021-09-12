@@ -15,6 +15,7 @@ export const SidebarContainer = styled.aside`
   left: 0;
   opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
+
   @media screen and (min-width: 767px) {
     display: none;
   }

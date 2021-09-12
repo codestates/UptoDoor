@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyledModal } from './styledModal'
+import { SmallButton } from '../Button/Button'
 
 function Modal(props:any) {
   
@@ -13,11 +14,12 @@ function Modal(props:any) {
             <h1>모달</h1>
             <p>{modalText}</p>
             <hr></hr>
-            <button 
+            <SmallButton 
+            primary
             onClick = {closeModal}
             className = 'modal-btn'>
             {modalBtn}
-            </button>
+            </SmallButton>
           </div>
         </div>
       )

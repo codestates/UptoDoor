@@ -1,6 +1,11 @@
 import React,{ useState ,useEffect } from 'react';
 import Modal from '../common/Modal/Modal'
-import { Label ,SideSpan } from './StyledSignup'
+import { 
+  Label ,
+  SideSpan, 
+  TermWrapper ,
+  TermSpan ,
+  ErrMsgP } from './StyledSignup'
 
 interface Term {
   isAllchecked : any,
@@ -39,15 +44,15 @@ function SignupTerm({isAllchecked,setIsAllchecked}:Term) {
     }
   }, [checkedInputs]);
 
-  console.log('==',setIsAllchecked , isAllchecked)
-  console.log(checkedInputs)
+  // console.log('==',setIsAllchecked , isAllchecked)
+  // console.log(checkedInputs)
   // const isAllchecked = checkedInputs.length === 4
   const termErr = !isAllchecked;
 
   //약관 : 이용자 이용약관, 개인정보 취급정책, 위치기반 서비스 이용약관, 이벤트 동의 있어야함.
   const termArr = [
     [
-      `이용자 이용약관`,
+      `사용자 이용약관`,
       `본 최종이용자 이용약관(이하 “본 약관”)은 주식회사 UptoDoor(이하 “공급사업자”)의 서비스,\n
       UptoDoor(“본 서비스”)에 대한 당신(“최종이용자”)의 접근 및 이용을 규정합니다.`,
     ],
@@ -64,12 +69,12 @@ function SignupTerm({isAllchecked,setIsAllchecked}:Term) {
       `,
     ],
     [
-      `위치기반 서비스 이용약관`,
+      `위치기반 서비스`,
       `본 약관은 주식회사 UptoDoor는(이하 UptoDoor)가 제공하는 위치기반서비스에 대해 UptoDoor와 \n
       위치기반서비스를 이용하는 개인위치정보주체(이하 “최종이용자”)간의 권리·의무 및 책임사항, 기타 필요한 사항 규정을 목적으로 합니다.`,
     ],
     [
-      `마케팅 활용동의 및 광고수신 동의`,
+      `마케팅 활용동의 및 광고수신`,
       `이거만 옵셔널로 뺴고싶은데 모리아픔\n
       제1조(목적)\n이 약관은 회원(이 약관에 동의한 자를 말합니다 이하 "회원"이라고 합니다.)\n
       방문자가 회원가입 시 이벤트/혜택 소식 수신여부 항목(E-Mail, SMS)이 생성됩니다. 회원은 가입 후 정보수정을 통해 수신 여부를 변경할 수 있습니다.`
@@ -77,8 +82,9 @@ function SignupTerm({isAllchecked,setIsAllchecked}:Term) {
   ];
 
   return (        
-    <div>
+    <TermWrapper>
       <Label>이용약관 동의</Label><SideSpan>필수</SideSpan><br/>
+      <div className = 'term-array-box'>
       {termArr.map((el,idx)=>{
         return (
           <div key = {idx} className = 'term-array'>
@@ -92,18 +98,17 @@ function SignupTerm({isAllchecked,setIsAllchecked}:Term) {
               {changeHandler(e.currentTarget.checked ,`${idx+1}th term` )}}
             checked={checkedInputs.includes(`${idx+1}th term` ) ? true : false}
             />
-
-            <label htmlFor = {`${idx+1}th term`}/>
-            <span 
+            <TermSpan 
             onClick={() => termModalHandler(el[1])}
-            >{el[0]}</span>
+            >{el[0]}</TermSpan>에 동의합니다.
           </div>
         )
       })}
       
       {termErr ? 
-          <p>약관에 모두 동의하셔야 합니다.</p> 
+          <ErrMsgP>약관에 모두 동의하셔야 합니다.</ErrMsgP> 
           : null}
+      </div>
 
       <Modal
         openModal={openModal}
@@ -111,7 +116,7 @@ function SignupTerm({isAllchecked,setIsAllchecked}:Term) {
         modalText={modalText}
         modalBtn="확인"
       />
-    </div>
+    </TermWrapper>
   )
 }
 

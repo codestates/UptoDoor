@@ -1,4 +1,5 @@
 import React from 'react';
+import { Label ,SideSpan ,SelectBox } from './StyledSignup'
 
 interface Options {
   selectInputHandler : any;
@@ -29,7 +30,8 @@ function SignupOptions({selectInputHandler}:Options) {
     ]
 
     return (
-      <div>
+      <SelectBox>
+        <Label>{gender[1]}</Label><SideSpan>옵션</SideSpan>
         <select onChange = {(e)=>selectInputHandler(e,gender[1])}>
         {gender[0].map((el,idx)=>{
           return (
@@ -51,7 +53,7 @@ function SignupOptions({selectInputHandler}:Options) {
           )
         })}
         </select>
-      </div>
+      </SelectBox>
 
     )
 }

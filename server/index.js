@@ -1,5 +1,4 @@
-import express, { json } from 'express';
-// const cors = require('cors');
+import express, {json} from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';

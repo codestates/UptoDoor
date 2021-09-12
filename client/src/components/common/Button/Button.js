@@ -20,7 +20,7 @@ export const MiddleButton = styled.button`
   font-size: 18px;
   font-weight: 700px;
   cursor: pointer;
-  padding: 8px;
+  padding: 6px;
   text-align: center;
   border-radius: 8px;
   border: 1px solid ${MainColor};

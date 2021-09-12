@@ -53,7 +53,7 @@ export const SignUpInput = styled.input`
   width: 280px;
   height: 55px;
   font-size: ${MediumFont};
-  padding: 5px;
+  padding: 8px;
   margin: 6px 0 10px;
   font-weight: 400;
   border-radius: 8px;
@@ -68,7 +68,7 @@ export const SelectBox = styled.div`
   margin: 6px 0 10px;
   font-weight: 400;
   border-radius: 8px;
-  border: 1px solid ${TextLightGrey};
+  border: 1px dashed ${TextLightGrey};
   >.css-yk16xz-control,.css-g1d714-ValueContainer{
     border:none;
   }

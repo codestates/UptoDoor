@@ -15,6 +15,7 @@ function MapSearchBar({inputRef , searchSubmitHandler} : MapSearchProps) {
 
   return (
     <MapSearchBarContainer>
+      <h1>구독찾기</h1>
       <form onSubmit={searchSubmitHandler}>
         <MapSearchInput 
         ref = {inputRef}

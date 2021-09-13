@@ -1,8 +1,9 @@
 import React , {useState,useEffect,useRef}  from 'react'
 import Map from './Map'
 import MapHashtag from './MapHashtag'
-import MapInfo from './MapInfoModal'
+import MapInfoModal from './MapInfoModal'
 import MapSearchBar from './MapSearchBar'
+import EmptyMap from './EmptyMap'
 import { MapWrapperContainer } from './styledMap'
 
 function MapWrapper() {
@@ -31,27 +32,31 @@ function MapWrapper() {
   } 
 
   return (
-    <MapWrapperContainer className="kakaoMap">
-      <MapSearchBar
-      setKeyword={setKeyword}
-      inputRef={inputRef}
-      searchSubmitHandler = {searchSubmitHandler}
-      />
-      <MapHashtag/>
-      <Map
-      Keyword = {Keyword}
-      dataSet = {dataSet}
-      />
-
-      {openInfoModal ? 
-      <MapInfo
-      mapData={mapData}
-      setKeyword = {setKeyword}
-      />
-      : 
-      null
-      }
-    </MapWrapperContainer>
+    <>
+      <MapWrapperContainer className="kakaoMap">
+        <div className = 'search-hash-wrapper'>
+        <MapSearchBar
+        setKeyword={setKeyword}
+        inputRef={inputRef}
+        searchSubmitHandler = {searchSubmitHandler}
+        />
+        <MapHashtag/>
+        {openInfoModal ? 
+        <MapInfoModal
+        mobile
+        mapData={mapData}
+        setKeyword = {setKeyword}
+        />
+        : 
+        <EmptyMap/>
+        }
+        </div>
+        <Map
+        Keyword = {Keyword}
+        dataSet = {dataSet}
+        />
+        </MapWrapperContainer>
+    </>
   )
 }
 

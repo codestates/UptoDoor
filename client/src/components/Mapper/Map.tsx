@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import search from './keyword';
 import { MapContainer } from './styledMap'
 
-// interface MapProps {
-//   Keyword : any,
-//   dataSet : any,
-// }
+interface MapProps {
+  Keyword : any,
+  dataSet : any,
+}
 
-function Map() {
+function Map({Keyword , dataSet}:MapProps) {
 
   // console.log('===',dataSet);
   useEffect(() => {
-    search()
-    },[]);  
+    search(Keyword,dataSet)
+    },[Keyword]);  
 
   return (
     <MapContainer 

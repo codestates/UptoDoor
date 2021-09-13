@@ -1,7 +1,6 @@
-import React , {Suspense} from "react";
+import React, { Suspense ,lazy } from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
-// import { useDispatch } from 'react-redux'
-// import { SIGNIN } from "./_actions/type";
+import { GlobalStyle } from './components/GlobalStyle'
 import Loading from './components/common/Loading/Loading'
 import Footer from './components/common/Footer/Footer'
 import NavBar from './components/common/NavBar/NavBar'
@@ -13,72 +12,89 @@ import Mapper from './pages/Mapper'
 import Address from './pages/Address'
 
 //!그외 라우터페이지
+// import Landing from './pages/Landing'
+// import StoreInfo from './pages/StoreInfo'
+// import UserCart from './pages/UserCart'
+// import UserOrder from './pages/UserOrder'
 import MypageEdit from './pages/MypageEdit'
-import StoreInfo from './pages/StoreInfo'
-import UserCart from './pages/UserCart'
-import UserOrder from './pages/UserOrder'
 import AdminPost from './pages/AdminPost'
 import AdminPage from './pages/AdminPage'
 import UserOrderInfo from './pages/UserOrderInfo'
 import AdminOrderInfo from './pages/AdminOrderInfo'
 import AdminEdit from './pages/AdminEdit'
+import SideBar from './components/common/SideBar/SideBar';
+
+//!로딩이 필요한 구간
+//map, advanced[데이터분석]
+// const Landing = React.lazy(()=> import('./pages/Landing'));
+const StoreInfo = React.lazy(()=> import('./pages/StoreInfo'));
+const UserCart = React.lazy(()=> import('./pages/UserCart'));
+const UserOrder = React.lazy(()=> import('./pages/UserOrder'));
+// throlling 안할 시 직접 setTimeOut 으로 조정해도 됨.
+const Landing = lazy(
+  () =>
+    new Promise((resolve) =>
+      setTimeout(() => resolve(import('./pages/Landing')), 3000),
+    ),
+);
 
 function App() {
-  // 예시 const dispatch = useDispatch();
-
-  // const handleClick = () =>{
-  //   dispatch({type : SIGNIN})
-  // }
 
   return (
     <>
-    <BrowserRouter>
-      <Suspense fallback = {<Loading />}>
-        <NavBar/>
-        
-        <Switch>
-          <Route path = "/signup"><Signup/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/mypage"><Mypage/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/mapper"><Mapper/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/address"><Address/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/mypageedit"><MypageEdit/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/storeinfo"><StoreInfo/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/usercart"><UserCart/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/userorder"><UserOrder/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/adminpost"><AdminPost/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/adminpage"><AdminPage/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/userorderinfo"><UserOrderInfo/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/adminorderinfo"><AdminOrderInfo/></Route>
-        </Switch>
-        <Switch>
-          <Route path = "/adminedit"><AdminEdit/></Route>
-        </Switch>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Suspense fallback={<Loading />}>
+          <SideBar />
+          <NavBar />
+          <Switch>
+            <Route exact path="/">
+              <Landing />
+            </Route>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+            <Route path="/mypage">
+              <Mypage />
+            </Route>
+            <Route path="/mapper">
+              <Mapper />
+            </Route>
+            <Route path="/address">
+              <Address />
+            </Route>
+            <Route path="/mypageedit">
+              <MypageEdit />
+            </Route>
+            <Route path="/storeinfo">
+              <StoreInfo />
+            </Route>
+            <Route path="/usercart">
+              <UserCart />
+            </Route>
+            <Route path="/userorder">
+              <UserOrder />
+            </Route>
+            <Route path="/adminpost">
+              <AdminPost />
+            </Route>
+            <Route path="/adminpage">
+              <AdminPage />
+            </Route>
+            <Route path="/userorderinfo">
+              <UserOrderInfo />
+            </Route>
+            <Route path="/adminorderinfo">
+              <AdminOrderInfo />
+            </Route>
+            <Route path="/adminedit">
+              <AdminEdit />
+            </Route>
+          </Switch>
 
-        <Footer/>
-      </Suspense>
-    </BrowserRouter>
+          <Footer />
+        </Suspense>
+      </BrowserRouter>
     </>
   );
 }

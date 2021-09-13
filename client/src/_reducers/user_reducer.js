@@ -1,13 +1,18 @@
-import { SIGNIN } from '../_actions/type'
+import { 
+  SIGNUP,
+  SIGNIN 
+} from '../_actions/type'
 
-const dummy = {
-  id : 'sook',
-}
-export default function ( state = dummy , action) {
+export default function user_reducer( state = {} , action) {
   switch(action.type){
+    case SIGNUP :
+      console.log('reducer : ',state)
+      return {...state, signUp : action.payload}
+
     case SIGNIN :
       console.log(state)
       return state
+
     default : 
     return state;
   }

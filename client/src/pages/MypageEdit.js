@@ -1,10 +1,10 @@
 import React from 'react'
-import MyProfileEditWrapper from '../components/MypageEdit//MyProfileEdit'
+import MyProfileEdit from '../components/MypageEdit//MyProfileEdit'
 
 function MypageEdit() {
   return (
     <>
-      <MyProfileEditWrapper/>
+      <MyProfileEdit/>
     </>
   )
 }

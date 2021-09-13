@@ -5,8 +5,8 @@ import AdminProfile from '../components/AdminPage/AdminProfile'
 const AdminPage = () => {
   return (
     <>
-      <AdminOrderList/>
       <AdminProfile/>
+      <AdminOrderList/>
     </>
   )
 }

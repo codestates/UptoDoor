@@ -29,7 +29,7 @@ function MapWrapper() {
   } 
 
   return (
-    <MapWrapperContainer>
+    <MapWrapperContainer className="kakaoMap">
       <MapSearchBar
       setKeyword={setKeyword}
       inputRef={inputRef}

@@ -1,0 +1,23 @@
+import React, { useEffect } from 'react';
+import search from './keyword';
+import { MapContainer } from './styledMap'
+// const {kakao} = window;
+
+interface MapProps {
+  Keyword : any,
+  dataSet : any,
+}
+
+function Map({Keyword, dataSet} : MapProps) {
+
+  useEffect(() => {
+    search(Keyword,dataSet)
+    },[Keyword]);  
+
+  return (
+    <MapContainer id = 'map'>
+    </MapContainer>
+  )
+}
+
+export default Map

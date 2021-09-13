@@ -1,11 +1,25 @@
 const express = require("express");
-const app = express();
-const port = 3060;
+const cors = require('cors')
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+const app = express();
+const port = 4444;
+
+app.use(cors({
+  origin: true,
+  credentials: true,
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+}));
+
+app.use(cookieParser());
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  console.log('ddd');
+  res.send('Hello World!');
 });
 
-app.listen(3060, () => {
+app.listen(port, () => {
   console.log(`UptoDoor listening at http://localhost:${port}`);
 });

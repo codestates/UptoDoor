@@ -1,4 +1,4 @@
-import React, { Suspense} from "react";
+import React, { Suspense ,lazy } from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/GlobalStyle'
 import Loading from './components/common/Loading/Loading'
@@ -12,17 +12,31 @@ import Mapper from './pages/Mapper'
 import Address from './pages/Address'
 
 //!그외 라우터페이지
-import Landing from './pages/Landing'
+// import Landing from './pages/Landing'
+// import StoreInfo from './pages/StoreInfo'
+// import UserCart from './pages/UserCart'
+// import UserOrder from './pages/UserOrder'
 import MypageEdit from './pages/MypageEdit'
-import StoreInfo from './pages/StoreInfo'
-import UserCart from './pages/UserCart'
-import UserOrder from './pages/UserOrder'
 import AdminPost from './pages/AdminPost'
 import AdminPage from './pages/AdminPage'
 import UserOrderInfo from './pages/UserOrderInfo'
 import AdminOrderInfo from './pages/AdminOrderInfo'
 import AdminEdit from './pages/AdminEdit'
 import SideBar from './components/common/SideBar/SideBar';
+
+//!로딩이 필요한 구간
+//map, advanced[데이터분석]
+// const Landing = React.lazy(()=> import('./pages/Landing'));
+const StoreInfo = React.lazy(()=> import('./pages/StoreInfo'));
+const UserCart = React.lazy(()=> import('./pages/UserCart'));
+const UserOrder = React.lazy(()=> import('./pages/UserOrder'));
+// throlling 안할 시 직접 setTimeOut 으로 조정해도 됨.
+const Landing = lazy(
+  () =>
+    new Promise((resolve) =>
+      setTimeout(() => resolve(import('./pages/Landing')), 3000),
+    ),
+);
 
 function App() {
 

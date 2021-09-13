@@ -1,25 +1,39 @@
 import React from 'react'
-import { StyledModal } from './styledModal'
+import { 
+  StyledModal,
+  ModalContainer , 
+  ModalWrapper,
+  ModalTextWrapper,
+  ModalText,
+  ModalTitleText
+} from './styledModal'
+import {MiddleButton} from '../Button/Button'
 
 function Modal(props:any) {
   
-  const { openModal, closeModal, modalText, modalBtn } = props;
+  const { openModal, closeModal, modalTitleText ,modalText, modalBtn } = props;
 
   return (
     <StyledModal>
       {openModal ? (
-        <div className = 'modal' >
-          <div className = 'popup-box'>
-            <h1>모달</h1>
-            <p>{modalText}</p>
+        <ModalContainer className = 'modal-container' >
+          <ModalWrapper className = 'modal-wrapper'>
+          <ModalTextWrapper >
+            <ModalTitleText>{modalTitleText}</ModalTitleText>
             <hr></hr>
-            <button 
+            <ModalText>{modalText}</ModalText>
+          </ModalTextWrapper>
+
+          <MiddleButton 
+            primary
             onClick = {closeModal}
             className = 'modal-btn'>
             {modalBtn}
-            </button>
-          </div>
-        </div>
+            </MiddleButton>
+            </ModalWrapper>
+
+
+        </ModalContainer>
       )
       :
       null

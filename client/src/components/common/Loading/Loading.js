@@ -1,10 +1,17 @@
 import React from 'react'
+import { 
+  StyledLoading , 
+  LoadingWrapper,
+  Loader
+} from './StyleLoading'
 
 function Loading() {
   return (
-    <div>
-      로딩중
-    </div>
+    <StyledLoading>
+      <LoadingWrapper className="box">
+      <Loader className="loader"></Loader>
+    </LoadingWrapper>
+    </StyledLoading>
   )
 }
 

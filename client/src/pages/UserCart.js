@@ -1,12 +1,12 @@
 import React from 'react'
-import UserCartList from '../components/UserCart/UserCartList'
-import UserCheckList from '../components/UserCart/UserCheckList'
+// import UserCheckList from '../components/UserCart/UserCheckList'
+import UserCartInfo from '../components/UserCart/UserCartInfo'
 
 const UserCart = () => {
   return (
     <>
-      <UserCartList/>
-      <UserCheckList/>
+      <UserCartInfo />
+      {/* <UserCheckList/> */}
     </>
   )
 }

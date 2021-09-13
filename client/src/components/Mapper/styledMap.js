@@ -1,16 +1,30 @@
-import styled from 'styled-components'
+import styled ,{keyframes} from 'styled-components'
 import { SmallFont, MediumFont ,TextLightGrey, TextColor } from '../GlobalStyle'
 
+const showInfoModal = keyframes`
+  from {
+    opacity: 0;
+    margin-top: 50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+`
+const showInfoModalBg = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
+
 export const MapWrapperContainer = styled.section`
-/* display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column; */
 padding : 20px;
 transition : all 0.3s;
 `
 export const MapSearchBarContainer = styled.div`
-/* border : 3px solid brown; */
 >form{
   display: flex;
   justify-content: center;
@@ -58,31 +72,49 @@ export const MapHashtagWrapper = styled.div`
 export const MapContainer = styled.div`
 border-radius : 8px;
 margin : 0 auto;
-width : 300px;
-height : 300px;
+width : 100%;
+height : 400px;
 `
 export const MapInfoContainer = styled.div`
-background-color: rgba(0,0,0,0.1);
-border-radius : 8px;
-margin : 10px auto;
-width : 90%;
-height : 100px;
+  border-radius : 8px;
+  margin : 10px auto;
+  height : 100px;
+  position: relative;
+  top :10px;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #fff;
+  animation: ${showInfoModalBg} .4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 `
 export const MapInfoWrapper = styled.div`
-border-radius : 8px;
-margin : 10px auto;
-height : 100px;
-display: flex;
-align-items: center;
+  border-radius : 8px;
+  margin : 0 auto;
+  width: 100%;
+  height : 100px;
+  display: flex;
+  box-sizing: border-box;
+  max-width: 400px;
+  animation: ${showInfoModal}.4s; 
+  background-color: rgba(0,0,0,0.05);
+  padding : 10px; 
 >a{
   display: flex;
   text-decoration: none;
-  color : ${TextColor}
+  >div>hr{
+    border: 1px solid rgba(0,0,0,0.2);
+    margin : 3px 0;
+  }
 }
 `
 export const StoreImg = styled.img`
 border-radius : 3px;
-margin : 5px;
+margin : 0 10px 0 0;
 border: 1px solid;
 width : 80px;
 height : 80px;
@@ -91,9 +123,11 @@ export const StoreName = styled.h2`
 border-radius : 8px;
 margin :0;
 font-size: ${MediumFont};
+color : ${TextColor}
 `
 export const StoreAddress = styled.p`
 border-radius : 8px;
 margin : 0;
 font-size: ${SmallFont};
+color : ${TextColor}
 `

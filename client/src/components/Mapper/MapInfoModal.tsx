@@ -14,9 +14,7 @@ interface MapInfoProps{
   // setKeyword  :any
 }
 
-console.log(mapDummy[0].Store);
-
-function MapInfo({mapData} : MapInfoProps) {
+function MapInfoModal({mapData} : MapInfoProps) {
   console.log('===mapData===',mapData);
 
   // function clickChange(e:any){
@@ -31,7 +29,8 @@ function MapInfo({mapData} : MapInfoProps) {
           <StoreImg src = '' alt = '업체사진'/>
           <div>
           <StoreName>{mapDummy[1].Store.name}</StoreName>
-          <StoreAddress>Location_<span>{mapDummy[1].Store.address}</span></StoreAddress>
+          <hr/>
+          <StoreAddress>{mapDummy[1].Store.address}</StoreAddress>
           </div>
         </Link>
       </MapInfoWrapper>
@@ -39,7 +38,7 @@ function MapInfo({mapData} : MapInfoProps) {
   )
 }
 
-export default MapInfo
+export default MapInfoModal
 
       {/* {mapData && mapData.map((el:any,idx:number)=>{
         return (

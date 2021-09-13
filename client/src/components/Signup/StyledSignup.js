@@ -12,14 +12,33 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+>.signup-line{
+  border-bottom : 1px solid rgba(0,0,0,0.6);
+  width : 80%;
+  margin-bottom: 20px;
+}
 `
 export const H1 = styled.h1`
 font-size: ${LargeFont};
-margin : 20px 0;
+margin : 20px 0 40px;
 `
 export const Form = styled.form`
-width: 80%;
 margin : 10px auto;
+>.cert-email-btn{
+  width: 60%;
+  text-align: right;
+  /* float: right; */
+  border:none;
+  font-size: ${SmallFont};
+}
+>.email-input{
+  margin-top: -6px;
+  /* clear: both; */
+}
+>.signup-btn-box{
+  text-align: center;
+  margin : 20px;
+}
 `
 export const Label = styled.label`
 color : ${TextDarkGrey};
@@ -27,35 +46,57 @@ font-size: ${MediumFont};
 margin-right: 10px;
 `
 export const SideSpan = styled.span`
-color : ${MainColor};
+color : ${TextLightGrey};
 font-size: ${SmallFont};
 `
-export const Input = styled.input`
-margin : 10px 0;
-padding :5px 10px;
-width : 100%;
-font-size: ${SmallFont};
-border : 1px solid ${TextLightGrey} ;
-border-radius: 3px;
+export const SignUpInput = styled.input`
+  width: 280px;
+  height: 55px;
+  font-size: ${MediumFont};
+  padding: 8px;
+  margin: 6px 0 10px;
+  font-weight: 400;
+  border-radius: 8px;
+  border: 1px solid ${TextLightGrey};
 `
 export const SelectBox = styled.div`
-border : 3px solid;
->select{
-  border : 3px solid red;
-  width: 80%;
+>.selection{
+  width: 280px;
+  height: 55px;
+  font-size: ${MediumFont};
+  padding: 5px;
+  margin: 6px 0 10px;
+  font-weight: 400;
+  border-radius: 8px;
+  border: 1px dashed ${TextLightGrey};
+  >.css-yk16xz-control,.css-g1d714-ValueContainer{
+    border:none;
+  }
 }
 `
+export const TermWrapper = styled.div`
+width: 280px;
+>.term-array-box{
+  border-radius : 8px;
+  background-color: rgba(0,0,0,0.1);
+  padding : 10px;
+  margin : 6px 0 10px;
+  color : ${TextDarkGrey};
+  >.term-array{
+    &:nth-child(4){
+      margin-bottom: 10px;
+    }
+  }
+}
+`
+export const TermSpan = styled.span`
+cursor: pointer;
+color : ${MainColor};
+margin-left : 5px;
+`
+
 export const ErrMsgP = styled.p`
 color : ${PointColor};
 font-size: ${SmallFont};
-`
-export const Button = styled.button`
-width : 80px;
-background-color : ${MainColor};
-border: none;
-border-radius: 5px;
-margin : 3px;
-color : #fff;
-padding : 5px ;
-font-size: ${SmallFont};
+margin-left : 5px 0;
 `

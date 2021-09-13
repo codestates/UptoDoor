@@ -60,7 +60,7 @@ export const initialCart = {
       name: "스페셜 스팸에그 토스트",
       price: "4000",
       detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
-      image: "",
+      image: "../images/toast.png",
       quantity: "2",
     },
     {
@@ -68,7 +68,7 @@ export const initialCart = {
       name: "아메리카노",
       price: "4000",
       detail: "venti",
-      image: "",
+      image: "../images/americano.png",
       quantity: "1",
     },
   ],

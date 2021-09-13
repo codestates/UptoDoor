@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      models.store.hasMany(models.user,{foreignKey: "store_id", sourceKey: 'id'})
+      models.store.hasMany(models.order,{foreignKey: "store_id", sourceKey: 'id'})
+      models.store.hasMany(models.store_menu,{foreignKey: "store_id", sourceKey: 'id'})
     }
   };
   store.init({

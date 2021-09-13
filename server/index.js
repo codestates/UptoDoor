@@ -1,13 +1,10 @@
-import express, { json } from 'express';
-// const cors = require('cors');
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv';
-
-dotenv.config();
+const express = require("express");
+const cors = require('cors')
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
 
 const app = express();
-const port = 4000;
+const port = 4444;
 
 app.use(cors({
   origin: true,
@@ -15,8 +12,8 @@ app.use(cors({
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
 }));
 
-app.use(cookieParser);
-app.use(json());
+app.use(cookieParser());
+app.use(express.json());
 
 app.get('/', (req, res) => {
   console.log('ddd');

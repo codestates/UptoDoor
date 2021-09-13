@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', Router);
 
 app.get('/', (req, res) => {
+  console.log("접속")
   res.send('Hello World!');
 });
 

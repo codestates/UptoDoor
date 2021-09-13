@@ -8,6 +8,9 @@ import SignupTerm from './SignupTerm'
 import { H1 ,SignupContainer,Form ,Input ,Label ,SideSpan ,Button,
   ErrMsgP } from './StyledSignup'
 
+  import axios from "axios";
+axios.defaults.withCredentials=true;
+
 function SignupWrapper() {
 
   let history = useHistory();
@@ -64,6 +67,13 @@ function SignupWrapper() {
     //userinfo.email.then((res)=>확인모달(트루))
     //.catch((err)=>이미 존재합니다 모달(트루))
     console.log(email)
+    axios
+    .get(
+      `http://localhost:3060/users/Email?email=${email}`,
+      { withCredentials: true }
+    ).then((res)=>
+    console.log(res),
+    )
   }
 
   const onChangePwHandler = useCallback((e) => {

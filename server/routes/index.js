@@ -8,6 +8,7 @@ router.post('/users/signin', auth, controllers.Login);
 router.delete('/users/signout',auth, controllers.SignOut);
 router.use('/users/userinfo', auth, controllers.UserInfo);
 router.use('/users/orderinfo', auth, controllers.UserOrder);
+router.get('/users/Email', controllers.Email12);
 router.post('/users/address', auth, controllers.Address);
 router.patch('/position', auth, controllers.Position);
 router.use('/admin/store', auth, controllers.Store);

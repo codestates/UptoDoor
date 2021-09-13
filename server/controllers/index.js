@@ -4,6 +4,7 @@ module.exports = {
     SignUp: require('./Users/Signup'),
     UserInfo: require('./Users/Userinfo'),
     UserOrder: require('./Users/Userorder'),
+    Email12: require('./Users/Email'),
     AdminInfo: require('./Admin/Admininfo'),
     Position: require('./Admin/Position'),
     Store: require('./Admin/Store'),

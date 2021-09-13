@@ -1,5 +1,5 @@
 ---
-name: "[Error Handling] 에러 핸들링 템플릿 / 2021-00-00"
+name: "[🌪 Error Handling] 에러 핸들링 템플릿 / 2021-00-00"
 about: Error Handling
 title: ''
 labels: ''

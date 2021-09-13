@@ -79,7 +79,6 @@ export const ModalTextWrapper = styled.div`
       background-color: ${MainColor};
       border-radius: 150px;
     }
-
 `
 export const ModalTitleText = styled.div`
   color : ${TextColor};

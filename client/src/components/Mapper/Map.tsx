@@ -9,7 +9,6 @@ interface MapProps {
 
 function Map({Keyword , dataSet}:MapProps) {
 
-  // console.log('===',dataSet);
   useEffect(() => {
     search(Keyword,dataSet)
     },[Keyword]);  

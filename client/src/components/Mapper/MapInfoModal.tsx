@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { mapDummy } from './mapDummy'; 
+// import { initialMap } from '../dummyData'
 import { 
   MapInfoContainer,
   MapInfoWrapper,
@@ -11,33 +11,35 @@ import {
 
 interface MapInfoProps{
   mapData : any,
-  setKeyword  :any
+  filterList : any
+  // setKeyword  :any,
 }
 
-function MapInfoModal({mapData ,setKeyword} : MapInfoProps) {
+function MapInfoModal({filterList} : MapInfoProps) {
   // console.log('===mapData===',mapData);
 
-  function clickChange(e:any){
-    let clickWord = e.currentTarget.children[0].textContent
-    setKeyword(clickWord)
-  }
+  // function clickChange(e:any){
+  //   let clickWord = e.currentTarget.children[0].textContent
+  //   setKeyword(clickWord)
+  // }
 
   return (
     <MapInfoContainer mobile className = 'mapinfo-container'>
-      {mapData && mapData.map((el:any,idx:number)=>{
+      {filterList.map((el:any,idx:any)=>{
         return (
-            <MapInfoWrapper 
-            key = {idx}
-            className = 'mapinfo-wrapper' 
-            onClick={clickChange}>
-              <Link to ='/storeinfo'>
-                <StoreImg src = '' alt = '업체사진'/>
-                <div>
-                <StoreName>{el.place_name}</StoreName>
-                <StoreAddress>{el.address_name}</StoreAddress>
-                </div>
-              </Link>
-            </MapInfoWrapper>
+          <MapInfoWrapper 
+          key = {idx}
+          // clickChange = {clickChange}
+          className = 'mapinfo-wrapper'>
+          <Link to ='/storeinfo'>
+            <StoreImg src = '' alt = '업체사진'/>
+            <div>
+            <StoreName>{el.name}</StoreName>
+            <hr/>
+            <StoreAddress>{el.address}</StoreAddress>
+            </div>
+          </Link>
+          </MapInfoWrapper>
         )
       })}
     </MapInfoContainer>
@@ -47,13 +49,19 @@ function MapInfoModal({mapData ,setKeyword} : MapInfoProps) {
 export default MapInfoModal
 
 
-      // <MapInfoWrapper className = 'mapinfo-wrapper'>
-      //   <Link to ='/storeinfo'>
-      //     <StoreImg src = '' alt = '업체사진'/>
-      //     <div>
-      //     <StoreName>{mapDummy[1].Store.name}</StoreName>
-      //     <hr/>
-      //     <StoreAddress>{mapDummy[1].Store.address}</StoreAddress>
-      //     </div>
-      //   </Link>
-      // </MapInfoWrapper>
+      // {mapData && mapData.map((el:any,idx:number)=>{
+      //   return (
+      //       <MapInfoWrapper 
+      //       key = {idx}
+      //       className = 'mapinfo-wrapper' 
+      //       onClick={clickChange}>
+      //         <Link to ='/storeinfo'>
+      //           <StoreImg src = '' alt = '업체사진'/>
+      //           <div>
+      //           <StoreName>{el.place_name}</StoreName>
+      //           <StoreAddress>{el.address_name}</StoreAddress>
+      //           </div>
+      //         </Link>
+      //       </MapInfoWrapper>
+      //   )
+      // })}

@@ -5,8 +5,8 @@ export default function Keyword(searchPlace,dataSet){
 
   const mapContainer = document.getElementById('map'); // 지도를 표시할 div 
   const mapOption = { 
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
+        center: new kakao.maps.LatLng(37.54989223753498, 126.98131131199537), // 지도의 중심좌표
+        level: 5 // 지도의 확대 레벨
     };
 
   // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
@@ -63,5 +63,7 @@ function placesSearchCB (data, status) {
     infowindow.close();
   });
 }
+// 지도 중심좌표를 접속위치로 변경합니다
+// map.setCenter(locPosition);
 
 }

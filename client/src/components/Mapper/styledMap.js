@@ -29,8 +29,16 @@ const showInfoModalBg = keyframes`
     opacity: 1;
   }
 `
+export const MapTitleH1 = styled.h1`
+  margin : 0 20px 20px ;
+  font-size: ${LargeFont};
+  @media screen and (min-width: 767px) {
+    margin : 50px 170px -20px;
+    font-size: 32px;
+  }
+`
 export const MapWrapperContainer = styled.section`
-padding : 20px 20px 10px;
+padding : 0 20px;
 transition : all 0.3s;
 
 @media screen and (min-width: 767px) {
@@ -41,9 +49,10 @@ transition : all 0.3s;
 }
 
 >.search-hash-wrapper{
-  width: 335px;
-  height: 200px;
+  width: 100%;
+  height: 190px;
   @media screen and (min-width: 767px) {
+    width: 335px;
     height: 500px;
     margin-right: 30px;
   }
@@ -52,15 +61,21 @@ transition : all 0.3s;
   margin : 10px 150px;
   }
 `
-export const MapSearchBarContainer = styled.div`
->h1{
-  margin-bottom : 10px;
-  font-size: ${LargeFont};
-  @media screen and (min-width: 767px) {
-    margin-bottom : 20px;
-    font-size: 32px;
+export const MapSelectAddressWrapper = styled.div`
+
+>.select-address-box{
+  width: 100%;
+  text-align: center;
+  margin : 10px 0;
+  >.mobile-middle-btn{
+    width: 48%;
+    &:nth-child(1){
+      margin-right: 8px;
+    }
   }
 }
+`
+export const MapSearchBarContainer = styled.div`
 >form{
   display: flex;
   justify-content: center;
@@ -68,7 +83,7 @@ export const MapSearchBarContainer = styled.div`
   margin-bottom : 10px;
   >.map-search-btn{
     width: 50px;
-    height : 55px;
+    height : 45px;
     margin : 0;
     border-radius : 0 8px 8px 0;
     cursor: pointer;
@@ -76,21 +91,25 @@ export const MapSearchBarContainer = styled.div`
 }
 `
 export const MapSearchInput = styled.input`
-  width: 280px;
-  height: 55px;
+  width: 90%;
+  height: 45px;
   font-size: ${MediumFont};
   font-weight: 400;
   border-radius: 8px 0 0 8px;
   border: 1px solid ${TextLightGrey};
   border-right: none;
   padding-left : 8px;
+  @media screen and (min-width: 767px) {
+  margin : 10px 0;
+  width: 280px;
+  }
 `
 export const MapHashtagWrapper = styled.div`
   display: flex;
   justify-content: right;
   margin : 10px;
 >.hashtag-box{
-  width: 80%;
+  width: 85%;
   text-align: right;
 }
 >.hashtag-box>.hashtag-category-btn{
@@ -120,12 +139,11 @@ height : 350px;
 export const MapInfoContainer = styled.div`
   border-radius : 8px;
   margin : 0;
-  height : 300px;
   position: fixed;
-  top : 670px;
+  top : 690px;
   right: 0;
   left: 0;
-  z-index: 100;
+  /* z-index: 10000; */
   background-color: #fff;
   animation: ${showInfoModalBg} .4s;
   display: flex;
@@ -141,11 +159,10 @@ export const MapInfoContainer = styled.div`
       height: 8px;
       padding-top: 1px;
     }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: ${MainColor};
-      border-radius: 150px;
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${MainColor};
+    border-radius: 150px;
+  }
   @media screen and (min-width: 767px) {
     position: relative;
     top : 10px;

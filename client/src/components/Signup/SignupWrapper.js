@@ -69,11 +69,12 @@ function SignupWrapper() {
     //.catch((err)=>이미 존재합니다 모달(트루))
     console.log(email)
     axios
-    .get(
-      `http://localhost:3060/users/Email?email=${email}`,
+    .post(
+      `http://localhost:3060/auth/email`,
+      {email:email},
       { withCredentials: true }
     ).then((res)=>
-    console.log(res),
+    console.log("응답성공",res),
     )
   }
 

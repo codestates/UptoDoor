@@ -49,39 +49,47 @@ export const initialUser = {
 };
 
 export const initialCart = {
-  order_time: "2021년 9월12일 07:00",
+  // order_time: "2021년 9월12일 07:00",
   user_email: "test1@gmail.com",
   user_mobile: "010-7185-2791",
   user_address: "서울시 용산구 신흥로32길 4-33",
   store_id: "5",
   Menu: [
     {
-      id: 40,
-      name: "스페셜 스팸에그 토스트",
+      id: 42,
+      name: "스페셜11 스팸에그 토스트",
       price: "4000",
       detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
       image: "../images/toast.png",
-      quantity: "2",
+      quantity: 1,
     },
     {
-      id: 38,
+      id: 41,
+      name: "스페셜11 스팸에그 토스트",
+      price: "4000",
+      detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
+      image: "../images/toast.png",
+      quantity: 1,
+    },
+    {
+      id: 39,
       name: "아메리카노",
       price: "4000",
       detail: "venti",
       image: "../images/americano.png",
-      quantity: "1",
+      quantity: 1,
     },
   ],
   plus_check: true,
-  plus_detail: "우유 2개 추가, 아메리카노에 시럽 3번짜주세요",
   plus_money: "2000",
+  delivery_detail: "우유 2개 추가, 아메리카노에 시럽 3번짜주세요",
   delivery_term: "1개월",
   delivery_day: "월요일, 화요일",
   delivery_time: "오전 11시",
   totalPrice: "112000",
 };
 
-export const initialStore = {
+export const initialStore = [{
   id: 5,
   name: "쑥카페",
   image: [],

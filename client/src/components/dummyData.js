@@ -120,4 +120,104 @@ export const initialStore = [{
       image: "",
     },
   ],
-},]
+  //delivery_time: "",
+  //business_paper: "",
+};
+
+export const initialMap = [
+  //id,category,name,address
+  {
+    id : 1,
+    category_name : 'food',
+    name : '용준이네집',
+    address : '서울시 용산구 신흥로32길 4-33'
+  },
+  {
+    id : 2,
+    category_name : 'cafe',
+    name : '#도노커피',
+    address : '서울 용산구 후암동 262-2'
+  },
+  {
+    id : 3,
+    category_name : 'cafe',
+    name : '용산구 파리바게트',
+    address : '서울 용산구 후암동 415-59'
+  },
+  {
+    id : 4,
+    category_name : 'cafe',
+    name : '해방커피',
+    address : '서울 용산구 용산동2가 1-697'
+  }, 
+  {
+    id : 5,
+    category_name : 'cafe',
+    name : '남산아래',
+    address : '서울 용산구 용산동2가 1-528'
+  },
+  {
+    id : 6,
+    category_name : 'home/living',
+    name : '한솔클리닝',
+    address : '서울 용산구 신흥로 126'
+  },
+  {
+    id : 7,
+    category_name : 'plants',
+    name : '피아노숲',
+    address : '서울 용산구 용산동2가 1-528'
+  },
+  {
+    id : 8,
+    category_name : 'food',
+    name : '해방식당',
+    address : '서울 용산구 용산동2가 1-555'
+  },
+  {
+    id : 9,
+    category_name : 'etc',
+    name : '고래서점',
+    address : '서울 용산구 한강대로 307'
+  },
+  {
+    id : 10,
+    category_name : 'etc',
+    name : '올리브영',
+    address : '서울 용산구 한강대로 285'
+  },
+]
+
+export const initialHash = [
+  //id,category,name,address
+  {
+    id : 1,
+    category_name : 'food',
+    hash_arr : []
+  },
+  {
+    id : 2,
+    category_name : 'cafe',
+    hash_arr : []
+  },
+  {
+    id : 3,
+    category_name : 'living/home',
+    hash_arr : []
+  },
+  {
+    id : 4,
+    category_name : 'plants',
+    hash_arr : []
+  },
+  {
+    id : 5,
+    category_name : 'lesson',
+    hash_arr : []
+  },
+  {
+    id : 6,
+    category_name : 'etc',
+    hash_arr : []
+  },
+]

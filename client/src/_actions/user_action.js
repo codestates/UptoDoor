@@ -5,19 +5,23 @@ import {
   MYPAGE_USER ,
   DELETE_USER,ADD_MAIN_ADDRESS,ADD_SUB_ADDRESS } from './type'
 
-// import axios from 'axios'
-// axios.defaults.withCredentials = true
+import axios from 'axios'
+axios.defaults.withCredentials = true
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
   // const result = 
-  // axios.post('https://uptodoor.cf\/users/signup',
+  // axios.post('http://localhost:3060/users/signup',
   // userinfo)
-  // .then((res)=>res.data처럼, 콘솔찍어확인하고 작성, 성공시 result payload 에 담기)
-  // .catch((err)=>console.log('==userinfo 받아오기실패==',err))
+  // .then((res)=>{
+  //   console.log(res.data);
+  // })
+  // .catch((err)=>{
+  //   console.log('==userinfo 받아오기실패==',err)
+  // })
   return {
     type : SIGNUP,
-    payload : {userinfo} //응답받은 유저인포 reducer 전달
+    payload : userinfo //result 대체예정,응답받은 유저인포 reducer 전달
   }
 }
 

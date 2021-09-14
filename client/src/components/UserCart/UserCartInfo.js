@@ -250,6 +250,7 @@ function UserCartInfo() {
                         type="radio"
                         name="delivery_term"
                         defaultValue={mon}
+
                       />
                       {mon}개월
                     </span>

@@ -29,7 +29,7 @@ module.exports = {
       main_yvalue: {
         type: Sequelize.FLOAT
       },
-      subaddres: {
+      subaddress: {
         type: Sequelize.STRING
       },
       subaddressDetail: {

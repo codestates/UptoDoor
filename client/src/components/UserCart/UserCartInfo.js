@@ -106,7 +106,7 @@ function UserCartInfo() {
                         type="radio"
                         name="delivery_term"
                         value={mon}
-                        checked
+                        defaultChecked
                       />
                       {mon}개월
                     </span>

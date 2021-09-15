@@ -28,7 +28,8 @@ export const signUp = (userinfo) => {
 
 //유저 signin post 요청
 export const signIn = (userinfo) => {
-  //const result = axios.post('http://localhost:3060/users/signin', userinfo);
+  //const result = 
+  axios.post('https://zerone.tk/users/signin', userinfo);
   //console.log(result);
   return {
     type: SIGNIN,

@@ -1,11 +1,12 @@
 const express = require('express');
+
 const router = express.Router();
 const controllers = require('../controllers/index');
 const auth = require('../middlewares/auth');
 
-router.post('/users/signup', auth, controllers.SignUp);
-router.post('/users/signin', auth, controllers.Login);
-router.delete('/users/signout',auth, controllers.SignOut);
+router.post('/users/signup', controllers.SignUp);
+router.post('/users/signin', controllers.Login);
+router.delete('/users/signout', auth, controllers.SignOut);
 router.use('/users/userinfo', auth, controllers.UserInfo);
 router.use('/users/orderinfo', auth, controllers.UserOrder);
 router.post('/users/address', auth, controllers.Address);

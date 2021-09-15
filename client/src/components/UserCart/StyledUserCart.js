@@ -16,7 +16,7 @@ export const CartWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 15px;
 
   @media screen and (min-width: 1140px) {
@@ -47,7 +47,7 @@ export const CartMenuListWrapper = styled.div`
 
   @media screen and (min-width: 1140px) {
     width: 95%;
-    height: 500px;
+    margin-right: 15px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
@@ -267,7 +267,16 @@ export const PlusMoneyWrapper = styled.div`
   }
 `;
 
-
+export const CartCheckListWrapper = styled.div`
+  width: 100%;
+  
+  @media screen and (min-width: 1140px) {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+`;
 
 //UserCheckList
 export const UserCheckList = styled.section`
@@ -289,8 +298,9 @@ export const UserCheckList = styled.section`
 
   @media screen and (min-width: 1140px) {
     height: 400px;
-    margin-bottom: 0;
-    padding: 18px;
+    margin-bottom: 35px;
+    padding: 20px;
+    min-width: 450px;
 
     > h2 {
       font-size: 28px;
@@ -336,7 +346,7 @@ export const UserCheckListBox = styled.div`
   }
 
   @media screen and (min-width: 1140px) {
-    padding: 0;
+    padding: 8px 40px 0 0;
 
     > h4 {
       font-size: 20px;
@@ -345,32 +355,30 @@ export const UserCheckListBox = styled.div`
     }
 
     > span {
-      margin-right: 10px;
-      font-size:18px;
+      margin-left: 5px;
+      margin-right: 8px;
+      font-size: 18px;
 
+      &:nth-child(5) {
+        margin-right: 30px;
+      }
       > input {
         margin-right: 10px;
       }
+    }
+
+    > input {
+      width: 180px;
+      height: 40px;
+      padding: 10px;
+      font-size:18px;
+      border: 2px solid #ededed;
     }
 
     > .detail,
     textarea {
       display: none;
     }
-  }
-`;
-
-
-// ButtonWrapper
-export const ButtonWrapper = styled.div`
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  margin-bottom: 20px;
-  justify-content: flex-end;
-  > button {
-    margin-right: 0;
-    margin-left:10px;
   }
 `;
 
@@ -395,5 +403,35 @@ export const UserCheckListDetailBox = styled.div`
 
   @media screen and (max-width: 1140px) {
     display: none;
+  }
+`;
+
+// ButtonWrapper
+export const ButtonWrapper = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+  
+  @media screen and (min-width: 767px) {
+    margin: 0 auto;
+
+    > button {
+      width: 150px;
+      height: 50px;
+      height: 60px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+  @media screen and (min-width: 1140px) {
+    margin: 0 auto;
+    > button {
+      width: 45%;
+      height: 60px;
+      font-size: 20px;
+      font-weight: 700;
+    }
   }
 `;

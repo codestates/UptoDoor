@@ -3,24 +3,25 @@ import {
   SIGNIN , 
   SIGNOUT , 
   MYPAGE_USER ,
-  DELETE_USER } from './type'
+  DELETE_USER,ADD_MAIN_ADDRESS,ADD_SUB_ADDRESS } from './type'
 
  import axios from 'axios'
  axios.defaults.withCredentials = true
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
- // const result = 
-  axios.post('https://zerone.tk/users/signup',
+  const result = 
+  axios.post('http://localhost:3060/users/signup',
   userinfo)
-  .then((res)=>
-  //res.data처럼, 콘솔찍어확인하고 작성, 성공시 result payload 에 담기
-  console.log(res.data)
-  )
-  .catch((err)=>console.log('==userinfo 받아오기실패==',err))
+  .then((res)=>{
+    console.log(res.data); 
+  })
+  .catch((err)=>{
+    console.log('==userinfo 받아오기실패==',err)
+  })
   return {
     type : SIGNUP,
-    payload : {userinfo} //응답받은 유저인포 reducer 전달
+    payload : result //result 대체예정,응답받은 유저인포 reducer 전달
   }
 }
 
@@ -29,12 +30,12 @@ export const signIn = (userinfo) => {
   //const result = axios.post('http://localhost:3060/users/signin', userinfo);
   //console.log(result);
   return {
-    type : SIGNIN,
-    payload : {
-      userinfo
-    }
-  }
-}
+    type: SIGNIN,
+    payload: {
+      userinfo,
+    },
+  };
+};
 
 //유저 signout post 요청
 export const signOut = (userinfo) => {
@@ -63,3 +64,34 @@ export const deleteUser = (userinfo) => {
     }
   }
 }
+
+//main email 보내기
+export const addMainAddress = (mainAddress, mainAddressDetail) => {
+  const main = {
+    mainAddress,
+    mainAddressDetail,
+  };
+  console.log(main); 
+  return {
+    type: ADD_MAIN_ADDRESS,
+    payload: {
+      mainAddress,
+      mainAddressDetail
+    },
+  };
+};
+
+export const addSubAddress = (subAddress, subAddressDetail) => {
+  const sub = {
+    subAddress,
+    subAddressDetail,
+  };
+    console.log(sub)
+  return {
+    type: ADD_SUB_ADDRESS,
+    payload: {
+      subAddress,
+      subAddressDetail
+    },
+  };
+};

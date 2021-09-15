@@ -3,7 +3,7 @@ import { SET_QUANTITY, REMOVE_FROM_CART, REMOVE_FROM_All_CART, ADD_CART, ADD_ALL
 
 
 export default function user_reducer(state = initialCart, action) {
-  console.log("reducer-action---", action);
+  //console.log("reducer-action---", action);
   switch (action.type) {
     case ADD_CART:
       return state;

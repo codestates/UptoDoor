@@ -12,7 +12,7 @@ import {
 export const signUp = (userinfo) => {
   const result = 
   axios.post('https://zerone.tk/users/signup',
-  userinfo)
+  userinfo, { withCredentials: true })
   .then((res)=>{
     console.log(res.data); 
   })

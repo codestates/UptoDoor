@@ -10,6 +10,7 @@ import {
   } from '../GlobalStyle';
 
 export const StoreDataContainer = styled.section`
+transition : all 0.3s;
 padding : 0 16px;
 max-width: 1440px;
 >.line{

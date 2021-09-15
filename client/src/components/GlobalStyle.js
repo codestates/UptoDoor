@@ -25,5 +25,14 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: -apple-system, 'Noto Sans KR', sans-serif;
   };
+
+  input{
+    &:active,&:focus{
+      outline: none;
+    }
+  }
+  button{
+    cursor: pointer;
+  }
 `
 

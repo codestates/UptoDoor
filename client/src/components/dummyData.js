@@ -122,7 +122,7 @@ export const initialStore = [{
   ],
   //delivery_time: "",
   //business_paper: "",
-};
+}]
 
 export const initialMap = [
   //id,category,name,address
@@ -185,8 +185,7 @@ export const initialMap = [
     category_name : 'etc',
     name : '올리브영',
     address : '서울 용산구 한강대로 285'
-  },
-]
+  },]
 
 export const initialHash = [
   //id,category,name,address

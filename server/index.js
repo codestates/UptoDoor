@@ -24,5 +24,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`UptoDoor listening at http://localhost:${port}`);
+  console.log(`UptoDoor listening port at ${port}`);
 });

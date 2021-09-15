@@ -12,6 +12,7 @@ export const SmallButton = styled.button`
   text-align: center;
   color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : BackgroundColor)};
+  cursor: pointer;
 `;
 
 export const MiddleButton = styled.button`

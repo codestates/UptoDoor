@@ -21,7 +21,6 @@ const showModalBg = keyframes`
 `
 
 export const StyledModal = styled.div`
-
 `
 export const ModalContainer = styled.div`
   top: 0;

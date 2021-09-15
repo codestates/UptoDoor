@@ -5,6 +5,8 @@ import {
 } from './StyledSignin';
 import Naver from '../../../images/icon/naver.png';
 import Kakao from '../../../images/icon/kakao.png';
+import {useDispatch} from 'react-redux'
+import { signIn } from '../../../_actions/user_action';
 
 interface Iprops {
   modalOpen: boolean;
@@ -12,7 +14,8 @@ interface Iprops {
   setIsOpen: any;
 }
 
-function Signin({ setIsOpen,modalOpen, setModalOpen }: Iprops) {
+function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
+  const dispatch = useDispatch()
   // if (!modalOpen) return null;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,6 +31,8 @@ function Signin({ setIsOpen,modalOpen, setModalOpen }: Iprops) {
   const signinHandler = useCallback((e) => {
     e.preventDefault();
     console.log("제출", email, password);
+    const userinfo = {email, password}
+    dispatch(signIn(userinfo));
   },[email,password])
 
   return modalOpen ? (

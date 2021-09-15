@@ -122,7 +122,7 @@ export const initialStore = [{
   ],
   //delivery_time: "",
   //business_paper: "",
-};
+}]
 
 export const initialMap = [
   //id,category,name,address

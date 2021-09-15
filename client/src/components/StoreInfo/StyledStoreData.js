@@ -27,7 +27,6 @@ max-width: 1440px;
 @media screen and (min-width: 1140px) {
   /* margin : 60px 15px; */
   margin : 60px auto;
-
   }
 `
 export const StoreInfoTitle = styled.p`

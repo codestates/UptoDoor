@@ -1,8 +1,8 @@
 import React, { useState , useCallback, useEffect} from 'react'
-import { useDispatch } from 'react-redux'
+//import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 // import { SIGNUP } from '../../_actions/type'
-import { signUp } from '../../_actions/user_action'
+//import { signUp } from '../../_actions/user_action'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'
 import { H1 ,Form ,SignUpInput ,Label,
@@ -15,7 +15,7 @@ axios.defaults.withCredentials=true;
 function SignupWrapper() {
 
   let history = useHistory();
-  const dispatch = useDispatch()
+ // const dispatch = useDispatch()
 
   //required
   const [email, setEmail] = useState('');

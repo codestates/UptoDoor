@@ -23,7 +23,7 @@ module.exports = {
       plus_check: {
         type: Sequelize.STRING
       },
-      plus_detail: {
+      delivery_detail: {
         type: Sequelize.STRING
       },
       totalprice: {

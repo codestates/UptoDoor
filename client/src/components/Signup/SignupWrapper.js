@@ -1,12 +1,16 @@
 import React, { useState , useCallback, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { SIGNUP } from '../../_actions/type'
-// import { signUp } from '../../_actions/user_action'
+//import { SIGNUP } from '../../_actions/type'
+ import { signUp } from '../../_actions/user_action'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'
-import { H1 ,SignupContainer,Form ,Input ,Label ,SideSpan ,Button,
-  ErrMsgP } from './StyledSignup'
+import { H1 ,Form ,SignUpInput ,Label,
+  SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
+import {SmallButton} from '../common/Button/Button'
+
+  import axios from "axios";
+axios.defaults.withCredentials=true;
 
 function SignupWrapper() {
 
@@ -33,17 +37,18 @@ function SignupWrapper() {
     if(password !== passwordChk) return false;
     if(passwordRegErr === true) return setPasswordRegErr(true);
     if(certEmail === false) return setCertEmail(true);
-    if(isAllchecked === false ) return false;
+    // if(isAllchecked === false ) return false;
 
     let userinfo = {
       email,password,nickname,mobile,
       gender,age
     }
 
-    dispatch({
-      type : SIGNUP,
-      payload : userinfo
-    })
+    dispatch(
+      // {type : SIGNUP,
+      // payload : userinfo}
+      signUp(userinfo)
+      )
     // .then((res)=>{
     //   if(res.payload.success){
     //     console.log(res.payload);
@@ -64,6 +69,14 @@ function SignupWrapper() {
     //userinfo.email.then((res)=>확인모달(트루))
     //.catch((err)=>이미 존재합니다 모달(트루))
     console.log(email)
+    axios
+    .post(
+      `http://localhost:3060/auth/email`,
+      {email:email},
+      { withCredentials: true }
+    ).then((res)=>
+    console.log("응답성공",res),
+    )
   }
 
   const onChangePwHandler = useCallback((e) => {
@@ -99,9 +112,9 @@ function SignupWrapper() {
   
   const selectInputHandler = (e,name) => {
     if(name === '성별'){
-      setGender(e.target.value);
+      setGender(e.value);
     }else if(name === '연령대'){
-      setAge(e.target.value);
+      setAge(e.value);
     }
   }
 
@@ -112,13 +125,17 @@ function SignupWrapper() {
   return (
     <SignupContainer>
       <H1>회원가입</H1>
+      <div className = 'signup-line'></div>
       <Form onSubmit = {signupSubmitHandler}>
-        <Label>E-mail</Label><SideSpan>필수</SideSpan>
-        <Button onClick = {()=>certEmailHandler(certEmail)}>
-          이메일 인증</Button>
-        <Input 
+        <Label>E-mail</Label><SideSpan>*필수</SideSpan>
+        <SmallButton 
+        className = 'cert-email-btn'
+        onClick = {()=>certEmailHandler(certEmail)}>
+          이메일 인증</SmallButton><br/>
+        <SignUpInput 
         required
         type = 'email' 
+        className = 'email-input'
         placeholder = 'email@email.com'
         value = {email} 
         onChange = {onChangeEmailHandler}
@@ -128,8 +145,8 @@ function SignupWrapper() {
         : null}
         <br/>
 
-        <Label>Password</Label><SideSpan>필수</SideSpan><br/>
-        <Input 
+        <Label>비밀번호</Label><SideSpan>*필수</SideSpan><br/>
+        <SignUpInput 
         required
         type = 'password' 
         placeholder = 'password'
@@ -140,8 +157,8 @@ function SignupWrapper() {
         <ErrMsgP>비밀번호는 최소 6자리에서 12자리 사이의<br/> 영문,숫자 조합이어야 합니다.</ErrMsgP>
         : null}
 
-        <Label>Password Check</Label><SideSpan>필수</SideSpan><br/>
-        <Input 
+        <Label>비밀번호 확인</Label><SideSpan>*필수</SideSpan><br/>
+        <SignUpInput 
         required
         type = 'password' 
         placeholder = 'password check'
@@ -152,8 +169,8 @@ function SignupWrapper() {
         <ErrMsgP>비밀번호가 일치하지 않습니다.</ErrMsgP>
         :null}
         
-        <Label>Nickname</Label><SideSpan>필수</SideSpan><br/>
-        <Input 
+        <Label>닉네임</Label><SideSpan>*필수</SideSpan><br/>
+        <SignUpInput 
         required
         type = 'text' 
         placeholder = '닉네임'
@@ -161,8 +178,8 @@ function SignupWrapper() {
         onChange = {onChangeNicknameHandler}
         /><br/>
 
-        <Label>Mobile</Label><SideSpan>필수</SideSpan><br/>
-        <Input
+        <Label>모바일</Label><SideSpan>*필수</SideSpan><br/>
+        <SignUpInput
         required
         type = 'text' 
         placeholder = '모바일'
@@ -178,9 +195,10 @@ function SignupWrapper() {
         setIsAllchecked = {setIsAllchecked}
         isAllchecked = {isAllchecked}
         />
-
-        <Button type = 'submit'>회원가입</Button>
-        <Button onClick = {cancleHandler}>취소</Button>
+        <div className = 'signup-btn-box'>
+        <SmallButton primary type = 'submit'>회원가입</SmallButton>
+        <SmallButton onClick = {cancleHandler}>취소</SmallButton>
+        </div>
       </Form>
     </SignupContainer>
   )

@@ -1,16 +1,10 @@
 import React from 'react'
-import Map from '../components/Mapper/Map'
-import MapHashtag from '../components/Mapper/MapHashtag'
-import MapInfo from '../components/Mapper/MapInfo'
-import MapSearchBar from '../components/Mapper/MapSearchBar'
+import MapWrapper from '../components/Mapper/MapWrapper'
 
 const Mapper = () => {
   return (
     <>
-      <MapSearchBar/>
-      <MapHashtag/>
-      <Map/>
-      <MapInfo/>
+      <MapWrapper/>
     </>
   )
 }

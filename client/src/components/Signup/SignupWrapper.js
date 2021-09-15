@@ -72,7 +72,7 @@ function SignupWrapper() {
     .post(
       `https://zerone.tk/auth/email`,
       {email:email},
-      { withCredentials: true }
+      {withCredentials: true, credentials: 'include'}
     ).then((res)=>
     console.log("응답성공",res),
     )

@@ -11,7 +11,7 @@ import {
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
   const result = 
-  axios.post('http://localhost:3060/users/signup',
+  axios.post('https://zerone.tk/users/signup',
   userinfo)
   .then((res)=>{
     console.log(res.data); 

@@ -9,7 +9,7 @@ import { H1 ,Form ,SignUpInput ,Label,
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
 
-  import axios from "axios";
+import axios from "axios";
 axios.defaults.withCredentials=true;
 
 function SignupWrapper() {

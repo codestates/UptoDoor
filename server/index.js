@@ -23,6 +23,10 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+app.get('/health-check', (req,res) => {
+  res.send('health check success');
+});
+
 app.listen(port, () => {
   console.log(`UptoDoor listening port at ${port}`);
 });

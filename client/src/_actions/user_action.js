@@ -10,6 +10,7 @@ import {
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
+  console.log('액션까지옴')
   const result = 
   axios.post('https://zerone.tk/users/signup',
   userinfo, { withCredentials: true })

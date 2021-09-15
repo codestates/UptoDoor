@@ -5,8 +5,8 @@ import {
   MYPAGE_USER ,
   DELETE_USER } from './type'
 
-// import axios from 'axios'
-// axios.defaults.withCredentials = true
+ import axios from 'axios'
+ axios.defaults.withCredentials = true
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
@@ -23,6 +23,8 @@ export const signUp = (userinfo) => {
 
 //유저 signin post 요청
 export const signIn = (userinfo) => {
+  const result = axios.post('http://localhost:3060/users/signin', userinfo);
+  console.log(result);
   return {
     type : SIGNIN,
     payload : {
@@ -46,7 +48,7 @@ export const mypageUser = (userinfo) => {
     type : MYPAGE_USER,
     payload : {
       userinfo
-    }
+    }axios
   }
 }
 //회원탈퇴 delete 요청

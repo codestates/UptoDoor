@@ -3,9 +3,7 @@ const { user } = require('../../models');
 module.exports = async (req, res) => {
     const Email = req.body.email
     const Password = req.body.password
-    console.log("확인1");
     const Data =  await user.findOne({ where: {email:Email, password:Password}});
-    console.log("확인2",Data);
     if(Data){
         const UserInfo = {
             id:Data.id,

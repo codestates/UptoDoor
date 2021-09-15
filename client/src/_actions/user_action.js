@@ -11,7 +11,7 @@ import {
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
  // const result = 
-  axios.post('http://localhost:3060/users/signup',
+  axios.post('https://zerone.tk/users/signup',
   userinfo)
   .then((res)=>
   //res.data처럼, 콘솔찍어확인하고 작성, 성공시 result payload 에 담기

@@ -1,8 +1,8 @@
 import React, { useState , useCallback, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { SIGNUP } from '../../_actions/type'
-// import { signUp } from '../../_actions/user_action'
+//import { SIGNUP } from '../../_actions/type'
+ import { signUp } from '../../_actions/user_action'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'
 import { H1 ,Form ,SignUpInput ,Label,
@@ -44,10 +44,11 @@ function SignupWrapper() {
       gender,age
     }
 
-    dispatch({
-      type : SIGNUP,
-      payload : userinfo
-    })
+    dispatch(
+      // {type : SIGNUP,
+      // payload : userinfo}
+      signUp(userinfo)
+      )
     // .then((res)=>{
     //   if(res.payload.success){
     //     console.log(res.payload);

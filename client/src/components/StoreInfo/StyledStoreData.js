@@ -160,7 +160,8 @@ height: 400px;
 overflow: hidden;
 overflow-y: auto;
 margin : 20px 0;
-background-color: rgba(0,0,0,0.1);
+/* background-color: rgba(0,0,0,0.1); */
+background-color: #f5f5f5;
 box-shadow: 1px 1px 5px ${TextLightGrey};
 border-radius: 8px;
   &::-webkit-scrollbar {
@@ -181,7 +182,8 @@ export const MenuWrapper = styled.div`
 display: flex;
 justify-content: space-between;
 background-color: #fff;
-box-shadow: 1px 1px 1px ${TextLightGrey};
+box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 border-radius: 8px;
 padding : 5px 0;
 margin : 8px;
@@ -196,7 +198,8 @@ export const MenuImg = styled.img`
 width: 80px;
 height:80px;
 border-radius: 8px;
-box-shadow: 1px 1px 1px ${TextLightGrey};
+box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 margin: 0 10px;
 `
 export const MenuName = styled.p`
@@ -237,7 +240,7 @@ text-decoration: none;
   }
 }
 >.cancle-btn{
-  display: none;
+  /* display: none; */
   @media screen and (min-width: 1140px) {
   display: unset;
   }

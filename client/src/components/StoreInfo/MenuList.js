@@ -74,7 +74,7 @@ function MenuList() {
   <MiddleButton 
   onClick = {cancleClickHandler}
   className = 'middle cancle-btn'>취소</MiddleButton><br/>
-  <MiddleButton className = 'middle call-btn'>사장님한테 전화하기</MiddleButton><br/>
+  {/* <MiddleButton className = 'middle call-btn'>사장님한테 전화하기</MiddleButton><br/> */}
   </BtnBox>
 </MenuOrderContainer>
   )

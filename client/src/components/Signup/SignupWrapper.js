@@ -1,8 +1,8 @@
 import React, { useState , useCallback, useEffect} from 'react'
-//import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 // import { SIGNUP } from '../../_actions/type'
-//import { signUp } from '../../_actions/user_action'
+import { signUp } from '../../_actions/user_action'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'
 import { H1 ,Form ,SignUpInput ,Label,
@@ -15,7 +15,7 @@ axios.defaults.withCredentials=true;
 function SignupWrapper() {
 
   let history = useHistory();
- // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   //required
   const [email, setEmail] = useState('');
@@ -46,7 +46,7 @@ function SignupWrapper() {
       gender,age
     }
 
-   // dispatch(signUp(userinfo))
+    dispatch(signUp(userinfo))
     // .then((res)=>{
     //   if(res.payload.success){
     //     console.log(res.payload);
@@ -55,15 +55,6 @@ function SignupWrapper() {
     //     console.log('회원가입 실패');
     //   }
     // })
-    console.log("사인업보내기 전에 콘솔")
-    axios.post('https://zerone.tk/users/signup',
-  userinfo, { withCredentials: true })
-  .then((res)=>{
-    console.log(res.data); 
-  })
-  .catch((err)=>{
-    console.log('==userinfo 받아오기실패==',err)
-  })
   },[email,password,passwordChk,certEmail])
 
   const onChangeEmailHandler = useCallback((e) => {

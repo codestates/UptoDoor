@@ -46,7 +46,7 @@ function SignupWrapper() {
       gender,age
     }
 
-    dispatch(signUp(userinfo))
+   // dispatch(signUp(userinfo))
     // .then((res)=>{
     //   if(res.payload.success){
     //     console.log(res.payload);
@@ -55,6 +55,15 @@ function SignupWrapper() {
     //     console.log('회원가입 실패');
     //   }
     // })
+    console.log("사인업보내기 전에 콘솔")
+    axios.post('https://zerone.tk/users/signup',
+  userinfo, { withCredentials: true })
+  .then((res)=>{
+    console.log(res.data); 
+  })
+  .catch((err)=>{
+    console.log('==userinfo 받아오기실패==',err)
+  })
   },[email,password,passwordChk,certEmail])
 
   const onChangeEmailHandler = useCallback((e) => {

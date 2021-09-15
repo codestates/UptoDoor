@@ -1,12 +1,12 @@
 import React from 'react'
-import UserOrderList from '../components/UserOrder/UserOrderList'
+import UserOrderWrapper from "../components/UserOrder/UserOrderWrapper";
 
 const UserOrder = () => {
   return (
     <>
-    <UserOrderList/>
+      <UserOrderWrapper />
     </>
-  )
+  );
 }
 
 export default UserOrder

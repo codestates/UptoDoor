@@ -10,8 +10,8 @@ export const SmallButton = styled.button`
   border: 1px solid ${MainColor};
   border-radius: 8px;
   text-align: center;
-  color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
-  background-color: ${({ primary }) => (primary ? MainColor : BackgroundColor)};
+  color: ${({ primary }) => (primary ? "#fff" : MainColor)};
+  background-color: ${({ primary }) => (primary ? MainColor : "#fff")};
   cursor: pointer;
 `;
 

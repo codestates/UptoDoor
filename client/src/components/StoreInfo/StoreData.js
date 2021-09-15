@@ -1,69 +1,47 @@
 import React from 'react'
 import {initialStore} from '../dummyData'
+import MenuList from './MenuList'
 import {
   StoreDataContainer,
   StoreDataWrapper,
-  StoreFlexDiv,
   StoreInfoTitle,
   StoreIntro,
+  StoreName,
   StoreImg,
+  StoreBackImg,
   StoreAddressP,
   StoreInfoP,
   StoreCategory,
-  MenuOrderContainer,
-  MenuContainer,
-  MenuWrapper,
-  MenuImg,
-  MenuName,
-  BtnBox
+}
+from './StyledStoreData'
 
-} from './StyledStoreData'
-import {SmallButton,MiddleButton} from '../common/Button/Button'
-import { Link } from 'react-router-dom'
 
 const StoreData = () => {
   return (
     <StoreDataContainer>
-      <StoreDataWrapper>
-        <StoreInfoTitle>가게 정보</StoreInfoTitle>
-          <StoreFlexDiv>
+      <StoreInfoTitle>가게 정보</StoreInfoTitle>
+        <div className = 'line'></div>
+        <StoreDataWrapper>
             <StoreIntro>
-              <StoreImg src = {initialStore[1].img}/>
               <div className = 'store-flex-box flex-box'>
-                <span>{initialStore[1].name}</span>
+                <StoreName>🏠 {initialStore[1].name}</StoreName>
                 <StoreCategory>{initialStore[1].category}</StoreCategory>
-                <StoreAddressP>{initialStore[1].address}</StoreAddressP>
-                <StoreInfoP className = 'store-introduce'>{initialStore[1].introduce}</StoreInfoP>
+              </div>
+              <div className = 'store-img-box'>
+                <StoreImg src = {initialStore[1].img}/>
+                <StoreImg src = {initialStore[1].img}/>
+                <StoreBackImg className = 'additional-img'>+</StoreBackImg>
+              </div>
+              <div className = 'store-detail-box'>
+              <StoreAddressP>📍 {initialStore[1].address}</StoreAddressP>
+              <StoreAddressP>📱 {initialStore[1].mobile}</StoreAddressP>
+              <hr/>
+              <StoreInfoP className = 'store-introduce'>{initialStore[1].introduce}</StoreInfoP>
               </div>
             </StoreIntro>
-
-        <MenuOrderContainer>
-          <MenuContainer>
-            {initialStore[1].Menu.map((el,idx)=>{
-              return (
-                <MenuWrapper key = {idx}>
-                  <div className = 'menu-flex-box flex-box'>
-                    <MenuImg src= {el.image} alt = 'menu-img'/>
-                    <div>
-                    <MenuName>{el.name}</MenuName>
-                    <p>{el.price} 원</p>
-                    <p>{el.detail}</p>
-                    </div>
-                  </div>
-                  <SmallButton 
-                  className = 'small order-btn'
-                  primary>담기
-                  </SmallButton>
-                </MenuWrapper>
-              )
-            })}
-          </MenuContainer>
-        <BtnBox>
-        <MiddleButton className = 'middle call-btn'>사장님한테 전화하기</MiddleButton><br/>
-        <Link to = '/usercart'><MiddleButton className = 'middle cart-btn'>장바구니</MiddleButton></Link>
-        </BtnBox>
-      </MenuOrderContainer>
-      </StoreFlexDiv>
+            
+            {/* 메뉴리스트 컴포넌트 */}
+            <MenuList/>
       </StoreDataWrapper>
     </StoreDataContainer>
   )

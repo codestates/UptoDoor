@@ -30,9 +30,10 @@ export const removeFromAllCart = () => {
   };
 };
 
-export const addCart = () => {
+export const addCart = (item) => {
   return {
     type: ADD_CART,
+    payload : item
   };
 };
 

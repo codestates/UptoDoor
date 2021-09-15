@@ -1,6 +1,7 @@
 import {createGlobalStyle} from 'styled-components'
 
 /* margin,padding 은 90% */
+// background: linear-gradient(45deg,mediumturquoise,#5d9cec);
 
 /*color*/
 export const BackgroundColor = '#fff';

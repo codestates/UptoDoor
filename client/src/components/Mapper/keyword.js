@@ -1,12 +1,20 @@
 const { kakao } = window;
 
+//1. [앱] 홈 눌렀을때 모든 메뉴가 지도에 표시가 나온다. -> 마커표시
+//2. [앱] 마커를 눌렀을때가 모달이고 
+
+//1. 우리가 갖고있는 지도 : 내데이터 기반 전체마커를 찍는게 우선.
+//2. 현위치 찍었을때 내가찍은 데이터가 마커로 보이냐.
+//3. 마커롤 눌렀을때 모달로 뜨냐.
+//4. 카테고리별 
+
 //searchPlace,dataSet => search 자체
 export default function Keyword(searchPlace,dataSet){
-
+  
   const mapContainer = document.getElementById('map'); // 지도를 표시할 div 
   const mapOption = { 
         center: new kakao.maps.LatLng(37.54989223753498, 126.98131131199537), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
+        level: 3 // 지도의 확대 레벨
     };
 
   // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
@@ -14,7 +22,8 @@ export default function Keyword(searchPlace,dataSet){
   // 장소 검색 객체를 생성합니다
   const ps = new kakao.maps.services.Places(); 
   
-  // 키워드로 장소를 검색합니다
+  // 키워드로 장소를 검색합니다 : 
+  // const address = searchPlace.map(()=>{})
   ps.keywordSearch(searchPlace, placesSearchCB); 
 
   // 키워드 검색 완료 시 호출되는 콜백함수 입니다

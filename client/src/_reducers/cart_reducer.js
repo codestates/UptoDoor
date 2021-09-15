@@ -1,12 +1,15 @@
-import { initialCart } from "../components/dummyData";
+// import { initialStore } from "../components/dummyData";
 import { SET_QUANTITY, REMOVE_FROM_CART, REMOVE_FROM_All_CART, ADD_CART, ADD_ALL_CART_TO_ORDER } from '../_actions/type';
 
-
-export default function user_reducer(state = initialCart, action) {
-  console.log("reducer-action---", action);
+const initialState = {
+  Menu : []
+}
+export default function user_reducer(state = initialState, action) {
+  // console.log("reducer-action---", action);
   switch (action.type) {
     case ADD_CART:
-      return state;
+      return {...state,Menu : [...state.Menu,action.payload]};
+
     case SET_QUANTITY: {
       const filtered = state.Menu.findIndex(
         (item) => item.id === action.payload.id

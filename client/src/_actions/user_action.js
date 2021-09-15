@@ -5,13 +5,8 @@ import {
   MYPAGE_USER ,
   DELETE_USER,ADD_MAIN_ADDRESS,ADD_SUB_ADDRESS } from './type'
 
-<<<<<<< HEAD
-import axios from 'axios'
-axios.defaults.withCredentials = true
-=======
  import axios from 'axios'
  axios.defaults.withCredentials = true
->>>>>>> c242d7a00e81473cea6ca4a75de9e08ec772b2ea
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
@@ -32,13 +27,8 @@ export const signUp = (userinfo) => {
 
 //유저 signin post 요청
 export const signIn = (userinfo) => {
-<<<<<<< HEAD
-  //axios코드 result
-
-=======
   const result = axios.post('http://localhost:3060/users/signin', userinfo);
   console.log(result);
->>>>>>> c242d7a00e81473cea6ca4a75de9e08ec772b2ea
   return {
     type: SIGNIN,
     payload: {
@@ -62,7 +52,7 @@ export const mypageUser = (userinfo) => {
     type : MYPAGE_USER,
     payload : {
       userinfo
-    }axios
+    }
   }
 }
 //회원탈퇴 delete 요청

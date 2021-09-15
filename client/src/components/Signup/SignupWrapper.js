@@ -73,7 +73,7 @@ function SignupWrapper() {
     console.log(email)
     axios
     .post(
-      `http://localhost:3060/auth/email`,
+      `https://zerone.tk/auth/email`,
       {email:email},
       { withCredentials: true }
     ).then((res)=>

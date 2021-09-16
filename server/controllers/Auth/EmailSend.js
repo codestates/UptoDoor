@@ -45,8 +45,8 @@ module.exports = async (req, res) => {
     console.log(info);
     console.log("send mail success!");
     });
-
-    res.status(200).send({message: 'send success'})
+  
+    res.status(200).send({message: 'send success'});
     }else{
     res.status(409).send({message: 'email exists'});
     }

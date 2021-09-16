@@ -7,6 +7,7 @@ import Naver from '../../../images/icon/naver.png';
 import Kakao from '../../../images/icon/kakao.png';
 import {useDispatch} from 'react-redux'
 import { signIn } from '../../../_actions/user_action';
+import axios from 'axios';
 
 interface Iprops {
   modalOpen: boolean;
@@ -34,6 +35,14 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
     const userinfo = {email, password}
     dispatch(signIn(userinfo));
   },[email,password])
+  
+  const kakaoHandler = useCallback((e) => {
+    e.preventDefault();
+    axios.get('https://kauth.kakao.com/oauth/authorize?client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=https://uptodoors.shop&response_type=code')
+  },[email,password])
+  
+
+  
 
   return modalOpen ? (
     <SigninContainer>
@@ -49,7 +58,7 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
         </form>
         
         <TextOr>Or</TextOr>
-        <LagreButton className="btn"><img src={Kakao} /><div>카카오 계정으로 로그인</div></LagreButton>
+        <LagreButton className="btn" onClick={kakaoHandler}><img src={Kakao} /><div>카카오 계정으로 로그인</div></LagreButton>
         <LagreButton className="btn"><img src={Naver} /><div>네이버 계정으로 로그인</div> </LagreButton>
         <LeadSignup>아직 회원이 아니신가요?<SignupLink to="/signup" onClick={() => {
           setModalOpen(false);

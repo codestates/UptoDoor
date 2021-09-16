@@ -12,7 +12,7 @@ import {
 export const signUp = (userinfo) => {
   console.log('액션까지옴')
   const result = 
-  axios.post('https://zerone.tk/users/signup',
+  axios.post('https://uptodoors.shop/users/signup',
   userinfo, { withCredentials: true })
   .then((res)=>{
 
@@ -30,7 +30,7 @@ export const signUp = (userinfo) => {
 //유저 signin post 요청
 export const signIn = (userinfo) => {
   //const result = 
-  axios.post('https://zerone.tk/users/signin', userinfo);
+  axios.post('https://uptodoors.shop/users/signin', userinfo);
   //console.log(result);
   return {
     type: SIGNIN,

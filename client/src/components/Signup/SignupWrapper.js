@@ -67,7 +67,7 @@ function SignupWrapper() {
     console.log(email)
     axios
     .post(
-      `https://zerone.tk/auth/email`,
+      `https://uptodoors.shop/auth/email`,
       {email:email},
       {withCredentials: true, credentials: 'include'}
     ).then((res)=>

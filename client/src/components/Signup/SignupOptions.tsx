@@ -2,11 +2,11 @@ import React from 'react';
 import Select from 'react-select';
 import { Label ,SideSpan ,SelectBox } from './StyledSignup'
 
-interface Options {
+interface OptionsProps {
   selectInputHandler : any;
 }
 
-function SignupOptions({selectInputHandler}:Options) {
+function SignupOptions({selectInputHandler}:OptionsProps) {
 
   let gender: [{value: string, label: string}[], string] = [
       [

@@ -30,7 +30,8 @@ function MapInfoModal({filterList} : MapInfoProps) {
           key = {idx}
           className = 'mapinfo-wrapper'>
           <Link to ='/storeinfo'>
-            <StoreImg src = '' alt = '업체사진'/>
+            <StoreImg 
+            src = {el.store_image.length === 0 ? '' :el.store_image[0] } alt = '업체사진'/>
             <div>
             <StoreName>{el.name}</StoreName>
             <hr/>

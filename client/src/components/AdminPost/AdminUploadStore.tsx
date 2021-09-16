@@ -1,17 +1,20 @@
 import React , {useState} from 'react'
 import Dropzone from 'react-dropzone'
 import {
-  StyledImgUpload 
-  ,ImgUploadWrapper
-  ,StyledUploedImg} from './StyledAdminPost'
+  StyledImgUpload,
+  ImgUploadWrapper,
+  StyledUploedImg,
+  PlusIcon
+} from './StyledAdminPost'
+import MapSelectModal from '../common/Modal/MapSelectModal'
 // import axios from 'axios' -> action 으로 뺄거임.
-
-function AdminUpload(props:any) {
+function AdminUploadStore(props:any) {
 
   // img 5개 제한
+  const [openModal , setOpenModal] = useState(false);
   const [imgs , setImgs]:any = useState([]); 
   const dropHandler = (files:any) => {
-    console.log('====',files);
+    // console.log('====',files);
     // let formData = new FormData();
     // const config = {
     //   header : { 'content-type' : 'multipart/form-data'}
@@ -31,14 +34,21 @@ function AdminUpload(props:any) {
     // .catch((err)=>{
     //   return console.log('==file 가져오기 실패===',err)
     // })
-    setImgs([...imgs,files[0].path]);
-    props.updateFiles([...imgs,files[0].path])
 
-    console.log('===img 경로보기===',imgs);
+    if(imgs.length === 5){
+      console.log('stop ,, stop ..')
+      setOpenModal(true);
+    }else{
+      setImgs([...imgs,files[0].path]);
+      props.updateFiles([...imgs,files[0].path])
+      //store_image 로 담을것.
+      // console.log('===img 경로보기===',imgs);
+    }
+  }
+  const closeModal = () => {
+    setOpenModal((prev)=>!prev)
   }
   
-  console.log('===img 경로보기===',imgs);
-
   const deleteImgHandler = (files:any) => {
     const curIdx = imgs.indexOf(files)  
     console.log(curIdx);
@@ -48,14 +58,13 @@ function AdminUpload(props:any) {
     props.updateFiles(newImgs)
   }
 
-
   return (
     <StyledImgUpload>
       <Dropzone onDrop={dropHandler}>
         {({getRootProps, getInputProps}) => (
             <ImgUploadWrapper {...getRootProps()}>
               <input {...getInputProps()} />
-              <p>+</p>
+              <PlusIcon>+</PlusIcon>
             </ImgUploadWrapper>
         )}
       </Dropzone>
@@ -75,8 +84,19 @@ function AdminUpload(props:any) {
           )
         })}
       </StyledUploedImg>
+
+
+    {openModal ?
+      <MapSelectModal
+      openModal = {openModal}
+      closeModal = {closeModal}
+      modalTitleText = '사진은 5장까지 업로드 가능합니다.'
+      />
+      :
+      null
+    }
     </StyledImgUpload>
   )
 }
 
-export default AdminUpload
+export default AdminUploadStore

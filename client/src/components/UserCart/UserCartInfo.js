@@ -6,9 +6,7 @@ import React, {
 import {useSelector,useDispatch} from "react-redux";
 import { SmallButton } from "../common/Button/Button";
 import {
-  CartContainer,
   CartWrapper,
-  CartH1,
   CartCheckBoxAll,
   CartMenuListWrapper,
   PlusMoneyWrapper,
@@ -23,6 +21,11 @@ import {
   CartCheckListWrapper,
 } from "./StyledUserCart";
 import { setQuantity, removeFromCart } from "../../_actions/cart_action";
+import {
+  Container,
+  // Wrapper,
+  Title
+} from "../GlobalStyle";
 
 function UserCartInfo() {
   const state = useSelector((state) => state.cart);
@@ -139,13 +142,13 @@ function UserCartInfo() {
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   const month = [1, 3, 6, 12];
   return (
-    <CartContainer>
+    <Container>
+      <Title>장바구니</Title>
       <form
         onSubmit={(e) => {
           postHandler(e);
         }}
       >
-        <CartH1>장바구니</CartH1>
         <CartWrapper>
           <CartMenuListWrapper>
             <CartCheckBoxAll>
@@ -305,7 +308,7 @@ function UserCartInfo() {
           </CartCheckListWrapper>
         </CartWrapper>
       </form>
-    </CartContainer>
+    </Container>
   );
 }
 

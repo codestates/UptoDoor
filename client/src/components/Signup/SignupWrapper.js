@@ -4,7 +4,12 @@ import { useHistory } from 'react-router-dom'
 import { signUp } from '../../_actions/user_action'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'
-import {  Form ,SignUpInput ,Label,
+import { 
+  Form ,
+  SignUpInput ,
+  Label,
+  SignupLogoBox,
+  SignupLogo,
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
 
@@ -123,12 +128,10 @@ function SignupWrapper() {
   return (
     <SignupContainer>
       {/* <H1>회원가입</H1> */}
-      <img 
-      style = {{ 
-        margin : '30px',
-        width : '250px', height : '60px'}}
-      src = '../../../image/updodoor.png' alt = 'img'/>
-      {/* <div className = 'signup-line'></div> */}
+      <SignupLogoBox className = 'signup-logo-box'>
+        <SignupLogo src = './images/updodoor.png' alt = 'img'/>
+      </SignupLogoBox>
+      
       <Form onSubmit = {signupSubmitHandler}>
         <Label>E-mail</Label><SideSpan>*필수</SideSpan>
         <SmallButton 

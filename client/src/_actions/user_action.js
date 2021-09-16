@@ -14,9 +14,10 @@ import {
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
+  console.log('액션까지옴')
   const result = 
-  axios.post('http://localhost:3060/users/signup',
-  userinfo)
+  axios.post('https://uptodoors.shop/users/signup',
+  userinfo, { withCredentials: true })
   .then((res)=>{
 
     console.log(res.data);
@@ -32,9 +33,9 @@ export const signUp = (userinfo) => {
 
 //유저 signin post 요청
 export const signIn = (userinfo) => {
-  const result = axios.post('http://localhost:3060/users/signin', userinfo);
-  console.log(result);
-
+  //const result = 
+  axios.post('https://uptodoors.shop/users/signin', userinfo);
+  //console.log(result);
   return {
     type: SIGNIN,
     payload: {

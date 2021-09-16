@@ -177,7 +177,6 @@ export const initialStore = [
 ]
 
 
-
 export const initialMap = [
   //id,category,name,address
   {

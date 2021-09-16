@@ -13,12 +13,6 @@ module.exports = async (req, res) => {
     }else{
         const hashpassword = crypto.createHash('sha512').update(Data.password).digest('hex');
         await user.update({age:Data.age,gender:Data.gender,mobile:Data.mobile,nickname:Data.nickname,password:hashpassword}, {where : {email : receiverEmail}});
-        const data1 = await user.findOne({where: { email: receiverEmail }});
-        const access = {id: data1.id, nickname: data1.nickname, email: data1.email}
-        const accesstoken = generateAccessToken(access);
-        const refreshtoken = generateRefreshToken(access);
-        sendAccessToken(res, accesstoken);
-        sendRefreshToken(res, refreshtoken);
         res.status(200).send({message: 'Signup success'});
     }
 }

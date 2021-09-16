@@ -11,7 +11,7 @@ export const ADD_SUB_ADDRESS = "ADD_SUB_ADDRESS";
 export const ADD_ORDER = "ADD_ORDER";
 
 //admin signUp/signIn/signOut/mypage/deleteAdmin
-
+export const ADD_POST = "ADD_POST";
 
 //cart action
 export const SET_QUANTITY = "SET_QUANTITY";

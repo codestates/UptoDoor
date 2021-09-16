@@ -1,9 +1,10 @@
-import { 
+import {
   SIGNUP,
   SIGNIN,
   ADD_MAIN_ADDRESS,
-  ADD_SUB_ADDRESS
-} from '../_actions/type'
+  ADD_SUB_ADDRESS,
+  ADD_ORDER,
+} from "../_actions/type";
 
 export const initialUser = {
   id: 1,
@@ -12,12 +13,11 @@ export const initialUser = {
   mainAddress: "서울시 용산구 신흥로32길 4-33",
   subAddress: "서울시 용산구 신흥로32길 4-44",
   mobile: "010-7185-2791",
-  Order: []
+  order: []
 };
 
 
 export default function user_reducer(state = initialUser, action) {
-  
   switch (action.type) {
     case SIGNUP:
       console.log("reducer : ", state);
@@ -38,6 +38,13 @@ export default function user_reducer(state = initialUser, action) {
       console.log({...state})
       return { ...state };
     }
+    case ADD_ORDER: {
+      const selected_mobile = action.payload.selected_mobile;
+      const order1 = action.payload.order;
+      
+      return { ...state, order: [...state.order, { ...order1, selected_mobile }]};
+    }
+      
     default:
       return state;
   }

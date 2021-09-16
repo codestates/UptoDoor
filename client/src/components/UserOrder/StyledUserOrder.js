@@ -1,22 +1,6 @@
 import styled from 'styled-components';
 
-export const OrderContainer = styled.section`
-  margin-top: 30px;
-  min-width: 375px;
-  max-width: 1200px;
-  @media screen and (min-width: 1140px) {
-    margin: 80px auto;
-  }
-`;
-export const OrderTitle = styled.h1`
-  width: 90%;
-  font-size: 20px;
-  margin: 20px auto 24px;
 
-  @media screen and (min-width: 1100px) {
-    font-size: 24px;
-  }
-`;
 
 export const OrderWrapper = styled.div`
   margin: 0 auto;
@@ -43,6 +27,32 @@ export const OrderH3 = styled.h3`
   @media screen and (min-width: 1140px) {
     font-size: 24px;
     margin-left: ${({primary})=> (primary ? "20px" : 0)};
+  }
+`;
+
+export const MenuUl = styled.ul`
+  height: 20px;
+  width: 90%;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  text-align: center;
+  margin: 5px 0 15px;
+
+  > li {
+    margin-left: 35px;
+    letter-spacing: -1px;
+  }
+  > li:nth-child(1) {
+    margin-right: 20px;
+  }
+
+  > li:nth-child(2) {
+    margin-left: 60px;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -83,8 +93,12 @@ export const MenuItemWrapper = styled.div`
     margin-right: 12px;
   }
 
-  
-
+  @media screen and (min-width: 1140px) {
+    > img {
+      margin-left: 14px;
+      margin-right: 18px;
+    }
+  }
 `;
 
 export const MenuItemDetail = styled.div`
@@ -123,7 +137,16 @@ export const MenuItemDetail = styled.div`
     }
   }
 
-  
+  @media screen and (min-width: 1140px) {
+    > h5 {
+      font-size: 16px;
+      margin-left:20px;
+    }
+    > div {
+      font-size: 16px;
+      margin-right:5px;
+    }
+  }
 `;
 
 export const SubscriptionWrapper = styled.div`
@@ -471,7 +494,7 @@ export const CardCheck = styled.div`
       margin: 8px 0 0 16px;
 
       > input {
-        margin: 4px 8px 0 0;
+        margin: 3px 8px 0 0;
       }
     }
   }

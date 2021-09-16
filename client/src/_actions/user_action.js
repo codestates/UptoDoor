@@ -1,18 +1,23 @@
-import { 
-  SIGNUP ,
-  SIGNIN , 
-  SIGNOUT , 
-  MYPAGE_USER ,
-  DELETE_USER,ADD_MAIN_ADDRESS,ADD_SUB_ADDRESS } from './type'
+import {
+  SIGNUP,
+  SIGNIN,
+  SIGNOUT,
+  MYPAGE_USER,
+  DELETE_USER,
+  ADD_MAIN_ADDRESS,
+  ADD_SUB_ADDRESS,
+  ADD_ORDER,
+} from "./type";
 
  import axios from 'axios'
  axios.defaults.withCredentials = true
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
+  console.log('액션까지옴')
   const result = 
-  axios.post('http://localhost:3060/users/signup',
-  userinfo)
+  axios.post('https://uptodoors.shop/users/signup',
+  userinfo, { withCredentials: true })
   .then((res)=>{
 
     console.log(res.data);
@@ -28,9 +33,9 @@ export const signUp = (userinfo) => {
 
 //유저 signin post 요청
 export const signIn = (userinfo) => {
-  const result = axios.post('http://localhost:3060/users/signin', userinfo);
-  console.log(result);
-
+  //const result = 
+  axios.post('https://uptodoors.shop/users/signin', userinfo);
+  //console.log(result);
   return {
     type: SIGNIN,
     payload: {
@@ -97,3 +102,16 @@ export const addSubAddress = (subAddress, subAddressDetail) => {
     },
   };
 };
+
+export const addOrder = (order, selected_mobile) => {
+  // const request = axios.post(`https://uptodoor.cf/users/order`)
+  // console.log(request)
+  
+  return {
+    type: ADD_ORDER,
+    payload: {
+      order,
+      selected_mobile,
+    },
+  };
+}

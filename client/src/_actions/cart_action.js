@@ -4,7 +4,7 @@ import {
   REMOVE_FROM_All_CART,
   ADD_CART,
   ADD_ALL_CART_TO_ORDER,
-  SET_ADDRESS
+  SET_ADDRESS,
 } from "../_actions/type";
 
 export const setQuantity = (quantity, id) => {

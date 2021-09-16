@@ -27,8 +27,6 @@ export const signUp = (userinfo) => {
 
 //유저 signin post 요청
 export const signIn = (userinfo) => {
-  //axios코드 result
-
   return {
     type: SIGNIN,
     payload: {

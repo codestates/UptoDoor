@@ -54,15 +54,16 @@ export const initialCart = {
   user_email: "test1@gmail.com",
   user_mobile: "010-7185-2791",
   user_address: "서울시 용산구 신흥로32길 4-33",
+  user_name: "허용준",
   store_id: "5",
   Menu: [
     {
       id: 42,
       name: "스페셜11 스팸에그 토스트",
-      price: "4000",
+      price: "5000",
       detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
       image: "../images/toast.png",
-      quantity: 1,
+      quantity: 4,
     },
     {
       id: 41,
@@ -87,7 +88,7 @@ export const initialCart = {
   delivery_term: "1개월",
   delivery_day: "월요일, 화요일",
   delivery_time: "오전 11시",
-  totalPrice: "112000",
+  total_price: "112000",
 };
 
 export const initialStore = [
@@ -237,8 +238,7 @@ export const initialMap = [
     category_name : 'etc',
     name : '올리브영',
     address : '서울 용산구 한강대로 285'
-  },
-]
+  },]
 
 export const initialHash = [
   //id,category,name,address

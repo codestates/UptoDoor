@@ -2,9 +2,9 @@ import styled from 'styled-components';
 // import { TextLightGrey } from '../GlobalStyle';
 
 export const CartContainer = styled.div`
-  margin-top: 30px;
+  margin: 30px auto;
   min-width: 375px;
-
+  max-width: 1440px;
   @media screen and (min-width: 1140px) {
     margin-top: 100px;
   }
@@ -18,7 +18,7 @@ export const CartWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 15px;
-
+  
   @media screen and (min-width: 1140px) {
     flex-direction: row;
   }
@@ -413,10 +413,8 @@ export const ButtonWrapper = styled.div`
   display: flex;
   margin-bottom: 20px;
   justify-content: center;
-  
-  @media screen and (min-width: 767px) {
-    margin: 0 auto;
 
+  @media screen and (min-width: 767px) {
     > button {
       width: 150px;
       height: 50px;
@@ -426,9 +424,8 @@ export const ButtonWrapper = styled.div`
     }
   }
   @media screen and (min-width: 1140px) {
-    margin: 0 auto;
     > button {
-      width: 45%;
+      width: 280px;
       height: 60px;
       font-size: 20px;
       font-weight: 700;

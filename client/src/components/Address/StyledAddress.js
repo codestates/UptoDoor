@@ -36,7 +36,7 @@ export const EnrollAddressWrapper = styled.form`
   margin: 0 auto;
 `;
 
-export const AddressTitle = styled.div`
+export const TitleAddress = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -66,9 +66,9 @@ export const AddressTitle = styled.div`
   @media screen and (min-width: 767px) {
     width: 500px;
     justify-content: space-between;
-    > p{
+    > p {
       width: 400px;
-      max-width:none;
+      max-width: none;
       margin-right: 0;
       text-align: center;
     }

@@ -140,7 +140,10 @@ function UserCartInfo() {
   const month = [1, 3, 6, 12];
   return (
     <CartContainer>
-      <form onSubmit={(e) => {postHandler(e)}}
+      <form
+        onSubmit={(e) => {
+          postHandler(e);
+        }}
       >
         <CartH1>장바구니</CartH1>
         <CartWrapper>
@@ -231,6 +234,7 @@ function UserCartInfo() {
             <UserCheckListDetailBox>
               <h3>세부사항</h3>
               <textarea
+                maxLength="300"
                 onChange={(e) => {
                   setDetailOption(e.target.value);
                 }}
@@ -250,7 +254,6 @@ function UserCartInfo() {
                         type="radio"
                         name="delivery_term"
                         defaultValue={mon}
-
                       />
                       {mon}개월
                     </span>
@@ -286,6 +289,7 @@ function UserCartInfo() {
               <UserCheckListBox>
                 <h4 className="detail">세부사항</h4>
                 <textarea
+                  maxLength="300"
                   onChange={(e) => {
                     setDetailOption(e.target.value);
                   }}
@@ -293,7 +297,9 @@ function UserCartInfo() {
               </UserCheckListBox>
             </UserCheckList>
             <ButtonWrapper>
-              <SmallButton type="submit" primary>주문하기</SmallButton>
+              <SmallButton type="submit" primary>
+                주문하기
+              </SmallButton>
               <SmallButton onClick={goBackHandler}>뒤로가기</SmallButton>
             </ButtonWrapper>
           </CartCheckListWrapper>

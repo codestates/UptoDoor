@@ -8,7 +8,7 @@ const app = express();
 const port = 3060;
 
 app.use(cors({
-  origin: true,
+  origin: 'http://localhost:3000',
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
 }));
@@ -19,7 +19,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', Router);
 
 app.get('/', (req, res) => {
-  console.log("접속")
   res.send('Hello World!');
 });
 

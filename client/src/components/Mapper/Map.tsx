@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import search from './keyword';
-import { MapContainer } from './styledMap'
+import { MapContainer } from './styledMap'  
+import {initialMap} from '../dummyData'
 
-interface MapProps {
-  Keyword : any,
-  dataSet : any,
-}
+// interface MapProps {
+//   Keyword : any,
+// }
 
-function Map({Keyword , dataSet}:MapProps) {
+function Map() {
 
   useEffect(() => {
-    search(Keyword,dataSet)
-    },[Keyword]);  
+    search(initialMap)
+    },[initialMap]);  
 
   return (
     <MapContainer 

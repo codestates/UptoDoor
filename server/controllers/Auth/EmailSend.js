@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
         from: EMAIL,
         to: receiverEmail,
         subject: 'UptoDoor 이메일 인증',
-        html: `<h3><a href="http://localhost:3060/auth/email?email=${data.email}">이메일인증</a></h3>`,
+        html: `<h3><a href="https://zerone.tk/auth/email?email=${data.email}">이메일인증</a></h3>`,
     };
 
     //email 전송
@@ -45,8 +45,8 @@ module.exports = async (req, res) => {
     console.log(info);
     console.log("send mail success!");
     });
-
-    res.status(200).send({message: 'send success'})
+  
+    res.status(200).send({message: 'send success'});
     }else{
     res.status(409).send({message: 'email exists'});
     }

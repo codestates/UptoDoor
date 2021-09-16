@@ -1,7 +1,7 @@
 import React from 'react'
 import { 
-  MapSearchBarContainer,
   MapSearchInput,
+  MapForm
 } from './styledMap'
 import { SmallButton } from '../common/Button/Button'
 
@@ -18,20 +18,20 @@ function MapSearchBar({
   } : MapSearchProps) {
 
   return (
-    <MapSearchBarContainer>
-      <form onSubmit={searchSubmitHandler}>
+    <>
+      <MapForm onSubmit={searchSubmitHandler}>
         <MapSearchInput 
         ref = {inputRef}
         type = 'text' 
         placeholder = '동네 구독서비스를 조회하세요.'/>
-      <SmallButton
-      className = 'map-search-btn'
-      primary
-      >
-        <i className="fas fa-search-location"></i>
-      </SmallButton>
-      </form>
-    </MapSearchBarContainer>
+        <SmallButton
+        className = 'map-search-btn'
+        primary
+        >
+          <i className="fas fa-search-location"></i>
+        </SmallButton>
+      </MapForm>
+    </>
   )
 }
 

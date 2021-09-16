@@ -15,7 +15,8 @@ export const signUp = (userinfo) => {
   axios.post('https://zerone.tk/users/signup',
   userinfo, { withCredentials: true })
   .then((res)=>{
-    console.log(res.data); 
+
+    console.log(res.data);
   })
   .catch((err)=>{
     console.log('==userinfo 받아오기실패==',err)

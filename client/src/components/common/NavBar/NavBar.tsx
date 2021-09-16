@@ -1,12 +1,11 @@
 import React,{useState } from 'react'
 import SideBar from '../SideBar/SideBar';
 import Signin from '../Signin/SigninModal';
-
 import {
   Header,
   Nav,
   ButtonWrapper,
-  NavLogo,
+  // NavLogo,
   ListLink,
   NavWrapper,
   MiddleButton,
@@ -25,8 +24,8 @@ function NavBar() {
     <Header>
       <NavWrapper>
         {/* 로고 */}
-        <NavLogo to="/">UptoDoor</NavLogo>
-
+        <img src = './image/updodoor.png'/>
+        {/* <NavLogo to="/">UptoDoor</NavLogo> */}
         {/* nav */}
         <Nav>
           <h2 className="visually-hidden">메뉴</h2>

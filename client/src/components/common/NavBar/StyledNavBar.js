@@ -56,6 +56,7 @@ export const NavLogo = styled(Link)`
   @media screen and (min-width: 767px) {
     font-size: 40px;
     font-weight: 700;
+    padding: 6px 0 0 0;
   }
 
   @media screen and (min-width: 1120px) {

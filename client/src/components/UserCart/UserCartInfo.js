@@ -1,6 +1,5 @@
 import React, {
   useCallback,
-  // useEffect,
   useState
 } from "react";
 import {useSelector,useDispatch} from "react-redux";
@@ -26,6 +25,7 @@ import {
   // Wrapper,
   Title
 } from "../GlobalStyle";
+import { MoneyCheck } from '../UserOrder/StyledUserOrder';
 
 function UserCartInfo() {
   const state = useSelector((state) => state.cart);
@@ -37,6 +37,8 @@ function UserCartInfo() {
   const [checkedItems, setCheckedItems] = useState(
     state.Menu.map((el) => el.id)
   );
+  const [termsOptions, setTermsOptions] = useState("");
+  const [dayOptions, setDayOptions] = useState("");
   // const [currentItems, setCurrentItems] = useState(
   //   state.Menu
   // );
@@ -44,6 +46,9 @@ function UserCartInfo() {
   
   // const [subsritionOpions,setSubsritionOpions] = useState({})
   // console.log(monthOptions);
+  console.log(termsOptions)
+  console.log(dayOptions);
+
   //*  하나씩 선택하고 지우는 핸들러
   const onChangeChecked = (checked, id) => {
     if (checked) {
@@ -91,20 +96,12 @@ function UserCartInfo() {
   //* 제출 핸들러
   const postHandler = useCallback((e) => {
     e.preventDefault();
-
-    const deliveryTerm = [...document.getElementsByName("delivery_term")];
-    const termOptions = deliveryTerm.filter((el) => el.checked === true);
-    if (termOptions.length !== 1) alert("구독기간을 체크하세요");
-    const delivery_term = termOptions[0].value;
-    //요일
-    const deliveryDay = [...document.getElementsByName("delivery_day")];
-    const dayOptions = deliveryDay.filter((el) => el.checked === true);
-    const delivery_day = dayOptions.map((el) => el.value);
-    if (delivery_day.length === 0) alert("서비스를 받고싶은 요일을 체크해주세요");
+    
+    
     const data = {
       Menu: state.Menu,
-      delivery_term,
-      delivery_day,
+      delivery_term: termsOptions,
+      delivery_day: dayOptions,
       delivery_time: timeOtions,
       delivery_detail: detailOption,
       plus_money: plusMoney,
@@ -126,21 +123,42 @@ function UserCartInfo() {
     window.history.back();
   });
 
-  // useEffect(() => {
-  //   if (state.Menu.length === 0) {
-  //     // 모달 띄우고 뒤로가기
-  //     window.history.back();
-  //   }
-  // }, [state.Menu]);
+  //계산
+  const getPrice = () => {
+    let cartIdArr = state.Menu.map((el) => el.id);
+    let total = {
+      price: 0,
+      quantity: 0,
+      plus: 0,
+    };
+    if (plusMoneyChecked && plusMoney) {
+      total.price += Number(plusMoney);
+      total.plus += Number(plusMoney);
+    }
+      for (let i = 0; i < cartIdArr.length; i++) {
+        if (checkedItems.indexOf(cartIdArr[i]) > -1) {
+          let quantity = Number(state.Menu[i].quantity);
+          let price = state.Menu[i].price;
 
-  //지우는 카트
-  //체크박스가 끝나고 정보를 보낸다.
-  //상품 수량 바꿀때마다
-  //추가금액 선택시 바꿀때마다
-  //오더로 넘기는 액션
-  //전체 삭제하기 버튼
+          total.price += quantity * price;
+          total.quantity += quantity;
+        }
+      }
+    console.log(total);
+    return total;
+  };
+  
+
+  const total = getPrice();
   const days = ["일", "월", "화", "수", "목", "금", "토"];
-  const month = [1, 3, 6, 12];
+  const monthFront = [
+    { mon: 1, week: 4 },
+    { mon: 3, week: 12 },
+  ];
+  const monthBack = [
+    { mon: 6, week: 24 },
+    { mon: 12, week: 52 },
+  ];
   return (
     <Container>
       <Title>장바구니</Title>
@@ -155,6 +173,9 @@ function UserCartInfo() {
               <CheckBox
                 type="checkbox"
                 onChange={(e) => onChangeAllChecked(e.target.checked)}
+                checked={
+                  checkedItems.length === state.Menu.length ? true : false
+                }
               />
               <div>전체 선택</div>
             </CartCheckBoxAll>
@@ -230,6 +251,7 @@ function UserCartInfo() {
                   onChange={(e) => {
                     setPlusMoney(e.target.value);
                   }}
+                  onBlur={getPrice}
                 ></input>
                 <span>원</span>
               </div>
@@ -246,36 +268,65 @@ function UserCartInfo() {
           </CartMenuListWrapper>
           <CartCheckListWrapper>
             <UserCheckList>
-              <h2>구독 체크리스트</h2>
-
+              <h3>구독 체크리스트</h3>
               <UserCheckListBox>
                 <h4>몇 개월 동안 구독하실건가요?</h4>
-                {month.map((mon) => {
+                {monthFront.map((mon) => {
                   return (
-                    <span key={mon}>
+                    <label key={mon.mon}>
                       <input
                         type="radio"
                         name="delivery_term"
-                        defaultValue={mon}
+                        defaultValue={mon.mon}
+                        required
+                        onClick={() => {
+                          setTermsOptions(mon.mon);
+                        }}
                       />
-                      {mon}개월
-                    </span>
+                      <span>
+                        {mon.mon}개월({mon.week}주)
+                      </span>
+                    </label>
                   );
                 })}
               </UserCheckListBox>
 
+              <UserCheckListBox month>
+                {monthBack.map((mon) => {
+                  return (
+                    <label key={mon.mon}>
+                      <input
+                        type="radio"
+                        name="delivery_term"
+                        defaultValue={mon.mon}
+                        
+                        onClick={() => {
+                          setTermsOptions(mon.mon);
+                        }}
+                      />
+                      <span>
+                        {mon.mon}개월({mon.week}주)
+                      </span>
+                    </label>
+                  );
+                })}
+              </UserCheckListBox>
               <UserCheckListBox>
                 <h4>받고 싶은 요일을 언제이신가요?</h4>
                 {days.map((day) => {
                   return (
-                    <span key={day}>
+                    <label key={day}>
                       <input
                         type="checkbox"
                         name="delivery_day"
                         defaultValue={day}
+                        required
+                        onClick={() => {
+                          setDayOptions(day);
+                        }}
                       />
                       {day}요일
-                    </span>
+                    </label>
                   );
                 })}
               </UserCheckListBox>
@@ -287,6 +338,7 @@ function UserCartInfo() {
                   onChange={(e) => {
                     setTimeOtions(e.target.value);
                   }}
+                  required
                 />
               </UserCheckListBox>
               <UserCheckListBox>
@@ -297,6 +349,21 @@ function UserCartInfo() {
                     setDetailOption(e.target.value);
                   }}
                 />
+              </UserCheckListBox>
+              <h3>주문 합계</h3>
+              <UserCheckListBox cart>
+                <MoneyCheck>
+                  <h5>총 상품 개수</h5>
+                  <p> {total.quantity} 개</p>
+                </MoneyCheck>
+                <MoneyCheck>
+                  <h5>추가금액</h5>
+                  <p>+ 0 원</p>
+                </MoneyCheck>
+                <MoneyCheck>
+                  <h4>합계</h4>
+                  <p>+ {total.price} 원</p>
+                </MoneyCheck>
               </UserCheckListBox>
             </UserCheckList>
             <ButtonWrapper>

@@ -438,18 +438,17 @@ export const InfoCheck = styled.div`
 `;
 
 export const MoneyCheck = styled.div`
-  width: 280px;
-  margin: 4px 8px 0 8px;
+  width: 95%;
+  margin:"4px 8px 0 8px";
   display: flex;
   justify-content: space-between;
-
+  max-width: 470px;
   > h4 {
     letter-spacing: -1px;
   }
-
   @media screen and (min-width: 1140px) {
     width: 95%;
-    margin: 6px auto 0 ;
+    margin: 6px auto 0;
     > h4 {
       letter-spacing: -1px;
       font-size: 20px;

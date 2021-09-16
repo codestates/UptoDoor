@@ -265,9 +265,8 @@ export const CartCheckListWrapper = styled.div`
 
 //UserCheckList
 export const UserCheckList = styled.section`
-  margin: 0 auto;
+  margin: 5px auto;
   width: 100%;
-  height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -276,37 +275,43 @@ export const UserCheckList = styled.section`
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   margin-bottom: 15px;
-
-  > h2 {
-    margin-bottom: 12px;
+  > h3 {
+    margin: 3px 0 4px 10px;
+    font-size: 18px;
+  }
+  @media screen and (min-width: 767px) {
+    > h3 {
+      margin: 10px 0 10px 15px;
+      font-size: 18px;
+    }
   }
 
   @media screen and (min-width: 1140px) {
-    height: 400px;
-    margin-bottom: 35px;
     padding: 20px;
     min-width: 450px;
 
-    > h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
+    > h3 {
+      margin: 0;
+      font-size: 20px;
     }
   }
 `;
 
 export const UserCheckListBox = styled.div`
-  width: 100%;
-  padding: 5px 35px 0 5px;
-  margin-bottom: 8px;
-
+  width: 90%;
+  margin: 0 auto;
+  padding: 5px 5px 0 5px;
+  margin-top: 5px;
+  padding-top: ${({ month }) => (month ? "0px" : "5px")};
+  margin-top: ${({ month }) => (month ? "0px" : "5px")};
   > h4 {
     font-weight: 500;
     margin-bottom: 4px;
   }
 
-  > span {
+  > label {
     margin-right: 5px;
-
+    font-size: 14px;
     > input {
       margin-right: 5px;
     }
@@ -334,19 +339,15 @@ export const UserCheckListBox = styled.div`
     padding: 8px 40px 0 0;
 
     > h4 {
-      font-size: 20px;
+      font-size: 18px;
       letter-spacing: -1px;
       margin: 10px 0;
     }
 
-    > span {
+    > label {
       margin-left: 5px;
       margin-right: 8px;
-      font-size: 18px;
-
-      &:nth-child(5) {
-        margin-right: 30px;
-      }
+      font-size: 16px;
       > input {
         margin-right: 10px;
       }
@@ -356,7 +357,7 @@ export const UserCheckListBox = styled.div`
       width: 180px;
       height: 40px;
       padding: 10px;
-      font-size:18px;
+      font-size: 18px;
       border: 2px solid #ededed;
     }
 

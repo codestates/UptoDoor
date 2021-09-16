@@ -12,8 +12,7 @@ module.exports = async (req, res, next) => {
   const checkRefreshToken = checkRefresh(refresh);
 
   if (checkAccessToken && checkRefreshToken) { // 토큰 둘다 유효하면
-    const { id, email, mainaddress } = checkAccessToken;
-    res.status(200).send({ userinfo: id, email, mainaddress });
+    console.log('토큰 검증됨')
     next();
   } else if (!checkAccessToken) { // 액세스 토큰 유효하지 않으면
     const refcheck = checkRefresh(refresh);
@@ -22,10 +21,11 @@ module.exports = async (req, res, next) => {
       delete refcheck.password;
       const accessToken = generateAccessToken(refcheck);
       sendAccessToken(res, accessToken);
-      res.status(200).send({ userinfo: id, email, mainaddress });
+      console.log('액세스 토큰 유효하지 않음')
       next();
     }
   } else if (!checkRefreshToken) {
+    console.log('로그인 다시 해서 토큰 재발급 받아라')
     res.status(401).send({ message: 'invalid token' });
   }
 };

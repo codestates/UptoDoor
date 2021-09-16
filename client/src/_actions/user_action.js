@@ -1,9 +1,13 @@
-import { 
-  SIGNUP ,
-  SIGNIN , 
-  SIGNOUT , 
-  MYPAGE_USER ,
-  DELETE_USER,ADD_MAIN_ADDRESS,ADD_SUB_ADDRESS } from './type'
+import {
+  SIGNUP,
+  SIGNIN,
+  SIGNOUT,
+  MYPAGE_USER,
+  DELETE_USER,
+  ADD_MAIN_ADDRESS,
+  ADD_SUB_ADDRESS,
+  ADD_ORDER,
+} from "./type";
 
  import axios from 'axios'
  axios.defaults.withCredentials = true
@@ -12,10 +16,11 @@ import {
 export const signUp = (userinfo) => {
   console.log('액션까지옴')
   const result = 
-  axios.post('https://zerone.tk/users/signup',
+  axios.post('https://uptodoors.shop/users/signup',
   userinfo, { withCredentials: true })
   .then((res)=>{
-    console.log(res.data); 
+
+    console.log(res.data);
   })
   .catch((err)=>{
     console.log('==userinfo 받아오기실패==',err)
@@ -29,7 +34,7 @@ export const signUp = (userinfo) => {
 //유저 signin post 요청
 export const signIn = (userinfo) => {
   //const result = 
-  axios.post('https://zerone.tk/users/signin', userinfo);
+  axios.post('https://uptodoors.shop/users/signin', userinfo);
   //console.log(result);
   return {
     type: SIGNIN,
@@ -97,3 +102,16 @@ export const addSubAddress = (subAddress, subAddressDetail) => {
     },
   };
 };
+
+export const addOrder = (order, selected_mobile) => {
+  // const request = axios.post(`https://uptodoor.cf/users/order`)
+  // console.log(request)
+  
+  return {
+    type: ADD_ORDER,
+    payload: {
+      order,
+      selected_mobile,
+    },
+  };
+}

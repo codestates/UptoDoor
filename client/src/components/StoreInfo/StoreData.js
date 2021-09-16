@@ -1,15 +1,49 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {initialStore} from '../dummyData'
+import MenuList from './MenuList'
+import {
+  StoreDataContainer,
+  StoreDataWrapper,
+  StoreInfoTitle,
+  StoreIntro,
+  StoreName,
+  StoreImg,
+  StoreBackImg,
+  StoreAddressP,
+  StoreInfoP,
+  StoreCategory,
+}
+from './StyledStoreData'
+
 
 const StoreData = () => {
   return (
-    <div>
-    <h2>StoreData</h2>
-      <h3>쑥까페</h3>
-      <div>메뉴 이미지 / 메뉴이름 / 가격</div>
-      <button>사장님한테 전화하기</button><br/>
-      <Link to = '/usercart'><button>장바구니</button></Link>
-    </div>
+    <StoreDataContainer>
+      <StoreInfoTitle>가게 정보</StoreInfoTitle>
+        <div className = 'line'></div>
+        <StoreDataWrapper>
+            <StoreIntro>
+              <div className = 'store-flex-box flex-box'>
+                <StoreName>🏠 {initialStore[1].name}</StoreName>
+                <StoreCategory>{initialStore[1].category}</StoreCategory>
+              </div>
+              <div className = 'store-img-box'>
+                <StoreImg src = {initialStore[1].img}/>
+                <StoreImg src = {initialStore[1].img}/>
+                <StoreBackImg className = 'additional-img'>+</StoreBackImg>
+              </div>
+              <div className = 'store-detail-box'>
+              <StoreAddressP>📍 {initialStore[1].address}</StoreAddressP>
+              <StoreAddressP>📱 {initialStore[1].mobile}</StoreAddressP>
+              <hr/>
+              <StoreInfoP className = 'store-introduce'>{initialStore[1].introduce}</StoreInfoP>
+              </div>
+            </StoreIntro>
+            
+            {/* 메뉴리스트 컴포넌트 */}
+            <MenuList/>
+      </StoreDataWrapper>
+    </StoreDataContainer>
   )
 }
 

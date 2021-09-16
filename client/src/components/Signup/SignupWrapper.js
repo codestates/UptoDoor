@@ -1,7 +1,6 @@
 import React, { useState , useCallback, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-// import { SIGNUP } from '../../_actions/type'
 import { signUp } from '../../_actions/user_action'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'
@@ -39,8 +38,6 @@ function SignupWrapper() {
     if(certEmail === false) return setCertEmail(true);
     // if(isAllchecked === false ) return false;
 
-    console.log(gender,age);
-
     let userinfo = {
       email,password,nickname,mobile,
       gender,age
@@ -64,13 +61,13 @@ function SignupWrapper() {
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
     //email:email
-    // axios post http://localhost:3060/users/Email,
+    // axios post http://localhost:3060/auth/Email,
     //email.email.then((res)=>확인모달(트루))
     //.catch((err)=>이미 존재합니다 모달(트루))
     console.log(email)
     axios
     .post(
-      `https://zerone.tk/auth/email`,
+      `https://uptodoors.shop/auth/email`,
       {email:email},
       {withCredentials: true, credentials: 'include'}
     ).then((res)=>
@@ -129,6 +126,7 @@ function SignupWrapper() {
         <Label>E-mail</Label><SideSpan>*필수</SideSpan>
         <SmallButton 
         className = 'cert-email-btn'
+        type="button"
         onClick = {()=>certEmailHandler(certEmail)}>
           이메일 인증</SmallButton><br/>
         <SignUpInput 

@@ -1,9 +1,13 @@
-import { 
-  SIGNUP ,
-  SIGNIN , 
-  SIGNOUT , 
-  MYPAGE_USER ,
-  DELETE_USER,ADD_MAIN_ADDRESS,ADD_SUB_ADDRESS } from './type'
+import {
+  SIGNUP,
+  SIGNIN,
+  SIGNOUT,
+  MYPAGE_USER,
+  DELETE_USER,
+  ADD_MAIN_ADDRESS,
+  ADD_SUB_ADDRESS,
+  ADD_ORDER,
+} from "./type";
 
  import axios from 'axios'
  axios.defaults.withCredentials = true
@@ -98,3 +102,16 @@ export const addSubAddress = (subAddress, subAddressDetail) => {
     },
   };
 };
+
+export const addOrder = (order, selected_mobile) => {
+  // const request = axios.post(`https://uptodoor.cf/users/order`)
+  // console.log(request)
+  
+  return {
+    type: ADD_ORDER,
+    payload: {
+      order,
+      selected_mobile,
+    },
+  };
+}

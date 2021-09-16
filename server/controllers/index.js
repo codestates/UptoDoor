@@ -7,7 +7,7 @@ module.exports = {
   AdminInfo: require('./Admin/Admininfo'),
   Position: require('./Admin/Position'),
   Store: require('./Admin/Store'),
-  Email: require('./Auth/email'),
+  Email: require('./Auth/Email'),
   EmailSend: require('./Auth/EmailSend'),
   Kakaologin: require('./Oauth/kakao/Login'),
   Kakaosignup: require('./Oauth/kakao/Signup'),

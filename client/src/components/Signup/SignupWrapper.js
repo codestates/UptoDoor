@@ -8,6 +8,9 @@ import { H1 ,Form ,SignUpInput ,Label,
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
 
+  import axios from "axios";
+axios.defaults.withCredentials=true;
+
 function SignupWrapper() {
 
   let history = useHistory();
@@ -62,6 +65,14 @@ function SignupWrapper() {
     //email.email.then((res)=>확인모달(트루))
     //.catch((err)=>이미 존재합니다 모달(트루))
     console.log(email)
+    axios
+    .post(
+      `https://zerone.tk/auth/email`,
+      {email:email},
+      { withCredentials: true }
+    ).then((res)=>
+    console.log("응답성공",res),
+    )
   }
 
   const onChangePwHandler = useCallback((e) => {

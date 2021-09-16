@@ -20,13 +20,19 @@ module.exports = {
       mainaddress: {
         type: Sequelize.STRING
       },
+      mainaddressDetail: {
+        type: Sequelize.STRING
+      },
       main_xvalue: {
         type: Sequelize.FLOAT
       },
       main_yvalue: {
         type: Sequelize.FLOAT
       },
-      subaddres: {
+      subaddress: {
+        type: Sequelize.STRING
+      },
+      subaddressDetail: {
         type: Sequelize.STRING
       },
       sub_xvalue: {

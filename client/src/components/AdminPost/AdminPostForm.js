@@ -41,7 +41,7 @@ function AdminPostForm() {
   const updateFiles = (newImgs) => {
     setUploads(newImgs)
     // console.log('uploaded :' ,uploads);
-    // console.log('====',newImgs);
+    console.log('====',newImgs);
   }
   const submitHandler = (e) => {
     e.preventDefault();

@@ -1,8 +1,5 @@
 const { user } = require('../../models');
 const crypto = require('crypto');
-const {
-  generateAccessToken, generateRefreshToken, sendAccessToken, sendRefreshToken,
-} = require('../Tokenfunc');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
   const Email = req.body.email;

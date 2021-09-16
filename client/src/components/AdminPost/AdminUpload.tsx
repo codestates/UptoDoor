@@ -11,7 +11,7 @@ function AdminUpload(props:any) {
   // img 5개 제한
   const [imgs , setImgs]:any = useState([]); 
   const dropHandler = (files:any) => {
-    // console.log(files);
+    console.log('====',files);
     // let formData = new FormData();
     // const config = {
     //   header : { 'content-type' : 'multipart/form-data'}
@@ -33,7 +33,11 @@ function AdminUpload(props:any) {
     // })
     setImgs([...imgs,files[0].path]);
     props.updateFiles([...imgs,files[0].path])
+
+    console.log('===img 경로보기===',imgs);
   }
+  
+  console.log('===img 경로보기===',imgs);
 
   const deleteImgHandler = (files:any) => {
     const curIdx = imgs.indexOf(files)  
@@ -44,7 +48,6 @@ function AdminUpload(props:any) {
     props.updateFiles(newImgs)
   }
 
-  // console.log(imgs);
 
   return (
     <StyledImgUpload>

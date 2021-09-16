@@ -1,6 +1,7 @@
 import {createGlobalStyle} from 'styled-components'
 
 /* margin,padding 은 90% */
+// background: linear-gradient(45deg,mediumturquoise,#5d9cec);
 
 /*color*/
 export const MainColor = '#245CCE';
@@ -24,5 +25,14 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: -apple-system, 'Noto Sans KR', sans-serif;
   };
+
+  input{
+    &:active,&:focus{
+      outline: none;
+    }
+  }
+  button{
+    cursor: pointer;
+  }
 `
 

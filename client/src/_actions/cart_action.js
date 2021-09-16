@@ -4,10 +4,10 @@ import {
   REMOVE_FROM_All_CART,
   ADD_CART,
   ADD_ALL_CART_TO_ORDER,
+  SET_ADDRESS
 } from "../_actions/type";
 
 export const setQuantity = (quantity, id) => {
-  
   return {
     type: SET_QUANTITY,
     payload: {
@@ -30,9 +30,10 @@ export const removeFromAllCart = () => {
   };
 };
 
-export const addCart = () => {
+export const addCart = (item) => {
   return {
     type: ADD_CART,
+    payload : item
   };
 };
 
@@ -40,5 +41,12 @@ export const addAllCartToOrder = (data) => {
   return {
     type: ADD_ALL_CART_TO_ORDER,
     paylad: data
+  };
+};
+
+export const setAddress = (address) => {
+  return {
+    type: SET_ADDRESS,
+    payload: address
   };
 };

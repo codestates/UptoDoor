@@ -1,3 +1,4 @@
+
 export const initialUser = {
   User: [
     {
@@ -90,7 +91,8 @@ export const initialCart = {
   total_price: "112000",
 };
 
-export const initialStore = [{
+export const initialStore = [
+  {
   id: 5,
   name: "쑥카페",
   image: [],
@@ -121,9 +123,59 @@ export const initialStore = [{
       image: "",
     },
   ],
+  },
+  {
+    id: 6,
+    name: "용준이네집",
+    image: '../../',
+    address : '서울시 용산구 신흥로32길 4-33',
+    introduce: "새로 리뉴얼 기념, 이달 말까지 배달서비스 1000원 이벤트 중입니다. 많이 찾아주세요. 맛은 보장합니다.",
+    category: "food",
+    mobile : '010-1234-1234',
+    user_id: 3,
+    Menu: [
+      {
+        id: 1,
+        name: "버터치킨커리",
+        price: "14000",
+        detail: "대표메뉴, 안매움",
+        image: "../../public/sample_img.png",
+      },
+      {
+        id: 2,
+        name: "피자",
+        price: "15000",
+        detail: "3~4인용",
+        image: "../../public/sample_img.png",
+      },
+      {
+        id: 3,
+        name: "치킨",
+        price: "14000",
+        detail: "순살, 매콤",
+        image: "../../public/sample_img.png",
+      },
+      {
+        id: 4,
+        name: "파스타",
+        price: "12000",
+        detail: "특제 로제소스로 만든 파스타",
+        image: "../../public/sample_img.png",
+      },
+      {
+        id: 5,
+        name: "연어샐러드",
+        price: "10000",
+        detail: "싱싱한 연어, 발사믹소스 첨가",
+        image: "../../public/sample_img.png",
+      },
+    ]
+    
+  },
   //delivery_time: "",
   //business_paper: "",
-}]
+];
+
 
 export const initialMap = [
   //id,category,name,address
@@ -221,3 +273,4 @@ export const initialHash = [
     hash_arr : []
   },
 ]
+

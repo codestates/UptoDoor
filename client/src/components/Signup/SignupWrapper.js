@@ -115,6 +115,7 @@ function SignupWrapper() {
         <Label>E-mail</Label><SideSpan>*필수</SideSpan>
         <SmallButton 
         className = 'cert-email-btn'
+        type="button"
         onClick = {()=>certEmailHandler(certEmail)}>
           이메일 인증</SmallButton><br/>
         <SignUpInput 

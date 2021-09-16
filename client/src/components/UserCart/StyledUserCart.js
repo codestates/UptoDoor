@@ -1,15 +1,6 @@
 import styled from 'styled-components';
 // import { TextLightGrey } from '../GlobalStyle';
 
-export const CartContainer = styled.div`
-  margin: 30px auto;
-  min-width: 375px;
-  max-width: 1440px;
-  @media screen and (min-width: 1140px) {
-    margin-top: 100px;
-  }
-`;
-
 export const CartWrapper = styled.div`
   margin: 0 auto;
   width: 90%;
@@ -22,12 +13,6 @@ export const CartWrapper = styled.div`
   @media screen and (min-width: 1140px) {
     flex-direction: row;
   }
-`;
-
-export const CartH1 = styled.h1`
-  width: 90%;
-  margin: 20px auto 24px ;
-  
 `;
 
 export const CartCheckBoxAll = styled.div`

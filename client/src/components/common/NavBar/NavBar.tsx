@@ -25,8 +25,12 @@ function NavBar() {
     <Header>
       <NavWrapper>
         {/* 로고 */}
-        <NavLogo to="/">UptoDoor</NavLogo>
-
+        <NavLogo to="/"> 
+          <img src="./images/updodoor.png" alt="s" style={{
+            width: "150px", height: "35px"}} />
+        
+        </NavLogo> 
+    
         {/* nav */}
         <Nav>
           <h2 className="visually-hidden">메뉴</h2>

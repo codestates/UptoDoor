@@ -60,7 +60,7 @@ export const initialCart = {
     {
       id: 42,
       name: "스페셜11 스팸에그 토스트",
-      price: "5000",
+      price: 5000,
       detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
       image: "../images/toast.png",
       quantity: 4,
@@ -68,7 +68,7 @@ export const initialCart = {
     {
       id: 41,
       name: "스페셜11 스팸에그 토스트",
-      price: "4000",
+      price: 4000,
       detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
       image: "../images/toast.png",
       quantity: 1,
@@ -76,7 +76,7 @@ export const initialCart = {
     {
       id: 39,
       name: "아메리카노",
-      price: "4000",
+      price: 4000,
       detail: "venti",
       image: "../images/americano.png",
       quantity: 1,
@@ -93,45 +93,45 @@ export const initialCart = {
 
 export const initialStore = [
   {
-  id: 5,
-  name: "쑥카페",
-  image: [],
-  address: "서울시 강서구 구구국구구111",
-  introduce: "많이 놀러오세요~~띠요띵용",
-  category: "카페",
-  user_id: 2,
-  Menu: [
-    {
-      id: 38,
-      name: "아메리카노",
-      price: "4000",
-      detail: "venti",
-      image: "",
-    },
-    {
-      id: 39,
-      name: "카페라떼",
-      price: "5000",
-      detail: "venti size",
-      image: "",
-    },
-    {
-      id: 40,
-      name: "스페셜 스팸에그 토스트",
-      price: "4000",
-      detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
-      image: "",
-    },
-  ],
+    id: 5,
+    name: "쑥카페",
+    image: [],
+    address: "서울시 강서구 구구국구구111",
+    introduce: "많이 놀러오세요~~띠요띵용",
+    category: "카페",
+    user_id: 2,
+    Menu: [
+      {
+        id: 38,
+        name: "아메리카노",
+        price: "4000",
+        detail: "venti",
+        image: "",
+      },
+      {
+        id: 39,
+        name: "카페라떼",
+        price: "5000",
+        detail: "venti size",
+        image: "",
+      },
+      {
+        id: 40,
+        name: "스페셜 스팸에그 토스트",
+        price: "4000",
+        detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
+        image: "",
+      },
+    ],
   },
   {
     id: 6,
     name: "용준이네집",
     image: '../../',
-    address : '서울시 용산구 신흥로32길 4-33',
+    address: '서울시 용산구 신흥로32길 4-33',
     introduce: "새로 리뉴얼 기념, 이달 말까지 배달서비스 1000원 이벤트 중입니다. 많이 찾아주세요. 맛은 보장합니다.",
     category: "food",
-    mobile : '010-1234-1234',
+    mobile: '010-1234-1234',
     user_id: 3,
     Menu: [
       {
@@ -175,6 +175,7 @@ export const initialStore = [
   //delivery_time: "",
   //business_paper: "",
 ]
+
 
 
 export const initialMap = [

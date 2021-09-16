@@ -8,7 +8,7 @@ export const MYPAGE_USER = 'MYPAGE_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const ADD_MAIN_ADDRESS = "ADD_MAIN_ADDRESS";
 export const ADD_SUB_ADDRESS = "ADD_SUB_ADDRESS";
-
+export const ADD_ORDER = "ADD_ORDER";
 
 //admin signUp/signIn/signOut/mypage/deleteAdmin
 export const ADD_POST = "ADD_POST";

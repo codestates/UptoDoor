@@ -1,9 +1,10 @@
 import React from 'react'
 import { initialHash } from '../dummyData'
 import { 
-  MapHashtagWrapper } from './styledMap'
+  MapHashtagWrapper,
+  MapHashTagBox } from './styledMap'
 import { SmallButton } from '../common/Button/Button'
-import MapInfoModal from './MapInfoModal';
+import MapInfoModal from '../common/Modal/MapInfoModal';
 
 interface Category {
   filterList : any,
@@ -15,7 +16,7 @@ interface Category {
 function MapHashtag({openInfoModal,mapData,filterList,categoryFilter}:Category) {
   return (
     <MapHashtagWrapper className = 'hashtag-wrapper'>
-      <div className = 'hashtag-box'>
+      <MapHashTagBox className = 'hashtag-box'>
       {initialHash.map((el,idx)=>{
         return (
             <SmallButton 
@@ -27,11 +28,10 @@ function MapHashtag({openInfoModal,mapData,filterList,categoryFilter}:Category) 
             </SmallButton>
         )
       })}         
-      </div>
+      </MapHashTagBox>
 
       {openInfoModal?
       <MapInfoModal
-        // mobile  
         mapData = {mapData}
         filterList = {filterList}
       />

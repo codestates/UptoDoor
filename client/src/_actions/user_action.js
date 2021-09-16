@@ -14,7 +14,8 @@ export const signUp = (userinfo) => {
   axios.post('http://localhost:3060/users/signup',
   userinfo)
   .then((res)=>{
-    console.log(res.data); 
+
+    console.log(res.data);
   })
   .catch((err)=>{
     console.log('==userinfo 받아오기실패==',err)
@@ -29,6 +30,7 @@ export const signUp = (userinfo) => {
 export const signIn = (userinfo) => {
   const result = axios.post('http://localhost:3060/users/signin', userinfo);
   console.log(result);
+
   return {
     type: SIGNIN,
     payload: {

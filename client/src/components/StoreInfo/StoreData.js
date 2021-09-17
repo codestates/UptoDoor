@@ -2,9 +2,7 @@ import React from 'react'
 import {initialStore} from '../dummyData'
 import MenuList from './MenuList'
 import {
-  StoreDataContainer,
   StoreDataWrapper,
-  StoreInfoTitle,
   StoreIntro,
   StoreName,
   StoreImg,
@@ -14,13 +12,17 @@ import {
   StoreCategory,
 }
 from './StyledStoreData'
+import {
+  Container,
+  // Wrapper,
+  Title
+} from "../GlobalStyle";
 
 
 const StoreData = () => {
   return (
-    <StoreDataContainer>
-      <StoreInfoTitle>가게 정보</StoreInfoTitle>
-        <div className = 'line'></div>
+    <Container>
+      <Title>가게 정보</Title>
         <StoreDataWrapper>
             <StoreIntro>
               <div className = 'store-flex-box flex-box'>
@@ -28,9 +30,11 @@ const StoreData = () => {
                 <StoreCategory>{initialStore[1].category}</StoreCategory>
               </div>
               <div className = 'store-img-box'>
-                <StoreImg src = {initialStore[1].img}/>
-                <StoreImg src = {initialStore[1].img}/>
-                <StoreBackImg className = 'additional-img'>+</StoreBackImg>
+                <StoreImg src = {initialStore[1].store_image[0]}/>
+                <StoreImg src = {initialStore[1].store_image[1]}/>
+                <StoreBackImg 
+                style = {{backgroundImage : `url(${initialStore[1].store_image[3]})`}}
+                className = 'additional-img'>+</StoreBackImg>
               </div>
               <div className = 'store-detail-box'>
               <StoreAddressP>📍 {initialStore[1].address}</StoreAddressP>
@@ -43,7 +47,7 @@ const StoreData = () => {
             {/* 메뉴리스트 컴포넌트 */}
             <MenuList/>
       </StoreDataWrapper>
-    </StoreDataContainer>
+    </Container>
   )
 }
 

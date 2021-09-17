@@ -1,9 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  OrderContainer,
-  OrderWrapper,
-  OrderTitle,
   MenuWrapper,
   MenuItemWrapper,
   MenuItemDetail,
@@ -18,6 +15,7 @@ import {
   SmallButton
 } from '../common/Button/Button';
 import { addOrder } from '../../_actions/user_action';
+import { Container, Wrapper, Title } from "../GlobalStyle";
 
 function UserOrderWrapper() {
   const state = useSelector((state) => state);
@@ -74,10 +72,10 @@ useEffect(() => {
 
   if (state === undefined) return null;
   return (
-    <OrderContainer>
-      <OrderTitle>주문 전 확인</OrderTitle>
+    <Container>
+      <Title>주문 전 확인</Title>
       <div>
-        <OrderWrapper>
+        <Wrapper>
           <OrderH3 primary>정기구독 상품 정보</OrderH3>
           <MenuWrapper>
             <MenuUl>
@@ -103,7 +101,7 @@ useEffect(() => {
               );
             })}
           </MenuWrapper>
-        </OrderWrapper>
+        </Wrapper>
         <SubscriptAndOrderInfoWrapper>
           <SubscriptionInfo />
           <OrderInfo
@@ -123,7 +121,7 @@ useEffect(() => {
           <SmallButton>뒤로가기</SmallButton>
         </ButtonWrapper>
       </div>
-    </OrderContainer>
+    </Container>
   );
 }
 

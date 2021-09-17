@@ -3,8 +3,6 @@ import { LagreButton } from '../Button/Button';
 import {
   SigninContainer, SigninWrapper, SigninInput, LeadSignup, Icon, SignupLink, TextOr, Logo,
 } from './StyledSignin';
-import Naver from '../../../images/icon/naver.png';
-import Kakao from '../../../images/icon/kakao.png';
 import {useDispatch} from 'react-redux'
 import { signIn } from '../../../_actions/user_action';
 import axios from 'axios';
@@ -60,8 +58,9 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
         </form>
         
         <TextOr>Or</TextOr>
-        <LagreButton className="btn" onClick={kakaoHandler}><img src={Kakao} /><div>카카오 계정으로 로그인</div></LagreButton>
-        <LagreButton className="btn"><img src={Naver} /><div>네이버 계정으로 로그인</div> </LagreButton>
+        <LagreButton className="btn" onClick={kakaoHandler}><img src='./images/icon/kakao.png' /><div>카카오 계정으로 로그인</div></LagreButton>
+        <LagreButton className="btn"><img src='./images/icon/naver.png' /><div>네이버 계정으로 로그인</div> </LagreButton>
+
         <LeadSignup>아직 회원이 아니신가요?<SignupLink to="/signup" onClick={() => {
           setModalOpen(false);
           setIsOpen(false);

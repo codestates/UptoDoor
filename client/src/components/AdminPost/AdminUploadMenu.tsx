@@ -30,7 +30,6 @@ function AdminUploadMenu({
   price,priceHandler,menuDescription,
   changeMenuDesc,addMenuHandler}:MenuAddProps) {
     
-
     const dropHandler = (file:any) => {
       console.log('====',file[0]);
       console.log('====',file[0].path);
@@ -86,19 +85,18 @@ function AdminUploadMenu({
           </MenuInputBox>
 
           <MenuInputBox>
-            <label>가게 설명</label>
+            <label>메뉴 설명</label>
             <MenuIntroTextArea 
               value = {menuDescription} 
-              placeholder = '간단한 메뉴설명 작성해주세요' 
+              placeholder = '100자 이내로 작성해주세요.' 
               onChange = {changeMenuDesc}/>
           </MenuInputBox>
         </MenuUploadDiv2>
       </StoreMenuAddWrapper>
 
-
       <StoreInputBox>
         <StoreMenuAddBtn 
-          onClick = {addMenuHandler}>+
+          onClick = {addMenuHandler}>메뉴추가 +
         </StoreMenuAddBtn> 
       </StoreInputBox>
     </StoreInputBox>

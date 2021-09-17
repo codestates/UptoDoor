@@ -295,7 +295,7 @@ return (
 
         </StoreInputWrapper>
         <StoreBtnBox>
-          <SmallButton> 확인 </SmallButton>
+          <SmallButton> 등록 </SmallButton>
           <SmallButton 
           onClick = {handleClickCancle}
           type = 'button'> 취소 </SmallButton>

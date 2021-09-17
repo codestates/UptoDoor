@@ -58,6 +58,11 @@ export const StoreInputBox = styled.div`
 display: flex;
 justify-content: center;
 flex-direction: column;
+&:nth-child(2){
+  >.category-selection{
+    margin : 8px 0;
+  }
+}
 >label{
   font-size: ${BaseFont};
   font-weight: 600;
@@ -67,11 +72,15 @@ flex-direction: column;
 }
 `
 export const StoreNameInput = styled.input`
+background-color: hsl(0, 0%, 100%);
+border-color: hsl(0, 0%, 80%);
+border-radius: 4px;
+border-style: solid;
+border-width: 1px;
+min-height: 38px;
 padding : 8px;
 margin : 10px 0;
-height: 45px;
-border-radius: 8px;
-border : 1px solid #656D78;
+font-size: ${BaseFont};
 `
 export const StoreIntroTextArea = styled.textarea`
 padding : 8px;
@@ -79,21 +88,49 @@ height : 70px;
 margin : 10px 0;
 resize: none;
 height: 100px;
-border-radius: 8px;
-border : 1px solid #656D78;
+background-color: hsl(0, 0%, 100%);
+border-color: hsl(0, 0%, 80%);
+border-radius: 4px;
+border-style: solid;
+border-width: 1px;
+`
+export const StoreAddressWrapper = styled.div`
+display: flex;
+flex-direction: column;
+margin : 8px 0;
+`
+export const StoreAddressBtn = styled.button`
+background-color: hsl(0, 0%, 100%);
+border-color: hsl(0, 0%, 80%);
+border-radius: 4px;
+border-style: solid;
+border-width: 1px;
+min-height: 38px;
+padding : 8px;
+margin : 0;
+text-align: center;
+font-size: ${BaseFont};
+cursor: pointer;
+&:hover{
+  transition : all 0.5s;
+  background-color: rgba(0,0,0,0.1);
+  opacity: 0,7;
+}
 `
 //!menu component style
 export const StoreMenuAddWrapper = styled.div`
+display: grid;
+grid-template-columns: 1fr 1.5fr;
 margin : 10px 0;
-/* height: 150px; */
 padding : 10px;
-border : 1px solid #656D78;
-border-radius: 8px;
-display: flex;
+background-color: hsl(0, 0%, 100%);
+border-color: hsl(0, 0%, 80%);
+border-radius: 4px;
+border-style: solid;
+border-width: 1px;
 `
 export const MenuUploadDiv = styled.div`
-width: 100px;
-height:100px;
+height: 160px;
 cursor: pointer;
 background-color: rgba(0,0,0,0.05);
 display: flex;
@@ -108,6 +145,13 @@ margin-right : 10px;
 }
 `
 export const MenuUploadDiv2 = styled.div`
+>label{
+  font-size: ${SmallFont};
+  font-weight: 500;
+  @media screen and (min-width: 768px) {
+    
+  }
+}
 `
 export const MenuInputBox = styled.div`
 >label{
@@ -116,10 +160,25 @@ export const MenuInputBox = styled.div`
 }
 `
 export const MenuInput = styled.input`
-width: 100%;height : 30px;
+width: 100%;
+height : 30px;
+background-color: hsl(0, 0%, 100%);
+border-color: hsl(0, 0%, 80%);
+border-radius: 4px;
+border-style: solid;
+border-width: 1px;
+padding : 8px;
 `
 export const MenuIntroTextArea = styled.textarea`
-width: 100%;height : 50px;
+width: 100%;
+height : 50px;
+resize: none;
+background-color: hsl(0, 0%, 100%);
+border-color: hsl(0, 0%, 80%);
+border-radius: 4px;
+border-style: solid;
+border-width: 1px;
+padding : 8px;
 `
 export const StoreMenuAddBtn = styled.div`
 margin : 0 0 10px 0;

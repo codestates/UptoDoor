@@ -96,7 +96,8 @@ export const initialStore = [
     id: 5,
     name: "쑥카페",
     store_image: [ 
-    "./images/storeImgs/cafe6.png",
+    "./images/storeImgs/cafe4.png",
+    "./images/storeImgs/cafe5.png",
     "./images/storeImgs/cafe6.png",
     ],
     address: "서울특별시 용산구 후암동 신흥로20길 43",

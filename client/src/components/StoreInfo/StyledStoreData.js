@@ -39,7 +39,6 @@ export const StoreIntro = styled.div`
     padding :8px;
     margin : 0 0 10px 0;
     border-radius: 8px;
-    box-shadow: 1px 1px 5px ${TextLightGrey};
     @media screen and (min-width: 768px) {
     padding :15px;
     }
@@ -106,7 +105,6 @@ object-fit: cover;
   &:nth-child(2){
   height: 220px;
     }
-  }
   }
 `
 export const StoreAddressP = styled.p`

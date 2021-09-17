@@ -8,6 +8,7 @@ import Kakao from '../../../images/icon/kakao.png';
 import {useDispatch} from 'react-redux'
 import { signIn } from '../../../_actions/user_action';
 import axios from 'axios';
+axios.defaults.withCredentials = true
 
 interface Iprops {
   modalOpen: boolean;
@@ -38,7 +39,7 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
   
   const kakaoHandler = useCallback((e) => {
     e.preventDefault();
-    axios.get('https://kauth.kakao.com/oauth/authorize?client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=https://uptodoors.shop&response_type=code')
+    axios.get('https://kauth.kakao.com/oauth/authorize?client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=https://uptodoor.shop&response_type=code',{ withCredentials: true })
   },[email,password])
   
 

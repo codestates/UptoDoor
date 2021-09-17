@@ -45,6 +45,12 @@ export const NavWrapper = styled.div`
 
 export const NavLogo = styled(Link)`
   color: ${MainColor};
+  /* background: linear-gradient(45deg,mediumturquoise,#5d9cec); */
+  /* background: -webkit-linear-gradient(45deg, mediumturquoise, #5d9cec);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; */
+            /* smooth : -webkit-font-smoothing: antialiased; */
   cursor: pointer;
   font-size: 28px;
   font-weight: 700;
@@ -56,6 +62,7 @@ export const NavLogo = styled(Link)`
   @media screen and (min-width: 767px) {
     font-size: 40px;
     font-weight: 700;
+    padding: 6px 0 0 0;
   }
 
   @media screen and (min-width: 1120px) {

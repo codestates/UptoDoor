@@ -24,7 +24,7 @@ function MapHashtag({openInfoModal,mapData,filterList,categoryFilter}:Category) 
             className = 'hashtag-category-btn'
             onClick = {categoryFilter}
             >
-            <p>{el.category_name}</p>
+            <p>{el.category}</p>
             </SmallButton>
         )
       })}         

@@ -2,48 +2,21 @@ import styled from 'styled-components';
 import { 
   MediumFont, 
   TextLightGrey,
-  LargeFont,
+  // LargeFont,
   MainColor, 
   SmallFont, 
   PointColor,
   BaseFont,
+  UltraLargeFont,
   } from '../GlobalStyle';
 
-export const StoreDataContainer = styled.section`
-transition : all 0.3s;
-padding : 0 16px;
-max-width: 1440px;
->.line{
-  visibility: hidden;
-  @media screen and (min-width: 768px) {
-    visibility: visible;
-    margin: 20px 0 10px;
-    border-bottom : 1px solid ${TextLightGrey};
-  }
-}
-@media screen and (min-width: 768px) {
-  margin : 60px 30px;
-  }
-@media screen and (min-width: 1140px) {
-  /* margin : 60px 15px; */
-  margin : 60px auto;
-  }
-`
-export const StoreInfoTitle = styled.p`
-//app size
-font-size: ${MediumFont};
-  @media screen and (min-width: 1140px) {
-    font-size: ${LargeFont};
-    visibility : visible;
-    margin : 0 8px;
-    justify-content: flex-start;
-  }
-`
 export const StoreDataWrapper = styled.div`
+  margin: 0 auto;
+  width: 90%;
 @media screen and (min-width: 1140px) {
     display: flex;
     justify-content: center;
-    /* align-items :stretch; */
+    height: 615px;
   }
 `
 export const StoreIntro = styled.div`
@@ -60,13 +33,12 @@ export const StoreIntro = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 8px;
-    margin : 15px 0 10px;
-    
+    margin : 12px 0;
   }
   >.store-detail-box{
     padding :8px;
+    margin : 0 0 10px 0;
     border-radius: 8px;
-    /* background-color: rgba(0,0,0,0.1); */
     box-shadow: 1px 1px 5px ${TextLightGrey};
     @media screen and (min-width: 768px) {
     padding :15px;
@@ -75,7 +47,6 @@ export const StoreIntro = styled.div`
   }
   }
   @media screen and (min-width: 1140px) {
-    /* border: 3px solid magenta;  */
     margin : 0 40px 0 0;
     flex : 1.5;
   }
@@ -94,13 +65,18 @@ text-align: right;
 export const StoreBackImg = styled.div`
 width: 100%;
 height:100%;
+cursor: pointer;
 border-radius: 8px;
 box-shadow: 1px 1px 1px ${TextLightGrey};
-background-color: rgba(0,0,0,0.1);
-opacity: 0.7;
 text-align: center;
-font-size: ${LargeFont};
+font-size: ${UltraLargeFont};
 line-height: 100px;
+background-size: cover;
+background-repeat: no-repeat;
+background-color: grey;
+background-blend-mode: multiply;
+opacity: 0.9;
+color : #fff;
 @media screen and (min-width: 1140px) {
   padding-top: 5px;
   box-sizing: border-box;
@@ -108,18 +84,29 @@ line-height: 100px;
 `
 export const StoreImg = styled.img`
 width: 100%;
-height:100px;
+height:100%;
 border-radius: 8px;
 box-shadow: 1px 1px 1px ${TextLightGrey};
+object-fit: cover;
+
 &:nth-child(1){
   height: 97%;
   grid-column: 1 / span 2;
   grid-row: 1 / span 3;
 }
+@media screen and (min-width: 768px) {
+  &:nth-child(2){
+  height: 100%;
+  }
+  }
 @media screen and (min-width: 1140px) {
   width: 100%;
   height: 220px;
-  margin : -9px 0;
+  margin : 0;
+  &:nth-child(2){
+  height: 220px;
+    }
+  }
   }
 `
 export const StoreAddressP = styled.p`
@@ -149,21 +136,20 @@ export const MenuOrderContainer = styled.div`
   font-size: ${MediumFont};
 }
 @media screen and (min-width: 1140px) {
-    margin-top : 20px;
     flex : 1;
-  }
-  @media screen and (min-width: 1440px) {
   }
 `
 export const MenuContainer = styled.div`
-height: 400px;
-overflow: hidden;
-overflow-y: auto;
-margin : 20px 0;
-/* background-color: rgba(0,0,0,0.1); */
+margin : 10px 0;
 background-color: #f5f5f5;
 box-shadow: 1px 1px 5px ${TextLightGrey};
 border-radius: 8px;
+
+@media screen and (min-width: 1140px) {
+  height: 470px;
+  margin : 15px 0;
+  overflow: hidden;
+  overflow-y: auto;
   &::-webkit-scrollbar {
     background-color: #fff;
     width: 5px;
@@ -174,16 +160,13 @@ border-radius: 8px;
     background-color: ${MainColor};
     border-radius: 150px;
   }
-@media screen and (min-width: 1140px) {
-  height: 500px;
 }
 `
 export const MenuWrapper = styled.div`
 display: flex;
 justify-content: space-between;
 background-color: #fff;
-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
 border-radius: 8px;
 padding : 5px 0;
 margin : 8px;
@@ -193,6 +176,9 @@ margin : 8px;
 >.order-btn{
   width: 50px;
 }
+@media screen and (min-width: 1140px) {
+    box-shadow: none;
+  }
 `
 export const MenuImg = styled.img`
 width: 80px;
@@ -201,6 +187,10 @@ border-radius: 8px;
 box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 margin: 0 10px;
+@media screen and (min-width: 1140px) {
+  width: 74px;
+  height:74px;
+  }
 `
 export const MenuName = styled.p`
 font-size: ${BaseFont};

@@ -40,13 +40,13 @@ function MenuList() {
 
   return (
     <MenuOrderContainer>
-      <span>🍽 MENU</span>
+      <span>🍽  MENU</span>
       <MenuContainer>
         {initialStore[1].Menu.map((el,idx)=>{
           return (
             <MenuWrapper key = {idx}>
               <div className = 'menu-flex-box flex-box'>
-                <MenuImg src= {el.image} alt = 'menu-img'/>
+                <MenuImg src= {el.menu_image} alt = 'menu-img'/>
                 <div>
                 <MenuName>{el.name}</MenuName>
                 <MenuPrice>{el.price} 원</MenuPrice>

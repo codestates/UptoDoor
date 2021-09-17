@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import search from './keyword';
 import { MapContainer } from './styledMap'  
-import {initialMap} from '../dummyData'
+import {initialStore} from '../dummyData'
 
 // interface MapProps {
 //   Keyword : any,
@@ -10,8 +10,8 @@ import {initialMap} from '../dummyData'
 function Map() {
 
   useEffect(() => {
-    search(initialMap)
-    },[initialMap]);  
+    search(initialStore)
+    },[initialStore]);  
 
   return (
     <MapContainer 

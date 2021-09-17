@@ -9,7 +9,7 @@ const { kakao } = window;
 //4. 카테고리별 
 
 //searchPlace,dataSet => search 자체
-export default function Keyword(initialMap){
+export default function Keyword(initialStore){
   
   var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
   mapOption = {
@@ -29,9 +29,9 @@ var geocoder = new kakao.maps.services.Geocoder();
 // })
 // console.log('====map======',mapping);
 
-for (let i=0; i < initialMap.length ; i++) {
+for (let i=0; i < initialStore.length ; i++) {
 // 주소로 좌표를 검색합니다
-geocoder.addressSearch(initialMap[i].address, function(result, status) {
+geocoder.addressSearch(initialStore[i].address, function(result, status) {
 
   // 정상적으로 검색이 완료됐으면 
   if (status === kakao.maps.services.Status.OK) {

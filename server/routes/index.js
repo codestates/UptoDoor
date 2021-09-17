@@ -18,7 +18,8 @@ router.get('/storeinfo', auth, controllers.StoreInfo);
 router.get('/auth/email', controllers.Email);
 router.post('/auth/email', controllers.EmailSend);
 router.post('/oauth/kakao/signup', auth, controllers.Kakaosignup);
-router.post('/oauth/kakao/login', auth, controllers.Kakaologin);
+router.post('/oauth/kakao/login', controllers.Kakaologin);
+router.get('/oauth/kakao/token', controllers.KakaoToken);
 router.post('/oauth/naver/signup', auth, controllers.Naversignup);
 router.post('/oatuh/naver/login', auth, controllers.Naverlogin);
 

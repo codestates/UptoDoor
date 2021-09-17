@@ -4,9 +4,16 @@ import { useHistory } from 'react-router-dom'
 import { signUp } from '../../_actions/user_action'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'
-import { H1 ,Form ,SignUpInput ,Label,
+import { 
+  Form ,
+  SignUpInput ,
+  Label,
+  SignupLogoBox,
+  SignupLogo,
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
+
+// import camera from '../../../public/image/updodoor.png'
 
 import axios from "axios";
 axios.defaults.withCredentials=true;
@@ -120,8 +127,11 @@ function SignupWrapper() {
 
   return (
     <SignupContainer>
-      <H1>회원가입</H1>
-      <div className = 'signup-line'></div>
+      {/* <H1>회원가입</H1> */}
+      <SignupLogoBox className = 'signup-logo-box'>
+        <SignupLogo src = './images/updodoor.png' alt = 'img'/>
+      </SignupLogoBox>
+      
       <Form onSubmit = {signupSubmitHandler}>
         <Label>E-mail</Label><SideSpan>*필수</SideSpan>
         <SmallButton 

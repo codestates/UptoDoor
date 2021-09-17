@@ -4,6 +4,22 @@ import styled from "styled-components";
 /* margin,padding 은 90% */
 // background: linear-gradient(45deg,mediumturquoise,#5d9cec);
 
+export const GlobalStyle = createGlobalStyle`
+  * {
+    margin : 0px; 
+    padding : 0px;
+    box-sizing: border-box;
+    font-family: -apple-system, 'Noto Sans KR', sans-serif;
+  };
+  input,textarea{
+    &:active,&:focus{
+      outline: none;
+    }
+  }
+  button{
+    cursor: pointer;
+  }
+`
 /*color*/
 export const MainColor = '#245CCE';
 export const PointColor = '#ff5954';
@@ -19,24 +35,7 @@ export const MediumFont = '20px';
 export const LargeFont = '24px';
 export const UltraLargeFont = '60px';
 
-export const GlobalStyle = createGlobalStyle`
-  * {
-    margin : 0px; 
-    padding : 0px;
-    box-sizing: border-box;
-    font-family: -apple-system, 'Noto Sans KR', sans-serif;
-  };
-
-  input{
-    &:active,&:focus{
-      outline: none;
-    }
-  }
-  button{
-    cursor: pointer;
-  }
-`
-
+/*components*/
 export const Container = styled.section`
   margin-top: 30px;
   min-width: 375px;

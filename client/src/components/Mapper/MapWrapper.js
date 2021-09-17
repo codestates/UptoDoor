@@ -5,14 +5,18 @@ import MapHashtag from './MapHashtag'
 import MapInfoModal from '../common/Modal/MapInfoModal'
 import MapSearchBar from './MapSearchBar'
 import EmptyMap from './EmptyMap'
-import { initialMap , initialHash } from '../dummyData'
+import { initialStore } from '../dummyData'
 import { 
-  MapTitle , 
-  MapWrapperContainer,
+
   MapFlexWrapper,
   MapHashWrapper,
 
 } from './styledMap'
+import {
+  Container,
+  // Wrapper,
+  Title
+} from "../GlobalStyle";
 
 function MapWrapper() {
 
@@ -43,12 +47,12 @@ function MapWrapper() {
   // console.log('===filteringHashClick',filterHashList)
   // setOpenInfoModal(true);
   // }
-  const filterList = initialMap.filter((el)=>{
+  const filterList = initialStore.filter((el)=>{
     if(el.name === Keyword){
       return el;
     }
   })
-  const filterHashList = initialHash.filter((el)=>{
+  const filterHashList = initialStore.filter((el)=>{
     if(el.category_name === Keyword){
       return el;
     }
@@ -57,9 +61,8 @@ function MapWrapper() {
 
   return (
     <>
-      <MapWrapperContainer className="map-wrapper-container">
-        <MapTitle>구독 찾기</MapTitle>
-        <div className = 'line'></div>
+      <Container className="map-wrapper-container">
+        <Title>구독 찾기</Title>
         <MapFlexWrapper>
         <MapHashWrapper>
           {/* 주소선택 컴포넌트 */}
@@ -88,7 +91,7 @@ function MapWrapper() {
         dataSet = {dataSet}
         />
         </MapFlexWrapper>
-        </MapWrapperContainer>
+        </Container>
     </>
   )
 }

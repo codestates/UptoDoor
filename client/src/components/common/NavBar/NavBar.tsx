@@ -1,7 +1,6 @@
 import React,{useState } from 'react'
 import SideBar from '../SideBar/SideBar';
 import Signin from '../Signin/SigninModal';
-
 import {
   Header,
   Nav,

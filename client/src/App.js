@@ -4,6 +4,7 @@ import { GlobalStyle } from './components/GlobalStyle'
 import Loading from './components/common/Loading/Loading'
 import Footer from './components/common/Footer/Footer'
 import NavBar from './components/common/NavBar/NavBar'
+import Kakao from './components/common/Signin/Kakao'
 
 //!navbar 카테고리 라우터
 import Signup from './pages/Signup'
@@ -90,6 +91,9 @@ function App() {
             <Route path="/adminedit">
               <AdminEdit />
             </Route>
+            <Route exact path="/kakao">
+              <Kakao />
+            </Route>           
           </Switch>
 
           <Footer />

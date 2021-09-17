@@ -73,7 +73,7 @@ export default function user_reducer(state = initialState, action) {
       return state;
 
     case SET_ADDRESS:
-      return { ...state, user_address: action.payload };
+      return { ...state, selected_address: action.payload };
     default:
       return state;
   }

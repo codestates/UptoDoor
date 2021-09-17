@@ -45,6 +45,14 @@ color : ${TextDarkGrey};
 font-size: ${MediumFont};
 margin-right: 10px;
 `
+export const SignupLogoBox = styled.div`
+margin : 20px;
+width: 220px;
+`
+export const SignupLogo = styled.img`
+width: 100%;
+object-fit: contain;
+`
 export const SideSpan = styled.span`
 color : ${TextLightGrey};
 font-size: ${SmallFont};

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
+<<<<<<< HEAD
 // import { TextLightGrey } from '../GlobalStyle';
+=======
+// import { Link } from "react-router-dom";
+>>>>>>> 7d6538c5b19f29c5fdbf6dbe6665e60c42eb9b7d
 
 export const CartWrapper = styled.div`
   margin: 0 auto;
@@ -87,7 +91,6 @@ export const CartMenuItemDetailWrapper = styled.div`
     }
     > p {
       font-size: 12px;
-      margin-bottom: 4px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -193,60 +196,87 @@ export const PlusMoneyWrapper = styled.div`
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   > div {
-    > label {
-      margin-left: 4px;
-      margin-right: 22px;
-      font-weight: 400;
-      letter-spacing: -1px;
-    }
-
-    > input {
-      background-color: #fff;
-      width: 70px;
-      height: 24px;
-      border-radius: 4px;
-      border: 1px solid #ededed;
-      text-align: right;
-      padding-right: 8px;
-      margin-right: 4px;
-    }
-
-    > input::-webkit-inner-spin-button,
-    input::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
     > span {
-      font-size: 14px;
+      font-size: 12px;
+    }
+    > div {
+      > label {
+        margin-left: 4px;
+        margin-right: 16px;
+        font-weight: 400;
+        letter-spacing: -1px;
+      }
+
+      > input {
+        background-color: #fff;
+        width: 70px;
+        height: 24px;
+        border-radius: 4px;
+        border: 1px solid #ededed;
+        text-align: right;
+        padding-right: 8px;
+        margin-right: 4px;
+      }
+
+      > input::-webkit-inner-spin-button,
+      input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      > span {
+        font-size: 14px;
+        margin-right: 8px;
+      }
     }
   }
-
+  @media screen and (min-width: 767px) {
+    > div {
+      > span {
+        margin-left: 15px;
+      }
+      > div {
+        label {
+          margin-right: 22px;
+        }
+      }
+    }
+  }
   @media screen and (min-width: 1140px) {
     width: 95%;
     height: 70px;
     margin: 0 auto;
     > div {
-      > label {
-        font-size: 18px;
-        margin-left: 20px;
-        margin-right: 22px;
-        font-weight: 400;
-        letter-spacing: -1px;
-      }
-      > input {
-        background-color: #fff;
-        width: 80px;
-        height: 30px;
-        border-radius: 4px;
-        border: 2px solid #ededed;
-        text-align: right;
-        padding-right: 8px;
-        margin-right: 4px;
-        font-size: 18px;
-      }
       > span {
-        font-size: 18px;
+        font-size:12px;
+      }
+      > div {
+        > label {
+          font-size: 18px;
+          margin-left: 20px;
+          margin-right: 22px;
+          font-weight: 400;
+          letter-spacing: -1px;
+        }
+        > input {
+          background-color: #fff;
+          width: 80px;
+          height: 30px;
+          border-radius: 4px;
+          border: 2px solid #ededed;
+          text-align: right;
+          padding-right: 8px;
+          margin-right: 4px;
+          font-size: 18px;
+        }
+        > span {
+          font-size: 18px;
+        }
       }
     }
   }
@@ -265,9 +295,8 @@ export const CartCheckListWrapper = styled.div`
 
 //UserCheckList
 export const UserCheckList = styled.section`
-  margin: 0 auto;
+  margin: 5px auto;
   width: 100%;
-  height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -276,37 +305,42 @@ export const UserCheckList = styled.section`
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   margin-bottom: 15px;
-
-  > h2 {
-    margin-bottom: 12px;
+  > h3 {
+    margin: 3px 0 4px 10px;
+    font-size: 18px;
+  }
+  @media screen and (min-width: 767px) {
+    > h3 {
+      margin: 8px 0 8px 15px;
+      font-size: 18px;
+    }
   }
 
   @media screen and (min-width: 1140px) {
-    height: 400px;
-    margin-bottom: 35px;
     padding: 20px;
     min-width: 450px;
 
-    > h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
+    > h3 {
+      margin: 0;
+      font-size: 20px;
     }
   }
 `;
 
 export const UserCheckListBox = styled.div`
-  width: 100%;
-  padding: 5px 35px 0 5px;
-  margin-bottom: 8px;
-
+  width: 90%;
+  margin: 0 auto 5px;
+  padding: 0 5px 0 5px;
+  padding-bottom: ${({ month }) => (month ? "0px" : "5px")};
+  margin-top: ${({ month }) => (month ? "-8px" : "0")};
   > h4 {
     font-weight: 500;
     margin-bottom: 4px;
   }
 
-  > span {
+  > label {
     margin-right: 5px;
-
+    font-size: 14px;
     > input {
       margin-right: 5px;
     }
@@ -331,22 +365,18 @@ export const UserCheckListBox = styled.div`
   }
 
   @media screen and (min-width: 1140px) {
-    padding: 8px 40px 0 0;
+    padding: 0px 40px 8px 0;
 
     > h4 {
-      font-size: 20px;
+      font-size: 18px;
       letter-spacing: -1px;
-      margin: 10px 0;
+      margin: 9px 0;
     }
 
-    > span {
+    > label {
       margin-left: 5px;
       margin-right: 8px;
-      font-size: 18px;
-
-      &:nth-child(5) {
-        margin-right: 30px;
-      }
+      font-size: 16px;
       > input {
         margin-right: 10px;
       }
@@ -356,7 +386,7 @@ export const UserCheckListBox = styled.div`
       width: 180px;
       height: 40px;
       padding: 10px;
-      font-size:18px;
+      font-size: 18px;
       border: 2px solid #ededed;
     }
 
@@ -400,6 +430,7 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
 
   @media screen and (min-width: 767px) {
+    
     > button {
       width: 150px;
       height: 50px;
@@ -417,3 +448,22 @@ export const ButtonWrapper = styled.div`
     }
   }
 `;
+
+// export const GoOrderLink = styled(Link)`
+//   text-decoration: none;
+//   color: white;
+  
+//   @media screen and (min-width: 767px) {
+//       width: 150px;
+//       height: 50px;
+//       height: 60px;
+//       font-size: 20px;
+//       font-weight: 700;
+//   }
+//   @media screen and (min-width: 1140px) {
+//       width: 280px;
+//       height: 60px;
+//       font-size: 20px;
+//       font-weight: 700;
+//   }
+// `;

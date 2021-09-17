@@ -59,11 +59,15 @@ font-size: ${MediumFont};
   }
 `
 export const MapFlexWrapper = styled.div`
+  margin: 0 auto;
+  width: 90%;
   @media screen and (min-width: 1140px) {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
   justify-content: center;
   align-items: flex-start;
   margin-top: 30px;
+  height: 615px;
   }
 `
 export const MapHashWrapper = styled.div`
@@ -72,8 +76,8 @@ export const MapHashWrapper = styled.div`
   margin: 20px 0 0;
 }
 @media screen and (min-width: 1140px) {
-  max-width: 45%;
-  margin:0 20px;
+  max-width: 450px;
+  margin:0 20px 0 0;
   }
 `
 export const MapSelectAddressWrapper = styled.div`
@@ -132,10 +136,13 @@ export const MapHashtagWrapper = styled.div`
   margin : 10px 0;
 `
 export const MapHashTagBox = styled.div`
-  width: 75%;
+  width: 70%;
   text-align: right;
   @media screen and (min-width: 768px) {
-  width: 60%;
+  width: 50%;
+  }
+  @media screen and (min-width: 1140px) {
+  width: 65%;
   }
   >.hashtag-category-btn{
   width: fit-content;
@@ -164,8 +171,8 @@ height : 350px;
     margin :0;
 }
 @media screen and (min-width: 1140px) {
-  width: 45%;
-  height: 490px;
+  max-width: 615px;
+  height: 610px;
   }
 `
 export const MapInfoContainer = styled.div`
@@ -216,7 +223,9 @@ export const MapInfoWrapper = styled.div`
   padding : 10px; 
   background-color: #f5f5f5;
   @media screen and (min-width: 1140px) {
-    width: 500px;
+    max-width: 441px;
+    margin : 0;
+    width: 100%;
   }
 >a{
   display: grid;
@@ -230,8 +239,11 @@ export const MapInfoWrapper = styled.div`
     }
   }
   >div>hr{
+
+    width: 57%;
     border: 1px solid rgba(0,0,0,0.2);
-    margin : 3px 0;
+    margin : 3px 10px 5px 0;
+    
   }
 }
 
@@ -239,16 +251,21 @@ export const MapInfoWrapper = styled.div`
 export const StoreImg = styled.img`
 border-radius : 3px;
 margin : 0 10px 0 0;
-border : 1px solid rgba(0,0,0,0.2);
 width: 100px;
+height: 100%;
+object-fit: cover;
 `
 export const StoreName = styled.h2`
 border-radius : 8px;
 margin :8px 0;
 color : ${TextColor};
 font-size: ${SmallFont};
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 768px) {
     width: 335px;
+    font-size: ${BaseFont}
+  }
+@media screen and (min-width: 1140px) {
+    
     font-size: ${BaseFont}
   }
 `

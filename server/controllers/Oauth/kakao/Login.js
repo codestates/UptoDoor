@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
     // redirect_uri:"http://localhost:3000/kakao", 
     // code:req.body.authorizationCode,
     // }
-    `grant_type=authorization_code&client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=http://localhost:3000/kakao&code=${req.body.authorizationCode}`
+    `grant_type=authorization_code&client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=http://localhost:3000/&code=${req.body.authorizationCode}`
     ,{
         headers: { "Content-Type": "application/x-www-form-urlencoded;charset=utf-8" }
     }).then((result)=>{

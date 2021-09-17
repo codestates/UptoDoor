@@ -1,11 +1,10 @@
-import React, { Suspense ,lazy } from "react";
+import React, { Suspense ,lazy, useEffect } from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/GlobalStyle'
 import Loading from './components/common/Loading/Loading'
 import Footer from './components/common/Footer/Footer'
 import NavBar from './components/common/NavBar/NavBar'
-import Kakao from './components/common/Signin/Kakao'
-
+import axios from "axios";
 //!navbar 카테고리 라우터
 import Signup from './pages/Signup'
 import Mypage from './pages/Mypage'
@@ -39,7 +38,24 @@ const Landing = lazy(
     ),
 );
 
+
+
 function App() {
+
+  useEffect(()=>{
+    const url = new URL(window.location.href)
+    console.log("url",url)
+    const authorizationCode = url.searchParams.get('code')
+    if (authorizationCode) {
+      console.log("인가코드",authorizationCode)        
+      axios.post('http://localhost:3060/oauth/kakao/login',
+      {authorizationCode:authorizationCode}
+      ).then((res)=>{
+        console.log("res",res.data);
+        window.location.href ='/'
+      })
+    }
+  },[])
 
   return (
     <>
@@ -90,12 +106,8 @@ function App() {
             </Route>
             <Route path="/adminedit">
               <AdminEdit />
-            </Route>
-            <Route exact path="/kakao">
-              <Kakao />
-            </Route>           
+            </Route>     
           </Switch>
-
           <Footer />
         </Suspense>
       </BrowserRouter>

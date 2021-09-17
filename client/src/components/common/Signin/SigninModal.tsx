@@ -3,8 +3,6 @@ import { LagreButton } from '../Button/Button';
 import {
   SigninContainer, SigninWrapper, SigninInput, LeadSignup, Icon, SignupLink, TextOr, Logo,
 } from './StyledSignin';
-// import Naver from './images/naver.png'
-// import Kakao from './images/kakao.png'
 import {useDispatch} from 'react-redux'
 import { signIn } from '../../../_actions/user_action';
 

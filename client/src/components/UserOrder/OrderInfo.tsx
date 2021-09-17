@@ -74,11 +74,11 @@ const OrderInfo = (props:any) => {
         <OrderInfoWrraper>
           <h5>결제 금액</h5>
           <MoneyCheck>
-            <h5>상품금액</h5>
+            <h5>상품 금액</h5>
             <p>{price} 원</p>
           </MoneyCheck>
           <MoneyCheck>
-            <h5>추가금액</h5>
+            <h5>추가 금액</h5>
             <p>+ {cart.plus_money} 원</p>
           </MoneyCheck>
           <MoneyCheck>
@@ -86,7 +86,7 @@ const OrderInfo = (props:any) => {
             <p>+ {cart.delivery_fee} 원</p>
           </MoneyCheck>
           <MoneyCheck>
-            <h4>최종 결제금액</h4>
+            <h4>월 결제 금액</h4>
             <p>{total_price} 원</p>
           </MoneyCheck>
           <CardCheck>

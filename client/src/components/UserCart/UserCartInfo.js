@@ -2,6 +2,7 @@ import React, {
   useCallback,
   useState
 } from "react";
+
 import {useSelector,useDispatch} from "react-redux";
 import { SmallButton } from "../common/Button/Button";
 import {
@@ -18,6 +19,7 @@ import {
   ButtonWrapper,
   UserCheckListDetailBox,
   CartCheckListWrapper,
+  // GoOrderLink
 } from "./StyledUserCart";
 import { setQuantity, removeFromCart } from "../../_actions/cart_action";
 import {
@@ -28,6 +30,7 @@ import {
 import { MoneyCheck } from '../UserOrder/StyledUserOrder';
 
 function UserCartInfo() {
+  
   const state = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const [timeOtions, setTimeOtions] = useState("");
@@ -38,16 +41,9 @@ function UserCartInfo() {
     state.Menu.map((el) => el.id)
   );
   const [termsOptions, setTermsOptions] = useState("");
-  const [dayOptions, setDayOptions] = useState("");
-  // const [currentItems, setCurrentItems] = useState(
-  //   state.Menu
-  // );
-  // console.log(checkedItems);
-  
-  // const [subsritionOpions,setSubsritionOpions] = useState({})
-  // console.log(monthOptions);
-  console.log(termsOptions)
-  console.log(dayOptions);
+  const [dayOptions, setDayOptions] = useState([]);
+  // console.log(termsOptions)
+  // console.log(dayOptions);
 
   //*  하나씩 선택하고 지우는 핸들러
   const onChangeChecked = (checked, id) => {
@@ -65,7 +61,12 @@ function UserCartInfo() {
       setCheckedItems([]);
     }
   });
-
+  const onChangeDayOptions = () => {
+    const deliveryDay = [...document.getElementsByName("delivery_day")];
+    const dayOptions = deliveryDay.filter((el) => el.checked === true);
+    const delivery_day = dayOptions.map((el) => el.value);
+    setDayOptions(delivery_day);
+  }
   //* 숫자 더하는 핸들러
   const increment = useCallback((e,id) => {
     // console.log(e.target.parentNode.parentElement);
@@ -96,19 +97,27 @@ function UserCartInfo() {
   //* 제출 핸들러
   const postHandler = useCallback((e) => {
     e.preventDefault();
-    
-    
+    const menu = []
+    let cartArr = state.Menu.map((el) => el);
+    for (let i = 0; i < cartArr.length; i++) {
+      if (checkedItems.indexOf(cartArr[i].id) > -1) {
+        menu.push(cartArr[i]);
+      }
+    }
+    console.log(menu);
     const data = {
-      Menu: state.Menu,
+      Menu: menu,
       delivery_term: termsOptions,
       delivery_day: dayOptions,
       delivery_time: timeOtions,
       delivery_detail: detailOption,
       plus_money: plusMoney,
       plus_check: plusMoneyChecked,
+      total_price: total.price
     };
     //! dispatch 해줘야함
     console.log(data);
+    window.location.href = "/userorder";
   });
 
   //*  지우는 핸들러
@@ -126,30 +135,57 @@ function UserCartInfo() {
   //계산
   const getPrice = () => {
     let cartIdArr = state.Menu.map((el) => el.id);
+    const { multiple, plus } = multiTotal();
+    
     let total = {
       price: 0,
       quantity: 0,
       plus: 0,
     };
-    if (plusMoneyChecked && plusMoney) {
-      total.price += Number(plusMoney);
-      total.plus += Number(plusMoney);
+    
+    if (plus && plusMoneyChecked) {
+      total.plus = plus;
+      total.price += plus;
     }
+    
       for (let i = 0; i < cartIdArr.length; i++) {
         if (checkedItems.indexOf(cartIdArr[i]) > -1) {
           let quantity = Number(state.Menu[i].quantity);
           let price = state.Menu[i].price;
-
           total.price += quantity * price;
           total.quantity += quantity;
         }
       }
-    console.log(total);
+    
+    if (multiple > 1) {
+      total.price = total.price * multiple;
+    }
+    
+    total.price
+    total.plus.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return total;
   };
   
+  const multiTotal = useCallback(() => {
+    let plus = {
+      multiple: 1,
+      plus: 0,
+    };
+    if (plusMoneyChecked && plusMoney) {
+      plus.plus += Number(plusMoney);
+    }
+    if (dayOptions && termsOptions) {
+      plus.multiple = plus.multiple * Number(dayOptions.length) * (Number(termsOptions) * 4);
+    } else {
+      plus.multiple = 1;
+    }
+    return plus;
+  }, [termsOptions, dayOptions, plusMoney, plusMoneyChecked]);
+    
+
 
   const total = getPrice();
+  
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   const monthFront = [
     { mon: 1, week: 4 },
@@ -195,6 +231,7 @@ function UserCartInfo() {
                       <div>
                         <h4>{item.name}</h4>
                         <p>{item.detail}</p>
+                        <p>{item.price} 원</p>
                       </div>
                       <InputNumberButton>
                         <button
@@ -244,16 +281,19 @@ function UserCartInfo() {
                 }}
               />
               <div>
-                <label>추가금액</label>
-                <input
-                  type="number"
-                  defaultValue={plusMoney}
-                  onChange={(e) => {
-                    setPlusMoney(e.target.value);
-                  }}
-                  onBlur={getPrice}
-                ></input>
-                <span>원</span>
+                <div>
+                  <label>추가금액</label>
+                  <input
+                    type="number"
+                    defaultValue={plusMoney}
+                    onChange={(e) => {
+                      setPlusMoney(e.target.value);
+                    }}
+                    onBlur={getPrice}
+                  ></input>
+                  <span>원</span>
+                </div>
+                <span>{"  "}한번 배송시 추가되는 금액입니다</span>
               </div>
             </PlusMoneyWrapper>
             <UserCheckListDetailBox>
@@ -299,9 +339,8 @@ function UserCartInfo() {
                         type="radio"
                         name="delivery_term"
                         defaultValue={mon.mon}
-                        
                         onClick={() => {
-                          setTermsOptions(mon.mon);
+                          setTermsOptions(mon.mon, true);
                         }}
                       />
                       <span>
@@ -320,9 +359,8 @@ function UserCartInfo() {
                         type="checkbox"
                         name="delivery_day"
                         defaultValue={day}
-                        required
                         onClick={() => {
-                          setDayOptions(day);
+                          onChangeDayOptions();
                         }}
                       />
                       {day}요일
@@ -357,12 +395,24 @@ function UserCartInfo() {
                   <p> {total.quantity} 개</p>
                 </MoneyCheck>
                 <MoneyCheck>
-                  <h5>추가금액</h5>
-                  <p>+ 0 원</p>
+                  <h5>구독 금액 / 월</h5>
+                  <p>
+                    +{" "}
+                    {total.price
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                    원
+                  </p>
                 </MoneyCheck>
-                <MoneyCheck>
-                  <h4>합계</h4>
-                  <p>+ {total.price} 원</p>
+                <MoneyCheck cart>
+                  
+                  <h5>월 결제 금액은{" "}{" " }
+                    {total.price
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  원 입니다.
+                  </h5>
+                  
                 </MoneyCheck>
               </UserCheckListBox>
             </UserCheckList>
@@ -370,6 +420,7 @@ function UserCartInfo() {
               <SmallButton type="submit" primary>
                 주문하기
               </SmallButton>
+
               <SmallButton onClick={goBackHandler}>뒤로가기</SmallButton>
             </ButtonWrapper>
           </CartCheckListWrapper>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import { TextLightGrey } from '../GlobalStyle';
+// import { Link } from "react-router-dom";
 
 export const CartWrapper = styled.div`
   margin: 0 auto;
@@ -87,7 +87,6 @@ export const CartMenuItemDetailWrapper = styled.div`
     }
     > p {
       font-size: 12px;
-      margin-bottom: 4px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -193,60 +192,87 @@ export const PlusMoneyWrapper = styled.div`
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   > div {
-    > label {
-      margin-left: 4px;
-      margin-right: 22px;
-      font-weight: 400;
-      letter-spacing: -1px;
-    }
-
-    > input {
-      background-color: #fff;
-      width: 70px;
-      height: 24px;
-      border-radius: 4px;
-      border: 1px solid #ededed;
-      text-align: right;
-      padding-right: 8px;
-      margin-right: 4px;
-    }
-
-    > input::-webkit-inner-spin-button,
-    input::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
     > span {
-      font-size: 14px;
+      font-size: 12px;
+    }
+    > div {
+      > label {
+        margin-left: 4px;
+        margin-right: 16px;
+        font-weight: 400;
+        letter-spacing: -1px;
+      }
+
+      > input {
+        background-color: #fff;
+        width: 70px;
+        height: 24px;
+        border-radius: 4px;
+        border: 1px solid #ededed;
+        text-align: right;
+        padding-right: 8px;
+        margin-right: 4px;
+      }
+
+      > input::-webkit-inner-spin-button,
+      input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      > span {
+        font-size: 14px;
+        margin-right: 8px;
+      }
     }
   }
-
+  @media screen and (min-width: 767px) {
+    > div {
+      > span {
+        margin-left: 15px;
+      }
+      > div {
+        label {
+          margin-right: 22px;
+        }
+      }
+    }
+  }
   @media screen and (min-width: 1140px) {
     width: 95%;
     height: 70px;
     margin: 0 auto;
     > div {
-      > label {
-        font-size: 18px;
-        margin-left: 20px;
-        margin-right: 22px;
-        font-weight: 400;
-        letter-spacing: -1px;
-      }
-      > input {
-        background-color: #fff;
-        width: 80px;
-        height: 30px;
-        border-radius: 4px;
-        border: 2px solid #ededed;
-        text-align: right;
-        padding-right: 8px;
-        margin-right: 4px;
-        font-size: 18px;
-      }
       > span {
-        font-size: 18px;
+        font-size:12px;
+      }
+      > div {
+        > label {
+          font-size: 18px;
+          margin-left: 20px;
+          margin-right: 22px;
+          font-weight: 400;
+          letter-spacing: -1px;
+        }
+        > input {
+          background-color: #fff;
+          width: 80px;
+          height: 30px;
+          border-radius: 4px;
+          border: 2px solid #ededed;
+          text-align: right;
+          padding-right: 8px;
+          margin-right: 4px;
+          font-size: 18px;
+        }
+        > span {
+          font-size: 18px;
+        }
       }
     }
   }
@@ -281,7 +307,7 @@ export const UserCheckList = styled.section`
   }
   @media screen and (min-width: 767px) {
     > h3 {
-      margin: 10px 0 10px 15px;
+      margin: 8px 0 8px 15px;
       font-size: 18px;
     }
   }
@@ -299,11 +325,10 @@ export const UserCheckList = styled.section`
 
 export const UserCheckListBox = styled.div`
   width: 90%;
-  margin: 0 auto;
-  padding: 5px 5px 0 5px;
-  margin-top: 5px;
-  padding-top: ${({ month }) => (month ? "0px" : "5px")};
-  margin-top: ${({ month }) => (month ? "0px" : "5px")};
+  margin: 0 auto 5px;
+  padding: 0 5px 0 5px;
+  padding-bottom: ${({ month }) => (month ? "0px" : "5px")};
+  margin-top: ${({ month }) => (month ? "-8px" : "0")};
   > h4 {
     font-weight: 500;
     margin-bottom: 4px;
@@ -336,12 +361,12 @@ export const UserCheckListBox = styled.div`
   }
 
   @media screen and (min-width: 1140px) {
-    padding: 8px 40px 0 0;
+    padding: 0px 40px 8px 0;
 
     > h4 {
       font-size: 18px;
       letter-spacing: -1px;
-      margin: 10px 0;
+      margin: 9px 0;
     }
 
     > label {
@@ -401,6 +426,7 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
 
   @media screen and (min-width: 767px) {
+    
     > button {
       width: 150px;
       height: 50px;
@@ -418,3 +444,22 @@ export const ButtonWrapper = styled.div`
     }
   }
 `;
+
+// export const GoOrderLink = styled(Link)`
+//   text-decoration: none;
+//   color: white;
+  
+//   @media screen and (min-width: 767px) {
+//       width: 150px;
+//       height: 50px;
+//       height: 60px;
+//       font-size: 20px;
+//       font-weight: 700;
+//   }
+//   @media screen and (min-width: 1140px) {
+//       width: 280px;
+//       height: 60px;
+//       font-size: 20px;
+//       font-weight: 700;
+//   }
+// `;

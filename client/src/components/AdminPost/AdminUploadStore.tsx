@@ -52,7 +52,7 @@ function AdminUploadStore(props:any) {
   const deleteImgHandler = (files:any) => {
     const curIdx = imgs.indexOf(files)  
     console.log(curIdx);
-    let newImgs = [...imgs]
+    const newImgs = [...imgs]
     newImgs.splice(curIdx,1);
     setImgs(newImgs); 
     props.updateFiles(newImgs)

@@ -8,7 +8,7 @@ interface OptionsProps {
 
 function SignupOptions({selectInputHandler}:OptionsProps) {
 
-  let gender: [{value: string, label: string}[], string] = [
+  const gender: [{value: string, label: string}[], string] = [
       [
         { value : '선택안함' , label : '선택안함'},
         { value : '남자' , label : '남자'},
@@ -17,7 +17,7 @@ function SignupOptions({selectInputHandler}:OptionsProps) {
       '성별',
   ]
 
-  let age: [{value: string, label: string}[], string] = [
+  const age: [{value: string, label: string}[], string] = [
       [
         { value: '선택안함', label: '선택안함' },
         { value: '10대', label: '10대' },

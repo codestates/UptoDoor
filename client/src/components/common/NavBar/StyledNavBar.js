@@ -80,7 +80,7 @@ export const Nav = styled.nav`
     list-style: none;
     cursor: pointer;
     > li {
-      margin: 10px;
+      margin: 10px 15px;
     }
   }
 
@@ -104,6 +104,8 @@ export const Nav = styled.nav`
 export const ListLink = styled(Link)`
   color: ${TextColor};
   text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
 `;
 
 export const ButtonWrapper = styled.div`

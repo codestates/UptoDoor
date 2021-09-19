@@ -21,6 +21,6 @@ router.post('/oauth/kakao/signup', auth, controllers.Kakaosignup);
 router.post('/oauth/kakao/login', controllers.Kakaologin);
 router.get('/oauth/kakao/token', controllers.KakaoToken);
 router.post('/oauth/naver/signup', auth, controllers.Naversignup);
-router.post('/oatuh/naver/login', auth, controllers.Naverlogin);
+router.post('/oatuh/naver/login', controllers.Naverlogin);
 
 module.exports = router;

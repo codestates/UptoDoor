@@ -6,6 +6,7 @@ import {
   StoreNameInput,
   StoreIntroTextArea,
   StoreBtnBox,
+  StoreMenuAddBtn,
 } from './StyledAdminPost'
 import {
   Container,
@@ -50,11 +51,10 @@ function AdminPostForm() {
   const [adminAddressDetail, setadminAddressDetail] = useState("");
   const [addressModal, setAddressModal] = useState(false);
   //menu
-  const [menuImg , setMenuImgs]:any = useState([]); 
-  const [menuName , setMenuName] = useState('');
-  const [price , setPrice] = useState(1000);
-  const [menuDescription , setMenuDescription] = useState('');
-  const [menuArr, setMenuArr]:any = useState([]);
+  
+  const [menuArr, setMenuArr]:any = useState([{
+    menuImg: '', menuName:'', menuDescription:'', price:0
+  }]);
 
   const changeTitleHandler = (e:any) => {
     setTitle(e.target.value)
@@ -109,34 +109,11 @@ function AdminPostForm() {
   }, [mobile]);
 
   //!add menu onchange handler
-  const changeMenuName = (e:any) => {
-    setMenuName(e.target.value)
-  }
-  const changeMenuDesc = (e:any) => {
-    const limitWord = e.target.value;
-    //설명제한
-    if(limitWord.length > 100){
-      alert('글자는 100자까지???')
-    }else{
-      setMenuDescription(limitWord);
-    }
-  }
-  const priceHandler = (e:any) => {
-    const comma = e.target.value;
-    setPrice(comma);
-  }
-  const addMenuHandler = () => {
-    console.log('누르면 메뉴어레이 하나씩 더생김.')
-    const Menu = {
-      menuImg : menuImg,
-      menuName : menuName,
-      price : price,
-      menuDescription : menuDescription
-    }
-    console.log([...menuArr,Menu])
-    // setMenuArr([...menuArr,Menu])
-    setMenuArr([...menuArr,Menu])
-  }
+  const addMenuHandler = (menu: any)=> {
+    console.log("에드메뉴핸들러", menu);
+    setMenuArr([menu, ...menuArr]);
+  };
+  
   //!upload files
   const updateFiles = (storeImgs:any) => {
       setUploads(storeImgs)
@@ -153,7 +130,7 @@ function AdminPostForm() {
       !uploads && 
       !category && !title && !description && !mobile 
       && !adminAddress 
-      // !menuImg ||!menuName || !menuDescription ||!price
+      // && !menuImg && !menuName && !menuDescription && !price
       ){
       //모달
       return alert('all section must be filled')
@@ -165,15 +142,8 @@ function AdminPostForm() {
       description:description,
       mobile : mobile,
       adminAddress : adminAddress,
-      Menu:[{
-          image:menuImg,
-          name:menuName,
-          description :menuDescription,
-          price:price ,
-        }
-      ]
+      Menu:menuArr
     }
-    console.log(adminPostInfo);
       dispatch(adminPost(adminPostInfo))
       history.push('/');
     }
@@ -281,17 +251,8 @@ return (
             placeholder = '사업자등록증 파일업로드 부분' 
             />
           </StoreInputBox>
-
           <AdminUploadMenu
-            menuImg = {menuImg}
-            setMenuImgs = {setMenuImgs}
-            menuName ={menuName}
-            changeMenuName = {changeMenuName}
-            price = {price}
-            priceHandler = {priceHandler}
-            menuDescription = {menuDescription}
-            changeMenuDesc = {changeMenuDesc}
-            addMenuHandler = {addMenuHandler}
+          addMenuHandler={addMenuHandler}
             menuArr = {menuArr}
           />
 

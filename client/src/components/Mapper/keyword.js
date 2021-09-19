@@ -49,7 +49,7 @@ geocoder.addressSearch(initialStore[i].address, function(result, status) {
       //     content:
       //     `<div 
       //     style="font-size : 10px; text-align:center; padding:6px 0;">
-      //     ${initialMap[i].name}
+          
       //     </div>`
       // });
       // infowindow.open(map, marker);

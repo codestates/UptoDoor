@@ -20,10 +20,10 @@ const initialState = {
     },
     {
       id: 41,
-      name: "스페셜11 스팸에그 토스트",
+      name: "오징어 먹물 치아바타",
       price: 4000,
       detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
-      image: "../images/toast.png",
+      image: "./images/salad.png",
       quantity: 1,
     },
     {
@@ -35,6 +35,44 @@ const initialState = {
       quantity: 1,
     },
   ],
+  MenuDummySample: [
+    {
+      id: 1,
+      name: "버터치킨커리",
+      price: 10000,
+      detail: "대표메뉴, 안매움",
+      image: "./images/curry.png",
+    },
+    {
+      id: 2,
+      name: "마르게리따 피자",
+      price: 13000,
+      detail: "3~4인용",
+      image: "./images/pizza.png",
+    },
+    {
+      id: 4,
+      name: "로제 파스타",
+      price: 12000,
+      detail: "특제 로제소스로 만든 파스타",
+      image: "./images/pasta.png",
+    },
+    {
+      id: 41,
+      name: "오징어 먹물 치아바타",
+      price: 4000,
+      detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
+      image: "./images/salad.png",
+    },
+    {
+      id: 42,
+      name: "스페셜11 스팸에그 토스트",
+      price: 5000,
+      detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
+      image: "../images/toast.png",
+    },
+  ],
+
   selected_address: "서울시 용산구 신흥로32길 4-33",
   selected_address_detail: "좋다좋다",
   delivery_detail: null,

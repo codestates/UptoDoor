@@ -1,4 +1,5 @@
 import React,{useState } from 'react'
+import { useSelector } from 'react-redux';
 import SideBar from '../SideBar/SideBar';
 import Signin from '../Signin/SigninModal';
 import {
@@ -15,6 +16,7 @@ import {
 
 
 function NavBar() {
+  const state = useSelector((state) => state);
   //사이드바 모달창
   const [isOpen, setIsOpen] = useState(false);
   //로그인 모달
@@ -59,7 +61,8 @@ function NavBar() {
         >
           <i className="fas fa-bars"></i>
         </IconButton>
-        <MiddleButton type="button" aria-label="로그인"
+        {
+        }<MiddleButton type="button" aria-label="로그인"
         onClick={()=>{setModalOpen(true)}}
         >
           로그인

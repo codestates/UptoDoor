@@ -1,8 +1,9 @@
 import React from 'react'
+import {LandingEndContainer} from './StyledLanding'
 
 const LandingEnd = () => {
   return (
-    <div>
+    <LandingEndContainer>
       <h4>용산구에서 <br/> 1,513명의 유저가<br/>만족하고있습니다.</h4>
       <select>
         <option value = 'yongsan'>용산구</option>
@@ -11,7 +12,7 @@ const LandingEnd = () => {
       </select>
       <br/>
       <button>로그인 모달</button>
-    </div>
+    </LandingEndContainer>
   )
 }
 

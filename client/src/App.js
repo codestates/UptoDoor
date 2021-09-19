@@ -4,13 +4,9 @@ import { GlobalStyle } from './components/GlobalStyle'
 import Loading from './components/common/Loading/Loading'
 import Footer from './components/common/Footer/Footer'
 import NavBar from './components/common/NavBar/NavBar'
-<<<<<<< HEAD
-//import axios from "axios";
-=======
 // import Kakao from './components/common/Signin/Kakao'
 import axios from 'axios';
 axios.defaults.withCredentials = true
->>>>>>> 554a5111cd54d44d371177a4eff22e49478c07bd
 //!navbar 카테고리 라우터
 import Signup from './pages/Signup'
 import Mypage from './pages/Mypage'
@@ -112,11 +108,7 @@ function App() {
             </Route>
             <Route path="/adminedit">
               <AdminEdit />
-<<<<<<< HEAD
-            </Route>     
-=======
             </Route>
->>>>>>> 554a5111cd54d44d371177a4eff22e49478c07bd
           </Switch>
           <Footer />
         </Suspense>

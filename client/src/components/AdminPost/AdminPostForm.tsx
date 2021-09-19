@@ -150,9 +150,9 @@ function AdminPostForm() {
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
     //모든칸이 채워지지않으면 false 로 막는다. !menuItem 추후 추가잊지마.
     if(
-      // !uploads || 
-      !category || !title || !description || !mobile 
-      // || !adminAddress || 
+      !uploads && 
+      !category && !title && !description && !mobile 
+      && !adminAddress 
       // !menuImg ||!menuName || !menuDescription ||!price
       ){
       //모달

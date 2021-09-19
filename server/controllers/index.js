@@ -3,6 +3,7 @@ module.exports = {
   SignOut: require('./Users/Signout'),
   SignUp: require('./Users/Signup'),
   UserInfo: require('./Users/Userinfo'),
+  Order: require('./Users/Order'),
   UserOrder: require('./Users/Userorder'),
   AdminInfo: require('./Admin/Admininfo'),
   Position: require('./Admin/Position'),

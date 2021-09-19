@@ -27,7 +27,10 @@ import {
   // Wrapper,
   Title
 } from "../GlobalStyle";
+<<<<<<< HEAD
+=======
 import { MoneyCheck } from '../UserOrder/StyledUserOrder';
+>>>>>>> 7d6538c5b19f29c5fdbf6dbe6665e60c42eb9b7d
 
 function UserCartInfo() {
   

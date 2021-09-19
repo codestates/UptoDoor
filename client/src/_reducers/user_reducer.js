@@ -7,12 +7,12 @@ import {
 } from "../_actions/type";
 
 export const initialUser = {
-  id: 1,
-  nickname: "용준이",
-  email: "test1@gmail.com",
-  mainAddress: "서울시 용산구 신흥로32길 4-33",
-  subAddress: "서울시 용산구 신흥로32길 4-44",
-  mobile: "010-7185-2791",
+  id: -1,
+  nickname: "",
+  email: "",
+  mainAddress: "",
+  subAddress: "",
+  mobile: "",
   order: []
 };
 
@@ -24,8 +24,8 @@ export default function user_reducer(state = initialUser, action) {
       return { ...state, signUp: action.payload };
 
     case SIGNIN:
-      console.log("aciotnsignin", action.pay);
-      return { ...state, user: initialUser };
+      console.log("aciotnsignin", action.payload);
+      return { ...state, email: action.payload.email };
     case ADD_MAIN_ADDRESS: {
       initialUser.mainAddress = action.payload.mainAddress;
       initialUser.mainAddressDetail = action.payload.mainAddressDetail;

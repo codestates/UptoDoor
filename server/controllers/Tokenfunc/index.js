@@ -6,24 +6,24 @@ require('dotenv').config();
 module.exports = {
 
   generateAccessToken: (data) => {
-    const token = sign(data, process.env.ACCESS_SECRET, { expiresIn: '3h' });
+    const token = sign(data, process.env.ACCESS_SECRET, { expiresIn: `${ 1000 * 60 * 60 * 24 * 14 }s` });
     return token;
   },
 
   generateRefreshToken: (data) => {
-    const token = sign(data, process.env.REFRESH_SECRET, { expiresIn: '6h' });
+    const token = sign(data, process.env.REFRESH_SECRET, { expiresIn: '30d' });
     return token;
   },
 
   sendAccessToken: (res, accessToken) => {
     res.cookie('accessToken', accessToken, {
-      httpOnly: true, path: '/', secure: true, sameSite: 'none',
+      maxAge: `${ 1000 * 60 * 60 * 24 * 14 }`, httpOnly: true, path: '/', secure: true, sameSite: 'none',
     });
   },
 
   sendRefreshToken: (res, refreshToken) => {
     res.cookie('refreshToken', refreshToken, {
-      httpOnly: true, path: '/', secure: true, sameSite: 'none',
+      maxAge: `${ 1000 * 60 * 60 * 24 * 30 }`, httpOnly: true, path: '/', secure: true, sameSite: 'none',
     });
   },
 

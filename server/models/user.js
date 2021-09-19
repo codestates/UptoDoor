@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     gender: DataTypes.STRING,
     emailcheck: DataTypes.STRING,
     position: DataTypes.STRING,
-    billingkey: DataTypes.STRING
+    billingkey: DataTypes.STRING,
+    signup_type: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'user',

@@ -12,7 +12,7 @@ const Landing = () => {
       <LandingValue />
       <LandingEnd />
     </>
-  )
+  );
 }
 
 export default Landing;

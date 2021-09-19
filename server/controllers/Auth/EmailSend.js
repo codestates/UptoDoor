@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
         from: EMAIL,
         to: receiverEmail,
         subject: 'UptoDoor 이메일 인증',
-        html: `<h3><a href="https://zerone.tk/auth/email?email=${data.email}">이메일인증</a></h3>`,
+        html: `<h3><a href="https://uptodoors.shop/auth/email?email=${data.email}">이메일인증</a></h3>`,
     };
 
     //email 전송

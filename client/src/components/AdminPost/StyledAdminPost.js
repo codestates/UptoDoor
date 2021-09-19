@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { BaseFont, LargeFont, MediumFont, SmallFont, TextLightGrey, UltraLargeFont } from '../GlobalStyle'
+import { BaseFont, MediumFont, SmallFont, PointColor, TextDarkGrey } from '../GlobalStyle'
 
 export const StyledPost = styled.div`
 transition : all 0.3s;
@@ -16,32 +16,70 @@ justify-content: center;
 align-items: center;
 `
 export const StyledImgUpload = styled.div`
-display: grid;
-grid-template-columns: 1fr 1.5fr;
-cursor: pointer;
 border-radius: 8px;
+>p{
+  font-size: 12px;
+  text-align: right;
+  margin : 0;
+  color : ${TextDarkGrey};
+}
+`
+export const StoreImgFlexWrapper = styled.div`
+display: flex;
+justify-content: space-between;
+>label{
+  font-size: ${BaseFont};
+  font-weight: 600;
+}
 `
 export const ImgUploadWrapper = styled.div`
-height : 150px;
-background-color: rgba(0,0,0,0.05);
-display: flex;
-align-items: center;
-justify-content: center;
+cursor: pointer;
+color : #fff;
+font-size: 12px;
+padding : 3px 8px;
 border-radius: 8px;
-margin-right : 10px;
+text-align: center;
+background-color: ${PointColor};
 &:hover{
   transition : all 0.5s;
   background-color: rgba(0,0,0,0.1);
-  opacity: 0,7;
 }
 `
-//!store 슬라이더로 사진여러장 표시예정. 
-export const StyledUploedImg = styled.div`
+//!store 슬라이더 손좀봐야함. 아니 왜 엑박? 나참.
+export const StoreImgBox = styled.div`
+border: 3px solid magenta;
 display: flex;
-height : 150px;
-cursor: pointer;
-border: 1px solid lightgray;
-border-radius: 8px;
+justify-content: center;
+align-items: center;
+>img{
+  object-fit: cover;
+}
+`
+export const SliderWrapper = styled.div`
+height : 220px;
+margin : 8px 0;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-color: hsl(0, 0%, 100%);
+border-color: hsl(0, 0%, 80%);
+border-radius: 4px;
+border-style: solid;
+border-width: 1px;
+min-height: 160px;
+padding : 8px;
+margin : 10px 0 0;
+>.slick-initialized{
+  margin : 10px;
+  width: 80% ;
+  >.slick-arrow{
+    background-color: blue;
+  }
+  >ul>li>button{
+    background-color: red;
+  }
+}
 `
 export const StoreInputWrapper = styled.div`
 /* border : 2px solid magenta; */
@@ -117,7 +155,7 @@ cursor: pointer;
   opacity: 0,7;
 }
 `
-//!menu component style
+// menu component style
 export const StoreMenuAddWrapper = styled.div`
 display: grid;
 grid-template-columns: 1fr 1.5fr;
@@ -187,7 +225,8 @@ border-radius: 8px;
 border : 1px dashed #656D78;
 text-align: center;
 line-height: 42px;
-font-size: ${LargeFont};
+font-size: ${SmallFont};
+font-weight: 600;
 cursor: pointer;
 &:hover{
   transition : all 0.5s;
@@ -199,6 +238,5 @@ export const StoreBtnBox = styled.div`
 text-align: center;
 `
 export const PlusIcon = styled.p`
-font-size: ${UltraLargeFont};
-color : ${TextLightGrey};
+text-align: center;
 `

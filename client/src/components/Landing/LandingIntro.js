@@ -1,11 +1,18 @@
 import React from 'react'
+import {
+  LandingIntroContainer,
+  LandingIntroWrapper,
+  IntroH1,
+
+} from './StyledLanding'
 
 const LandingIntro = () => {
   return (
-    <div>
-      <h1>UpToDoor</h1>
-      <p>우리동네 찾는 모든 [음식]</p>
-    </div>
+    <LandingIntroContainer>
+      <LandingIntroWrapper>
+      <IntroH1>UpToDoor</IntroH1>
+      </LandingIntroWrapper>
+    </LandingIntroContainer>
   )
 }
 

@@ -13,15 +13,19 @@ import {
   Title
 } from "../GlobalStyle";
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
 import { SmallButton } from '../common/Button/Button';
 import AdminUploadStore from  './AdminUploadStore';
 import AdminEnrollStore from './AdminEnrollStore'
 import AdminUploadMenu from './AdminUploadMenu';
+import { adminPost } from '../../_actions/post_action';
+
 const { kakao }: any = window;
 
 function AdminPostForm() {
   // 가게 이미지,상호명,가게설명,동네인증.
   // 메뉴이미지,이름,재료,가격,항목추가,파일업로드
+  const dispatch = useDispatch();
   const history = useHistory();
   const selectCategory: {value: string, label: string}[] = 
   [
@@ -33,7 +37,7 @@ function AdminPostForm() {
   ]
 
   //upload img,file
-  const [uploads , setUploads] = useState([]);
+  const [uploads , setUploads]:any = useState([]);
   //store
   const [title , setTitle] = useState('');
   const [category, setCategory] = useState('');
@@ -50,8 +54,8 @@ function AdminPostForm() {
   const [menuName , setMenuName] = useState('');
   const [price , setPrice] = useState(1000);
   const [menuDescription , setMenuDescription] = useState('');
-  const [menuArr, setMenuArr] = useState([]);
-  
+  const [menuArr, setMenuArr]:any = useState([]);
+
   const changeTitleHandler = (e:any) => {
     setTitle(e.target.value)
   }
@@ -121,16 +125,22 @@ function AdminPostForm() {
     const comma = e.target.value;
     setPrice(comma);
   }
-  const addMenuHandler = (item:[]) => {
+  const addMenuHandler = () => {
     console.log('누르면 메뉴어레이 하나씩 더생김.')
-    console.log(menuArr)
-    setMenuArr([...item])
+    const Menu = {
+      menuImg : menuImg,
+      menuName : menuName,
+      price : price,
+      menuDescription : menuDescription
+    }
+    console.log([...menuArr,Menu])
+    // setMenuArr([...menuArr,Menu])
+    setMenuArr([...menuArr,Menu])
   }
   //!upload files
   const updateFiles = (storeImgs:any) => {
       setUploads(storeImgs)
-      // console.log('uploaded :' ,uploads);
-      console.log('====',storeImgs);
+      console.log('====',uploads);
   }
   //!폼제출 핸들러
   const submitHandler = (e:any) => {
@@ -140,16 +150,15 @@ function AdminPostForm() {
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
     //모든칸이 채워지지않으면 false 로 막는다. !menuItem 추후 추가잊지마.
     if(
-      !uploads || !category || !title || !description ||
-      !mobile || !adminAddress ||
-      !menuImg ||!menuName || !menuDescription ||!price
+      !uploads && 
+      !category && !title && !description && !mobile 
+      && !adminAddress 
+      // !menuImg ||!menuName || !menuDescription ||!price
       ){
       //모달
       return alert('all section must be filled')
     }else{
-      history.push('/');
-    }
-    const body = {
+      const adminPostInfo = {
       //login 된 사장의 아이디도 같이 넣어주기. 리덕스에 있는 유저 정보 넣던가.
       title:title,
       category:category,
@@ -157,25 +166,18 @@ function AdminPostForm() {
       mobile : mobile,
       adminAddress : adminAddress,
       Menu:[{
-          menu_image:menuImg,
+          image:menuImg,
           name:menuName,
           description :menuDescription,
           price:price ,
         }
       ]
     }
-    console.log(body);
-    //server 에 req 보내
-    // axios.post('https://localhost:3001',body)
-    // .then((res)=>{
-    //   console.log(res.data)
-    //   return alert('상품업로드 성공.')
-    //   history.push('/')
-    // })
-    // .catch((err)=>{
-    //   console.log('==상품업로드 실패==',err)
-    // })
-    console.log(body);
+    console.log(adminPostInfo);
+      dispatch(adminPost(adminPostInfo))
+      history.push('/');
+    }
+    
   }
   //!kakao add
   const switchAddress = useCallback((address) => {
@@ -289,13 +291,13 @@ return (
             priceHandler = {priceHandler}
             menuDescription = {menuDescription}
             changeMenuDesc = {changeMenuDesc}
-            // menuArr = {menuArr}
             addMenuHandler = {addMenuHandler}
+            menuArr = {menuArr}
           />
 
         </StoreInputWrapper>
         <StoreBtnBox>
-          <SmallButton> 확인 </SmallButton>
+          <SmallButton> 등록 </SmallButton>
           <SmallButton 
           onClick = {handleClickCancle}
           type = 'button'> 취소 </SmallButton>

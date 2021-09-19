@@ -17,6 +17,9 @@ import {
 } from "../../GlobalStyle";
 
 export const Header = styled.header`
+  position : sticky;
+  top : 0;
+  background-color: #fff;
   width: 100%;
   height: 50px;
   display: flex;

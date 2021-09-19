@@ -22,15 +22,14 @@ interface MenuAddProps {
   menuDescription : string,
   changeMenuDesc : any,
   addMenuHandler : any,
-  // menuArr : any
+  menuArr : any
 }
 
 function AdminUploadMenu({
   menuImg,setMenuImgs,menuName,changeMenuName,
   price,priceHandler,menuDescription,
-  changeMenuDesc,addMenuHandler}:MenuAddProps) {
+  changeMenuDesc,addMenuHandler,menuArr}:MenuAddProps) {
     
-
     const dropHandler = (file:any) => {
       console.log('====',file[0]);
       console.log('====',file[0].path);
@@ -38,12 +37,6 @@ function AdminUploadMenu({
       // props.updateFiles([...menuImg,files[0].path])
       // console.log('===img 경로보기===',imgs);
     }
-
-    {/* 메뉴등록 컴포넌트 
-    1. 메뉴아이템 state 배열로 생성
-    2. 배열안에 메뉴이미지,이름,가격,설명 들어간다.
-    3. addmenuhandler 클릭하면 메뉴아이템스테이트 하나씩 추가된다.
-    */}
     
   return (
     <StoreInputBox>
@@ -86,19 +79,67 @@ function AdminUploadMenu({
           </MenuInputBox>
 
           <MenuInputBox>
-            <label>가게 설명</label>
+            <label>메뉴 설명</label>
             <MenuIntroTextArea 
               value = {menuDescription} 
-              placeholder = '간단한 메뉴설명 작성해주세요' 
+              placeholder = '100자 이내로 작성해주세요.' 
               onChange = {changeMenuDesc}/>
           </MenuInputBox>
         </MenuUploadDiv2>
       </StoreMenuAddWrapper>
 
+      {menuArr.map((el:any,idx:number)=>{
+      <StoreMenuAddWrapper key = {idx}>
+        <MenuUploadDiv2>
+        <label>메뉴 이미지</label>
+        <Dropzone onDrop={()=>dropHandler(el)}>
+          {({getRootProps, getInputProps}) => (
+              <MenuUploadDiv {...getRootProps()}>
+                <input {...getInputProps()} />
+                {menuImg.length === 0 ? 
+                <PlusIcon>+</PlusIcon>
+                : 
+                <img 
+                src = {`/Users/2sook2/Desktop/pictures/${menuImg}`}
+                alt = {menuImg}/>
+                }
+              </MenuUploadDiv>
+          )}
+        </Dropzone>
+        </MenuUploadDiv2>
+        <MenuUploadDiv2>
+          <MenuInputBox>
+            <label>메뉴이름</label>
+            <MenuInput 
+              type = 'text' 
+              step = '1000'
+              onChange = {(e:any)=>changeMenuName(e,el)} 
+              value = {menuName} />
+          </MenuInputBox>
+  
+          <MenuInputBox>
+            <label>가격</label>
+            <MenuInput 
+              type = 'number' 
+              step = '1000'
+              onChange = {(e:any)=>priceHandler(e,el)} 
+              value = {price}/>
+          </MenuInputBox>
+
+          <MenuInputBox>
+            <label>메뉴 설명</label>
+            <MenuIntroTextArea 
+              value = {menuDescription} 
+              placeholder = '100자 이내로 작성해주세요.' 
+              onChange = {(e:any)=>changeMenuDesc(e,el)}/>
+          </MenuInputBox>
+        </MenuUploadDiv2>
+      </StoreMenuAddWrapper>
+    })}
 
       <StoreInputBox>
         <StoreMenuAddBtn 
-          onClick = {addMenuHandler}>+
+          onClick = {addMenuHandler}>+ 메뉴추가
         </StoreMenuAddBtn> 
       </StoreInputBox>
     </StoreInputBox>

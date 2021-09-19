@@ -95,8 +95,9 @@ export const initialStore = [
   {
     id: 5,
     name: "쑥카페",
-    store_image: [ 
-    "./images/storeImgs/cafe6.png",
+    image: [ 
+    "./images/storeImgs/cafe4.png",
+    "./images/storeImgs/cafe5.png",
     "./images/storeImgs/cafe6.png",
     ],
     address: "서울특별시 용산구 후암동 신흥로20길 43",
@@ -109,28 +110,28 @@ export const initialStore = [
         name: "아메리카노",
         price: "4000",
         detail: "venti",
-        menu_image: "",
+        image: "",
       },
       {
         id: 39,
         name: "카페라떼",
         price: "5000",
         detail: "venti size",
-        menu_image: "",
+        image: "",
       },
       {
         id: 40,
         name: "스페셜 스팸에그 토스트",
         price: "4000",
         detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
-        menu_image: "",
+        image: "",
       },
     ],
   },
   {
     id: 6,
     name: "남산 아래",
-    store_image:[
+    image:[
       "./images/storeImgs/cafe1.png",
       "./images/storeImgs/cafe2.png",
       "./images/storeImgs/cafe3.png",
@@ -147,35 +148,35 @@ export const initialStore = [
         name: "버터치킨커리",
         price: "14000",
         detail: "대표메뉴, 안매움",
-        menu_image: "./images/curry.png",
+        image: "./images/curry.png",
       },
       {
         id: 2,
         name: "마르게리따 피자",
         price: "15000",
         detail: "3~4인용",
-        menu_image: "./images/pizza.png",
+        image: "./images/pizza.png",
       },
       {
         id: 3,
         name: "탄두리 치킨",
         price: "14000",
         detail: "순살, 매콤",
-        menu_image: "./images/tanduri.png",
+        image: "./images/tanduri.png",
       },
       {
         id: 4,
         name: "로제 파스타",
         price: "12000",
         detail: "특제 로제소스로 만든 파스타",
-        menu_image: "./images/pasta.png",
+        image: "./images/pasta.png",
       },
       {
         id: 5,
         name: "연어샐러드",
         price: "10000",
         detail: "싱싱한 연어, 발사믹소스 첨가",
-        menu_image: "./images/salad.png",
+        image: "./images/salad.png",
       },
     ]
   },
@@ -200,6 +201,7 @@ export const initialStore = [
         price: "4000",
         detail: "대표메뉴, 안매움",
         menu_image: "./images/curry.png",
+        quantity: 1,
       },
       {
         id: 2,
@@ -207,6 +209,7 @@ export const initialStore = [
         price: "4000",
         detail: "3~4인용",
         menu_image: "./images/pizza.png",
+        quantity: 1,
       },
       {
         id: 3,
@@ -214,6 +217,7 @@ export const initialStore = [
         price: "4000",
         detail: "순살, 매콤",
         menu_image: "./images/tanduri.png",
+        quantity: 1,
       },
       {
         id: 4,
@@ -221,6 +225,7 @@ export const initialStore = [
         price: "12000",
         detail: "특제 로제소스로 만든 파스타",
         menu_image: "./images/pasta.png",
+        quantity: 1,
       },
       {
         id: 5,
@@ -228,6 +233,7 @@ export const initialStore = [
         price: "10000",
         detail: "싱싱한 연어, 발사믹소스 첨가",
         menu_image: "./images/salad.png",
+        quantity: 1,
       },
     ]
   },

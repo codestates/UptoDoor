@@ -9,15 +9,15 @@ import {
   ADD_ORDER,
 } from "./type";
 
- import axios from 'axios'
- axios.defaults.withCredentials = true
+import axios from 'axios'
+axios.defaults.withCredentials = true
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
   console.log('액션까지옴')
   const result = 
   axios.post('https://uptodoors.shop/users/signup',
-  userinfo, { withCredentials: true })
+  userinfo)
   .then((res)=>{
 
     console.log(res.data);

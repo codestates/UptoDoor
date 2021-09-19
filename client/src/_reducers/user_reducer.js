@@ -25,7 +25,7 @@ export default function user_reducer(state = initialUser, action) {
 
     case SIGNIN:
       console.log("aciotnsignin", action.payload);
-      return { ...state, email: action.payload.email };
+      return { ...state, userInfo: action.payload };
     case ADD_MAIN_ADDRESS: {
       initialUser.mainAddress = action.payload.mainAddress;
       initialUser.mainAddressDetail = action.payload.mainAddressDetail;

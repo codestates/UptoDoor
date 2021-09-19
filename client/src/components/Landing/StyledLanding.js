@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { UltraLargeFont,MainColor,TextDarkGrey } from '../GlobalStyle'
+import { UltraLargeFont,TextLightGrey,MainColor,TextDarkGrey,LargeFont } from '../GlobalStyle'
 
 //!intro
 export const LandingIntroContainer = styled.main`
@@ -92,8 +92,8 @@ height: 200px;
 }
 `;
 
-//!Rank
-export const LandingRankContainer = styled.main`
+//!Value
+export const LandingValueContainer = styled.main`
 width: 100%;
 /* height:calc(100vh - 80px); */
 /* display: flex;

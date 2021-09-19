@@ -43,7 +43,6 @@ const LandingValue = () => {
   ]
 
   const [ currentValue, setCurrentValue ] = useState(0)
-  // 
 
   return (
     <LandingValueContainer>

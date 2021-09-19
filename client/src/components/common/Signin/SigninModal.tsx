@@ -37,6 +37,10 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
   
   const kakaoHandler = useCallback((e) => {
     e.preventDefault();
+<<<<<<< HEAD
+=======
+    //axios.get('https://kauth.kakao.com/oauth/authorize?client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=https://uptodoors.shop&response_type=code',{ withCredentials: true })
+>>>>>>> 554a5111cd54d44d371177a4eff22e49478c07bd
     window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=http://localhost:3000/&response_type=code"; 
   },[email,password])
 

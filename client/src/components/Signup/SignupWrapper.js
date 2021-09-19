@@ -51,14 +51,6 @@ function SignupWrapper() {
     }
 
     dispatch(signUp(userinfo))
-    // .then((res)=>{
-    //   if(res.payload.success){
-    //     console.log(res.payload);
-    //     history.push('/')
-    //   }else{
-    //     console.log('회원가입 실패');
-    //   }
-    // })
   },[email,password,passwordChk,certEmail])
 
   const onChangeEmailHandler = useCallback((e) => {
@@ -67,10 +59,6 @@ function SignupWrapper() {
 
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
-    //email:email
-    // axios post http://localhost:3060/auth/Email,
-    //email.email.then((res)=>확인모달(트루))
-    //.catch((err)=>이미 존재합니다 모달(트루))
     console.log(email)
     axios
     .post(

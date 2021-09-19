@@ -37,7 +37,7 @@ export const UltraLargeFont = '60px';
 
 /*components*/
 export const Container = styled.section`
-  margin-top: 30px;
+  margin: 50px auto;
   min-width: 375px;
   max-width: 1200px;
   @media screen and (min-width: 1140px) {

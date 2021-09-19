@@ -14,7 +14,6 @@ import {
 from './StyledStoreData'
 import {
   Container,
-  // Wrapper,
   Title
 } from "../GlobalStyle";
 
@@ -30,10 +29,10 @@ const StoreData = () => {
                 <StoreCategory>{initialStore[1].category}</StoreCategory>
               </div>
               <div className = 'store-img-box'>
-                <StoreImg src = {initialStore[1].store_image[0]}/>
-                <StoreImg src = {initialStore[1].store_image[1]}/>
+                <StoreImg src = {initialStore[1].image[0]}/>
+                <StoreImg src = {initialStore[1].image[1]}/>
                 <StoreBackImg 
-                style = {{backgroundImage : `url(${initialStore[1].store_image[3]})`}}
+                style = {{backgroundImage : `url(${initialStore[1].image[3]})`}}
                 className = 'additional-img'>+</StoreBackImg>
               </div>
               <div className = 'store-detail-box'>

@@ -49,10 +49,11 @@ function AdminUploadStore(
     const formData = new FormData();
     const config = {
       headers: { 'content-type' : 'multipart/form-data'}
-    } 
+    }
+    console.log("파일",files[0])
     formData.append('file',files[0]);
     //dispatch action axios 관리된거 와야함.
-    axios.post('https://localhost:3060',formData,config)
+    axios.post('http://localhost:3060/image',formData,config)
     .then((res)=>{
       if(res.data.success){
         setImgs([...imgs,res.data.filePath])

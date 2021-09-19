@@ -15,6 +15,7 @@ export const homeObjOne = {
   dark: true,
   primary: true,
   darkText: false,
+  second: false
 };
 
 export const homeObjTwo = {
@@ -28,12 +29,13 @@ export const homeObjTwo = {
   descriptionOne: `구독 결제부터 관리까지 한번에`,
   descriptionTwo:`UptoDoor에서 해결하세요`,
   buttonLabel: "Get started",
-  imgStart: false,
+  imgStart: true,
   img: "./images/americano.png",
   alt: "descrition1",
   dark: true,
   primary: true,
   darkText: false,
+  second: true
 };
 
 export const homeObjThree = {
@@ -44,8 +46,9 @@ export const homeObjThree = {
   topLine: "Premium Bank",
   headline1: `구독 서비스를`,
   headline2: `판매하세요`,
-  descriptionOne: `사장님이세요? 가게 등록을 통해`,
-  descriptionTwo:`이웃들에게 우리가게 구독서비스를 알릴 수 있어요`,
+  descriptionOne: `사장님이세요? `,
+  descriptionTwo: `가게 등록을 통해 이웃들에게`,
+  descriptionThree:`우리가게 구독서비스를 알릴 수 있어요`,
   buttonLabel: "Get started",
   imgStart: false,
   img: "./images/americano.png",
@@ -53,4 +56,5 @@ export const homeObjThree = {
   dark: true,
   primary: true,
   darkText: false,
+  second:false
 };

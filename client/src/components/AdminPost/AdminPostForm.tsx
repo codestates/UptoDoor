@@ -109,17 +109,10 @@ function AdminPostForm() {
   }, [mobile]);
 
   //!add menu onchange handler
-  
-  //!
   const addMenuHandler = (menu: any)=> {
     console.log("에드메뉴핸들러", menu);
-
     setMenuArr([menu, ...menuArr]);
-
-    
   };
-  //!
-  console.log("메뉴Arr2", menuArr)
   
   //!upload files
   const updateFiles = (storeImgs:any) => {
@@ -137,7 +130,7 @@ function AdminPostForm() {
       !uploads && 
       !category && !title && !description && !mobile 
       && !adminAddress 
-      // !menuImg ||!menuName || !menuDescription ||!price
+      // && !menuImg && !menuName && !menuDescription && !price
       ){
       //모달
       return alert('all section must be filled')
@@ -151,7 +144,6 @@ function AdminPostForm() {
       adminAddress : adminAddress,
       Menu:menuArr
     }
-    console.log(adminPostInfo);
       dispatch(adminPost(adminPostInfo))
       history.push('/');
     }
@@ -263,8 +255,6 @@ return (
           addMenuHandler={addMenuHandler}
             menuArr = {menuArr}
           />
-
-      
 
         </StoreInputWrapper>
         <StoreBtnBox>

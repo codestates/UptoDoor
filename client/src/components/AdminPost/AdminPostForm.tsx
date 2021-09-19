@@ -25,9 +25,9 @@ const { kakao }: any = window;
 function AdminPostForm() {
   // 가게 이미지,상호명,가게설명,동네인증.
   // 메뉴이미지,이름,재료,가격,항목추가,파일업로드
-  let history = useHistory();
-  let dispatch = useDispatch();
-  let selectCategory: {value: string, label: string}[] = 
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const selectCategory: {value: string, label: string}[] = 
   [
     { value : 'food' , label : 'food'},
     { value : 'cafe' , label : 'cafe'},
@@ -63,7 +63,7 @@ function AdminPostForm() {
     setCategory(e.value)
   }
   const changeDescHandler = (e:any) => {
-    let limitWord = e.target.value;
+    const limitWord = e.target.value;
     //설명제한
     if(limitWord.length > 150){
       alert('글자는 150자까지???')
@@ -73,7 +73,7 @@ function AdminPostForm() {
   }
   //!admin address
   const changeAdminAddress = useCallback((data) => {
-    let resultAddress = JSON.parse(data).address
+    const resultAddress = JSON.parse(data).address
     setAdminAddress(resultAddress);
     setAddressModal((prev)=>!prev);
   },[])
@@ -94,7 +94,7 @@ function AdminPostForm() {
   },[adminAddress,adminAddressDetail])
 
   const changeMobileHandler = useCallback((e) => {
-    let mobileRegExp = /^[0-9\b -]{0,13}$/;
+    const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
       setMobile(e.target.value);
     }
@@ -113,7 +113,7 @@ function AdminPostForm() {
     setMenuName(e.target.value)
   }
   const changeMenuDesc = (e:any) => {
-    let limitWord = e.target.value;
+    const limitWord = e.target.value;
     //설명제한
     if(limitWord.length > 100){
       alert('글자는 100자까지???')
@@ -122,12 +122,12 @@ function AdminPostForm() {
     }
   }
   const priceHandler = (e:any) => {
-    let comma = e.target.value;
+    const comma = e.target.value;
     setPrice(comma);
   }
   const addMenuHandler = () => {
     console.log('누르면 메뉴어레이 하나씩 더생김.')
-    let Menu = {
+    const Menu = {
       menuImg : menuImg,
       menuName : menuName,
       price : price,
@@ -135,7 +135,7 @@ function AdminPostForm() {
     }
     console.log([...menuArr,Menu])
     // setMenuArr([...menuArr,Menu])
-    setMenuArr([])
+    setMenuArr([...menuArr,Menu])
   }
   //!upload files
   const updateFiles = (storeImgs:any) => {
@@ -158,7 +158,7 @@ function AdminPostForm() {
       //모달
       return alert('all section must be filled')
     }else{
-      let adminPostInfo = {
+      const adminPostInfo = {
       //login 된 사장의 아이디도 같이 넣어주기. 리덕스에 있는 유저 정보 넣던가.
       title:title,
       category:category,
@@ -181,12 +181,12 @@ function AdminPostForm() {
   }
   //!kakao add
   const switchAddress = useCallback((address) => {
-    var geocoder = new kakao.maps.services.Geocoder();
+    const geocoder = new kakao.maps.services.Geocoder();
     //! 주소를 좌표로
     geocoder.addressSearch(address, function (result: any, status: any) {
       // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK) {
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
       }
     });
@@ -199,13 +199,13 @@ function AdminPostForm() {
 
   useEffect(() => {
     //!이페이지에 들어오면 현재 위치의 자표로 동을 찾는다.
-    var geocoder = new kakao.maps.services.Geocoder();
+    const geocoder = new kakao.maps.services.Geocoder();
     //현재 위치 좌표를 받아서 도로명 주소로 바꿔준다
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-        var lat = position.coords.latitude, // 위도
+        const lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
-        var coord = new kakao.maps.LatLng(lat, lon);
+        const coord = new kakao.maps.LatLng(lat, lon);
           geocoder.coord2Address(coord.getLng(), coord.getLat(), callback)
       });
     }

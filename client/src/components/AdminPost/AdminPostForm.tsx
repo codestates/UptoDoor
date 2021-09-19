@@ -6,7 +6,7 @@ import {
   StoreNameInput,
   StoreIntroTextArea,
   StoreBtnBox,
-  StoreMenuAddBtn,
+  // StoreMenuAddBtn,
 } from './StyledAdminPost'
 import {
   Container,

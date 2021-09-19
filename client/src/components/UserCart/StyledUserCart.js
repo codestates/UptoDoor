@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-<<<<<<< HEAD
 // import { TextLightGrey } from '../GlobalStyle';
-=======
-// import { Link } from "react-router-dom";
->>>>>>> 7d6538c5b19f29c5fdbf6dbe6665e60c42eb9b7d
 
 export const CartWrapper = styled.div`
   margin: 0 auto;

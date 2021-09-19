@@ -203,7 +203,6 @@ export const MypageOrderListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 0 20px;
-  height: 100%;
 
   @media screen and (min-width: 1140px) {
     padding: 32px;

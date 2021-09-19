@@ -1,66 +1,118 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Dropzone from 'react-dropzone'
 import {
   StoreInputBox,
-  StoreMenuAddWrapper,StoreMenuAddBtn,
+  StoreMenuAddWrapper,
   MenuInputBox,
   MenuInput,
   MenuIntroTextArea,
   MenuUploadDiv,
   MenuUploadDiv2,
   PlusIcon
-
+,StoreMenuAddBtn
 } from './StyledAdminPost'
+import axios from 'axios';
 
-interface MenuAddProps {
-  menuImg : any,
-  setMenuImgs : any,
-  menuName:string,
-  changeMenuName : any,
-  price : number,
-  priceHandler : any,
-  menuDescription : string,
-  changeMenuDesc : any,
-  addMenuHandler : any,
-  // menuArr : any
-}
+// interface MenuAddProps {
+//   menuImg : any,
+//   setMenuImgs : any,
+//   menuName:string,
+//   changeMenuName : any,
+//   price : number,
+//   priceHandler : any,
+//   menuDescription : string,
+//   // addMenuHandler : any,
+//   menuArr : any
+// }
 
-function AdminUploadMenu({
-  menuImg,setMenuImgs,menuName,changeMenuName,
-  price,priceHandler,menuDescription,
-  changeMenuDesc,addMenuHandler}:MenuAddProps) {
-    
 
+function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
+  }:any):any {
+  const [menuImg , setMenuImgs]:any = useState(''); 
+  const [menuName , setMenuName] = useState('');
+  const [price , setPrice] = useState(0);
+  const [menuDescription , setMenuDescription] = useState('');
+  // const [menuInfo, setMenuInfo] =useState({});
+
+  const priceHandler = (e:any) => {
+    const comma = e.target.value;
+    setPrice(comma);
+  }
+
+  const changeMenuName = (e:any) => {
+    setMenuName(e.target.value)
+  }
     const dropHandler = (file:any) => {
       console.log('====',file[0]);
       console.log('====',file[0].path);
+
+      const formData = new FormData();
+      const config = {
+        headers: { 'content-type' : 'multipart/form-data'}
+      }
+      console.log("파일",file[0])
+      formData.append('file',file[0]);
+      //dispatch action axios 관리된거 와야함.
+      axios.post('http://localhost:3060/image',formData,config)
+      .then((res)=>{
+        if(res.data.success){
+          setMenuImgs(res.data.filePath)
+        }else{
+          alert('파일저장실패')
+        }
+      })
+      .catch((err)=>{
+        return console.log('==file 가져오기 실패===',err)
+      })
       setMenuImgs(file[0].path);
       // props.updateFiles([...menuImg,files[0].path])
       // console.log('===img 경로보기===',imgs);
     }
-
-    {/* 메뉴등록 컴포넌트 
-    1. 메뉴아이템 state 배열로 생성
-    2. 배열안에 메뉴이미지,이름,가격,설명 들어간다.
-    3. addmenuhandler 클릭하면 메뉴아이템스테이트 하나씩 추가된다.
-    */}
     
+    const changeMenuDesc = (e:any) => {
+      setMenuDescription(e.target.value)
+    }
+
+    const addMenuItemHandler = () => {
+      console.log('누르면 메뉴어레이 하나씩 더생김.')
+      if(menuImg && menuName && price && menuDescription){
+        const menu1 = {
+          menuImg : menuImg,
+          menuName : menuName,
+          price : price,
+          menuDescription : menuDescription
+        }
+        console.log("addmenuItem", menu1)
+        // setMenuArr([...menuArr,Menu])
+        addMenuHandler(menu1);
+        setMenuImgs([]);
+        setPrice(0);
+        setMenuName('');
+        setMenuDescription('');
+      }else{
+        alert("항목을 다 입력해 주세요")
+      }
+    }
+
   return (
     <StoreInputBox>
       <label>메뉴 등록</label>
-      <StoreMenuAddWrapper>
+      {menuArr && menuArr.map((el:any,idx:number)=> {
+        console.log("el입니다.", el)
+        return (
+<StoreMenuAddWrapper key={idx}>
         <MenuUploadDiv2>
         <label>메뉴 이미지</label>
         <Dropzone onDrop={dropHandler}>
           {({getRootProps, getInputProps}) => (
               <MenuUploadDiv {...getRootProps()}>
                 <input {...getInputProps()} />
-                {menuImg.length === 0 ? 
+                {el.menuImg.length === 0 ? 
                 <PlusIcon>+</PlusIcon>
                 : 
                 <img 
-                src = {`/Users/2sook2/Desktop/pictures/${menuImg}`}
-                alt = {menuImg}/>
+                src = {`/Users/2sook2/Desktop/pictures/${el.menuImg}`}
+                alt = {el.menuImg}/>
                 }
               </MenuUploadDiv>
           )}
@@ -72,8 +124,8 @@ function AdminUploadMenu({
             <MenuInput 
               type = 'text' 
               step = '1000'
-              onChange = {changeMenuName} 
-              value = {menuName} />
+              onChange = {(e:any)=>{changeMenuName(e)}} 
+              defaultValue = {el.menuName} />
           </MenuInputBox>
   
           <MenuInputBox>
@@ -81,24 +133,26 @@ function AdminUploadMenu({
             <MenuInput 
               type = 'number' 
               step = '1000'
-              onChange = {priceHandler} 
-              value = {price}/>
+              onChange = {(e:any)=>{priceHandler(e)}}
+              defaultValue = {el.price}/>
           </MenuInputBox>
 
           <MenuInputBox>
-            <label>가게 설명</label>
+            <label>메뉴 설명</label>
             <MenuIntroTextArea 
-              value = {menuDescription} 
-              placeholder = '간단한 메뉴설명 작성해주세요' 
-              onChange = {changeMenuDesc}/>
+              defaultValue = {el.menuDescription} 
+              onChange={(e:any)=>{changeMenuDesc(e)}}
+              placeholder = '100자 이내로 작성해주세요.' 
+              maxlength="100" />
           </MenuInputBox>
         </MenuUploadDiv2>
       </StoreMenuAddWrapper>
-
-
+        )
+      })}
+      
       <StoreInputBox>
         <StoreMenuAddBtn 
-          onClick = {addMenuHandler}>+
+          onClick = {addMenuItemHandler}>+ 메뉴추가
         </StoreMenuAddBtn> 
       </StoreInputBox>
     </StoreInputBox>

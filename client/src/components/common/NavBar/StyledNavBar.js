@@ -17,6 +17,9 @@ import {
 } from "../../GlobalStyle";
 
 export const Header = styled.header`
+  position: sticky;
+  top: 0;
+  background-color: #fff;
   width: 100%;
   height: 50px;
   display: flex;
@@ -32,15 +35,17 @@ export const Header = styled.header`
   }
 
   @media screen and (min-width: 1440px) {
-    width: 1440px;
+    width: 100%;
     height: 80px;
     margin: 0px auto;
-    padding: 15px;
+    padding: 15px 150px;
+    
   }
 `;
 
 export const NavWrapper = styled.div`
   display: flex;
+  
 `;
 
 export const NavLogo = styled(Link)`
@@ -80,7 +85,7 @@ export const Nav = styled.nav`
     list-style: none;
     cursor: pointer;
     > li {
-      margin: 10px;
+      margin: 10px 15px;
     }
   }
 
@@ -104,6 +109,8 @@ export const Nav = styled.nav`
 export const ListLink = styled(Link)`
   color: ${TextColor};
   text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
 `;
 
 export const ButtonWrapper = styled.div`

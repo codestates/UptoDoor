@@ -1,4 +1,4 @@
-import React, { useCallback,useState } from 'react'
+import React, { useCallback,useState,useEffect } from 'react'
 import { LagreButton } from '../Button/Button';
 import {
   SigninContainer, SigninWrapper, SigninInput, LeadSignup, Icon, SignupLink, TextOr, Logo,
@@ -37,11 +37,43 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
   
   const kakaoHandler = useCallback((e) => {
     e.preventDefault();
-    //axios.get('https://kauth.kakao.com/oauth/authorize?client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=https://uptodoors.shop&response_type=code',{ withCredentials: true })
     window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=http://localhost:3000/&response_type=code"; 
   },[email,password])
-  
 
+  const naverHandler = useCallback((e) => {
+    e.preventDefault();
+    window.location.href = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=NESPZSGxrp2Y8chEbfUk&state=a5VP580J66&redirect_uri=http://localhost:3000/"; 
+  },[email,password])
+  
+  useEffect(()=>{
+    const url = new URL(window.location.href)
+    console.log("url",url)
+    const authorizationCode = url.searchParams.get('code')
+    const state = url.searchParams.get('state')
+    //인가코드,state값 둘다 있으면 네이버로그인
+    if (authorizationCode && state) {
+      console.log("인가코드",authorizationCode)
+      console.log("state값",state)
+      axios.post('http://localhost:3060/oatuh/naver/login',
+      {
+        authorizationCode:authorizationCode,
+        state:state
+      }
+      ).then((res)=>{
+        console.log("res",res.data);
+       // window.location.href ='/'
+      })
+    //인가코드만 있으면 카카오 로그인        
+    }else if(authorizationCode) {
+      console.log("인가코드",authorizationCode)        
+      axios.post('http://localhost:3060/oauth/kakao/login',
+      {authorizationCode:authorizationCode}
+      ).then((res)=>{
+        console.log("res",res.data);
+       //window.location.href ='/'
+      })
+    }
+  },[])
   
 
   return modalOpen ? (
@@ -59,7 +91,7 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
         
         <TextOr>Or</TextOr>
         <LagreButton className="btn" onClick={kakaoHandler}><img src='./images/icon/kakao.png' /><div>카카오 계정으로 로그인</div></LagreButton>
-        <LagreButton className="btn"><img src='./images/icon/naver.png' /><div>네이버 계정으로 로그인</div> </LagreButton>
+        <LagreButton className="btn" onClick={naverHandler}><img src='./images/icon/naver.png' /><div>네이버 계정으로 로그인</div> </LagreButton>
 
         <LeadSignup>아직 회원이 아니신가요?<SignupLink to="/signup" onClick={() => {
           setModalOpen(false);

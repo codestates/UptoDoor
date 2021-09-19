@@ -4,7 +4,8 @@ import { GlobalStyle } from './components/GlobalStyle'
 import Loading from './components/common/Loading/Loading'
 import Footer from './components/common/Footer/Footer'
 import NavBar from './components/common/NavBar/NavBar'
-import axios from "axios";
+import axios from 'axios';
+axios.defaults.withCredentials = true
 //!navbar 카테고리 라우터
 import Signup from './pages/Signup'
 import Mypage from './pages/Mypage'
@@ -52,7 +53,7 @@ function App() {
       {authorizationCode:authorizationCode}
       ).then((res)=>{
         console.log("res",res.data);
-        window.location.href ='/'
+        window.location.href = "/"
       })
     }
   },[])
@@ -106,11 +107,12 @@ function App() {
             </Route>
             <Route path="/adminedit">
               <AdminEdit />
-            </Route>     
+            </Route>
           </Switch>
           <Footer />
         </Suspense>
       </BrowserRouter>
+      
     </>
   );
 }

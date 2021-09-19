@@ -11,6 +11,7 @@ import {
   PlusIcon
 ,StoreMenuAddBtn
 } from './StyledAdminPost'
+import axios from 'axios';
 
 // interface MenuAddProps {
 //   menuImg : any,
@@ -25,11 +26,11 @@ import {
 // }
 
 
-function AdminUploadMenu({addMenuHandler,menuArr
+function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   }:any):any {
-    const [menuImg , setMenuImgs]:any = useState([]); 
+  const [menuImg , setMenuImgs]:any = useState(''); 
   const [menuName , setMenuName] = useState('');
-  const [price , setPrice] = useState(1000);
+  const [price , setPrice] = useState(0);
   const [menuDescription , setMenuDescription] = useState('');
   // const [menuInfo, setMenuInfo] =useState({});
 
@@ -44,6 +45,25 @@ function AdminUploadMenu({addMenuHandler,menuArr
     const dropHandler = (file:any) => {
       console.log('====',file[0]);
       console.log('====',file[0].path);
+
+      const formData = new FormData();
+      const config = {
+        headers: { 'content-type' : 'multipart/form-data'}
+      }
+      console.log("파일",file[0])
+      formData.append('file',file[0]);
+      //dispatch action axios 관리된거 와야함.
+      axios.post('http://localhost:3060/image',formData,config)
+      .then((res)=>{
+        if(res.data.success){
+          setMenuImgs(res.data.filePath)
+        }else{
+          alert('파일저장실패')
+        }
+      })
+      .catch((err)=>{
+        return console.log('==file 가져오기 실패===',err)
+      })
       setMenuImgs(file[0].path);
       // props.updateFiles([...menuImg,files[0].path])
       // console.log('===img 경로보기===',imgs);
@@ -55,20 +75,23 @@ function AdminUploadMenu({addMenuHandler,menuArr
 
     const addMenuItemHandler = () => {
       console.log('누르면 메뉴어레이 하나씩 더생김.')
-      
-      const menu1 = {
-        menuImg : menuImg,
-        menuName : menuName,
-        price : price,
-        menuDescription : menuDescription
+      if(menuImg && menuName && price && menuDescription){
+        const menu1 = {
+          menuImg : menuImg,
+          menuName : menuName,
+          price : price,
+          menuDescription : menuDescription
+        }
+        console.log("addmenuItem", menu1)
+        // setMenuArr([...menuArr,Menu])
+        addMenuHandler(menu1);
+        setMenuImgs([]);
+        setPrice(0);
+        setMenuName('');
+        setMenuDescription('');
+      }else{
+        alert("항목을 다 입력해 주세요")
       }
-      console.log("addmenuItem", menu1)
-      // setMenuArr([...menuArr,Menu])
-      addMenuHandler(menu1);
-      setMenuImgs([]);
-      setPrice(0);
-      setMenuName('');
-      setMenuDescription('');
     }
 
   return (

@@ -111,7 +111,9 @@ function AdminPostForm() {
   //!add menu onchange handler
   const addMenuHandler = (menu: any)=> {
     console.log("에드메뉴핸들러", menu);
-    setMenuArr([menu, ...menuArr]);
+    setMenuArr([menu, [{
+      menuImg: '', menuName:'', menuDescription:'', price:0
+    }]]);
   };
   
   //!upload files
@@ -189,6 +191,7 @@ function AdminPostForm() {
   const handleClickCancle = () => {
     history.push('/');
   }
+  
 return (
   <Container>
     <Title>가게 등록</Title>
@@ -254,6 +257,7 @@ return (
           <AdminUploadMenu
           addMenuHandler={addMenuHandler}
             menuArr = {menuArr}
+            setMenuArr = {setMenuArr}
           />
 
         </StoreInputWrapper>

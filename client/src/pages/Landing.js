@@ -12,7 +12,7 @@ const Landing = () => {
       <LandingRank />
       <LandingEnd />
     </>
-  )
+  );
 }
 
 export default Landing;

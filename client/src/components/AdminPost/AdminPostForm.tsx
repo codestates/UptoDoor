@@ -189,6 +189,7 @@ function AdminPostForm() {
   const handleClickCancle = () => {
     history.push('/');
   }
+  
 return (
   <Container>
     <Title>가게 등록</Title>

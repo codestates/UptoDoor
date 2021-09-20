@@ -27,6 +27,6 @@ router.post('/oauth/kakao/login', controllers.Kakaologin);
 router.get('/oauth/kakao/token', controllers.KakaoToken);
 router.post('/oauth/naver/signup', auth, controllers.Naversignup);
 router.post('/oatuh/naver/login', controllers.Naverlogin);
-router.post('/image', upload.single('file'), controllers.Image);
+router.post('/image', upload.array('file', 5), controllers.Image);
 
 module.exports = router;

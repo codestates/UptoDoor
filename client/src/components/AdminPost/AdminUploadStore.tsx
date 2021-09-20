@@ -30,33 +30,34 @@ function AdminUploadStore(
   // img 5개 제한
   const [openModal , setOpenModal] = useState(false);
   const [imgs , setImgs]:any = useState([]); 
-  const dropHandler = (files:any) => {
+  const dropHandler = async (files:any) => {
     if(imgs.length === 5){
       console.log('stop ,, stop ..')
       setOpenModal(true);
     }else{
-     /* const reader = new FileReader();
+      // const reader = new FileReader();
    
-      //파일리더가 파일의 데이터를 url경로로 만들어준다. 때문에 src에 집어 넣어서 사용가능
-      reader.readAsDataURL(files[0]);
+      // //파일리더가 파일의 데이터를 url경로로 만들어준다. 때문에 src에 집어 넣어서 사용가능
+      // reader.readAsDataURL(files[0]);
 
-      reader.onload = () => {
-        //파일리더가 파일을 정상적으로 렌더하면 성공상태가 2
-        if (reader.readyState === 2) {
-          setImgs([...imgs,reader.result]);
-        }
-       };*/
+      // reader.onload = () => {
+      //   //파일리더가 파일을 정상적으로 렌더하면 성공상태가 2
+      //   if (reader.readyState === 2) {
+      //     setImgs([...imgs,reader.result]);
+      //   }
+      //  };
     const formData = new FormData();
     const config = {
       headers: { 'content-type' : 'multipart/form-data'}
     }
-    console.log("파일",files[0])
+    console.log("파일1",files)
     formData.append('file',files[0]);
     //dispatch action axios 관리된거 와야함.
-    axios.post('http://localhost:3060/image',formData,config)
+    await axios.post('http://localhost:3060/image',formData,config)
     .then((res)=>{
       if(res.data.success){
         setImgs([...imgs,res.data.filePath])
+        props.updateStoreImg([...imgs,res.data.filePath])
       }else{
         alert('파일저장실패')
       }
@@ -64,7 +65,7 @@ function AdminUploadStore(
     .catch((err)=>{
       return console.log('==file 가져오기 실패===',err)
     })
-     // props.updateFiles([...imgs,files[0].path])
+    
     }
   }
   const closeModal = () => {
@@ -97,7 +98,7 @@ function AdminUploadStore(
     <StyledImgUpload>
       <StoreImgFlexWrapper>
         <label>가게 사진 등록</label>
-        <Dropzone onDrop={dropHandler}>
+        <Dropzone onDrop={dropHandler} >
           {({getRootProps, getInputProps}) => (
               <ImgUploadWrapper {...getRootProps()}>
                 <input {...getInputProps()} />

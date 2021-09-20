@@ -218,7 +218,7 @@ return (
             <Select
             className = 'category-selection'
             options = {selectCategory}
-            onChange = {()=>changeCategoryHandler(selectCategory)}/>
+            onChange = {(e)=>changeCategoryHandler(e)}/>
           </StoreInputBox>
 
           <StoreInputBox>

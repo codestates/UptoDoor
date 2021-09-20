@@ -21,7 +21,11 @@ import {
   CartCheckListWrapper,
   CartMenuItemContainer,
 } from "./StyledUserCart";
-import { setQuantity, removeFromCart } from "../../_actions/cart_action";
+import {
+  setQuantity,
+  removeFromCart,
+  addAllCartToOrder,
+} from "../../_actions/cart_action";
 import {
   Container,
   // Wrapper,
@@ -38,7 +42,7 @@ function UserCartInfo() {
   const [plusMoney, setPlusMoney] = useState(0);
   const [plusMoneyChecked, setPlusMoneyChecked] = useState(false);
   const [checkedItems, setCheckedItems] = useState(
-    state.Menu.map((el) => el.id)
+    state.menu.map((el) => el.id)
   );
   const [termsOptions, setTermsOptions] = useState("");
   const [dayOptions, setDayOptions] = useState([]);
@@ -56,7 +60,7 @@ function UserCartInfo() {
   //*  모두 선택하는 핸들러
   const onChangeAllChecked = useCallback((checked) => {
     if (checked) {
-      setCheckedItems(state.Menu.map((el) => el.id));
+      setCheckedItems(state.menu.map((el) => el.id));
     } else {
       setCheckedItems([]);
     }
@@ -98,7 +102,7 @@ function UserCartInfo() {
   const postHandler = useCallback((e) => {
     e.preventDefault();
     const menu = []
-    let cartArr = state.Menu.map((el) => el);
+    let cartArr = state.menu.map((el) => el);
     for (let i = 0; i < cartArr.length; i++) {
       if (checkedItems.indexOf(cartArr[i].id) > -1) {
         menu.push(cartArr[i]);
@@ -106,7 +110,7 @@ function UserCartInfo() {
     }
     console.log(menu);
     const data = {
-      Menu: menu,
+      menu: menu,
       delivery_term: termsOptions,
       delivery_day: dayOptions,
       delivery_time: timeOtions,
@@ -116,7 +120,11 @@ function UserCartInfo() {
       total_price: total.price
     };
     //! dispatch 해줘야함
-    console.log(data);
+    console.log("data", data);
+    dispatch(addAllCartToOrder(data))
+      // .then(() => {
+      
+    // })
     window.location.href = "/userorder";
   });
 
@@ -134,7 +142,7 @@ function UserCartInfo() {
 
   //계산
   const getPrice = () => {
-    let cartIdArr = state.Menu.map((el) => el.id);
+    let cartIdArr = state.menu.map((el) => el.id);
     const { multiple, plus } = multiTotal();
     
     let total = {
@@ -150,8 +158,8 @@ function UserCartInfo() {
     
       for (let i = 0; i < cartIdArr.length; i++) {
         if (checkedItems.indexOf(cartIdArr[i]) > -1) {
-          let quantity = Number(state.Menu[i].quantity);
-          let price = state.Menu[i].price;
+          let quantity = Number(state.menu[i].quantity);
+          let price = state.menu[i].price;
           total.price += quantity * price;
           total.quantity += quantity;
         }
@@ -210,14 +218,14 @@ function UserCartInfo() {
                 type="checkbox"
                 onChange={(e) => onChangeAllChecked(e.target.checked)}
                 checked={
-                  checkedItems.length === state.Menu.length ? true : false
+                  checkedItems.length === state.menu.length ? true : false
                 }
               />
               <div>전체 선택</div>
             </CartCheckBoxAll>
             <CartMenuItemContainer>
-              {state.Menu &&
-                state.Menu.map((item) => {
+              {state.menu &&
+                state.menu.map((item) => {
                   return (
                     <CartMenuItemWrapper key={item.id}>
                       <CheckBox

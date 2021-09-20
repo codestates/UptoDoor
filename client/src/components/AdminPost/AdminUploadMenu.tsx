@@ -15,7 +15,7 @@ import {
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
+function AdminUploadMenu({addMenuHandler,menuArr
   }:any):any {
   const [menuImg , setMenuImg]:any = useState(''); 
   const [menuName , setMenuName] = useState('');
@@ -52,6 +52,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           copyArr[lastIdx].menuImg = res.data.filePath
           console.log("copyImg만들어가는 배열",copyArr)
           setMenuImg(res.data.filePath)
+
         }else{
           alert('파일저장실패')
         }
@@ -92,7 +93,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
     <StoreInputBox>
       <label className = 'menu-enroll-label'>메뉴 등록</label>
       {menuArr && menuArr.map((el:any,idx:number)=> {
-        // console.log('menuArr==',menuArr);
+        console.log('menuArr==',menuArr);
         return (
           <StoreMenuAddWrapper key={idx}>
             <MenuUploadDiv2>

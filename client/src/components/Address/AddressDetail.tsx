@@ -9,7 +9,7 @@ const AddressDetail = ({setSubAddressDetail,setMainAddressDetail,name}:any) => {
               type="text"
               onChange={(e) => {
                 name === "main" ? setMainAddressDetail(e.target.value) :
-                setSubAddressDetail(e.target.value)
+                  setSubAddressDetail(e.target.value)
               }}
             ></input>
             <SmallButton primary>주소 제출</SmallButton>

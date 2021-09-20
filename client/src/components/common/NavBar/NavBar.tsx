@@ -1,5 +1,5 @@
-import React,{useState } from 'react'
-import { useSelector } from 'react-redux';
+import React,{useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import SideBar from '../SideBar/SideBar';
 import Signin from '../Signin/SigninModal';
 import {
@@ -13,14 +13,25 @@ import {
   IconButton,
   BtnLink,
 } from "./StyledNavBar";
+import { signOut } from '../../../_actions/user_action';
 
 
 function NavBar() {
-  const state = useSelector((state) => state);
+  const dispatch:any = useDispatch()
+  const state = useSelector((state) => state)
+  const { user }: any = state;
+  const message = user.message;
   //사이드바 모달창
   const [isOpen, setIsOpen] = useState(false);
   //로그인 모달
   const [modalOpen, setModalOpen] = useState(false);
+
+  const signoutHandler = useCallback(() => {
+    dispatch(signOut()).then(() => 
+    {
+      window.location.reload();
+    });
+  },[])
 
   return (
     <Header>
@@ -61,17 +72,30 @@ function NavBar() {
         >
           <i className="fas fa-bars"></i>
         </IconButton>
-        {
-        }<MiddleButton type="button" aria-label="로그인"
+        
+        {message === undefined ?
+          (
+          <div>
+          <MiddleButton type="button" aria-label="로그인"
         onClick={()=>{setModalOpen(true)}}
         >
           로그인
         </MiddleButton>
         <MiddleButton type="button" aria-label="회원가입">
           <BtnLink to="/signup">회원가입</BtnLink>
+        </MiddleButton></div>)
+          :
+        ( <div><MiddleButton type="button" aria-label="로그인"
+        onClick={()=>{setModalOpen(true)}}
+        >
+          프로필
         </MiddleButton>
+        <MiddleButton type="button" aria-label="회원가입">
+          <BtnLink to="/signup">로그아웃</BtnLink>
+        </MiddleButton></div>) }
+        
       </ButtonWrapper>
-      <SideBar setIsOpen={setIsOpen} isOpen={isOpen} />
+      <SideBar setIsOpen={setIsOpen} isOpen={isOpen}signoutHandler={signoutHandler} />
       <Signin setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </Header>
   );

@@ -34,25 +34,33 @@ export const signUp = (userinfo) => {
 //유저 signin post 요청
 export const signIn = (userinfo) => {
   const result = axios.post('http://localhost:3060/users/signin', userinfo).then((res) => {
-    console.log("res.data",res.data)
-  })
-  console.log(result);
+    return {
+      message: res.data.message,
+      id: res.data.userinfo.id,
+      nickname: res.data.userinfo.nickname,
+      email: res.data.userinfo.email,
+    };
+  });
+
+  console.log("result", result);
   return {
     type: SIGNIN,
-    payload: {
-      userinfo,
-    },
+    payload: result,
   };
 };
 
 //유저 signout post 요청
-export const signOut = (userinfo) => {
+export const signOut = () => {
+  const request = axios.post("http://localhost:3060/users/signout").then((res) => {
+    console.log(res.data)
+  })
+  
   return {
-    type : SIGNOUT,
-    payload : {
-      userinfo
+    type: SIGNOUT,
+    payload: {
+      message: "signout success"
     }
-  }
+  };
 }
 //마이페이지 patch 요청
 export const mypageUser = (userinfo) => {

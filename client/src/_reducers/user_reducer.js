@@ -4,28 +4,23 @@ import {
   ADD_MAIN_ADDRESS,
   ADD_SUB_ADDRESS,
   ADD_ORDER,
+  SIGNOUT,
 } from "../_actions/type";
 
-export const initialUser = {
-  id: -1,
-  nickname: "",
-  email: "",
-  mainAddress: "",
-  subAddress: "",
-  mobile: "",
-  order: []
-};
 
-
-export default function user_reducer(state = initialUser, action) {
+export default function user_reducer(state = {}, action) {
+  console.log("reducer : ", action.payload);
   switch (action.type) {
     case SIGNUP:
-      console.log("reducer : ", state);
       return { ...state, signUp: action.payload };
-
     case SIGNIN:
       console.log("aciotnsignin", action.payload);
-      return { ...state, userInfo: action.payload };
+      const {id, message, nickname, email} =action.payload
+      return { ...state, id, message, nickname, email };
+    
+    case SIGNOUT:
+      return (state = {});
+    
     case ADD_MAIN_ADDRESS: {
       initialUser.mainAddress = action.payload.mainAddress;
       initialUser.mainAddressDetail = action.payload.mainAddressDetail;

@@ -110,9 +110,13 @@ function AdminPostForm() {
 
   //!add menu onchange handler
   const addMenuHandler = (menu: any)=> {
-    setMenuArr([menu, ...menuArr]);
-    console.log('===menu===',menu)
-  }
+    const setArr = menuArr.slice();
+    setArr.pop();
+    setArr.push({
+      menuImg: '', menuName:'', price:0, menuDescription:''
+    });
+    setMenuArr([menu, ...setArr]);
+  };
   //!upload storeimg
   const updateStoreImg = (storeImgs:any) => {
     setStoreImgArr(storeImgs)
@@ -193,6 +197,7 @@ function AdminPostForm() {
   const handleClickCancle = () => {
     history.push('/');
   }
+  
 return (
   <Container>
     <Title>가게 등록</Title>
@@ -256,6 +261,7 @@ return (
           <AdminUploadMenu
             addMenuHandler={addMenuHandler}
             menuArr = {menuArr}
+            setMenuArr = {setMenuArr}
           />
 
         </StoreInputWrapper>

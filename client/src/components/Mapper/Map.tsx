@@ -14,7 +14,7 @@ function Map() {
     },[initialStore]);  
 
   return (
-    <MapContainer 
+    <MapContainer
     id = 'map'>
     </MapContainer>
   )

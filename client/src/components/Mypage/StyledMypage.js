@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PointColor,MainColor } from '../GlobalStyle';
+import { PointColor,MainColor, TextDarkGrey, TextLightGrey } from '../GlobalStyle';
 
 export const MypageWrapper = styled.div`
 
@@ -262,6 +262,9 @@ export const ListInfo = styled.div`
     }
     > p {
       font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       > span {
         display: none;
       }
@@ -334,4 +337,17 @@ export const DeliveryState = styled.div`
     border-radius: 8px;
     text-align: center;
   }
+`;
+
+export const NextBtn = styled.button`
+  width: 20px;
+  height: 30px;
+  background-color: #fff;
+  color: ${TextLightGrey};
+  border: none;
+`;
+
+export const OrderListWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;

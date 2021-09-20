@@ -30,8 +30,6 @@ export default function user_reducer(state = {}, action) {
       } else {
         return {...state,order: [...state.order, action.payload]}
       }
-      // state.order = [...state.order, action.payload]
-      
     }
 
     default:

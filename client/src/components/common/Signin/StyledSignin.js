@@ -4,15 +4,12 @@ import { TextLightGrey, MainColor } from "../../GlobalStyle";
 
 export const SigninContainer = styled.div`
   position: fixed;
-  z-index: 998;
-  width: 100%;
+  width:100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
-  z-index: 999;
   transition: 0.3s ease-in-out;
-
   @media screen and (min-width: 767px) {
     display: flex;
     justify-content: center;
@@ -28,7 +25,6 @@ export const SigninWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
   > form {
     display: flex;
     flex-direction: column;
@@ -71,7 +67,6 @@ export const Logo = styled.div`
   letter-spacing: -2px;
   margin-top: 20px;
   margin-bottom: 20px;
-  
 `;
 
 export const Icon = styled.div`
@@ -82,7 +77,6 @@ export const Icon = styled.div`
   font-size: 2rem;
   cursor: pointer;
   outline: none;
-
   > i {
     color: #000;
   }

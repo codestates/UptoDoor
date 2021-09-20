@@ -52,7 +52,7 @@ function MenuList():any {
   const state = useSelector((state) => state);
   const { cart }: any = state;
   const { menu} = cart
-  console.log(menu)
+  console.log("메뉴", menu)
   const dispatch:any = useDispatch()
 
   const addCartHandler = (item:any) => {

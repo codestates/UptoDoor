@@ -29,6 +29,7 @@ function AdminEnrollStore({
       <StoreAddressWrapper>
         {adminAddress.length === 0 ? 
         <StoreAddressBtn
+        required
         type="button"
         onClick={()=>setAddressModal((prev:any)=>!prev)}
         >가게 주소 등록하기</StoreAddressBtn>

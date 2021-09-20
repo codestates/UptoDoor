@@ -16,15 +16,15 @@ const Keyword = () => {
 
     //현재 위치 좌표를 지번 주소로 바꿔준다
     // current에 넣어준다.
-    var geocoder = new kakao.maps.services.Geocoder();
+    const geocoder = new kakao.maps.services.Geocoder();
     //현재 위치 좌표를 받아서 도로명 주소로 바꿔준다
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다
       navigator.geolocation.getCurrentPosition(function (position) {
-        var lat = position.coords.latitude, // 위도
+        const lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
         // console.log(lat, lon);
-        var coord = new kakao.maps.LatLng(lat, lon);
+        const coord = new kakao.maps.LatLng(lat, lon);
         // console.log("2",coord)
         console.log(geocoder.coord2Address(coord.getLng(), coord.getLat(), callback))
       });
@@ -38,14 +38,14 @@ const Keyword = () => {
   }, []);
 
   const currentAddress = () => {
-    var geocoder = new kakao.maps.services.Geocoder();
+    const geocoder = new kakao.maps.services.Geocoder();
     //! 주소를 좌표로
     geocoder.addressSearch("서울시 용산구 후암동 345-12", function (result: any, status: any) {
 
       // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK) {
         // console.log("제주도 주소", result)
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         // console.log("1",coords)
         geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
       }

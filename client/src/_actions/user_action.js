@@ -4,8 +4,7 @@ import {
   SIGNOUT,
   MYPAGE_USER,
   DELETE_USER,
-  ADD_MAIN_ADDRESS,
-  ADD_SUB_ADDRESS,
+  ADD_ADDRESS,
   ADD_ORDER,
 } from "./type";
 
@@ -34,11 +33,13 @@ export const signUp = (userinfo) => {
 //유저 signin post 요청
 export const signIn = (userinfo) => {
   const result = axios.post('http://localhost:3060/users/signin', userinfo).then((res) => {
+    console.log("signin", res.data);
     return {
       message: res.data.message,
       id: res.data.userinfo.id,
       nickname: res.data.userinfo.nickname,
       email: res.data.userinfo.email,
+      mobile: res.data.userinfo.mobile
     };
   });
 
@@ -57,9 +58,7 @@ export const signOut = () => {
   
   return {
     type: SIGNOUT,
-    payload: {
-      message: "signout success"
-    }
+    payload: "signout success"
   };
 }
 //마이페이지 patch 요청
@@ -82,45 +81,25 @@ export const deleteUser = (userinfo) => {
 }
 
 //main email 보내기
-export const addMainAddress = (mainAddress, mainAddressDetail) => {
-  const main = {
-    mainAddress,
-    mainAddressDetail,
-  };
-  console.log(main); 
-  return {
-    type: ADD_MAIN_ADDRESS,
-    payload: {
-      mainAddress,
-      mainAddressDetail
-    },
-  };
-};
+export const addAddress = (address, name) => {
+  console.log("액션에서", address);
 
-export const addSubAddress = (subAddress, subAddressDetail) => {
-  const sub = {
-    subAddress,
-    subAddressDetail,
-  };
-    console.log(sub)
+  const request = axios.post("http://localhost:3060/users/address", address);
+  console.log(request);
   return {
-    type: ADD_SUB_ADDRESS,
-    payload: {
-      subAddress,
-      subAddressDetail
-    },
+    type: ADD_ADDRESS,
+    payload: "좋아",
   };
 };
 
 export const addOrder = (order, selected_mobile) => {
-  // const request = axios.post(`https://uptodoor.cf/users/order`)
-  // console.log(request)
-  
+  order.selected_mobile = selected_mobile;
+  console.log(order);
+  const request = axios.post(`http://localhost:3060/users/order`)
+  console.log(request)
+
   return {
     type: ADD_ORDER,
-    payload: {
-      order,
-      selected_mobile,
-    },
+    payload: order
   };
 }

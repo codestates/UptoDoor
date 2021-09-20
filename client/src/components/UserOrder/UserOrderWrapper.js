@@ -19,7 +19,7 @@ import { Container, Wrapper, Title } from "../GlobalStyle";
 
 function UserOrderWrapper() {
   const state = useSelector((state) => state);
-  const menu = state.cart.Menu;
+  const menu = state.cart.menu;
   const dispatch = useDispatch();
   const [mobileCheck, setMobileCheck] = useState(false);
   const mobileChecker = () => setMobileCheck((mobileCheck) => !mobileCheck);

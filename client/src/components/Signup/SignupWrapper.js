@@ -62,7 +62,7 @@ function SignupWrapper() {
     console.log(email)
     axios
     .post(
-      `https://uptodoors.shop/auth/email`,
+      `http://localhost:3060/auth/email`,
       {email:email},
       {withCredentials: true, credentials: 'include'}
     ).then((res)=>

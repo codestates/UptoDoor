@@ -111,9 +111,13 @@ function AdminPostForm() {
   //!add menu onchange handler
   const addMenuHandler = (menu: any)=> {
     console.log("에드메뉴핸들러", menu);
-    setMenuArr([menu, [{
-      menuImg: '', menuName:'', menuDescription:'', price:0
-    }]]);
+    
+    const setArr = menuArr.slice();
+    setArr.pop();
+    setArr.push({
+      menuImg: '', menuName:'', price:0, menuDescription:''
+    });
+    setMenuArr([menu, ...setArr]);
   };
   
   //!upload files

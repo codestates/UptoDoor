@@ -98,7 +98,8 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
             <Dropzone onDrop={dropHandler}>
               {({getRootProps, getInputProps}) => (
                   <MenuUploadDiv {...getRootProps()}>
-                    <input {...getInputProps()} />
+                    <input 
+                    required {...getInputProps()} />
                     {el.menuImg.length === 0 ? 
                     <PlusIcon>+</PlusIcon>
                     : 
@@ -114,6 +115,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
               <MenuInputBox>
                 <label>메뉴이름</label>
                 <MenuInput 
+                  required
                   type = 'text' 
                   step = '1000'
                   onChange = {(e:any)=>{changeMenuName(e)}} 
@@ -123,6 +125,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
               <MenuInputBox>
                 <label>가격</label>
                 <MenuInput 
+                  required
                   type = 'number' 
                   step = '1000'
                   onChange = {(e:any)=>{priceHandler(e)}}
@@ -132,6 +135,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
               <MenuInputBox>
                 <label>메뉴 설명</label>
                 <MenuIntroTextArea 
+                  required
                   defaultValue = {el.menuDescription} 
                   onChange={(e:any)=>{changeMenuDesc(e)}}
                   placeholder = '100자 이내로 작성해주세요.' 

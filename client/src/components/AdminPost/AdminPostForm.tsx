@@ -66,7 +66,7 @@ function AdminPostForm() {
     const limitWord = e.target.value;
     //설명제한
     if(limitWord.length > 150){
-      alert('글자는 150자까지???')
+      alert('글자는 150자까지유효성검사 ?')
     }else{
       setDescription(limitWord);
     }
@@ -83,7 +83,7 @@ function AdminPostForm() {
   //admin address 보내기
   const postHandler = useCallback((name) => {
     console.log(name);
-    console.log("currnet", current)
+    // console.log("currnet", current)
     if (switched === current) {
       console.log(adminAddressDetail)
       // dispatch(addAdminAddress(adminAddress, adminAddressDetail));
@@ -135,9 +135,12 @@ function AdminPostForm() {
     //모든칸이 채워지지않으면 false 로 막는다. !menuItem 추후 추가잊지마.
     if(
       !storeImgArr && !title && !category && !description && 
-      !adminAddress && !mobile && !storeFile && !menuArr
+      !adminAddress && !mobile && storeFile.length === 0 && !menuArr
       ){
       //모달
+      console.log(storeFile)
+      console.log(storeImgArr)
+      console.log(category)
       return alert('all section must be filled')
     }else{
       const adminPostInfo = {
@@ -204,7 +207,8 @@ return (
     <form onSubmit = {(e:any)=>submitHandler(e)}>
       <Wrapper>
         {/* 업로드 컴포넌트 */}
-        <AdminUploadStore updateStoreImg = {updateStoreImg}/>
+        <AdminUploadStore 
+        updateStoreImg = {updateStoreImg}/>
         
         <StoreInputWrapper>
           <StoreInputBox>
@@ -220,6 +224,7 @@ return (
           <StoreInputBox>
             <label>카테고리</label>
             <Select
+            required
             className = 'category-selection'
             options = {selectCategory}
             onChange = {()=>changeCategoryHandler(selectCategory)}/>

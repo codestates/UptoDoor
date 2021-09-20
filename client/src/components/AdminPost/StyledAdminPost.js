@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { BaseFont, MediumFont, SmallFont, PointColor, TextDarkGrey } from '../GlobalStyle'
+import { BaseFont, MediumFont, SmallFont, PointColor, TextDarkGrey, MainColor } from '../GlobalStyle'
 
 export const StyledPost = styled.div`
 transition : all 0.3s;
@@ -45,40 +45,51 @@ background-color: ${PointColor};
   background-color: rgba(0,0,0,0.1);
 }
 `
-//!store 슬라이더 손좀봐야함. 아니 왜 엑박? 나참.
-export const StoreImgBox = styled.div`
-border: 3px solid magenta;
-display: flex;
-justify-content: center;
-align-items: center;
->img{
-  object-fit: cover;
-}
-`
 export const SliderWrapper = styled.div`
-height : 220px;
-margin : 8px 0;
 display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-background-color: hsl(0, 0%, 100%);
+width: 100%;
+margin : 15px 0 40px;
+/* background-color: hsl(0, 0%, 100%);
 border-color: hsl(0, 0%, 80%);
 border-radius: 4px;
 border-style: solid;
 border-width: 1px;
-min-height: 160px;
-padding : 8px;
-margin : 10px 0 0;
+min-height: 160px; */
 >.slick-initialized{
-  margin : 10px;
+  /* margin : 10px; */
   width: 80% ;
   >.slick-arrow{
-    background-color: blue;
+    &::before{
+      /* content: '버튼'; */
+      background-color: none;
+      color : ${MainColor};
+      margin : 0;
+    }
+  }
+  >ul{
+    
   }
   >ul>li>button{
-    background-color: red;
+    &::before{
+      color: ${PointColor};
+      margin : 0;
+    }
   }
+}
+`
+export const StoreImgBox = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+>img{
+  height : 220px;
+  width: 100%;
+  padding : 0 10px;
+  object-fit: contain;
+  /* margin : 0 auto 10px; */
 }
 `
 export const StoreInputWrapper = styled.div`
@@ -107,6 +118,9 @@ flex-direction: column;
   @media screen and (min-width: 768px) {
     font-size: ${MediumFont};
   }
+}
+>.menu-enroll-label{
+  margin-top : 10px;
 }
 `
 export const StoreNameInput = styled.input`
@@ -137,7 +151,9 @@ display: flex;
 flex-direction: column;
 margin : 8px 0;
 `
-export const StoreAddressBtn = styled.button`
+export const StoreAddressBtn = styled.p`
+width: 100%;
+height : 45px;
 background-color: hsl(0, 0%, 100%);
 border-color: hsl(0, 0%, 80%);
 border-radius: 4px;
@@ -145,9 +161,10 @@ border-style: solid;
 border-width: 1px;
 min-height: 38px;
 padding : 8px;
-margin : 0;
+margin-top : 10px;
 text-align: center;
-font-size: ${BaseFont};
+font-size: ${SmallFont};
+font-weight: 600;
 cursor: pointer;
 &:hover{
   transition : all 0.5s;
@@ -236,6 +253,11 @@ cursor: pointer;
 `
 export const StoreBtnBox = styled.div`
 text-align: center;
+`
+export const MenuImg = styled.img`
+width: 100%;
+height : 100%;
+object-fit: contain;
 `
 export const PlusIcon = styled.p`
 text-align: center;

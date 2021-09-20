@@ -30,35 +30,43 @@ function AdminUploadStore(
   const [openModal , setOpenModal] = useState(false);
   const [imgs , setImgs]:any = useState([]); 
   const dropHandler = (files:any) => {
-    // console.log('====',files);
-    // let formData = new FormData();
-    // const config = {
-    //   header : { 'content-type' : 'multipart/form-data'}
-    // }
-    // formData.append('file',files[0]);
-    // console.log('==fileconfig==',formData,config);
-
-    // //dispatch action axios 관리된거 와야함.
-    // axios.post('https://localhost:3001',formData,config)
-    // .then((res)=>{
-    //   if(res.data.success){
-    //     setImgs([...imgs,res.data.filePath])
-    //   }else{
-    //     alert('파일저장실패')
-    //   }
-    // })
-    // .catch((err)=>{
-    //   return console.log('==file 가져오기 실패===',err)
-    // })
 
     if(imgs.length === 5){
       console.log('stop ,, stop ..')
       setOpenModal(true);
     }else{
-      setImgs([...imgs,files[0].path]);
-      props.updateFiles([...imgs,files[0].path])
-      //store_image 로 담을것.
-      // console.log('===img 경로보기===',imgs);
+      // console.log('====',files);
+      // let formData = new FormData();
+      // const config = {
+      //   header : { 'content-type' : 'multipart/form-data'}
+      // }
+      // formData.append('file',files[0]);
+      // console.log('==fileconfig==',formData,config);
+  
+      // //dispatch action axios 관리된거 와야함.
+      // axios.post('https://localhost:3001',formData,config)
+      // .then((res)=>{
+      //   if(res.data.success){
+      //     setImgs([...imgs,res.data.filePath])
+      //   }else{
+      //     alert('파일저장실패')
+      //   }
+      // })
+      // .catch((err)=>{
+      //   return console.log('==file 가져오기 실패===',err)
+      // })
+      //!주석처리 예장  
+      const reader = new FileReader();
+      console.log('storefiles=',files[0])
+      //파일리더가 파일의 데이터를 url경로로 만들어준다. 때문에 src에 집어 넣어서 사용가능
+      reader.readAsDataURL(files[0]);
+      reader.onload = () => {
+        //파일리더가 파일을 정상적으로 렌더하면 성공상태가 2
+        if (reader.readyState === 2) {
+          setImgs([...imgs,reader.result]);
+        }
+      };
+      props.updateStoreImg([...imgs,files[0].path])
     }
   }
   const closeModal = () => {
@@ -66,21 +74,21 @@ function AdminUploadStore(
   }
   const deleteImgHandler = (files:any) => {
     const curIdx = imgs.indexOf(files)  
-    console.log(curIdx);
+    // console.log(curIdx);
     const newImgs = [...imgs]
     newImgs.splice(curIdx,1);
     setImgs(newImgs); 
-    props.updateFiles(newImgs)
+    props.updateStoreImg(newImgs)
   }
   //img slider
   const settings = useMemo<Settings>(
     ()=>({
       dots: true,
+      arrows : false,
       infinite: loop,
-      speed: speed,
+      speed: 800,
       slidesToShow: 1,
       slidesToScroll: 1,  
-      // initialSlide: 2, 첨부터 몇장보여줄지 고민하긔.. .
       centerMode: true,
       centerPadding: '0px',  
       autoplay: Boolean(autoplay),
@@ -109,7 +117,6 @@ function AdminUploadStore(
               className = 'store-img-box'
               onClick = {()=>{deleteImgHandler(el)}}
               key = {idx}>
-                <h1>스토어 이미지 : {idx+1}</h1>
                 <img // src = {`http://localhost:3001/${el}`} 
                 src = {el}
                 alt = {`${idx+1}__${el}//`}
@@ -118,7 +125,6 @@ function AdminUploadStore(
             )
           })}
         </Slider>
-
       </SliderWrapper>
       
     {openModal ?
@@ -130,14 +136,12 @@ function AdminUploadStore(
       :
       null
     }
-    <p>사진 클릭 시 삭제 가능.</p>
+    {/* <p>사진 클릭 시 삭제 가능.</p> */}
     </StyledImgUpload>
   )
 }
 
 export default AdminUploadStore
-
-
 // const settings = {
 //   dots: false,
 //   infinite: true,

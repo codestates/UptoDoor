@@ -85,7 +85,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
         console.log("addmenuItem", menu1)
         // setMenuArr([...menuArr,Menu])
         addMenuHandler(menu1);
-        setMenuImgs([]);
+        setMenuImgs('');
         setPrice(0);
         setMenuName('');
         setMenuDescription('');
@@ -111,7 +111,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
                 <PlusIcon>+</PlusIcon>
                 : 
                 <img 
-                src = {`/Users/2sook2/Desktop/pictures/${el.menuImg}`}
+                src = {el.menuImg}
                 alt = {el.menuImg}/>
                 }
               </MenuUploadDiv>

@@ -16,7 +16,7 @@ import axios from 'axios';
 
 function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   }:any):any {
-  const [menuImg , setMenuImgs]:any = useState([]); 
+  const [menuImg , setMenuImg]:any = useState([]); 
   const [menuName , setMenuName] = useState('');
   const [price , setPrice] = useState(0);
   const [menuDescription , setMenuDescription] = useState('');
@@ -27,6 +27,11 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   }
   const changeMenuName = (e:any) => {
     setMenuName(e.target.value)
+    const lastIdx = menuArr.length-1;
+    const copyArr = menuArr.slice()
+    copyArr[lastIdx].menuName = e.target.value
+    console.log("카피",copyArr)
+    setMenuArr(copyArr);
   }
     const dropHandler = (file:any) => {
       console.log('====',file[0]);
@@ -46,8 +51,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           const lastIdx = copyArr.length-1;
           copyArr[lastIdx].menuImg = res.data.filePath
           console.log("copy배열",copyArr)
-          setMenuArr(copyArr);
-          setMenuImgs(res.data.filePath)
+          setMenuImg(res.data.filePath)
         }else{
           alert('파일저장실패')
         }
@@ -67,7 +71,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
     const addMenuItemHandler = () => {
       // menuImg && menuName && price && menuDescription
       console.log('누르면 메뉴어레이 하나씩 더생김.')
-      if(menuImg && menuName && price && menuDescription){
+      if(true){
         const menu1 = {
           menuImg : menuImg,
           menuName : menuName,
@@ -75,9 +79,8 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           menuDescription : menuDescription
         }
         console.log("addmenuItem", menu1)
-        // setMenuArr([...menuArr,Menu])
         addMenuHandler(menu1);
-        setMenuImgs('');
+        setMenuImg('');
         setPrice(0);
         setMenuName('');
         setMenuDescription('');
@@ -85,12 +88,12 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
         alert("항목을 다 입력해 주세요")
       }
     }
-
+    
   return (
     <StoreInputBox>
       <label className = 'menu-enroll-label'>메뉴 등록</label>
-      {menuArr && menuArr.map((el:any,idx:number)=> {
-        // console.log('menuArr==',menuArr);
+      {menuArr && menuArr.map((el:any,idx:number) => {
+      // console.log('-----el----',el);
         return (
           <StoreMenuAddWrapper key={idx}>
             <MenuUploadDiv2>
@@ -113,13 +116,13 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
             <MenuUploadDiv2>
               <MenuInputBox>
                 <label>메뉴이름</label>
-                <MenuInput 
-                  type = 'text' 
-                  step = '1000'
-                  onChange = {(e:any)=>{changeMenuName(e)}} 
-                  defaultValue = {el.menuName} />
+               <MenuInput 
+               type = 'text' 
+               step = '1000'
+               onChange = {(e:any)=>{changeMenuName(e)}} 
+               defaultValue = {el.menuName}
+               />
               </MenuInputBox>
-      
               <MenuInputBox>
                 <label>가격</label>
                 <MenuInput 

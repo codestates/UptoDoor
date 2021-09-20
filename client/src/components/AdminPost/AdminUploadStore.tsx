@@ -57,6 +57,7 @@ function AdminUploadStore(
     .then((res)=>{
       if(res.data.success){
         setImgs([...imgs,res.data.filePath])
+        props.updateStoreImg([...imgs,res.data.filePath])
       }else{
         alert('파일저장실패')
       }
@@ -64,7 +65,6 @@ function AdminUploadStore(
     .catch((err)=>{
       return console.log('==file 가져오기 실패===',err)
     })
-     // props.updateFiles([...imgs,files[0].path])
     }
   }
   const closeModal = () => {

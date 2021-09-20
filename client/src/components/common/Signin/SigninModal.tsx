@@ -75,6 +75,12 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
     }
   },[])
   
+  const logOutHandler = useCallback((e) => {
+    axios.delete('http://localhost:3060/users/signout')
+    .then((res)=>{
+      console.log("로그아웃 응답",res.data)
+    })
+  },[])
 
   return modalOpen ? (
     <SigninContainer>
@@ -88,6 +94,7 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
         <SigninInput type="password" placeholder="password" value={password} onChange={onChangePassword} />
         <LagreButton primary >로그인</LagreButton>
         </form>
+        <button onClick={logOutHandler}>로그아웃버튼</button>
         
         <TextOr>Or</TextOr>
         <LagreButton className="btn" onClick={kakaoHandler}><img src='./images/icon/kakao.png' /><div>카카오 계정으로 로그인</div></LagreButton>

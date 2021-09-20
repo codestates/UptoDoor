@@ -21,5 +21,5 @@ module.exports = async (req, res) => {
         userData = result.data.response
     })
 
-    res.status(200).send({message : "sucess", data : userData});
+    res.status(200).send({message : "naver login success", data : userData});
 }

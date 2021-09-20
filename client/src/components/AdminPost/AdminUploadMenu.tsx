@@ -17,7 +17,7 @@ axios.defaults.withCredentials = true;
 
 function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   }:any):any {
-  const [menuImg , setMenuImg]:any = useState([]); 
+  const [menuImg , setMenuImg]:any = useState(""); 
   const [menuName , setMenuName] = useState('');
   const [price , setPrice] = useState(0);
   const [menuDescription , setMenuDescription] = useState('');
@@ -34,13 +34,8 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
     const lastIdx = menuArr.length-1;
     const copyArr = menuArr.slice()
     copyArr[lastIdx].menuName = e.target.value
-<<<<<<< HEAD
-    console.log("카피",copyArr)
-    setMenuArr(copyArr);
-=======
     setMenuArr(copyArr);
 
->>>>>>> 7a099ffddefbe3588f3ee3d05aa1674863a12dd2
   }
     const dropHandler = (file:any) => {
       const formData = new FormData();
@@ -55,11 +50,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           const copyArr = menuArr.slice()
           const lastIdx = copyArr.length-1;
           copyArr[lastIdx].menuImg = res.data.filePath
-<<<<<<< HEAD
-          console.log("copy배열",copyArr)
-=======
           console.log("copyImg만들어가는 배열",copyArr)
->>>>>>> 7a099ffddefbe3588f3ee3d05aa1674863a12dd2
           setMenuImg(res.data.filePath)
         }else{
           alert('파일저장실패')
@@ -87,14 +78,8 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           price : price,
           menuDescription : menuDescription
         }
-<<<<<<< HEAD
-        console.log("addmenuItem", menu1)
-        addMenuHandler(menu1);
-        setMenuImg('');
-=======
         addMenuHandler(menus);
-        setMenuImg([]);
->>>>>>> 7a099ffddefbe3588f3ee3d05aa1674863a12dd2
+        setMenuImg("");
         setPrice(0);
         setMenuName('');
         setMenuDescription('');
@@ -102,11 +87,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
         alert("항목을 다 입력해 주세요")
       }
     }
-<<<<<<< HEAD
-    
-=======
 //form 제출 시 onsubmit -> 해당 데이터 담겨서 전달 
->>>>>>> 7a099ffddefbe3588f3ee3d05aa1674863a12dd2
   return (
     <StoreInputBox>
       <label className = 'menu-enroll-label'>메뉴 등록</label>
@@ -135,14 +116,6 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
             <MenuUploadDiv2>
               <MenuInputBox>
                 <label>메뉴이름</label>
-<<<<<<< HEAD
-               <MenuInput 
-               type = 'text' 
-               step = '1000'
-               onChange = {(e:any)=>{changeMenuName(e)}} 
-               defaultValue = {el.menuName}
-               />
-=======
                 <MenuInput 
                   required
                   type = 'text' 
@@ -150,7 +123,6 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
                   onChange = {(e:any)=>{changeMenuName(e)}} 
                   defaultValue = {el.menuName} 
                   />
->>>>>>> 7a099ffddefbe3588f3ee3d05aa1674863a12dd2
               </MenuInputBox>
               <MenuInputBox>
                 <label>가격</label>

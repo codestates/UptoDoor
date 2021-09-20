@@ -143,7 +143,6 @@ justify-content: center;
 export const Img = styled.img`
   width: 100%;
   padding-right: 0;
-  padding: ${({ second }) => (second ? '0 8px' : '0')};
 
   @media screen and (min-width:767px){
     width:330px;

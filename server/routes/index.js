@@ -4,7 +4,7 @@ const controllers = require('../controllers/index');
 const auth = require('../middlewares/auth');
 
 router.post('/users/signup', controllers.SignUp);
-router.post('/users/signin', auth, controllers.Login);
+router.post('/users/signin', controllers.Login);
 router.delete('/users/signout/:id',auth, controllers.SignOut);
 router.get('/users/userinfo/:id', auth, controllers.UserInfo);
 router.patch('/users/userinfo/:id', auth, controllers.UpdateUser);

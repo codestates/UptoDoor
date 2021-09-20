@@ -52,12 +52,12 @@ align-items: center;
 flex-direction: column;
 width: 100%;
 margin : 15px 0 40px;
-/* background-color: hsl(0, 0%, 100%);
+background-color: hsl(0, 0%, 100%);
 border-color: hsl(0, 0%, 80%);
 border-radius: 4px;
 border-style: solid;
 border-width: 1px;
-min-height: 160px; */
+min-height: 160px;
 >.slick-initialized{
   /* margin : 10px; */
   width: 80% ;
@@ -93,7 +93,6 @@ align-items: center;
 }
 `
 export const StoreInputWrapper = styled.div`
-/* border : 2px solid magenta; */
 margin: 10px 0;
 >.category-selection{
   padding : 8px;
@@ -101,6 +100,14 @@ margin: 10px 0;
   height: 45px;
   border-radius: 8px;
   border : 1px solid #656D78;
+  >span{
+    border : 2px solid magenta;
+    z-index: 0!important;
+  }
+  >div{
+    position: relative;
+    z-index: 0!important;
+  }
 }
 `
 export const StoreInputBox = styled.div`

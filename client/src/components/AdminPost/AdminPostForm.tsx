@@ -66,7 +66,7 @@ function AdminPostForm() {
     const limitWord = e.target.value;
     //설명제한
     if(limitWord.length > 150){
-      alert('글자는 150자까지???')
+      alert('글자는 150자까지유효성검사 ?')
     }else{
       setDescription(limitWord);
     }
@@ -83,7 +83,7 @@ function AdminPostForm() {
   //admin address 보내기
   const postHandler = useCallback((name) => {
     console.log(name);
-    console.log("currnet", current)
+    // console.log("currnet", current)
     if (switched === current) {
       console.log(adminAddressDetail)
       // dispatch(addAdminAddress(adminAddress, adminAddressDetail));
@@ -109,10 +109,12 @@ function AdminPostForm() {
   }, [mobile]);
 
   //!add menu onchange handler
-  const addMenuHandler = (menu: any)=> {
-    setMenuArr([menu, ...menuArr]);
-    console.log('===menu===',menu)
-  }
+  const addMenuHandler = (menu: any)=> {    
+    const bin = {menuImg: '', menuName:'', price:0, menuDescription:''}
+    console.log("슬라이드",[...menuArr.slice(0, menuArr.length-1), menu, bin])
+    setMenuArr([...menuArr.slice(0, menuArr.length-1), menu, bin]);
+  };
+
   //!upload storeimg
   const updateStoreImg = (storeImgs:any) => {
     setStoreImgArr(storeImgs)
@@ -130,8 +132,8 @@ function AdminPostForm() {
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
     //모든칸이 채워지지않으면 false 로 막는다. !menuItem 추후 추가잊지마.
     if(
-      !storeImgArr && !title && !category && !description && 
-      !adminAddress && !mobile && !storeFile && !menuArr
+      !storeImgArr || !title || !category || !description || 
+      ! adminAddress || !mobile || storeFile && !menuArr
       ){
       //모달
       return alert('all section must be filled')
@@ -200,7 +202,8 @@ return (
     <form onSubmit = {(e:any)=>submitHandler(e)}>
       <Wrapper>
         {/* 업로드 컴포넌트 */}
-        <AdminUploadStore updateStoreImg = {updateStoreImg}/>
+        <AdminUploadStore 
+        updateStoreImg = {updateStoreImg}/>
         
         <StoreInputWrapper>
           <StoreInputBox>
@@ -216,9 +219,11 @@ return (
           <StoreInputBox>
             <label>카테고리</label>
             <Select
+            required
             className = 'category-selection'
             options = {selectCategory}
-            onChange = {(e)=>changeCategoryHandler(e)}/>
+            onChange = 
+            {(e)=>changeCategoryHandler(e)}/>
           </StoreInputBox>
 
           <StoreInputBox>
@@ -250,12 +255,12 @@ return (
 
           {/* 가게 사업자등록증 파일업로드 */}
           <AdminFileUpload
-          setStoreFile={setStoreFile}
-          updateStoreFile = {updateStoreFile}
+            setStoreFile={setStoreFile}
+            updateStoreFile = {updateStoreFile}
           />
 
           <AdminUploadMenu
-            addMenuHandler={addMenuHandler}
+            addMenuHandler={(menus: any)=>addMenuHandler(menus)}
             menuArr = {menuArr}
             setMenuArr = {setMenuArr}
           />

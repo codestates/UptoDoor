@@ -8,6 +8,7 @@ import {
   MenuIntroTextArea,
   MenuUploadDiv,
   MenuUploadDiv2,
+  MenuImg,
   PlusIcon
 ,StoreMenuAddBtn
 } from './StyledAdminPost'
@@ -32,13 +33,11 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   const [menuName , setMenuName] = useState('');
   const [price , setPrice] = useState(0);
   const [menuDescription , setMenuDescription] = useState('');
-  // const [menuInfo, setMenuInfo] =useState({});
 
   const priceHandler = (e:any) => {
     const comma = e.target.value;
     setPrice(comma);
   }
-
   const changeMenuName = (e:any) => {
     setMenuName(e.target.value)
   }
@@ -96,9 +95,9 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
 
   return (
     <StoreInputBox>
-      <label>메뉴 등록</label>
+      <label className = 'menu-enroll-label'>메뉴 등록</label>
       {menuArr && menuArr.map((el:any,idx:number)=> {
-        console.log("el입니다.", el)
+        // console.log('menuArr==',menuArr);
         return (
 <StoreMenuAddWrapper key={idx}>
         <MenuUploadDiv2>
@@ -149,7 +148,6 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
       </StoreMenuAddWrapper>
         )
       })}
-      
       <StoreInputBox>
         <StoreMenuAddBtn 
           onClick = {addMenuItemHandler}>+ 메뉴추가

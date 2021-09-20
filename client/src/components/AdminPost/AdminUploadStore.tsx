@@ -72,21 +72,21 @@ function AdminUploadStore(
   }
   const deleteImgHandler = (files:any) => {
     const curIdx = imgs.indexOf(files)  
-    console.log(curIdx);
+    // console.log(curIdx);
     const newImgs = [...imgs]
     newImgs.splice(curIdx,1);
     setImgs(newImgs); 
-    props.updateFiles(newImgs)
+    props.updateStoreImg(newImgs)
   }
   //img slider
   const settings = useMemo<Settings>(
     ()=>({
       dots: true,
+      arrows : false,
       infinite: loop,
-      speed: speed,
+      speed: 800,
       slidesToShow: 1,
       slidesToScroll: 1,  
-      // initialSlide: 2, 첨부터 몇장보여줄지 고민하긔.. .
       centerMode: true,
       centerPadding: '0px',  
       autoplay: Boolean(autoplay),
@@ -115,7 +115,6 @@ function AdminUploadStore(
               className = 'store-img-box'
               onClick = {()=>{deleteImgHandler(el)}}
               key = {idx}>
-                <h1>스토어 이미지 : {idx+1}</h1>
                 <img // src = {`http://localhost:3001/${el}`} 
                 src = {el}
                 alt = {`${idx+1}__${el}//`}
@@ -124,7 +123,6 @@ function AdminUploadStore(
             )
           })}
         </Slider>
-
       </SliderWrapper>
       
     {openModal ?
@@ -136,14 +134,12 @@ function AdminUploadStore(
       :
       null
     }
-    <p>사진 클릭 시 삭제 가능.</p>
+    {/* <p>사진 클릭 시 삭제 가능.</p> */}
     </StyledImgUpload>
   )
 }
 
 export default AdminUploadStore
-
-
 // const settings = {
 //   dots: false,
 //   infinite: true,

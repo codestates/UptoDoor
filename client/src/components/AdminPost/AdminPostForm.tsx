@@ -13,6 +13,7 @@ import {
   Wrapper,
   Title
 } from "../GlobalStyle";
+import AdminFileUpload from './AdminFileUpload';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { SmallButton } from '../common/Button/Button';
@@ -36,9 +37,9 @@ function AdminPostForm() {
     { value : 'plants' , label : 'plants'},
     { value : 'clothes' , label : 'clothes'},
   ]
-
-  //upload img,file
-  const [uploads , setUploads]:any = useState([]);
+  //upload store img,file
+  const [storeImgArr , setStoreImgArr]:any = useState([]);
+  const [storeFile , setStoreFile]:any = useState([]);
   //store
   const [title , setTitle] = useState('');
   const [category, setCategory] = useState('');
@@ -51,7 +52,6 @@ function AdminPostForm() {
   const [adminAddressDetail, setadminAddressDetail] = useState("");
   const [addressModal, setAddressModal] = useState(false);
   //menu
-  
   const [menuArr, setMenuArr]:any = useState([{
     menuImg: '', menuName:'', menuDescription:'', price:0
   }]);
@@ -71,7 +71,7 @@ function AdminPostForm() {
       setDescription(limitWord);
     }
   }
-  //!admin address
+  //admin address
   const changeAdminAddress = useCallback((data) => {
     const resultAddress = JSON.parse(data).address
     setAdminAddress(resultAddress);
@@ -110,15 +110,22 @@ function AdminPostForm() {
 
   //!add menu onchange handler
   const addMenuHandler = (menu: any)=> {
+<<<<<<< HEAD
     console.log("에드메뉴핸들러", menu);
     setMenuArr([menuArr]);
+=======
+>>>>>>> 51c09d92babc151e5fb54468bb9ec15db9b9d2ab
     setMenuArr([menu, ...menuArr]);
-  };
-  
-  //!upload files
-  const updateFiles = (storeImgs:any) => {
-      setUploads(storeImgs)
-      console.log('====',uploads);
+    console.log('===menu===',menu)
+  }
+  //!upload storeimg
+  const updateStoreImg = (storeImgs:any) => {
+    setStoreImgArr(storeImgs)
+    // console.log('==storeimg==',storeImgs);
+  }
+  const updateStoreFile = (addressFile:any) => {
+    setStoreFile(addressFile)
+    // console.log('==addfile==',addressFile);
   }
   //!폼제출 핸들러
   const submitHandler = (e:any) => {
@@ -128,10 +135,8 @@ function AdminPostForm() {
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
     //모든칸이 채워지지않으면 false 로 막는다. !menuItem 추후 추가잊지마.
     if(
-      !uploads && 
-      !category && !title && !description && !mobile 
-      && !adminAddress 
-      // && !menuImg && !menuName && !menuDescription && !price
+      !storeImgArr && !title && !category && !description && 
+      !adminAddress && !mobile && !storeFile && !menuArr
       ){
       //모달
       return alert('all section must be filled')
@@ -143,12 +148,15 @@ function AdminPostForm() {
       description:description,
       mobile : mobile,
       adminAddress : adminAddress,
-      Menu:menuArr
+      Menu:menuArr,
+      storeImage:storeImgArr,
+      storeFile : storeFile
     }
       dispatch(adminPost(adminPostInfo))
+      // 모달띄워지고(메뉴등록이 완료되었습니다.) 메인화면
+      console.log(adminPostInfo);
       history.push('/');
     }
-    
   }
   //!kakao add
   const switchAddress = useCallback((address) => {
@@ -197,7 +205,7 @@ return (
     <form onSubmit = {(e:any)=>submitHandler(e)}>
       <Wrapper>
         {/* 업로드 컴포넌트 */}
-        <AdminUploadStore updateFiles = {updateFiles}/>
+        <AdminUploadStore updateStoreImg = {updateStoreImg}/>
         
         <StoreInputWrapper>
           <StoreInputBox>
@@ -246,15 +254,13 @@ return (
           </StoreInputBox>
 
           {/* 가게 사업자등록증 파일업로드 */}
-          <StoreInputBox>
-            <label>사업자 등록증 업로드</label>
-            <StoreNameInput 
-            // defaultValue = {adminAddress} 
-            placeholder = '사업자등록증 파일업로드 부분' 
-            />
-          </StoreInputBox>
+          <AdminFileUpload
+          setStoreFile={setStoreFile}
+          updateStoreFile = {updateStoreFile}
+          />
+
           <AdminUploadMenu
-          addMenuHandler={addMenuHandler}
+            addMenuHandler={addMenuHandler}
             menuArr = {menuArr}
             setMenuArr = {setMenuArr}
           />

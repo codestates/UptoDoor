@@ -36,7 +36,7 @@ export const signIn = (userinfo) => {
   const result = axios.post('http://localhost:3060/users/signin', userinfo).then((res) => {
     console.log("res.data",res.data)
   })
-  console.log(result);
+  console.log("result", result);
   return {
     type: SIGNIN,
     payload: {

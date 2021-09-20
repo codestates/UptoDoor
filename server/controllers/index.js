@@ -9,6 +9,7 @@ module.exports = {
   DeleteOrder: require("./Users/Deleteorder"),
   AdminInfo: require("./Admin/Admininfo"),
   Position: require("./Admin/Position"),
+  Image: require("./Image/Image"),
   Store: require("./Admin/Store"),
   StoreData: require("./Admin/Storedata"),
   UpdateStore: require("./Admin/Updatestore"),

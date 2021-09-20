@@ -67,7 +67,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
     const addMenuItemHandler = () => {
       // menuImg && menuName && price && menuDescription
       console.log('누르면 메뉴어레이 하나씩 더생김.')
-      if(true){
+      if(menuImg && menuName && price && menuDescription){
         const menu1 = {
           menuImg : menuImg,
           menuName : menuName,

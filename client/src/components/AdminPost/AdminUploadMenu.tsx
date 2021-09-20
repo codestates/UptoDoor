@@ -15,7 +15,7 @@ import {
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-function AdminUploadMenu({addMenuHandler,menuArr
+function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   }:any):any {
   const [menuImg , setMenuImg]:any = useState(''); 
   const [menuName , setMenuName] = useState('');

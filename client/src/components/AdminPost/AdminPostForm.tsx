@@ -280,7 +280,8 @@ return (
           </StoreInputBox>
 
           {/* 가게 사업자등록증 파일업로드 */}
-          <AdminFileUpload
+            <AdminFileUpload
+              setMenuArr={setMenuArr}
             setStoreFile={setStoreFile}
             updateStoreFile = {updateStoreFile}
 

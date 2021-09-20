@@ -28,8 +28,6 @@ export default function user_reducer(state = {}, action) {
       console.log("addorder", action.payload);
       return { ...state, order: [...state.order, action.payload] };
     }
-      
-
     default:
       return state;
   }

@@ -13,30 +13,35 @@ import {
 ,StoreMenuAddBtn
 } from './StyledAdminPost'
 import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 function AdminUploadMenu({addMenuHandler,menuArr
   }:any):any {
-  const [menuImg , setMenuImgs]:any = useState([]); 
+  const [menuImg , setMenuImg]:any = useState(''); 
   const [menuName , setMenuName] = useState('');
   const [price , setPrice] = useState(0);
   const [menuDescription , setMenuDescription] = useState('');
 
   const priceHandler = (e:any) => {
-    const comma = e.target.value;
-    setPrice(comma);
+    setPrice(e.target.value)
+    const lastIdx = menuArr.length-1;
+    const copyArr = menuArr.slice()
+    copyArr[lastIdx].price = e.target.value;
+    setMenuArr(copyArr);
   }
   const changeMenuName = (e:any) => {
     setMenuName(e.target.value)
+    const lastIdx = menuArr.length-1;
+    const copyArr = menuArr.slice()
+    copyArr[lastIdx].menuName = e.target.value
+    setMenuArr(copyArr);
+
   }
     const dropHandler = (file:any) => {
-      console.log('====',file[0]);
-      console.log('====',file[0].path);
-
       const formData = new FormData();
       const config = {
         headers: { 'content-type' : 'multipart/form-data'}
       }
-      console.log("파일",file[0])
       formData.append('file',file[0]);
       //dispatch action axios 관리된거 와야함.
       axios.post('http://localhost:3060/image',formData,config)
@@ -45,8 +50,9 @@ function AdminUploadMenu({addMenuHandler,menuArr
           const copyArr = menuArr.slice()
           const lastIdx = copyArr.length-1;
           copyArr[lastIdx].menuImg = res.data.filePath
-          console.log("copy배열",copyArr)
-          setMenuImgs(res.data.filePath)
+          console.log("copyImg만들어가는 배열",copyArr)
+          setMenuImg(res.data.filePath)
+
         }else{
           alert('파일저장실패')
         }
@@ -54,28 +60,27 @@ function AdminUploadMenu({addMenuHandler,menuArr
       .catch((err)=>{
         return console.log('==file 가져오기 실패===',err)
       })
-     // setMenuImgs(file[0].path);
-      // props.updateFiles([...menuImg,files[0].path])
-      // console.log('===img 경로보기===',imgs);
     }
-    
+  
     const changeMenuDesc = (e:any) => {
+
       setMenuDescription(e.target.value)
+      const lastIdx = menuArr.length-1;
+      const copyArr = menuArr.slice()
+      copyArr[lastIdx].menuDescription = e.target.value;
+      setMenuArr(copyArr);
     }
 
     const addMenuItemHandler = () => {
-      // menuImg && menuName && price && menuDescription
-      console.log('누르면 메뉴어레이 하나씩 더생김.')
       if(menuImg && menuName && price && menuDescription){
-        const menu1 = {
+        const menus = {
           menuImg : menuImg,
           menuName : menuName,
           price : price,
           menuDescription : menuDescription
         }
-        console.log("addmenuItem", menu1);
-        addMenuHandler(menu1);
-        setMenuImgs('');
+        addMenuHandler(menus);
+        setMenuImg('');
         setPrice(0);
         setMenuName('');
         setMenuDescription('');
@@ -83,7 +88,7 @@ function AdminUploadMenu({addMenuHandler,menuArr
         alert("항목을 다 입력해 주세요")
       }
     }
-
+//form 제출 시 onsubmit -> 해당 데이터 담겨서 전달 
   return (
     <StoreInputBox>
       <label className = 'menu-enroll-label'>메뉴 등록</label>
@@ -96,7 +101,8 @@ function AdminUploadMenu({addMenuHandler,menuArr
             <Dropzone onDrop={dropHandler}>
               {({getRootProps, getInputProps}) => (
                   <MenuUploadDiv {...getRootProps()}>
-                    <input {...getInputProps()} />
+                    <input 
+                    required {...getInputProps()} />
                     {el.menuImg.length === 0 ? 
                     <PlusIcon>+</PlusIcon>
                     : 
@@ -112,15 +118,18 @@ function AdminUploadMenu({addMenuHandler,menuArr
               <MenuInputBox>
                 <label>메뉴이름</label>
                 <MenuInput 
+                  required
                   type = 'text' 
                   step = '1000'
                   onChange = {(e:any)=>{changeMenuName(e)}} 
-                  defaultValue = {el.menuName} />
+                  defaultValue = {el.menuName} 
+                  />
               </MenuInputBox>
       
               <MenuInputBox>
                 <label>가격</label>
                 <MenuInput 
+                  required
                   type = 'number' 
                   step = '1000'
                   onChange = {(e:any)=>{priceHandler(e)}}
@@ -130,6 +139,7 @@ function AdminUploadMenu({addMenuHandler,menuArr
               <MenuInputBox>
                 <label>메뉴 설명</label>
                 <MenuIntroTextArea 
+                  required
                   defaultValue = {el.menuDescription} 
                   onChange={(e:any)=>{changeMenuDesc(e)}}
                   placeholder = '100자 이내로 작성해주세요.' 

@@ -23,7 +23,15 @@ const SubscriptionInfo = () => {
             </div>
             <div>
               <OrderP primary>배송 요일 : </OrderP>
-              <OrderP>{state.delivery_day}</OrderP>
+              <OrderP>
+                {
+                  state.delivery_day &&
+                    state.delivery_day
+                      .map((day) => {
+                        return `${day}요일 ${" "}`;
+                      })
+                }
+              </OrderP>
             </div>
             <div>
               <OrderP primary>배송 시간 : </OrderP>

@@ -109,13 +109,13 @@ function AdminPostForm() {
   }, [mobile]);
 
   //!add menu onchange handler
-  const addMenuHandler = (menu: any)=> {
-    const setArr = menuArr.slice();
-    setArr.pop();
-    setArr.push({
-      menuImg: '', menuName:'', price:0, menuDescription:''
-    });
-    setMenuArr([menu, ...setArr]);
+  const addMenuHandler = (menu: any) => {
+    console.log("addmenuHandler", menuArr);
+    console.log("addmenuhandler", menu);
+    
+    const bin = {menuImg: '', menuName:'', price:0, menuDescription:''}
+    console.log("슬라이드",[...menuArr.slice(0, menuArr.length-1), menu, bin])
+    setMenuArr([...menuArr.slice(0, menuArr.length-1), menu, bin]);
   };
   //!upload storeimg
   const updateStoreImg = (storeImgs:any) => {
@@ -261,7 +261,6 @@ return (
           <AdminUploadMenu
             addMenuHandler={addMenuHandler}
             menuArr = {menuArr}
-            setMenuArr = {setMenuArr}
           />
 
         </StoreInputWrapper>

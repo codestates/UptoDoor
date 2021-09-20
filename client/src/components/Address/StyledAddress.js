@@ -79,7 +79,7 @@ export const TitleAddress = styled.div`
   }
 `;
 
-export const AddressForm = styled.div`
+export const AddressFormDiv = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;

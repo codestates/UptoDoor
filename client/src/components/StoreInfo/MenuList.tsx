@@ -47,17 +47,17 @@ function MenuList():any {
       detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
       image: "./images/toast.png",
     },
-  ]
+  ];
   const history = useHistory();
   const state = useSelector((state) => state);
-  const { cart}:any = state;
-  const { Menu, menuDummySample } = cart;
-  console.log(menuDummySample)
-  const dispatch = useDispatch()
+  const { cart }: any = state;
+  const { menu} = cart
+  console.log(menu)
+  const dispatch:any = useDispatch()
 
   const addCartHandler = (item:any) => {
     // 메뉴의 id와 item.id 가 같으면 quantity 만 추가, 아니면 디스패치 애드카트에 아이템추가.
-    if (!Menu.map((el:any) => el.id).includes(item.id)) {
+    if (!cart.menu.map((el:any) => el.id).includes(item.id)) {
       item = {...item, quantity : 1 }
       dispatch(addCart(item))
     }else{
@@ -91,7 +91,7 @@ function MenuList():any {
         <Link to="/usercart">
           <MiddleButton className="middle cart-btn">
             장바구니
-            <span> ({Menu.length})</span>
+            <span> ({menu && menu.length})</span>
           </MiddleButton>
         </Link>
 

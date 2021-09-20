@@ -14,7 +14,7 @@ import {
 } from './StyledAdminPost'
 import axios from 'axios';
 
-function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
+function AdminUploadMenu({addMenuHandler,menuArr
   }:any):any {
   const [menuImg , setMenuImgs]:any = useState([]); 
   const [menuName , setMenuName] = useState('');
@@ -46,7 +46,6 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           const lastIdx = copyArr.length-1;
           copyArr[lastIdx].menuImg = res.data.filePath
           console.log("copy배열",copyArr)
-          setMenuArr(copyArr);
           setMenuImgs(res.data.filePath)
         }else{
           alert('파일저장실패')
@@ -74,8 +73,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           price : price,
           menuDescription : menuDescription
         }
-        console.log("addmenuItem", menu1)
-        // setMenuArr([...menuArr,Menu])
+        console.log("addmenuItem", menu1);
         addMenuHandler(menu1);
         setMenuImgs('');
         setPrice(0);
@@ -90,7 +88,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
     <StoreInputBox>
       <label className = 'menu-enroll-label'>메뉴 등록</label>
       {menuArr && menuArr.map((el:any,idx:number)=> {
-        // console.log('menuArr==',menuArr);
+        console.log('menuArr==',menuArr);
         return (
           <StoreMenuAddWrapper key={idx}>
             <MenuUploadDiv2>

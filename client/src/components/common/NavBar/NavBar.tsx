@@ -91,7 +91,7 @@ function NavBar() {
           프로필
         </MiddleButton>
         <MiddleButton type="button" aria-label="회원가입">
-          <BtnLink to="/signup">로그아웃</BtnLink>
+          <BtnLink onClick={signoutHandler}>로그아웃</BtnLink>
         </MiddleButton></div>) }
         
       </ButtonWrapper>

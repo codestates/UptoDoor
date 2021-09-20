@@ -9,7 +9,7 @@ interface Iprops {
 const AddressTitle = ({deleteHandler,name}:Iprops) => {
   return (
     <TitleAddress>
-      <p>{name === "main" ? "메인 주소 입력란(ex. 집):" : name === "sub" ? "서브 주소 입력란( ex. 직장)" : "ss상세주소 입력란"}</p>
+      <p>{name === "main" ? "메인 주소 입력란(ex. 집):" : name === "sub" ? "서브 주소 입력란( ex. 직장)" : "상세주소 입력란"}</p>
       {name === "main"
         ? (<button
             type="button"

@@ -17,7 +17,7 @@ axios.defaults.withCredentials = true;
 
 function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   }:any):any {
-  const [menuImg , setMenuImg]:any = useState([]); 
+  const [menuImg , setMenuImg]:any = useState(''); 
   const [menuName , setMenuName] = useState('');
   const [price , setPrice] = useState(0);
   const [menuDescription , setMenuDescription] = useState('');
@@ -79,7 +79,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           menuDescription : menuDescription
         }
         addMenuHandler(menus);
-        setMenuImg([]);
+        setMenuImg('');
         setPrice(0);
         setMenuName('');
         setMenuDescription('');

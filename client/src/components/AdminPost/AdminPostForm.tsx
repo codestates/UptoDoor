@@ -1,17 +1,17 @@
 import React, {useState,useCallback,useEffect} from 'react' 
 import Select from 'react-select';
 import {
-  StoreInputWrapper,
+  AdminForm,
+  FlexBox,
   StoreInputBox,
   StoreNameInput,
   StoreIntroTextArea,
   StoreBtnBox,
-  // StoreMenuAddBtn,
 } from './StyledAdminPost'
 import {
   Container,
   Wrapper,
-  Title
+  Title,
 } from "../GlobalStyle";
 import AdminFileUpload from './AdminFileUpload';
 import { useHistory } from 'react-router-dom';
@@ -22,8 +22,16 @@ import AdminEnrollStore from './AdminEnrollStore'
 import AdminUploadMenu from './AdminUploadMenu';
 import { adminPost } from '../../_actions/post_action';
 
-const { kakao }: any = window;
+const customStyles = {
+  container: (base:any, state:any) => {
+      return ({
+          ...base,
+          zIndex: state.isFocused ? "99" : "-1"  //Only when current state focused
+      })
+  }
+}
 
+const { kakao }: any = window;
 function AdminPostForm() {
   // 가게 이미지,상호명,가게설명,동네인증.
   // 메뉴이미지,이름,재료,가격,항목추가,파일업로드
@@ -61,6 +69,7 @@ function AdminPostForm() {
   }
   const changeCategoryHandler = (e:any) => {
     setCategory(e.value)
+    // setCategory(e.target.value)
   }
   const changeDescHandler = (e:any) => {
     const limitWord = e.target.value;
@@ -80,7 +89,6 @@ function AdminPostForm() {
   const changeAddDetailHandler = (e:any) => {
     setadminAddressDetail(e.target.value)
   }
-  //admin address 보내기
   const postHandler = useCallback((name) => {
     console.log(name);
     // console.log("currnet", current)
@@ -92,7 +100,6 @@ function AdminPostForm() {
       alert("동네 인증에 실패")
     }
   },[adminAddress,adminAddressDetail])
-
   const changeMobileHandler = useCallback((e) => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
@@ -107,14 +114,13 @@ function AdminPostForm() {
       setMobile(mobile.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
     }
   }, [mobile]);
-
+  
   //!add menu onchange handler
   const addMenuHandler = (menu: any)=> {    
     const bin = {menuImg: '', menuName:'', price:0, menuDescription:''}
     console.log("슬라이드",[...menuArr.slice(0, menuArr.length-1), menu, bin])
     setMenuArr([...menuArr.slice(0, menuArr.length-1), menu, bin]);
   };
-
   //!upload storeimg
   const updateStoreImg = (storeImgs:any) => {
     setStoreImgArr(storeImgs)
@@ -201,11 +207,12 @@ return (
     <Title>가게 등록</Title>
     <form onSubmit = {(e:any)=>submitHandler(e)}>
       <Wrapper>
+      <FlexBox>
+        <AdminForm>
         {/* 업로드 컴포넌트 */}
         <AdminUploadStore 
         updateStoreImg = {updateStoreImg}/>
         
-        <StoreInputWrapper>
           <StoreInputBox>
             <label>상호명</label>
             <StoreNameInput 
@@ -218,14 +225,27 @@ return (
 
           <StoreInputBox>
             <label>카테고리</label>
-            <Select
-            required
-            className = 'category-selection'
-            options = {selectCategory}
-            onChange = 
-            {(e)=>changeCategoryHandler(e)}/>
-          </StoreInputBox>
+              <Select
+              required
+              styles={customStyles}
+              className = 'category-selection'
+              options = {selectCategory}
+              onChange = {(e)=>changeCategoryHandler(e)}
+              />
 
+            {/* <select onChange = {(e)=>changeCategoryHandler(e)}>
+              {selectCategory.map((el,idx)=>{
+                return (
+                  <option 
+                  className = 'category-selection'
+                  value = {el.value}
+                  key = {idx}>
+                    {el.label}
+                  </option>
+                )
+              })}
+            </select> */}
+          </StoreInputBox>
           <StoreInputBox>
             <label>가게 설명</label>
             <StoreIntroTextArea 
@@ -234,6 +254,9 @@ return (
             onChange = {changeDescHandler}/>
           </StoreInputBox>
           
+        </AdminForm>
+
+        <AdminForm>
           {/* 주소등록 컴포넌트 */}
           <AdminEnrollStore
             addressModal = {addressModal}
@@ -259,19 +282,19 @@ return (
             updateStoreFile = {updateStoreFile}
           />
 
-          <AdminUploadMenu
-            addMenuHandler={(menus: any)=>addMenuHandler(menus)}
-            menuArr = {menuArr}
-            setMenuArr = {setMenuArr}
-          />
-
-        </StoreInputWrapper>
+        <AdminUploadMenu
+          addMenuHandler={(menus: any)=>addMenuHandler(menus)}
+          menuArr = {menuArr}
+          setMenuArr = {setMenuArr}
+        />
         <StoreBtnBox>
           <SmallButton> 등록 </SmallButton>
           <SmallButton 
           onClick = {handleClickCancle}
           type = 'button'> 취소 </SmallButton>
         </StoreBtnBox>
+        </AdminForm>
+        </FlexBox>
       </Wrapper>
     </form>
   </Container>

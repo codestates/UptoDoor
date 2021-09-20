@@ -93,7 +93,6 @@ align-items: center;
 }
 `
 export const StoreInputWrapper = styled.div`
-/* border : 2px solid magenta; */
 margin: 10px 0;
 >.category-selection{
   padding : 8px;
@@ -101,6 +100,10 @@ margin: 10px 0;
   height: 45px;
   border-radius: 8px;
   border : 1px solid #656D78;
+  >span{
+    border : 2px solid magenta;
+    z-index: 0!important;
+  }
   >div{
     position: relative;
     z-index: 0!important;

@@ -109,14 +109,12 @@ function AdminPostForm() {
   }, [mobile]);
 
   //!add menu onchange handler
-  const addMenuHandler = (menu: any)=> {
-    const setArr = menuArr.slice();
-    setArr.pop();
-    setArr.push({
-      menuImg: '', menuName:'', price:0, menuDescription:''
-    });
-    setMenuArr([menu, ...setArr]);
+  const addMenuHandler = (menu: any)=> {    
+    const bin = {menuImg: '', menuName:'', price:0, menuDescription:''}
+    console.log("슬라이드",[...menuArr.slice(0, menuArr.length-1), menu, bin])
+    setMenuArr([...menuArr.slice(0, menuArr.length-1), menu, bin]);
   };
+
   //!upload storeimg
   const updateStoreImg = (storeImgs:any) => {
     setStoreImgArr(storeImgs)
@@ -134,13 +132,10 @@ function AdminPostForm() {
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
     //모든칸이 채워지지않으면 false 로 막는다. !menuItem 추후 추가잊지마.
     if(
-      !storeImgArr && !title && !category && !description && 
-      !adminAddress && !mobile && storeFile.length === 0 && !menuArr
+      !storeImgArr || !title || !category || !description || 
+      ! adminAddress || !mobile || storeFile && !menuArr
       ){
       //모달
-      console.log(storeFile)
-      console.log(storeImgArr)
-      console.log(category)
       return alert('all section must be filled')
     }else{
       const adminPostInfo = {
@@ -227,7 +222,8 @@ return (
             required
             className = 'category-selection'
             options = {selectCategory}
-            onChange = {()=>changeCategoryHandler(selectCategory)}/>
+            onChange = 
+            {(e)=>changeCategoryHandler(e)}/>
           </StoreInputBox>
 
           <StoreInputBox>
@@ -259,12 +255,12 @@ return (
 
           {/* 가게 사업자등록증 파일업로드 */}
           <AdminFileUpload
-          setStoreFile={setStoreFile}
-          updateStoreFile = {updateStoreFile}
+            setStoreFile={setStoreFile}
+            updateStoreFile = {updateStoreFile}
           />
 
           <AdminUploadMenu
-            addMenuHandler={addMenuHandler}
+            addMenuHandler={(menus: any)=>addMenuHandler(menus)}
             menuArr = {menuArr}
             setMenuArr = {setMenuArr}
           />

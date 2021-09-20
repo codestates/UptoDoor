@@ -12,12 +12,13 @@ import {
   PlusIcon
 ,StoreMenuAddBtn
 } from './StyledAdminPost'
+import axios from 'axios';
 
-function AdminUploadMenu({addMenuHandler,menuArr
+function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   }:any):any {
   const [menuImg , setMenuImgs]:any = useState([]); 
   const [menuName , setMenuName] = useState('');
-  const [price , setPrice] = useState(1000);
+  const [price , setPrice] = useState(0);
   const [menuDescription , setMenuDescription] = useState('');
 
   const priceHandler = (e:any) => {
@@ -28,37 +29,35 @@ function AdminUploadMenu({addMenuHandler,menuArr
     setMenuName(e.target.value)
   }
     const dropHandler = (file:any) => {
-      const reader = new FileReader();
-      //파일리더가 파일의 데이터를 url경로로 만들어준다. 때문에 src에 집어 넣어서 사용가능
-      console.log('menufile===>',file[0]);
-      reader.readAsDataURL(file[0]);
-      reader.onload = () => {
-        //파일리더가 파일을 정상적으로 렌더하면 성공상태가 2
-        if (reader.readyState === 2) {
-          setMenuImgs([...menuImg,reader.result]);
-          // console.log('====',file);
-          // let formData = new FormData();
-          // const config = {
-          //   header : { 'content-type' : 'multipart/form-data'}
-          // }
-          // formData.append('file',files[0]);
-          // console.log('==fileconfig==',formData,config);
-          // //dispatch action axios 관리된거 와야함.
-          // axios.post('https://localhost:3001',formData,config)
-          // .then((res)=>{
-          //   if(res.data.success){
-          //     setMenuImgs([...imgs,res.data.filePath])
-          //   }else{
-          //     alert('파일저장실패')
-          //   }
-          // })
-          // .catch((err)=>{
-          //   return console.log('==file 가져오기 실패===',err)
-          // })
+      console.log('====',file[0]);
+      console.log('====',file[0].path);
+
+      const formData = new FormData();
+      const config = {
+        headers: { 'content-type' : 'multipart/form-data'}
+      }
+      console.log("파일",file[0])
+      formData.append('file',file[0]);
+      //dispatch action axios 관리된거 와야함.
+      axios.post('http://localhost:3060/image',formData,config)
+      .then((res)=>{
+        if(res.data.success){
+          const copyArr = menuArr.slice()
+          const lastIdx = copyArr.length-1;
+          copyArr[lastIdx].menuImg = res.data.filePath
+          console.log("copy배열",copyArr)
+          setMenuArr(copyArr);
+          setMenuImgs(res.data.filePath)
+        }else{
+          alert('파일저장실패')
         }
-      };
-      // setMenuImgs([file[0].path,...menuImg]);
-      setMenuImgs([file[0].path,...menuImg]);
+      })
+      .catch((err)=>{
+        return console.log('==file 가져오기 실패===',err)
+      })
+     // setMenuImgs(file[0].path);
+      // props.updateFiles([...menuImg,files[0].path])
+      // console.log('===img 경로보기===',imgs);
     }
     
     const changeMenuDesc = (e:any) => {
@@ -66,20 +65,25 @@ function AdminUploadMenu({addMenuHandler,menuArr
     }
 
     const addMenuItemHandler = () => {
-      
-      const menu1 = {
-        menuImg : menuImg,
-        menuName : menuName,
-        price : price,
-        menuDescription : menuDescription
+      // menuImg && menuName && price && menuDescription
+      console.log('누르면 메뉴어레이 하나씩 더생김.')
+      if(true){
+        const menu1 = {
+          menuImg : menuImg,
+          menuName : menuName,
+          price : price,
+          menuDescription : menuDescription
+        }
+        console.log("addmenuItem", menu1)
+        // setMenuArr([...menuArr,Menu])
+        addMenuHandler(menu1);
+        setMenuImgs('');
+        setPrice(0);
+        setMenuName('');
+        setMenuDescription('');
+      }else{
+        alert("항목을 다 입력해 주세요")
       }
-      // console.log("addmenuItem", menu1)
-      // setMenuArr([...menuArr,Menu])
-      addMenuHandler(menu1);
-      setMenuImgs([]);
-      setPrice(0);
-      setMenuName('');
-      setMenuDescription('');
     }
 
   return (

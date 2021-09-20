@@ -1,4 +1,30 @@
 module.exports = {
+<<<<<<< HEAD
+  Login: require("./Users/Login"),
+  SignOut: require("./Users/Signout"),
+  SignUp: require("./Users/Signup"),
+  UserInfo: require("./Users/Userinfo"),
+  UpdateUser: require("./Users/Updateuser"),
+  UserOrder: require("./Users/Userorder"),
+  Order: require("./Users/Order"),
+  DeleteOrder: require("./Users/Deleteorder"),
+  AdminInfo: require("./Admin/Admininfo"),
+  Position: require("./Admin/Position"),
+  Store: require("./Admin/Store"),
+  StoreData: require("./Admin/Storedata"),
+  UpdateStore: require("./Admin/Updatestore"),
+  Email: require("./Auth/Email"),
+  EmailSend: require("./Auth/EmailSend"),
+  KakaoToken: require("./Oauth/kakao/Token"),
+  Kakaologin: require("./Oauth/kakao/Login"),
+  Kakaosignup: require("./Oauth/kakao/Signup"),
+  Naverlogin: require("./Oauth/naver/Login"),
+  Naversignup: require("./Oauth/naver/Signup"),
+  Address: require("./Map/Address"),
+  StoreInfo: require("./Map/Storeinfo"),
+  StoreMap: require("./Map/Store"),
+};
+=======
     Login: require('./Users/Login'),
     SignOut: require('./Users/Signout'),
     SignUp: require('./Users/Signup'),
@@ -9,6 +35,7 @@ module.exports = {
     DeleteOrder: require('./Users/Deleteorder'),
     AdminInfo: require('./Admin/Admininfo'),
     Position: require('./Admin/Position'),
+    Image: require('./Image/Image'),
     Store: require('./Admin/Store'),
     StoreData: require('./Admin/Storedata'),
     UpdateStore: require('./Admin/Updatestore'),
@@ -22,3 +49,4 @@ module.exports = {
     StoreInfo: require('./Map/Storeinfo'),
     StoreMap: require('./Map/Store')
 }
+>>>>>>> 7154ccef728fb13b34d6e04cc72c85968599cc9d

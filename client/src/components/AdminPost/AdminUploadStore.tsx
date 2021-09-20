@@ -64,7 +64,7 @@ function AdminUploadStore(
     .catch((err)=>{
       return console.log('==file 가져오기 실패===',err)
     })
-      props.updateFiles([...imgs,files[0].path])
+     // props.updateFiles([...imgs,files[0].path])
     }
   }
   const closeModal = () => {

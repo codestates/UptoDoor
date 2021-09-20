@@ -14,7 +14,7 @@ import {
   BtnLink,
 } from "./StyledNavBar";
 import { signOut } from '../../../_actions/user_action';
-
+import Modal from '../Modal/Modal';
 
 function NavBar() {
   const dispatch:any = useDispatch()
@@ -25,13 +25,28 @@ function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   //로그인 모달
   const [modalOpen, setModalOpen] = useState(false);
-
+  const [needLoginModal, setNeedLoginModal] = useState(false);
+  const closeModal = () => { setNeedLoginModal(false) };
   const signoutHandler = useCallback(() => {
     dispatch(signOut()).then(() => 
     {
       window.location.reload();
     });
   },[])
+
+const accessInto = useCallback((name) => {
+  if (message) {
+    if (name === "address") {
+      window.location.href = 'http://localhost:3000/address'
+    } else {
+      window.location.href = 'http://localhost:3000/mypage'
+      }
+     
+    } else {
+      setNeedLoginModal(true);
+    }
+  }, [history, message]);
+
 
   return (
     <Header>
@@ -50,11 +65,11 @@ function NavBar() {
             <li>
               <ListLink to="/mapper">구독찾기</ListLink>
             </li>
-            <li>
-              <ListLink to="/address">동네인증</ListLink>
+            <li onClick={() => { accessInto("address") }}>
+              <ListLink >동네인증</ListLink>
             </li>
-            <li>
-              <ListLink to="/mypage">마이페이지</ListLink>
+            <li onClick={() => { accessInto("mypage") }}>
+              <ListLink >마이페이지</ListLink>
             </li>
           </ul>
         </Nav>
@@ -97,6 +112,11 @@ function NavBar() {
       </ButtonWrapper>
       <SideBar setIsOpen={setIsOpen} isOpen={isOpen}signoutHandler={signoutHandler} />
       <Signin setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {!user.message && needLoginModal ? <Modal closeModal={closeModal}
+        openModal={needLoginModal} modalTitleText="UptoDoor"
+        modalText="로그인이 필요한 서비스 입니다."
+        modalBtn="확인"
+      /> : null}
     </Header>
   );
 }

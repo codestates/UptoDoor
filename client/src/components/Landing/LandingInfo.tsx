@@ -13,7 +13,7 @@ const LandingInfo = ():any => {
     <LandingInfoContainer>
       <LandingInfoDescription {...homeObjOne} />
       <LandingInfoDescription {...homeObjTwo} />
-      <LandingInfoDescription {...homeObjThree}/>
+      <LandingInfoDescription {...homeObjThree}/> 
       </LandingInfoContainer>
   );
 };

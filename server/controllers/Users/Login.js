@@ -3,9 +3,14 @@ const crypto = require('crypto');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
   const Email = req.body.email;
-  const Password = crypto.createHash('sha512').update(req.body.password).digest('hex');
-  const Data = await user.findOne({ where: { email: Email, password: Password } });
-  
+  const Password = crypto
+    .createHash("sha512")
+    .update(req.body.password)
+    .digest("hex");
+  const Data = await user.findOne({
+    where: { email: Email, password: Password },
+  });
+
   if (Data) {
     const UserInfo = {
       id: Data.id,
@@ -21,8 +26,8 @@ module.exports = async (req, res) => {
       position: Data.position,
       billingkey: Data.billingkey,
     };
-    res.status(200).send({ message: 'login success', userinfo: UserInfo });
+    res.status(200).send({ message: "login success", userinfo: UserInfo });
   } else {
-    res.status(404).send({ message: 'login fail' });
+    res.status(404).send({ message: "login fail" });
   }
 };

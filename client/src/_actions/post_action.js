@@ -1,8 +1,8 @@
 import {
   ADMIN_POST
-} from "../_actions/type";
+} from "./type";
 
-export const adminPost = (posts) => {
+export const adminPost = (adminposts) => {
   // const postResult = 
   // axios.post('https://localhost:3001',posts)
   // .then((res)=>{
@@ -15,6 +15,6 @@ export const adminPost = (posts) => {
   // })
   return {
     type: ADMIN_POST,
-    payload: posts
+    payload: adminposts
   };
 };

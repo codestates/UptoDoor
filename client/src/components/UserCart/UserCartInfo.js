@@ -19,7 +19,7 @@ import {
   ButtonWrapper,
   UserCheckListDetailBox,
   CartCheckListWrapper,
-  // GoOrderLink
+  CartMenuItemContainer,
 } from "./StyledUserCart";
 import { setQuantity, removeFromCart } from "../../_actions/cart_action";
 import {
@@ -215,64 +215,66 @@ function UserCartInfo() {
               />
               <div>전체 선택</div>
             </CartCheckBoxAll>
-            {state.Menu &&
-              state.Menu.map((item) => {
-                return (
-                  <CartMenuItemWrapper key={item.id}>
-                    <CheckBox
-                      type="checkbox"
-                      onChange={(e) => {
-                        onChangeChecked(e.target.checked, item.id);
-                      }}
-                      checked={checkedItems.includes(item.id) ? true : false}
-                    />
-                    <img src={item.image} aria-label={item.name} />
-                    <CartMenuItemDetailWrapper>
-                      <div>
-                        <h4>{item.name}</h4>
-                        <p>{item.detail}</p>
-                        <p>{item.price} 원</p>
-                      </div>
-                      <InputNumberButton>
-                        <button
-                          type="button"
-                          className="minus-action"
-                          data-action="decrement"
-                          onClick={(e) => {
-                            decrement(e, item.id);
-                          }}
-                        >
-                          <span>−</span>
-                        </button>
-                        <input
-                          type="number"
-                          name="custom-input-number"
-                          defaultValue={item.quantity}
-                        ></input>
-                        <button
-                          type="button"
-                          className="plus-action"
-                          data-action="increment"
-                          onClick={(e) => {
-                            increment(e, item.id);
-                          }}
-                        >
-                          <span>+</span>
-                        </button>
-                        <button
-                          type="button"
-                          className="delete-action"
-                          onClick={() => {
-                            deleteHandler(item.id);
-                          }}
-                        >
-                          삭제
-                        </button>
-                      </InputNumberButton>
-                    </CartMenuItemDetailWrapper>
-                  </CartMenuItemWrapper>
-                );
-              })}
+            <CartMenuItemContainer>
+              {state.Menu &&
+                state.Menu.map((item) => {
+                  return (
+                    <CartMenuItemWrapper key={item.id}>
+                      <CheckBox
+                        type="checkbox"
+                        onChange={(e) => {
+                          onChangeChecked(e.target.checked, item.id);
+                        }}
+                        checked={checkedItems.includes(item.id) ? true : false}
+                      />
+                      <img src={item.image} aria-label={item.name} />
+                      <CartMenuItemDetailWrapper>
+                        <div>
+                          <h4>{item.name}</h4>
+                          <p>{item.detail}</p>
+                          <p>{item.price} 원</p>
+                        </div>
+                        <InputNumberButton>
+                          <button
+                            type="button"
+                            className="minus-action"
+                            data-action="decrement"
+                            onClick={(e) => {
+                              decrement(e, item.id);
+                            }}
+                          >
+                            <span>−</span>
+                          </button>
+                          <input
+                            type="number"
+                            name="custom-input-number"
+                            defaultValue={item.quantity}
+                          ></input>
+                          <button
+                            type="button"
+                            className="plus-action"
+                            data-action="increment"
+                            onClick={(e) => {
+                              increment(e, item.id);
+                            }}
+                          >
+                            <span>+</span>
+                          </button>
+                          <button
+                            type="button"
+                            className="delete-action"
+                            onClick={() => {
+                              deleteHandler(item.id);
+                            }}
+                          >
+                            삭제
+                          </button>
+                        </InputNumberButton>
+                      </CartMenuItemDetailWrapper>
+                    </CartMenuItemWrapper>
+                  );
+                })}
+            </CartMenuItemContainer>
             <PlusMoneyWrapper>
               <CheckBox
                 type="checkbox"
@@ -280,21 +282,18 @@ function UserCartInfo() {
                   setPlusMoneyChecked((prev) => !prev);
                 }}
               />
-              <div>
-                <div>
-                  <label>추가금액</label>
-                  <input
-                    type="number"
-                    defaultValue={plusMoney}
-                    onChange={(e) => {
-                      setPlusMoney(e.target.value);
-                    }}
-                    onBlur={getPrice}
-                  ></input>
-                  <span>원</span>
-                </div>
-                <span>{"  "}한번 배송시 추가되는 금액입니다</span>
-              </div>
+              <label>추가금액</label>
+              <input
+                className="money"
+                type="number"
+                defaultValue={plusMoney}
+                onChange={(e) => {
+                  setPlusMoney(e.target.value);
+                }}
+                onBlur={getPrice}
+              ></input>
+              <p>원</p>
+              <span>{"  "}한번 배송시 추가되는 금액입니다</span>
             </PlusMoneyWrapper>
             <UserCheckListDetailBox>
               <h3>세부사항</h3>
@@ -405,14 +404,13 @@ function UserCartInfo() {
                   </p>
                 </MoneyCheck>
                 <MoneyCheck cart>
-                  
-                  <h5>월 결제 금액은{" "}{" " }
+                  <h5>
+                    월 결제 금액은{" "}
                     {total.price
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  원 입니다.
+                    원 입니다.
                   </h5>
-                  
                 </MoneyCheck>
               </UserCheckListBox>
             </UserCheckList>

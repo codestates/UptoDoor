@@ -32,10 +32,22 @@ export const CartMenuListWrapper = styled.div`
   /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   @media screen and (min-width: 1140px) {
-    width: 95%;
+    width: 620px;
     margin-right: 15px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+`;
+
+export const CartMenuItemContainer = styled.div`
+  max-height: 330px;
+  width: 100%;
+  overflow-y: auto;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  @media screen and (min-width: 1140px) {
+    width: 620px;
+    box-shadow: none;
+    marign-bottom: 10px;
   }
 `;
 
@@ -64,7 +76,7 @@ export const CartMenuItemWrapper = styled.div`
   }
 
   @media screen and (min-width: 1140px) {
-    width: 95%;
+    width: 570px;
     margin: 0 auto 10px;
   }
 `;
@@ -172,7 +184,7 @@ export const InputNumberButton = styled.div`
   }
 
   @media screen and (min-width: 767px) {
-    margin-right: 36px;
+    margin-right: 18px;
 
     > .delete-action {
       margin-left: 20px;
@@ -185,39 +197,33 @@ export const PlusMoneyWrapper = styled.div`
   margin-bottom: 6px;
   padding: 8px 0;
   width: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
-  > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
     > span {
-      font-size: 12px;
+      font-size: 10px;
     }
-    > div {
       > label {
         margin-left: 4px;
         margin-right: 16px;
         font-weight: 400;
         letter-spacing: -1px;
+        margin-bottom:2px;
       }
-
-      > input {
+      > .money {
         background-color: #fff;
         width: 70px;
         height: 24px;
         border-radius: 4px;
-        border: 1px solid #ededed;
+        border: 2px solid #ededed;
         text-align: right;
         padding-right: 8px;
         margin-right: 4px;
+        /* margin-top: 2px;s */
       }
 
       > input::-webkit-inner-spin-button,
@@ -225,25 +231,19 @@ export const PlusMoneyWrapper = styled.div`
         -webkit-appearance: none;
         margin: 0;
       }
-
-      > span {
-        font-size: 14px;
-        margin-right: 8px;
+      > p {
+        margin-right: 6px;
       }
-    }
-  }
   @media screen and (min-width: 767px) {
-    > div {
       > span {
         margin-left: 15px;
+        font-size: 12px;
       }
-      > div {
         label {
           margin-right: 22px;
         }
       }
-    }
-  }
+
   @media screen and (min-width: 1140px) {
     width: 95%;
     height: 70px;

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controllers = require('../controllers/index');
 const auth = require('../middlewares/auth');
+const upload = require('../middlewares/multer');
 
 router.post('/users/signup', controllers.SignUp);
 router.post('/users/signin', controllers.Login);
@@ -26,5 +27,6 @@ router.post('/oauth/kakao/login', controllers.Kakaologin);
 router.get('/oauth/kakao/token', controllers.KakaoToken);
 router.post('/oauth/naver/signup', auth, controllers.Naversignup);
 router.post('/oatuh/naver/login', controllers.Naverlogin);
+router.post('/image', upload.single('file'), controllers.Image);
 
 module.exports = router;

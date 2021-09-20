@@ -14,22 +14,9 @@ import {
 } from './StyledAdminPost'
 import axios from 'axios';
 
-// interface MenuAddProps {
-//   menuImg : any,
-//   setMenuImgs : any,
-//   menuName:string,
-//   changeMenuName : any,
-//   price : number,
-//   priceHandler : any,
-//   menuDescription : string,
-//   // addMenuHandler : any,
-//   menuArr : any
-// }
-
-
 function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   }:any):any {
-  const [menuImg , setMenuImgs]:any = useState(''); 
+  const [menuImg , setMenuImgs]:any = useState([]); 
   const [menuName , setMenuName] = useState('');
   const [price , setPrice] = useState(0);
   const [menuDescription , setMenuDescription] = useState('');
@@ -55,6 +42,11 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
       axios.post('http://localhost:3060/image',formData,config)
       .then((res)=>{
         if(res.data.success){
+          const copyArr = menuArr.slice()
+          const lastIdx = copyArr.length-1;
+          copyArr[lastIdx].menuImg = res.data.filePath
+          console.log("copy배열",copyArr)
+          setMenuArr(copyArr);
           setMenuImgs(res.data.filePath)
         }else{
           alert('파일저장실패')
@@ -63,7 +55,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
       .catch((err)=>{
         return console.log('==file 가져오기 실패===',err)
       })
-      setMenuImgs(file[0].path);
+     // setMenuImgs(file[0].path);
       // props.updateFiles([...menuImg,files[0].path])
       // console.log('===img 경로보기===',imgs);
     }
@@ -73,8 +65,9 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
     }
 
     const addMenuItemHandler = () => {
+      // menuImg && menuName && price && menuDescription
       console.log('누르면 메뉴어레이 하나씩 더생김.')
-      if(menuImg && menuName && price && menuDescription){
+      if(true){
         const menu1 = {
           menuImg : menuImg,
           menuName : menuName,

@@ -111,6 +111,7 @@ function AdminPostForm() {
   //!add menu onchange handler
   const addMenuHandler = (menu: any)=> {
 <<<<<<< HEAD
+<<<<<<< HEAD
     console.log("에드메뉴핸들러", menu);
     setMenuArr([menuArr]);
 =======
@@ -118,6 +119,15 @@ function AdminPostForm() {
     setMenuArr([menu, ...menuArr]);
     console.log('===menu===',menu)
   }
+=======
+    const setArr = menuArr.slice();
+    setArr.pop();
+    setArr.push({
+      menuImg: '', menuName:'', price:0, menuDescription:''
+    });
+    setMenuArr([menu, ...setArr]);
+  };
+>>>>>>> ecd1f38442380d041473e603b8396a4cdb74642a
   //!upload storeimg
   const updateStoreImg = (storeImgs:any) => {
     setStoreImgArr(storeImgs)

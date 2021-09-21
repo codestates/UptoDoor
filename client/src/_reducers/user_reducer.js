@@ -6,6 +6,8 @@ import {
   SIGNOUT,
 } from "../_actions/type";
 
+
+
 export default function user_reducer(state = {}, action) {
   // console.log("reducer : ", action.payload);
   switch (action.type) {
@@ -13,8 +15,7 @@ export default function user_reducer(state = {}, action) {
       return { ...state, signUp: action.payload };
     case SIGNIN:
       console.log("aciotnsignin", action.payload);
-      const { id, message, nickname, email, mobile } = action.payload;
-      return { ...state, id, message, nickname, email, mobile };
+      return { ...state, ...action.payload };
 
     case SIGNOUT:
       return (state = {});
@@ -26,12 +27,10 @@ export default function user_reducer(state = {}, action) {
     case ADD_ORDER: {
       console.log("addorder", action.payload);
       if (!state.order) {
-        return { ...state, order: [ action.payload] };
+        return { ...state, order: [ action.payload ] };
       } else {
         return {...state,order: [...state.order, action.payload]}
       }
-      // state.order = [...state.order, action.payload]
-      
     }
 
     default:

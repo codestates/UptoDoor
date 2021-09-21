@@ -35,7 +35,7 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
     dispatch(signIn(userinfo))
       .then((res: any) => {
         if (res.payload.message  === 'login success') {
-          window.location.reload();
+          window.location.href="http://localhost:3000/"
         } else {
           alert('로그인 실패하였습니다.');
         }
@@ -85,6 +85,12 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
     }
   },[])
   
+  const logOutHandler = useCallback((e) => {
+    axios.delete('http://localhost:3060/users/signout')
+    .then((res)=>{
+      console.log("로그아웃 응답",res.data)
+    })
+  },[])
 
   return modalOpen ? (
     <SigninContainer>
@@ -98,7 +104,6 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
         <SigninInput type="password" placeholder="password" value={password} onChange={onChangePassword} />
         <LagreButton primary >로그인</LagreButton>
         </form>
-        
         <TextOr>Or</TextOr>
         <LagreButton className="btn" onClick={kakaoHandler}><img src='./images/icon/kakao.png' /><div>카카오 계정으로 로그인</div></LagreButton>
         <LagreButton className="btn" onClick={naverHandler}><img src='./images/icon/naver.png' /><div>네이버 계정으로 로그인</div> </LagreButton>

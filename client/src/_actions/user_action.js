@@ -18,7 +18,6 @@ export const signUp = (userinfo) => {
   axios.post('http://localhost:3060/users/signup',
   userinfo)
   .then((res)=>{
-
     console.log(res.data);
   })
   .catch((err)=>{
@@ -34,13 +33,7 @@ export const signUp = (userinfo) => {
 export const signIn = (userinfo) => {
   const result = axios.post('http://localhost:3060/users/signin', userinfo).then((res) => {
     console.log("signin", res.data);
-    return {
-      message: res.data.message,
-      id: res.data.userinfo.id,
-      nickname: res.data.userinfo.nickname,
-      email: res.data.userinfo.email,
-      mobile: res.data.userinfo.mobile
-    };
+    return res.data.userinfo;
   });
 
   console.log("result", result);
@@ -94,9 +87,10 @@ export const addAddress = (address, name) => {
 
 export const addOrder = (order, selected_mobile) => {
   order.selected_mobile = selected_mobile;
-  console.log(order);
-  const request = axios.post(`http://localhost:3060/users/order`)
-  console.log(request)
+  console.log("오더오더",order);
+  const request = axios.post(`http://localhost:3060/users/order`, order).then((res) => {
+    console.log("여기.",res.data);
+  }).catch((err)=> console.log("ordererr",err))
 
   return {
     type: ADD_ORDER,

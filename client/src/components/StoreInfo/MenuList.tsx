@@ -51,8 +51,9 @@ function MenuList():any {
   const history = useHistory();
   const state = useSelector((state) => state);
   const { cart }: any = state;
-  const { menu } = cart
-  console.log(menu)
+  const { menu} = cart
+  console.log("메뉴", menu)
+
   const dispatch:any = useDispatch()
 
   const addCartHandler = (item:any) => {

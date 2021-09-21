@@ -1,4 +1,5 @@
-import React from 'react'
+
+import React,{ useEffect } from 'react'
 import { SmallButton } from '../common/Button/Button'
 import {
   MypageOrderListWrapper,
@@ -12,12 +13,17 @@ import {
   OrderDate,
   OrderImg,
   OrderInfoWrapper,
+
   OrderSection,
   EachItemBox,
   TtlPricemBox
 } from './StyledUserOrderInfo'
 
 function MyOrderWrapper() {
+  
+  useEffect(() => {
+    console.log(filteredOrderId);
+  }, []);
   return (
     <MypageOrderListWrapper>
       <OrderListContent>
@@ -63,6 +69,7 @@ function MyOrderWrapper() {
               readOnly = {true}
               >샐러드 오이빼고 주문</DetailTextArea>
             </EachItemBox>
+
           </FlexBox>
         </StoreInfoWrapper>
 
@@ -115,3 +122,4 @@ function MyOrderWrapper() {
 }
 
 export default MyOrderWrapper
+

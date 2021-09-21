@@ -27,7 +27,7 @@ export const Header = styled.header`
   justify-content: space-between;
   margin-bottom: 30px;
   transition: all 0.4s;
-
+  z-index: 4;
   @media screen and (min-width: 767px) {
     height: 80px;
     margin: 0px auto;
@@ -45,7 +45,6 @@ export const Header = styled.header`
 
 export const NavWrapper = styled.div`
   display: flex;
-  
 `;
 
 export const NavLogo = styled(Link)`
@@ -106,7 +105,11 @@ export const Nav = styled.nav`
   }
 `;
 
-export const ListLink = styled(Link)`
+// export const ListLink = styled(Link)`
+  
+// `;
+
+export const Listli = styled.li`
   color: ${TextColor};
   text-decoration: none;
   font-size: 16px;

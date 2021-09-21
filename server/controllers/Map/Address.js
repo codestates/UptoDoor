@@ -10,10 +10,10 @@ module.exports = async (req, res) => {
             subAddress, subAddressDetail, sub_xvalue, sub_yvalue } = req.body;
     try {
         await user.update( 
-        { mainaddress: mainAddress, mainaddressDetail: mainAddressDetail,
-        main_xvalue: main_xvalue, main_yvalue: main_yvalue,
-        subaddress: subAddress, subaddressDetail: subAddressDetail,
-        sub_xvalue: sub_xvalue, sub_yvalue: sub_yvalue }, { where: { id: id } });
+        { mainAddress: mainAddress, mainAddressDetail: mainAddressDetail,
+        main_Xvalue: main_xvalue, main_Yvalue: main_yvalue,
+        subAddress: subAddress, subAddressDetail: subAddressDetail,
+        sub_Xvalue: sub_xvalue, sub_Yvalue: sub_yvalue }, { where: { id: id } });
     }
     catch(err) {
         console.log('-- 주소 등록 실패 -- ',err);

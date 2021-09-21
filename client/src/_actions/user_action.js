@@ -18,7 +18,6 @@ export const signUp = (userinfo) => {
   axios.post('https://uptodoors.shop/users/signup',
   userinfo)
   .then((res)=>{
-
     console.log(res.data);
   })
   .catch((err)=>{

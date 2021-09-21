@@ -10,22 +10,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      models.user.hasMany(models.user_order,{foreignKey: "user_id", sourceKey: 'id'})
       models.user.belongsTo(models.store,{foreignKey: "store_id", sourceKey: 'id'})
-      models.user.belongsTo(models.order,{foreignKey: "order_id", sourceKey: 'id'})
     }
   };
   user.init({
     email: DataTypes.STRING,
-    nickname: DataTypes.STRING,
+    name: DataTypes.STRING,
     password: DataTypes.STRING,
     mainaddress: DataTypes.STRING,
-    mainaddressDetail: DataTypes.STRING,
-    main_xvalue: DataTypes.FLOAT,
-    main_yvalue: DataTypes.FLOAT,
-    subaddress: DataTypes.STRING,
-    subaddressDetail: DataTypes.STRING,
-    sub_xvalue: DataTypes.FLOAT,
-    sub_yvalue: DataTypes.FLOAT,
+    mainAddressDetail: DataTypes.STRING,
+    main_Xvalue: DataTypes.FLOAT,
+    main_Yvalue: DataTypes.FLOAT,
+    subAddress: DataTypes.STRING,
+    subAddressDetail: DataTypes.STRING,
+    sub_Xvalue: DataTypes.FLOAT,
+    sub_Yvalue: DataTypes.FLOAT,
     mobile: DataTypes.STRING,
     age: DataTypes.INTEGER,
     gender: DataTypes.STRING,

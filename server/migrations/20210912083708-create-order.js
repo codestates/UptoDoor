@@ -11,13 +11,16 @@ module.exports = {
       order_time: {
         type: Sequelize.STRING
       },
-      user_email: {
+      user_name: {
         type: Sequelize.STRING
       },
-      user_mobile: {
+      selected_mobile: {
         type: Sequelize.STRING
       },
-      user_address: {
+      selected_address: {
+        type: Sequelize.STRING
+      },
+      selected_address_detail: {
         type: Sequelize.STRING
       },
       plus_check: {

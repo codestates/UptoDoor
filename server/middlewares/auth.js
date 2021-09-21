@@ -11,15 +11,13 @@ module.exports = async (req, res, next) => {
     const { email, password } = req.body;
     const Password = crypto.createHash('sha512').update(password).digest('hex');
     const Data = await user.findOne({ where: { email: email, password: Password } });
-
-    if (Data) {
+    console.log('------',Data);
     const accessData = { email: Data.email, id: Data.id, nickname: Data.nickname };
     const accesstoken = generateAccessToken(accessData);
     const refreshtoken = generateRefreshToken(accessData);
     sendAccessToken(res, accesstoken);
     sendRefreshToken(res, refreshtoken);
     next();
-    }
     
   } else {
 

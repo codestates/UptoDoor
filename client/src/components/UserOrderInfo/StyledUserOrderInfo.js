@@ -100,7 +100,7 @@ display: flex;
 justify-content: flex-end;
 align-items: flex-end;
 >h2{
-  margin-left: 10px;
+  margin-left: 10px; 
 }
 `
 export const OrderDate = styled.p`

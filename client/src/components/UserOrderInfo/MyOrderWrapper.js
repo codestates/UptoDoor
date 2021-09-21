@@ -19,11 +19,12 @@ import {
   TtlPricemBox
 } from './StyledUserOrderInfo'
 
-function MyOrderWrapper() {
+function MyOrderWrapper({filteredOrderId , listbackHandler}) {
   
   useEffect(() => {
     console.log(filteredOrderId);
   }, []);
+
   return (
     <MypageOrderListWrapper>
       <OrderListContent>
@@ -32,7 +33,7 @@ function MyOrderWrapper() {
           <FlexBox between align>
             {/* <i class="fas fa-angle-double-right">마이페이지쪽화살표</i> */}
             <div className = 'i-wrapper'>
-              <i className="fas fa-angle-double-left"></i>
+              <i className="fas fa-angle-double-left" onClick = {listbackHandler}></i>
               <span>구독중</span>
             </div>
             <OrderDate> 다음 결제일 : 2021.10.21 </OrderDate>

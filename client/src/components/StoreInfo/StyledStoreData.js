@@ -204,6 +204,8 @@ font-size: 12px;
 export const BtnBox = styled.div`
 text-align: center;
 width: 100%;
+margin-top : ${({btnboxMargin})=> (btnboxMargin ? '18px' : 0)};
+btnboxMargin
 >a{
 text-decoration: none;
 }

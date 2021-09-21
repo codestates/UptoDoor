@@ -8,8 +8,9 @@ module.exports = async (req, res) => {
     await user.update({ position: 1, store_id: 1}, { where : { id: id }}); //일반 사용자 사장님 권한 변경
     
     const { title, category, description, mobile, adminAddress, storeImage, storeFile } = req.body;
+
     for(let i=0; i<storeImage.length; i++){
-        await store.create({ 
+        await store.create({  //한줄로 만들어서 담기
             id: 1, title: title, category: category, description: description, 
             number: mobile, address: adminAddress, image: storeImage[i], Bussiness_paper: storeFile });
     }

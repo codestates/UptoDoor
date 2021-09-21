@@ -25,7 +25,7 @@ function MyOrderList({ moveDetailHandler}:any):any {
         </ListInfo>
         </OrderListContent>
         <NextBtn type="button" onClick={()=>{moveDetailHandler("1")}}>
-          <i className="fas fa-chevron-right"></i>
+          <i className="fas fa-angle-double-right"></i>
         </NextBtn>
       </OrderListWrapper>
       
@@ -48,7 +48,7 @@ function MyOrderList({ moveDetailHandler}:any):any {
         </ListInfo>
         </OrderListContent>
         <NextBtn type="button" onClick={()=>{moveDetailHandler("2")}}>
-          <i className="fas fa-chevron-right"></i>
+          <i className="fas fa-angle-double-right"></i>
         </NextBtn>
       </OrderListWrapper>
       <OrderListWrapper>
@@ -70,7 +70,7 @@ function MyOrderList({ moveDetailHandler}:any):any {
         </ListInfo>
         </OrderListContent>
         <NextBtn type="button" onClick={()=>{moveDetailHandler("3")}}>
-          <i className="fas fa-chevron-right"></i>
+          <i className="fas fa-angle-double-right"></i>
         </NextBtn>
       </OrderListWrapper>
       

@@ -8,11 +8,12 @@ module.exports = async (req, res) => {
     //현재 로그인한 유저의 정보 뽑기
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
-    const { id } = checkAccessToken;
+    const { id,name } = checkAccessToken;
 
     try {
         //오더테이블에 데이터 추가
         const orderData = await order.create({
+            user_name : name,
             order_address : orderInfo.selected_address,
             order_address_detail : orderInfo.selected_address_detail,
             plus_check : orderInfo.plus_check,

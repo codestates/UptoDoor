@@ -101,8 +101,8 @@ function EnrollAddress() {
       if (status === kakao.maps.services.Status.OK) {
         // console.log("제주도 주소", result)
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        setYValue(result[0].y);
-        setXValue(result[0].x);
+        setYValue(result[0].x);
+        setXValue(result[0].y);
         // console.log("1",coords)
         geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
       }

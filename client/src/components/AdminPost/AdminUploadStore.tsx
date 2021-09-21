@@ -30,7 +30,7 @@ function AdminUploadStore(
   // img 5개 제한
   const [openModal , setOpenModal] = useState(false);
   const [imgs , setImgs]:any = useState([]); 
-  const dropHandler = (files:any) => {
+  const dropHandler = async (files:any) => {
     if(imgs.length === 5){
       setOpenModal(true);
     }else{
@@ -40,7 +40,7 @@ function AdminUploadStore(
     }
     formData.append('file',files[0]);
     //dispatch action axios 관리된거 와야함.
-    axios.post('http://localhost:3060/image',formData,config)
+    await axios.post('http://localhost:3060/image',formData,config)
     .then((res)=>{
       if(res.data.success){
         setImgs([...imgs,res.data.filePath])
@@ -85,7 +85,7 @@ function AdminUploadStore(
     <StyledImgUpload>
       <StoreImgFlexWrapper>
         <label>가게 사진 등록</label>
-        <Dropzone onDrop={dropHandler}>
+        <Dropzone onDrop={dropHandler} >
           {({getRootProps, getInputProps}) => (
               <ImgUploadWrapper {...getRootProps()}>
                 <input {...getInputProps()} />

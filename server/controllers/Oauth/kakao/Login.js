@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
         userData = result.data;
     })
     
-    res.status(200).send({message : "sucess", data : userData})
+    res.status(200).send({message : "kakao login succes", data : userData})
 
     
     

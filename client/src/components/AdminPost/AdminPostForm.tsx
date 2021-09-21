@@ -135,6 +135,7 @@ function AdminPostForm() {
   }
   //!폼제출 핸들러
   const submitHandler = (e:any) => {
+    console.log("제출전 menuarr",menuArr);
     e.preventDefault();
     switchAddress(adminAddress)
     postHandler('main')
@@ -161,7 +162,7 @@ function AdminPostForm() {
       dispatch(adminPost(adminPostInfo))
       // 모달띄워지고(메뉴등록이 완료되었습니다.) 메인화면
       console.log(adminPostInfo);
-      history.push('/');
+      //history.push('/');
     }
   }
   //!kakao add

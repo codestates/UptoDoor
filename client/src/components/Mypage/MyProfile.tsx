@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
 import { Container, Title, Wrapper } from "../GlobalStyle";
-import MyOrderItem from '../UserOrderInfo/MyOrderItem';
+import MyOrderItem from '../UserOrderInfo/MyOrderWrapper';
 import MyOrderList from './MyOrderList';
 // import MyPaymentList from './MyPaymentList';
 import { ButtonWrapper, MypageWrapper,MypageContent,MypageProfileWrapper,MypageProfileBtnWrapper,MypageUl,MypageLi } from './StyledMypage';

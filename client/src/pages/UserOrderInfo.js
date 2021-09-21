@@ -1,12 +1,13 @@
 import React from 'react'
-import MyOrderItem from '../components/UserOrderInfo/MyOrderItem'
+import MyOrderWrapper from '../components/UserOrderInfo/MyOrderWrapper'
+
 
 const UserOrderInfo = () => {
   return (
     <>
-      <MyOrderItem/>
+      <MyOrderWrapper />
     </>
-  )
+  );
 }
 
 export default UserOrderInfo

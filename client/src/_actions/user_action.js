@@ -15,7 +15,7 @@ axios.defaults.withCredentials = true
 export const signUp = (userinfo) => {
   console.log('액션까지옴')
   const result = 
-  axios.post('https://uptodoors.shop/users/signup',
+  axios.post('http://localhost:3060/users/signup',
   userinfo)
   .then((res)=>{
     console.log(res.data);
@@ -33,13 +33,7 @@ export const signUp = (userinfo) => {
 export const signIn = (userinfo) => {
   const result = axios.post('http://localhost:3060/users/signin', userinfo).then((res) => {
     console.log("signin", res.data);
-    return {
-      message: res.data.message,
-      id: res.data.userinfo.id,
-      nickname: res.data.userinfo.nickname,
-      email: res.data.userinfo.email,
-      mobile: res.data.userinfo.mobile
-    };
+    return res.data.userinfo;
   });
 
   console.log("result", result);

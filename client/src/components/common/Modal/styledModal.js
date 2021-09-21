@@ -20,6 +20,7 @@ const showModalBg = keyframes`
   }
 `
 export const StyledModal = styled.div`
+  z-index: 99999;
 `
 export const ModalContainer = styled.div`
   top: 0;

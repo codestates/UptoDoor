@@ -6,6 +6,8 @@ import {
   SIGNOUT,
 } from "../_actions/type";
 
+
+
 export default function user_reducer(state = {}, action) {
   // console.log("reducer : ", action.payload);
   switch (action.type) {
@@ -26,12 +28,10 @@ export default function user_reducer(state = {}, action) {
     case ADD_ORDER: {
       console.log("addorder", action.payload);
       if (!state.order) {
-        return { ...state, order: [ action.payload] };
+        return { ...state, order: [ action.payload ] };
       } else {
         return {...state,order: [...state.order, action.payload]}
       }
-      // state.order = [...state.order, action.payload]
-      
     }
 
     default:

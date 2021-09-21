@@ -4,18 +4,15 @@ import { TextLightGrey } from '../../GlobalStyle';
 
 export const SidebarContainer = styled.aside`
   position: fixed;
-  z-index: 998;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(1px);
   display: grid;
   align-items: center;
-  top: 0;
   left: 0;
   opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
-
   @media screen and (min-width: 767px) {
     display: none;
   }

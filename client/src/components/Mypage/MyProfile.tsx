@@ -1,15 +1,21 @@
 import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
 import { Container, Title, Wrapper } from "../GlobalStyle";
+import MyOrderItem from '../UserOrderInfo/MyOrderItem';
 import MyOrderList from './MyOrderList';
-import MyPaymentList from './MyPaymentList';
+// import MyPaymentList from './MyPaymentList';
 import { ButtonWrapper, MypageWrapper,MypageContent,MypageProfileWrapper,MypageProfileBtnWrapper,MypageUl,MypageLi } from './StyledMypage';
 function MyProfile(): any {
   const [currentTab, setCurrentTab] = useState(0);
+  const [filteredOrderId, setFilteredOrderId]=useState("")
 
+  const moveDetailHandler = (id:any) => {
+    setFilteredOrderId(id)
+  }
 
-
-
+  const listbackHandler = () => {
+    setFilteredOrderId("");
+  }
   return (
     <Container>
       <Title>프로필</Title>
@@ -38,7 +44,9 @@ function MyProfile(): any {
               </MypageUl>
           
           </MypageProfileBtnWrapper>
-          {currentTab === 0 ? <MyOrderList /> : <MyPaymentList />}
+          {filteredOrderId ? <MyOrderItem filteredOrderId={filteredOrderId}
+          listbackHandler={listbackHandler}
+          /> : <MyOrderList moveDetailHandler={moveDetailHandler} />}
         </MypageWrapper>
         
         

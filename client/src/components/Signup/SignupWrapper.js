@@ -49,8 +49,19 @@ function SignupWrapper() {
       email,password,nickname,mobile,
       gender,age
     }
-
     dispatch(signUp(userinfo))
+    .then((res) => {
+      console.log('===',res.payload)
+      if (res.payload.message  === 'send success') {
+        alert('회원가입성공')
+        return history.push('/')
+      } else {
+        alert('회원가입 조건을 충족해주세요.');
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    });
   },[email,password,passwordChk,certEmail])
 
   const onChangeEmailHandler = useCallback((e) => {

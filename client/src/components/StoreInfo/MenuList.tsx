@@ -57,17 +57,12 @@ function MenuList():any {
   const dispatch:any = useDispatch()
 
   const addCartHandler = (item:any) => {
-
-    console.log('====cart====',cart);
-    console.log('========',cart.menu);
     // 메뉴의 id와 item.id 가 같으면 quantity 만 추가, 아니면 디스패치 애드카트에 아이템추가.
     if (!cart.menu.map((el:any) => el.id).includes(item.id)) {
       item = {...item, quantity : 1 }
       dispatch(addCart(item))
     }else{
       console.log('=장바구니담겼지만 이미 카트에 상품있음=',item)
-      //quantity만 올라가야한다.
-      // dispatch(addCart(item.quantity+1))
     }
   }
   const cancleClickHandler = () => {

@@ -13,7 +13,6 @@ axios.defaults.withCredentials = true
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
-  console.log('액션까지옴')
   const result = 
   axios.post('http://localhost:3060/users/signup',
   userinfo)
@@ -25,7 +24,7 @@ export const signUp = (userinfo) => {
   })
   return {
     type : SIGNUP,
-    payload : result //result 대체예정,응답받은 유저인포 reducer 전달
+    payload : result 
   }
 }
 

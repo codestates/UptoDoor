@@ -7,11 +7,11 @@ import {
   AddressWrapper,
   Addressh3,
   EnrollAddressWrapper,
-  AddressForm,DetailAddress
+  AddressFormDiv,DetailAddress
 } from "./StyledAddress";
 import { SmallButton } from "../common/Button/Button";
 import { useDispatch } from "react-redux";
-import { addMainAddress, addSubAddress } from '../../_actions/user_action';
+import { addAddress } from '../../_actions/user_action';
 const { kakao }: any = window;
 
 function EnrollAddress() {
@@ -24,15 +24,22 @@ function EnrollAddress() {
   const [subAddressDetail, setSubAddressDetail] = useState("");
   const [mainModal, setMainModal] = useState(false)
   const [subModal, setSubModal] = useState(false);
+  const [xValue, setXValue] = useState('');
+  const [yValue, setYValue] = useState('');
+
+  
+
   const onChangeMainAddress = useCallback((data) => {
+    
     setMainAddress(JSON.parse(data).address);
     // console.log(mainAddress);
+    switchAddress(JSON.parse(data).address);
     setMainModal(false);
   },[])
   const onChangeSubAddress = useCallback((data) => {
     setSubAddress(JSON.parse(data).address);
+    switchAddress(JSON.parse(data).address);
     setSubModal(false);
-    console.log(subAddress);
   },[]);
   //* 지우는 함수
   const deleteHandler = useCallback((name) => {
@@ -45,25 +52,45 @@ function EnrollAddress() {
     }
   },[])
 
-  //* 보내는 함수
-  const mainAddressHandler = useCallback((e) => {
+  //* 보내는 주소 함수
+  const addressHandler = (e: any, name:string) => {
+    console.log("x,y", xValue, yValue);
+    console.log("current", current);
+    console.log("switched", switched);
     e.preventDefault();
-    switchAddress(mainAddress)
-    if (mainAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
-
-    postHandler("main")
-  },[mainAddressDetail]);
-
-  const subAddressHandler = useCallback((e) => {
-    e.preventDefault();
-    switchAddress(subAddress)
-    console.log("서브", switched);
-      if (subAddressDetail.length !== 0) {
-        dispatch(addSubAddress(subAddress, subAddressDetail));
-      } else {
-        alert("상세 주소란을 입력해주세요.");
+    if (name === "main") {
+      if (mainAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
+      if (switched === current) {
+      console.log("여기는 메인이다.");
+        const main = {
+          mainAddress,
+          mainAddressDetail,
+          main_xvalue: xValue,
+          main_yvalue: yValue
+        };
+        dispatch(addAddress(main,name));
       }
-  }, [subAddressDetail]);
+        else {
+        alert("동네 인증에 실패")
+      }
+    } else {
+      if (subAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
+      if (switched === current) {
+        console.log("여기는 서브다");
+        const sub = {
+          subAddress,
+          subAddressDetail,
+          sub_xvalue: xValue,
+          sub_yvalue: yValue
+        };
+      dispatch(addAddress(sub,name));
+    }
+    else {
+      alert("동네 인증에 실패")
+      }
+    }
+
+  };
 
 
   const switchAddress = useCallback((address) => {
@@ -74,29 +101,27 @@ function EnrollAddress() {
       if (status === kakao.maps.services.Status.OK) {
         // console.log("제주도 주소", result)
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        setYValue(result[0].y);
+        setXValue(result[0].x);
         // console.log("1",coords)
         geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
       }
     });
     const callback = (result:any, status:any) => {
     //? 좌표로 도오명 주소 정보 요청
-    if (status === kakao.maps.services.Status.OK) {
-      setSwitched(result[0].address.address_name.split(" ")[2]);
+      if (status === kakao.maps.services.Status.OK) {
+      console.log("주소-------1",result[0].address.address_name.split(" ")[1])
+      setSwitched(result[0].address.address_name.split(" ")[1]);
     }
-  };
+    };
   }, []);
 
-  const postHandler = useCallback((name) => {
-    console.log(name);
-    //조건이 
-    console.log("currnet", current)
-    if (switched === current) {
-      dispatch(addMainAddress(mainAddress, mainAddressDetail));
-    }
-    else {
-      alert("동네 인증에 실패")
-    }
-  },[mainAddress,mainAddressDetail])
+  // const postHandler = useCallback((name) => {
+  //   console.log("name", name);
+  //   //조건이 
+  //   console.log("current 제출할때",switched, current)
+    
+  // },[mainAddress,mainAddressDetail])
 
 
 
@@ -118,7 +143,8 @@ function EnrollAddress() {
     const callback = (result: any, status: any) => {
       //? 좌표로 도오명 주소 정보 요
       if (status === kakao.maps.services.Status.OK) {
-        setCurrent(result[0].address.address_name.split(" ")[2]);
+        console.log("주소-----2",result[0].address.address_name.split(" ")[1]);
+        setCurrent(result[0].address.address_name.split(" ")[1]);
       }
     };
   },[current]);
@@ -131,12 +157,9 @@ function EnrollAddress() {
           다양한 구독서비스를 만나보세요
         </Addressh3>
         <EnrollAddressWrapper
-          onSubmit={(e:any) => {
-            mainAddressHandler(e);
-          }}
-        >
+          onSubmit={(e:any) => {addressHandler(e,"main");}}>
           <AddressTitle deleteHandler={deleteHandler} name="main" />
-          <AddressForm>
+          <AddressFormDiv>
             <div>{mainAddress}</div>
             <SmallButton
               type="button"
@@ -144,26 +167,26 @@ function EnrollAddress() {
             >
               주소 찾기
             </SmallButton>
-          </AddressForm>
+          </AddressFormDiv>
           <AddressTitle
           name="null"
            />
           <DetailAddress>
             <input
               type="text"
+              defaultValue={mainAddressDetail}
               onChange={(e) => {setMainAddressDetail(e.target.value) 
               }}
             ></input>
             <SmallButton primary>주소 제출</SmallButton>
           </DetailAddress>
         </EnrollAddressWrapper>
+        {/* 밑에는 서브 */}
         <EnrollAddressWrapper
-          onSubmit={(e:any) => {
-            subAddressHandler(e);
-          }}
+          onSubmit={(e:any) => {addressHandler(e, "sub");}}
         >
           <AddressTitle deleteHandler={deleteHandler} name="sub" />
-          <AddressForm>
+          <AddressFormDiv>
             <div>{subAddress}</div>
             <SmallButton
               type="button"
@@ -171,15 +194,16 @@ function EnrollAddress() {
             >
               주소 찾기
             </SmallButton>
-          </AddressForm>
+          </AddressFormDiv>
           <AddressTitle name="no"/>
           <DetailAddress>
             <input
               type="text"
+              defaultValue={subAddressDetail}
               onChange={(e) => {setSubAddressDetail(e.target.value) 
               }}
             ></input>
-            <SmallButton primary>주소 제출</SmallButton>
+            <SmallButton primary type="submit">주소 제출</SmallButton>
           </DetailAddress>
         </EnrollAddressWrapper>
       </AddressWrapper>

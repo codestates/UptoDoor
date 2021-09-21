@@ -19,7 +19,8 @@ import { Container, Wrapper, Title } from "../GlobalStyle";
 
 function UserOrderWrapper() {
   const state = useSelector((state) => state);
-  const menu = state.cart.Menu;
+  const menu = state.cart.menu;
+  console.log(menu)
   const dispatch = useDispatch();
   const [mobileCheck, setMobileCheck] = useState(false);
   const mobileChecker = () => setMobileCheck((mobileCheck) => !mobileCheck);
@@ -84,7 +85,7 @@ useEffect(() => {
               <li>가격</li>
             </MenuUl>
             {/* 사용설명 nav 느낌 */}
-            {menu.map((item) => {
+            {menu && menu.map((item) => {
               return (
                 <MenuItemWrapper key={item.id}>
                   <img src={item.image} alt="" />

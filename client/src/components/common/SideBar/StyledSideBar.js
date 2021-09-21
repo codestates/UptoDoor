@@ -104,3 +104,18 @@ export const SidebarLink = styled(Link)`
   text-decoration: none;
   cursor: pointer;
 `;
+
+export const SidebarBtn = styled.button`
+  background-color: #fff;
+  padding: 0 0 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+  list-style: none;
+  text-decoration: none;
+  cursor: pointer;
+  border: none; 
+`;

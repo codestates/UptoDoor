@@ -4,12 +4,12 @@ import {
   REMOVE_FROM_All_CART,
   ADD_CART,
   ADD_ALL_CART_TO_ORDER,
-  SET_ADDRESS,
+  SET_ADDRESS,SELECT_STORE
 } from "./type";
 
 
 
-export const setQuantity = (quantity:number, id:string) => {
+export const setQuantity = (quantity:number, id:string):any => {
   return {
     type: SET_QUANTITY,
     payload: {
@@ -19,30 +19,31 @@ export const setQuantity = (quantity:number, id:string) => {
   };
 };
 
-export const removeFromCart = (id:string) => {
+export const removeFromCart = (id:string):any => {
   return {
     type: REMOVE_FROM_CART,
     payload: { id}
   };
 }
 
-export const removeFromAllCart = () => {
-  return {
+export const removeFromAllCart = async() => {
+  return await {
     type: REMOVE_FROM_All_CART,
   };
 };
 
-export const addCart = (item: {}) => {
-  return {
+export const addCart = async (item: {}) => {
+  return await {
     type: ADD_CART,
     payload : item
   };
 };
 
-export const addAllCartToOrder = (data:{}) => {
+export const addAllCartToOrder = (data: {}) => {
+  console.log("액션이다", data);
   return {
     type: ADD_ALL_CART_TO_ORDER,
-    paylad: data
+    payload: data
   };
 };
 
@@ -52,3 +53,10 @@ export const setAddress = (address:string) => {
     payload: address
   };
 };
+
+export const selectStore = (id: any) => {
+  return {
+    type: SELECT_STORE,
+    payload: id
+  }
+}

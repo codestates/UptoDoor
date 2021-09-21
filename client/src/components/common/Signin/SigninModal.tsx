@@ -14,8 +14,8 @@ interface Iprops {
   setIsOpen: any;
 }
 
-function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
-  const dispatch = useDispatch()
+function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
+  const dispatch:any = useDispatch()
   // if (!modalOpen) return null;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +32,17 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
     e.preventDefault();
     console.log("제출", email, password);
     const userinfo = {email, password}
-    dispatch(signIn(userinfo));
+    dispatch(signIn(userinfo))
+      .then((res: any) => {
+        if (res.payload.message  === 'login success') {
+          window.location.reload();
+        } else {
+          alert('로그인 실패하였습니다.');
+        }
+      })
+      .catch((err: any) => {
+        console.log(err)
+      });
   },[email,password])
   
   const kakaoHandler = useCallback((e) => {
@@ -75,6 +85,12 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
     }
   },[])
   
+  const logOutHandler = useCallback((e) => {
+    axios.delete('http://localhost:3060/users/signout')
+    .then((res)=>{
+      console.log("로그아웃 응답",res.data)
+    })
+  },[])
 
   return modalOpen ? (
     <SigninContainer>
@@ -88,6 +104,7 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
         <SigninInput type="password" placeholder="password" value={password} onChange={onChangePassword} />
         <LagreButton primary >로그인</LagreButton>
         </form>
+        <button onClick={logOutHandler}>로그아웃버튼</button>
         
         <TextOr>Or</TextOr>
         <LagreButton className="btn" onClick={kakaoHandler}><img src='./images/icon/kakao.png' /><div>카카오 계정으로 로그인</div></LagreButton>

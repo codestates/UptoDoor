@@ -52,6 +52,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           copyArr[lastIdx].menuImg = res.data.filePath
           console.log("copyImg만들어가는 배열",copyArr)
           setMenuImg(res.data.filePath)
+
         }else{
           alert('파일저장실패')
         }
@@ -91,8 +92,8 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   return (
     <StoreInputBox>
       <label className = 'menu-enroll-label'>메뉴 등록</label>
-      {menuArr && menuArr.map((el:any,idx:number)=> {
-        // console.log('menuArr==',menuArr);
+      {menuArr && menuArr.map((el:any,idx:number) => {
+      // console.log('-----el----',el);
         return (
           <StoreMenuAddWrapper key={idx}>
             <MenuUploadDiv2>
@@ -124,7 +125,6 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
                   defaultValue = {el.menuName} 
                   />
               </MenuInputBox>
-      
               <MenuInputBox>
                 <label>가격</label>
                 <MenuInput 

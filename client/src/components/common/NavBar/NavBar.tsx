@@ -1,5 +1,5 @@
-import React,{useState } from 'react'
-import { useSelector } from 'react-redux';
+import React,{useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import SideBar from '../SideBar/SideBar';
 import Signin from '../Signin/SigninModal';
 import {
@@ -13,14 +13,40 @@ import {
   IconButton,
   BtnLink,
 } from "./StyledNavBar";
-
+import { signOut } from '../../../_actions/user_action';
+import Modal from '../Modal/Modal';
 
 function NavBar() {
-  const state = useSelector((state) => state);
+  const dispatch:any = useDispatch()
+  const state = useSelector((state) => state)
+  const { user }: any = state;
+  const message = user.message;
   //사이드바 모달창
   const [isOpen, setIsOpen] = useState(false);
   //로그인 모달
   const [modalOpen, setModalOpen] = useState(false);
+  const [needLoginModal, setNeedLoginModal] = useState(false);
+  const closeModal = () => { setNeedLoginModal(false) };
+  const signoutHandler = useCallback(() => {
+    dispatch(signOut()).then(() => 
+    {
+      window.location.reload();
+    });
+  },[])
+
+const accessInto = useCallback((name) => {
+  if (message) {
+    if (name === "address") {
+      window.location.href = 'http://localhost:3000/address'
+    } else {
+      window.location.href = 'http://localhost:3000/mypage'
+      }
+     
+    } else {
+      setNeedLoginModal(true);
+    }
+  }, [history, message]);
+
 
   return (
     <Header>
@@ -39,11 +65,11 @@ function NavBar() {
             <li>
               <ListLink to="/mapper">구독찾기</ListLink>
             </li>
-            <li>
-              <ListLink to="/address">동네인증</ListLink>
+            <li onClick={() => { accessInto("address") }}>
+              <ListLink >동네인증</ListLink>
             </li>
-            <li>
-              <ListLink to="/mypage">마이페이지</ListLink>
+            <li onClick={() => { accessInto("mypage") }}>
+              <ListLink >마이페이지</ListLink>
             </li>
           </ul>
         </Nav>
@@ -61,18 +87,36 @@ function NavBar() {
         >
           <i className="fas fa-bars"></i>
         </IconButton>
-        {
-        }<MiddleButton type="button" aria-label="로그인"
+        
+        {message === undefined ?
+          (
+          <div>
+          <MiddleButton type="button" aria-label="로그인"
         onClick={()=>{setModalOpen(true)}}
         >
           로그인
         </MiddleButton>
         <MiddleButton type="button" aria-label="회원가입">
           <BtnLink to="/signup">회원가입</BtnLink>
+        </MiddleButton></div>)
+          :
+        ( <div><MiddleButton type="button" aria-label="로그인"
+        onClick={()=>{setModalOpen(true)}}
+        >
+          프로필
         </MiddleButton>
+        <MiddleButton type="button" aria-label="회원가입">
+          <BtnLink onClick={signoutHandler}>로그아웃</BtnLink>
+        </MiddleButton></div>) }
+        
       </ButtonWrapper>
-      <SideBar setIsOpen={setIsOpen} isOpen={isOpen} />
+      <SideBar setIsOpen={setIsOpen} isOpen={isOpen}signoutHandler={signoutHandler} />
       <Signin setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {!user.message && needLoginModal ? <Modal closeModal={closeModal}
+        openModal={needLoginModal} modalTitleText="UptoDoor"
+        modalText="로그인이 필요한 서비스 입니다."
+        modalBtn="확인"
+      /> : null}
     </Header>
   );
 }

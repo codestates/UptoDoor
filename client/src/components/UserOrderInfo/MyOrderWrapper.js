@@ -19,20 +19,33 @@ import {
   TtlPricemBox
 } from './StyledUserOrderInfo'
 
+<<<<<<< HEAD
 function MyOrderWrapper() {
   
+=======
+// eslint-disable-next-line react/prop-types
+function MyOrderWrapper({ filteredOrderId, listbackHandler }) {
+>>>>>>> 9e9ff96fa2775f18ee1a7ad702b84c8f9a24ad2a
   useEffect(() => {
     console.log(filteredOrderId);
   }, []);
   return (
     <MypageOrderListWrapper>
       <OrderListContent>
+<<<<<<< HEAD
         
         <StoreInfoWrapper className = 'storeinfo-wrapper'>
           <FlexBox between align>
             {/* <i class="fas fa-angle-double-right">마이페이지쪽화살표</i> */}
             <div className = 'i-wrapper'>
               <i className="fas fa-angle-double-left"></i>
+=======
+        <StoreInfoWrapper className="storeinfo-wrapper">
+          <FlexBox between align>
+            {/* <i class="fas fa-angle-double-right">마이페이지쪽화살표</i> */}
+            <div className="i-wrapper">
+              <i className="fas fa-angle-double-left" onClick={listbackHandler}></i>
+>>>>>>> 9e9ff96fa2775f18ee1a7ad702b84c8f9a24ad2a
               <span>구독중</span>
             </div>
             <OrderDate> 다음 결제일 : 2021.10.21 </OrderDate>
@@ -40,11 +53,20 @@ function MyOrderWrapper() {
         </StoreInfoWrapper>
 
         <FlexBox distance>
+<<<<<<< HEAD
           <H3>허용준 님</H3><span>의 구독내역을 확인하세요</span>
         </FlexBox>
 
         {/* 구독가게정보 */}
         <StoreInfoWrapper className = 'storeinfo-wrapper'>
+=======
+          <H3>허용준 님</H3>
+          <span>의 구독내역을 확인하세요</span>
+        </FlexBox>
+
+        {/* 구독가게정보 */}
+        <StoreInfoWrapper className="storeinfo-wrapper">
+>>>>>>> 9e9ff96fa2775f18ee1a7ad702b84c8f9a24ad2a
           <FlexBox between>
             <H3>남산 아래</H3>
             <Category>Food</Category>
@@ -52,6 +74,7 @@ function MyOrderWrapper() {
 
           <FlexBox col>
             <EachItemBox>
+<<<<<<< HEAD
             <H4>🗓 구독기간</H4><P>3개월(12주) / 매주 일요일 / 09:00 시</P>
             </EachItemBox>
 
@@ -61,27 +84,57 @@ function MyOrderWrapper() {
 
             <EachItemBox>
             <H4>📱 가게 연락처</H4><P>070-1231-1232</P>
+=======
+              <H4>🗓 구독기간</H4>
+              <P>3개월(12주) / 매주 일요일 / 09:00 시</P>
+            </EachItemBox>
+
+            <EachItemBox>
+              <H4>📍 가게 주소</H4>
+              <P>서울시 용산구 후암동 123-1233</P>
+            </EachItemBox>
+
+            <EachItemBox>
+              <H4>📱 가게 연락처</H4>
+              <P>070-1231-1232</P>
+>>>>>>> 9e9ff96fa2775f18ee1a7ad702b84c8f9a24ad2a
             </EachItemBox>
 
             <EachItemBox>
               <H4>✍🏼 요청사항</H4>
+<<<<<<< HEAD
               <DetailTextArea
               readOnly = {true}
               >샐러드 오이빼고 주문</DetailTextArea>
             </EachItemBox>
 
+=======
+              <DetailTextArea readOnly={true}>
+                샐러드 오이빼고 주문
+              </DetailTextArea>
+            </EachItemBox>
+>>>>>>> 9e9ff96fa2775f18ee1a7ad702b84c8f9a24ad2a
           </FlexBox>
         </StoreInfoWrapper>
 
         {/* 오더인포 */}
+<<<<<<< HEAD
         <OrderInfoWrapper className = 'orderinfo-wrapper'>
+=======
+        <OrderInfoWrapper className="orderinfo-wrapper">
+>>>>>>> 9e9ff96fa2775f18ee1a7ad702b84c8f9a24ad2a
           <FlexBox between>
             <H3>주문상품정보</H3>
           </FlexBox>
           <OrderSection shadow>
             <FlexBox align>
+<<<<<<< HEAD
               <OrderImg src = './images/salad.png' alt = 'order-img' />
               <div className = 'order-text-content'>
+=======
+              <OrderImg src="./images/salad.png" alt="order-img" />
+              <div className="order-text-content">
+>>>>>>> 9e9ff96fa2775f18ee1a7ad702b84c8f9a24ad2a
                 <EachItemBox>
                   <FlexBox between>
                     <H4>상품명</H4>
@@ -99,6 +152,7 @@ function MyOrderWrapper() {
             </FlexBox>
             <EachItemBox>
               <H4>상세정보</H4>
+<<<<<<< HEAD
               <P lightColorText >스팸 + 에그 +글루텐프리 식빵 + 특제소스</P>
             </EachItemBox>
           </OrderSection>
@@ -119,6 +173,25 @@ function MyOrderWrapper() {
 
     </MypageOrderListWrapper>
   )
+=======
+              <P lightColorText>스팸 + 에그 +글루텐프리 식빵 + 특제소스</P>
+            </EachItemBox>
+          </OrderSection>
+
+          <TtlPricemBox className="ttl-price-box">
+            <H4>총 결제금액</H4>
+            <h2>90,000 원</h2>
+          </TtlPricemBox>
+        </OrderInfoWrapper>
+      </OrderListContent>
+
+      <BtnBox btnboxMargin>
+        <SmallButton primary>뒤로가기</SmallButton>
+        <SmallButton>구독취소</SmallButton>
+      </BtnBox>
+    </MypageOrderListWrapper>
+  );
+>>>>>>> 9e9ff96fa2775f18ee1a7ad702b84c8f9a24ad2a
 }
 
 export default MyOrderWrapper

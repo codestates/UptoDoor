@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
 import { Container, Title, Wrapper } from "../GlobalStyle";
-import MyOrderItem from '../UserOrderInfo/MyOrderWrapper';
+import MyOrderWrapper from '../UserOrderInfo/MyOrderWrapper';
 import MyOrderList from './MyOrderList';
 // import MyPaymentList from './MyPaymentList';
 import { ButtonWrapper, MypageWrapper,MypageContent,MypageProfileWrapper,MypageProfileBtnWrapper,MypageUl,MypageLi } from './StyledMypage';
@@ -44,7 +44,7 @@ function MyProfile(): any {
               </MypageUl>
           
           </MypageProfileBtnWrapper>
-          {filteredOrderId ? <MyOrderItem filteredOrderId={filteredOrderId}
+          {filteredOrderId ? <MyOrderWrapper filteredOrderId={filteredOrderId}
           listbackHandler={listbackHandler}
           /> : <MyOrderList moveDetailHandler={moveDetailHandler} />}
         </MypageWrapper>

@@ -47,10 +47,12 @@ export const addAllCartToOrder = (data: {}) => {
   };
 };
 
-export const setAddress = (address:string) => {
+export const setAddress = (selected_address:string,selected_address_detail:string) => {
   return {
     type: SET_ADDRESS,
-    payload: address
+    payload: {
+      selected_address,selected_address_detail
+    }
   };
 };
 

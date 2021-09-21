@@ -169,7 +169,7 @@ function AdminPostForm() {
     });
     const callback = (result:any, status:any) => {
     if (status === kakao.maps.services.Status.OK) {
-      setSwitched(result[0].address.address_name.split(" ")[2]);
+      setSwitched(result[0].address.address_name.split(" ")[1]);
     }
   };
   }, []);
@@ -188,7 +188,7 @@ function AdminPostForm() {
     }
     const callback = (result: any, status: any) => {
       if (status === kakao.maps.services.Status.OK) {
-        setCurrent(result[0].address.address_name.split(" ")[2]);
+        setCurrent(result[0].address.address_name.split(" ")[1]);
       }
     };
   },[current]);

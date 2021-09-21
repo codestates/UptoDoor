@@ -20,32 +20,30 @@ const showModalBg = keyframes`
   }
 `
 export const StyledModal = styled.div`
-  z-index: 99999;
+  z-index: 9999;
 `
 export const ModalContainer = styled.div`
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
   position: fixed;
-  z-index: 100;
-  background-color: #fff;
-  animation: ${showModalBg} .4s;
+  z-index: 9999;
+  animation: ${showModalBg} 0.4s;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   @media screen and (min-width: 767px) {
     background-color: rgba(0, 0, 0, 0.6);
   }
-`
+`;
 export const ModalWrapper = styled.div`
   padding: 40px 20px;
   margin: 0 auto;
   width: 375px;
   height : 550px;
-  box-sizing: border-box;
+  
   text-align: center;
   max-width: 400px;
   background-color: white;

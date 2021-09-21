@@ -148,6 +148,7 @@ function AdminPostForm() {
       description:description,
       mobile : mobile,
       adminAddress : adminAddress,
+      adminAddressDetail: adminAddressDetail,
       Menu:menuArr,
       storeImage:storeImgArr,
       storeFile : storeFile,
@@ -167,7 +168,7 @@ function AdminPostForm() {
     geocoder.addressSearch(address, function (result: any, status: any) {
       // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].x, result[0].y);
+        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         setYValue(result[0].x);
         setXValue(result[0].y);
         geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)

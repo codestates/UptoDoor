@@ -22,15 +22,6 @@ import AdminEnrollStore from './AdminEnrollStore'
 import AdminUploadMenu from './AdminUploadMenu';
 import { adminPost } from '../../_actions/post_action';
 
-// const customStyles = {
-//   container: (base:any, state:any) => {
-//       return ({
-//           ...base,
-//           zIndex: state.isFocused ? "99" : "-1"  //Only when current state focused
-//       })
-//   }
-// }
-
 const { kakao }: any = window;
 function AdminPostForm() {
   // 가게 이미지,상호명,가게설명,동네인증.
@@ -231,7 +222,6 @@ return (
             <label>카테고리</label>
               <Select
               required
-              //styles={customStyles}
               className = 'category-selection'
               options = {selectCategory}
               onChange = {(e)=>changeCategoryHandler(e)}

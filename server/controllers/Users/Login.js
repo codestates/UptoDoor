@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
       nickname: Data.nickname,
       mainaddress: Data.mainaddress,
       mainaddressDetail: Data.mainaddressDetail,
-      subaddress: Data.subaddres,
+      subaddress: Data.subaddress,
       subaddressDetail: Data.subaddressDetail,
       mobile: Data.mobile,
       age: Data.age,

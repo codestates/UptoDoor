@@ -33,7 +33,22 @@ export const signUp = (userinfo) => {
 export const signIn = (userinfo) => {
   const result = axios.post('http://localhost:3060/users/signin', userinfo).then((res) => {
     console.log("signin", res.data);
-    return res.data.userinfo;
+    const{id,email,nickname ,mainaddress,mainaddressDetail,subaddress,subaddressDetail,mobile,age,gender,position,billingkey} =res.data.userinfo
+    return {
+      message: res.data.message,
+      id,
+      email,
+      nickname,
+      mainaddress,
+      mainaddressDetail,
+      subaddress,
+      subaddressDetail,
+      mobile,
+      age,
+      gender,
+      position,
+      billingkey,
+    };
   });
 
   console.log("result", result);

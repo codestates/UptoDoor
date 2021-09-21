@@ -5,7 +5,7 @@ const auth = require('../middlewares/auth');
 const upload = require('../middlewares/multer');
 
 router.post('/users/signup', controllers.SignUp);
-router.post('/users/signin', controllers.Login);
+router.post('/users/signin', auth, controllers.Login);
 router.delete('/users/signout/:id',auth, controllers.SignOut);
 router.get('/users/userinfo/:id', auth, controllers.UserInfo);
 router.patch('/users/userinfo/:id', auth, controllers.UpdateUser);
@@ -27,6 +27,6 @@ router.post('/oauth/kakao/login', controllers.Kakaologin);
 router.get('/oauth/kakao/token', controllers.KakaoToken);
 router.post('/oauth/naver/signup', auth, controllers.Naversignup);
 router.post('/oatuh/naver/login', controllers.Naverlogin);
-router.post('/image', upload.array('file', 5), controllers.Image);
+router.post('/image', upload.single('file'), controllers.Image);
 
 module.exports = router;

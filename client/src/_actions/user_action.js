@@ -93,9 +93,10 @@ export const addAddress = (address, name) => {
 
 export const addOrder = (order, selected_mobile) => {
   order.selected_mobile = selected_mobile;
-  console.log(order);
-  const request = axios.post(`http://localhost:3060/users/order`)
-  console.log(request)
+  console.log("오더오더",order);
+  const request = axios.post(`http://localhost:3060/users/order`, order).then((res) => {
+    console.log("여기.",res.data);
+  }).catch((err)=> console.log("ordererr",err))
 
   return {
     type: ADD_ORDER,

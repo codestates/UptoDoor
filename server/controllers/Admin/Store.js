@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     const { id } = checkAccessToken;
     const { title, category, description, mobile, adminAddress, storeImage, storeFile } = req.body;
     const { Menu } = req.body;
-    await user.update({ position: 1, store_id: 1}, { where : { id: id }}) //일반 사용자 사장님 권한 변경
+    await user.update({ position: 1 }, { where : { id: id }}) //일반 사용자 사장님 권한 변경
     .then(() => {
         await store.create({
             id: 1, title: title, category: category, description: description, 
@@ -24,6 +24,5 @@ module.exports = async (req, res) => {
     .catch((err) => {
         console.log('---- 가게 등록 실패 -----',err);
     })
-
     res.status(200).send({message: 'Signup success'});
 }

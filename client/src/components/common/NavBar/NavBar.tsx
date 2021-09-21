@@ -7,11 +7,12 @@ import {
   Nav,
   ButtonWrapper,
   NavLogo,
-  ListLink,
+  //ListLink,
   NavWrapper,
   MiddleButton,
   IconButton,
   BtnLink,
+  Listli
 } from "./StyledNavBar";
 import { signOut } from '../../../_actions/user_action';
 import Modal from '../Modal/Modal';
@@ -63,13 +64,13 @@ const accessInto = useCallback((name) => {
           <h2 className="visually-hidden">메뉴</h2>
           <ul>
             <li>
-              <ListLink to="/mapper">구독찾기</ListLink>
+              <Listli to="/mapper">구독찾기</Listli>
             </li>
             <li onClick={() => { accessInto("address") }}>
-              <ListLink >동네인증</ListLink>
+              <Listli >동네인증</Listli>
             </li>
             <li onClick={() => { accessInto("mypage") }}>
-              <ListLink >마이페이지</ListLink>
+              <Listli >마이페이지</Listli>
             </li>
           </ul>
         </Nav>

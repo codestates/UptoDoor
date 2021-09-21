@@ -20,10 +20,10 @@ const OrderInfo = (props:any) => {
   const cart = useSelector((state:any) => state.cart);
   const user = useSelector((state:any) => state.user);
   
-  const price = cart.menu.reduce((acc:any, cur:any) => {
-    return acc + (Number(cur.price) * Number(cur.quantity))
-  }, 0);
-  const total_price = price + cart.plus_money + cart.delivery_fee;
+  // const price = cart.menu.reduce((acc:any, cur:any) => {
+  //   return acc + (Number(cur.price) * Number(cur.quantity))
+  // }, 0);
+  // const total_price = price + cart.plus_money + cart.delivery_fee;
 
   
   return (

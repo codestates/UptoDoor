@@ -51,11 +51,14 @@ function MenuList():any {
   const history = useHistory();
   const state = useSelector((state) => state);
   const { cart }: any = state;
-  const { menu} = cart
+  const { menu } = cart
   console.log(menu)
   const dispatch:any = useDispatch()
 
   const addCartHandler = (item:any) => {
+
+    console.log('====cart====',cart);
+    console.log('========',cart.menu);
     // 메뉴의 id와 item.id 가 같으면 quantity 만 추가, 아니면 디스패치 애드카트에 아이템추가.
     if (!cart.menu.map((el:any) => el.id).includes(item.id)) {
       item = {...item, quantity : 1 }

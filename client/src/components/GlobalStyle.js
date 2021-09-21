@@ -39,9 +39,14 @@ export const UltraLargeFont = '60px';
 export const Container = styled.section`
   margin: 50px auto;
   min-width: 375px;
-  max-width: 1200px;
+  width: 100vw;
+
+  @media screen and (min-width: 768px) {
+
+  }
   @media screen and (min-width: 1140px) {
     margin: 80px auto;
+
   }
 `;
 

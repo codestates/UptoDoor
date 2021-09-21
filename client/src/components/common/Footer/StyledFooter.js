@@ -13,26 +13,28 @@ export const FooterContainer = styled.div`
 export const FooterWrapper = styled.div`
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 30px 10px;
-  width: 1120px;
-  height: 200px;
+  padding: 30px auto;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
+  justify-content: space-around;
+  align-items: flex-start;
   > h5 {
-      margin: 0;
-    }
+    margin-top: 12px;
+    margin-bottom: 3px;
+  }
 
-    > h2 {
-      margin: 0;
-    }
+  > h2 {
+    margin: 3px;
+  }
 
-    > p {
-      margin: 0;
-    }
+  > p {
+    margin: 0;
+  }
 
-    
+  @media screen and (min-width: 1140px) {
+    width: 1200px;
+  }
 `;
 
 export const AboutCompany = styled.div`
@@ -43,6 +45,7 @@ export const AboutCompany = styled.div`
 `;
 
 export const AdminLink = styled.div`
+  width: 90%;
   >span,
   small {
     color: #8c8c8c;

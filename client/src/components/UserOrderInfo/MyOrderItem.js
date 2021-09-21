@@ -1,3 +1,4 @@
+
 import React from 'react'
 import {
   MypageOrderListWrapper,
@@ -12,9 +13,16 @@ import {
   OrderInfoWrapper,
 } from './StyledUserOrderInfo'
 
-function MyOrderItem() {
+// eslint-disable-next-line react/prop-types
+function MyOrderItem({ filteredOrderId, listbackHandler }) {
+  useEffect(() => {
+    console.log(filteredOrderId);
+  }, []);
   return (
     <MypageOrderListWrapper>
+//     <NextBtn onClick={listbackHandler}>
+//         <i className="fas fa-chevron-left"></i>
+//       </NextBtn>
       <OrderListContent>
         <ListDate>
           <h3>허용준님</h3><span>의 구독내역을 확인하세요</span>

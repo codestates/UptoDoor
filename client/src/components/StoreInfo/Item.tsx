@@ -28,6 +28,7 @@ function Item({addCartHandler,item}:ItemProps) {
         onClick = {()=>addCartHandler(item.id)}
         className = 'small order-btn'
         primary>담기
+        {/* <i className="fas fa-cart-arrow-down"></i> */}
         </SmallButton>
       </MenuWrapper>
   )

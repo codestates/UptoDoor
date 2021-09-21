@@ -1,5 +1,6 @@
 import React from 'react'
-import MyOrderWrapper from "../components/UserOrderInfo/MyOrderWrapper";
+import MyOrderWrapper from '../components/UserOrderInfo/MyOrderWrapper'
+
 
 const UserOrderInfo = () => {
   return (

@@ -69,7 +69,6 @@ function MenuList():any {
       //quantity만 올라가야한다.
       // dispatch(addCart(item.quantity+1))
     }
-    
   }
   const cancleClickHandler = () => {
     history.go(-1);

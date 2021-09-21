@@ -15,7 +15,7 @@ axios.defaults.withCredentials = true
 export const signUp = (userinfo) => {
   console.log('액션까지옴')
   const result = 
-  axios.post('https://uptodoors.shop/users/signup',
+  axios.post('http://localhost:3060/users/signup',
   userinfo)
   .then((res)=>{
     console.log(res.data);

@@ -14,8 +14,8 @@ interface Iprops {
   setIsOpen: any;
 }
 
-function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
-  const dispatch = useDispatch()
+function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
+  const dispatch:any = useDispatch()
   // if (!modalOpen) return null;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +32,17 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops) {
     e.preventDefault();
     console.log("제출", email, password);
     const userinfo = {email, password}
-    dispatch(signIn(userinfo));
+    dispatch(signIn(userinfo))
+      .then((res: any) => {
+        if (res.payload.message  === 'login success') {
+          window.location.reload();
+        } else {
+          alert('로그인 실패하였습니다.');
+        }
+      })
+      .catch((err: any) => {
+        console.log(err)
+      });
   },[email,password])
   
   const kakaoHandler = useCallback((e) => {

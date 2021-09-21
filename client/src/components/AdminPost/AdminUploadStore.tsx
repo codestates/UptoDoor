@@ -4,7 +4,7 @@ import {
   StyledImgUpload,
   StoreImgFlexWrapper,
   ImgUploadWrapper,
-  // StyledUploedImg,
+  EmptyImgWrapper,
   StoreImgBox,
   SliderWrapper,
   PlusIcon
@@ -38,7 +38,6 @@ function AdminUploadStore(
     const config = {
       headers: { 'content-type' : 'multipart/form-data'}
     }
-    console.log("파일",files[0])
     formData.append('file',files[0]);
     //dispatch action axios 관리된거 와야함.
     axios.post('http://localhost:3060/image',formData,config)
@@ -81,6 +80,7 @@ function AdminUploadStore(
       autoplaySpeed: typeof autoplay === 'boolean' ? 3000 : autoplay,
     }),[autoplay, loop, speed,]);
 
+    console.log(imgs)
   return (
     <StyledImgUpload>
       <StoreImgFlexWrapper>
@@ -95,6 +95,11 @@ function AdminUploadStore(
         </Dropzone>
       </StoreImgFlexWrapper>
 
+      {imgs.length === 0 ? 
+      <EmptyImgWrapper>
+        <PlusIcon>가게 사진을<br/> 등록해주세요</PlusIcon>
+      </EmptyImgWrapper> 
+      : 
       <SliderWrapper className = 'slide-img-wrapper'>
         <Slider {...settings}>
           {imgs.map((el:any,idx:any)=>{
@@ -112,6 +117,7 @@ function AdminUploadStore(
           })}
         </Slider>
       </SliderWrapper>
+      }
       
     {openModal ?
       <MapSelectModal

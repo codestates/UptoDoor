@@ -77,8 +77,9 @@ export const SelectBox = styled.div`
   font-weight: 400;
   border-radius: 8px;
   border: 1px dashed ${TextLightGrey};
+  /* z-index : -1; */
   >.css-yk16xz-control,.css-g1d714-ValueContainer{
-    border:none;
+    border:none;  
   }
 }
 `

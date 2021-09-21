@@ -20,10 +20,10 @@ const OrderInfo = (props:any) => {
   const cart = useSelector((state:any) => state.cart);
   const user = useSelector((state:any) => state.user);
   
-  const price = cart.Menu.reduce((acc:any, cur:any) => {
-    return acc + (Number(cur.price) * Number(cur.quantity))
-  }, 0);
-  const total_price = price + cart.plus_money + cart.delivery_fee;
+  // const price = cart.menu.reduce((acc:any, cur:any) => {
+  //   return acc + (Number(cur.price) * Number(cur.quantity))
+  // }, 0);
+  // const total_price = price + cart.plus_money + cart.delivery_fee;
 
   
   return (
@@ -34,7 +34,7 @@ const OrderInfo = (props:any) => {
           <h5>주문자 정보</h5>
           <OrderUserInfoContent>
             <h4>주문자명: </h4>
-            <p>{user.user_name}</p>
+            <p>{user.nickname}</p>
           </OrderUserInfoContent>
           <OrderUserInfoContent>
             <h4>이메일: </h4>
@@ -75,7 +75,7 @@ const OrderInfo = (props:any) => {
           <h5>결제 금액</h5>
           <MoneyCheck>
             <h5>상품 금액</h5>
-            <p>{price} 원</p>
+            <p>{cart.total_price} 원</p>
           </MoneyCheck>
           <MoneyCheck>
             <h5>추가 금액</h5>
@@ -87,7 +87,7 @@ const OrderInfo = (props:any) => {
           </MoneyCheck>
           <MoneyCheck>
             <h4>월 결제 금액</h4>
-            <p>{total_price} 원</p>
+            <p>{cart.total_price} 원</p>
           </MoneyCheck>
           <CardCheck>
             <h4>결제 수단 선택</h4>

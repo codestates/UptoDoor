@@ -2,27 +2,29 @@
 const { user, menu, store, store_menu } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
 module.exports = async (req, res) => {
+    console.log('----------',req.body);
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
     const { id } = checkAccessToken;
-    const { title, category, description, mobile, adminAddress, storeImage, storeFile } = req.body;
+    const { title, category, description, mobile, xvalue, yvalue, adminAddress, storeImage, storeFile } = req.body;
     const { Menu } = req.body;
-    await user.update({ position: 1 }, { where : { id: id }}) //일반 사용자 사장님 권한 변경
-    .then(() => {
-        await store.create({
-            id: 1, title: title, category: category, description: description, 
-            number: mobile, address: adminAddress, image: storeImage, Bussiness_paper: storeFile });
-    })
-    .then(() => {
-        await store_menu.create({ id: 1, store_id: 1, menu_id: 1});
-    })
-    .then(() => {
-        await menu.create({
-            id: 1, Image: Menu.menuImg, name: Menu.menuName, detail: Menu.menuDescription, price: Menu.price
+    try {
+        const data1 = await store.create({
+        name: title, category: category, introduce: description, 
+        number: mobile, address: adminAddress, xvalue: xvalue, yvalue: yvalue, image: storeImage[0], Bussiness_paper: storeFile[0] });
+
+    for (let i=0; i<Menu.length; i++) {
+        const data2 = await menu.create({
+            image: Menu[i].menuImg, name: Menu[i].menuName, detail: Menu[i].menuDescription, price: Menu[i].price
         });
-    })
-    .catch((err) => {
+        await store_menu.create({ store_id: data1.id, menu_id: data2.id});
+        };
+
+    await user.update({ position: 1, store_id: data1.id }, { where : { id: id }}); //일반 사용자 사장님 권한 변경
+    }
+    catch(err) {
         console.log('---- 가게 등록 실패 -----',err);
-    })
-    res.status(200).send({message: 'Signup success'});
+        res.status(404).send({ message: 'Store registration is fail' });
+    }
+    res.status(201).send({ message: 'Store registration is complete' });
 }

@@ -38,7 +38,7 @@ function AdminPostForm() {
   ]
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);
-  const [storeFile , setStoreFile]:any = useState([]);
+  const [storeFile , setStoreFile]:any = useState('');
   //store
   const [title , setTitle] = useState('');
   const [category, setCategory] = useState('');
@@ -50,6 +50,8 @@ function AdminPostForm() {
   const [adminAddress , setAdminAddress] = useState('');
   const [adminAddressDetail, setadminAddressDetail] = useState("");
   const [addressModal, setAddressModal] = useState(false);
+  const [xValue, setXValue] = useState('');
+  const [yValue, setYValue] = useState('');
   //menu
   const [menuArr, setMenuArr]:any = useState([{
     menuImg: '', menuName:'', menuDescription:'', price:0
@@ -148,7 +150,9 @@ function AdminPostForm() {
       adminAddress : adminAddress,
       Menu:menuArr,
       storeImage:storeImgArr,
-      storeFile : storeFile
+      storeFile : storeFile,
+      xvalue:xValue,
+      yvalue:yValue,
     }
       dispatch(adminPost(adminPostInfo))
       // 모달띄워지고(메뉴등록이 완료되었습니다.) 메인화면
@@ -163,7 +167,9 @@ function AdminPostForm() {
     geocoder.addressSearch(address, function (result: any, status: any) {
       // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        const coords = new kakao.maps.LatLng(result[0].x, result[0].y);
+        setYValue(result[0].x);
+        setXValue(result[0].y);
         geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
       }
     });

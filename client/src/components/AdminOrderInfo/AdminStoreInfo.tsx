@@ -20,11 +20,11 @@ function AdminStoreInfo() {
             <P>3개월(12주) / 매주 토요일 / 11:00 시</P>
           </EachItemBox>
           <EachItemBox>
-            <H4>📍 가게 주소</H4>
+            <H4>📍 고객 주소</H4>
             <P>서울시 용산구 후암동 456-633</P>
           </EachItemBox>
           <EachItemBox>
-            <H4>📱 가게 연락처</H4>
+            <H4>📱 고객 연락처</H4>
             <P>070-1231-1232</P>
           </EachItemBox>
           <EachItemBox>

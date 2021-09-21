@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { SmallButton } from '../common/Button/Button'
 import {
   MypageOrderListWrapper,
@@ -11,11 +11,11 @@ import {
   OrderDate,
   OrderInfoWrapper,
   TtlPricemBox
-} from './StyledUserOrderInfo'
+} from '../UserOrderInfo/StyledUserOrderInfo'
 import AdminOrderInfo from './AdminOrderInfo'
 import AdminStoreInfo from './AdminStoreInfo'
 
-function AdminOrderWrapper({ filteredOrderId, listbackHandler }) {
+function AdminOrderWrapper({ filteredOrderId, listbackHandler }:any) {
 
   useEffect(() => {
     console.log(filteredOrderId);
@@ -27,8 +27,9 @@ function AdminOrderWrapper({ filteredOrderId, listbackHandler }) {
         <StoreInfoWrapper className="storeinfo-wrapper">
           <FlexBox between align>
             <div className="i-wrapper">
-              <i className="fas fa-angle-double-left" onClick={listbackHandler}></i>
-              <span>구독중</span>
+              <i className="fas fa-angle-double-left" 
+              onClick={listbackHandler}></i>
+              <span>전체주문내역 보기</span>
             </div>
             <OrderDate> 다음 결제일 : 2021.12.25 </OrderDate>
           </FlexBox>
@@ -36,7 +37,7 @@ function AdminOrderWrapper({ filteredOrderId, listbackHandler }) {
 
         <FlexBox distance>
           <H3>오명재 님</H3>
-          <span>의 구독내역을 확인하세요</span>
+          <span>의 구독내역입니다.</span>
         </FlexBox>
 
         {/* 구독가게정보 */}

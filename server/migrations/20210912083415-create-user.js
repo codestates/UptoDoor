@@ -11,34 +11,34 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      nickname: {
+      name: {
         type: Sequelize.STRING
       },
       password: {
         type: Sequelize.STRING
       },
-      mainaddress: {
+      mainAddress: {
         type: Sequelize.STRING
       },
-      mainaddressDetail: {
+      mainAddressDetail: {
         type: Sequelize.STRING
       },
-      main_xvalue: {
+      main_Xvalue: {
         type: Sequelize.FLOAT
       },
-      main_yvalue: {
+      main_Yvalue: {
         type: Sequelize.FLOAT
       },
-      subaddress: {
+      subAddress: {
         type: Sequelize.STRING
       },
-      subaddressDetail: {
+      subAddressDetail: {
         type: Sequelize.STRING
       },
-      sub_xvalue: {
+      sub_Xvalue: {
         type: Sequelize.FLOAT
       },
-      sub_yvalue: {
+      sub_Yvalue: {
         type: Sequelize.FLOAT
       },
       mobile: {

@@ -28,6 +28,8 @@ function MyProfile(): any {
   const listbackHandler = () => {
     setFilteredOrderId("");
   }
+
+  //!4주로 바꿔서 계산 다시하기
   const orderDate:any = (term:any) => {
     const getFullDate = new Date();
     let month = getFullDate.getMonth()+1;
@@ -78,9 +80,9 @@ function MyProfile(): any {
                 <h3>{user.nickname}</h3>
                 <p>{user.email}</p>
                 {
-                user.mainaddress || 
+                user.mainaddress === null || 
                 user.mainaddressDetail === null||
-                user.subadress || 
+                user.subadress === null || 
                 user.subaddressDetail === null ? 
                 <p>동네인증이 필요합니다.</p>
                 :
@@ -96,14 +98,15 @@ function MyProfile(): any {
               </ButtonWrapper>
             </MypageProfileWrapper>
             <MypageUl>
-            <MypageLi><button type="button" 
-              onClick={() => {
-              setCurrentTab(0)}} 
-              className={currentTab ===0 ? "focus": ""}>구독관리</button></MypageLi>
+              <MypageLi>
+                <button type="button" 
+                onClick={() => {setCurrentTab(0)}} 
+                className={currentTab ===0 ? "focus": ""}>구독관리</button>
+              </MypageLi>
               <MypageLi><button type="button" 
-              onClick={() => {
-              setCurrentTab(1)}} 
-              className={currentTab ===1 ? "focus": ""}>주문조회</button></MypageLi>
+                onClick={() => {setCurrentTab(1)}} 
+                className={currentTab ===1 ? "focus": ""}>주문조회</button>
+              </MypageLi>
             </MypageUl>
             
             </MypageProfileBtnWrapper>

@@ -106,10 +106,11 @@ function UserCartInfo() {
   //* 제출 핸들러
   const postHandler = useCallback((e) => {
     e.preventDefault();
-    if(user.mainaddress || user.mainaddressDetail === null
-      ||
-      user.subadress || user.subaddressDetail === null
+    if(
+      user.mainaddress === null || user.mainaddressDetail === null
+      || user.subadress === null || user.subaddressDetail === null
       ){
+      console.log('=====user====',user)
       setOpenModal(true);
       return false;
     }

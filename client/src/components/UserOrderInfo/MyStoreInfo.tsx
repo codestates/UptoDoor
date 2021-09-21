@@ -12,6 +12,7 @@ function MyStoreInfo() {
 
   const cart = useSelector((state:any) => state.cart);
   const admin = useSelector((state:any) => state.admin);
+  console.log(cart);
   console.log(admin);
 
   return (
@@ -26,7 +27,7 @@ function MyStoreInfo() {
             <H4>🗓 구독기간</H4>
             <P> 
             {cart.delivery_term}개월({cart.delivery_term * 4}주) /
-            매주 {cart.delivery_day.map((el:any)=>el)}요일 / 
+            매주 {cart.delivery_day&&cart.delivery_day.map((el:any)=>el)}요일 / 
             {cart.delivery_time} 시
             </P>
           </EachItemBox>

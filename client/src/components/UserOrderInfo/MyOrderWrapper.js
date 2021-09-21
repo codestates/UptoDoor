@@ -17,7 +17,7 @@ import {
   TtlPricemBox
 } from './StyledUserOrderInfo'
 
-function MyOrderItem() {
+function MyOrderWrapper() {
   return (
     <MypageOrderListWrapper>
       <OrderListContent>
@@ -114,4 +114,4 @@ function MyOrderItem() {
   )
 }
 
-export default MyOrderItem
+export default MyOrderWrapper

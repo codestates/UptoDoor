@@ -6,6 +6,7 @@ import {
   DELETE_USER,
   ADD_ADDRESS,
   ADD_ORDER,
+  
 } from "./type";
 
 import axios from 'axios'
@@ -19,6 +20,7 @@ export const signUp = (userinfo) => {
   userinfo)
   .then((res)=>{
     console.log(res.data);
+    return res.data;
   })
   .catch((err)=>{
     console.log('==userinfo 받아오기실패==',err)

@@ -25,6 +25,7 @@ function MapSearchBar({
         type = 'text' 
         placeholder = '동네 구독서비스를 조회하세요.'/>
         <SmallButton
+        type="submit"
         className = 'map-search-btn'
         primary
         >

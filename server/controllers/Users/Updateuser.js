@@ -8,14 +8,17 @@ module.exports = async (req, res) => {
     const { id } = checkAccessToken;
     const { password, name, mobile, gender, age } = req.body;
 
-    try {
         const hashpassword = crypto.createHash('sha512').update(password).digest('hex');
-        await user.update({ password: hashpassword , name: name, mobile: mobile, gender: gender, age: age}, { where: { id: id }});
-    }
-    catch(err) {
-        console.log(err);
+        const data = await user.update({ password: hashpassword , name: name, mobile: mobile, gender: gender, age: age}, { where: { id: id }});
+        if(data){
+            const userinfoEdit = {
+                name: data.name,
+                mobile: data.mobile,
+                gender: data.gender,
+                age: data.age
+            }
+            res.status(201).send({ message: 'user update success', userinfoEdit: userinfoEdit});
+        } else {
         res.status(404).send({ message: 'user update fail' });
-    }
-
-    res.status(201).send({ message: 'user update success' });
+        }
 }

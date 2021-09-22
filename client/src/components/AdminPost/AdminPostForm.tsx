@@ -109,10 +109,7 @@ function AdminPostForm() {
   }, [mobile]);
   
   //!add menu onchange handler
-
   const addMenuHandler = (menu: any) => {
-    console.log("addmenuHandler", menuArr);
-    console.log("addmenuhandler", menu);
     const bin = {menuImg: '', menuName:'', price:0, menuDescription:''}
     console.log("슬라이드",[...menuArr.slice(0, menuArr.length-1), menu, bin])
     setMenuArr([...menuArr.slice(0, menuArr.length-1), menu, bin]);
@@ -142,13 +139,13 @@ function AdminPostForm() {
       return alert('all section must be filled')
     }else{
       const adminPostInfo = {
-      //login 된 사장의 아이디도 같이 넣어주기. 리덕스에 있는 유저 정보 넣던가.
       title:title,
       category:category,
       description:description,
       mobile : mobile,
       adminAddress : adminAddress,
       adminAddressDetail: adminAddressDetail,
+
       Menu:menuArr,
       storeImage:storeImgArr,
       storeFile : storeFile,
@@ -176,7 +173,7 @@ function AdminPostForm() {
     });
     const callback = (result:any, status:any) => {
     if (status === kakao.maps.services.Status.OK) {
-      setSwitched(result[0].address.address_name.split(" ")[2]);
+      setSwitched(result[0].address.address_name.split(" ")[1]);
     }
   };
   }, []);
@@ -195,7 +192,7 @@ function AdminPostForm() {
     }
     const callback = (result: any, status: any) => {
       if (status === kakao.maps.services.Status.OK) {
-        setCurrent(result[0].address.address_name.split(" ")[2]);
+        setCurrent(result[0].address.address_name.split(" ")[1]);
       }
     };
   },[current]);
@@ -234,18 +231,6 @@ return (
               onChange = {(e)=>changeCategoryHandler(e)}
               />
 
-            {/* <select onChange = {(e)=>changeCategoryHandler(e)}>
-              {selectCategory.map((el,idx)=>{
-                return (
-                  <option 
-                  className = 'category-selection'
-                  value = {el.value}
-                  key = {idx}>
-                    {el.label}
-                  </option>
-                )
-              })}
-            </select> */}
           </StoreInputBox>
           <StoreInputBox>
             <label>가게 설명</label>

@@ -6,6 +6,7 @@ import {
   DELETE_USER,
   ADD_ADDRESS,
   ADD_ORDER,
+  
 } from "./type";
 
 import axios from 'axios'
@@ -13,19 +14,19 @@ axios.defaults.withCredentials = true
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
-  console.log('액션까지옴')
   const result = 
   axios.post('http://localhost:3060/users/signup',
   userinfo)
   .then((res)=>{
     console.log(res.data);
+    return res.data;
   })
   .catch((err)=>{
     console.log('==userinfo 받아오기실패==',err)
   })
   return {
     type : SIGNUP,
-    payload : result //result 대체예정,응답받은 유저인포 reducer 전달
+    payload : result 
   }
 }
 

@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
       id: Data.id,
       email: Data.email,
       name: Data.name,
-      mainAddress: Data.mainaddress,
+      mainAddress: Data.mainAddress,
       mainAddressDetail: Data.mainAddressDetail,
       subAddress: Data.subAddress,
       subAddressDetail: Data.subAddressDetail,

@@ -7,7 +7,7 @@ import {
   Nav,
   ButtonWrapper,
   NavLogo,
-  // ListLink,
+  //ListLink,
   NavWrapper,
   MiddleButton,
   IconButton,
@@ -63,17 +63,15 @@ const accessInto = useCallback((name) => {
         <Nav>
           <h2 className="visually-hidden">메뉴</h2>
           <ul>
-            <Listli onClick={() => {
-              window.location.replace('/mapper')
-            }}>
-              구독찾기
-            </Listli>
-            <Listli onClick={() => { accessInto("address") }}>
-              동네인증
-            </Listli>
-            <Listli onClick={() => { accessInto("mypage") }}>
-              마이페이지
-            </Listli>
+            <li>
+              <Listli to="/mapper">구독찾기</Listli>
+            </li>
+            <li onClick={() => { accessInto("address") }}>
+              <Listli >동네인증</Listli>
+            </li>
+            <li onClick={() => { accessInto("mypage") }}>
+              <Listli >마이페이지</Listli>
+            </li>
           </ul>
         </Nav>
       </NavWrapper>
@@ -104,6 +102,7 @@ const accessInto = useCallback((name) => {
         </MiddleButton></div>)
           :
         ( <div><MiddleButton type="button" aria-label="로그인"
+        onClick={()=>{setModalOpen(true)}}
         >
           프로필
         </MiddleButton>
@@ -112,7 +111,7 @@ const accessInto = useCallback((name) => {
         </MiddleButton></div>) }
         
       </ButtonWrapper>
-      <SideBar setIsOpen={setIsOpen} isOpen={isOpen}signoutHandler={signoutHandler} />
+      <SideBar setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={signoutHandler} />
       <Signin setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
       {!user.message && needLoginModal ? <Modal closeModal={closeModal}
         openModal={needLoginModal} modalTitleText="UptoDoor"

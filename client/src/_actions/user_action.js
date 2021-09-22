@@ -73,7 +73,6 @@ export const signOut = () => {
 }
 //마이페이지 patch 요청
 export const editUser = (userinfoEdit) => {
-
   //patch 수정하고 로그인부분이 바뀌는거니까 SIGNIN
   // const result = 
   // axios.patch(`${END_POINTS}/users/mypage`,

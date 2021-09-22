@@ -11,7 +11,7 @@ import {
   ProfileEditInput,
   Label,
   ErrMsgP,
- } from './StyledMypageEdit'
+} from './StyledMypageEdit'
 import {SmallButton,BtnBox} from '../common/Button/Button'
 
 import { useDispatch,useSelector } from 'react-redux'

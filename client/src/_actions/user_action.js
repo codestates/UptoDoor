@@ -61,13 +61,17 @@ export const signIn = (userinfo) => {
 
 //유저 signout post 요청
 export const signOut = () => {
-  const request = axios.post("http://localhost:3060/users/signout").then((res) => {
-    console.log(res.data)
-  })
+  
+  const request = axios
+    .post("http://localhost:3060/users/signout")
+    .then((res) => {
+      return res.data.message;
+    });
+    
   
   return {
     type: SIGNOUT,
-    payload: "signout success"
+    payload: request
   };
 }
 //마이페이지 patch 요청

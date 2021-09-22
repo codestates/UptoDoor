@@ -76,23 +76,24 @@ function AdminPostForm() {
   //admin address
   const changeAdminAddress = useCallback((data) => {
     const resultAddress = JSON.parse(data).address
+    switchAddress(resultAddress)
     setAdminAddress(resultAddress);
     setAddressModal((prev)=>!prev);
   },[])
   const changeAddDetailHandler = (e:any) => {
     setadminAddressDetail(e.target.value)
   }
-  const postHandler = useCallback((name) => {
-    console.log(name);
-    // console.log("currnet", current)
-    if (switched === current) {
-      console.log(adminAddressDetail)
-      // dispatch(addAdminAddress(adminAddress, adminAddressDetail));
-    }
-    else {
-      alert("동네 인증에 실패")
-    }
-  },[adminAddress,adminAddressDetail])
+  // const postHandler = useCallback((name) => {
+  //   console.log(name);
+  //   // console.log("currnet", current)
+  //   if (switched === current) {
+  //     console.log(adminAddressDetail)
+  //     // dispatch(addAdminAddress(adminAddress, adminAddressDetail));
+  //   }
+  //   else {
+  //     alert("동네 인증에 실패")
+  //   }
+  // },[adminAddress,adminAddressDetail])
   const changeMobileHandler = useCallback((e) => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
@@ -127,8 +128,7 @@ function AdminPostForm() {
   const submitHandler = (e:any) => {
     console.log("제출전 menuarr",menuArr);
     e.preventDefault();
-    switchAddress(adminAddress)
-    postHandler('main')
+    // postHandler('main')
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
     //모든칸이 채워지지않으면 false 로 막는다. !menuItem 추후 추가잊지마.
     if(
@@ -146,7 +146,7 @@ function AdminPostForm() {
       adminAddress : adminAddress,
       adminAddressDetail: adminAddressDetail,
 
-      Menu:menuArr,
+      menu:menuArr,
       storeImage:storeImgArr,
       storeFile : storeFile,
       xvalue:xValue,
@@ -178,24 +178,24 @@ function AdminPostForm() {
   };
   }, []);
 
-  useEffect(() => {
-    //!이페이지에 들어오면 현재 위치의 자표로 동을 찾는다.
-    const geocoder = new kakao.maps.services.Geocoder();
-    //현재 위치 좌표를 받아서 도로명 주소로 바꿔준다
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const lat = position.coords.latitude, // 위도
-          lon = position.coords.longitude; // 경도
-        const coord = new kakao.maps.LatLng(lat, lon);
-          geocoder.coord2Address(coord.getLng(), coord.getLat(), callback)
-      });
-    }
-    const callback = (result: any, status: any) => {
-      if (status === kakao.maps.services.Status.OK) {
-        setCurrent(result[0].address.address_name.split(" ")[1]);
-      }
-    };
-  },[current]);
+  // useEffect(() => {
+  //   //!이페이지에 들어오면 현재 위치의 자표로 동을 찾는다.
+  //   const geocoder = new kakao.maps.services.Geocoder();
+  //   //현재 위치 좌표를 받아서 도로명 주소로 바꿔준다
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(function (position) {
+  //       const lat = position.coords.latitude, // 위도
+  //         lon = position.coords.longitude; // 경도
+  //       const coord = new kakao.maps.LatLng(lat, lon);
+  //         geocoder.coord2Address(coord.getLng(), coord.getLat(), callback)
+  //     });
+  //   }
+  //   const callback = (result: any, status: any) => {
+  //     if (status === kakao.maps.services.Status.OK) {
+  //       setCurrent(result[0].address.address_name.split(" ")[1]);
+  //     }
+  //   };
+  // },[current]);
 
   const handleClickCancle = () => {
     history.push('/');
@@ -264,7 +264,7 @@ return (
 
           {/* 가게 사업자등록증 파일업로드 */}
             <AdminFileUpload
-              setMenuArr={setMenuArr}
+            setMenuArr={setMenuArr}
             setStoreFile={setStoreFile}
             updateStoreFile = {updateStoreFile}
 

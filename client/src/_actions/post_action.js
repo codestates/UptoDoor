@@ -2,8 +2,6 @@ import { ADMIN_POST, STORE_DATAS, END_POINTS } from "./type";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-
-
 export const adminPost = (adminposts) => {
   axios.post('http://localhost:3060/admin/store',adminposts)
   .then((res)=>{

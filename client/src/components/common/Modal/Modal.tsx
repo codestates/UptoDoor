@@ -14,8 +14,7 @@ function Modal(props:any) {
   const { openModal, closeModal, modalTitleText ,modalText, modalBtn } = props;
 
   return (
-    <StyledModal>
-      {openModal ? (
+      openModal ? (
         <ModalContainer className = 'modal-container' >
           <ModalWrapper className = 'modal-wrapper'>
           <ModalTextWrapper >
@@ -31,14 +30,10 @@ function Modal(props:any) {
             {modalBtn}
             </MiddleButton>
             </ModalWrapper>
-
-
         </ModalContainer>
       )
       :
       null
-    }
-    </StyledModal>
   )
 }
 

@@ -25,13 +25,13 @@ const initialState = {
 };
 export default function cart_reducer(state = initialState, action) {
   // console.log("띠용", action.payload);
-  // console.log("reducer-action---", action);
+  console.log("reducer-action---", action);
   switch (action.type) {
     //* 주소선택하고 스토어들어가면 아이디 가져오기
     case SET_ADDRESS:
-      return { ...state, selected_address: action.payload };
+      return { ...state, ...action.payload };
     case SELECT_STORE:
-      return state;
+      return { ...state, store_id: action.payload };
     //* 메뉴선택, 수량체크, 메뉴 하나제거
     case ADD_CART:
       return { ...state, menu: [...state.menu, action.payload] };

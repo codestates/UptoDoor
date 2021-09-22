@@ -9,15 +9,28 @@ import {
   MypageContent,
   MypageWrapper,
 } from "../Mypage/StyledMypage";
-import { Container, Title, Wrapper } from "../GlobalStyle";
-          
+import { Container, Title, Wrapper } from "../GlobalStyle";  
 import { AdimUl, AdminLi, AdminUlListWrapper } from "./StyledAdminPage";
 import AdminOrderList from './AdminOrderList';
-
+import AdminOrderWrapper from '../AdminOrderInfo/AdminOrderWrapper';
+import { useSelector } from "react-redux";
 
 function AdminProfile() {
+
+  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+  
   const [currentTab, setCurrentTab] = useState(0);
+  const [filteredOrderId, setFilteredOrderId]=useState("")
+  
   const days = ["일", "월", "화", "수", "목", "금", "토"];
+
+  const moveDetailHandler = (id) => {
+    setFilteredOrderId(id)
+  }
+  const listbackHandler = () => {
+    setFilteredOrderId("");
+  }
 
   return (
     <Container>
@@ -48,9 +61,7 @@ function AdminProfile() {
                   <AdminLi key={day}>
                     <button
                       type="button"
-                      onClick={() => {
-                        setCurrentTab(idx);
-                      }}
+                      onClick={() => {setCurrentTab(idx);}}
                       className={currentTab === idx ? "focus" : ""}
                     >
                       {day}
@@ -59,7 +70,20 @@ function AdminProfile() {
                 );
               })}
             </AdimUl>
-            <AdminOrderList />
+
+            {filteredOrderId ? 
+            <AdminOrderWrapper
+            filteredOrderId = {filteredOrderId}
+            listbackHandler = {listbackHandler}
+            />
+            :
+            <AdminOrderList 
+            cart = {cart}
+            user = {user}
+            moveDetailHandler = {moveDetailHandler}
+            />
+            }
+
           </AdminUlListWrapper>
         </MypageWrapper>
       </Wrapper>

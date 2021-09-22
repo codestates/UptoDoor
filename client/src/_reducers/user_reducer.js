@@ -15,8 +15,7 @@ export default function user_reducer(state = {}, action) {
       return { ...state, signUp: action.payload };
     case SIGNIN:
       console.log("aciotnsignin", action.payload);
-      const { id, message, nickname, email, mobile } = action.payload;
-      return { ...state, id, message, nickname, email, mobile };
+      return { ...state, ...action.payload };
 
     case SIGNOUT:
       return (state = {});

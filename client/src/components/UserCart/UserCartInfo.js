@@ -32,11 +32,16 @@ import {
   Title
 } from "../GlobalStyle";
 import { MoneyCheck } from '../UserOrder/StyledUserOrder';
+import Modal from '../common/Modal/Modal'
 
 function UserCartInfo() {
   
   const state = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  // const cart = useSelector((state) => state.cart);
+  const [openModal , setOpenModal] = useState(false)
+
   const [timeOtions, setTimeOtions] = useState("");
   const [detailOption, setDetailOption] = useState("");
   const [plusMoney, setPlusMoney] = useState(0);
@@ -101,6 +106,14 @@ function UserCartInfo() {
   //* 제출 핸들러
   const postHandler = useCallback((e) => {
     e.preventDefault();
+    if(
+      user.mainaddress === null || user.mainaddressDetail === null
+      || user.subadress === null || user.subaddressDetail === null
+      ){
+      console.log('=====user====',user)
+      setOpenModal(true);
+      return false;
+    }
     const menu = []
     let cartArr = state.menu.map((el) => el);
     for (let i = 0; i < cartArr.length; i++) {
@@ -190,7 +203,9 @@ function UserCartInfo() {
     return plus;
   }, [termsOptions, dayOptions, plusMoney, plusMoneyChecked]);
     
-
+  const closeModal = () => {
+    setOpenModal((prev)=>!prev)
+  }
 
   const total = getPrice();
   
@@ -432,6 +447,18 @@ function UserCartInfo() {
           </CartCheckListWrapper>
         </CartWrapper>
       </form>
+
+    {openModal ?
+    <Modal 
+    openModal = {openModal}
+    closeModal = {closeModal}
+    modalTitleText = '동네인증을 완료해주세요'
+    modalBtn = '확인' //동네인증 페이지로 가게해야하나?
+    />
+    :
+    null
+    }
+
     </Container>
   );
 }

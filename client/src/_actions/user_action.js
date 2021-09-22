@@ -6,6 +6,7 @@ import {
   DELETE_USER,
   ADD_ADDRESS,
   ADD_ORDER,
+  
 } from "./type";
 
 import axios from 'axios'
@@ -13,19 +14,19 @@ axios.defaults.withCredentials = true
 
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
-  console.log('액션까지옴')
   const result = 
   axios.post('http://localhost:3060/users/signup',
   userinfo)
   .then((res)=>{
     console.log(res.data);
+    return res.data;
   })
   .catch((err)=>{
     console.log('==userinfo 받아오기실패==',err)
   })
   return {
     type : SIGNUP,
-    payload : result //result 대체예정,응답받은 유저인포 reducer 전달
+    payload : result 
   }
 }
 
@@ -33,12 +34,21 @@ export const signUp = (userinfo) => {
 export const signIn = (userinfo) => {
   const result = axios.post('http://localhost:3060/users/signin', userinfo).then((res) => {
     console.log("signin", res.data);
+    const{id,email,name ,mainAddress,mainAddressDetail,subAddress,subAddressDetail,mobile,age,gender,position,billingkey} =res.data.userinfo
     return {
       message: res.data.message,
-      id: res.data.userinfo.id,
-      nickname: res.data.userinfo.nickname,
-      email: res.data.userinfo.email,
-      mobile: res.data.userinfo.mobile
+      id,
+      email,
+      name,
+      mainAddress,
+      mainAddressDetail,
+      subAddress,
+      subAddressDetail,
+      mobile,
+      age,
+      gender,
+      position,
+      billingkey,
     };
   });
 

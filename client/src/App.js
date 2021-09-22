@@ -20,8 +20,6 @@ import Address from './pages/Address'
 import MypageEdit from './pages/MypageEdit'
 import AdminPost from './pages/AdminPost'
 import AdminPage from './pages/AdminPage'
-import UserOrderInfo from './pages/UserOrderInfo'
-import AdminOrderInfo from './pages/AdminOrderInfo'
 import AdminEdit from './pages/AdminEdit'
 import SideBar from './components/common/SideBar/SideBar';
 
@@ -38,8 +36,6 @@ const Landing = lazy(
       setTimeout(() => resolve(import('./pages/Landing')), 3000),
     ),
 );
-
-
 
 function App() {
 
@@ -84,7 +80,7 @@ function App() {
             <Route path="/mypageedit">
               <MypageEdit />
             </Route>
-            <Route path="/storeinfo">
+            <Route path="/storeinfo/:id">
               <StoreInfo />
             </Route>
             <Route path="/usercart">
@@ -98,12 +94,6 @@ function App() {
             </Route>
             <Route path="/adminpage">
               <AdminPage />
-            </Route>
-            <Route path="/userorderinfo">
-              <UserOrderInfo />
-            </Route>
-            <Route path="/adminorderinfo">
-              <AdminOrderInfo />
             </Route>
             <Route path="/adminedit">
               <AdminEdit />

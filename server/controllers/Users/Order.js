@@ -1,5 +1,6 @@
 const { user,order,user_order,order_menu,order_delivery } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
+
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
     console.log("바디데이터",req.body)
@@ -18,11 +19,11 @@ module.exports = async (req, res) => {
             order_address : orderInfo.selected_address,
             order_address_detail : orderInfo.selected_address_detail,
             plus_check : orderInfo.plus_check,
-            delivery_detail : `${orderInfo.delivery_detail},${orderInfo.plus_money}`,
+            delivery_detail : `${orderInfo.delivㅇery_detail},${orderInfo.plus_money}`,
             totalprice : orderInfo.total_price,
             store_id : orderInfo.store_id,
             state: "order"
-        });
+        }); 
     
         //user_order테이블에 데이터추가
         await user_order.create({

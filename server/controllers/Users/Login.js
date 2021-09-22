@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
   const Data = await user.findOne({
     where: { email: Email, password: Password },
   });
-
+  
   if (Data) {
     const UserInfo = {
       id: Data.id,
@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
       mainAddress: Data.mainAddress,
       mainAddressDetail: Data.mainAddressDetail,
       subAddress: Data.subAddress,
-      subaddressDetail: Data.subaddressDetail,
+      subAddressDetail: Data.subAddressDetail,
       mobile: Data.mobile,
       age: Data.age,
       gender: Data.gender,

@@ -38,7 +38,7 @@ function AdminPostForm() {
   ]
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);
-  const [storeFile , setStoreFile]:any = useState([]);
+  const [storeFile , setStoreFile]:any = useState('');
   //store
   const [title , setTitle] = useState('');
   const [category, setCategory] = useState('');
@@ -50,6 +50,8 @@ function AdminPostForm() {
   const [adminAddress , setAdminAddress] = useState('');
   const [adminAddressDetail, setadminAddressDetail] = useState("");
   const [addressModal, setAddressModal] = useState(false);
+  const [xValue, setXValue] = useState('');
+  const [yValue, setYValue] = useState('');
   //menu
   const [menuArr, setMenuArr]:any = useState([{
     menuImg: '', menuName:'', menuDescription:'', price:0
@@ -107,10 +109,7 @@ function AdminPostForm() {
   }, [mobile]);
   
   //!add menu onchange handler
-
   const addMenuHandler = (menu: any) => {
-    console.log("addmenuHandler", menuArr);
-    console.log("addmenuhandler", menu);
     const bin = {menuImg: '', menuName:'', price:0, menuDescription:''}
     console.log("슬라이드",[...menuArr.slice(0, menuArr.length-1), menu, bin])
     setMenuArr([...menuArr.slice(0, menuArr.length-1), menu, bin]);
@@ -140,15 +139,18 @@ function AdminPostForm() {
       return alert('all section must be filled')
     }else{
       const adminPostInfo = {
-      //login 된 사장의 아이디도 같이 넣어주기. 리덕스에 있는 유저 정보 넣던가.
       title:title,
       category:category,
       description:description,
       mobile : mobile,
       adminAddress : adminAddress,
+      adminAddressDetail: adminAddressDetail,
+
       Menu:menuArr,
       storeImage:storeImgArr,
-      storeFile : storeFile
+      storeFile : storeFile,
+      xvalue:xValue,
+      yvalue:yValue,
     }
       dispatch(adminPost(adminPostInfo))
       // 모달띄워지고(메뉴등록이 완료되었습니다.) 메인화면
@@ -164,12 +166,14 @@ function AdminPostForm() {
       // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        setYValue(result[0].x);
+        setXValue(result[0].y);
         geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
       }
     });
     const callback = (result:any, status:any) => {
     if (status === kakao.maps.services.Status.OK) {
-      setSwitched(result[0].address.address_name.split(" ")[2]);
+      setSwitched(result[0].address.address_name.split(" ")[1]);
     }
   };
   }, []);
@@ -188,7 +192,7 @@ function AdminPostForm() {
     }
     const callback = (result: any, status: any) => {
       if (status === kakao.maps.services.Status.OK) {
-        setCurrent(result[0].address.address_name.split(" ")[2]);
+        setCurrent(result[0].address.address_name.split(" ")[1]);
       }
     };
   },[current]);
@@ -227,18 +231,6 @@ return (
               onChange = {(e)=>changeCategoryHandler(e)}
               />
 
-            {/* <select onChange = {(e)=>changeCategoryHandler(e)}>
-              {selectCategory.map((el,idx)=>{
-                return (
-                  <option 
-                  className = 'category-selection'
-                  value = {el.value}
-                  key = {idx}>
-                    {el.label}
-                  </option>
-                )
-              })}
-            </select> */}
           </StoreInputBox>
           <StoreInputBox>
             <label>가게 설명</label>

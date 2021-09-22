@@ -54,7 +54,8 @@ function MyProfileEdit() {
     if(mobileRegExp.test(e.target.value)){
       setMobile(e.target.value);
     }
-    if(e.target.value === undefined || e.target.value === ''){
+    if(e.target.value === ''){
+      console.log('현재 모바일의 값이 빈값이라면->',user.mobile);
       setMobile(user.mobile);
     }
   },[])
@@ -99,7 +100,7 @@ function MyProfileEdit() {
     e.preventDefault();
     if(password !== passwordChk) return false;
     if(passwordRegErr === true) return setPasswordRegErr(true);
-
+    console.log('mobile==>',mobile);
     const userinfoEdit = {
       password,
       name,mobile,
@@ -107,7 +108,7 @@ function MyProfileEdit() {
     }
     dispatch(editUser(userinfoEdit))
     // .then((res: any) => {
-    //   if (res.payload.message  === '페이로드메세지확인해서넣기') {
+    //   if (res.payload.message  === 'user update success') {
     //     window.location.href="http://localhost:3000/"
     //   } else {
     //     alert('수정 실패하였습니다.');

@@ -74,11 +74,11 @@ export const signOut = () => {
 //마이페이지 patch 요청
 export const editUser = (userinfoEdit) => {
   //patch 수정하고 로그인부분이 바뀌는거니까 SIGNIN
-  const result = 
+  console.log('==제발===',userinfoEdit)
   axios.patch(`${END_POINTS}/users/userinfo`,
   userinfoEdit)
   .then((res)=>{
-    console.log(res.data);
+    console.log('res.data --> ',res.data);
   const{name ,mobile,age,gender} =res.data.userinfoEdit
   return {
       message: res.data.message,
@@ -93,23 +93,21 @@ export const editUser = (userinfoEdit) => {
   })
   return {
     type : SIGNIN,
-    payload : {
-      result
-    }
+    payload : userinfoEdit
+    
   }
 }
 //회원탈퇴 delete 요청 -> state 전부 초기화하기
 export const deleteUser = (userinfo) => {
-  // const result = 
-  // axios.delete(`${END_POINTS}/users/delte`,
-  // userinfo)
-  // .then((res)=>{
-  //   console.log(res.data);
-  //   return res.data;
-  // })
-  // .catch((err)=>{
-  //   console.log('==userinfo 받아오기실패==',err)
-  // })
+  axios.delete(`${END_POINTS}/users/signout`,
+  userinfo)
+  .then((res)=>{
+    console.log(res.data);
+    return res.data;
+  })
+  .catch((err)=>{
+    console.log('==userinfo 받아오기실패==',err)
+  })
   return {
     type : DELETE_USER,
     payload : {

@@ -36,7 +36,7 @@ function MyProfileEdit() {
   const [gender , setGender] = useState('');
   const [age, setAge] = useState('');
 
-  const [openModal , setOpenModal] = useState(false);
+  // const [openModal , setOpenModal] = useState(false);
 
   const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
@@ -77,12 +77,12 @@ function MyProfileEdit() {
     }
   }
 
-  const withdrawalModal = () => {
-    setOpenModal(true)
-  }
+  // const withdrawalModal = () => {
+  //   setOpenModal(true)
+  // }
   //!회원탈퇴 버튼
   const withdrawalConfirm = () => {
-    setOpenModal((prev)=>!prev)
+    // setOpenModal((prev)=>!prev)
     //dispatch 여기서
     dispatch(deleteUser())
     // .then((res.payloaㅁㅔ세지가 뭐냐 == 같으면){
@@ -190,20 +190,20 @@ function MyProfileEdit() {
           <SmallButton primary type = 'submit'>수정</SmallButton>
           <SmallButton 
           type = 'button'
-          onClick = {withdrawalModal}
+          onClick = {withdrawalConfirm}
           >회원 탈퇴</SmallButton>
         </BtnBox>
       </Wrapper>
       </Form>
 
-      {openModal ?
+      {/* {openModal ?
       <Modal
       openModal = {openModal}
       withdrawalConfirm = {withdrawalConfirm}
       />
       :
       null
-      }
+      } */}
     </Container>
   )
 }

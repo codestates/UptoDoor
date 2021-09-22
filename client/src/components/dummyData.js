@@ -95,16 +95,16 @@ export const initialStore = [
   {
     id: 5,
     name: "쑥카페",
-    image: [ 
-    "./images/storeImgs/cafe4.png",
-    "./images/storeImgs/cafe5.png",
-    "./images/storeImgs/cafe6.png",
+    store_image: [
+      "./images/storeImgs/cafe4.png",
+      "./images/storeImgs/cafe5.png",
+      "./images/storeImgs/cafe6.png",
     ],
-    address: "서울특별시 용산구 후암동 신흥로20길 43",
+    address: "서울특별시 용산구 신흥로20길 43",
     introduce: "많이 놀러오세요~~띠요띵용",
-    category: "카페",
+    category: "cafe",
     user_id: 2,
-    Menu: [
+    menu: [
       {
         id: 38,
         name: "아메리카노",
@@ -131,16 +131,17 @@ export const initialStore = [
   {
     id: 6,
     name: "남산 아래",
-    image:[
+    store_image: [
       "./images/storeImgs/cafe1.png",
       "./images/storeImgs/cafe2.png",
       "./images/storeImgs/cafe3.png",
       "./images/storeImgs/cafe4.png",
     ],
-    address: '서울시 용산구 신흥로32길 4-33',
-    introduce: "새로 리뉴얼 기념, 이달 말까지 배달서비스 1000원 이벤트 중입니다. 많이 찾아주세요. 맛은 보장합니다.",
+    address: "서울시 용산구 신흥로32길",
+    introduce:
+      "새로 리뉴얼 기념, 이달 말까지 배달서비스 1000원 이벤트 중입니다. 많이 찾아주세요. 맛은 보장합니다.",
     category: "food",
-    mobile: '010-1234-1234',
+    mobile: "010-1234-1234",
     user_id: 3,
     Menu: [
       {
@@ -178,23 +179,23 @@ export const initialStore = [
         detail: "싱싱한 연어, 발사믹소스 첨가",
         image: "./images/salad.png",
       },
-    ]
+    ],
   },
   {
     id: 7,
     name: "해방커피",
-    store_image:[
+    store_image: [
       "./images/storeImgs/cafe1.png",
       "./images/storeImgs/cafe2.png",
       "./images/storeImgs/cafe3.png",
       "./images/storeImgs/cafe4.png",
     ],
-    address: '서울 용산구 용산동2가 1-697',
+    address: "서울특별시 용산구 신흥로 103-1",
     introduce: "케냐에서 직접 공수하는 카페",
     category: "food",
-    mobile: '010-2222-1234',
+    mobile: "010-2222-1234",
     user_id: 4,
-    Menu: [
+    menu: [
       {
         id: 1,
         name: "아메리카노",
@@ -235,102 +236,98 @@ export const initialStore = [
         menu_image: "./images/salad.png",
         quantity: 1,
       },
-    ]
-  },
-  {
-    id : 8,
-    category : 'cafe',
-    name : '#도노커피',
-    address : '서울 용산구 후암동 262-2',
-    store_image:[
     ],
   },
   {
-    id : 9,
-    category : 'cafe',
-    name : '용산구 파리바게트',
-    address : '서울 용산구 후암동 415-59',
-    store_image:[
-    ],
+    id: 8,
+    햅: "cafe",
+    name: "#도노커피",
+    address: "서울특별시 용산구 두텁바위로 81-2",
+    store_image: ["./images/tanduri.png"],
   },
   {
-    id : 10,
-    category : 'home/living',
-    name : '한솔클리닝',
-    address : '서울 용산구 신흥로 126',
-    store_image:[
-    ],
+    id: 9,
+    category: "cafe",
+    name: "용산구 파리바게트",
+    address: "서울특별시 용산구 신흥로 150",
+    store_image: ["./images/salad.png"],
   },
   {
-    id : 11,
-    category : 'plants',
-    name : '피아노숲',
-    address : '서울 용산구 용산동2가 1-528',
-    store_image:[
-    ],
+    id: 10,
+    category: "living/home",
+    name: "한솔클리닝",
+    address: "서울특별시 용산구 신흥로 126",
+    store_image: ["./images/curry.png"],
   },
   {
-    id : 12,
-    category : 'food',
-    name : '해방식당',
-    address : '서울 용산구 용산동2가 1-555',
-    store_image:[
-    ],
+    id: 11,
+    category: "plants",
+    name: "피아노숲",
+    address: "서울특별시 용산구 신흥로 94-1",
+    store_image: ["./images/storeImgs/cafe2.png"],
   },
   {
-    id : 13,
-    category : 'etc',
-    name : '고래서점',
-    address : '서울 용산구 한강대로 307',
-    store_image:[
-    ],
+    id: 12,
+    category: "food",
+    name: "해방식당",
+    address: "서울특별시 용산구 신흥로22길 5",
+    store_image: ["./images/storeImgs/cafe2.png"],
   },
   {
-    id : 14,
-    category : 'etc',
-    name : '올리브영',
-    address : '서울 용산구 한강대로 285',
-    store_image:[
-    ],
-  }
-
-
+    id: 13,
+    category: "etc",
+    name: "고래서점",
+    address: "서울특별시 용산구 한강대로 307",
+    store_image: ["./images/storeImgs/cafe2.png"],
+  },
+  {
+    id: 14,
+    category: "etc",
+    name: "올리브영",
+    address: "서울특별시 용산구 한강대로 285",
+    store_image: ["./images/storeImgs/cafe2.png"],
+  },
 
   //delivery_time: "",
   //business_paper: "",
-]
+];
 
 export const initialHash = [
   //id,category,name,address
   {
-    id : 1,
-    category : 'food',
-    hash_arr : []
+    id: 1,
+    category: "all",
+    hash_arr: [],
   },
   {
-    id : 2,
-    category : 'cafe',
-    hash_arr : []
+    id: 2,
+    category: "food",
+    hash_arr: [],
   },
   {
-    id : 3,
-    category : 'living/home',
-    hash_arr : []
+    id: 3,
+    category: "cafe",
+    hash_arr: [],
   },
   {
-    id : 4,
-    category : 'plants',
-    hash_arr : []
+    id: 5,
+    category: "living/home",
+    hash_arr: [],
   },
   {
-    id : 5,
-    category : 'clothes',
-    hash_arr : []
+    id: 6,
+    category: "plants",
+    hash_arr: [],
   },
   {
-    id : 6,
-    category : 'etc',
-    hash_arr : []
+    id: 7,
+    category: "clothes",
+    hash_arr: [],
   },
-]
+  {
+    id: 8,
+    category: "etc",
+    hash_arr: [],
+  },
+];
 

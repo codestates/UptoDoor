@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import StoreData from '../components/StoreInfo/StoreData'
 
 function StoreInfo() {
+  let { id } = useParams();
   return (
     <>
-      <StoreData/>
+      <StoreData id={id} />
     </>
   )
 }

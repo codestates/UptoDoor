@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
     const Password = crypto.createHash('sha512').update(password).digest('hex');
     const Data = await user.findOne({ where: { email: email, password: Password } });
     console.log('------',Data);
-    const accessData = { email: Data.email, id: Data.id, nickname: Data.nickname };
+    const accessData = { email: Data.email, id: Data.id, name: Data.name };
     const accesstoken = generateAccessToken(accessData);
     const refreshtoken = generateRefreshToken(accessData);
     sendAccessToken(res, accesstoken);

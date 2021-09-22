@@ -10,19 +10,20 @@ interface Category {
   filterList : any,
   openInfoModal : any,
   mapData : any,
-  categoryFilter: any
+  filterListHandler: any
 }
 
-function MapHashtag({openInfoModal,mapData,filterList,categoryFilter}:Category) {
+function MapHashtag({openInfoModal,filterListHandler}:Category) {
   return (
     <MapHashtagWrapper className = 'hashtag-wrapper'>
       <MapHashTagBox className = 'hashtag-box'>
       {initialHash.map((el,idx)=>{
         return (
-            <SmallButton 
+          <SmallButton
+            type="button"
             key = {idx} 
             className = 'hashtag-category-btn'
-            onClick = {categoryFilter}
+            onClick={() => { filterListHandler(el.category) }}
             >
             <p>{el.category}</p>
             </SmallButton>
@@ -31,10 +32,7 @@ function MapHashtag({openInfoModal,mapData,filterList,categoryFilter}:Category) 
       </MapHashTagBox>
 
       {openInfoModal?
-      <MapInfoModal
-        mapData = {mapData}
-        filterList = {filterList}
-      />
+      <MapInfoModal/>
       :null}
     </MapHashtagWrapper>
   )

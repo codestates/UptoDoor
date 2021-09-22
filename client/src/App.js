@@ -80,7 +80,7 @@ function App() {
             <Route path="/mypageedit">
               <MypageEdit />
             </Route>
-            <Route path="/storeinfo">
+            <Route path="/storeinfo/:id">
               <StoreInfo />
             </Route>
             <Route path="/usercart">

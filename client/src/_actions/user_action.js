@@ -74,11 +74,10 @@ export const signOut = () => {
 //마이페이지 patch 요청
 export const editUser = (userinfoEdit) => {
   //patch 수정하고 로그인부분이 바뀌는거니까 SIGNIN
-  console.log('==제발===',userinfoEdit)
+  console.log('==받아와라!!===',userinfoEdit)
   axios.patch(`${END_POINTS}/users/userinfo`,
   userinfoEdit)
   .then((res)=>{
-    console.log('res.data --> ',res.data);
   const{name ,mobile,age,gender} =res.data.userinfoEdit
   return {
       message: res.data.message,

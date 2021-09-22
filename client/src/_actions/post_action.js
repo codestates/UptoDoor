@@ -22,6 +22,23 @@ export const adminPost = (adminposts) => {
   };
 };
 
+export const adminPostEdit = (adminpostEdit) => {
+  // axios.patch(`${END_POINTS}/admin/store`,
+  // adminpostEdit)
+  // .then((res)=>{
+  //   //수정성공
+  //   console.log(res.data)
+  // })
+  // .catch((err)=>{
+  //   console.log('==수정 실패==',err)
+  // })
+
+  return {
+    type: ADMIN_POST,
+    payload: adminpostEdit
+  };
+};
+
 //delete store 삭제 
 export const deleteAdminPost = (adminposts) => {
   // axios.delete(`${END_POINTS}/admin/admin`,

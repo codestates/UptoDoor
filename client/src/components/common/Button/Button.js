@@ -25,6 +25,7 @@ export const MiddleButton = styled.button`
   text-align: center;
   border-radius: 8px;
   border: 1px solid ${MainColor};
+  margin: ${({ side }) => (side ? '5px' : 0)};
   color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : BackgroundColor)};
 `;
@@ -48,6 +49,9 @@ export const BtnBox = styled.div`
 text-align: center;
 width: 100%;
 margin-top : ${({btnboxMargin})=> (btnboxMargin ? '18px' : 0)};
+display: ${({flexable})=> (flexable ?'flex' : 'unset')};
+justify-content: center;
+align-items: center;
 @media screen and (min-width: 1140px) {
   display: flex;
   justify-content: center;

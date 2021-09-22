@@ -17,15 +17,18 @@ import {SmallButton,BtnBox} from '../common/Button/Button'
 import { useDispatch,useSelector } from 'react-redux'
 import { editUser, deleteUser } from '../../_actions/user_action'
 import ProfileEditOptions from './ProfileEditOptions';
+import WithdrawalModal from '../common/Modal/WithdrawalModal'
+
 import useInput from '../../utils/useInput'
-import Modal from '../common/Modal/Modal';
 
 function MyProfileEdit() {
 
   const dispatch:any = useDispatch();
   const user = useSelector((state:any) => state.user);
-  const [name , onChangeNameHandler ] = useInput();
+  
+  // const [name, onChangeNameHandler, setName] = useInput();
 
+  const [name , setName] = useState('');
   const [password , setPassword] = useState('');
   const [passwordChk, setPasswordChk] = useState('');
   const [passwordRegErr , setPasswordRegErr ] = useState(false);
@@ -36,7 +39,11 @@ function MyProfileEdit() {
   const [gender , setGender] = useState('');
   const [age, setAge] = useState('');
 
-  // const [openModal , setOpenModal] = useState(false);
+  const [openModal , setOpenModal] = useState(false);
+
+  const onChangeNameHandler = useCallback((e)=>{
+    setName(e.target.value);
+  },[])
 
   const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
@@ -53,10 +60,6 @@ function MyProfileEdit() {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
       setMobile(e.target.value);
-    }
-    if(e.target.value === ''){
-      console.log('현재 모바일의 값이 빈값이라면->',user.mobile);
-      setMobile(user.mobile);
     }
   },[])
 
@@ -77,30 +80,51 @@ function MyProfileEdit() {
     }
   }
 
-  // const withdrawalModal = () => {
-  //   setOpenModal(true)
-  // }
   //!회원탈퇴 버튼
   const withdrawalConfirm = () => {
-    // setOpenModal((prev)=>!prev)
-    //dispatch 여기서
+    alert('탈퇴성공')
     dispatch(deleteUser())
-    // .then((res.payloaㅁㅔ세지가 뭐냐 == 같으면){
-    //   (window.location.href = '/')
-    // }
-    // .catch(err => {
-    //   console.log(err);
+    // .then((res: any) => {
+    //   if (res.payload.message  === 'user update success') {
+    //     alert('탈퇴성공')
+    //     window.location.href="http://localhost:3000/"
+    //   } else {
+    //     alert('탈퇴 실패. 못벗어남.');
+    //   }
+    // })
+    // .catch((err: any) => {
+    //   console.log(err)
     // });
   }
 
-  
+  const withdrawalModalHandler = () => {
+    setOpenModal(true)
+  }
+  const closeModal = () => {
+    setOpenModal((prev)=>!prev)
+  }
+
   //!form 제출 핸들러
   const profileEditSubmitHandler = useCallback((e)=>{
-
     e.preventDefault();
     if(password !== passwordChk) return false;
     if(passwordRegErr === true) return setPasswordRegErr(true);
-    console.log('mobile==>',mobile);
+
+    if(name === '' 
+      // || password === '' || 
+      // mobile === '' || gender === '' || age === ''
+      ){
+      // console.log('현재 모바일의 값이 빈값이라면->',user.mobile);
+      setName(user.name);
+      // setMobile(user.mobile);
+      // setGender(user.gender);
+      // setAge(user.age);
+    }
+
+    console.log('name 현재상태는?' , name)
+    console.log('mobile 현재상태는?' , mobile)
+    console.log('gender 현재상태는?' , gender)
+
     const userinfoEdit = {
       password,
       name,mobile,
@@ -108,7 +132,9 @@ function MyProfileEdit() {
     }
     dispatch(editUser(userinfoEdit))
     // .then((res: any) => {
+    //   console.log('===',res.payload)
     //   if (res.payload.message  === 'user update success') {
+    //     alert('프로필 수정 성공')
     //     window.location.href="http://localhost:3000/"
     //   } else {
     //     alert('수정 실패하였습니다.');
@@ -138,6 +164,7 @@ function MyProfileEdit() {
         <ProfileEditBox>
           <Label>비밀번호</Label>
           <ProfileEditInput
+          required
           type = 'password' 
           placeholder = 'password'
           defaultValue = {password}
@@ -151,6 +178,7 @@ function MyProfileEdit() {
         <ProfileEditBox>
           <Label>비밀번호 확인</Label>
           <ProfileEditInput
+          required
           type = 'password' 
           placeholder = 'password check'
           defaultValue = {passwordChk}
@@ -164,6 +192,7 @@ function MyProfileEdit() {
         <ProfileEditBox>
           <Label>이름</Label>
           <ProfileEditInput
+          required
           type = 'text'
           defaultValue = {user.name}
           onChange = {onChangeNameHandler}
@@ -173,6 +202,7 @@ function MyProfileEdit() {
         <ProfileEditBox>
           <Label>모바일</Label>
           <ProfileEditInput
+          required
           type = 'text'
           // value = {mobile}
           defaultValue = {user.mobile}
@@ -186,24 +216,31 @@ function MyProfileEdit() {
         selectInputHandler = {selectInputHandler}
         />
 
-        <BtnBox>
-          <SmallButton primary type = 'submit'>수정</SmallButton>
+        <BtnBox flexable btnboxMargin>
+          <SmallButton 
+          primary 
+          type = 'submit'>수정</SmallButton>
           <SmallButton 
           type = 'button'
-          onClick = {withdrawalConfirm}
+          onClick = {withdrawalModalHandler}
           >회원 탈퇴</SmallButton>
         </BtnBox>
       </Wrapper>
       </Form>
 
-      {/* {openModal ?
-      <Modal
+      {openModal ?
+      <WithdrawalModal
       openModal = {openModal}
+      closeModal = {closeModal}
       withdrawalConfirm = {withdrawalConfirm}
+      modalTitleText = '정말 회원 탈퇴하시겠습니까?'
+      modalText = '회원탈퇴 해도 결제된 정기구독 상품은 배송됩니다.'
+      yes = '회원탈퇴'
+      no = '취소'
       />
       :
       null
-      } */}
+      }
     </Container>
   )
 }

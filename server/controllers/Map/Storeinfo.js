@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
         res.status(200).send({ storeinfo: storedata, storemenu });
     }
     catch(err) {
-        console.log(err)
+        console.log('---- get storeinfo & menu ----',err)
         res.status(404).send({ message : 'store info load fail' });
     }
 }

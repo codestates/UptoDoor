@@ -6,8 +6,8 @@ const initialAdminPostInfo = {
     category:'',
     description:'',
     mobile : '',
-    adminaddress : '',
-    adminaddressdetail : '',
+    adminAddress : '',
+    adminAddressdetail : '',
     menu:[],
     storeimage:'',
     storefile : ''
@@ -16,7 +16,7 @@ const initialAdminPostInfo = {
 export default function admin_reducer(state = initialAdminPostInfo, action) {
   switch (action.type) {
     case ADMIN_POST:
-      return {...state, state : action.payload};
+      return {...state, ...action.payload};
     default:
       return state;
   }

@@ -146,7 +146,7 @@ function AdminPostForm() {
       adminAddress : adminAddress,
       adminAddressDetail: adminAddressDetail,
 
-      Menu:menuArr,
+      menu:menuArr,
       storeImage:storeImgArr,
       storeFile : storeFile,
       xvalue:xValue,
@@ -264,7 +264,7 @@ return (
 
           {/* 가게 사업자등록증 파일업로드 */}
             <AdminFileUpload
-              setMenuArr={setMenuArr}
+            setMenuArr={setMenuArr}
             setStoreFile={setStoreFile}
             updateStoreFile = {updateStoreFile}
 

@@ -146,7 +146,7 @@ function AdminPostForm() {
       adminAddress : adminAddress,
       adminAddressDetail: adminAddressDetail,
 
-      Menu:menuArr,
+      menu:menuArr,
       storeImage:storeImgArr,
       storeFile : storeFile,
       xvalue:xValue,

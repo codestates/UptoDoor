@@ -27,7 +27,6 @@ function MyOrderInfo({orderDate}:any) {
                     <OrderDate>{orderDate()}</OrderDate>
                   </FlexBox>
                   <P>{el.name}</P>
-                  {/* <P lightColorText >스팸 + 에그 +글루텐프리 식빵 + 특제소스</P> */}
                 </EachItemBox>
                 <EachItemBox>
                   <H4>가격/수량</H4>

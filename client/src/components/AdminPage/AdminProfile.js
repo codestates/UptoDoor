@@ -19,6 +19,7 @@ function AdminProfile() {
 
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.user);
+  const admin = useSelector((state) => state.admin);
   
   const [currentTab, setCurrentTab] = useState(0);
   const [filteredOrderId, setFilteredOrderId]=useState("")
@@ -40,12 +41,18 @@ function AdminProfile() {
           <MypageProfileBtnWrapper>
             <MypageProfileWrapper>
               <MypageContent>
-                <h3>
-                  용준이네<span>(허용준)</span>
-                </h3>
-                <p>dydwns2441@naver.com</p>
-                <p>서울시 용산구 신흥로 32길 4-33</p>
-                <p>(용산동2가)</p>
+                <h3>안녕하세요. {user.name}님.</h3>
+                {admin.title === '' ? 
+                <p>가게를 등록해주세요.</p>
+                :
+                <>
+                <h3>{admin.title}</h3>
+                <p>{user.email}</p>
+                <p>{admin.mobile}</p>
+                <p>{admin.adminAddress}</p>
+                <p>({admin.adminAddressDetail})</p>
+                </>
+                }
               </MypageContent>
               <ButtonWrapper>
                 <button type="button">

@@ -26,7 +26,7 @@ function AdminOrderList({
               <ListInfo>
                 <img src={el.image} alt="order-img" />
                 <div>
-                  <h4>주문자명: {user.nickname}</h4>
+                  <h4>주문자명: {user.name}</h4>
                   <p><span>내용:</span>{el.detail}</p>
                   <p><span>배송시간: </span>{cart.delivery_time}</p>
                 </div>

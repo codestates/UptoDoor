@@ -42,7 +42,7 @@ function AdminOrderWrapper({ filteredOrderId, listbackHandler }:any) {
 
         {/* 구독가게정보 */}
         <AdminStoreInfo/>
-        
+
         {/* 오더인포 */}
         <OrderInfoWrapper className="orderinfo-wrapper">
           <FlexBox between>

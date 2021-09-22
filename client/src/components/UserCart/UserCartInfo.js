@@ -107,8 +107,8 @@ function UserCartInfo() {
   const postHandler = useCallback((e) => {
     e.preventDefault();
     if(
-      user.mainaddress === null || user.mainaddressDetail === null
-      || user.subadress === null || user.subaddressDetail === null
+      user.mainAddress === null || user.mainAddressDetail === null
+      || user.subAddress === null || user.subAddressDetail === null
       ){
       console.log('=====user====',user)
       setOpenModal(true);

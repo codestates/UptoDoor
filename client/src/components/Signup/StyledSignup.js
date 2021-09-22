@@ -103,7 +103,6 @@ cursor: pointer;
 color : ${MainColor};
 margin-left : 5px;
 `
-
 export const ErrMsgP = styled.p`
 color : ${PointColor};
 font-size: ${SmallFont};

@@ -112,7 +112,7 @@ function AdminPostForm() {
   //!add menu onchange handler
   const addMenuHandler = (menu: any) => {
     const bin = {menuImg: '', menuName:'', price:0, menuDescription:''}
-    console.log("슬라이드",[...menuArr.slice(0, menuArr.length-1), menu, bin])
+    // console.log("슬라이드",[...menuArr.slice(0, menuArr.length-1), menu, bin])
     setMenuArr([...menuArr.slice(0, menuArr.length-1), menu, bin]);
   };
   //!upload storeimg

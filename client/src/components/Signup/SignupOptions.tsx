@@ -35,8 +35,6 @@ function SignupOptions({selectInputHandler}:OptionsProps) {
         <Label>{gender[1]}</Label><SideSpan>옵션</SideSpan><br/>
         <Select 
           className = 'gender-selection selection'
-          menuPortalTarget={document.body} 
-          styles={{ menuPortal: base => ({ ...base, zIndex: 99999 }) }}
           options = {gender[0]}
           name={gender[1]}
           onChange = {(e)=>selectInputHandler(e,gender[1])}
@@ -45,8 +43,6 @@ function SignupOptions({selectInputHandler}:OptionsProps) {
         <Label>{age[1]}</Label><SideSpan>옵션</SideSpan><br/>
         <Select 
           className = 'age-selection selection'
-          menuPortalTarget={document.body} 
-          styles={{ menuPortal: base => ({ ...base, zIndex: 99999 }) }}
           options = {age[0]}
           name={age[1]}
           onChange = {(e)=>selectInputHandler(e,age[1])}

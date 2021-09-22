@@ -4,13 +4,14 @@ export const SIGNUPSUCCESS = 'SIGNUPSUCCESS';
 export const SIGNUPFAILURE = 'SIGNUPFAILURE';
 export const SIGNIN = 'SIGNIN';
 export const SIGNOUT = 'SIGNOUT';
-export const MYPAGE_USER = 'MYPAGE_USER';
+export const EDIT_USER = 'EDIT_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const ADD_ADDRESS = "ADD_ADDRESS";
 export const ADD_ORDER = "ADD_ORDER";
 
 //admin signUp/signIn/signOut/mypage/deleteAdmin
 export const ADMIN_POST = "ADMIN_POST";
+export const DELETE_ADMIN_POST = "DELETE_ADMIN_POST";
 
 //Store
 export const STORE_DATAS = "STORE_DATAS";

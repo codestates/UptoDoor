@@ -43,3 +43,13 @@ export const LagreButton = styled.button`
   color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : BackgroundColor)};
 `;
+
+export const BtnBox = styled.div`
+text-align: center;
+width: 100%;
+margin-top : ${({btnboxMargin})=> (btnboxMargin ? '18px' : 0)};
+@media screen and (min-width: 1140px) {
+  display: flex;
+  justify-content: center;
+}
+`

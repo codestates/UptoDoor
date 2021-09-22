@@ -68,7 +68,7 @@ function MyProfile(): any {
     } 
   }
   orderDate(cart.deliver_term);
-
+  console.log(user)
   return (
     <Container>
       <Title>프로필</Title>
@@ -80,15 +80,15 @@ function MyProfile(): any {
                 <h3>{user.name}</h3>
                 <p>{user.email}</p>
                 {
-                user.mainaddress === null || 
-                user.mainaddressDetail === null||
-                user.subadress === null || 
-                user.subaddressDetail === null ? 
+                user.mainAddress === null || 
+                user.mainAddressDetail === null||
+                user.subAddress === null || 
+                user.subAddressDetail === null ? 
                 <p>동네인증이 필요합니다.</p>
                 :
                 <>
-                <p>{user.mainaddress}</p>
-                <p>({user.mainaddressDetail})</p>
+                <p>{user.mainAddress}</p>
+                <p>({user.mainAddressDetail})</p>
                 </>
                 }
               </MypageContent>

@@ -26,7 +26,7 @@ function SignupWrapper() {
   //required
   const [email, setEmail] = useState('');
   const [certEmail, setCertEmail] = useState(false);
-  const [nickname , setNickname] = useState('');
+  const [name , setName] = useState('');
   const [mobile, setMobile] = useState('');
   const [password , setPassword] = useState('');
   const [passwordChk, setPasswordChk] = useState('');
@@ -46,7 +46,7 @@ function SignupWrapper() {
     // if(isAllchecked === false ) return false;
 
     let userinfo = {
-      email,password,nickname,mobile,
+      email,password,name,mobile,
       gender,age
     }
     dispatch(signUp(userinfo))
@@ -92,9 +92,9 @@ function SignupWrapper() {
     setPasswordErr(e.target.value !== password);
   },[password])
 
-  const onChangeNicknameHandler = useCallback((e) => {
-    setNickname(e.target.value);
-  },[])
+  const onChangeNameHandler = useCallback((e) => {
+    setName(e.target.value);
+  }, []);
   
   const onChangeMobileHandler = useCallback((e) => {
     let mobileRegExp = /^[0-9\b -]{0,13}$/;
@@ -175,13 +175,13 @@ function SignupWrapper() {
         <ErrMsgP>비밀번호가 일치하지 않습니다.</ErrMsgP>
         :null}
         
-        <Label>닉네임</Label><SideSpan>*필수</SideSpan><br/>
+        <Label>이름</Label><SideSpan>*필수</SideSpan><br/>
         <SignUpInput 
         required
         type = 'text' 
-        placeholder = '닉네임'
-        value = {nickname} 
-        onChange = {onChangeNicknameHandler}
+        placeholder = '이름'
+        value = {name} 
+        onChange = {onChangeNameHandler}
         /><br/>
 
         <Label>모바일</Label><SideSpan>*필수</SideSpan><br/>

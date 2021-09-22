@@ -77,7 +77,7 @@ function MyProfile(): any {
           <MypageProfileBtnWrapper>
             <MypageProfileWrapper>
               <MypageContent>
-                <h3>{user.nickname}</h3>
+                <h3>{user.name}</h3>
                 <p>{user.email}</p>
                 {
                 user.mainaddress === null || 

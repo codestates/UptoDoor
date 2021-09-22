@@ -6,16 +6,16 @@ module.exports = async (req, res) => {
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
     const { id } = checkAccessToken;
-    const { Menu, title, category, description, adminAddressDetail, mobile, xvalue, yvalue, adminAddress, storeFile } = req.body;
+    const { menu, title, category, description, adminAddressDetail, mobile, xvalue, yvalue, adminAddress, storeFile } = req.body;
     const storeImg = req.body.storeImage.join();
     try {
         const data1 = await store.create({
         name: title, category: category, introduce: description, adminAddressDetail:adminAddressDetail,
         number: mobile, address: adminAddress, xvalue: xvalue, yvalue: yvalue, image: storeImg, Bussiness_paper: storeFile[0] });
 
-    for (let i=0; i<Menu.length; i++) {
+    for (let i=0; i<menu.length; i++) {
         const data2 = await menu.create({
-            image: Menu[i].menuImg, name: Menu[i].menuName, detail: Menu[i].menuDescription, price: Menu[i].price
+            image: menu[i].menuImg, name: menu[i].menuName, detail: menu[i].menuDescription, price: menu[i].price
         });
         await store_menu.create({ store_id: data1.id, menu_id: data2.id});
         };

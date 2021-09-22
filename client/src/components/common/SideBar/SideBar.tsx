@@ -1,29 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState,useCallback } from 'react';
 import SigninModal from '../Signin/SigninModal';
 import {
   SidebarContainer,
   Icon,
   SidebarWrapper,
-  SidebarMenu,
-  SidebarLink,
+  SidebarUl,
+  SidebarLi,
   Logo,
   User,SidebarBtn
 } from "./StyledSideBar";
 import { useSelector } from 'react-redux';
 interface Iprops {
+  history:any;
   setIsOpen: any;
   isOpen: boolean;
   signoutHandler: any;
 }
 
-const SideBar = ({ setIsOpen, isOpen,signoutHandler }: Iprops):any => {
+const SideBar = ({ history,setIsOpen, isOpen,signoutHandler }: Iprops):any => {
 const state = useSelector((state) => state)
   const { user }: any = state;
   const { message,name } = user;
 
   const [modalOpen, setModalOpen] = useState(false);
 
-  
+  const accessInto = useCallback((name) => {
+    setIsOpen(false);
+    if (name === "map") {
+      history.push('/mapper')
+      
+    }
+    else if (name === "address") {
+      history.push('/address')
+    }
+    else if (name === "mypage") {
+    if (message) {
+      history.push('/mypage');
+    } else {
+      alert("로그인이 필요합니다.")
+    }
+  }
+    
+  }, [history, message]);
+
 
   return (
     <SidebarContainer isOpen={isOpen} >
@@ -36,13 +55,13 @@ const state = useSelector((state) => state)
           setModalOpen(true);
         }}>로그인(닉네임)</User> : <User>{name}</User>}
         
-        <SidebarMenu>
-          <SidebarLink to="/mapper" onClick={()=>{setIsOpen(false)}}>구독찾기</SidebarLink>
-          <SidebarLink to="/address" onClick={()=>{setIsOpen(false)}}>동네인증</SidebarLink>
-          <SidebarLink to="mypage" onClick={() => { setIsOpen(false) }}>마이페이지</SidebarLink>
-          {message === undefined ? <SidebarLink to="/signup" onClick={() => { setIsOpen(false) }}>회원가입(굳이?)</SidebarLink> : <SidebarBtn onClick={signoutHandler}>로그아웃</SidebarBtn>}
+        <SidebarUl>
+          <SidebarLi onClick={()=>{accessInto("map")}}>구독찾기</SidebarLi>
+          <SidebarLi onClick={()=>{accessInto("address")}}>동네인증</SidebarLi>
+          <SidebarLi onClick={() => { accessInto("mypage") }}>마이페이지</SidebarLi>
+          {message === undefined ? null : <SidebarBtn onClick={signoutHandler}>로그아웃</SidebarBtn>}
           
-        </SidebarMenu>
+        </SidebarUl>
       </SidebarWrapper>
       {modalOpen ? <SigninModal setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} /> : null}
     </SidebarContainer>

@@ -2,7 +2,7 @@ import React , {useState,useEffect,useRef}  from 'react'
 import Map from './Map'
 import MapSelectAddress from './MapSelectAddress'
 import MapHashtag from './MapHashtag'
-import MapInfoModal from '../common/Modal/MapInfoModal'
+import MapInfoModal from './MapInfoModal'
 import MapSearchBar from './MapSearchBar'
 import EmptyMap from './EmptyMap'
 
@@ -22,32 +22,27 @@ import {
   getStoreData,
   getFitteredByClick,
 } from "../../_actions/store_action";
-import store from '../../store/store'
 
 
 function MapWrapper() {
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state.store);
+  const dispatch:any = useDispatch();
+  const state = useSelector((state) => state);
+  const { store }:any = state;
   console.log("state", state);
-  const inputRef = useRef();
+  const inputRef:any = useRef();
   useEffect(() => {
     inputRef.current.focus();
   })
-  const [mapData, setmapData] = useState([]);
   const [openInfoModal, setOpenInfoModal] = useState(false);
+  const [hastag, setHashtag] = useState("")
   const [selectAddress, setSelectAddress] = useState("");
   const [selectAddressDetail, setSelectAddressDetail] = useState('')
   // setmapData 에 필터링한 값 담아서 보여주기
   // 나온 데이터 값의 name 과 place_name의 이름이 같은것을 좌표로 보여준다. 
-  const dataSet = (e) => {
-    if(filterList.address === e[0].address_name){
-      setmapData(e)
-    }
-  }
   //* submit 설치 섭밋
-  const searchSubmitHandler = (e) => {
+  const searchSubmitHandler = (e:any) => {
     e.preventDefault();
-    setOpenInfoModal(true);
+    
     // if(word === ''){
     //   word = '동네 구독서비스'
     // }
@@ -57,18 +52,33 @@ function MapWrapper() {
   // console.log('===filteringHashClick',filterHashList)
   // setOpenInfoModal(true);
   // }
-  const filterListHandler = (hastag) => {
-    dispatch(getFitteredStore(hastag));
+  const filterListHandler = (hastag:string) => {
+    dispatch(getFitteredStore(hastag))
+    if (hastag === "all" || hastag === "") {
+      setOpenInfoModal(false);
+    } else {
+      setOpenInfoModal(true);
+    }
   };
 
-  const filterClickHandler = (address) => {
-    console.log("filteredclick", address);
-    dispatch(getFitteredByClick(address));
+  const [filteredList, setFilterList] = useState([]);
+  const filterClickHandler = (address:string) => {
+    // console.log("filteredclick", address);
+    // dispatch(getFitteredByClick(address));
+    const filtered = store.filter((el:any) => {
+      return el.address === address
+    })
+    setFilterList(filtered);
+    setOpenInfoModal(true);
   }
   
   useEffect(() => {
-    getStoreData()
+    dispatch(getStoreData());
   }, [])
+
+  useEffect(() => {
+    setFilterList(store);
+  }, [store])
   
   return (
     <>
@@ -89,20 +99,18 @@ function MapWrapper() {
               searchSubmitHandler={searchSubmitHandler}
             />
             {/* 해시태그 컴포넌트 */}
-            <MapHashtag filterListHandler={filterListHandler} />
-            {openInfoModal || store.length !== 0 ? (
-              <MapInfoModal mobile mapData={mapData} filterList={store} />
-            ) : (
-              <EmptyMap />
-            )}
+            <MapHashtag filterListHandler={filterListHandler} filterList={undefined} openInfoModal={undefined} mapData={undefined} />
+            <EmptyMap filteredList={filteredList}openInfoModal={openInfoModal} />
           </MapHashWrapper>
           {/* 지도 컴포넌트 */}
           <Map
-            dataSet={dataSet}
             filterClickHandler={filterClickHandler}
             selectAddress={selectAddress}
           />
         </MapFlexWrapper>
+        {openInfoModal ? (
+          <MapInfoModal mobile filteredList={filteredList} />
+        ) : null}
       </Container>
     </>
   );

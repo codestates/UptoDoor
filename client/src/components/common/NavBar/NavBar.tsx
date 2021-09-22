@@ -45,8 +45,9 @@ function NavBar() {
   },[])
 
 const accessInto = useCallback((name) => {
-  if (message) {
-    if (name === "mypage") {
+  
+  if (name === "mypage") {
+      if (message) {
       history.push('/mypage');
     } else {
       setNeedLoginModal(true);
@@ -111,7 +112,7 @@ const accessInto = useCallback((name) => {
         </MiddleButton></div>) }
         
       </ButtonWrapper>
-      <SideBar setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={(e:any) => { signoutHandler(e) }} />
+      <SideBar history={ history} setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={(e:any) => { signoutHandler(e) }} />
       <Signin setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
       {!user.message && needLoginModal ? <Modal closeModal={closeModal}
         openModal={needLoginModal} modalTitleText="UptoDoor"

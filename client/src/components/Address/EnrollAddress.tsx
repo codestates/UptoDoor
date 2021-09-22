@@ -19,7 +19,7 @@ function EnrollAddress() {
   const { user }: any = state;
   //* 주소 값이 있을경우에 input창에 띄워줘야하기때문에 
   //* address 안붙임
-  const { mainAddress, mainAddressDetail, subAddress, subAddressDetail } = user;
+  const { mainAddress, mainAddressDetail, subAddress, subAddressDetail, id } = user;
   
   const [current, setCurrent] = useState("")
   const [switched, setSwitched ] = useState("");
@@ -61,37 +61,39 @@ function EnrollAddress() {
   //* 보내는 주소 함수
   const addressHandler = (e: any, name:string) => {
     e.preventDefault();
-    if (name === "main") {
-      if (mainAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
-      if (switched === current) {
-      console.log("여기는 메인이다.");
-        const main = {
-          mainAddress,
-          mainAddressDetail,
-          main_xvalue: xValue,
-          main_yvalue: yValue
-        };
-        dispatch(addAddress(main,name));
-      }
-        else {
-        alert("동네 인증에 실패")
-      }
+    if (!id) {
+      alert("로그인이 필요한 서비스입니다.")
     } else {
-      if (subAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
-      if (switched === current) {
-        console.log("여기는 서브다");
-        const sub = {
-          subAddress,
-          subAddressDetail,
-          sub_xvalue: xValue,
-          sub_yvalue: yValue
-        };
-      dispatch(addAddress(sub,name));
-    }
-    else {
-      alert("동네 인증에 실패")
+        if (name === "main") {
+          if (mainAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
+          if (switched === current) {
+            const mainAdd = {
+              mainAddress:main,
+              mainAddressDetail: mainDetail,
+              main_xvalue: xValue,
+              main_yvalue: yValue
+            };
+            dispatch(addAddress(mainAdd,name));
+          }
+          else {
+            alert("동네 인증에 실패")
+          }   
+      } else {
+          if (subAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
+            if (switched === current) {
+              const subAdd = {
+                subAddress: sub,
+                subAddressDetail: subDetail,
+                sub_xvalue: xValue,
+                sub_yvalue: yValue
+              };
+            dispatch(addAddress(subAdd,name));
+          }
+        else {
+          alert("동네 인증에 실패")
+        }
       }
-    }
+      }
 
   };
 
@@ -176,6 +178,7 @@ function EnrollAddress() {
           />
           <DetailAddress>
             <input
+              required
               type="text"
               value={mainDetail}
               onChange={(e) => {setMainDetail(e.target.value) 
@@ -201,6 +204,7 @@ function EnrollAddress() {
           <AddressTitle name="no"/>
           <DetailAddress>
             <input
+              required
               type="text"
               value={subDetail}
               onChange={(e) => {setSubDetail(e.target.value) 

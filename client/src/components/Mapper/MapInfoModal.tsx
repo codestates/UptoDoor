@@ -1,18 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector,useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { 
   MapInfoContainer,
   MapInfoWrapper,
   StoreImg,
   StoreName,
   StoreAddress
-  } from '../../Mapper/styledMap'
-import { selectStore } from '../../../_actions/cart_action';
-function MapInfoModal() {
+  } from './styledMap'
+import { selectStore } from '../../_actions/cart_action';
+function MapInfoModal({filteredList}:any) {
   const dispatch:any = useDispatch()
-  const state = useSelector((state) => state)
-  const { store }:any = state;
   // console.log('===mapData===',mapData);
 
   //click 했을때 e.target.innerText 가 없으면 모달로 동네를 선택해야 합니다.
@@ -20,13 +18,11 @@ function MapInfoModal() {
   //온클릭  : if(e.target.innerText === '' )셋 오픈모달 트루 
   const moveStoreHandler = (id:number) => {
     dispatch(selectStore(id))
-
-
   }
   
   return (
     <MapInfoContainer mobile className = 'mapinfo-container'>
-      {store.map((el: any) => {
+      {filteredList && filteredList.map((el: any) => {
         return (
           <MapInfoWrapper onClick={() => { moveStoreHandler(el.id)}}
           key = {el.id}

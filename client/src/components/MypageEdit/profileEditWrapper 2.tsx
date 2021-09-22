@@ -11,7 +11,7 @@ import {
   ProfileEditInput,
   Label,
   ErrMsgP,
-} from './StyledMypageEdit'
+ } from './StyledMypageEdit'
 import {SmallButton,BtnBox} from '../common/Button/Button'
 
 import { useDispatch,useSelector } from 'react-redux'
@@ -52,10 +52,8 @@ function MyProfileEdit() {
   const onChangeMobileHandler = useCallback((e) => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
+      console.log(e.target.value);
       setMobile(e.target.value);
-    }
-    if(e.target.value === undefined || e.target.value === ''){
-      setMobile(user.mobile);
     }
   },[])
 

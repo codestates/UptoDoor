@@ -34,7 +34,7 @@ const OrderInfo = (props:any) => {
           <h5>주문자 정보</h5>
           <OrderUserInfoContent>
             <h4>주문자명: </h4>
-            <p>{user.nickname}</p>
+            <p>{user.name}</p>
           </OrderUserInfoContent>
           <OrderUserInfoContent>
             <h4>이메일: </h4>

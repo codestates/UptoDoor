@@ -19,7 +19,7 @@ interface Iprops {
 const SideBar = ({ setIsOpen, isOpen,signoutHandler }: Iprops):any => {
 const state = useSelector((state) => state)
   const { user }: any = state;
-  const { message,nickname } = user;
+  const { message,name } = user;
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -34,7 +34,7 @@ const state = useSelector((state) => state)
         <Logo>UptoDoor</Logo>
         {message ===undefined ? <User onClick={() => {
           setModalOpen(true);
-        }}>로그인(닉네임)</User> : <User>{nickname}</User>}
+        }}>로그인(닉네임)</User> : <User>{name}</User>}
         
         <SidebarMenu>
           <SidebarLink to="/mapper" onClick={()=>{setIsOpen(false)}}>구독찾기</SidebarLink>

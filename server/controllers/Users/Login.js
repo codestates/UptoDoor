@@ -10,16 +10,16 @@ module.exports = async (req, res) => {
   const Data = await user.findOne({
     where: { email: Email, password: Password },
   });
-
+  
   if (Data) {
     const UserInfo = {
       id: Data.id,
       email: Data.email,
-      nickname: Data.nickname,
-      mainaddress: Data.mainaddress,
-      mainaddressDetail: Data.mainaddressDetail,
-      subaddress: Data.subaddress,
-      subaddressDetail: Data.subaddressDetail,
+      name: Data.name,
+      mainAddress: Data.mainAddress,
+      mainAddressDetail: Data.mainAddressDetail,
+      subAddress: Data.subAddress,
+      subAddressDetail: Data.subAddressDetail,
       mobile: Data.mobile,
       age: Data.age,
       gender: Data.gender,

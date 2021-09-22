@@ -34,16 +34,16 @@ export const signUp = (userinfo) => {
 export const signIn = (userinfo) => {
   const result = axios.post('http://localhost:3060/users/signin', userinfo).then((res) => {
     console.log("signin", res.data);
-    const{id,email,nickname ,mainaddress,mainaddressDetail,subaddress,subaddressDetail,mobile,age,gender,position,billingkey} =res.data.userinfo
+    const{id,email,name ,mainAddress,mainAddressDetail,subAddress,subAddressDetail,mobile,age,gender,position,billingkey} =res.data.userinfo
     return {
       message: res.data.message,
       id,
       email,
-      nickname,
-      mainaddress,
-      mainaddressDetail,
-      subaddress,
-      subaddressDetail,
+      name,
+      mainAddress,
+      mainAddressDetail,
+      subAddress,
+      subAddressDetail,
       mobile,
       age,
       gender,

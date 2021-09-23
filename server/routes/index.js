@@ -22,7 +22,7 @@ router.get('/store', auth, controllers.StoreMap);
 router.get('/store/:id', auth, controllers.StoreInfo);
 router.get('/auth/email', controllers.Email);
 router.post('/auth/email', controllers.EmailSend);
-router.post('/oauth/kakao/logout', auth, controllers.Kakaologout);
+router.post('/oauth/kakao/signout', auth, controllers.KakaoSignout);
 router.post('/oauth/kakao/login', controllers.Kakaologin);
 router.get('/oauth/kakao/token', controllers.KakaoToken);
 router.post('/oauth/naver/signup', auth, controllers.Naversignup);

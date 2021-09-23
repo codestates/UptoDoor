@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const { user, menu, store, store_menu } = require('../../models');
+const { user, store, store_menu } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
 const models = require('../../models');
 module.exports = async (req, res) => {

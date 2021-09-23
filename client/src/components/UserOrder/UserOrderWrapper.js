@@ -10,7 +10,7 @@ import {
 } from "./StyledUserOrder";
 import SubscriptionInfo from './SubscriptionInfo';
 import OrderInfo from "./OrderInfo";
-import { ButtonWrapper } from '../UserCart/StyledUserCart';
+import { BtnBox } from "../common/Button/Button";
 import {
   SmallButton
 } from '../common/Button/Button';
@@ -115,12 +115,12 @@ useEffect(() => {
           />
         </SubscriptAndOrderInfoWrapper>
 
-        <ButtonWrapper>
+        <BtnBox>
           <SmallButton type="button" onClick={orderHander}>
             결제하기
           </SmallButton>
           <SmallButton>뒤로가기</SmallButton>
-        </ButtonWrapper>
+        </BtnBox>
       </div>
     </Container>
   );

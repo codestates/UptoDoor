@@ -14,7 +14,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
 
-import MapSelectModal from '../common/Modal/MapSelectModal'
+import MapSelectModal from '../Mapper/MapSelectModal'
 
 interface sliderProps {
   autoplay?: boolean | number;

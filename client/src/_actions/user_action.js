@@ -2,6 +2,7 @@ import {
   SIGNUP,
   SIGNIN,
   SIGNOUT,
+  EDIT_USER,
   DELETE_USER,
   ADD_ADDRESS,
   ADD_ORDER,
@@ -77,9 +78,11 @@ export const signOut = () => {
 export const editUser = (userinfoEdit) => {
   //patch 수정하고 로그인부분이 바뀌는거니까 SIGNIN
   console.log('==받아와라!!===',userinfoEdit)
+  // const result =
   axios.patch(`${END_POINTS}/users/userinfo`,
   userinfoEdit)
   .then((res)=>{
+    console.log('=====',res.data)
   const{name ,mobile,age,gender} =res.data.userinfoEdit
   return {
       message: res.data.message,
@@ -93,7 +96,7 @@ export const editUser = (userinfoEdit) => {
     console.log('==userinfo 받아오기실패==',err)
   })
   return {
-    type : SIGNIN,
+    type : EDIT_USER,
     payload : userinfoEdit
     
   }

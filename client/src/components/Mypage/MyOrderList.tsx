@@ -10,10 +10,17 @@ function MyOrderList({
   moveDetailHandler , 
   cart, orderDate}:any):any {
 
+
+  // console.log('selected_address:',cart.selected_address);
+
   return (
     <MypageOrderListWrapper>
-      {cart.menu.map((el:any,idx:any)=>{
-        return (
+      {/* {cart.selected_address === '' ? 
+      <p>구독중인 스토어가 없습니다.</p>
+      : */}
+        <>
+        {cart.menu.map((el:any,idx:any)=>{
+          return (
             <OrderListWrapper key = {idx}>
               <OrderListContent>
                 <ListDate>
@@ -40,6 +47,8 @@ function MyOrderList({
             </OrderListWrapper>
           )
         })}
+        </>
+      {/* } */}
     </MypageOrderListWrapper>
   )
 }

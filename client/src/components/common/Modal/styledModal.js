@@ -1,5 +1,5 @@
 import styled,{keyframes} from 'styled-components'
-import { MainColor, TextColor , SmallFont , MediumFont, TextDarkGrey } from '../../GlobalStyle'
+import { MainColor, TextColor , SmallFont , MediumFont, TextDarkGrey, UltraLargeFont, PointColor } from '../../GlobalStyle'
 
 const showModal = keyframes`
   from {
@@ -77,6 +77,17 @@ export const ModalTextWrapper = styled.div`
       border-radius: 150px;
     }
 `
+
+export const ModalTextBox = styled.div`
+text-align: center;
+>i{
+  color: ${PointColor};
+  font-size: ${UltraLargeFont};
+  margin-bottom:  30px;
+}
+  margin:  20px 0;
+`
+
 export const ModalTitleText = styled.div`
   color : ${TextColor};
   font-size : ${MediumFont};
@@ -116,6 +127,10 @@ export const ModalSelectAddWrapper = styled.div`
   background-color: white;
   border-radius: 8px;
   animation: ${showModal}.4s;  
+  display: ${({flexable})=> (flexable ?'flex' : 'unset')};
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   @media screen and (min-width: 767px) {
     width: 550px;

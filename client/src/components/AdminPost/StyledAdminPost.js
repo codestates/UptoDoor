@@ -178,9 +178,8 @@ font-size: ${BaseFont};
 export const StoreIntroTextArea = styled.textarea`
 padding : 8px;
 margin : 8px 0;
-height : 70px;
 resize: none;
-height: 100px;
+height: 70px;
 background-color: hsl(0, 0%, 100%);
 border-color: hsl(0, 0%, 80%);
 border-radius: 4px;

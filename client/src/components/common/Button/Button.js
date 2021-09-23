@@ -1,5 +1,21 @@
-import styled from 'styled-components';
+import styled,{keyframes} from 'styled-components';
 import { MainColor, BackgroundColor } from "../../GlobalStyle";
+
+const moving = keyframes`
+  0% {
+    transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(10%);
+  }
+`
+export const ArrowBtn = styled.i`
+color : ${MainColor};
+  cursor: pointer;
+  &:hover{
+    animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
+}
+`
 
 export const SmallButton = styled.button`
   margin: 0 5px;
@@ -25,6 +41,7 @@ export const MiddleButton = styled.button`
   text-align: center;
   border-radius: 8px;
   border: 1px solid ${MainColor};
+  margin: ${({ side }) => (side ? '5px' : 0)};
   color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : BackgroundColor)};
 `;
@@ -43,3 +60,16 @@ export const LagreButton = styled.button`
   color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : BackgroundColor)};
 `;
+
+export const BtnBox = styled.div`
+text-align: center;
+width: 100%;
+margin-top : ${({btnboxMargin})=> (btnboxMargin ? '18px' : 0)};
+display: ${({flexable})=> (flexable ?'flex' : 'unset')};
+justify-content: center;
+align-items: center;
+@media screen and (min-width: 1140px) {
+  display: flex;
+  justify-content: center;
+}
+`

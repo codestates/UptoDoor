@@ -73,7 +73,7 @@ function MapWrapper() {
   }
   
   useEffect(() => {
-    dispatch(getStoreData());
+    dispatch(getStoreData())
   }, [])
 
   useEffect(() => {
@@ -100,7 +100,7 @@ function MapWrapper() {
             />
             {/* 해시태그 컴포넌트 */}
             <MapHashtag filterListHandler={filterListHandler} filterList={undefined} openInfoModal={undefined} mapData={undefined} />
-            <EmptyMap filteredList={filteredList}openInfoModal={openInfoModal} />
+            <EmptyMap filteredList={filteredList} openInfoModal={openInfoModal} />
           </MapHashWrapper>
           {/* 지도 컴포넌트 */}
           <Map

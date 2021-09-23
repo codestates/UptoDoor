@@ -88,7 +88,7 @@ function MyProfile(): any {
                 :
                 <>
                 <p>{user.mainAddress}</p>
-                <p>({user.mainAddressDetail})</p>
+                <p>{user.mainAddressDetail}</p>
                 </>
                 }
               </MypageContent>

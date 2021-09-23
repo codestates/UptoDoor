@@ -47,6 +47,7 @@ const StoreData = ({id}) => {
       console.log(err);
     })
   }, [])
+  
   return (
     <Container>
       <Title>가게 정보</Title>

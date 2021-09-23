@@ -2,6 +2,7 @@ module.exports = {
     Login: require('./Users/Login'),
     SignOut: require('./Users/Signout'),
     SignUp: require('./Users/Signup'),
+    Withdraw: require('./Users/Withdraw'),
     UserInfo: require('./Users/Userinfo'),
     UpdateUser: require('./Users/Updateuser'),
     UserOrder: require('./Users/Userorder'),

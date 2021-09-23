@@ -6,7 +6,7 @@ const upload = require('../middlewares/multer');
 
 router.post('/users/signup', controllers.SignUp);
 router.post('/users/signin', auth ,controllers.Login);
-router.delete('/users/signout/',auth, controllers.SignOut);
+router.post('/users/signout/',auth, controllers.SignOut);
 router.get('/users/userinfo/:id', auth, controllers.UserInfo);
 router.patch('/users/userinfo/:id', auth, controllers.UpdateUser);
 router.get('/users/orderinfo/:id', auth, controllers.UserOrder);
@@ -22,7 +22,7 @@ router.get('/store', auth, controllers.StoreMap);
 router.get('/storeinfo', auth, controllers.StoreInfo);
 router.get('/auth/email', controllers.Email);
 router.post('/auth/email', controllers.EmailSend);
-router.post('/oauth/kakao/signup', auth, controllers.Kakaosignup);
+router.post('/oauth/kakao/logout', auth, controllers.Kakaologout);
 router.post('/oauth/kakao/login', controllers.Kakaologin);
 router.get('/oauth/kakao/token', controllers.KakaoToken);
 router.post('/oauth/naver/signup', auth, controllers.Naversignup);

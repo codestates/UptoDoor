@@ -62,6 +62,9 @@ module.exports = {
       signup_type: {
         type: Sequelize.STRING
       },
+      oauth_token: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

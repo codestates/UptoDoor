@@ -32,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
     emailcheck: DataTypes.STRING,
     position: DataTypes.STRING,
     billingkey: DataTypes.STRING,
-    signup_type: DataTypes.STRING
+    signup_type: DataTypes.STRING,
+    oauth_token: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'user',

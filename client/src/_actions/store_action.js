@@ -10,6 +10,11 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 import { initialStore } from '../components/dummyData';
 export const getStoreData = () => {
+  const request = axios.get(`${END_POINTS}/store`)
+    .then((res) => {
+    console.log("ssssssss",res.data)
+  })
+
   return {
     type: STORE_DATAS,
     payload: initialStore,

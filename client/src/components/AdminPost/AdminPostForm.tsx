@@ -32,7 +32,8 @@ function AdminPostForm() {
     { value : 'cafe' , label : 'cafe'},
     { value : 'living/home' , label : 'living/home'},
     { value : 'plants' , label : 'plants'},
-    { value : 'clothes' , label : 'clothes'},
+    { value: 'clothes', label: 'clothes' },
+    { value: 'etc', label: 'etc' },
   ]
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);

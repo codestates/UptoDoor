@@ -1,6 +1,5 @@
 import React from 'react'
 import { 
-  StyledModal,
   ModalContainer , 
   ModalWrapper,
   ModalTextWrapper,
@@ -8,10 +7,16 @@ import {
   ModalTitleText
 } from './styledModal'
 import {MiddleButton} from '../Button/Button'
+import { useHistory } from 'react-router-dom';
 
 function Modal(props:any) {
-  
-  const { openModal, closeModal, modalTitleText ,modalText, modalBtn } = props;
+  const history:any = useHistory()
+  const { openModal, setOpenModal, modalTitleText ,modalText, modalBtn,url } = props;
+
+  const closeModal = () => {
+    setOpenModal(false);
+    history.push(url);
+  }
 
   return (
       openModal ? (

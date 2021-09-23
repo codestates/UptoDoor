@@ -5,28 +5,38 @@ import styled from 'styled-components';
 export const OrderWrapper = styled.div`
   margin: 0 auto;
   width: 90%;
+  @media screen and (min-width: 1140px) {
+    margin: ${({ left }) => (left ? "0 20px 0 0" : "0 auto")};
+  }
 `;
 
 export const SubscriptAndOrderInfoWrapper = styled.div`
+  @media screen and (min-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-@media screen and (min-width: 1140px) {
-  
-  margin: 20px auto;
-  width: 85%;
-  display: flex;
-  justify-content: space-between;
-}
+  @media screen and (min-width: 1140px) {
+    margin: 20px auto;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    max-width: 1200px;
+  }
 `;
 
 export const OrderH3 = styled.h3`
   font-size: 18px;
   padding: 5px 5px;
-  margin: 12px 0;
+  margin: 12px 0 12px;
   letter-spacing: -1px;
-
   @media screen and (min-width: 1140px) {
+    width:90%;
     font-size: 24px;
-    margin-left: ${({primary})=> (primary ? "20px" : 0)};
+    max-width: 1200px;
+    margin: 12px auto;
   }
 `;
 
@@ -319,7 +329,7 @@ export const OrderInfoWrraper = styled.div`
   }
 
   @media screen and (min-width: 1140px) {
-    padding: 14px 14px;
+    padding: 10px 14px;
     > h5 {
       font-size: 22px;
     }
@@ -329,7 +339,6 @@ export const OrderInfoWrraper = styled.div`
 export const OrderUserInfoContent = styled.div`
   width: 95%;
   display: flex;
-  margin-bottom: 5px;
     > h4 {
       font-size: 12px;
       padding-left:10px;
@@ -413,6 +422,7 @@ export const InfoCheck = styled.div`
       justify-content: space-between;
       > h5 {
         font-size: 16px;
+        margin-top: 6px;
         margin-bottom: 6px;
       }
       span {
@@ -448,7 +458,7 @@ export const MoneyCheck = styled.div`
   }
   @media screen and (min-width: 1140px) {
     width: 95%;
-    margin: 6px auto 0;
+    margin: 3px auto 0;
     > h4 {
       letter-spacing: -1px;
       font-size: 20px;
@@ -500,7 +510,8 @@ export const CardCheck = styled.div`
 
   @media screen and (min-width: 1140px) {
     width: 95%;
-    margin: 20px auto;
+    margin: 10px auto;
+    padding: 10px 0 0 0;
     > h4 {
       letter-spacing: -1px;
       font-size: 20px;
@@ -515,6 +526,32 @@ export const CardCheck = styled.div`
         height: 18px;
         margin: 4px 8px 0 0;
       }
+    }
+  }
+`;
+
+
+
+export const ButtonWrapper = styled.div`
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  > button {
+    width: 150px;
+    margin: 0 10px;
+  }
+
+  @media screen and (min-width: 767px) {
+    height: 80px;
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    display: block;
+    > button {
+      width: 250px;
+      height: 60px;
+      margin: 0 10px 0 15px;
     }
   }
 `;

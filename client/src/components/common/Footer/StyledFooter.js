@@ -8,6 +8,9 @@ export const FooterContainer = styled.div`
   width: 100%;
   /* border: 1px solid black; */
   background: #f0f0f2;
+  position: flxed;
+  bottom:0;
+  left: 0;
 `;
 
 export const FooterWrapper = styled.div`

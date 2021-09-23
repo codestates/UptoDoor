@@ -38,12 +38,13 @@ function MyOrderList({
                     <h4>남산아래</h4>
                     <p><span>내용:</span>{el.detail}</p>
                   </div>
-                </ListInfo>
-              </OrderListContent>
-      
+
               <NextBtn type="button" onClick={()=>{moveDetailHandler("1")}}>
                 <i className="fas fa-angle-double-right"></i>
               </NextBtn>
+                </ListInfo>
+              </OrderListContent>
+      
             </OrderListWrapper>
           )
         })}

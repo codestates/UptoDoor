@@ -7,15 +7,15 @@ import {
   OrderH3,
   SubscriptAndOrderInfoWrapper,
   MenuUl,
+  ButtonWrapper,
 } from "./StyledUserOrder";
 import SubscriptionInfo from './SubscriptionInfo';
 import OrderInfo from "./OrderInfo";
-import { ButtonWrapper } from '../UserCart/StyledUserCart';
-import {
-  SmallButton
-} from '../common/Button/Button';
+import { MiddleButton } from "../common/Button/Button";
 import { addOrder } from '../../_actions/user_action';
 import { Container, Wrapper, Title } from "../GlobalStyle";
+import useInput from "../../utils/useInput";
+import Modal from "../common/Modal/Modal";
 
 function UserOrderWrapper() {
   const state = useSelector((state) => state);
@@ -28,7 +28,9 @@ function UserOrderWrapper() {
   const paymentChecker = () => setPaymentCheck((paymentCheck) => !paymentCheck);
 
   const [orderMobile, setOrderMobile] = useState("");
+  const [deliveryName, onChangeDeliveryName] = useInput('')
 
+  const [openModal, setOpenModal]= useState(false)
   // console.log("orderMobile", orderMobile);
   // console.log("mobileCheck", mobileCheck);
   // console.log("paymentCheck", paymentCheck);
@@ -41,10 +43,20 @@ function UserOrderWrapper() {
 
     if (!mobileCheck && orderMobile.length >= 11 && paymentCheck) {
       const selected_mobile = orderMobile;
-      dispatch(addOrder(state.cart, selected_mobile));
+      dispatch(addOrder(state.cart, selected_mobile, deliveryName))
+        .then((res) => {
+        if (res.payload.message === 'Your order has been completed') {
+          setOpenModal(true);
+        }
+      }).catch((err)=> alert("err입니다", err))
     } else if (mobileCheck && paymentCheck) {
       const selected_mobile = state.user.mobile;
-      dispatch(addOrder(state.cart, selected_mobile));
+      dispatch(addOrder(state.cart, selected_mobile, deliveryName)).
+        then((res) => {
+        if (res.payload.message === 'Your order has been completed') {
+          setOpenModal(true);
+        }
+      }).catch((err)=> alert("err입니다", err));
     } else {
       alert("erro3");
     }
@@ -85,22 +97,23 @@ useEffect(() => {
               <li>가격</li>
             </MenuUl>
             {/* 사용설명 nav 느낌 */}
-            {menu && menu.map((item) => {
-              return (
-                <MenuItemWrapper key={item.id}>
-                  <img src={item.image} alt="" />
-                  <MenuItemDetail>
-                    <h5>{item.name}</h5>
-                    <div>
-                      <span>수량</span> {item.quantity} 개
-                    </div>
-                    <div>
-                      <span>가격</span> {item.price} 원
-                    </div>
-                  </MenuItemDetail>
-                </MenuItemWrapper>
-              );
-            })}
+            {menu &&
+              menu.map((item) => {
+                return (
+                  <MenuItemWrapper key={item.id}>
+                    <img src={item.image} alt="" />
+                    <MenuItemDetail>
+                      <h5>{item.name}</h5>
+                      <div>
+                        <span>수량</span> {item.quantity} 개
+                      </div>
+                      <div>
+                        <span>가격</span> {item.price} 원
+                      </div>
+                    </MenuItemDetail>
+                  </MenuItemWrapper>
+                );
+              })}
           </MenuWrapper>
         </Wrapper>
         <SubscriptAndOrderInfoWrapper>
@@ -112,16 +125,27 @@ useEffect(() => {
             mobileCheck={mobileCheck}
             paymentChecker={paymentChecker}
             mobileChecker={mobileChecker}
+            onChangeDeliveryName={onChangeDeliveryName}
           />
         </SubscriptAndOrderInfoWrapper>
 
         <ButtonWrapper>
-          <SmallButton type="button" onClick={orderHander}>
+          <MiddleButton type="button" onClick={orderHander}>
             결제하기
-          </SmallButton>
-          <SmallButton>뒤로가기</SmallButton>
+          </MiddleButton>
+          <MiddleButton>뒤로가기</MiddleButton>
         </ButtonWrapper>
       </div>
+      {openModal ? <Modal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        modalTitleText="주문 완료"
+        modalText="주문이 완료되었습니다. 감사합니다."
+        url="/"
+        modalBtn="확인"
+      />
+      : null
+      }
     </Container>
   );
 }

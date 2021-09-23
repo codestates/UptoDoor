@@ -33,7 +33,7 @@ export const SmallButton = styled.button`
 
 export const MiddleButton = styled.button`
   width: 200px;
-  height: 40px;
+  height: 50px;
   font-size: 18px;
   font-weight: 700px;
   cursor: pointer;
@@ -43,7 +43,7 @@ export const MiddleButton = styled.button`
   border: 1px solid ${MainColor};
   margin: ${({ side }) => (side ? '5px' : 0)};
   color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
-  background-color: ${({ primary }) => (primary ? MainColor : BackgroundColor)};
+  background-color: ${({ primary }) => (primary ? MainColor : "#FFF")};
 `;
 
 export const LagreButton = styled.button`

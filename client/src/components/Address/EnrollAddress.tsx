@@ -65,7 +65,7 @@ function EnrollAddress() {
       alert("로그인이 필요한 서비스입니다.")
     } else {
         if (name === "main") {
-          if (mainAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
+          if (mainAddressDetail === undefined) return alert("상세 주소란을 입력해주세요.");
           if (switched === current) {
             const mainAdd = {
               mainAddress:main,
@@ -79,7 +79,7 @@ function EnrollAddress() {
             alert("동네 인증에 실패")
           }   
       } else {
-          if (subAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
+          if (subAddressDetail=== undefined) return alert("상세 주소란을 입력해주세요.");
             if (switched === current) {
               const subAdd = {
                 subAddress: sub,

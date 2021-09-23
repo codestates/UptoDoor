@@ -4,16 +4,15 @@ import {
   STORE_FILTER_HASHTAG,
   STORE_FILTER_BY_SEARCH,
   STORE_FILTER_BY_CLICK,
+  END_POINTS
 } from "./type";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 import { initialStore } from '../components/dummyData';
 export const getStoreData = () => {
-
-
   return {
     type: STORE_DATAS,
-    payload: initialStore
+    payload: initialStore,
   };
 };
 

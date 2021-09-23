@@ -56,7 +56,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-  width: 90%;
+  width: 85%;
   font-size: 20px;
   margin: 20px auto 24px;
 

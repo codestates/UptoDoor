@@ -10,18 +10,24 @@ import {
   AddressFormDiv,DetailAddress
 } from "./StyledAddress";
 import { SmallButton } from "../common/Button/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from '../../_actions/user_action';
 const { kakao }: any = window;
 
 function EnrollAddress() {
+  const state = useSelector((state) => state);
+  const { user }: any = state;
+  //* 주소 값이 있을경우에 input창에 띄워줘야하기때문에 
+  //* address 안붙임
+  const { mainAddress, mainAddressDetail, subAddress, subAddressDetail, id } = user;
+  
   const [current, setCurrent] = useState("")
   const [switched, setSwitched ] = useState("");
   const dispatch = useDispatch();
-  const [mainAddress, setMainAddress] = useState("");
-  const [mainAddressDetail, setMainAddressDetail] = useState("");
-  const [subAddress, setSubAddress] = useState('');
-  const [subAddressDetail, setSubAddressDetail] = useState("");
+  const [main, setMain] = useState(mainAddress);
+  const [mainDetail, setMainDetail] = useState(mainAddressDetail);
+  const [sub, setSub] = useState(subAddress);
+  const [subDetail, setSubDetail] = useState(subAddressDetail);
   const [mainModal, setMainModal] = useState(false)
   const [subModal, setSubModal] = useState(false);
   const [xValue, setXValue] = useState('');
@@ -31,64 +37,63 @@ function EnrollAddress() {
 
   const onChangeMainAddress = useCallback((data) => {
     
-    setMainAddress(JSON.parse(data).address);
+    setMain(JSON.parse(data).address);
     // console.log(mainAddress);
     switchAddress(JSON.parse(data).address);
     setMainModal(false);
   },[])
   const onChangeSubAddress = useCallback((data) => {
-    setSubAddress(JSON.parse(data).address);
+    setSub(JSON.parse(data).address);
     switchAddress(JSON.parse(data).address);
     setSubModal(false);
   },[]);
   //* 지우는 함수
   const deleteHandler = useCallback((name) => {
     if (name === "main") {
-      setMainAddress("");
-      setMainAddressDetail("");
+      setMainDetail("");
+      setMain("");
     } else {
-      setSubAddressDetail("");
-      setSubAddress("");
+      setSub("");
+      setSubDetail("");
     }
   },[])
 
   //* 보내는 주소 함수
   const addressHandler = (e: any, name:string) => {
-    console.log("x,y", xValue, yValue);
-    console.log("current", current);
-    console.log("switched", switched);
     e.preventDefault();
-    if (name === "main") {
-      if (mainAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
-      if (switched === current) {
-      console.log("여기는 메인이다.");
-        const main = {
-          mainAddress,
-          mainAddressDetail,
-          main_xvalue: xValue,
-          main_yvalue: yValue
-        };
-        dispatch(addAddress(main,name));
-      }
-        else {
-        alert("동네 인증에 실패")
-      }
+    if (!id) {
+      alert("로그인이 필요한 서비스입니다.")
     } else {
-      if (subAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
-      if (switched === current) {
-        console.log("여기는 서브다");
-        const sub = {
-          subAddress,
-          subAddressDetail,
-          sub_xvalue: xValue,
-          sub_yvalue: yValue
-        };
-      dispatch(addAddress(sub,name));
-    }
-    else {
-      alert("동네 인증에 실패")
+        if (name === "main") {
+          if (mainAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
+          if (switched === current) {
+            const mainAdd = {
+              mainAddress:main,
+              mainAddressDetail: mainDetail,
+              main_xvalue: xValue,
+              main_yvalue: yValue
+            };
+            dispatch(addAddress(mainAdd,name));
+          }
+          else {
+            alert("동네 인증에 실패")
+          }   
+      } else {
+          if (subAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
+            if (switched === current) {
+              const subAdd = {
+                subAddress: sub,
+                subAddressDetail: subDetail,
+                sub_xvalue: xValue,
+                sub_yvalue: yValue
+              };
+            dispatch(addAddress(subAdd,name));
+          }
+        else {
+          alert("동네 인증에 실패")
+        }
       }
-    }
+      }
 
   };
 
@@ -160,7 +165,7 @@ function EnrollAddress() {
           onSubmit={(e:any) => {addressHandler(e,"main");}}>
           <AddressTitle deleteHandler={deleteHandler} name="main" />
           <AddressFormDiv>
-            <div>{mainAddress}</div>
+            <div>{main}</div>
             <SmallButton
               type="button"
               onClick={() => setMainModal((prev) => !prev)}
@@ -170,12 +175,13 @@ function EnrollAddress() {
           </AddressFormDiv>
           <AddressTitle
           name="null"
-           />
+          />
           <DetailAddress>
             <input
+              required
               type="text"
-              defaultValue={mainAddressDetail}
-              onChange={(e) => {setMainAddressDetail(e.target.value) 
+              value={mainDetail}
+              onChange={(e) => {setMainDetail(e.target.value) 
               }}
             ></input>
             <SmallButton primary>주소 제출</SmallButton>
@@ -187,7 +193,7 @@ function EnrollAddress() {
         >
           <AddressTitle deleteHandler={deleteHandler} name="sub" />
           <AddressFormDiv>
-            <div>{subAddress}</div>
+            <div>{sub}</div>
             <SmallButton
               type="button"
               onClick={() => setSubModal((prev) => !prev)}
@@ -198,9 +204,10 @@ function EnrollAddress() {
           <AddressTitle name="no"/>
           <DetailAddress>
             <input
+              required
               type="text"
-              defaultValue={subAddressDetail}
-              onChange={(e) => {setSubAddressDetail(e.target.value) 
+              value={subDetail}
+              onChange={(e) => {setSubDetail(e.target.value) 
               }}
             ></input>
             <SmallButton primary type="submit">주소 제출</SmallButton>

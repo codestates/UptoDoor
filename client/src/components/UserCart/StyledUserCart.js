@@ -33,29 +33,36 @@ export const CartMenuListWrapper = styled.div`
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
   @media screen and (min-width: 1140px) {
     width: 620px;
-    margin-right: 15px;
+    margin-right: 20px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
 `;
 
 export const CartMenuItemContainer = styled.div`
-  max-height: 330px;
   width: 100%;
-  overflow-y: auto;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+  background-color: #f7f7f7;
+  padding: 6px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   @media screen and (min-width: 1140px) {
     width: 620px;
     box-shadow: none;
-    marign-bottom: 10px;
+    margin-bottom: 10px;
+    max-height: 340px;
+    overflow-y: auto;
+    padding: 10px 0;
   }
 `;
 
 export const CartMenuItemWrapper = styled.div`
-  margin-bottom: 6px;
+  margin: 0 auto 6px;
   height: 100px;
   /* border: 1px solid black; */
   display: flex;
+  background-color: #fff;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   justify-content: flex-start;
@@ -76,8 +83,8 @@ export const CartMenuItemWrapper = styled.div`
   }
 
   @media screen and (min-width: 1140px) {
-    width: 570px;
-    margin: 0 auto 10px;
+    width: 95%;
+    margin: 0 auto 6px;
   }
 `;
 
@@ -246,7 +253,7 @@ export const PlusMoneyWrapper = styled.div`
 
   @media screen and (min-width: 1140px) {
     width: 95%;
-    height: 70px;
+    height: 60px;
     margin: 0 auto;
     > div {
       > span {
@@ -316,8 +323,9 @@ export const UserCheckList = styled.section`
   @media screen and (min-width: 1140px) {
     padding: 20px;
     min-width: 450px;
-
-    > h3 {
+    margin: 0 auto 20px;
+    height: 540px;
+    > h3 {  
       margin: 0;
       font-size: 20px;
     }
@@ -398,7 +406,7 @@ export const UserCheckListDetailBox = styled.div`
   margin: 10px auto;
   width: 95%;
 
-  > h3 {
+  > h4 {
     font-weight: 500;
     margin-bottom: 10px;
   }
@@ -423,13 +431,14 @@ export const ButtonWrapper = styled.div`
   margin: 0 auto;
   width: 100%;
   display: flex;
-  margin-bottom: 20px;
   justify-content: center;
 
+  > button {
+      width: 120px;
+  }
   @media screen and (min-width: 767px) {
-    
     > button {
-      width: 150px;
+      width: 220px;
       height: 50px;
       height: 60px;
       font-size: 20px;
@@ -437,8 +446,11 @@ export const ButtonWrapper = styled.div`
     }
   }
   @media screen and (min-width: 1140px) {
+    margin: 0;
+    justify-content: space-between;
     > button {
-      width: 280px;
+      margin: 0;
+      width: 220px;
       height: 60px;
       font-size: 20px;
       font-weight: 700;

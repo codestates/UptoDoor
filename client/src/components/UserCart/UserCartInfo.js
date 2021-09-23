@@ -319,7 +319,7 @@ function UserCartInfo() {
               <span>{"  "}한번 배송시 추가되는 금액입니다</span>
             </PlusMoneyWrapper>
             <UserCheckListDetailBox>
-              <h3>세부사항</h3>
+              <h4>세부사항</h4>
               <textarea
                 maxLength="300"
                 onChange={(e) => {

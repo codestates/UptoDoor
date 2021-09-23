@@ -4,7 +4,7 @@ import {
   MapHashtagWrapper,
   MapHashTagBox } from './styledMap'
 import { SmallButton } from '../common/Button/Button'
-import MapInfoModal from '../common/Modal/MapInfoModal';
+import MapInfoModal from './MapInfoModal';
 
 interface Category {
   filterList : any,

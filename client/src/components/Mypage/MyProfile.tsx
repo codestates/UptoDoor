@@ -99,13 +99,7 @@ function MyProfile(): any {
             </MypageProfileWrapper>
             <MypageUl>
               <MypageLi>
-                <button type="button" 
-                onClick={() => {setCurrentTab(0)}} 
-                className={currentTab ===0 ? "focus": ""}>구독관리</button>
-              </MypageLi>
-              <MypageLi><button type="button" 
-                onClick={() => {setCurrentTab(1)}} 
-                className={currentTab ===1 ? "focus": ""}>주문조회</button>
+                구독관리
               </MypageLi>
             </MypageUl>
             

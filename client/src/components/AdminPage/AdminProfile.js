@@ -56,7 +56,7 @@ function AdminProfile() {
               </MypageContent>
               <ButtonWrapper>
                 <button type="button">
-                  <Link to="/adminpageedit">내 가게 관리</Link>
+                  <Link to="/adminedit">내 가게 관리</Link>
                 </button>
               </ButtonWrapper>
             </MypageProfileWrapper>

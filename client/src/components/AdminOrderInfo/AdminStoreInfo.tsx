@@ -10,10 +10,6 @@ function AdminStoreInfo() {
   return (
     <>
       <StoreInfoWrapper className="storeinfo-wrapper">
-        <FlexBox between>
-          <H3>남산 아래</H3>
-          <Category>Food</Category>
-        </FlexBox>
         <FlexBox col>
           <EachItemBox>
             <H4>🗓 구독기간</H4>

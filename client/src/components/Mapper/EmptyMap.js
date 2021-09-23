@@ -31,7 +31,7 @@ function EmptyMap({ filteredList, openInfoModal }) {
                 >
                   <Link to={`/storeinfo/${el.id}`}>
                     <StoreImg
-                      src={el.store_image.length === 0 ? "" : el.store_image[0]}
+                      src={el.image.length === 0 ? "" : el.image[0]}
                       alt="업체사진"
                     />
                     <div>

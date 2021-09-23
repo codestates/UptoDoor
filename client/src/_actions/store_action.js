@@ -12,67 +12,86 @@ import { initialStore } from '../components/dummyData';
 export const getStoreData = () => {
   const request = axios.get(`${END_POINTS}/store`)
     .then((res) => {
-    console.log("ssssssss",res.data)
+      console.log("ssssssss", res.data)
+      return res.data.storeinfo;
   })
 
   return {
     type: STORE_DATAS,
-    payload: initialStore,
+    payload: request,
   };
 };
 
 export const getFitteredStore = (hastag) => {
-  let data;
-  if (hastag === "all") {
-    data = initialStore;
-  } else {
-    data = initialStore.filter((el) => {
-      return el.category === hastag;
-    });
-  }
+  const request = axios.get(`${END_POINTS}/store`).then((res) => {
+    let data;
+    if (hastag === "all") {
+      data = res.data.storeinfo;
+    } else {
+      data = res.data.storeinfo.filter((el) => {
+        return el.category === hastag;
+      });
+    }
+    return data
+  });
+  
   
 
   return {
     type: STORE_FILTER_HASHTAG,
-    payload: data,
+    payload: request,
   };
 };
 
 export const getFitteredBySearch = (keyword) => {
-  let data;
-  if (keyword === "") {
-    data = initialStore;
-  } else {
-    // let RegExp = /[안녕]/g;
-    let RegExp1 = new RegExp(`${keyword}`,"g");
 
-    data = initialStore.filter((el) => {
-      if (RegExp1.test(el.name) || RegExp1.test(el.introduce) || RegExp1.test(el.category)) {
-        return el
-      }
-    });
-  }
-  console.log("data",data);
+  const request = axios.get(`${END_POINTS}/store`).then((res) => {
+    const info = res.data.storeinfo
+    let data;
+    if (keyword === "") {
+      data = info;
+    } else {
+      // let RegExp = /[안녕]/g;
+      let RegExp1 = new RegExp(`${keyword}`, "g");
+
+      data = info.filter((el) => {
+        if (
+          RegExp1.test(el.name) ||
+          RegExp1.test(el.introduce) ||
+          RegExp1.test(el.category)
+        ) {
+          return el;
+        }
+      });
+    }
+    console.log("서치서치=========", data);
+    return data;
+  });
+
 
   return {
     type: STORE_FILTER_BY_SEARCH,
-    payload: data,
+    payload: request,
   };
 };
 
 export const getFitteredByClick = (address) => {
   console.log("address---", address);
-  let data;
-  if (address) {
-    data = initialStore.filter((el) => {
-      console.log(el.address);
-      return el.address ===address
-    });
-  }
-  
-  console.log("ㄸ;요", data);
+  const request = axios.get(`${END_POINTS}/store`).then((res) => {
+    console.log("res.data---cliock", res.data);
+    const info = res.data.storeinfo
+    console.log("info", info);
+    let data;
+    if (address) {
+      data = info.filter((el) => {
+        console.log(el.address);
+        return el.address === address;
+      });
+    }
+    return data;
+  });
   return {
     type: STORE_FILTER_BY_CLICK,
-    payload: data,
+    payload: request,
   };
 }

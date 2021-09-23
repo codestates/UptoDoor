@@ -4,10 +4,9 @@ import {
   STORE_FILTER_BY_SEARCH,
   STORE_FILTER_BY_CLICK,
 } from "../_actions/type";
-import { initialStore } from "../components/dummyData";
 
 
-export default function admin_reducer(state = initialStore, action) {
+export default function admin_reducer(state = {}, action) {
 
   switch (action.type) {
     case STORE_DATAS:

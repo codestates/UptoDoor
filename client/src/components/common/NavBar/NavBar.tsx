@@ -16,8 +16,10 @@ import {
 } from "./StyledNavBar";
 import { signOut } from '../../../_actions/user_action';
 import Modal from '../Modal/Modal';
+import { useHistory } from 'react-router';
 
 function NavBar() {
+  const history:any = useHistory();
   const dispatch:any = useDispatch()
   const state = useSelector((state) => state)
   const { user }: any = state;
@@ -28,24 +30,29 @@ function NavBar() {
   const [modalOpen, setModalOpen] = useState(false);
   const [needLoginModal, setNeedLoginModal] = useState(false);
   const closeModal = () => { setNeedLoginModal(false) };
-  const signoutHandler = useCallback(() => {
-    dispatch(signOut()).then(() => 
-    {
-      window.location.reload();
+  //사인아웃 핸들러
+  const signoutHandler = useCallback((e) => {
+    e.preventDefault();
+    dispatch(signOut())
+      .then((res: any) => {
+        console.log(res);
+      if (res.payload === "loginOut success") {
+        window.location.href="http://localhost:3000/"
+      } else {
+        alert("로그아웃에 실패했습니다.")
+      }
     });
   },[])
 
 const accessInto = useCallback((name) => {
-  if (message) {
-    if (name === "address") {
-      window.location.href = 'http://localhost:3000/address'
-    } else {
-      window.location.href = 'http://localhost:3000/mypage'
-      }
-     
+  
+  if (name === "mypage") {
+      if (message) {
+      history.push('/mypage');
     } else {
       setNeedLoginModal(true);
     }
+  }
   }, [history, message]);
 
 
@@ -63,15 +70,9 @@ const accessInto = useCallback((name) => {
         <Nav>
           <h2 className="visually-hidden">메뉴</h2>
           <ul>
-            <li>
-              <Listli to="/mapper">구독찾기</Listli>
-            </li>
-            <li onClick={() => { accessInto("address") }}>
-              <Listli >동네인증</Listli>
-            </li>
-            <li onClick={() => { accessInto("mypage") }}>
-              <Listli >마이페이지</Listli>
-            </li>
+              <Listli onClick={()=> history.push("/mapper")}>구독찾기</Listli>
+              <Listli onClick={()=> history.push("/address")}>동네인증</Listli>
+            <Listli onClick={() => { accessInto("mypage") }}>마이페이지</Listli>
           </ul>
         </Nav>
       </NavWrapper>
@@ -102,16 +103,16 @@ const accessInto = useCallback((name) => {
         </MiddleButton></div>)
           :
         ( <div><MiddleButton type="button" aria-label="로그인"
-        onClick={()=>{setModalOpen(true)}}
+            onClick={() => { accessInto("mypage") }}
         >
           프로필
         </MiddleButton>
-        <MiddleButton type="button" aria-label="회원가입">
-          <BtnLink onClick={signoutHandler}>로그아웃</BtnLink>
+        <MiddleButton type="button" aria-label="회원가입" onClick={(e:any) => { signoutHandler(e) }}>
+          로그아웃
         </MiddleButton></div>) }
         
       </ButtonWrapper>
-      <SideBar setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={signoutHandler} />
+      <SideBar history={ history} setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={(e:any) => { signoutHandler(e) }} />
       <Signin setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
       {!user.message && needLoginModal ? <Modal closeModal={closeModal}
         openModal={needLoginModal} modalTitleText="UptoDoor"

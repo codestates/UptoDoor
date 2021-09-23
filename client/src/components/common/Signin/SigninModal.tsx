@@ -84,13 +84,6 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
       })
     }
   },[])
-  
-  const logOutHandler = useCallback((e) => {
-    axios.delete('http://localhost:3060/users/signout')
-    .then((res)=>{
-      console.log("로그아웃 응답",res.data)
-    })
-  },[])
 
   return modalOpen ? (
     <SigninContainer>

@@ -13,8 +13,6 @@ import {
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
 
-// import camera from '../../../public/image/updodoor.png'
-
 import axios from "axios";
 axios.defaults.withCredentials=true;
 
@@ -52,9 +50,9 @@ function SignupWrapper() {
     dispatch(signUp(userinfo))
     .then((res) => {
       console.log('===',res.payload)
-      if (res.payload.message  === 'send success') {
+      if (res.payload.message  === 'Signup success') {
         alert('회원가입성공')
-        return history.push('/')
+        window.location.href="http://localhost:3000/"
       } else {
         alert('회원가입 조건을 충족해주세요.');
       }

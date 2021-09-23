@@ -6,9 +6,9 @@ const upload = require('../middlewares/multer');
 
 router.post('/users/signup', controllers.SignUp);
 router.post('/users/signin', auth ,controllers.Login);
-router.delete('/users/signout/',auth, controllers.SignOut);
+router.post('/users/signout/',auth, controllers.SignOut);
 router.get('/users/userinfo/:id', auth, controllers.UserInfo);
-router.patch('/users/userinfo/:id', auth, controllers.UpdateUser);
+router.patch('/users/userinfo', auth, controllers.UpdateUser);
 router.get('/users/orderinfo/:id', auth, controllers.UserOrder);
 router.post('/users/order', auth, controllers.Order);
 router.delete('/users/order/:id', auth, controllers.DeleteOrder);

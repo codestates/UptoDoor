@@ -4,7 +4,7 @@ import {
   MapSelectAddressWrapper,
   SelectAddressBox,
 } from './styledMap'
-import MapSelectModal from '../common/Modal/MapSelectModal';
+import MapSelectModal from './MapSelectModal';
 import {useDispatch, useSelector } from 'react-redux'
 import {setAddress} from '../../_actions/cart_action'
 

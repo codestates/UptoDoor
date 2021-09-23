@@ -11,6 +11,7 @@ export const SidebarContainer = styled.aside`
   display: grid;
   align-items: center;
   left: 0;
+  z-index: 10;
   opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
   @media screen and (min-width: 767px) {
@@ -31,6 +32,7 @@ export const SidebarWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   /* opacity:1; */
+  z-index: 11;
 `;
 
 export const Icon = styled.div`
@@ -77,19 +79,19 @@ export const User = styled.div`
 `;
 
 
-export const SidebarMenu = styled.div`
+export const SidebarUl = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(6, 60px);
   text-align: center;
   text-decoration: none;
-
+  list-style: none;
   @media screen and (max-width: 480px) {
     grid-template-rows: repeat(6, 60px);
   }
 `;
 
-export const SidebarLink = styled(Link)`
+export const SidebarLi = styled.li`
   padding: 0 0 10px 10px;
   display: flex;
   align-items: center;

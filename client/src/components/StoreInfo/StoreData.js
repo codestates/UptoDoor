@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {initialStore} from '../dummyData'
 import MenuList from './MenuList'
 import {
@@ -18,18 +18,34 @@ import {
   Title
 } from "../GlobalStyle";
 import { useSelector } from 'react-redux';
+import axios from "axios";
+import { END_POINTS } from "../../_actions/type";
 
 
 const StoreData = ({id}) => {
-  // const paramsArr = id.split("-");
-  // const indicator = paramsArr[0];
-  // const pathParameter = paramsArr[1];
-  const state = useSelector((state) => state.store);
-  
+
+  const state = useSelector((state) => state.user);
+  const [sotre, setStore] = useState({})
+
 
   useEffect(() => {
-    console.log("Elel", id);
-    console.log("스토어인포", state.store_id);
+    if (state.message === undefined) {
+      
+      window.location.href = `/`;
+      alert("login need");
+    } 
+  }, [])
+
+  useEffect(() => {
+    axios.get(`${END_POINTS}/store/${id}`)
+    // axios.get(`${END_POINTS}/store/7`)
+      .then((res) => {
+        console.log("스토어 넘버", res.data);
+        return setStore(res.data);
+        
+    }).catch((err) => {
+      console.log(err);
+    })
   }, [])
   return (
     <Container>

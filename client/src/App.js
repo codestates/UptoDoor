@@ -1,4 +1,4 @@
-import React, { Suspense ,lazy, useEffect } from "react";
+import React, { Suspense ,lazy} from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/GlobalStyle'
 import Loading from './components/common/Loading/Loading'
@@ -38,21 +38,6 @@ const Landing = lazy(
 );
 
 function App() {
-
-  useEffect(()=>{
-    const url = new URL(window.location.href)
-    console.log("url",url)
-    const authorizationCode = url.searchParams.get('code')
-    if (authorizationCode) {
-      console.log("인가코드",authorizationCode)        
-      axios.post('http://localhost:3060/oauth/kakao/login',
-      {authorizationCode:authorizationCode}
-      ).then((res)=>{
-        console.log("res",res.data);
-        window.location.href = "/"
-      })
-    }
-  },[])
 
   return (
     <>

@@ -78,7 +78,7 @@ export const signOut = () => {
 export const editUser = (userinfoEdit) => {
   //patch 수정하고 로그인부분이 바뀌는거니까 SIGNIN
   console.log('==받아와라!!===',userinfoEdit)
-  // const result =
+  const result =
   axios.patch(`${END_POINTS}/users/userinfo`,
   userinfoEdit)
   .then((res)=>{
@@ -97,7 +97,7 @@ export const editUser = (userinfoEdit) => {
   })
   return {
     type : EDIT_USER,
-    payload : userinfoEdit
+    payload : result
     
   }
 }

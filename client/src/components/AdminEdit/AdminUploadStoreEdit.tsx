@@ -14,7 +14,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
 
-import MapSelectModal from '../Mapper/MapSelectModal'
+import MapSelectModal from '../../components/Mapper/MapSelectModal';
 
 interface sliderProps {
   autoplay?: boolean | number;
@@ -79,7 +79,6 @@ function AdminUploadStoreEdit(
       autoplaySpeed: typeof autoplay === 'boolean' ? 3000 : autoplay,
     }),[autoplay, loop, speed,]);
 
-    console.log(imgs)
   return (
     <StyledImgUpload>
       <StoreImgFlexWrapper>

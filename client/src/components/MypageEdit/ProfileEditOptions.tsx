@@ -2,7 +2,7 @@ import React from 'react'
 import Select from 'react-select';
 import {Label, SelectBox} from './StyledMypageEdit'
 
-function ProfileEditOptions({selectInputHandler,user}:any) {
+function ProfileEditOptions({selectInputHandler,userGender,userAge}:any) {
   const gender: [{value: string, label: string}[], string] = [
     [
       { value : '선택안함' , label : '선택안함'},
@@ -24,15 +24,15 @@ const age: [{value: string, label: string}[], string] = [
     ],
   '연령대'
   ]
-  const selectedGenderOption = gender[0].find((el)=>{
+  const selectedGenderOption = gender[0].find((el:any)=>{
     // console.log('===el.gender value ??? ',el.value)
-    if(el.value === user.gender){
+    if(el.value === userGender){
       return el
     }
   })
-  const selectedAgeOption = age[0].find((el)=>{
-    const age = `${user.age}대`
-    if(el.value === age){
+  const selectedAgeOption = age[0].find((el:any)=>{
+    const age1 = `${userAge}대`
+    if(el.value === age1){
       return el 
     }
   })

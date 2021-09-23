@@ -177,7 +177,7 @@ export const MapContainer = styled.div`
 border-radius : 8px;
 margin : 0 auto;
 width : 100%;
-height : 440px;
+height : 480px;
 z-index: 1;
 @media screen and (min-width: 768px) {
     height : 400px;
@@ -192,9 +192,9 @@ export const MapInfoContainer = styled.div`
   border-radius: 8px;
   z-index: 2;
   width: 100%;
-  height: 100px;
+  height: 140px;
   position: relative;
-  bottom:90px;
+  bottom:130px;
   background-color: #fff;
   animation: ${showInfoModalBg} 0.4s;
   display: flex;
@@ -233,7 +233,7 @@ export const MapInfoWrapper = styled.div`
   box-sizing: border-box;
   animation: ${showInfoModal}.4s;
   padding: 10px;
-  background-color: #f5f5f5;
+  background-color: #f7f7f7;
   @media screen and (min-width: 1000px) {
     margin: 5px;
     width: 100%;

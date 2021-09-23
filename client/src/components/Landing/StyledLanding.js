@@ -1,21 +1,111 @@
 import styled from 'styled-components'
-import { UltraLargeFont,TextLightGrey,MainColor,TextDarkGrey,LargeFont, SmallFont, MediumFont } from '../GlobalStyle'
+import { UltraLargeFont,
+  TextLightGrey,MainColor,TextDarkGrey,
+  LargeFont, SmallFont, MediumFont } from '../GlobalStyle'
 
 //!intro
 export const LandingIntroContainer = styled.main`
 width: 100%;
 height:calc(100vh - 80px);
-display: flex;
+/* display: flex;
 flex-direction: column;
 justify-content: center;
-align-items: center;
-border : 3px solid;
+align-items: center; */
 `
 export const LandingIntroWrapper = styled.section`
-
+margin : 0 auto;
+text-align: center;
+`
+export const FlexWrpper = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+position: relative;
+border : 3px solid green;
+@media screen and (min-width: 767px) {
+flex-direction: row;
+border : 3px solid blue;
+justify-content: center;
+margin : 0 auto;
+}
 `
 export const IntroH1 = styled.h1`
+font-size: ${LargeFont};
+`
+export const TextContainer = styled.div`
+  border :3px solid pink;
+  margin : 0 auto;
+  text-align: center;
+  width: 300px;
+  height : 500px;
+  border-radius : 50px;
+  padding :10px 0px 30px;
+  box-sizing: border-box;
+  display: ${({flexable})=> (flexable ? 'flex' : 'unset')};
+  flex-wrap: wrap;
+@media screen and (min-width: 767px) {
+  
+}
+`
+export const SliderWrapper = styled.div`
+width: 100%;
+border :3px solid magenta;
+height : 500px;
+>.category-img-wrapper{
+text-align: center;
+display: flex;
+}
+`
+export const CategoryTitleWrapper = styled.h2`
+border : 3px solid pink;
+width: fit-content;
+text-align: center;
+margin : 0 auto;
+@media screen and (min-width: 767px) {
+
+}
+`
+export const CategoryTitle = styled.h2`
+font-weight: 600;
+font-size: 32px;
+background: -webkit-linear-gradient(left, mediumturquoise, #5d9cec);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+@media screen and (min-width: 767px) {
+font-weight: 700;
 font-size: ${UltraLargeFont};
+width: fit-content;
+}
+`
+//////////////////////slider-  img/////////////////////
+export const CategoryImgs = styled.img`
+width: 200px;height : 300px;
+margin : 5px;
+border-radius : 8px;
+@media screen and (min-width: 767px) {
+  width: 250px;height : 350px;
+}
+`
+export const ImgContainer = styled.div`
+height : 60%;
+>.category-img-wrapper{
+  border : 3px solid blue;
+  position : absolute;
+  bottom : 0;
+  width: 100%;
+  display: flex;
+}
+@media screen and (min-width: 767px) {
+
+}
+`
+export const H1 = styled.h1`
+font-size: 45px;
+padding : 0;
+margin : 0;
 `
 //!info
 export const LandingInfoContainer = styled.div`

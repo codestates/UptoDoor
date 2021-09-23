@@ -331,3 +331,66 @@ export const initialHash = [
   },
 ];
 
+
+export const categoryDummy = [
+  '음식','카페','홈/라이프','꽃집','뷰티','구독라이프'
+]
+
+export const LandingImgDummy = [
+  [
+    {id : 1 , image : './images/landingImgs/foods/food1.png'},
+    {id : 2 , image : './images/landingImgs/foods/food2.png'},
+    {id : 3 , image : './images/landingImgs/foods/food3.png'},
+    {id : 4 , image : './images/landingImgs/foods/food4.png'},
+    {id : 5 , image : './images/landingImgs/foods/food5.png'},
+    {id : 6 , image : './images/landingImgs/foods/food6.png'},
+    {id : 7 , image : './images/landingImgs/foods/food7.png'},
+  ],
+  [
+    {id : 1 , image : './images/landingImgs/cafes/cafe1.png'},
+    {id : 2 , image : './images/landingImgs/cafes/cafe2.png'},
+    {id : 3 , image : './images/landingImgs/cafes/cafe3.png'},
+    {id : 4 , image : './images/landingImgs/cafes/cafe4.png'},
+    {id : 5 , image : './images/landingImgs/cafes/cafe5.png'},
+    {id : 6 , image : './images/landingImgs/cafes/cafe6.png'},
+    {id : 7 , image : './images/landingImgs/cafes/cafe7.png'},
+  ],
+  [
+    {id : 1 , image : './images/landingImgs/foods/food1.png'},
+    {id : 2 , image : './images/landingImgs/foods/food1.png'},
+    {id : 3 , image : './images/landingImgs/foods/food1.png'},
+    {id : 4 , image : './images/landingImgs/foods/food1.png'},
+    {id : 5 , image : './images/landingImgs/foods/food1.png'},
+    {id : 6 , image : './images/landingImgs/foods/food1.png'},
+    {id : 7 , image : './images/landingImgs/foods/food1.png'},
+  ],
+  [
+    {id : 1 , image : './images/landingImgs/cafes/cafe1.png'},
+    {id : 2 , image : './images/landingImgs/cafes/cafe1.png'},
+    {id : 3 , image : './images/landingImgs/cafes/cafe1.png'},
+    {id : 4 , image : './images/landingImgs/cafes/cafe1.png'},
+    {id : 5 , image : './images/landingImgs/cafes/cafe1.png'},
+    {id : 6 , image : './images/landingImgs/cafes/cafe1.png'},
+    {id : 7 , image : './images/landingImgs/cafes/cafe1.png'},
+  ],
+  [
+    {id : 1 , image : './images/landingImgs/beauty/beauty.png'},
+    {id : 2 , image : './images/landingImgs/beauty/beauty1.png'},
+    {id : 3 , image : './images/landingImgs/beauty/beauty2.png'},
+    {id : 4 , image : './images/landingImgs/beauty/beauty3.png'},
+    {id : 5 , image : './images/landingImgs/beauty/beauty4.png'},
+    {id : 6 , image : './images/landingImgs/beauty/nail1.png'},
+    {id : 7 , image : './images/landingImgs/beauty/nail2.png'},
+  ],
+  [
+    {id : 1 , image : './images/landingImgs/etc/etc1.png'},
+    {id : 2 , image : './images/landingImgs/etc/etc2.png'},
+    {id : 3 , image : './images/landingImgs/etc/etc3.png'},
+    {id : 4 , image : './images/landingImgs/etc/etc4.png'},
+    {id : 5 , image : './images/landingImgs/etc/etc5.png'},
+    {id : 6 , image : './images/landingImgs/etc/etc6.png'},
+    {id : 7 , image : './images/landingImgs/etc/etc7.png'},
+  ],
+  
+
+]

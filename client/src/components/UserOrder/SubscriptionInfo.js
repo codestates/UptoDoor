@@ -11,7 +11,7 @@ const SubscriptionInfo = () => {
   const state = useSelector((state) => state.cart);
 
   return (
-    <OrderWrapper>
+    <OrderWrapper left> 
       <OrderH3>정기구독 상세 정보</OrderH3>
       <SubscriptionWrapper>
         <h5>구독 정보</h5>

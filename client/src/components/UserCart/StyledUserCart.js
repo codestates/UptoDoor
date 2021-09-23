@@ -321,7 +321,7 @@ export const UserCheckList = styled.section`
   }
 
   @media screen and (min-width: 1140px) {
-    padding: 20px;
+    padding: 25px 20px 20px 20px;
     min-width: 450px;
     margin: 0 auto 20px;
     height: 540px;
@@ -331,6 +331,8 @@ export const UserCheckList = styled.section`
     }
   }
 `;
+
+
 
 export const UserCheckListBox = styled.div`
   width: 90%;

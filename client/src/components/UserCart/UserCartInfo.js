@@ -39,7 +39,7 @@ function UserCartInfo() {
   const state = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  // const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart);
   const [openModal , setOpenModal] = useState(false)
 
   const [timeOtions, setTimeOtions] = useState("");
@@ -106,11 +106,8 @@ function UserCartInfo() {
   //* 제출 핸들러
   const postHandler = useCallback((e) => {
     e.preventDefault();
-    if(
-      user.mainAddress === null || user.mainAddressDetail === null
-      || user.subAddress === null || user.subAddressDetail === null
-      ){
-      console.log('=====user====',user)
+    if (cart.selected_address === null && cart.selected_address_detail === null) {
+      console.log("=====user====", user);
       setOpenModal(true);
       return false;
     }
@@ -196,7 +193,7 @@ function UserCartInfo() {
       plus.plus += Number(plusMoney);
     }
     if (dayOptions && termsOptions) {
-      plus.multiple = plus.multiple * Number(dayOptions.length) * (Number(termsOptions) * 4);
+      plus.multiple = plus.multiple * Number(dayOptions.length)* 4;
     } else {
       plus.multiple = 1;
     }
@@ -393,6 +390,7 @@ function UserCartInfo() {
               <UserCheckListBox>
                 <h4>몇 시에 받고 싶으신가요?</h4>
                 <input
+                  
                   type="time"
                   name="delivery_time"
                   onChange={(e) => {
@@ -450,10 +448,12 @@ function UserCartInfo() {
 
     {openModal ?
     <Modal 
-    openModal = {openModal}
-    closeModal = {closeModal}
-    modalTitleText = '동네인증을 완료해주세요'
-    modalBtn = '확인' //동네인증 페이지로 가게해야하나?
+      openModal = {openModal}
+      closeModal = {closeModal}
+      modalTitleText = '동네인증을 완료해주세요'
+      modalBtn='확인' //동네인증 페이지로 가게해야하나?
+      setOpenModal={setOpenModal}
+      url="/address"
     />
     :
     null

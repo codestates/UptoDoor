@@ -3,12 +3,19 @@ import { PointColor,MainColor, TextDarkGrey, TextLightGrey } from '../GlobalStyl
 
 export const MypageWrapper = styled.div`
 
-
   @media screen and (min-width: 767px) {
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin-right: 15px;
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  @media screen and (min-width: 1140px) {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1000px;
   }
 `;
 
@@ -150,54 +157,35 @@ export const MypageUl = styled.ul`
 
   @media screen and (min-width: 767px) {
     flex-direction: column;
-    height: 100px;
+    height: 50px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
 `;
 
 export const MypageLi = styled.li`
-  margin: 0 auto;
-  width: 50%;
+  width: 100%;
   height: 100%;
-
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  > button {
-    text-align: center;
-    background-color: #fff;
-    height: 100%;
+  background-color: #f7f7f7;
+  border: none;
+  cursor: pointer;
+  color: #656d78;
+  letter-spacing: -1px;
+  @media screen and (min-width: 767px) {
+    height: 50px;
     width: 100%;
     border: none;
-    cursor: pointer;
-  }
-
-  > .focus {
-    background-color: #f7f7f7;
-    color: #656d78;
-  }
-  @media screen and (min-width: 767px) {
-    width: 100%;
-    height: 50px;
-
-    > button {
-      text-align: center;
-      background-color: #fff;
-      height: 100%;
-      width: 100%;
-      border: none;
-      font-size: 16px;
-      letter-spacing: -1px;
-    }
+    font-size: 16px;
   }
 `;
 
 export const MypageOrderListWrapper = styled.div`
   width: 100%;
-  padding: 18px;
+  padding: 16px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   display: flex;
@@ -256,6 +244,8 @@ export const ListInfo = styled.div`
   justify-content: flex-start;
   align-items: center;
   > div {
+    min-width: 140px;
+    width: 65%;
     > h4 {
       font-weight: 500;
       font-size: 14px;
@@ -311,11 +301,13 @@ export const ListInfo = styled.div`
   }
 `;
 
-export const DeliveryState = styled.div`
+export const DeliveryState = styled.h5`
   /* margin-top:6px; */
   margin-right: 8px;
   color: #fff;
   width: 40px;
+  font-weight: 400;
+  height:20px;
   border-radius: 4px;
   text-align: center;
   padding:2px;
@@ -323,9 +315,9 @@ export const DeliveryState = styled.div`
   background-color: ${({ blue }) => (blue ? MainColor : PointColor)};
   @media screen and (min-width: 767px) {
     width: 50px;
-    margin-right: 15px;
+    height: 22px;
+    margin: 0 15px 0 0;
     font-size: 12px;
-    padding: 4px;
     border-radius: 8px;
     text-align: center;
   }
@@ -345,6 +337,15 @@ export const NextBtn = styled.button`
   background-color: #fff;
   color: ${TextLightGrey};
   border: none;
+  margin-bottom: 10px;
+  text-align: right;
+
+  @media screen and (min-width: 767px) {
+    margin-bottom: 15px;
+  }
+  @media screen and (min-width: 1140px) {
+    margin-bottom: 30px;
+  }
 `;
 
 export const OrderListWrapper = styled.div`

@@ -45,16 +45,13 @@ module.exports = async (req, res) => {
             name : name, 
             age : age,
             gender : gender, 
-            emailcheck:"true",
-            position : 1, 
-            signup_type: "kakao", 
+            emailcheck:"true", 
             oauth_token : Access_token
         });
     }else{
         await user.update({
             oauth_token : Access_token
         }, {where : {email : email}})
-    
     }
 
     const Data = await user.findOne({ where: { email: email} });

@@ -32,7 +32,7 @@ export const SidebarWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   /* opacity:1; */
-  z-index: 10000;
+  z-index: 11;
 `;
 
 export const Icon = styled.div`

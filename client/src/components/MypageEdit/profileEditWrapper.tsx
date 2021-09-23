@@ -28,16 +28,16 @@ function MyProfileEdit() {
   
   // const [name, onChangeNameHandler, setName] = useInput();
 
-  const [name , setName] = useState('');
+  const [name , setName] = useState(user.name);
   const [password , setPassword] = useState('');
   const [passwordChk, setPasswordChk] = useState('');
   const [passwordRegErr , setPasswordRegErr ] = useState(false);
   const [passwordErr , setPasswordErr ] = useState(false);
-  const [mobile , setMobile] = useState('');
+  const [mobile , setMobile] = useState(user.mobile);
 
   //optional
-  const [gender , setGender] = useState('');
-  const [age, setAge] = useState('');
+  const [gender , setGender] = useState(user.gender);
+  const [age, setAge] = useState(user.age);
 
   const [openModal , setOpenModal] = useState(false);
 
@@ -194,7 +194,7 @@ function MyProfileEdit() {
           <ProfileEditInput
           required
           type = 'text'
-          defaultValue = {user.name}
+          defaultValue = {name}
           onChange = {onChangeNameHandler}
           />
         </ProfileEditBox>
@@ -205,14 +205,15 @@ function MyProfileEdit() {
           required
           type = 'text'
           // value = {mobile}
-          defaultValue = {user.mobile}
+          defaultValue = {mobile}
           onChange = {onChangeMobileHandler}
           />
         </ProfileEditBox>
 
         {/* 옵션컴포넌트 */}
         <ProfileEditOptions
-        user = {user}
+            userGender={gender}
+            userAge={age}
         selectInputHandler = {selectInputHandler}
         />
 

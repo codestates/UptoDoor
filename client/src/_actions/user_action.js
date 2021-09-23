@@ -6,6 +6,7 @@ import {
   ADD_ADDRESS,
   ADD_ORDER,
   END_POINTS,
+  EDIT_USER,
 } from "./type";
 
 import axios from 'axios'
@@ -77,12 +78,12 @@ export const signOut = () => {
 export const editUser = (userinfoEdit) => {
   //patch 수정하고 로그인부분이 바뀌는거니까 SIGNIN
   console.log('==받아와라!!===',userinfoEdit)
-  axios.patch(`${END_POINTS}/users/userinfo`,
+  const request = axios.patch(`${END_POINTS}/users/userinfo`,
   userinfoEdit)
   .then((res)=>{
-  const{name ,mobile,age,gender} =res.data.userinfoEdit
-  return {
-      message: res.data.message,
+  const{name ,mobile,age,gender} =res.data.userinfo
+    console.log("메시지", res.data.message);
+    return {
       name,
       mobile,
       age,
@@ -93,10 +94,9 @@ export const editUser = (userinfoEdit) => {
     console.log('==userinfo 받아오기실패==',err)
   })
   return {
-    type : SIGNIN,
-    payload : userinfoEdit
-    
-  }
+    type: EDIT_USER,
+    payload: request,
+  };
 }
 //회원탈퇴 delete 요청 -> state 전부 초기화하기
 export const deleteUser = (userinfo) => {

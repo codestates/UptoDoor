@@ -10,6 +10,7 @@ export const SigninContainer = styled.div`
   top: 0;
   left: 0;
   transition: 0.3s ease-in-out;
+  z-index: 99;
   @media screen and (min-width: 767px) {
     display: flex;
     justify-content: center;

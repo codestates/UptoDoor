@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import { SmallButton } from '../common/Button/Button'
+import { MiddleButton, SmallButton } from '../common/Button/Button'
 import {
   MypageOrderListWrapper,
   OrderListContent,
@@ -59,8 +59,7 @@ function AdminOrderWrapper({ filteredOrderId, listbackHandler }:any) {
       </OrderListContent>
 
       <BtnBox btnboxMargin>
-        <SmallButton primary>뒤로가기</SmallButton>
-        <SmallButton>구독취소</SmallButton>
+        <MiddleButton primary>확인</MiddleButton>
       </BtnBox>
     </MypageOrderListWrapper>
   )

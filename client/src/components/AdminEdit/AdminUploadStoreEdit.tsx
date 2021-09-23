@@ -8,20 +8,20 @@ import {
   StoreImgBox,
   SliderWrapper,
   PlusIcon
-} from './StyledAdminPost'
+} from '../AdminPost/StyledAdminPost'
 import Slider,{Settings} from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
 
-import MapSelectModal from '../Mapper/MapSelectModal'
+import MapSelectModal from '../../components/Mapper/MapSelectModal';
 
 interface sliderProps {
   autoplay?: boolean | number;
   speed?: number;
   loop?: boolean; 
 }
-function AdminUploadStore(
+function AdminUploadStoreEdit(
   props : any,{
   autoplay = true,
   speed = 300,
@@ -59,7 +59,6 @@ function AdminUploadStore(
   }
   const deleteImgHandler = (files:any) => {
     const curIdx = imgs.indexOf(files)  
-    // console.log(curIdx);
     const newImgs = [...imgs]
     newImgs.splice(curIdx,1);
     setImgs(newImgs); 
@@ -108,7 +107,7 @@ function AdminUploadStore(
               className = 'store-img-box'
               onClick = {()=>{deleteImgHandler(el)}}
               key = {idx}>
-                <img // src = {`http://localhost:3001/${el}`} 
+                <img  
                 src = {el}
                 alt = {`${idx+1}__${el}//`}
                 />
@@ -128,54 +127,7 @@ function AdminUploadStore(
       :
       null
     }
-    {/* <p>사진 클릭 시 삭제 가능.</p> */}
     </StyledImgUpload>
   )
 }
-
-export default AdminUploadStore
-// const settings = {
-//   dots: false,
-//   infinite: true,
-//   speed: 500,
-//   slidesToShow: 9,
-//   slidesToScroll: 9,
-//   initialSlide: 0,
-//   responsive: [
-//       {
-//           breakpoint: 1440,
-//           settings: {
-//               slidesToShow: 7,
-//               slidesToScroll: 7
-//           }
-//       },
-//       {
-//           breakpoint: 1024,
-//           settings: {
-//               slidesToShow: 5,
-//               slidesToScroll: 5
-//           }
-//       },
-//       {
-//           breakpoint: 720,
-//           settings: {
-//               slidesToShow: 3,
-//               slidesToScroll: 3
-//           }
-//       },
-//       {
-//           breakpoint: 480,
-//           settings: {
-//               slidesToShow: 2,
-//               slidesToScroll: 2
-//           }
-//       },
-//       {
-//           breakpoint: 320,
-//           settings: {
-//               slidesToShow: 1,
-//               slidesToScroll: 1
-//           }
-//       }
-//   ]
-// };
+export default AdminUploadStoreEdit

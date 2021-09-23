@@ -1,4 +1,4 @@
-import React, { Suspense ,lazy, useEffect } from "react";
+import React, { Suspense ,lazy} from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/GlobalStyle'
 import Loading from './components/common/Loading/Loading'

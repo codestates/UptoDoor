@@ -21,9 +21,9 @@ export const Header = styled.header`
   top: 0;
   background-color: #fff;
   width: 100%;
-  height: 50px;
+  height: 75px;
   display: flex;
-  padding: 15px 12px 0 12px;
+  padding: 15px 12px 30px 12px;
   justify-content: space-between;
   margin-bottom: 30px;
   transition: all 0.4s;

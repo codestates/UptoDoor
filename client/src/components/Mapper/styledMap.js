@@ -61,28 +61,36 @@ font-size: ${MediumFont};
 export const MapFlexWrapper = styled.div`
   margin: 0 auto;
   width: 90%;
-  @media screen and (min-width: 1140px) {
-  display: grid;
-  grid-template-columns: 1.5fr 2fr;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 30px;
-  height: 615px;
+  @media screen and (min-width: 1000px) {
+    display: grid;
+    grid-template-columns: auto 560px;
+    justify-content: center;
+    /* align-items: flex-start; */
+    margin-top: 30px;
+    height: 615px;
   }
-`
+  @media screen and (min-width: 1140px) {
+    grid-template-columns: auto 640px;
+  }
+`;
 export const MapHashWrapper = styled.div`
   margin: 20px 0 10px;
 @media screen and (min-width: 768px) {
   margin: 20px 0 0;
 }
-@media screen and (min-width: 1140px) {
-  max-width: 450px;
-  margin:0 20px 0 0;
+@media screen and (min-width: 1000px) {
+  min-width: 410px;
+  margin:0 30px 0 0;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
   }
 `
 export const MapSelectAddressWrapper = styled.div`
+
 `
 export const SelectAddressBox = styled.div`
+
 margin : 10px 0;
 >.mobile-middle-btn{
   width: 100%;
@@ -92,7 +100,7 @@ margin : 10px 0;
   height: 60px;
   }
 @media screen and (min-width: 1140px) {
-margin : 0 0 10px 0;
+margin : 0 0 15px 0;
 }
 `
 
@@ -103,7 +111,7 @@ justify-content: center;
 align-items: center;
 margin-bottom : 10px;
 @media screen and (min-width: 768px) {
-  margin:0;
+  margin-bottom: 15px;
 }
 >.map-search-btn{
   width: 50px;
@@ -114,6 +122,8 @@ margin-bottom : 10px;
   height: 55px;
   }
   }
+
+  
 `
 export const MapSearchInput = styled.input`
   width: 100%;
@@ -131,145 +141,140 @@ export const MapSearchInput = styled.input`
   }
 `
 export const MapHashtagWrapper = styled.div`
+
   display: flex;
   justify-content: right;
-  margin : 10px 0;
+  margin : 0 0 10px;
 `
 export const MapHashTagBox = styled.div`
-  width: 70%;
+  width: 100%;
   text-align: right;
   @media screen and (min-width: 768px) {
-  width: 50%;
+    width: 100%;
   }
-  @media screen and (min-width: 1140px) {
-  width: 65%;
+  @media screen and (min-width: 1000px) {
+    width: 80%;
+    margin: 0 0 15px;
   }
-  >.hashtag-category-btn{
-  width: fit-content;
-  height: 28px;
-  border-radius: 15px;
-  padding : 3px 15px 10px;
-  margin : 3px;
-  @media screen and (min-width: 768px) {
-  height: 34px;
-  }
-  >p{
-    font-size: 12px;
+  > .hashtag-category-btn {
+    width: fit-content;
+    height: 28px;
+    border-radius: 15px;
+    padding: 3px 15px 10px;
+    margin: 3px;
     @media screen and (min-width: 768px) {
-      font-size: ${BaseFont};
+      height: 34px;
+    }
+    > p {
+      font-size: 12px;
+      @media screen and (min-width: 768px) {
+        font-size: ${BaseFont};
+      }
     }
   }
-}
-`
+`;
 export const MapContainer = styled.div`
 border-radius : 8px;
 margin : 0 auto;
 width : 100%;
-height : 350px;
+height : 480px;
 z-index: 1;
 @media screen and (min-width: 768px) {
     height : 400px;
     margin :0;
 }
-@media screen and (min-width: 1140px) {
-  max-width: 615px;
-  height: 610px;
+@media screen and (min-width: 1000px) {
+  max-width: 640px;
+  height: 100%;
   }
 `
 export const MapInfoContainer = styled.div`
-  border-radius : 8px;
-  margin : 0;
-  position: absolute;
-  top : 690px;
-  right: 0;
-  left: 0;
-  /* z-index: 10000; */
+  border-radius: 8px;
+  z-index: 2;
+  width: 100%;
+  height: 140px;
+  position: relative;
+  bottom:130px;
   background-color: #fff;
-  animation: ${showInfoModalBg} .4s;
+  animation: ${showInfoModalBg} 0.4s;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: transparent;
   overflow: hidden;
   overflow-y: auto;
   &::-webkit-scrollbar {
-      background-color: #fff;
-      width: 5px;
-      height: 8px;
-      padding-top: 1px;
-    }
-  &::-webkit-scrollbar-thumb {
-    background-color: ${MainColor};
-    border-radius: 150px;
+    display: none;
   }
+
   @media screen and (min-width: 768px) {
-    top : 850px;
+    position: relative;
+    bottom: 0px;
+    height: 100%;
   }
-  @media screen and (min-width: 1140px) {
-    position : relative;
-    top : 10px;
+  @media screen and (min-width: 1000px) {
+    display: none;
+    /* position: relative;
+    top: 10px;
     width: 100%;
-    margin :0 ; padding : 0;
+    margin: 0;
+    padding: 0; */
   }
-`
+`;
 export const MapInfoWrapper = styled.div`
-  border-radius : 8px;
-  margin : 3px auto;
+  border-radius: 8px;
+  margin: 3px auto;
   width: 90%;
-  height : 100px;
+  height: 100px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
-  animation: ${showInfoModal}.4s; 
-  padding : 10px; 
-  background-color: #f5f5f5;
-  @media screen and (min-width: 1140px) {
-    max-width: 441px;
-    margin : 0;
+  animation: ${showInfoModal}.4s;
+  padding: 10px;
+  background-color: #f7f7f7;
+  @media screen and (min-width: 1000px) {
+    margin: 5px;
     width: 100%;
+    background-color: #fff;
   }
->a{
-  display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
-  text-decoration: none;
-  width: 100%;
-  >div{
-    width: 200px;
-    @media screen and (min-width: 768px) {
-      width: 550px;
+  > a {
+    display: flex;
+    text-decoration: none;
+    justify-content: flex-start;
+    width: 100%;
+    > div > hr {
+      width: 57%;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      margin: 3px 10px 5px 0;
     }
   }
-  >div>hr{
-
-    width: 57%;
-    border: 1px solid rgba(0,0,0,0.2);
-    margin : 3px 10px 5px 0;
-    
-  }
-}
-
-`
+`;
 export const StoreImg = styled.img`
-border-radius : 3px;
-margin : 0 10px 0 0;
-width: 100px;
-height: 100%;
-object-fit: cover;
-`
+  border-radius: 3px;
+  margin: 0 10px 0 0;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+
+  @media screen and (min-width: 1000px) {
+    margin: 0 15px 0 10px;
+  }
+`;
 export const StoreName = styled.h2`
-border-radius : 8px;
-margin :8px 0;
-color : ${TextColor};
-font-size: ${SmallFont};
-@media screen and (min-width: 768px) {
+  border-radius: 8px;
+  margin: 8px 0;
+  color: ${TextColor};
+  font-size: ${SmallFont};
+  @media screen and (min-width: 768px) {
     width: 335px;
-    font-size: ${BaseFont}
+    font-size: ${BaseFont};
   }
-@media screen and (min-width: 1140px) {
-    
-    font-size: ${BaseFont}
+  @media screen and (min-width: 1000px) {
+    font-size: ${BaseFont};
   }
-`
+`;
 export const StoreAddress = styled.p`
 border-radius : 8px;
 margin : 0;
@@ -277,20 +282,43 @@ font-size: ${SmallFont};
 color : ${TextColor};
 `
 export const EmptyMapContainer = styled.div`
-display: none;
->i{
-  font-size: ${UltraLargeFont};
-  color : ${TextDarkGrey};
-  margin : 15px 0;
-}
-@media screen and (min-width : 1140px){
-  /* visibility: visible; */
+  display: none;
+  > .empty {
+    align-self:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom:30px;
+    > i {
+      font-size: ${UltraLargeFont};
+      color: ${TextDarkGrey};
+      margin: 15px 0;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    /* visibility: visible; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 365px;
+    border-radius: 8px;
+    padding: 15px;
+  }
+`;
+
+export const MapInfoWebContainer = styled.div`
+  border-radius: 8px;
+  background-color: #fff;
+  width: 100%;
+  animation: ${showInfoModalBg} 0.4s;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  background-color: rgba(0,0,0,0.1);
-  height: 260px;
-  border-radius : 8px;
-}
-`
+  background-color: transparent;
+  overflow: hidden;
+  overflow-y: auto;
+`;

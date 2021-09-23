@@ -7,8 +7,8 @@ import {
   ModalBtnWrapper,
   Icon,
   MapModalInfo
-} from './styledModal'
-import {MiddleButton} from '../Button/Button'
+} from '../common/Modal/styledModal'
+import {MiddleButton} from '../common/Button/Button'
 
 function MapSelectModal(props:any) {
 

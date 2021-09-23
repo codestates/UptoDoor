@@ -1,4 +1,4 @@
-import React, {useState,useCallback,useEffect} from 'react' 
+import React,{useCallback,useState,useEffect} from 'react'
 import Select from 'react-select';
 import {
   AdminForm,
@@ -7,33 +7,40 @@ import {
   StoreNameInput,
   StoreIntroTextArea,
   StoreBtnBox,
-} from './StyledAdminPost'
-import {Container,Wrapper,Title,} from "../GlobalStyle";
-import { SmallButton } from '../common/Button/Button';
+} from '../AdminPost/StyledAdminPost'
+
+import {
+  Container,
+  Wrapper,
+  Title,
+} from "../GlobalStyle";
+import { BtnBox, SmallButton } from '../common/Button/Button';
 
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-import { adminPost } from '../../_actions/post_action';
+import { useDispatch,useSelector } from 'react-redux'
+import { adminPostEdit , deleteAdminPost } from '../../_actions/post_action';
 
-import AdminUploadStore from  './AdminUploadStore';
-import AdminEnrollStore from './AdminEnrollStore'
-import AdminUploadMenu from './AdminUploadMenu';
-import AdminFileUpload from './AdminFileUpload';
+import AdminUploadStoreEdit from './AdminUploadStoreEdit'
+import AdminEnrollStoreEdit from './AdminEnrollStoreEdit'
+import AdminFileUploadEdit from './AdminFileUploadEdit'
+import AdminUploadMenuEdit from './AdminUploadMenuEdit'
 
 const { kakao }: any = window;
-function AdminPostForm() {
-  // 가게 이미지,상호명,가게설명,동네인증.
-  // 메뉴이미지,이름,재료,가격,항목추가,파일업로드
+
+function AdminEditForm() {
+
   const dispatch = useDispatch();
   const history = useHistory();
+  const store = useSelector((state:any) => state.store);
+  console.log(store);
+
   const selectCategory: {value: string, label: string}[] = 
   [
     { value : 'food' , label : 'food'},
     { value : 'cafe' , label : 'cafe'},
     { value : 'living/home' , label : 'living/home'},
     { value : 'plants' , label : 'plants'},
-    { value: 'clothes', label: 'clothes' },
-    { value: 'etc', label: 'etc' },
+    { value : 'clothes' , label : 'clothes'},
   ]
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);
@@ -86,17 +93,6 @@ function AdminPostForm() {
   const changeAddDetailHandler = (e:any) => {
     setadminAddressDetail(e.target.value)
   }
-  // const postHandler = useCallback((name) => {
-  //   console.log(name);
-  //   // console.log("currnet", current)
-  //   if (switched === current) {
-  //     console.log(adminAddressDetail)
-  //     // dispatch(addAdminAddress(adminAddress, adminAddressDetail));
-  //   }
-  //   else {
-  //     alert("동네 인증에 실패")
-  //   }
-  // },[adminAddress,adminAddressDetail])
   const changeMobileHandler = useCallback((e) => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
@@ -145,8 +141,8 @@ function AdminPostForm() {
       title:title,
       category:category,
       description:description,
-      mobile : mobile,
       delivery_time : time,
+      mobile : mobile,
       adminAddress : adminAddress,
       adminAddressDetail: adminAddressDetail,
 
@@ -156,7 +152,7 @@ function AdminPostForm() {
       xvalue:xValue,
       yvalue:yValue,
     }
-      dispatch(adminPost(adminPostInfo))
+      dispatch(adminPostEdit(adminPostInfo))
       // 모달띄워지고(메뉴등록이 완료되었습니다.) 메인화면
       console.log(adminPostInfo);
       //history.push('/');
@@ -182,38 +178,23 @@ function AdminPostForm() {
   };
   }, []);
 
-  // useEffect(() => {
-  //   //!이페이지에 들어오면 현재 위치의 자표로 동을 찾는다.
-  //   const geocoder = new kakao.maps.services.Geocoder();
-  //   //현재 위치 좌표를 받아서 도로명 주소로 바꿔준다
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(function (position) {
-  //       const lat = position.coords.latitude, // 위도
-  //         lon = position.coords.longitude; // 경도
-  //       const coord = new kakao.maps.LatLng(lat, lon);
-  //         geocoder.coord2Address(coord.getLng(), coord.getLat(), callback)
-  //     });
-  //   }
-  //   const callback = (result: any, status: any) => {
-  //     if (status === kakao.maps.services.Status.OK) {
-  //       setCurrent(result[0].address.address_name.split(" ")[1]);
-  //     }
-  //   };
-  // },[current]);
 
+  //store 삭제
   const handleClickCancle = () => {
+    dispatch(deleteAdminPost())
+    //모달 다셔야해요 네?
     history.push('/');
   }
-  
-return (
-  <Container>
-    <Title>가게 등록</Title>
-    <form onSubmit = {(e:any)=>submitHandler(e)}>
+
+  return (
+    <Container>
+      <Title>가게 수정</Title>
+      <form onSubmit = {(e:any)=>submitHandler(e)}>
       <Wrapper>
       <FlexBox>
         <AdminForm>
-        {/* 업로드 컴포넌트 */}
-        <AdminUploadStore 
+
+        <AdminUploadStoreEdit 
         updateStoreImg = {updateStoreImg}/>
         
           <StoreInputBox>
@@ -234,8 +215,8 @@ return (
               options = {selectCategory}
               onChange = {(e)=>changeCategoryHandler(e)}
               />
-
           </StoreInputBox>
+
           <StoreInputBox>
             <label>가게 설명</label>
             <StoreIntroTextArea 
@@ -253,11 +234,11 @@ return (
             placeholder = '배달 가능한 시간을 작성하세요' 
             onChange = {changeTimeHandler}/>
           </StoreInputBox>
+          
         </AdminForm>
 
         <AdminForm>
-          {/* 주소등록 컴포넌트 */}
-          <AdminEnrollStore
+          <AdminEnrollStoreEdit
             addressModal = {addressModal}
             setAddressModal = {setAddressModal}
             adminAddress = {adminAddress}
@@ -275,31 +256,31 @@ return (
             onChange = {changeMobileHandler}/>
           </StoreInputBox>
 
-          {/* 가게 사업자등록증 파일업로드 */}
-            <AdminFileUpload
+            <AdminFileUploadEdit
             setMenuArr={setMenuArr}
             setStoreFile={setStoreFile}
             updateStoreFile = {updateStoreFile}
 
           />
 
-        <AdminUploadMenu
+        <AdminUploadMenuEdit
           addMenuHandler={(menus: any)=>addMenuHandler(menus)}
           menuArr = {menuArr}
           setMenuArr = {setMenuArr}
         />
-        <StoreBtnBox>
-          <SmallButton> 등록 </SmallButton>
+        <BtnBox flexable>
+          <SmallButton
+          primary> 수정 </SmallButton>
           <SmallButton 
           onClick = {handleClickCancle}
-          type = 'button'> 취소 </SmallButton>
-        </StoreBtnBox>
+          type = 'button'> 삭제 </SmallButton>
+        </BtnBox>
         </AdminForm>
         </FlexBox>
-      </Wrapper>
+      </Wrapper> 
     </form>
-  </Container>
+    </Container>
   )
 }
 
-export default AdminPostForm
+export default AdminEditForm

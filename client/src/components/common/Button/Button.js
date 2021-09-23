@@ -1,5 +1,21 @@
-import styled from 'styled-components';
+import styled,{keyframes} from 'styled-components';
 import { MainColor, BackgroundColor } from "../../GlobalStyle";
+
+const moving = keyframes`
+  0% {
+    transform: translateX(-20%);
+  }
+  100% {
+    transform: translateX(10%);
+  }
+`
+export const ArrowBtn = styled.i`
+color : ${MainColor};
+  cursor: pointer;
+  &:hover{
+    animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
+}
+`
 
 export const SmallButton = styled.button`
   margin: 0 5px;

@@ -8,6 +8,7 @@ import {
 } from "../Mypage/StyledMypage";
 import { PageNumberBtn } from "./StyledAdminPage";
 import {OrderListWrapper} from '../Mypage/StyledMypage'
+import {ArrowBtn} from '../common/Button/Button'
 
 function AdminOrderList({
   moveDetailHandler,user,cart}:any) {
@@ -33,9 +34,10 @@ function AdminOrderList({
             </ListInfo>
           </OrderListContent>
     
-          <button type="button" onClick={()=>{moveDetailHandler(el.id)}}>
-            <i className="fas fa-angle-double-right"></i>
-          </button>
+            <ArrowBtn 
+            className="fas fa-angle-double-right"
+            type="button" onClick={()=>{moveDetailHandler(el.id)}}
+            ></ArrowBtn>
         </OrderListWrapper>
           )
         })}

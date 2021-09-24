@@ -76,7 +76,6 @@ export const getFitteredBySearch = (keyword) => {
 };
 
 export const getFitteredByClick = (address) => {
-  console.log("address---", address);
   const request = axios.get(`${END_POINTS}/store`).then((res) => {
     console.log("res.data---cliock", res.data);
     const info = res.data.storeinfo

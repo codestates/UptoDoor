@@ -8,6 +8,8 @@ export const EDIT_USER = 'EDIT_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const ADD_ADDRESS = "ADD_ADDRESS";
 export const ADD_ORDER = "ADD_ORDER";
+export const NAVER_SIGNOUT = "NAVER_SIGNOUT";
+export const KAKAO_SIGNOUT = "KAKAO_SIGNOUT";
 
 //admin signUp/signIn/signOut/mypage/deleteAdmin
 export const ADMIN_POST = "ADMIN_POST";

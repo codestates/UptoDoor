@@ -48,7 +48,11 @@ const OrderInfo = (props:any) => {
             <div>
               <h5>주문자명</h5>
             </div>
-            <input type="text" onChange={onChangeDeliveryName} />
+            <input
+              type="text"
+              onChange={onChangeDeliveryName}
+              required
+            />
             <div>
               <h5>받으실 연락처</h5>
               <span >

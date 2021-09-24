@@ -21,7 +21,7 @@ import {category, categoryDummy} from '../dummyData'
 
 const LandingIntro = () => {
   const settings = {
-    // dots: true,  // 슬라이드 밑에 점 보이게
+    dots: true,  // 슬라이드 밑에 점 보이게
     arrows : false,
     lazyLoad : true,
     infinite: true,  // 무한으로 반복

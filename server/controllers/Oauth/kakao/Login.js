@@ -29,7 +29,8 @@ module.exports = async (req, res) => {
             "Content-Type": "application/x-www-form-urlencoded;charset=utf-8" 
             }
     }).then((result)=>{
-        userData = result.data;    
+        console.log  ('====result :: ===',result.data);
+        userData = result.data;  
     })
 
     let email = userData.kakao_account.email;

@@ -32,8 +32,7 @@ function AdminPostForm() {
     { value : 'food' , label : 'food'},
     { value : 'cafe' , label : 'cafe'},
     { value : 'living/home' , label : 'living/home'},
-    { value : 'plants' , label : 'plants'},
-    { value: 'clothes', label: 'clothes' },
+    { value: 'beauty', label: 'beauty' },
     { value: 'etc', label: 'etc' },
   ]
   //upload store img,file
@@ -130,7 +129,7 @@ function AdminPostForm() {
   }
   //!폼제출 핸들러
   const submitHandler = (e:any) => {
-    console.log("제출전 menuarr",menuArr);
+    // console.log("제출전 menuarr",menuArr);
     e.preventDefault();
     // postHandler('main')
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
@@ -164,7 +163,7 @@ function AdminPostForm() {
         }
       })
       // 모달띄워지고(메뉴등록이 완료되었습니다.) 메인화면
-      console.log(adminPostInfo);
+      // console.log(adminPostInfo);
       //history.push('/');
     }
   }

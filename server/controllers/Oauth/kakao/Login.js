@@ -37,8 +37,12 @@ module.exports = async (req, res) => {
     let gender = userData.kakao_account.gender;
     let name = userData.properties.nickname;
 
+    //카카오에서 받아온 데이터를 기존의 회원가입 형식과 일치하게 데이터핸들링
+    age = `${age.split('~')[0]}대`
+    gender = gender === 'male' ? '남자' : '여자'
+    
     let count =  await user.count({ where: { email: email }});
-   
+   // 기존에 같은 이메일이 있는지 체크하여 없으면 디비에 저장하고 있으면 토큰만 업데이트
     if(count === 0){
         await user.create({
             email : email, 
@@ -53,16 +57,34 @@ module.exports = async (req, res) => {
             oauth_token : Access_token
         }, {where : {email : email}})
     }
+    //정보 모두 저장후에 로그인 타입을 카카오로 설정
+    await user.update({login_type : 'kakao'}, {where : {email : email}})
 
+    //클라이언트 보내줄 내용 핸들링
     const Data = await user.findOne({ where: { email: email} });
-    //console.log('------',Data);
-    const accessData = { email: Data.email, id: Data.id, name: Data.name };
-    const accesstoken = generateAccessToken(accessData);
-    const refreshtoken = generateRefreshToken(accessData);
-    sendAccessToken(res, accesstoken);
-    sendRefreshToken(res, refreshtoken);
+    const UserInfo = {
+        id: Data.id,
+        email: Data.email,
+        name: Data.name,
+        mainAddress: Data.mainAddress,
+        mainAddressDetail: Data.mainAddressDetail,
+        subAddress: Data.subAddress,
+        subAddressDetail: Data.subAddressDetail,
+        mobile: Data.mobile,
+        age: Data.age,
+        gender: Data.gender,
+        position: Data.position,
+        billingkey: Data.billingkey,
+      };
 
-    res.status(200).send({message : "kakao login success", data : userData})
+      //자체적인 토큰 만들어서 발급
+      const accessData = { email: Data.email, id: Data.id, name: Data.name };
+      const accesstoken = generateAccessToken(accessData);
+      const refreshtoken = generateRefreshToken(accessData);
+      sendAccessToken(res, accesstoken);
+      sendRefreshToken(res, refreshtoken);
+  
+      res.status(200).send({ message: "kakao login success", userinfo: UserInfo, login_type: Data.login_type });
     } catch (error) {
     res.status(409).send({message : "kakao login fail"})
     console.log("에러내용",error.response.data)

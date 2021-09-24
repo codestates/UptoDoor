@@ -45,7 +45,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       age: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       gender: {
         type: Sequelize.STRING
@@ -59,7 +59,7 @@ module.exports = {
       billingkey: {
         type: Sequelize.STRING
       },
-      signup_type: {
+      login_type: {
         type: Sequelize.STRING
       },
       oauth_token: {

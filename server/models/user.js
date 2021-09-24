@@ -27,12 +27,12 @@ module.exports = (sequelize, DataTypes) => {
     sub_Xvalue: DataTypes.FLOAT,
     sub_Yvalue: DataTypes.FLOAT,
     mobile: DataTypes.STRING,
-    age: DataTypes.INTEGER,
+    age: DataTypes.STRING,
     gender: DataTypes.STRING,
     emailcheck: DataTypes.STRING,
     position: DataTypes.STRING,
     billingkey: DataTypes.STRING,
-    signup_type: DataTypes.STRING,
+    login_type: DataTypes.STRING,
     oauth_token: DataTypes.STRING
   }, {
     sequelize,

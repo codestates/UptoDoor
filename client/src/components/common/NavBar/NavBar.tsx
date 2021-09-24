@@ -17,6 +17,7 @@ import {
 import { signOut } from '../../../_actions/user_action';
 import Modal from '../Modal/Modal';
 import { useHistory } from 'react-router';
+import { END_POINT } from '../../../_actions/type';
 
 function NavBar() {
   const history:any = useHistory();
@@ -37,7 +38,7 @@ function NavBar() {
       .then((res: any) => {
         console.log(res);
       if (res.payload === "loginOut success") {
-        window.location.href="https://uptodoor.shop/"
+        window.location.href=`${END_POINT}`
       } else {
         alert("로그아웃에 실패했습니다.")
       }

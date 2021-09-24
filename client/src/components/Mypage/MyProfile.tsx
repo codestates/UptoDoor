@@ -1,8 +1,9 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import { Container, Title, Wrapper } from "../GlobalStyle";
 import MyOrderWrapper from '../UserOrderInfo/MyOrderWrapper';
 import AdminOrderWrapper from '../AdminOrderInfo/AdminOrderWrapper'
+import axios from 'axios';
 
 import MyOrderList from './MyOrderList';
 // import MyPaymentList from './MyPaymentList';
@@ -13,13 +14,14 @@ import {
   MypageProfileBtnWrapper,
   MypageUl,MypageLi } from './StyledMypage';
 import { useSelector } from "react-redux";
+import { END_POINTS } from '../../_actions/type';
 
 function MyProfile(): any {
+  
 
   const cart = useSelector((state:any) => state.cart);
   const user = useSelector((state:any) => state.user);
 
-  const [currentTab, setCurrentTab] = useState(0);
   const [filteredOrderId, setFilteredOrderId]=useState("")
 
   const moveDetailHandler = (id:any) => {
@@ -68,7 +70,16 @@ function MyProfile(): any {
     } 
   }
   orderDate(cart.deliver_term);
-  console.log(user)
+
+  useEffect(() => {
+    axios.get(`${END_POINTS}/users/userinfo`)
+      .then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+    })
+  },[])
+
   return (
     <Container>
       <Title>프로필</Title>

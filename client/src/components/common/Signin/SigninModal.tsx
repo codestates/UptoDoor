@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux'
 import { signIn,naverSignIn, kakaoSignIn } from '../../../_actions/user_action';
 import axios from 'axios';
 axios.defaults.withCredentials = true
-import { END_POINTS } from '../../../_actions/type';
+import { END_POINTS,END_POINT } from '../../../_actions/type';
 
 interface Iprops {
   modalOpen: boolean;
@@ -36,7 +36,7 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
     dispatch(signIn(userinfo))
       .then((res: any) => {
         if (res.payload.message  === 'login success') {
-          window.location.href="https://uptodoor.shop/"
+          window.location.href=`${END_POINT}`
         } else {
           alert('로그인 실패하였습니다.');
         } 
@@ -65,11 +65,31 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
     if (authorizationCode && state) {
       console.log("인가코드", authorizationCode)
       console.log("state값", state)
-      dispatch(naverSignIn(authorizationCode,state))
+      dispatch(naverSignIn(authorizationCode, state))
+        .then((res:any) => {
+        if (res.payload.message  === 'login success') {
+          window.location.href=`${END_POINT}`
+        } else {
+          alert('로그인 실패하였습니다.');
+        } 
+      })
+      .catch((err: any) => {
+        console.log(err)
+      });
       //인가코드만 있으면 카카오 로그인        
     } else if (authorizationCode) {
       console.log("인가코드", authorizationCode)
       dispatch(kakaoSignIn(authorizationCode))
+        .then((res: any) => {
+        if (res.payload.message  === 'login success') {
+          window.location.href=`${END_POINT}`
+        } else {
+          alert('로그인 실패하였습니다.');
+        } 
+      })
+      .catch((err: any) => {
+        console.log(err)
+      });
     }
   },[])
 

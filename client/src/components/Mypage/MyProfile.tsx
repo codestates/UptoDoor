@@ -17,8 +17,10 @@ import { END_POINTS } from '../../_actions/type';
 
 function MyProfile(): any {
   const [user,setUser]:any = useState('')
+
   const [orderList,setOrderList] = useState([])
   const [orderitem , setOrderItem] = useState({})
+  
   const moveDetailHandler = (id:any) => {
     const filtered = orderList.filter((el:any)=>{
       return el.id === id

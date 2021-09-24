@@ -15,27 +15,26 @@ import {
 import { useHistory } from 'react-router-dom'
 import MyOrderInfo from './MyOrderInfo'
 import MyStoreInfo from './MyStoreInfo'
-import Modal from '../common/Modal/Modal'
-
+import OrderInfo from '../UserOrder/OrderInfo'
+import { useDispatch } from 'react-redux'
+import { cancelOrder } from '../../_actions/user_action'
+import WarningModal from '../common/Modal/WarningModal'
 // eslint-disable-next-line react/prop-types
 function MyOrderWrapper({ 
-  filteredOrderId, 
   listbackHandler,orderitem,
   user }:any, ) {
 
   const history = useHistory();
   const [openModal , setOpenModal] = useState(false);
 
-  useEffect(() => {
-    console.log(filteredOrderId);
-  }, []);
-
-  const cancleStoreHandler = () => {
+  const cancelStoreHandler = () => {
     setOpenModal(true);
   }
-  const closeModal = () => {
-    setOpenModal((prev)=>!prev);
-    history.push('/')
+  console.log('===구독 중인 토탈상품정보래퍼 order====',order)
+  
+  const cancelOrderHandler = () => {
+    console.log("이렇게도 된다")
+    // dispatch(cancelOrder(orderitem.id))
   }
   
   return (
@@ -105,17 +104,20 @@ function MyOrderWrapper({
         >
         뒤로가기</SmallButton>
         <SmallButton
-        onClick = {cancleStoreHandler}
+        onClick = {cancelStoreHandler}
         >구독취소</SmallButton>
       </BtnBox>
 
       {openModal ?
-        <Modal
+        <WarningModal
         openModal = {openModal} 
-        closeModal = {closeModal}
         modalTitleText = '구독을 정말 취소하시겠습니까?'
         modalText = '정기구독 중 취소하시면 이번 달 내 주문된 사항까지 적용됩니다.'
-        modalBtn = '확인'
+        modalBtn='확인'
+          setOpenModal={setOpenModal}
+          handler={cancelOrderHandler}
+          yes="확인"
+          no="취소"
         /> : 
         null
       }

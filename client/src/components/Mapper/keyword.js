@@ -92,40 +92,68 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
           infowindow.open(map, selected);
 
           map.setCenter(new kakao.maps.LatLng(result[0].y, result[0].x));
-          // const circle = new kakao.maps.Circle({
-          //   center: new kakao.maps.LatLng(result[0].y, result[0].x), // 원의 중심좌표 입니다
-          //   radius: 3000, // 미터 단위의 원의 반지름입니다
-          //   strokeWeight: 5, // 선의 두께입니다
-          //   strokeColor: "#75B8FA", // 선의 색깔입니다
-          //   strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-          //   strokeStyle: "dashed", // 선의 스타일 입니다
-          //   fillColor: "#CFE7FF", // 채우기 색깔입니다
-          //   fillOpacity: 0.5, // 채우기 불투명도 입니다
-          // });
+          const circle = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(result[0].y, result[0].x), // 원의 중심좌표 입니다
+            radius: 2500, // 미터 단위의 원의 반지름입니다
+            strokeWeight: 5, // 선의 두께입니다
+            strokeColor: "#75B8FA", // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: "dashed", // 선의 스타일 입니다
+            fillColor: "#CFE7FF", // 채우기 색깔입니다
+            fillOpacity: 0.5, // 채우기 불투명도 입니다
+          });
 
           // // 지도에 원을 표시합니다
-          // circle.setMap(map);
+          circle.setMap(map);
 
           // //! 3km 내의 마커만 표시------
           // // 원(Circle)의 옵션으로 넣어준 반지름
-          // var radius = 3000;
+          const radius = 2500;
+          var marker;
+     for (let i = 0; i < initialStore.length; i++) {
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch(initialStore[i].address, function (result, status) {
+      // 정상적으로 검색이 완료됐으면
+      if (status === kakao.maps.services.Status.OK) {
+        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        marker = new kakao.maps.Marker({
+          map: map,
+          position: coords,
+        });
 
+        kakao.maps.event.addListener(marker, "click", () => {
+          geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+        });
+      }
+    
+      console.log(marker);
+    });
+    }
+          console.log("asd", marker);
+  //! 콜백함수 클릭한 가게 
+  const callback = function (result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      filterClickHandler(result[0].road_address.address_name);
+    }
+  };
           // // 마커들이 담긴 배열
-          // marker.forEach(function (m) {
-          //   var c1 = map.getCenter();
-          //   var c2 = m.getPosition();
-          //   var poly = new Polyline({
-          //     // map: map, 을 하지 않아도 거리는 구할 수 있다.
-          //     path: [c1, c2],
-          //   });
-          //   var dist = poly.getLength(); // m 단위로 리턴
-
+          // for (let i = 0; i < marker.length - 1; i++){
+          //   const c1 = map.getCenter();
+          //   const c2 = marker[i].getPosition();
+          //   const poly = new Polyline({ path: [c1, c2] });
+          //   const dist = poly.getLength();
+          //   console.log(dist, poly);
           //   if (dist < radius) {
-          //     m.setMap(map);
+          //     marker[i].setMap(map);
           //   } else {
-          //     m.setMap(null);
+          //     marker[i].setMap(null);
           //   }
-          // });
+          // }
+         
+              // map: map, 을 하지 않아도 거리는 구할 수 있다.
+              
+              // m 단위로 리턴
           //!-----------------
         } else {
           map.setCenter(marker);

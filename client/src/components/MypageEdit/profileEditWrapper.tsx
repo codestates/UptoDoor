@@ -15,10 +15,9 @@ import {
 import {SmallButton,BtnBox} from '../common/Button/Button'
 
 import { useDispatch,useSelector } from 'react-redux'
-import { editUser} from '../../_actions/user_action'
+import { editUser,deleteUser} from '../../_actions/user_action'
 import ProfileEditOptions from './ProfileEditOptions';
 import WarningModal from '../common/Modal/WarningModal'
-
 import useInput from '../../utils/useInput'
 
 function MyProfileEdit() {
@@ -82,6 +81,22 @@ function MyProfileEdit() {
 
   //!회원탈퇴 버튼
   
+  
+  const withdrawalConfirm = () => {
+    alert('탈퇴성공')
+    // dispatch(deleteUser())
+    // .then((res: any) => {
+    //   if (res.payload.message  === 'good bye') {
+    //     alert('탈퇴성공')
+    //     window.location.href="http://localhost:3000/"
+    //   } else {
+    //     alert('탈퇴 실패. 못벗어남.');
+    //   }
+    // })
+    // .catch((err: any) => {
+    //   console.log(err)
+    // });
+  }
 
   const withdrawalModalHandler = () => {
     setOpenModal(true)
@@ -216,7 +231,8 @@ function MyProfileEdit() {
       modalTitleText = '정말 회원 탈퇴하시겠습니까?'
       modalText = '회원탈퇴 해도 결제된 정기구독 상품은 배송됩니다.'
       yes = '회원탈퇴'
-      no = '취소'
+          no='취소'
+          handler={withdrawalConfirm}
       />
       :
       null

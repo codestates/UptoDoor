@@ -10,6 +10,7 @@ import {
   KAKAO_SIGNOUT,
   KAKAO_SIGNIN,
   NAVER_SIGNIN,
+  CALCEL_ORDER,
 } from "../_actions/type";
 
 export default function user_reducer(state = {}, action) {
@@ -36,7 +37,11 @@ export default function user_reducer(state = {}, action) {
         return { ...state, order: [...state.order, action.payload] };
       }
     }
-
+    case CALCEL_ORDER: {
+      // const filtered = state.order.filter((el)=> el.id !== action.payload.id)
+      return {...state }
+    }
+      
     case EDIT_USER:
       console.log("===EDIT_USER===", action.payload);
       return { ...state, ...action.payload };

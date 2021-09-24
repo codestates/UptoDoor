@@ -5,15 +5,14 @@ import {
   ModalSelectAddWrapper,ModalTextBox} 
   from './styledModal'
 import { useHistory } from 'react-router-dom';
-import { deleteUser } from '../../../_actions/user_action';
-import { useDispatch } from 'react-redux';
+
 
 function WarningModal(props: any) {
   const history:any = useHistory()
-  const dispatch:any = useDispatch();
+  
   const { 
     openModal, url,
-    modalTitleText ,modalText,yes,no,setOpenModal
+    modalTitleText ,modalText,yes,no,setOpenModal,handler
     } = props;
 
   const closeModal = () => {
@@ -21,21 +20,6 @@ function WarningModal(props: any) {
     history.push(url);
   }
   
-  const withdrawalConfirm = () => {
-    alert('탈퇴성공')
-    dispatch(deleteUser())
-    // .then((res: any) => {
-    //   if (res.payload.message  === 'good bye') {
-    //     alert('탈퇴성공')
-    //     window.location.href="http://localhost:3000/"
-    //   } else {
-    //     alert('탈퇴 실패. 못벗어남.');
-    //   }
-    // })
-    // .catch((err: any) => {
-    //   console.log(err)
-    // });
-  }
 
   return (
     <>
@@ -53,7 +37,7 @@ function WarningModal(props: any) {
           <MiddleButton 
           side
           primary
-          onClick = {withdrawalConfirm}>{yes}</MiddleButton>
+          onClick = {handler}>{yes}</MiddleButton>
           <MiddleButton 
           side
           onClick = {closeModal} >{no}</MiddleButton>

@@ -7,7 +7,7 @@ import {
 import { BtnBox } from '../StoreInfo/StyledStoreData'
 import {
   StoreInfoWrapper,
-  FlexBox,H3,H4,
+  FlexBox,H2,H3,H4,
   OrderDate,
   OrderInfoWrapper,
   TtlPricemBox
@@ -21,9 +21,10 @@ import { cancelOrder } from '../../_actions/user_action'
 import WarningModal from '../common/Modal/WarningModal'
 // eslint-disable-next-line react/prop-types
 function MyOrderWrapper({ 
-  listbackHandler,order,
-  cart,user,orderDate }:any, ) {
-  const dispatch:any = useDispatch()
+  listbackHandler,orderitem,
+  user }:any, ) {
+
+  const history = useHistory();
   const [openModal , setOpenModal] = useState(false);
 
   const cancelStoreHandler = () => {
@@ -35,7 +36,7 @@ function MyOrderWrapper({
     console.log("이렇게도 된다")
     // dispatch(cancelOrder(orderitem.id))
   }
-
+  
   return (
     <MypageOrderListWrapper>
       <OrderListContent>
@@ -46,39 +47,52 @@ function MyOrderWrapper({
               onClick={listbackHandler}></i>
               <span>구독중</span>
             </div>
-            <OrderDate> 다음 결제일 : {orderDate(cart.delivery_term)} </OrderDate>
+            {orderitem.state === 'cancel' ?
+            null
+            :
+            <OrderDate> 다음 결제일 : {orderitem.nextPayDay} </OrderDate>}
           </FlexBox>
         </StoreInfoWrapper>
 
         <FlexBox distance>
           <H3>{user.name} 님</H3>
+          {orderitem.state === 'cancel' ? 
+          <span>의 취소내역을 확인하세요</span>
+          :
           <span>의 구독내역을 확인하세요</span>
+          }
         </FlexBox>
 
         {/* 구독가게정보 component */}
         <MyStoreInfo
         user = {user}
-        order = {order}
+        orderitem = {orderitem}
         />
 
         <OrderInfoWrapper className="orderinfo-wrapper">
           <FlexBox between>
-            <H3>주문상품정보</H3>
+          {orderitem.state === 'cancel' ? 
+            <H3>주문취소정보</H3>:<H3>주문상품정보</H3>
+          }
           </FlexBox>
           {/* 오더인포 component */}
           <MyOrderInfo
-          order = {order}
-          orderDate = {orderDate}
+          orderitem = {orderitem}
           />
 
           <TtlPricemBox>
-            <H4>추가 금액</H4>
-            <H3>{cart.plus_money} 원</H3>
+            <H4>추가 금액 </H4>
+            <H3> {orderitem.plusMoney} 원</H3>
           </TtlPricemBox>
 
           <TtlPricemBox className="ttl-price-box">
-            <H4>총 결제금액</H4>
-            <h2>{cart.total_price}원</h2>
+
+          <H4>총 결제금액</H4>
+          {orderitem.state === 'cancel' ? 
+          <H2 cancleline >{orderitem.totalprice}원</H2>
+          :
+          <H2>{orderitem.totalprice}원</H2>
+          }
           </TtlPricemBox>
         </OrderInfoWrapper>
       </OrderListContent>

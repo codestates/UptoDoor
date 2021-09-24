@@ -33,7 +33,7 @@ const LandingIntro = () => {
     slidesToScroll: 1,  // 3장씩 뒤로 넘어가게
     centerMode: true,
     centerPadding: '0px', 
-    // pauseOnHover : true,	// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+    pauseOnHover : false,	// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
 		vertical : true,
   };
   return (
@@ -50,7 +50,9 @@ const LandingIntro = () => {
               return (
                 <CategoryTitleWrapper key = {idx}
                   className = 'category-title-wrapper'>
+                <Fade bottom>
                   <CategoryTitle> {el}</CategoryTitle>
+                </Fade>
                 </CategoryTitleWrapper>
                 )
             })}

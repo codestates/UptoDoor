@@ -85,7 +85,7 @@ module.exports = async (req, res) => {
       sendAccessToken(res, accesstoken);
       sendRefreshToken(res, refreshtoken);
   
-      res.status(200).send({ message: "kakao login success", userinfo: UserInfo, login_type: Data.login_type });
+      res.status(200).send({ message: "login success", userinfo: UserInfo, login_type: Data.login_type });
     } catch (error) {
     res.status(409).send({message : "kakao login fail"})
     console.log("에러내용",error.response.data)

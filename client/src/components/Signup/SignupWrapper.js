@@ -14,6 +14,7 @@ import {
 import {SmallButton} from '../common/Button/Button'
 
 import axios from "axios";
+import { END_POINTS } from '../../_actions/type'
 axios.defaults.withCredentials=true;
 
 function SignupWrapper() {
@@ -71,7 +72,7 @@ function SignupWrapper() {
     console.log(email)
     axios
     .post(
-      `http://localhost:3060/auth/email`,
+      `${END_POINTS}/auth/email`,
       {email:email},
       {withCredentials: true, credentials: 'include'}
     ).then((res)=>

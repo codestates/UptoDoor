@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-const { user, menu, store, store_menu } = require('../../models');
+const { user, store, store_menu } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
+const models = require('../../models');
 module.exports = async (req, res) => {
     console.log('----------',req.body);
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
@@ -14,7 +15,7 @@ module.exports = async (req, res) => {
         number: mobile, address: adminAddress, xvalue: xvalue, yvalue: yvalue, image: storeImg, Bussiness_paper: storeFile[0] });
 
     for (let i=0; i<menu.length; i++) {
-        const data2 = await menu.create({
+        const data2 = await models.menu.create({
             image: menu[i].menuImg, name: menu[i].menuName, detail: menu[i].menuDescription, price: menu[i].price
         });
         await store_menu.create({ store_id: data1.id, menu_id: data2.id});

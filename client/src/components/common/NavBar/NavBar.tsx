@@ -37,7 +37,7 @@ function NavBar() {
       .then((res: any) => {
         console.log(res);
       if (res.payload === "loginOut success") {
-        window.location.href="http://localhost:3000/"
+        window.location.href="https://uptodoor.shop/"
       } else {
         alert("로그아웃에 실패했습니다.")
       }

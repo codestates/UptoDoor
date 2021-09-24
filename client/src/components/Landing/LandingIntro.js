@@ -1,3 +1,4 @@
+
 import React from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -16,6 +17,7 @@ import {
   CategoryImgs,
   GradientEdge,
   IntroH1,
+  IntroH2,
 } from './StyledLanding'
 import {category, categoryDummy} from '../dummyData'
 
@@ -23,7 +25,6 @@ const LandingIntro = () => {
   const settings = {
     // dots: true,  // 슬라이드 밑에 점 보이게
     arrows : false,
-    lazyLoad : true,
     infinite: true,  // 무한으로 반복
     speed: 500,
     autoplay: true,
@@ -39,20 +40,22 @@ const LandingIntro = () => {
     <LandingIntroContainer>
       <LandingIntroWrapper>
           <Container  id = 'container'>
-            <FlexBox>
           <Fade top>
-            <IntroH1>우리동네 찾는 모든</IntroH1>
+            <IntroH1>새로운 라이프스타일 &quot;구독&quot;</IntroH1>
           </Fade>
+            <FlexBox>
+            <IntroH2>당신 곁의 </IntroH2>
             <Slider { ...settings }>
             {category.map((el,idx)=>{
               return (
                 <CategoryTitleWrapper key = {idx}
                   className = 'category-title-wrapper'>
-                  <CategoryTitle> {el} </CategoryTitle>
+                  <CategoryTitle> {el}</CategoryTitle>
                 </CategoryTitleWrapper>
                 )
             })}
             </Slider>  
+            <IntroH2>서비스를 찾아보세요.</IntroH2>
             </FlexBox>
 
           <ImgContainer id = 'img-container'>

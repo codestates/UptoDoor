@@ -16,16 +16,29 @@ padding : 50px 0 20px;
 overflow-y: hidden;
 @media screen and (min-width: 768px) {
 margin : 0 auto;
+padding : 100px 0 20px;
 }
 `
 export const IntroH1 = styled.h1`
 font-size: ${LargeFont};
+font-weight : 500;
 @media screen and (min-width: 768px) {
   display : inline ;
   font-size: 32px;
 }
 `
-
+export const IntroH2 = styled.h2`
+font-size: 18px;
+font-weight : 400;
+color : ${TextLightGrey};
+@media screen and (min-width: 768px) {
+  display : inline ;
+  font-size: 32px;
+}
+@media screen and (min-width: 1140px) {
+  font-size: 40px;
+}
+`
 export const Container = styled.div`
   margin : 0 auto;
   text-align: center;
@@ -41,27 +54,47 @@ export const Container = styled.div`
 @media screen and (min-width: 768px) {
 }
 `
-export const FlexBox = styled.div`
+export const FlexBox = styled.div`  
+display: flex;
+justify-content:center;
+align-items: flex-end;
+width: 100%;
+height : 70px;
+>div{
+  width: 82px;
+}
 @media screen and (min-width: 768px) {
-  display: flex;
   justify-content: center;
   align-items: center;
-  margin : 60px 0 100px 0;
+  margin : 10px 0 60px 0;
+  height : 90px;
   >div{
-    width : 300px;
+    width : 160px;
+    text-align: center;
+  }
+}
+@media screen and (min-width: 1140px) {
+  align-items: flex-end;  
+  height : 100px;
+  >div{
+    width : 160px;
     text-align: center;
   }
 }
 `
 export const CategoryTitleWrapper = styled.div`
-width: 375px;
+width: fit-content;
 text-align: center;
 margin : 10px auto ;
 
+@media screen and (min-width: 768px) {
+  width: 800px;
+  margin : 0px auto ;
+}
 `
 export const CategoryTitle = styled.h2`
-font-weight: 600;
-font-size: 36px;
+font-weight: 700;
+font-size: 32px;
 background: -webkit-linear-gradient(left, mediumturquoise, #5d9cec);
             -webkit-background-clip: text;
             background-clip: text;
@@ -69,6 +102,11 @@ background: -webkit-linear-gradient(left, mediumturquoise, #5d9cec);
 @media screen and (min-width: 768px) {
 font-weight: 700;
 font-size: ${UltraLargeFont};
+text-align: center;
+}
+@media screen and (min-width: 1140px) {
+font-weight: 700;
+font-size: 72px;
 text-align: center;
 }
 `
@@ -87,7 +125,6 @@ visibility: hidden;
   visibility: visible;
 }
 @media screen and (min-width: 768px) {
-
 }
 `
 export const CategoryImgWrapper = styled.div`
@@ -129,7 +166,7 @@ object-fit: cover;
   top : 40px;
   }
   &:nth-child(2),&:nth-child(4),&:nth-child(6)
-,&:nth-child(9),&:nth-child(11){
+,&:nth-child(9),&:nth-child(11),&:nth-child(13){
   position : relative;
   top : 90px;
 }

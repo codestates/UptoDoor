@@ -33,6 +33,7 @@ module.exports = async (req, res) => {
         userData = result.data;  
     })
 
+    console.log  ('====durlkasdjf :: ===');
     let email = userData.kakao_account.email;
     let age = userData.kakao_account.age_range;
     let gender = userData.kakao_account.gender;
@@ -41,7 +42,6 @@ module.exports = async (req, res) => {
     //카카오에서 받아온 데이터를 기존의 회원가입 형식과 일치하게 데이터핸들링
     age = `${age.split('~')[0]}대`
     gender = gender === 'male' ? '남자' : '여자'
-    
     let count =  await user.count({ where: { email: email }});
    // 기존에 같은 이메일이 있는지 체크하여 없으면 디비에 저장하고 있으면 토큰만 업데이트
     if(count === 0){
@@ -78,12 +78,12 @@ module.exports = async (req, res) => {
         billingkey: Data.billingkey,
       };
 
-      //자체적인 토큰 만들어서 발급
-    //   const accessData = { email: Data.email, id: Data.id, name: Data.name };
-    //   const accesstoken = generateAccessToken(accessData);
-    //   const refreshtoken = generateRefreshToken(accessData);
-    //   sendAccessToken(res, accesstoken);
-    //   sendRefreshToken(res, refreshtoken);
+    //   자체적인 토큰 만들어서 발급
+      const accessData = { email: Data.email, id: Data.id, name: Data.name };
+      const accesstoken = generateAccessToken(accessData);
+      const refreshtoken = generateRefreshToken(accessData);
+      sendAccessToken(res, accesstoken);
+      sendRefreshToken(res, refreshtoken);
   
       res.status(200).send({ message: "kakao login success", userinfo: UserInfo, login_type: Data.login_type });
     } catch (error) {

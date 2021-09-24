@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
 
     const Data = await user.findOne({ where: { id: id} });
     console.log("액서스토큰",Data.oauth_token);
-
+    // const Data = {oauth_token : 'vLzYKVnNEZTgZPSa7WB0tv4sHieexS5kZKL9nQo9dRkAAAF8FeO7vQ'}
     try {  
     await axios.post("https://kapi.kakao.com/v1/user/unlink",null,{
         headers: {

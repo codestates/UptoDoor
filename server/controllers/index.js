@@ -18,7 +18,6 @@ module.exports = {
     EmailSend: require('./Auth/EmailSend'),
     Kakaologin: require('./Oauth/kakao/Login'),
     KakaoSignout: require('./Oauth/kakao/Signout'),
-    KakaoToken: require('./Oauth/kakao/Token'),
     Naverlogin: require('./Oauth/naver/Login'),
     NaverSignout: require('./Oauth/naver/Signout'),
     Address: require('./Map/Address'),

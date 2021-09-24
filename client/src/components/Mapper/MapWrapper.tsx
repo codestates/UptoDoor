@@ -20,7 +20,6 @@ import {
   getFitteredStore,
   getFitteredBySearch,
   getStoreData,
-  getFitteredByClick,
 } from "../../_actions/store_action";
 
 
@@ -34,7 +33,6 @@ function MapWrapper() {
     inputRef.current.focus();
   })
   const [openInfoModal, setOpenInfoModal] = useState(false);
-  const [hastag, setHashtag] = useState("")
   const [selectAddress, setSelectAddress] = useState("");
   const [selectAddressDetail, setSelectAddressDetail] = useState('')
   // setmapData 에 필터링한 값 담아서 보여주기
@@ -62,12 +60,14 @@ function MapWrapper() {
   };
 
   const [filteredList, setFilterList] = useState([]);
-  const filterClickHandler = (address:string) => {
-    // console.log("filteredclick", address);
-    // dispatch(getFitteredByClick(address));
-    const filtered = store.filter((el:any) => {
+  const filterClickHandler = (address: string) => {
+    console.log("adadasd", address);
+    console.log("Adsadasd", store);
+    const filtered = store.filter((el: any) => {
+      // console.log("el",el)
       return el.address === address
     })
+    console.log("filtered", filtered);
     setFilterList(filtered);
     setOpenInfoModal(true);
   }

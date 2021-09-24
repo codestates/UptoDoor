@@ -7,6 +7,8 @@ import {
   ADD_ORDER,
   END_POINTS,
   EDIT_USER,
+  KAKAO_SIGNOUT,
+  NAVER_SIGNOUT,
 } from "./type";
 
 import axios from 'axios'
@@ -35,7 +37,6 @@ export const signIn = (userinfo) => {
   const result = 
   axios.post('http://localhost:3060/users/signin', userinfo)
   .then((res) => {
-    console.log("signin", res.data);
     const{id,email,name ,mainAddress,mainAddressDetail,subAddress,subAddressDetail,mobile,age,gender,position,billingkey} =res.data.userinfo
     return {
       message: res.data.message,
@@ -76,13 +77,10 @@ export const signOut = () => {
 }
 //마이페이지 patch 요청
 export const editUser = (userinfoEdit) => {
-  //patch 수정하고 로그인부분이 바뀌는거니까 SIGNIN
-  console.log('==받아와라!!===',userinfoEdit)
   const request = axios.patch(`${END_POINTS}/users/userinfo`,
   userinfoEdit)
   .then((res)=>{
   const{name ,mobile,age,gender} =res.data.userinfo
-    console.log("메시지", res.data.message);
     return {
       name,
       mobile,
@@ -100,21 +98,19 @@ export const editUser = (userinfoEdit) => {
 }
 //회원탈퇴 delete 요청 -> state 전부 초기화하기
 export const deleteUser = (userinfo) => {
-  axios.delete(`${END_POINTS}/users/signout`,
+  const request = axios.delete(`${END_POINTS}/users/signout`,
   userinfo)
   .then((res)=>{
     console.log(res.data);
-    return res.data;
+    return res.data.message;
   })
   .catch((err)=>{
     console.log('==userinfo 받아오기실패==',err)
   })
   return {
-    type : DELETE_USER,
-    payload : {
-      userinfo
-    }
-  }
+    type: DELETE_USER,
+    payload: request,
+  };
 }
 
 //main email 보내기
@@ -149,5 +145,30 @@ export const addOrder = (order, selected_mobile, deliveryName) => {
 };
 
 
+//kakao logout
 //userkakao, naver
 // axios.post(`${E}/oauth/kakao/signout`);
+export const kakaoSignOut = () => {
+  const request = axios.post(`${END_POINTS}/oauth/kakao/signout`)
+    .then((res) => {
+    return res.data.message;
+  });
+
+  return {
+    type: KAKAO_SIGNOUT,
+    payload: request,
+  };
+};
+
+export const naverSignOut = () => {
+  const request = axios
+    .post(`${END_POINTS}/oauth/naver/signout`)
+    .then((res) => {
+      return res.data.message;
+    });
+
+  return {
+    type: NAVER_SIGNOUT,
+    payload: request,
+  };
+};

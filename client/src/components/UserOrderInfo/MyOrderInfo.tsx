@@ -9,9 +9,10 @@ import {
 
 import { useSelector } from "react-redux";
 
-function MyOrderInfo({orderDate}:any) {
+function MyOrderInfo({orderDate,order}:any) {
 
   const cart = useSelector((state:any) => state.cart);
+  console.log('오더인포의 : ',order)
 
   return (
     <>

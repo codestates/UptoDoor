@@ -16,11 +16,12 @@ import { useHistory } from 'react-router-dom'
 import MyOrderInfo from './MyOrderInfo'
 import MyStoreInfo from './MyStoreInfo'
 import Modal from '../common/Modal/Modal'
+import OrderInfo from '../UserOrder/OrderInfo'
 
 // eslint-disable-next-line react/prop-types
 function MyOrderWrapper({ 
   filteredOrderId, 
-  listbackHandler,
+  listbackHandler,order,
   cart,user,orderDate }:any, ) {
 
   const history = useHistory();
@@ -37,7 +38,8 @@ function MyOrderWrapper({
     setOpenModal((prev)=>!prev);
     history.push('/')
   }
-
+  console.log('===구독 중인 토탈상품정보래퍼 order====',order)
+  
   return (
     <MypageOrderListWrapper>
       <OrderListContent>
@@ -58,15 +60,18 @@ function MyOrderWrapper({
         </FlexBox>
 
         {/* 구독가게정보 component */}
-        <MyStoreInfo/>
+        <MyStoreInfo
+        user = {user}
+        order = {order}
+        />
 
         <OrderInfoWrapper className="orderinfo-wrapper">
           <FlexBox between>
             <H3>주문상품정보</H3>
-          </FlexBox> 
-          
+          </FlexBox>
           {/* 오더인포 component */}
           <MyOrderInfo
+          order = {order}
           orderDate = {orderDate}
           />
 

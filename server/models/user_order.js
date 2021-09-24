@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   user_order.init({
-    content: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'user_order',

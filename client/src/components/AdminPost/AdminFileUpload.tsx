@@ -3,21 +3,22 @@ import {StoreInputBox,StoreAddressBtn} from './StyledAdminPost'
 import Dropzone from 'react-dropzone'
 import axios from 'axios'
 axios.defaults.withCredentials = true;
+import { END_POINTS } from '../../_actions/type';
 
 function AdminFileUpload(props:any) {
 
   const [addressFile , setAddressFile]:any = useState([]); 
 
-  const dropHandler = (files:any) => {
+  const dropHandler = (files: any) => {
   
-          const formData = new FormData();
-          const config = {
-            headers : { 'content-type' : 'multipart/form-data'}
-          }
-          formData.append('file',files[0]);
-          console.log('==fileconfig==',formData,config);
-          //dispatch action axios 관리된거 와야함.
-          axios.post('http://localhost:3060/image',formData,config)
+    const formData = new FormData();
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' }
+    }
+    formData.append('file', files[0]);
+    console.log('==fileconfig==', formData, config);
+    //dispatch action axios 관리된거 와야함.
+    axios.post(`${END_POINTS}/image`,formData,config)
           .then((res)=>{
             if(res.data.success){
               setAddressFile([...addressFile,res.data.filePath])

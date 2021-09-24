@@ -13,6 +13,7 @@ import {
 ,StoreMenuAddBtn
 } from './StyledAdminPost'
 import axios from 'axios';
+import { END_POINTS } from '../../_actions/type';
 axios.defaults.withCredentials = true;
 
 function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
@@ -44,7 +45,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
       }
       formData.append('file',file[0]);
       //dispatch action axios 관리된거 와야함.
-      axios.post('http://localhost:3060/image',formData,config)
+      axios.post(`${END_POINTS}/image`,formData,config)
       .then((res)=>{
         if(res.data.success){
           const copyArr = menuArr.slice()

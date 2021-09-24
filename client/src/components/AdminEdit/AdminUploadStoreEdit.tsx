@@ -13,6 +13,7 @@ import Slider,{Settings} from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
+import { END_POINTS } from '../../_actions/type';
 
 import MapSelectModal from '../../components/Mapper/MapSelectModal';
 
@@ -40,7 +41,7 @@ function AdminUploadStoreEdit(
     }
     formData.append('file',files[0]);
     //dispatch action axios 관리된거 와야함.
-    await axios.post('http://localhost:3060/image',formData,config)
+    await axios.post(`${END_POINTS}/image`,formData,config)
     .then((res)=>{
       if(res.data.success){
         setImgs([...imgs,res.data.filePath])

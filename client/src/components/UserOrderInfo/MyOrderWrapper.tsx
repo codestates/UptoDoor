@@ -30,7 +30,7 @@ function MyOrderWrapper({
   const cancelStoreHandler = () => {
     setOpenModal(true);
   }
-  console.log('===구독 중인 토탈상품정보래퍼 order====',order)
+  // console.log('===구독 중인 토탈상품정보래퍼 order====', order)
   
   const cancelOrderHandler = () => {
     console.log("이렇게도 된다")

@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { 
   MapInfoContainer,
   MapInfoWrapper,
   StoreImg,
   StoreName,
-  StoreAddress
+  StoreAddress,MapAppContainer,LinkR
   } from './styledMap'
 import { selectStore } from '../../_actions/cart_action';
 function MapInfoModal({filteredList}:any) {
@@ -21,25 +20,29 @@ function MapInfoModal({filteredList}:any) {
   }
   
   return (
+    <MapAppContainer>
     <MapInfoContainer mobile className = 'mapinfo-container'>
       {filteredList && filteredList.map((el: any) => {
         return (
           <MapInfoWrapper onClick={() => { moveStoreHandler(el.id)}}
           key = {el.id}
           className = 'mapinfo-wrapper'>
-            <Link to={`/storeinfo/${el.id}`} >
+            
             <StoreImg 
-            src = {el.store_image.length === 0 ? '' :el.store_image[0] } alt = '업체사진'/>
+            src = {el.image.length === 0 ? '' :el.image[0] } alt = '업체사진'/>
             <div>
             <StoreName>{el.name}</StoreName>
-            <hr/>
             <StoreAddress>{el.address}</StoreAddress>
             </div>
-          </Link>
+
+            <LinkR to={`/storeinfo/${el.id}`} >
+              <i className="fas fa-angle-double-right"></i>
+          </LinkR>
           </MapInfoWrapper>
         )
       })}
-    </MapInfoContainer>
+      </MapInfoContainer>
+      </MapAppContainer>
   )
 }
 

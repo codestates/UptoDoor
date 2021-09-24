@@ -17,10 +17,10 @@ module.exports = {
     Email: require('./Auth/Email'),
     EmailSend: require('./Auth/EmailSend'),
     Kakaologin: require('./Oauth/kakao/Login'),
-    Kakaosignup: require('./Oauth/kakao/Signup'),
+    KakaoSignout: require('./Oauth/kakao/Signout'),
     KakaoToken: require('./Oauth/kakao/Token'),
     Naverlogin: require('./Oauth/naver/Login'),
-    Naversignup: require('./Oauth/naver/Signup'),
+    NaverSignout: require('./Oauth/naver/Signout'),
     Address: require('./Map/Address'),
     StoreInfo: require('./Map/Storeinfo'),
     StoreMap: require('./Map/Store')

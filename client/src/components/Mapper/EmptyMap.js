@@ -7,8 +7,9 @@ import {
   StoreName,
   StoreAddress,
   MapInfoWebContainer,
+  LinkR,
 } from "./styledMap";
-import { Link } from 'react-router-dom';
+
 function EmptyMap({ filteredList, openInfoModal }) {
   return (
     <EmptyMapContainer>
@@ -22,24 +23,19 @@ function EmptyMap({ filteredList, openInfoModal }) {
           {filteredList &&
             filteredList.map((el) => {
               return (
-                <MapInfoWrapper
-                  onClick={() => {
-                    moveStoreHandler(el.id);
-                  }}
-                  key={el.id}
-                  className="mapinfo-wrapper"
-                >
-                  <Link to={`/storeinfo/${el.id}`}>
-                    <StoreImg
-                      src={el.store_image.length === 0 ? "" : el.store_image[0]}
-                      alt="업체사진"
-                    />
-                    <div>
-                      <StoreName>{el.name}</StoreName>
-                      <hr />
-                      <StoreAddress>{el.address}</StoreAddress>
-                    </div>
-                  </Link>
+                <MapInfoWrapper key={el.id} className="mapinfo-wrapper">
+                  <StoreImg
+                    src={el.image.length === 0 ? "" : el.image[0]}
+                    alt="업체사진"
+                  />
+                  <div>
+                    <StoreName>{el.name}</StoreName>
+                    <StoreAddress>{el.address}</StoreAddress>
+                  </div>
+
+                  <LinkR to={`/storeinfo/${el.id}`}>
+                    <i className="fas fa-angle-double-right"></i>
+                  </LinkR>
                 </MapInfoWrapper>
               );
             })}

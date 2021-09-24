@@ -6,10 +6,11 @@ import {
   SIGNOUT,
   EDIT_USER,
   DELETE_USER,
+  NAVER_SIGNOUT,
+  KAKAO_SIGNOUT,
 } from "../_actions/type";
 
 export default function user_reducer(state = {}, action) {
-  // console.log("reducer : ", action.payload);
   switch (action.type) {
     case SIGNUP:
       return { ...state, signUp: action.payload };
@@ -41,6 +42,10 @@ export default function user_reducer(state = {}, action) {
     case DELETE_USER : 
       return (state = {});
 
+    case KAKAO_SIGNOUT:
+      return (state = {});
+    case NAVER_SIGNOUT:
+      return (state = {});
     default:
       return state;
   }

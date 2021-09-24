@@ -14,7 +14,7 @@ import { useSelector} from "react-redux";
 
 const OrderInfo = (props:any) => {
   const {
-    paymentChecker,mobileChecker,mobileCheck,orderMobile,onChangeMobileHandler,
+    paymentChecker,mobileChecker,mobileCheck,orderMobile,onChangeMobileHandler,onChangeDeliveryName
   } = props;
   // console.log(orderMobile);
   const cart = useSelector((state:any) => state.cart);
@@ -33,7 +33,7 @@ const OrderInfo = (props:any) => {
         <OrderInfoWrraper>
           <h5>주문자 정보</h5>
           <OrderUserInfoContent>
-            <h4>주문자명: </h4>
+            <h4>닉네임 </h4>
             <p>{user.name}</p>
           </OrderUserInfoContent>
           <OrderUserInfoContent>
@@ -45,6 +45,14 @@ const OrderInfo = (props:any) => {
             <p>{user.mobile}</p>
           </OrderUserInfoContent>
           <InfoCheck>
+            <div>
+              <h5>주문자명</h5>
+            </div>
+            <input
+              type="text"
+              onChange={onChangeDeliveryName}
+              required
+            />
             <div>
               <h5>받으실 연락처</h5>
               <span >

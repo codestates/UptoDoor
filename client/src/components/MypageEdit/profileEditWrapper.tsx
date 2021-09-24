@@ -15,9 +15,9 @@ import {
 import {SmallButton,BtnBox} from '../common/Button/Button'
 
 import { useDispatch,useSelector } from 'react-redux'
-import { editUser, deleteUser } from '../../_actions/user_action'
+import { editUser} from '../../_actions/user_action'
 import ProfileEditOptions from './ProfileEditOptions';
-import WithdrawalModal from '../common/Modal/WithdrawalModal'
+import WarningModal from '../common/Modal/WarningModal'
 
 import useInput from '../../utils/useInput'
 
@@ -81,27 +81,10 @@ function MyProfileEdit() {
   }
 
   //!회원탈퇴 버튼
-  const withdrawalConfirm = () => {
-    alert('탈퇴성공')
-    dispatch(deleteUser())
-    // .then((res: any) => {
-    //   if (res.payload.message  === 'user update success') {
-    //     alert('탈퇴성공')
-    //     window.location.href="http://localhost:3000/"
-    //   } else {
-    //     alert('탈퇴 실패. 못벗어남.');
-    //   }
-    // })
-    // .catch((err: any) => {
-    //   console.log(err)
-    // });
-  }
+  
 
   const withdrawalModalHandler = () => {
     setOpenModal(true)
-  }
-  const closeModal = () => {
-    setOpenModal((prev)=>!prev)
   }
 
   //!form 제출 핸들러
@@ -121,10 +104,6 @@ function MyProfileEdit() {
       // setAge(user.age);
     }
 
-    console.log('name 현재상태는?' , name)
-    console.log('mobile 현재상태는?' , mobile)
-    console.log('gender 현재상태는?' , gender)
-
     const userinfoEdit = {
       password,
       name,mobile,
@@ -133,11 +112,11 @@ function MyProfileEdit() {
     dispatch(editUser(userinfoEdit))
     // .then((res: any) => {
     //   console.log('===',res.payload)
-    //   if (res.payload.message  === 'user update success') {
+    //   if (res.payload.message  === 'good bye') {
     //     alert('프로필 수정 성공')
     //     window.location.href="http://localhost:3000/"
     //   } else {
-    //     alert('수정 실패하였습니다.');
+    //     alert('못벗어남');
     //   }
     // })
     // .catch((err: any) => {
@@ -230,10 +209,10 @@ function MyProfileEdit() {
       </Form>
 
       {openModal ?
-      <WithdrawalModal
+      <WarningModal
       openModal = {openModal}
-      closeModal = {closeModal}
-      withdrawalConfirm = {withdrawalConfirm}
+          url="/"
+          setOpenModal={setOpenModal}
       modalTitleText = '정말 회원 탈퇴하시겠습니까?'
       modalText = '회원탈퇴 해도 결제된 정기구독 상품은 배송됩니다.'
       yes = '회원탈퇴'

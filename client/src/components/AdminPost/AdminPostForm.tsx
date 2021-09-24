@@ -19,20 +19,20 @@ import AdminUploadStore from  './AdminUploadStore';
 import AdminEnrollStore from './AdminEnrollStore'
 import AdminUploadMenu from './AdminUploadMenu';
 import AdminFileUpload from './AdminFileUpload';
+import Modal from '../common/Modal/Modal';
 
 const { kakao }: any = window;
 function AdminPostForm() {
   // 가게 이미지,상호명,가게설명,동네인증.
   // 메뉴이미지,이름,재료,가격,항목추가,파일업로드
-  const dispatch = useDispatch();
+  const dispatch:any = useDispatch();
   const history = useHistory();
   const selectCategory: {value: string, label: string}[] = 
   [
     { value : 'food' , label : 'food'},
     { value : 'cafe' , label : 'cafe'},
     { value : 'living/home' , label : 'living/home'},
-    { value : 'plants' , label : 'plants'},
-    { value: 'clothes', label: 'clothes' },
+    { value: 'beauty', label: 'beauty' },
     { value: 'etc', label: 'etc' },
   ]
   //upload store img,file
@@ -129,7 +129,7 @@ function AdminPostForm() {
   }
   //!폼제출 핸들러
   const submitHandler = (e:any) => {
-    console.log("제출전 menuarr",menuArr);
+    // console.log("제출전 menuarr",menuArr);
     e.preventDefault();
     // postHandler('main')
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
@@ -157,8 +157,13 @@ function AdminPostForm() {
       yvalue:yValue,
     }
       dispatch(adminPost(adminPostInfo))
+      .then((res:any) => {
+        if (res.payload.message === 'Store registration is complete') {
+          setOpenModal(true);
+        }
+      })
       // 모달띄워지고(메뉴등록이 완료되었습니다.) 메인화면
-      console.log(adminPostInfo);
+      // console.log(adminPostInfo);
       //history.push('/');
     }
   }
@@ -182,28 +187,12 @@ function AdminPostForm() {
   };
   }, []);
 
-  // useEffect(() => {
-  //   //!이페이지에 들어오면 현재 위치의 자표로 동을 찾는다.
-  //   const geocoder = new kakao.maps.services.Geocoder();
-  //   //현재 위치 좌표를 받아서 도로명 주소로 바꿔준다
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(function (position) {
-  //       const lat = position.coords.latitude, // 위도
-  //         lon = position.coords.longitude; // 경도
-  //       const coord = new kakao.maps.LatLng(lat, lon);
-  //         geocoder.coord2Address(coord.getLng(), coord.getLat(), callback)
-  //     });
-  //   }
-  //   const callback = (result: any, status: any) => {
-  //     if (status === kakao.maps.services.Status.OK) {
-  //       setCurrent(result[0].address.address_name.split(" ")[1]);
-  //     }
-  //   };
-  // },[current]);
-
   const handleClickCancle = () => {
     history.push('/');
   }
+
+  //* 모달관련
+  const [openModal, setOpenModal] = useState(false);
   
 return (
   <Container>
@@ -298,6 +287,14 @@ return (
         </FlexBox>
       </Wrapper>
     </form>
+    {openModal ? <Modal
+      openModal={openModal}
+      setOpenModal={setOpenModal}
+      modalTitleText="가게 등록 완료"
+      modalText="가게 신청이 완료되었습니다. 승인까지 1-2일 걸립니다."
+      modalBtn="확인"
+      url='/mypage'
+    />: null}
   </Container>
   )
 }

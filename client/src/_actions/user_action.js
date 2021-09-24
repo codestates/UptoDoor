@@ -95,7 +95,7 @@ export const editUser = (userinfoEdit) => {
   })
   return {
     type : EDIT_USER,
-    payload : result
+    payload : request
     
   }
 }

@@ -14,9 +14,10 @@ import {
   BtnLink,
   Listli
 } from "./StyledNavBar";
-import { signOut } from '../../../_actions/user_action';
+import {  signOut,naverSignOut,kakaoSignOut } from '../../../_actions/user_action';
 import Modal from '../Modal/Modal';
 import { useHistory } from 'react-router';
+import { END_POINT } from '../../../_actions/type';
 
 function NavBar() {
   const history:any = useHistory();
@@ -33,15 +34,41 @@ function NavBar() {
   //사인아웃 핸들러
   const signoutHandler = useCallback((e) => {
     e.preventDefault();
-    dispatch(signOut())
+    if (user.login_type === 'kakao') {
+      dispatch(kakaoSignOut())
       .then((res: any) => {
         console.log(res);
-      if (res.payload === "loginOut success") {
-        window.location.href="https://uptodoor.shop/"
+      if (res.payload === "signout success") {
+        window.location.href=`${END_POINT}`
       } else {
         alert("로그아웃에 실패했습니다.")
       }
     });
+    }
+    else if (user.login_type === 'naver') {
+      dispatch(naverSignOut())
+      .then((res: any) => {
+        console.log(res);
+      if (res.payload === "signout success") {
+        window.location.href=`${END_POINT}`
+      } else {
+        alert("로그아웃에 실패했습니다.")
+      }
+    });
+    }
+    else {
+      dispatch(signOut())
+      .then((res: any) => {
+        console.log(res);
+      if (res.payload === "signout success") {
+        window.location.href=`${END_POINT}`
+      } else {
+        alert("로그아웃에 실패했습니다.")
+      }
+    });
+  }
+    
+    
   },[])
 
 const accessInto = useCallback((name) => {
@@ -120,6 +147,7 @@ const accessInto = useCallback((name) => {
         openModal={needLoginModal} modalTitleText="UptoDoor"
         modalText="로그인이 필요한 서비스 입니다."
         modalBtn="확인"
+        setOpenModal={setNeedLoginModal}
       /> : null}
     </Header>
   );

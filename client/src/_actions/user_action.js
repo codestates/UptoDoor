@@ -11,6 +11,7 @@ import {
   NAVER_SIGNOUT,
   NAVER_SIGNIN,
   KAKAO_SIGNIN,
+  CALCEL_ORDER,
 } from "./type";
 
 import axios from 'axios'
@@ -129,6 +130,7 @@ export const addAddress = (address, name) => {
   };
 };
 
+//order관련 구독하기, 취소하기
 export const addOrder = (order, selected_mobile, deliveryName) => {
   order.selected_mobile = selected_mobile;
   order.user_name = deliveryName;
@@ -147,6 +149,20 @@ export const addOrder = (order, selected_mobile, deliveryName) => {
   };
 };
 
+export const cancelOrder = (id) => {
+  const request = axios.patch(`${END_POINTS}/users/order:${id}`)
+    .then((res) => {
+      console.log(res)
+      return res.data
+    }).catch((err) => {
+      console.log(err)
+    });
+  //id랑 메시지 같이 받아오기
+  return {
+    type: CALCEL_ORDER,
+    payload: { request,id }
+  };
+}
 
 //kakao logout
 //userkakao, naver

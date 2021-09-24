@@ -37,16 +37,15 @@ export const UltraLargeFont = '60px';
 
 /*components*/
 export const Container = styled.section`
-  margin: 50px auto;
+  margin: 30px auto;
   min-width: 375px;
   width: 100%;
 
   @media screen and (min-width: 768px) {
-
+    margin: 50px auto 70px;
   }
   @media screen and (min-width: 1140px) {
-    margin: 80px auto;
-
+    margin: 70px auto 90px;
   }
 `;
 

@@ -321,7 +321,7 @@ export const initialHash = [
   },
   {
     id: 7,
-    category: "clothes",
+    category: "beauty",
     hash_arr: [],
   },
   {

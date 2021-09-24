@@ -3,7 +3,7 @@ const { store } = require('../../models');
 module.exports = async (req, res) => {
     try {
         const storedata = await store.findAll({
-            attributes: { exclude : ['yvalue','xvalue','id','createdAt','updatedAt','Business_paper']}
+            attributes: { exclude : ['yvalue','xvalue','createdAt','updatedAt','Business_paper']}
         });
         const storeimg = await store.findAll({
             attributes: { exclude : ['id', 'name', 'number', 'address', 'xvalue', 'yvalue', 'category', 'introduce', 'delivery_time', 'Business_paper','createdAt','updatedAt'] }

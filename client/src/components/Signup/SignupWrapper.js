@@ -52,7 +52,7 @@ function SignupWrapper() {
       console.log('===',res.payload)
       if (res.payload.message  === 'Signup success') {
         alert('회원가입성공')
-        window.location.href="http://localhost:3000/"
+        //window.location.href="http://localhost:3000/"
       } else {
         alert('회원가입 조건을 충족해주세요.');
       }

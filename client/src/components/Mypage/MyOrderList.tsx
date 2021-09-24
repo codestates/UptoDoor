@@ -8,48 +8,46 @@ import {
 
 function MyOrderList({ 
   moveDetailHandler , 
-  cart, orderDate}:any):any {
-
-
+  order, orderDate}:any):any {
+  console.log(order);
+  
   // console.log('selected_address:',cart.selected_address);
 
   return (
     <MypageOrderListWrapper>
-      {/* {cart.selected_address === '' ? 
-      <p>구독중인 스토어가 없습니다.</p>
-      : */}
+      {order.length === 0 ?
+        <p>구독중인 스토어가 없습니다.</p>
+        :
         <>
-        {cart.menu.map((el:any,idx:any)=>{
-          return (
-            <OrderListWrapper key = {idx}>
-              <OrderListContent>
-                <ListDate>
-                  <p>다음 결제일: </p>
-                  <h5>{orderDate(cart.delivery_term)}</h5>
-                </ListDate>
-                <ListInfo>
-                  {/* {cancle 된 상품이면 ? 
-                  <DeliveryState blue>취소됨</DeliveryState> 
-                  :
-                  <DeliveryState blue>구독중</DeliveryState>} */}
-                  <DeliveryState blue>구독중</DeliveryState>
-                  <img src ={el.image} alt="ordered-img" />
-                  <div>
-                    <h4>남산아래</h4>
-                    <p><span>내용:</span>{el.detail}</p>
-                  </div>
+          {order && order.map((el: any, idx: any) => {
+            return (
+              <OrderListWrapper key={idx}>
+                <OrderListContent>
+                  <ListDate>
+                    <p>다음 결제일: </p>
+                    <h5>{orderDate(el.delivery_term)}</h5>
+                  </ListDate>
+                  <ListInfo>
+                    <DeliveryState blue>{el.state === "order" ? "구독중" : "취소됨"}</DeliveryState>
+                    <img src={el.menu[0].menu.image} alt="ordered-img" />
+                    <div>
+                      <h4>{el.store.name}</h4>
+                      <p><span>내용:</span>{el.menu && el.menu.map((el: any) => {
+                        return `${el.menu.name}, `
+                      })}</p>
+                    </div>
 
-              <NextBtn type="button" onClick={()=>{moveDetailHandler("1")}}>
-                <i className="fas fa-angle-double-right"></i>
-              </NextBtn>
-                </ListInfo>
-              </OrderListContent>
+                    <NextBtn type="button" onClick={() => { moveDetailHandler("1") }}>
+                      <i className="fas fa-angle-double-right"></i>
+                    </NextBtn>
+                  </ListInfo>
+                </OrderListContent>
       
-            </OrderListWrapper>
-          )
-        })}
+              </OrderListWrapper>
+            )
+          })}
         </>
-      {/* } */}
+      }
     </MypageOrderListWrapper>
   )
 }

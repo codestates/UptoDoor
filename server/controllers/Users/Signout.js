@@ -18,6 +18,6 @@ module.exports = async (req, res) => {
   const userInfo = checkAccess(access);
   res.cookie('accessToken', access, {maxAge: 0});
   res.cookie('refreshToken', access, {maxAge: 0});
-  res.status(200).send({ message: "loginOut success"});
+  res.status(200).send({ message: "signout success" });
   }
 }

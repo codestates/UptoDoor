@@ -15,7 +15,12 @@ function Modal(props:any) {
 
   const closeModal = () => {
     setOpenModal(false);
-    history.push(url);
+    if (url) {
+      history.push(url);
+    } else {
+      history.push('/');
+    }
+    
   }
 
   return (

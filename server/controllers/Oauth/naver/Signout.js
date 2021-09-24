@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
         const userInfo = checkAccess(access);
         res.cookie('accessToken', access, {maxAge: 0});
         res.cookie('refreshToken', access, {maxAge: 0});
-        res.status(200).send({message : "naver logout success"})
+        res.status(200).send({message : "signout success"})
     })
 
     } catch (error) {

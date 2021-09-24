@@ -8,10 +8,8 @@ import {
 
 function MyOrderList({ 
   moveDetailHandler , 
-  order, orderDate}:any):any {
+  order}:any):any {
   console.log(order);
-  
-  // console.log('selected_address:',cart.selected_address);
 
   return (
     <MypageOrderListWrapper>
@@ -25,7 +23,7 @@ function MyOrderList({
                 <OrderListContent>
                   <ListDate>
                     <p>다음 결제일: </p>
-                    <h5>{orderDate(el.delivery_term)}</h5>
+                    <h5>{order.nextPayDay}</h5>
                   </ListDate>
                   <ListInfo>
 
@@ -42,8 +40,8 @@ function MyOrderList({
                         return `${el.menu.name} / `;
                       })}</p>
                     </div>
-
-                    <NextBtn type="button" onClick={() => { moveDetailHandler("1") }}>
+                    
+                    <NextBtn type="button" onClick={() => { moveDetailHandler(el.id) }}>
                       <i className="fas fa-angle-double-right"></i>
                     </NextBtn>
                   </ListInfo>

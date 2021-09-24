@@ -13,23 +13,26 @@ import {
   MypageProfileWrapper,
   MypageProfileBtnWrapper,
   MypageUl,MypageLi } from './StyledMypage';
-import { useSelector } from "react-redux";
 import { END_POINTS } from '../../_actions/type';
 
 function MyProfile(): any {
   const [user,setUser]:any = useState('')
-  const [orderList,setOrderList] = useState('')
-  const cart = useSelector((state:any) => state.cart);
-  const [filteredOrderId, setFilteredOrderId]=useState("")
-
+  const [orderList,setOrderList] = useState([])
+  const [orderitem , setOrderItem] = useState({})
   const moveDetailHandler = (id:any) => {
-    setFilteredOrderId(id)
+    const filtered = orderList.filter((el:any)=>{
+      return el.id === id
+    })[0]
+    setOrderItem(filtered);
   }
   const listbackHandler = () => {
-    setFilteredOrderId("");
+    setOrderItem('');
   }
 
   useEffect(() => {
+
+    setOrderItem('');
+
     axios.get(`${END_POINTS}/users/userinfo`)
       .then((res) => {
         const order = res.data.userdata.user_orders.map((el:any) => {
@@ -43,21 +46,21 @@ function MyProfile(): any {
           const year = Number(createdAt.split('-')[0]);
           const month = Number(createdAt.split('-')[1]);
           const day = Number(createdAt.split('T')[0].split('-')[2]);
-
-          console.log('year===',year);
-          console.log('month===',month-1);
-          console.log('day===',day);
-      
-          const date = new Date(year, month-1, day).toLocaleString;
-          console.log(date)
+          const date = new Date(year, month, day)
+          date.toLocaleString();
           date.setDate(date.getDate()+28)
-
+          const newYear = date.getFullYear();
+          const newMonth = date.getMonth();
+          const newDay = String(date).split(' ')[2];
+          const nextPayDay = `${newYear}.${newMonth}.${newDay}`
+          
           const final = {
             id,state,user_name,totalprice,
             store,selected_address,selected_address_detail,
             selected_mobile,createdAt,
             delivery_detail:detail[0],plusMoney:detail[1],
             delivery_time,delivery_term,delivery_day,menu:order_menus, 
+            nextPayDay,
           }
           return final;
         })
@@ -67,29 +70,6 @@ function MyProfile(): any {
         console.log(err);
     })
   },[])
-
-  // const date = new Date(2021, 10, 10 ).toLocaleString;
-  //         console.log(date)
-  //         date.setDate(date.getDate()+28)
-
-  const orderDate:any = (delivery_term:any ) => {
-    //주 수 계산은 년,월,일 따로구해야함. aㅏ.....몬하겠어 이거......
-    
-    // date.setDate(date.getDate()+28);
-    // if(delivery_term === 1){
-    //   return orderDate.setDate(orderDate.getDate()+28);
-    // }else if(delivery_term === 3){
-    //   return orderDate.setDate(orderDate.getDate()+84);
-    // }else if(delivery_term === 6){
-    //   return orderDate.setDate(orderDate.getDate()+168);
-    // }else if(delivery_term === 12){
-    //   return orderDate.setDate(orderDate.getDate()+336);
-    // }else{
-    //   return orderDate
-    // }
-              
-}
-  orderDate(cart.deliver_term);
 
   return (
     <Container>
@@ -137,21 +117,17 @@ function MyProfile(): any {
                 구독관리
               </MypageLi>
             </MypageUl>
-            
             </MypageProfileBtnWrapper>
-            {filteredOrderId ? 
+
+            {orderitem ? 
             <MyOrderWrapper 
-            cart = {cart}
             user= {user}
-            order = {orderList}
-            orderDate = {orderDate}
-            filteredOrderId={filteredOrderId}
+            orderitem = {orderitem}
             listbackHandler={listbackHandler}
             /> 
             : 
             <MyOrderList 
             order={orderList}
-            orderDate = {orderDate}
             moveDetailHandler={moveDetailHandler} 
             />}
 

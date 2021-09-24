@@ -68,6 +68,11 @@ text-align: center;
 padding:2px;
 font-size: 12px;
 `
+export const H2 = styled.h2`
+text-decoration: ${TextLightGrey};
+text-decoration: ${({cancleline})=> (cancleline ? 'line-through' : 'none')};
+color : ${({lightColorText})=> (lightColorText ? {TextLightGrey} : {TextDarkGrey})};
+`
 export const H3 = styled.h3`
 font-weight : 500;
 font-size : 16px;
@@ -80,6 +85,8 @@ color : ${TextDarkGrey};
 `
 export const P = styled.p`
 font-size: 12px;
+text-decoration: ${TextLightGrey};
+text-decoration: ${({cancleline})=> (cancleline ? 'line-through' : 'none')};
 color : ${({lightColorText})=> (lightColorText ? {TextLightGrey} : {TextDarkGrey})};
 `
 export const DetailTextArea = styled.textarea`

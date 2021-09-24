@@ -7,10 +7,10 @@ import {
   ADD_ADDRESS,
   ADD_ORDER,
   END_POINTS,
-  EDIT_USER,
   KAKAO_SIGNOUT,
   NAVER_SIGNOUT,
-
+  NAVER_SIGNIN,
+  KAKAO_SIGNIN,
 } from "./type";
 
 import axios from 'axios'
@@ -39,21 +39,21 @@ export const signIn = (userinfo) => {
   const result = 
   axios.post('http://localhost:3060/users/signin', userinfo)
   .then((res) => {
-    const{id,email,name ,mainAddress,mainAddressDetail,subAddress,subAddressDetail,mobile,age,gender,position,billingkey} =res.data.userinfo
     return {
       message: res.data.message,
-      id,
-      email,
-      name,
-      mainAddress,
-      mainAddressDetail,
-      subAddress,
-      subAddressDetail,
-      mobile,
-      age,
-      gender,
-      position,
-      billingkey,
+      id: res.data.userinfo.id,
+      email: res.data.userinfo.email,
+      name: res.data.userinfo.name,
+      mainAddress: res.data.userinfo.mainAddress,
+      mainAddressDetail: res.data.userinfo.mainAddressDetail,
+      subAddress: res.data.userinfo.subAddress,
+      subAddressDetail: res.data.userinfo.subAddressDetail,
+      mobile: res.data.userinfo.mobile,
+      age: res.data.userinfo.age,
+      gender: res.data.userinfo.gender,
+      position: res.data.userinfo.position,
+      billingkey: res.data.userinfo.billingkey,
+      login_type: res.data.login_type,
     };
   });
 
@@ -151,6 +151,68 @@ export const addOrder = (order, selected_mobile, deliveryName) => {
 //kakao logout
 //userkakao, naver
 // axios.post(`${E}/oauth/kakao/signout`);
+export const kakaoSignIn = (authorizationCode) => {
+  const request = axios
+    .post("http://localhost:3060/oauth/kakao/login", {
+      authorizationCode: authorizationCode,
+    })
+    .then((res) => {
+      return {
+        message: res.data.message,
+        id: res.data.userinfo.id,
+        email: res.data.userinfo.email,
+        name: res.data.userinfo.name,
+        mainAddress: res.data.userinfo.mainAddress,
+        mainAddressDetail: res.data.userinfo.mainAddressDetail,
+        subAddress: res.data.userinfo.subAddress,
+        subAddressDetail: res.data.userinfo.subAddressDetail,
+        mobile: res.data.userinfo.mobile,
+        age: res.data.userinfo.age,
+        gender: res.data.userinfo.gender,
+        position: res.data.userinfo.position,
+        billingkey: res.data.userinfo.billingkey,
+        login_type: res.data.login_type,
+      };
+    });
+
+  return {
+    type: KAKAO_SIGNIN,
+    payload: request,
+  };
+};
+
+export const naverSignIn = (authorizationCode, state) => {
+  const request = axios
+    .post("http://localhost:3060/oatuh/naver/login", {
+      authorizationCode: authorizationCode,
+      state: state,
+    })
+    .then((res) => {
+      return {
+        message: res.data.message,
+        id: res.data.userinfo.id,
+        email: res.data.userinfo.email,
+        name: res.data.userinfo.name,
+        mainAddress: res.data.userinfo.mainAddress,
+        mainAddressDetail: res.data.userinfo.mainAddressDetail,
+        subAddress: res.data.userinfo.subAddress,
+        subAddressDetail: res.data.userinfo.subAddressDetail,
+        mobile: res.data.userinfo.mobile,
+        age: res.data.userinfo.age,
+        gender: res.data.userinfo.gender,
+        position: res.data.userinfo.position,
+        billingkey: res.data.userinfo.billingkey,
+        login_type: res.data.login_type,
+      };
+    });
+
+  return {
+    type: NAVER_SIGNIN,
+    payload: request,
+  };
+};
+
+
 export const kakaoSignOut = () => {
   const request = axios.post(`${END_POINTS}/oauth/kakao/signout`)
     .then((res) => {

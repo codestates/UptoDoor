@@ -10,6 +10,9 @@ export const ADD_ADDRESS = "ADD_ADDRESS";
 export const ADD_ORDER = "ADD_ORDER";
 export const NAVER_SIGNOUT = "NAVER_SIGNOUT";
 export const KAKAO_SIGNOUT = "KAKAO_SIGNOUT";
+export const KAKAO_SIGNIN = "KAKAO_SIGNIN";
+export const NAVER_SIGNIN = "NAVER_SIGNIN";
+
 
 //admin signUp/signIn/signOut/mypage/deleteAdmin
 export const ADMIN_POST = "ADMIN_POST";

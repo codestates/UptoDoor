@@ -90,6 +90,4 @@ module.exports = async (req, res) => {
     res.status(409).send({message : "kakao login fail"})
     console.log("에러내용",error.response.data)
     }
-    
-    
 }

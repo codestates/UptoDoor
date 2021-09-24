@@ -16,6 +16,7 @@ padding : 50px 0 20px;
 overflow-y: hidden;
 @media screen and (min-width: 768px) {
 margin : 0 auto;
+padding : 100px 0 20px;
 }
 `
 export const IntroH1 = styled.h1`
@@ -23,12 +24,8 @@ font-size: ${LargeFont};
 @media screen and (min-width: 768px) {
   display : inline ;
   font-size: 32px;
-  &:nth-child(1){
-    border : 3px solid;
-  }
 }
 `
-
 export const Container = styled.div`
   margin : 0 auto;
   text-align: center;
@@ -44,16 +41,16 @@ export const Container = styled.div`
 @media screen and (min-width: 768px) {
 }
 `
-export const FlexBox = styled.div`
+export const FlexBox = styled.div`  
+display: flex;
 @media screen and (min-width: 768px) {
-  display: flex;
   justify-content: center;
   align-items: center;
   /* flex-direction: column; */
   /* border : 3px solid; */
-  margin : 60px 0 100px 0;
+  margin : 10px 0 60px 0;
   >div{
-    width : 360px;
+    width : 160px;
     text-align: center;
     /* border : 3px solid red; */
   }

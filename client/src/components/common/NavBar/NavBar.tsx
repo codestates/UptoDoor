@@ -61,10 +61,10 @@ const accessInto = useCallback((name) => {
       <NavWrapper>
         {/* 로고 */}
         <NavLogo to="/"> 
-          <img src="./images/UptoDoorFavicon.png" alt="s" style={{
+          {/* <img src="./images/UptoDoorFavicon.png" alt="s" style={{
             width: "150px", height: "35px" ,
             objectFit : 'contain'}} 
-            />
+            /> */}
         
         </NavLogo> 
     

@@ -40,20 +40,21 @@ const LandingIntro = () => {
       <LandingIntroWrapper>
           <Container  id = 'container'>
           <Fade top>
-            <IntroH1>당신 곁의 새로운 라이프 스타일</IntroH1>
-            {/* <IntroH1></IntroH1> */}
+            <IntroH1>새로운 라이프스타일 구독</IntroH1>
           </Fade>
             <FlexBox>
+            <IntroH1>당신곁의 </IntroH1>
             <Slider { ...settings }>
             {category.map((el,idx)=>{
               return (
                 <CategoryTitleWrapper key = {idx}
                   className = 'category-title-wrapper'>
-                  <CategoryTitle> {el} 서비스를 구독하세요.</CategoryTitle>
+                  <CategoryTitle> {el}</CategoryTitle>
                 </CategoryTitleWrapper>
                 )
             })}
             </Slider>  
+            <IntroH1>서비스를 구독하세요.</IntroH1>
             </FlexBox>
 
           <ImgContainer id = 'img-container'>

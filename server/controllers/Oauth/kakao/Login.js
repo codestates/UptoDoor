@@ -79,11 +79,11 @@ module.exports = async (req, res) => {
       };
 
       //자체적인 토큰 만들어서 발급
-      const accessData = { email: Data.email, id: Data.id, name: Data.name };
-      const accesstoken = generateAccessToken(accessData);
-      const refreshtoken = generateRefreshToken(accessData);
-      sendAccessToken(res, accesstoken);
-      sendRefreshToken(res, refreshtoken);
+    //   const accessData = { email: Data.email, id: Data.id, name: Data.name };
+    //   const accesstoken = generateAccessToken(accessData);
+    //   const refreshtoken = generateRefreshToken(accessData);
+    //   sendAccessToken(res, accesstoken);
+    //   sendRefreshToken(res, refreshtoken);
   
       res.status(200).send({ message: "kakao login success", userinfo: UserInfo, login_type: Data.login_type });
     } catch (error) {

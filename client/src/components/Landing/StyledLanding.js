@@ -23,6 +23,9 @@ font-size: ${LargeFont};
 @media screen and (min-width: 768px) {
   display : inline ;
   font-size: 32px;
+  &:nth-child(1){
+    border : 3px solid;
+  }
 }
 `
 
@@ -46,10 +49,13 @@ export const FlexBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  /* flex-direction: column; */
+  /* border : 3px solid; */
   margin : 60px 0 100px 0;
   >div{
-    width : 300px;
+    width : 360px;
     text-align: center;
+    /* border : 3px solid red; */
   }
 }
 `
@@ -57,7 +63,10 @@ export const CategoryTitleWrapper = styled.div`
 width: 375px;
 text-align: center;
 margin : 10px auto ;
-
+@media screen and (min-width: 768px) {
+  width: 800px;
+  /* border : 3px solid; */
+}
 `
 export const CategoryTitle = styled.h2`
 font-weight: 600;

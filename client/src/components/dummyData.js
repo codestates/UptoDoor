@@ -331,7 +331,7 @@ export const initialHash = [
   },
 ];
 
-export const category = ['음식','카페','홈/라이프','꽃집','뷰티','구독서비스']
+export const category = ['음식','카페','홈/라이프','꽃집','뷰티','취미']
 export const categoryDummy = [
   [
     {id : 1 , category : '음식', image : './images/landingImgs/foods/food9.png'},

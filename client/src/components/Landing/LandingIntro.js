@@ -21,7 +21,7 @@ import {category, categoryDummy} from '../dummyData'
 
 const LandingIntro = () => {
   const settings = {
-    dots: true,  // 슬라이드 밑에 점 보이게
+    // dots: true,  // 슬라이드 밑에 점 보이게
     arrows : false,
     lazyLoad : true,
     infinite: true,  // 무한으로 반복
@@ -39,16 +39,17 @@ const LandingIntro = () => {
     <LandingIntroContainer>
       <LandingIntroWrapper>
           <Container  id = 'container'>
-            <FlexBox>
           <Fade top>
-            <IntroH1>우리동네 찾는 모든</IntroH1>
+            <IntroH1>당신 곁의 새로운 라이프 스타일</IntroH1>
+            {/* <IntroH1></IntroH1> */}
           </Fade>
+            <FlexBox>
             <Slider { ...settings }>
             {category.map((el,idx)=>{
               return (
                 <CategoryTitleWrapper key = {idx}
                   className = 'category-title-wrapper'>
-                  <CategoryTitle> {el} </CategoryTitle>
+                  <CategoryTitle> {el} 서비스를 구독하세요.</CategoryTitle>
                 </CategoryTitleWrapper>
                 )
             })}

@@ -45,6 +45,7 @@ export const Header = styled.header`
 
 export const NavWrapper = styled.div`
   display: flex;
+  justify-content : 'space-between';
 `;
 
 export const NavLogo = styled(Link)`

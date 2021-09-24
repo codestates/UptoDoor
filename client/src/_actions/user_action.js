@@ -2,6 +2,7 @@ import {
   SIGNUP,
   SIGNIN,
   SIGNOUT,
+  EDIT_USER,
   DELETE_USER,
   ADD_ADDRESS,
   ADD_ORDER,
@@ -9,6 +10,7 @@ import {
   EDIT_USER,
   KAKAO_SIGNOUT,
   NAVER_SIGNOUT,
+
 } from "./type";
 
 import axios from 'axios'
@@ -92,9 +94,10 @@ export const editUser = (userinfoEdit) => {
     console.log('==userinfo 받아오기실패==',err)
   })
   return {
-    type: EDIT_USER,
-    payload: request,
-  };
+    type : EDIT_USER,
+    payload : result
+    
+  }
 }
 //회원탈퇴 delete 요청 -> state 전부 초기화하기
 export const deleteUser = (userinfo) => {

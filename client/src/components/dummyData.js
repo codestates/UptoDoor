@@ -333,6 +333,12 @@ export const initialHash = [
 
 export const category = ['음식','생활','미용','취미']
 export const categoryDummy = [
+  // [
+  //   {category : '음식'},
+  //   {category : '생활'},
+  //   {category : '미용'},
+  //   {category : '취미'},
+  // ],
   [
     {id : 1 , category : '음식', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/foods/food1.png'},
     {id : 2 , category : '음식', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/foods/food2.png'},
@@ -356,7 +362,7 @@ export const categoryDummy = [
     {id : 4 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life4.png'},
     {id : 5 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life5.png'},
     {id : 6 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life6.png'},
-    {id : 7 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life7.png'},
+    {id : 7 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life14.png'},
     {id : 8 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life8.png'},
     {id : 9 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life9.png'},
     {id : 10 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life10.png'},
@@ -371,13 +377,13 @@ export const categoryDummy = [
     {id : 3 , category : '미용', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty3.png'},
     {id : 4 , category : '미용', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty4.png'},
     {id : 5 , category : '미용', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty5.png'},
-    {id : 6 , category : '미용', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty6.png'},
+    {id : 6 , category : '미용', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty10.png'},
     {id : 7 , category : '미용', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty7.png'},
     {id : 8 , category : '미용', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty8.png'},
     {id : 9 , category : '미용', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty9.png'},
     {id : 10 , category : '미용', image :'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty10.png'},
     {id : 11 , category : '미용', image :'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty11.png'},
-    {id : 12 , category : '미용', image :'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty12.png'},
+    {id : 12 , category : '미용', image :'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty1.png'},
     {id : 13 , category : '미용', image :'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty13.png'},
     {id : 14 , category : '미용', image :'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty14.png'},
   ],

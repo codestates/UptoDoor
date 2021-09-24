@@ -7,7 +7,6 @@ import {
   ADD_ADDRESS,
   ADD_ORDER,
   END_POINTS,
-  EDIT_USER,
   KAKAO_SIGNOUT,
   NAVER_SIGNOUT,
 
@@ -95,7 +94,7 @@ export const editUser = (userinfoEdit) => {
   })
   return {
     type : EDIT_USER,
-    payload : result
+    payload : request
     
   }
 }

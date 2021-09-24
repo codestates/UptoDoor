@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
             }
     }).then((result)=>{
         userData = result.data;    
-        console.log('----', result.data);
+        //console.log('----', result.data);
     })
     
     let email = userData.kakao_account.email;

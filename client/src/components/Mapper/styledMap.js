@@ -9,7 +9,8 @@ import {
   BaseFont,
   UltraLargeFont,
   TextDarkGrey
-  } from '../GlobalStyle'
+} from '../GlobalStyle'
+import { Link } from "react-router-dom";
 
 const showInfoModal = keyframes`
   from {
@@ -190,11 +191,10 @@ z-index: 1;
 `
 export const MapInfoContainer = styled.div`
   border-radius: 8px;
-  z-index: 2;
   width: 100%;
-  height: 140px;
-  position: relative;
-  bottom:130px;
+  height: 100px;
+  
+  bottom: 30px;
   background-color: #fff;
   animation: ${showInfoModalBg} 0.4s;
   display: flex;
@@ -204,51 +204,56 @@ export const MapInfoContainer = styled.div`
   background-color: transparent;
   overflow: hidden;
   overflow-y: auto;
+  
   &::-webkit-scrollbar {
     display: none;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 499px) {
     position: relative;
     bottom: 0px;
-    height: 100%;
+    height: 300px;
   }
-  @media screen and (min-width: 1000px) {
-    display: none;
-    /* position: relative;
-    top: 10px;
-    width: 100%;
-    margin: 0;
-    padding: 0; */
+  @media screen and (min-width: 767px) {
+    position: relative;
+    bottom: 0px;
+    height: 300px;
   }
 `;
 export const MapInfoWrapper = styled.div`
-  border-radius: 8px;
-  margin: 3px auto;
-  width: 90%;
+  width: 100%;
   height: 100px;
+  margin: 3px auto;
+  border-radius: 8px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   box-sizing: border-box;
   animation: ${showInfoModal}.4s;
-  padding: 10px;
-  background-color: #f7f7f7;
+  padding: 8px;
+  background-color: #fff;
+
+  > div {
+    height: 75px;
+    margin: 10px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 5px; 
+  }
+  @media screen and (min-width: 500px) {
+    margin: 3px auto 6px;
+  }
+
+  @media screen and (min-width: 767px) {
+    width: 100%;
+    background-color: #fff;
+  }
   @media screen and (min-width: 1000px) {
     margin: 5px;
     width: 100%;
     background-color: #fff;
-  }
-  > a {
-    display: flex;
-    text-decoration: none;
-    justify-content: flex-start;
-    width: 100%;
-    > div > hr {
-      width: 57%;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      margin: 3px 10px 5px 0;
-    }
   }
 `;
 export const StoreImg = styled.img`
@@ -260,6 +265,8 @@ export const StoreImg = styled.img`
 
   @media screen and (min-width: 1000px) {
     margin: 0 15px 0 10px;
+    min-width: 75px;
+    min-height: 75px;
   }
 `;
 export const StoreName = styled.h2`
@@ -268,7 +275,7 @@ export const StoreName = styled.h2`
   color: ${TextColor};
   font-size: ${SmallFont};
   @media screen and (min-width: 768px) {
-    width: 335px;
+    /* width: 120px; */
     font-size: ${BaseFont};
   }
   @media screen and (min-width: 1000px) {
@@ -284,12 +291,12 @@ color : ${TextColor};
 export const EmptyMapContainer = styled.div`
   display: none;
   > .empty {
-    align-self:center;
+    align-self: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom:30px;
+    padding-bottom: 30px;
     > i {
       font-size: ${UltraLargeFont};
       color: ${TextDarkGrey};
@@ -306,6 +313,8 @@ export const EmptyMapContainer = styled.div`
     height: 365px;
     border-radius: 8px;
     padding: 15px;
+    overflow: hidden;
+    overflow-y: auto;
   }
 `;
 
@@ -321,4 +330,58 @@ export const MapInfoWebContainer = styled.div`
   background-color: transparent;
   overflow: hidden;
   overflow-y: auto;
+`;
+
+export const MapAppContainer = styled.div`
+  position: relative;
+  padding: 12px 10px;
+  margin: 0 auto;
+  width: 90%;
+  background-color: #f7f7f7;
+  height: 120px;
+  overflow: hidden;
+  overflow-y: auto;
+  bottom: 100px;
+  border-radius: 8px;
+  z-index: 20000;
+
+  &::-webkit-scrollbar {
+    background-color: #fff;
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #245cce;
+    border-radius: 8px;
+  }
+  @media screen and (min-width: 499px) {
+    bottom: 0px;
+    height: 300px;
+    padding: 15px 10px;
+  }
+
+  @media screen and (min-width: 1000px) {
+    display: none;
+    /* position: relative;
+    top: 10px;
+    width: 100%;
+    margin: 0;
+    padding: 0; */
+  }
+`;
+
+export const LinkR = styled(Link)`
+  color: ${TextDarkGrey};
+  text-decoration: none;
+  
+  @media screen and (min-width: 767px) {
+    margin: 0;
+    margin-left: 40px;
+  }
+
+  @media screen and (min-width: 1000px) {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+  }
 `;

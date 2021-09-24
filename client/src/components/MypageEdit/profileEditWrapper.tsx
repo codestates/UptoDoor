@@ -104,10 +104,6 @@ function MyProfileEdit() {
       // setAge(user.age);
     }
 
-    console.log('name 현재상태는?' , name)
-    console.log('mobile 현재상태는?' , mobile)
-    console.log('gender 현재상태는?' , gender)
-
     const userinfoEdit = {
       password,
       name,mobile,
@@ -116,11 +112,11 @@ function MyProfileEdit() {
     dispatch(editUser(userinfoEdit))
     // .then((res: any) => {
     //   console.log('===',res.payload)
-    //   if (res.payload.message  === 'user update success') {
+    //   if (res.payload.message  === 'good bye') {
     //     alert('프로필 수정 성공')
     //     window.location.href="http://localhost:3000/"
     //   } else {
-    //     alert('수정 실패하였습니다.');
+    //     alert('못벗어남');
     //   }
     // })
     // .catch((err: any) => {

@@ -80,7 +80,6 @@ function AdminUploadStore(
       autoplaySpeed: typeof autoplay === 'boolean' ? 3000 : autoplay,
     }),[autoplay, loop, speed,]);
 
-    console.log(imgs)
   return (
     <StyledImgUpload>
       <StoreImgFlexWrapper>

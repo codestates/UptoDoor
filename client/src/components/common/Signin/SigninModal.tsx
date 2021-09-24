@@ -84,7 +84,29 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
       })
     }
   },[])
+  
+  const logOutHandler = useCallback((e) => {
+    axios.post('http://localhost:3060/users/signout')
+    .then((res)=>{
+      console.log("로그아웃 응답",res.data)
+    })
+  },[])
 
+  const kakaoLogOutHandler = useCallback((e) => {
+    axios.post('http://localhost:3060/oauth/kakao/signout')
+    .then((res)=>{
+      console.log("로그아웃 응답",res.data)
+    })
+  },[])
+
+  const naverLogOutHandler = useCallback((e) => {
+    axios.post('http://localhost:3060/oauth/naver/signout')
+    .then((res)=>{
+      console.log("로그아웃 응답",res.data)
+    })
+  },[])
+ 
+  
   return modalOpen ? (
     <SigninContainer>
       <SigninWrapper>
@@ -92,11 +114,13 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
         <Icon onClick={() => { setModalOpen(false) }}>
           <i className="fas fa-times"></i>
         </Icon>
-        <form onSubmit={(e) => {signinHandler(e)}}>
-<SigninInput type="email" placeholder="email" value={email} onChange={onChangeEmail} />
+        <form onSubmit={(e) => {signinHandler(e)}} >
+        <SigninInput type="email" placeholder="email" value={email} onChange={onChangeEmail} />
         <SigninInput type="password" placeholder="password" value={password} onChange={onChangePassword} />
         <LagreButton primary >로그인</LagreButton>
         </form>
+        <button onClick={kakaoLogOutHandler}>카카오로그아웃</button>
+        <button onClick={naverLogOutHandler}>네이버로그아웃</button>
         <TextOr>Or</TextOr>
         <LagreButton className="btn" onClick={kakaoHandler}><img src='./images/icon/kakao.png' /><div>카카오 계정으로 로그인</div></LagreButton>
         <LagreButton className="btn" onClick={naverHandler}><img src='./images/icon/naver.png' /><div>네이버 계정으로 로그인</div> </LagreButton>

@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux'
 import { signIn,naverSignIn, kakaoSignIn } from '../../../_actions/user_action';
 import axios from 'axios';
 axios.defaults.withCredentials = true
-
+import { END_POINTS } from '../../../_actions/type';
 
 interface Iprops {
   modalOpen: boolean;
@@ -74,14 +74,14 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
   },[])
 
   const kakaoLogOutHandler = useCallback((e) => {
-    axios.post('http://localhost:3060/oauth/kakao/signout')
+    axios.post(`${END_POINTS}/oauth/kakao/signout`)
     .then((res)=>{
       console.log("로그아웃 응답",res.data)
     })
   },[])
 
   const naverLogOutHandler = useCallback((e) => {
-    axios.post('http://localhost:3060/oauth/naver/signout')
+    axios.post(`${END_POINTS}/oauth/naver/signout`)
     .then((res)=>{
       console.log("로그아웃 응답",res.data)
     })

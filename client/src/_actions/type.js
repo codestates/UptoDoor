@@ -34,4 +34,4 @@ export const SET_ADDRESS = "SET_ADDRESS";
 export const SELECT_STORE = "SELECT_STORE";
 
 //
-export const END_POINTS = "http://localhost:3060"
+export const END_POINTS = "https://uptodoors.shop"

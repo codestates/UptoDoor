@@ -66,7 +66,7 @@ export const signIn = (userinfo) => {
 //유저 signout post 요청
 export const signOut = () => {
   const request = axios
-    .post("http://localhost:3060/users/signout")
+    .post(`${END_POINTS}/users/signout`)
     .then((res) => {
       return res.data.message;
     });
@@ -121,7 +121,7 @@ export const addAddress = (address, name) => {
   console.log("액션에서", address);
 
   const request = 
-  axios.post("http://localhost:3060/users/address", address);
+  axios.post(`${END_POINTS}/users/address`, address);
   console.log(request);
   return {
     type: ADD_ADDRESS,
@@ -134,7 +134,7 @@ export const addOrder = (order, selected_mobile, deliveryName) => {
   order.user_name = deliveryName;
   console.log("오더오더", order);
   const request = axios
-    .post(`http://localhost:3060/users/order`, order)
+    .post(`${END_POINTS}/users/order`, order)
     .then((res) => {
       console.log("여기.", res.data);
       return res.data;
@@ -153,7 +153,7 @@ export const addOrder = (order, selected_mobile, deliveryName) => {
 // axios.post(`${E}/oauth/kakao/signout`);
 export const kakaoSignIn = (authorizationCode) => {
   const request = axios
-    .post("http://localhost:3060/oauth/kakao/login", {
+    .post(`${END_POINTS}/oauth/kakao/login`, {
       authorizationCode: authorizationCode,
     })
     .then((res) => {
@@ -183,7 +183,7 @@ export const kakaoSignIn = (authorizationCode) => {
 
 export const naverSignIn = (authorizationCode, state) => {
   const request = axios
-    .post("http://localhost:3060/oatuh/naver/login", {
+    .post(`${END_POINTS}/oatuh/naver/login`, {
       authorizationCode: authorizationCode,
       state: state,
     })

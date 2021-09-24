@@ -36,10 +36,10 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
     dispatch(signIn(userinfo))
       .then((res: any) => {
         if (res.payload.message  === 'login success') {
-          window.location.href="http://localhost:3000/"
+          window.location.href="https://uptodoor.shop/"
         } else {
           alert('로그인 실패하였습니다.');
-        }
+        } 
       })
       .catch((err: any) => {
         console.log(err)

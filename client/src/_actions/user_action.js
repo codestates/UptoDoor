@@ -37,7 +37,7 @@ export const signUp = (userinfo) => {
 //유저 signin post 요청
 export const signIn = (userinfo) => {
   const result = 
-  axios.post('http://localhost:3060/users/signin', userinfo)
+  axios.post(`${END_POINTS}/users/signin`, userinfo)
   .then((res) => {
     return {
       message: res.data.message,

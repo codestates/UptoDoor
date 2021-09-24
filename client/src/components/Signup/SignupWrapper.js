@@ -14,6 +14,7 @@ import {
 import {SmallButton} from '../common/Button/Button'
 
 import axios from "axios";
+import { END_POINTS } from '../../_actions/type'
 axios.defaults.withCredentials=true;
 
 function SignupWrapper() {
@@ -52,7 +53,7 @@ function SignupWrapper() {
       console.log('===',res.payload)
       if (res.payload.message  === 'Signup success') {
         alert('회원가입성공')
-        //window.location.href="http://localhost:3000/"
+        window.location.href="https://uptodoor.shop/"
       } else {
         alert('회원가입 조건을 충족해주세요.');
       }
@@ -71,7 +72,7 @@ function SignupWrapper() {
     console.log(email)
     axios
     .post(
-      `http://localhost:3060/auth/email`,
+      `${END_POINTS}/auth/email`,
       {email:email},
       {withCredentials: true, credentials: 'include'}
     ).then((res)=>

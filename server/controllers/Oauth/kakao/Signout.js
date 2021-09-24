@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
 
     const Data = await user.findOne({ where: { id: id} });
     console.log("액서스토큰",Data.oauth_token);
-
+    // const Data = {oauth_token : 'vLzYKVnNEZTgZPSa7WB0tv4sHieexS5kZKL9nQo9dRkAAAF8FeO7vQ'}
     try {  
     await axios.post("https://kapi.kakao.com/v1/user/unlink",null,{
         headers: {
@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
         const userInfo = checkAccess(access);
         res.cookie('accessToken', access, {maxAge: 0});
         res.cookie('refreshToken', access, {maxAge: 0});
-        res.status(200).send({message : "kakao logout success"})
+        res.status(200).send({ message: "signout success" });
     })
 
     } catch (error) {

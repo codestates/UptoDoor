@@ -4,9 +4,10 @@ import {
   SigninContainer, SigninWrapper, SigninInput, LeadSignup, Icon, SignupLink, TextOr, Logo,
 } from './StyledSignin';
 import {useDispatch} from 'react-redux'
-import { signIn } from '../../../_actions/user_action';
+import { signIn,naverSignIn, kakaoSignIn } from '../../../_actions/user_action';
 import axios from 'axios';
 axios.defaults.withCredentials = true
+import { END_POINTS,END_POINT } from '../../../_actions/type';
 
 interface Iprops {
   modalOpen: boolean;
@@ -35,10 +36,10 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
     dispatch(signIn(userinfo))
       .then((res: any) => {
         if (res.payload.message  === 'login success') {
-          window.location.href="http://localhost:3000/"
+          window.location.href=`${END_POINT}`
         } else {
           alert('로그인 실패하였습니다.');
-        }
+        } 
       })
       .catch((err: any) => {
         console.log(err)
@@ -62,50 +63,37 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
     const state = url.searchParams.get('state')
     //인가코드,state값 둘다 있으면 네이버로그인
     if (authorizationCode && state) {
-      console.log("인가코드",authorizationCode)
-      console.log("state값",state)
-      axios.post('http://localhost:3060/oatuh/naver/login',
-      {
-        authorizationCode:authorizationCode,
-        state:state
-      }
-      ).then((res)=>{
-        console.log("res",res.data);
-       // window.location.href ='/'
+      console.log("인가코드", authorizationCode)
+      console.log("state값", state)
+      dispatch(naverSignIn(authorizationCode, state))
+        .then((res:any) => {
+        if (res.payload.message  === 'login success') {
+          window.location.href=`${END_POINT}`
+        } else {
+          alert('로그인 실패하였습니다.');
+        } 
       })
-    //인가코드만 있으면 카카오 로그인        
-    }else if(authorizationCode) {
-      console.log("인가코드",authorizationCode)        
-      axios.post('http://localhost:3060/oauth/kakao/login',
-      {authorizationCode:authorizationCode}
-      ).then((res)=>{
-        console.log("res",res.data);
-       //window.location.href ='/'
+      .catch((err: any) => {
+        console.log(err)
+      });
+      //인가코드만 있으면 카카오 로그인        
+    } else if (authorizationCode) {
+      console.log("인가코드", authorizationCode)
+      dispatch(kakaoSignIn(authorizationCode))
+        .then((res: any) => {
+        if (res.payload.message  === 'login success') {
+          window.location.href=`${END_POINT}`
+        } else {
+          alert('로그인 실패하였습니다.');
+        } 
       })
+      .catch((err: any) => {
+        console.log(err)
+      });
     }
   },[])
-  
-  const logOutHandler = useCallback((e) => {
-    axios.post('http://localhost:3060/users/signout')
-    .then((res)=>{
-      console.log("로그아웃 응답",res.data)
-    })
-  },[])
 
-  const kakaoLogOutHandler = useCallback((e) => {
-    axios.post('http://localhost:3060/oauth/kakao/signout')
-    .then((res)=>{
-      console.log("로그아웃 응답",res.data)
-    })
-  },[])
 
-  const naverLogOutHandler = useCallback((e) => {
-    axios.post('http://localhost:3060/oauth/naver/signout')
-    .then((res)=>{
-      console.log("로그아웃 응답",res.data)
-    })
-  },[])
- 
   
   return modalOpen ? (
     <SigninContainer>
@@ -119,8 +107,6 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
         <SigninInput type="password" placeholder="password" value={password} onChange={onChangePassword} />
         <LagreButton primary >로그인</LagreButton>
         </form>
-        <button onClick={kakaoLogOutHandler}>카카오로그아웃</button>
-        <button onClick={naverLogOutHandler}>네이버로그아웃</button>
         <TextOr>Or</TextOr>
         <LagreButton className="btn" onClick={kakaoHandler}><img src='./images/icon/kakao.png' /><div>카카오 계정으로 로그인</div></LagreButton>
         <LagreButton className="btn" onClick={naverHandler}><img src='./images/icon/naver.png' /><div>네이버 계정으로 로그인</div> </LagreButton>

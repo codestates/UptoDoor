@@ -62,6 +62,10 @@ export const NavLogo = styled(Link)`
   line-height: 1em;
   margin-right: 12px;
   letter-spacing: -3px;
+  width: 100px;
+  background-image: url('./images/UptoDoorFavicon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 
   @media screen and (min-width: 767px) {
     font-size: 40px;

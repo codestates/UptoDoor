@@ -6,7 +6,6 @@ import {
   StoreInputBox,
   StoreNameInput,
   StoreIntroTextArea,
-  StoreBtnBox,
 } from '../AdminPost/StyledAdminPost'
 
 import {
@@ -24,6 +23,8 @@ import AdminUploadStoreEdit from './AdminUploadStoreEdit'
 import AdminEnrollStoreEdit from './AdminEnrollStoreEdit'
 import AdminFileUploadEdit from './AdminFileUploadEdit'
 import AdminUploadMenuEdit from './AdminUploadMenuEdit'
+import axios from 'axios';
+import { END_POINTS } from '../../_actions/type';
 
 const { kakao }: any = window;
 
@@ -31,7 +32,8 @@ function AdminEditForm() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const store = useSelector((state:any) => state.store);
+  const store = useSelector((state: any) => state.store);
+  const user = useSelector((state:any) => state.user);
   console.log(store);
 
   const selectCategory: {value: string, label: string}[] = 
@@ -52,7 +54,6 @@ function AdminEditForm() {
   const [time , setTime] = useState('');
   const [mobile , setMobile] = useState('');
    //주소 
-  const [current, setCurrent] = useState("")
   const [switched, setSwitched ] = useState("");
   const [adminAddress , setAdminAddress] = useState('');
   const [adminAddressDetail, setadminAddressDetail] = useState("");
@@ -185,6 +186,14 @@ function AdminEditForm() {
     //모달 다셔야해요 네?
     history.push('/');
   }
+
+  useEffect(() => {
+    console.log(user.store_id);
+    axios.get(`${END_POINTS}/admin/store:7`)
+      .then((res) => {
+        console.log(res.data);
+    })
+  },[])
 
   return (
     <Container>

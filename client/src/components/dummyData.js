@@ -331,7 +331,7 @@ export const initialHash = [
   },
 ];
 
-export const category = ['음식','생활','미용','취미' ]
+export const category = ['음식','생활','미용','취미']
 export const categoryDummy = [
   [
     {id : 1 , category : '음식', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/foods/food1.png'},

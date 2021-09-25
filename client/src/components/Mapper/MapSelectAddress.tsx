@@ -13,7 +13,6 @@ function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,
   const state = useSelector((state) => state);
   const { user }:any = state;
   const { mainAddress, mainAddressDetail, subAddress, subAddressDetail } = user;
-  console.log("tmxpdmcm,",mainAddress,mainAddressDetail )
   const [openModal, setOpenModal] = useState(false);
 
   const dispatch = useDispatch();

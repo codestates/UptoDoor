@@ -18,7 +18,7 @@ import {
 } from "../GlobalStyle";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getFitteredStore,
+  getFitteredByHastag,
   getFitteredBySearch,
   getStoreData,
 } from "../../_actions/store_action";
@@ -26,9 +26,7 @@ import {
 
 function MapWrapper() {
   const dispatch:any = useDispatch();
-  const state = useSelector((state) => state);
-  const { store }:any = state;
-  console.log("state", state);
+  const store = useSelector((state:any) => state.store);
   const inputRef:any = useRef();
   useEffect(() => {
     inputRef.current.focus();
@@ -36,6 +34,8 @@ function MapWrapper() {
   const [openInfoModal, setOpenInfoModal] = useState(false);
   const [selectAddress, setSelectAddress] = useState("");
   const [selectAddressDetail, setSelectAddressDetail] = useState('')
+  const [filterList, setFilterList] = useState([]);
+  
   // setmapData 에 필터링한 값 담아서 보여주기
   // 나온 데이터 값의 name 과 place_name의 이름이 같은것을 좌표로 보여준다. 
   //* submit 설치 섭밋
@@ -52,7 +52,7 @@ function MapWrapper() {
   // setOpenInfoModal(true);
   // }
   const filterListHandler = (hastag:string) => {
-    dispatch(getFitteredStore(hastag))
+    dispatch(getFitteredByHastag(hastag))
     if (hastag === "all" || hastag === "") {
       setOpenInfoModal(false);
     } else {
@@ -60,7 +60,19 @@ function MapWrapper() {
     }
   };
 
-  const [filteredList, setFilterList] = useState([]);
+  const clickHashtagHandler = (markers: any) => {
+    console.log("markers클릭", markers)
+    const filtered = store.filter((el: any) => {
+      for (let i = 0; i < markers.length; i++){
+        if (markers[i].address == el.address) {
+          return el;
+        }
+      }
+    })
+    console.log("filter", filtered);
+    setFilterList(filtered);
+    setOpenInfoModal(true);
+  }
   const filterClickHandler = (address: string) => {
     console.log("adadasd", address);
     console.log("Adsadasd", store);
@@ -102,16 +114,18 @@ function MapWrapper() {
             {/* 해시태그 컴포넌트 */}
             <MapHashtag 
             filterListHandler={filterListHandler} 
-            filterList={undefined} 
+            filterList={filterList} 
             openInfoModal={undefined} 
             mapData={undefined} />
-            <EmptyMap 
-            filteredList={filteredList} 
+            <EmptyMap
+              
+            filterList={filterList} 
             openInfoModal={openInfoModal} />
           </MapHashWrapper>
 
           {/* 지도 컴포넌트 */}
           <Map
+            clickHashtagHandler={clickHashtagHandler}
             filterClickHandler={filterClickHandler}
             selectAddress={selectAddress}
           />
@@ -120,7 +134,7 @@ function MapWrapper() {
         {openInfoModal ? 
           <MapInfoModal 
           mobile 
-          filteredList={filteredList} />
+          filterList={filterList} />
           : 
           null}
       </MapWrapperContainer>

@@ -11,7 +11,7 @@ import {
 } from "./styledMap";
 import {ArrowBtn} from '../common/Button/Button'
 
-function EmptyMap({ filteredList, openInfoModal }) {
+function EmptyMap({ filterList, openInfoModal }) {
   return (
     <EmptyMapContainer>
       {!openInfoModal ? (
@@ -21,8 +21,8 @@ function EmptyMap({ filteredList, openInfoModal }) {
         </div>
       ) : (
         <MapInfoWebContainer>
-          {filteredList &&
-            filteredList.map((el) => {
+          {filterList &&
+            filterList.map((el) => {
               return (
                 <MapInfoWrapper key={el.id} className="mapinfo-wrapper">
                   <StoreImg

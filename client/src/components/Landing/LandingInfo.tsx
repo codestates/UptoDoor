@@ -8,12 +8,13 @@ import {
   homeObjTwo,
   homeObjThree,
 } from './infodata';
+
 const LandingInfo = ():any => {
   return (
     <LandingInfoContainer>
-      <LandingInfoDescription {...homeObjOne} />
-      <LandingInfoDescription {...homeObjTwo} />
-      <LandingInfoDescription {...homeObjThree}/> 
+        <LandingInfoDescription {...homeObjOne} />
+        <LandingInfoDescription {...homeObjTwo} />
+        <LandingInfoDescription {...homeObjThree}/> 
       </LandingInfoContainer>
   );
 };

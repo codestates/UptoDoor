@@ -9,6 +9,7 @@ import {
   BaseFont,
   UltraLargeFont,
   } from '../GlobalStyle';
+  import {showModal} from '../common/Modal/styledModal'
 
 export const StoreDataWrapper = styled.div`
   margin: 0 auto;
@@ -235,4 +236,35 @@ text-decoration: none;
   display: unset;
   }
 }
+`
+
+//!store img modal style
+export const ModalStoreWrapper = styled.div`
+  padding: 40px 20px;
+  margin: 0 auto;
+  width: 100%;
+  height : 100%;
+  
+  text-align: center;
+  /* max-width: 400px; */
+  background-color: white;
+  border-radius: 10px;
+  animation: ${showModal}.4s;  
+
+  @media screen and (min-width: 500px) {
+    width: 600px;
+    height : 500px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+`
+export const ModalStoreTextWrapper = styled.div`
+
+`
+export const ModalStoreTitleText = styled.h1`
+
+`
+export const ModalStoreText = styled.h3`
+
 `

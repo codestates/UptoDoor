@@ -59,13 +59,23 @@ display: flex;
 justify-content:center;
 align-items: flex-end;
 width: 100%;
-height : 70px;
+height : 50px;
+/* border-bottom: 3px solid; */
 >div{
-  width: 82px;
+  width: 70px;
+}
+>.slick-slider>.slick-list{
+  height : 46px!important;
+  @media screen and (min-width: 768px) {
+    height :80px!important;
+  }
+  @media screen and (min-width: 1140px) {
+    height : 100px!important;
+  }
 }
 @media screen and (min-width: 768px) {
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   margin : 10px 0 60px 0;
   height : 90px;
   >div{
@@ -94,7 +104,7 @@ margin : 10px auto ;
 `
 export const CategoryTitle = styled.h2`
 font-weight: 700;
-font-size: 32px;
+font-size: 26px;
 background: -webkit-linear-gradient(left, mediumturquoise, #5d9cec);
             -webkit-background-clip: text;
             background-clip: text;
@@ -184,7 +194,7 @@ padding : 0;
 margin : 0;
 `
 export const GradientEdge = styled.div`
-position: fixed;
+position: absolute;
 bottom : 0;
 height : 300px;
 max-height : 20%;

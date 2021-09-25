@@ -15,7 +15,7 @@ import { MiddleButton } from "../common/Button/Button";
 import { addOrder } from '../../_actions/user_action';
 import { Container, Wrapper, Title } from "../GlobalStyle";
 import useInput from "../../utils/useInput";
-import Modal from "../common/Modal/Modal";
+import ConfirmModal from "../common/Modal/ConfirmModal";
 
 function UserOrderWrapper() {
   const state = useSelector((state) => state);
@@ -36,10 +36,10 @@ function UserOrderWrapper() {
   // console.log("paymentCheck", paymentCheck);
  
   const orderHander = useCallback(() => {
-    console.log(orderMobile.length)
-    console.log("orderMobile", orderMobile);
-    console.log("mobileCheck", mobileCheck);
-    console.log("paymentCheck", paymentCheck);
+    // console.log(orderMobile.length)
+    // console.log("orderMobile", orderMobile);
+    // console.log("mobileCheck", mobileCheck);
+    // console.log("paymentCheck", paymentCheck);
 
     if (!mobileCheck && orderMobile.length >= 11 && paymentCheck) {
       const selected_mobile = orderMobile;
@@ -136,7 +136,8 @@ useEffect(() => {
           <MiddleButton>뒤로가기</MiddleButton>
         </ButtonWrapper>
       </div>
-      {openModal ? <Modal
+      {openModal ? 
+      <ConfirmModal
         openModal={openModal}
         setOpenModal={setOpenModal}
         modalTitleText="주문 완료"

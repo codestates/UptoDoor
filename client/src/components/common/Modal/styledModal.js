@@ -80,14 +80,17 @@ export const ModalTextWrapper = styled.div`
 
 export const ModalTextBox = styled.div`
 text-align: center;
->i{
-  color: ${PointColor};
-  font-size: ${UltraLargeFont};
-  margin-bottom:  30px;
+margin : 0 0 15px;
+>p{
+  margin: 6px 0;
 }
+`
+export const I = styled.i`
+  color: ${({confirm})=> (confirm ? '#245CCE' : PointColor)};
+  font-size: ${({bigger})=> (bigger ? '86px' : UltraLargeFont)};
+  margin-bottom:  30px;
   margin:  20px 0;
 `
-
 export const ModalTitleText = styled.div`
   color : ${TextColor};
   font-size : ${MediumFont};

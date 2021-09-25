@@ -18,7 +18,8 @@ import { useDispatch,useSelector } from 'react-redux'
 import { editUser,deleteUser} from '../../_actions/user_action'
 import ProfileEditOptions from './ProfileEditOptions';
 import WarningModal from '../common/Modal/WarningModal'
-import useInput from '../../utils/useInput'
+// import useInput from '../../utils/useInput'
+import ConfirmModal from '../common/Modal/ConfirmModal';
 
 function MyProfileEdit() {
 
@@ -39,6 +40,7 @@ function MyProfileEdit() {
   const [age, setAge] = useState(user.age);
 
   const [openModal , setOpenModal] = useState(false);
+  const [confirmModal , setConfirmModal] = useState(false);
 
   const onChangeNameHandler = useCallback((e)=>{
     setName(e.target.value);
@@ -80,8 +82,6 @@ function MyProfileEdit() {
   }
 
   //!회원탈퇴 버튼
-  
-  
   const withdrawalConfirm = () => {
     alert('탈퇴성공')
     // dispatch(deleteUser())
@@ -108,16 +108,7 @@ function MyProfileEdit() {
     if(password !== passwordChk) return false;
     if(passwordRegErr === true) return setPasswordRegErr(true);
 
-    if(name === '' 
-      // || password === '' || 
-      // mobile === '' || gender === '' || age === ''
-      ){
-      // console.log('현재 모바일의 값이 빈값이라면->',user.mobile);
-      setName(user.name);
-      // setMobile(user.mobile);
-      // setGender(user.gender);
-      // setAge(user.age);
-    }
+    setConfirmModal(true)
 
     const userinfoEdit = {
       password,
@@ -214,29 +205,45 @@ function MyProfileEdit() {
         <BtnBox flexable btnboxMargin>
           <SmallButton 
           primary 
-          type = 'submit'>수정</SmallButton>
+          type = 'submit'
+          >수정</SmallButton>
+
           <SmallButton 
           type = 'button'
           onClick = {withdrawalModalHandler}
           >회원 탈퇴</SmallButton>
         </BtnBox>
+
       </Wrapper>
       </Form>
 
       {openModal ?
       <WarningModal
       openModal = {openModal}
-          url="/"
-          setOpenModal={setOpenModal}
+      url='/'
+      setOpenModal={setOpenModal}
       modalTitleText = '정말 회원 탈퇴하시겠습니까?'
       modalText = '회원탈퇴 해도 결제된 정기구독 상품은 배송됩니다.'
       yes = '회원탈퇴'
-          no='취소'
-          handler={withdrawalConfirm}
+      no='취소'
+      handler={withdrawalConfirm}
       />
       :
       null
       }
+      {confirmModal ?
+      <ConfirmModal
+      confirmModal = {confirmModal}
+      url="/"
+      setOpenModal={setOpenModal}
+      modalTitleText = '수정이 완료되었습니다.'
+      modalText = '확인 후 메인페이지로 이동합니다.'
+      modalBtn = '확인'
+      />
+      :
+      null
+      }
+
     </Container>
   )
 }

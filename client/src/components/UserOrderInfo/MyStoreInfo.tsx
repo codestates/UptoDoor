@@ -7,25 +7,30 @@ import {
 } from './StyledUserOrderInfo'
 
 function MyStoreInfo({orderitem}:any) {
+  console.log('===orderitem==',orderitem)
+  console.log('===orderitemstore==',orderitem.store)
+  // const store = orderitem.store;
+  if(orderitem === undefined) return null;
+
   return (
     <>
       <StoreInfoWrapper className="storeinfo-wrapper">
         <FlexBox between>
-          <H3>남산 아래</H3>
-          <Category>Food</Category>
+          <H3>{orderitem.store.name}</H3>
+          <Category>{orderitem.store.category}</Category>
         </FlexBox>
           <FlexBox col>
             <EachItemBox>
               <H4>🗓 구독기간</H4>
               {orderitem.state === 'cancel' ? 
               <P cancleline lightColorText> 
-              {orderitem.delivery_term}개월({orderitem.delivery_term * 4}주) /
-              매주 {orderitem.delivery_day&&orderitem.delivery_day.map((ele:any)=>ele)}요일 / 
+              {orderitem.delivery_term}개월({Number(orderitem.delivery_term) * 4}주) /
+              매주 {orderitem.delivery_day&&orderitem.delivery_day.map((ele:any)=>ele)} 요일 / 
               {orderitem.delivery_time} 시
               </P>
               :
               <P>
-              {orderitem.delivery_term}개월({orderitem.delivery_term * 4}주) /
+              {orderitem.delivery_term}개월({Number(orderitem.delivery_term * 4)}주) /
               매주 {orderitem.delivery_day&&orderitem.delivery_day.map((ele:any)=>ele)}요일 / 
               {orderitem.delivery_time} 시
               </P>
@@ -33,16 +38,16 @@ function MyStoreInfo({orderitem}:any) {
             </EachItemBox>
             <EachItemBox>
               <H4>📍 가게 주소</H4>
-              <P>{orderitem.selected_address}({orderitem.selected_address_detail})</P>
+              <P>{orderitem.store.address}</P>
             </EachItemBox>
             <EachItemBox>
               <H4>📱 가게 연락처</H4>
-              <P>{orderitem.selected_mobile}</P>
+              <P>{orderitem.store.number}</P>
             </EachItemBox>
             <EachItemBox>
               <H4>✍🏼 요청사항</H4>
               <DetailTextArea 
-              defaultValue={orderitem.delivery_detail}
+              // defaultValue={orderitem.delivery_detail}
               readOnly>
               </DetailTextArea>
             </EachItemBox>

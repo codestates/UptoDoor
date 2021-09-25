@@ -50,7 +50,6 @@ function SignupWrapper() {
     }
     dispatch(signUp(userinfo))
     .then((res) => {
-      console.log('===',res.payload)
       if (res.payload.message  === 'Signup success') {
         alert('회원가입성공')
         window.location.href="https://uptodoor.shop/"

@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react'
-import { SmallButton } from '../common/Button/Button'
+import { SmallButton,ArrowBtn } from '../common/Button/Button'
 import {
   MypageOrderListWrapper,
   OrderListContent,
@@ -19,6 +19,7 @@ import OrderInfo from '../UserOrder/OrderInfo'
 import { useDispatch } from 'react-redux'
 import { cancelOrder } from '../../_actions/user_action'
 import WarningModal from '../common/Modal/WarningModal'
+
 // eslint-disable-next-line react/prop-types
 function MyOrderWrapper({ 
   listbackHandler,orderitem,
@@ -30,11 +31,9 @@ function MyOrderWrapper({
   const cancelStoreHandler = () => {
     setOpenModal(true);
   }
-  // console.log('===구독 중인 토탈상품정보래퍼 order====', order)
   
   const cancelOrderHandler = () => {
     console.log("이렇게도 된다")
-    // dispatch(cancelOrder(orderitem.id))
   }
   
   return (
@@ -43,8 +42,8 @@ function MyOrderWrapper({
         <StoreInfoWrapper className="storeinfo-wrapper">
           <FlexBox between align>
             <div className="i-wrapper">
-              <i className="fas fa-angle-double-left" 
-              onClick={listbackHandler}></i>
+              <ArrowBtn className="fas fa-angle-double-left" 
+              onClick={listbackHandler}></ArrowBtn>
               <span>구독중</span>
             </div>
             {orderitem.state === 'cancel' ?
@@ -114,10 +113,10 @@ function MyOrderWrapper({
         modalTitleText = '구독을 정말 취소하시겠습니까?'
         modalText = '정기구독 중 취소하시면 이번 달 내 주문된 사항까지 적용됩니다.'
         modalBtn='확인'
-          setOpenModal={setOpenModal}
-          handler={cancelOrderHandler}
-          yes="확인"
-          no="취소"
+        setOpenModal={setOpenModal}
+        handler={cancelOrderHandler}
+        yes="확인"
+        no="취소"
         /> : 
         null
       }

@@ -35,7 +35,7 @@ function Footer() {
             오명재 GitHub
           </a>
         </AdminLink>
-        <small>BowWow © {new Date().getFullYear()} All rights reserved.</small>
+        <small>UptoDoor © {new Date().getFullYear()} All rights reserved.</small>
       </FooterWrapper>
     </FooterContainer>
   );

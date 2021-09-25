@@ -36,7 +36,6 @@ export const FooterWrapper = styled.div`
   }
 
   @media screen and (min-width: 1140px) {
-    width: 1200px;
   }
 `;
 

@@ -7,6 +7,7 @@ import {
   StoreName,
   StoreAddress,MapAppContainer,LinkR
   } from './styledMap'
+import {ArrowBtn} from '../common/Button/Button'
 import { selectStore } from '../../_actions/cart_action';
 function MapInfoModal({filteredList}:any) {
   const dispatch:any = useDispatch()
@@ -36,7 +37,9 @@ function MapInfoModal({filteredList}:any) {
             </div>
 
             <LinkR to={`/storeinfo/${el.id}`} >
-              <i className="fas fa-angle-double-right"></i>
+              <ArrowBtn 
+              className="fas fa-angle-double-right">
+              </ArrowBtn>
           </LinkR>
           </MapInfoWrapper>
         )

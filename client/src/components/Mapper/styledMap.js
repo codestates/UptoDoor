@@ -8,7 +8,8 @@ import {
   MainColor,
   BaseFont,
   UltraLargeFont,
-  TextDarkGrey
+  TextDarkGrey,
+  PointColor
 } from '../GlobalStyle'
 import { Link } from "react-router-dom";
 
@@ -31,9 +32,14 @@ const showInfoModalBg = keyframes`
   }
 `
 export const MapWrapperContainer = styled.section`
-transition : all 0.3s;
-padding : 0 16px;
-max-width: 1440px;
+/* transition : all 0.3s;
+padding : 0 8px;
+max-width: 1440px; */
+margin: 30px auto;
+min-width: 375px;
+width: 100%;
+height : 716px;
+
 >.line{
   visibility: hidden;
   @media screen and (min-width: 768px) {
@@ -42,8 +48,11 @@ max-width: 1440px;
     border-bottom : 1px solid ${TextLightGrey};
   }
 }
+@media screen and (min-width: 499px) {
+  height: unset;
+}
 @media screen and (min-width: 768px) {
-  margin : 60px 30px;
+  /* margin : 60px 30px; */
   }
 @media screen and (min-width: 1140px) {
   /* margin : 60px 15px; */
@@ -236,11 +245,17 @@ export const MapInfoWrapper = styled.div`
   > div {
     height: 75px;
     margin: 10px;
-    width: 70%;
+    width: 65%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-bottom: 5px; 
+    @media screen and (min-width: 500px) {
+    width: 70%;
+    }
+    @media screen and (min-width: 768px) {
+    width: 75%;
+  }
   }
   @media screen and (min-width: 500px) {
     margin: 3px auto 6px;
@@ -341,19 +356,19 @@ export const MapAppContainer = styled.div`
   height: 120px;
   overflow: hidden;
   overflow-y: auto;
-  bottom: 100px;
+  bottom: 120px;
   border-radius: 8px;
   z-index: 20000;
 
-  &::-webkit-scrollbar {
-    background-color: #fff;
+  /* &::-webkit-scrollbar {
+    background-color: ${MainColor};
     width: 6px;
+    padding : 10px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #245cce;
     border-radius: 8px;
-  }
+  } */
   @media screen and (min-width: 499px) {
     bottom: 0px;
     height: 300px;
@@ -371,7 +386,6 @@ export const MapAppContainer = styled.div`
 `;
 
 export const LinkR = styled(Link)`
-  color: ${TextDarkGrey};
   text-decoration: none;
   
   @media screen and (min-width: 767px) {

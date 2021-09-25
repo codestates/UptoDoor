@@ -1,5 +1,5 @@
 import styled,{keyframes} from 'styled-components';
-import { MainColor, BackgroundColor,TextLightGrey } from "../../GlobalStyle";
+import { MainColor, BackgroundColor,TextLightGrey, LargeFont } from "../../GlobalStyle";
 
 const moving = keyframes`
   0% {
@@ -11,7 +11,8 @@ const moving = keyframes`
 `
 export const ArrowBtn = styled.i`
 color : ${MainColor};
-  cursor: pointer;
+font-size: ${LargeFont};
+cursor: pointer;
   &:hover{
     animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
 }

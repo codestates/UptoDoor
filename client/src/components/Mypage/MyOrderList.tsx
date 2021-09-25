@@ -5,7 +5,7 @@ import {
   ListDate,ListInfo,
   DeliveryState,
   OrderListWrapper } from './StyledMypage';
-import {NextBtn} from '../common/Button/Button'
+import {NextBtn,ArrowBtn} from '../common/Button/Button'
 
 function MyOrderList({ 
   moveDetailHandler , 
@@ -26,8 +26,8 @@ function MyOrderList({
                     <p>다음 결제일: </p>
                     <h5>{order.nextPayDay}</h5>
                   </ListDate>
+                  
                   <ListInfo>
-
                   {el.state === "order" ? 
                     <DeliveryState blue>구독중</DeliveryState>
                     :
@@ -42,8 +42,9 @@ function MyOrderList({
                       })}</p>
                     </div>
                     
-                    <NextBtn type="button" onClick={() => { moveDetailHandler(el.id) }}>
-                      <i className="fas fa-angle-double-right"></i>
+                    <NextBtn type="button" 
+                    onClick={() => { moveDetailHandler(el.id) }}>
+                      <ArrowBtn className="fas fa-angle-double-right"></ArrowBtn>
                     </NextBtn>
                   </ListInfo>
                 </OrderListContent>

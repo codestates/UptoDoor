@@ -34,6 +34,10 @@ flex-direction: ${({col})=>(col ? 'column' : 'row')};
 margin : 8px 0;
 margin-bottom: ${({distance})=>(distance ? '0' : '8px')};
 padding: ${({distance})=>(distance ? '8px' : '0')};
+>.i-wrapper{
+  display: flex;
+  align-items: center;
+}
 >.order-text-content{
   flex : 2;
   >div>div{
@@ -50,7 +54,8 @@ padding: ${({distance})=>(distance ? '8px' : '0')};
 }
 >div>span{
     font-weight : 500;
-    margin : 0 5px;
+    margin : 0 7px;
+    padding-bottom : 1px;
   }
 }
 `

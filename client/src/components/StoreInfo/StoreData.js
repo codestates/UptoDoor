@@ -24,14 +24,13 @@ import MenuList from './MenuList'
 const StoreData = ({id}) => {
 
   const state = useSelector((state) => state.user);
-  const [store, setStore] = useState({})
+  const [store, setStore] = useState({image:[]})
   const [openModal , setOpenModal] = useState(false);
 
   const moreImgHandler = () => {
     console.log('d')
     setOpenModal(true);
   }
-
 
   useEffect(() => {
     if (state.message === undefined) {
@@ -42,20 +41,19 @@ const StoreData = ({id}) => {
   }, [])
 
   useEffect(() => {
-    // setStore('');
+    
     axios.get(`${END_POINTS}/admin/store/${id}`)
     .then((res) => {
-        //메세지가 오케이면 
+        //메세지가 오케이면
         console.log("스토어 넘버", res.data);
-        const storeData = res.data.storeData;
-        return setStore(storeData);
+        res.data.storeData;
+        console.log('!!!store!!!==:',res.data.storeData)
+        return setStore(res.data.storeData);
         
     }).catch((err) => {
       console.log(err);
     })
-  }, [])
-
-  console.log('new store==:',store)
+  }, []);
   
   return (
     <Container>

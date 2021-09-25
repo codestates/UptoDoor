@@ -27,18 +27,19 @@ function MyProfile(): any {
     })[0]
     setOrderItem(filtered);
   }
+
   const listbackHandler = () => {
     setOrderItem('');
   }
 
   useEffect(() => {
-
-    setOrderItem('');
+    setOrderItem({store:{},menu:[]});
 
     axios.get(`${END_POINTS}/users/userinfo`)
       .then((res) => {
         const order = res.data.userdata.user_orders.map((el:any) => {
-          const { delivery_day, delivery_term, delivery_time } = el.order.order_deliveries;
+          console.log('order_deliveries : ==',el.order.order_deliveries);
+          const { delivery_day, delivery_term, delivery_time } = el.order.order_deliveries[0];
           const { 
             state, totalprice, order_menus, store, user_name, 
             selected_address, selected_address_detail, 
@@ -55,17 +56,25 @@ function MyProfile(): any {
           const newMonth = date.getMonth();
           const newDay = String(date).split(' ')[2];
           const nextPayDay = `${newYear}.${newMonth}.${newDay}`
-          
+
+          let delivery_day_arr 
+          if(delivery_day.length > 1){
+            delivery_day_arr = delivery_day.split(',')
+          }else{
+            delivery_day_arr = [delivery_day]
+          } 
+
           const final = {
             id,state,user_name,totalprice,
             store,selected_address,selected_address_detail,
             selected_mobile,createdAt,
             delivery_detail:detail[0],plusMoney:detail[1],
-            delivery_time,delivery_term,delivery_day,menu:order_menus, 
-            nextPayDay,
+            delivery_time,delivery_term,delivery_day:delivery_day_arr,
+            menu:order_menus, nextPayDay,
           }
           return final;
         })
+        console.log('-====order==',order);
         setOrderList(order);
         setUser(res.data.userdata);
       }).catch((err) => {

@@ -3,8 +3,9 @@ import {
   MypageOrderListWrapper,
   OrderListContent,
   ListDate,ListInfo,
-  DeliveryState,NextBtn,
+  DeliveryState,
   OrderListWrapper } from './StyledMypage';
+import {NextBtn} from '../common/Button/Button'
 
 function MyOrderList({ 
   moveDetailHandler , 

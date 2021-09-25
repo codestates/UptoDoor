@@ -20,7 +20,6 @@ function AdminOrderInfo() {
                 <OrderDate>2021.09.22</OrderDate>
               </FlexBox>
               <P>로제파스타</P>
-              {/* <P lightColorText >스팸 + 에그 +글루텐프리 식빵 + 특제소스</P> */}
             </EachItemBox>
             <EachItemBox>
               <H4>가격/수량</H4>

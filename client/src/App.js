@@ -13,10 +13,6 @@ import Mapper from './pages/Mapper'
 import Address from './pages/Address'
 
 //!그외 라우터페이지
-// import Landing from './pages/Landing'
-// import StoreInfo from './pages/StoreInfo'
-// import UserCart from './pages/UserCart'
-// import UserOrder from './pages/UserOrder'
 import MypageEdit from './pages/MypageEdit'
 import AdminPost from './pages/AdminPost'
 import AdminPage from './pages/AdminPage'

@@ -331,23 +331,6 @@ export const DeliveryState = styled.h5`
   }
 `;
 
-export const NextBtn = styled.button`
-  width: 20px;
-  height: 30px;
-  background-color: #fff;
-  color: ${TextLightGrey};
-  border: none;
-  margin-bottom: 10px;
-  text-align: right;
-
-  @media screen and (min-width: 767px) {
-    margin-bottom: 15px;
-  }
-  @media screen and (min-width: 1140px) {
-    margin-bottom: 30px;
-  }
-`;
-
 export const OrderListWrapper = styled.div`
   display: flex;
   align-items: center;

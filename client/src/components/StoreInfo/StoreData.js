@@ -37,7 +37,7 @@ const StoreData = ({id}) => {
   }, [])
 
   useEffect(() => {
-    axios.get(`${END_POINTS}/store/:${id}`)
+    axios.get(`${END_POINTS}/admin/store/${id}`)
     // axios.get(`${END_POINTS}/store/7`)
       .then((res) => {
         console.log("스토어 넘버", res.data);

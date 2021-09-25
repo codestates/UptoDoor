@@ -7,6 +7,7 @@ import {
   ValueTextBox,
   H2,H3,P,
 } from './StyledLanding'
+import Fade from "react-reveal/Fade"
 
 const LandingValue = () => {
 
@@ -46,6 +47,7 @@ const LandingValue = () => {
 
   return (
     <LandingValueContainer>
+      <Fade bottom>
       <LandingValueWrapper>
           {landingValueDummy.map((el,idx)=>{
             return (
@@ -70,6 +72,7 @@ const LandingValue = () => {
                   )
                 })}
       </LandingValueWrapper>
+      </Fade>
     </LandingValueContainer>
   )
 }

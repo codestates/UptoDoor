@@ -10,7 +10,6 @@ function MyStoreInfo({orderitem}:any) {
   console.log('===orderitem==',orderitem)
   console.log('===orderitemstore==',orderitem.store)
   // const store = orderitem.store;
-  if(orderitem === undefined) return null;
 
   return (
     <>
@@ -47,7 +46,7 @@ function MyStoreInfo({orderitem}:any) {
             <EachItemBox>
               <H4>✍🏼 요청사항</H4>
               <DetailTextArea 
-              // defaultValue={orderitem.delivery_detail}
+              defaultValue={orderitem.delivery_detail}
               readOnly>
               </DetailTextArea>
             </EachItemBox>

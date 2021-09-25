@@ -14,15 +14,15 @@ import {
 from './StyledStoreData'
 import { Container,Title} from "../GlobalStyle";
 
-import { useSelector } from 'react-redux';
-import { END_POINTS } from "../../_actions/type";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { END_POINTS} from "../../_actions/type";
+import { selectStore } from '../../_actions/cart_action';
 import StoreImgModal from './StoreImgModal'
 import MenuList from './MenuList'
 
 
 const StoreData = ({id}) => {
-
+  const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
   const [store, setStore] = useState({image:[]})
   const [openModal , setOpenModal] = useState(false);
@@ -41,7 +41,7 @@ const StoreData = ({id}) => {
   }, [])
 
   useEffect(() => {
-    
+    dispatch(selectStore(id));
     axios.get(`${END_POINTS}/admin/store/${id}`)
     .then((res) => {
         //메세지가 오케이면

@@ -20,20 +20,23 @@ function MyProfile(): any {
 
   const [orderList,setOrderList] = useState([])
   const [orderitem , setOrderItem] = useState({})
-  
+  const [cur,setCur] = useState(0)
   const moveDetailHandler = (id:any) => {
     const filtered = orderList.filter((el:any)=>{
       return el.id === id
     })[0]
     setOrderItem(filtered);
+    setCur(1);
   }
 
   const listbackHandler = () => {
     setOrderItem('');
+    setCur(0);
   }
-
+  console.log("asdasdasd", orderitem);
   useEffect(() => {
-    setOrderItem({store:{},menu:[]});
+    setCur(0);
+    setOrderItem({});
 
     axios.get(`${END_POINTS}/users/userinfo`)
       .then((res) => {
@@ -130,7 +133,7 @@ function MyProfile(): any {
             </MypageUl>
             </MypageProfileBtnWrapper>
 
-            {orderitem ? 
+            {cur === 1 ? 
             <MyOrderWrapper 
             user= {user}
             orderitem = {orderitem}

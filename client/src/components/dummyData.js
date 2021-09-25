@@ -315,11 +315,7 @@ export const initialHash = [
     hash_arr: [],
   },
   {
-<<<<<<< HEAD
-    id: 7,
-=======
     id: 6,
->>>>>>> 11923eba7a433ddc122b8df3f94df781b05ef118
     category: "beauty",
     hash_arr: [],
   },

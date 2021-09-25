@@ -46,6 +46,7 @@ const StoreData = ({id}) => {
     axios.get(`${END_POINTS}/admin/store/${id}`)
     // axios.get(`${END_POINTS}/store/7`)
       .then((res) => {
+        //메세지가 오케이면 
         console.log("스토어 넘버", res.data);
         return setStore(res.data);
         

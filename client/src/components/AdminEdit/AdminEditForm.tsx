@@ -196,7 +196,7 @@ function AdminEditForm() {
 
   useEffect(() => {
     console.log(user.store_id);
-    axios.get(`${END_POINTS}/admin/store:7`)
+    axios.get(`${END_POINTS}/admin/store/7`)
       .then((res) => {
         console.log(res.data);
     })

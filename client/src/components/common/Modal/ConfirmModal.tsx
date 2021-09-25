@@ -6,42 +6,40 @@ import {
   from './styledModal'
 import { useHistory } from 'react-router-dom';
 
+//주문이완료되었습니다 / 수정이 완료되었습니다 / 회원가입이 완료되었습니다.
+function ConfirmModal(props: any) {
 
-function WarningModal(props: any) {
   const history:any = useHistory()
-  
   const { 
-    openModal, url,
-    modalTitleText ,modalText,yes,no,setOpenModal,handler
+    openModal, url,confirmModal,
+    modalTitleText ,modalText,modalBtn,setOpenModal
     } = props;
 
   const closeModal = () => {
     setOpenModal(false);
-    //취소버튼 누르면 그냥닫혀야한다.
-    // history.go(url);
+    history.push(url);
   }
   
-
   return (
     <>
-      {openModal ? (
+      {openModal || confirmModal? (
       <ModalSelectAddContainer >
         <ModalSelectAddWrapper flexable >
           
-          <ModalTextBox>
-            <I className="fas fa-exclamation"></I>
+          <ModalTextBox >
+            <I 
+            confirm
+            bigger
+            className="far fa-check-circle"></I>
             <h2>{modalTitleText}</h2>
             <p>{modalText}</p>
           </ModalTextBox>
 
-          <BtnBox flexable>
+          <BtnBox>
           <MiddleButton 
           side
           primary
-          onClick = {handler}>{yes}</MiddleButton>
-          <MiddleButton 
-          side
-          onClick = {closeModal} >{no}</MiddleButton>
+          onClick = {closeModal}>{modalBtn}</MiddleButton>
           </BtnBox>
 
           </ModalSelectAddWrapper>
@@ -54,4 +52,4 @@ function WarningModal(props: any) {
   )
 }
 
-export default WarningModal
+export default ConfirmModal

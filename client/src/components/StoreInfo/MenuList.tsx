@@ -10,7 +10,8 @@ import {
 } from './StyledStoreData'
 import Item from './Item';
 
-function MenuList():any {
+function MenuList({store}:any):any {
+  console.log('menulist===>',store)
   const dummy = [
     {
       id: 1,

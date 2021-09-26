@@ -1,7 +1,7 @@
 import styled,{keyframes} from 'styled-components'
 import { MainColor, TextColor , SmallFont , MediumFont, TextDarkGrey, UltraLargeFont, PointColor } from '../../GlobalStyle'
 
-const showModal = keyframes`
+export const showModal = keyframes`
   from {
     opacity: 0;
     margin-top: -30px;
@@ -34,7 +34,7 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     background-color: rgba(0, 0, 0, 0.6);
   }
 `;
@@ -77,17 +77,19 @@ export const ModalTextWrapper = styled.div`
       border-radius: 150px;
     }
 `
-
 export const ModalTextBox = styled.div`
 text-align: center;
->i{
-  color: ${PointColor};
-  font-size: ${UltraLargeFont};
-  margin-bottom:  30px;
+margin : 0 0 15px;
+>p{
+  margin: 6px 0;
 }
+`
+export const I = styled.i`
+  color: ${({confirm})=> (confirm ? '#245CCE' : PointColor)};
+  font-size: ${({bigger})=> (bigger ? '86px' : UltraLargeFont)};
+  margin-bottom:  30px;
   margin:  20px 0;
 `
-
 export const ModalTitleText = styled.div`
   color : ${TextColor};
   font-size : ${MediumFont};

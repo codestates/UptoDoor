@@ -33,7 +33,7 @@ const LandingIntro = () => {
     slidesToScroll: 1,  // 3장씩 뒤로 넘어가게
     centerMode: true,
     centerPadding: '0px', 
-    // pauseOnHover : true,	// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+    pauseOnHover : false,	// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
 		vertical : true,
   };
   return (
@@ -43,20 +43,22 @@ const LandingIntro = () => {
           <Fade top>
             <IntroH1>새로운 라이프스타일 &quot;구독&quot;</IntroH1>
           </Fade>
-            <FlexBox>
+          <FlexBox>
             <IntroH2>당신 곁의 </IntroH2>
             <Slider { ...settings }>
             {category.map((el,idx)=>{
               return (
                 <CategoryTitleWrapper key = {idx}
                   className = 'category-title-wrapper'>
+                <Fade bottom>
                   <CategoryTitle> {el}</CategoryTitle>
+                </Fade>
                 </CategoryTitleWrapper>
                 )
             })}
             </Slider>  
             <IntroH2>서비스를 찾아보세요.</IntroH2>
-            </FlexBox>
+          </FlexBox>
 
           <ImgContainer id = 'img-container'>
             <Slider { ...settings }>

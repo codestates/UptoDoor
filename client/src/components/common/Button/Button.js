@@ -1,5 +1,5 @@
 import styled,{keyframes} from 'styled-components';
-import { MainColor, BackgroundColor } from "../../GlobalStyle";
+import { MainColor, BackgroundColor,TextLightGrey, LargeFont } from "../../GlobalStyle";
 
 const moving = keyframes`
   0% {
@@ -11,11 +11,28 @@ const moving = keyframes`
 `
 export const ArrowBtn = styled.i`
 color : ${MainColor};
-  cursor: pointer;
+font-size: ${LargeFont};
+cursor: pointer;
   &:hover{
     animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
 }
 `
+export const NextBtn = styled.button`
+  width: 20px;
+  height: 30px;
+  background-color: #fff;
+  color: ${TextLightGrey};
+  border: none;
+  margin-bottom: 10px;
+  text-align: right;
+
+  @media screen and (min-width: 767px) {
+    margin-bottom: 15px;
+  }
+  @media screen and (min-width: 1140px) {
+    margin-bottom: 30px;
+  }
+`;
 
 export const SmallButton = styled.button`
   margin: 0 5px;

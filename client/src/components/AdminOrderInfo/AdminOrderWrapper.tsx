@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import { MiddleButton, SmallButton } from '../common/Button/Button'
+import { ArrowBtn ,MiddleButton, SmallButton } from '../common/Button/Button'
 import {
   MypageOrderListWrapper,
   OrderListContent,
@@ -27,8 +27,8 @@ function AdminOrderWrapper({ filteredOrderId, listbackHandler }:any) {
         <StoreInfoWrapper className="storeinfo-wrapper">
           <FlexBox between align>
             <div className="i-wrapper">
-              <i className="fas fa-angle-double-left" 
-              onClick={listbackHandler}></i>
+              <ArrowBtn className="fas fa-angle-double-left" 
+              onClick={listbackHandler}></ArrowBtn>
               <span>전체주문내역 보기</span>
             </div>
             <OrderDate> 다음 결제일 : 2021.12.25 </OrderDate>

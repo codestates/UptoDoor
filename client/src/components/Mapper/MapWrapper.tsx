@@ -7,11 +7,12 @@ import MapSearchBar from './MapSearchBar'
 import EmptyMap from './EmptyMap'
 
 import { 
+  MapWrapperContainer,
   MapFlexWrapper,
   MapHashWrapper,
 } from './styledMap'
 import {
-  Container,
+  // Container,
   // Wrapper,
   Title
 } from "../GlobalStyle";
@@ -82,7 +83,7 @@ function MapWrapper() {
   
   return (
     <>
-      <Container className="map-wrapper-container">
+      <MapWrapperContainer className="container">
         <Title>구독 찾기</Title>
         <MapFlexWrapper>
           <MapHashWrapper>
@@ -99,19 +100,30 @@ function MapWrapper() {
               searchSubmitHandler={searchSubmitHandler}
             />
             {/* 해시태그 컴포넌트 */}
-            <MapHashtag filterListHandler={filterListHandler} filterList={undefined} openInfoModal={undefined} mapData={undefined} />
-            <EmptyMap filteredList={filteredList} openInfoModal={openInfoModal} />
+            <MapHashtag 
+            filterListHandler={filterListHandler} 
+            filterList={undefined} 
+            openInfoModal={undefined} 
+            mapData={undefined} />
+            <EmptyMap 
+            filteredList={filteredList} 
+            openInfoModal={openInfoModal} />
           </MapHashWrapper>
+
           {/* 지도 컴포넌트 */}
           <Map
             filterClickHandler={filterClickHandler}
             selectAddress={selectAddress}
           />
         </MapFlexWrapper>
-        {openInfoModal ? (
-          <MapInfoModal mobile filteredList={filteredList} />
-        ) : null}
-      </Container>
+        
+        {openInfoModal ? 
+          <MapInfoModal 
+          mobile 
+          filteredList={filteredList} />
+          : 
+          null}
+      </MapWrapperContainer>
     </>
   );
 }

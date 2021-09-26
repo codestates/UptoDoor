@@ -13,68 +13,61 @@ import {
   MypageProfileWrapper,
   MypageProfileBtnWrapper,
   MypageUl,MypageLi } from './StyledMypage';
-import { useSelector } from "react-redux";
 import { END_POINTS } from '../../_actions/type';
 
 function MyProfile(): any {
+  const [user,setUser]:any = useState('')
+
+  const [orderList,setOrderList] = useState([])
+  const [orderitem , setOrderItem] = useState({})
   
-
-  const cart = useSelector((state:any) => state.cart);
-  const user = useSelector((state:any) => state.user);
-
-  const [filteredOrderId, setFilteredOrderId]=useState("")
-
   const moveDetailHandler = (id:any) => {
-    setFilteredOrderId(id)
+    const filtered = orderList.filter((el:any)=>{
+      return el.id === id
+    })[0]
+    setOrderItem(filtered);
   }
   const listbackHandler = () => {
-    setFilteredOrderId("");
+    setOrderItem('');
   }
-
-  //!4주로 바꿔서 계산 다시하기
-  const orderDate:any = (term:any) => {
-    const getFullDate = new Date();
-    let month = getFullDate.getMonth()+1;
-    let year = getFullDate.getFullYear();
-    //만약 12 가 넘으면 값 -12 해주면됨.
-    // if(Number(term)+month >= 12){
-    //   return month = month - Number(term)
-    // }
-    if(term+month > 12) {
-      month = month-term;
-      year = year+1;
-    }
-    console.log(typeof term , term)
-    console.log('==month==',month)
-    
-    if(term === 1){
-      return `${year}.
-      ${month}.
-      ${getFullDate.getDate()}`
-    }else if(term === 3){
-      return `${year}.
-      ${month}.
-      ${getFullDate.getDate()}`
-    }else if(term === 6){
-      return `${year}.
-      ${month}.
-      ${getFullDate.getDate()}`
-    }else if(term === 12){
-      return `${year+1}.
-      ${month}.
-      ${getFullDate.getDate()}`
-    }else{
-      return `${getFullDate.getFullYear()}.
-      ${month}.
-      ${getFullDate.getDate()}` 
-    } 
-  }
-  orderDate(cart.deliver_term);
 
   useEffect(() => {
+
+    setOrderItem('');
+
     axios.get(`${END_POINTS}/users/userinfo`)
       .then((res) => {
-        console.log(res);
+        const order = res.data.userdata.user_orders.map((el:any) => {
+          const { delivery_day, delivery_term, delivery_time } = el.order.order_deliveries;
+          const { 
+            state, totalprice, order_menus, store, user_name, 
+            selected_address, selected_address_detail, 
+            selected_mobile, createdAt, id, delivery_detail } = el.order;
+          const detail = delivery_detail.split(",")
+
+          const year = Number(createdAt.split('-')[0]);
+          const month = Number(createdAt.split('-')[1]);
+          const day = Number(createdAt.split('T')[0].split('-')[2]);
+          const date = new Date(year, month, day)
+          date.toLocaleString();
+          date.setDate(date.getDate()+28)
+          const newYear = date.getFullYear();
+          const newMonth = date.getMonth();
+          const newDay = String(date).split(' ')[2];
+          const nextPayDay = `${newYear}.${newMonth}.${newDay}`
+          
+          const final = {
+            id,state,user_name,totalprice,
+            store,selected_address,selected_address_detail,
+            selected_mobile,createdAt,
+            delivery_detail:detail[0],plusMoney:detail[1],
+            delivery_time,delivery_term,delivery_day,menu:order_menus, 
+            nextPayDay,
+          }
+          return final;
+        })
+        setOrderList(order);
+        setUser(res.data.userdata);
       }).catch((err) => {
         console.log(err);
     })
@@ -92,9 +85,8 @@ function MyProfile(): any {
                 <p>{user.email}</p>
                 {
                 user.mainAddress === null || 
-                user.mainAddressDetail === null||
-                user.subAddress === null || 
-                user.subAddressDetail === null ? 
+                user.mainAddressDetail === null
+                ?
                 <p>동네인증이 필요합니다.</p>
                 :
                 <>
@@ -102,9 +94,23 @@ function MyProfile(): any {
                 <p>{user.mainAddressDetail}</p>
                 </>
                 }
+                {/* {
+                user.subAddress === null || 
+                user.subAddressDetail === null
+                ?
+                <p>동네인증이 필요합니다.</p>
+                :
+                <>
+                <p>{user.subAddress}</p>
+                <p>{user.msubAddressDetail}</p>
+                </>
+                } */}
               </MypageContent>
               <ButtonWrapper>
-                <button><Link to="/adminpost">가게 등록</Link></button>
+                {user.position === "1" ?
+                  (<button><Link to="/adminedit">가게 관리</Link></button>) :
+                  (<button><Link to="/adminpost">가게 등록</Link></button>)
+                }
                 <button><Link to="/mypageedit">프로필 수정</Link></button>
               </ButtonWrapper>
             </MypageProfileWrapper>
@@ -113,20 +119,17 @@ function MyProfile(): any {
                 구독관리
               </MypageLi>
             </MypageUl>
-            
             </MypageProfileBtnWrapper>
-            {filteredOrderId ? 
+
+            {orderitem ? 
             <MyOrderWrapper 
-            cart = {cart}
             user= {user}
-            orderDate = {orderDate}
-            filteredOrderId={filteredOrderId}
+            orderitem = {orderitem}
             listbackHandler={listbackHandler}
             /> 
             : 
             <MyOrderList 
-            cart = {cart}
-            orderDate = {orderDate}
+            order={orderList}
             moveDetailHandler={moveDetailHandler} 
             />}
 

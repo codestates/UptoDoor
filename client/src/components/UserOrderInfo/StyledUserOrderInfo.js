@@ -34,6 +34,10 @@ flex-direction: ${({col})=>(col ? 'column' : 'row')};
 margin : 8px 0;
 margin-bottom: ${({distance})=>(distance ? '0' : '8px')};
 padding: ${({distance})=>(distance ? '8px' : '0')};
+>.i-wrapper{
+  display: flex;
+  align-items: center;
+}
 >.order-text-content{
   flex : 2;
   >div>div{
@@ -50,7 +54,8 @@ padding: ${({distance})=>(distance ? '8px' : '0')};
 }
 >div>span{
     font-weight : 500;
-    margin : 0 5px;
+    margin : 0 7px;
+    padding-bottom : 1px;
   }
 }
 `
@@ -68,6 +73,11 @@ text-align: center;
 padding:2px;
 font-size: 12px;
 `
+export const H2 = styled.h2`
+text-decoration: ${TextLightGrey};
+text-decoration: ${({cancleline})=> (cancleline ? 'line-through' : 'none')};
+color : ${({lightColorText})=> (lightColorText ? {TextLightGrey} : {TextDarkGrey})};
+`
 export const H3 = styled.h3`
 font-weight : 500;
 font-size : 16px;
@@ -80,6 +90,8 @@ color : ${TextDarkGrey};
 `
 export const P = styled.p`
 font-size: 12px;
+text-decoration: ${TextLightGrey};
+text-decoration: ${({cancleline})=> (cancleline ? 'line-through' : 'none')};
 color : ${({lightColorText})=> (lightColorText ? {TextLightGrey} : {TextDarkGrey})};
 `
 export const DetailTextArea = styled.textarea`

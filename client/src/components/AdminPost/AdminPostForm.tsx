@@ -20,6 +20,7 @@ import AdminEnrollStore from './AdminEnrollStore'
 import AdminUploadMenu from './AdminUploadMenu';
 import AdminFileUpload from './AdminFileUpload';
 import Modal from '../common/Modal/Modal';
+import ConfirmModal from '../common/Modal/ConfirmModal';
 
 const { kakao }: any = window;
 function AdminPostForm() {
@@ -27,6 +28,7 @@ function AdminPostForm() {
   // 메뉴이미지,이름,재료,가격,항목추가,파일업로드
   const dispatch:any = useDispatch();
   const history = useHistory();
+  
   const selectCategory: {value: string, label: string}[] = 
   [
     { value : 'food' , label : 'food'},
@@ -35,6 +37,8 @@ function AdminPostForm() {
     { value: 'beauty', label: 'beauty' },
     { value: 'etc', label: 'etc' },
   ]
+  //* 모달관련
+  const [openModal, setOpenModal] = useState(false);
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);
   const [storeFile , setStoreFile]:any = useState('');
@@ -86,17 +90,6 @@ function AdminPostForm() {
   const changeAddDetailHandler = (e:any) => {
     setadminAddressDetail(e.target.value)
   }
-  // const postHandler = useCallback((name) => {
-  //   console.log(name);
-  //   // console.log("currnet", current)
-  //   if (switched === current) {
-  //     console.log(adminAddressDetail)
-  //     // dispatch(addAdminAddress(adminAddress, adminAddressDetail));
-  //   }
-  //   else {
-  //     alert("동네 인증에 실패")
-  //   }
-  // },[adminAddress,adminAddressDetail])
   const changeMobileHandler = useCallback((e) => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
@@ -115,25 +108,19 @@ function AdminPostForm() {
   //!add menu onchange handler
   const addMenuHandler = (menu: any) => {
     const bin = {menuImg: '', menuName:'', price:0, menuDescription:''}
-    // console.log("슬라이드",[...menuArr.slice(0, menuArr.length-1), menu, bin])
     setMenuArr([...menuArr.slice(0, menuArr.length-1), menu, bin]);
   };
   //!upload storeimg
   const updateStoreImg = (storeImgs:any) => {
     setStoreImgArr(storeImgs)
-    // console.log('==storeimg==',storeImgs);
   }
   const updateStoreFile = (addressFile:any) => {
     setStoreFile(addressFile)
-    // console.log('==addfile==',addressFile);
   }
   //!폼제출 핸들러
   const submitHandler = (e:any) => {
-    // console.log("제출전 menuarr",menuArr);
     e.preventDefault();
-    // postHandler('main')
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
-    //모든칸이 채워지지않으면 false 로 막는다. !menuItem 추후 추가잊지마.
     if(
       !storeImgArr || !title || !category || !description || !time ||
       ! adminAddress || !mobile || storeFile && !menuArr
@@ -190,9 +177,6 @@ function AdminPostForm() {
   const handleClickCancle = () => {
     history.push('/');
   }
-
-  //* 모달관련
-  const [openModal, setOpenModal] = useState(false);
   
 return (
   <Container>
@@ -287,14 +271,18 @@ return (
         </FlexBox>
       </Wrapper>
     </form>
-    {openModal ? <Modal
+
+    {openModal ? 
+    <ConfirmModal
       openModal={openModal}
       setOpenModal={setOpenModal}
       modalTitleText="가게 등록 완료"
       modalText="가게 신청이 완료되었습니다. 승인까지 1-2일 걸립니다."
       modalBtn="확인"
       url='/mypage'
-    />: null}
+    />
+    : 
+    null}
   </Container>
   )
 }

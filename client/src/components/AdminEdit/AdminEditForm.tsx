@@ -6,14 +6,8 @@ import {
   StoreInputBox,
   StoreNameInput,
   StoreIntroTextArea,
-  StoreBtnBox,
 } from '../AdminPost/StyledAdminPost'
-
-import {
-  Container,
-  Wrapper,
-  Title,
-} from "../GlobalStyle";
+import {Container,Wrapper,Title} from "../GlobalStyle";
 import { BtnBox, SmallButton } from '../common/Button/Button';
 
 import { useHistory } from 'react-router-dom';
@@ -24,6 +18,11 @@ import AdminUploadStoreEdit from './AdminUploadStoreEdit'
 import AdminEnrollStoreEdit from './AdminEnrollStoreEdit'
 import AdminFileUploadEdit from './AdminFileUploadEdit'
 import AdminUploadMenuEdit from './AdminUploadMenuEdit'
+import WarningModal from '../common/Modal/WarningModal'
+import ConfirmModal from '../common/Modal/ConfirmModal';
+
+import axios from 'axios';
+import { END_POINTS } from '../../_actions/type';
 
 const { kakao }: any = window;
 
@@ -31,16 +30,18 @@ function AdminEditForm() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const store = useSelector((state:any) => state.store);
-  console.log(store);
+  const user = useSelector((state:any) => state.user);
+
+  const [openModal , setOpenModal] = useState(false);
+  const [confirmModal , setConfirmModal] = useState(false);
 
   const selectCategory: {value: string, label: string}[] = 
   [
     { value : 'food' , label : 'food'},
     { value : 'cafe' , label : 'cafe'},
     { value : 'living/home' , label : 'living/home'},
-    { value : 'plants' , label : 'plants'},
-    { value : 'clothes' , label : 'clothes'},
+    { value : 'beauty' , label : 'beauty'},
+    { value : 'hobby' , label : 'hobby'},
   ]
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);
@@ -52,7 +53,6 @@ function AdminEditForm() {
   const [time , setTime] = useState('');
   const [mobile , setMobile] = useState('');
    //주소 
-  const [current, setCurrent] = useState("")
   const [switched, setSwitched ] = useState("");
   const [adminAddress , setAdminAddress] = useState('');
   const [adminAddressDetail, setadminAddressDetail] = useState("");
@@ -117,26 +117,20 @@ function AdminEditForm() {
   //!upload storeimg
   const updateStoreImg = (storeImgs:any) => {
     setStoreImgArr(storeImgs)
-    // console.log('==storeimg==',storeImgs);
   }
   const updateStoreFile = (addressFile:any) => {
     setStoreFile(addressFile)
-    // console.log('==addfile==',addressFile);
   }
   //!폼제출 핸들러
-  const submitHandler = (e:any) => {
-    console.log("제출전 menuarr",menuArr);
-    e.preventDefault();
-    // postHandler('main')
-    if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
-    //모든칸이 채워지지않으면 false 로 막는다. !menuItem 추후 추가잊지마.
-    if(
-      !storeImgArr || !title || !category || !description || !time ||
-      ! adminAddress || !mobile || storeFile && !menuArr
-      ){
+  const submitHandler = useCallback((e:any) => {
+    console.log(e);
+    e.preventDefault();   
+    if(!storeImgArr || !title || !category || !description || !time ||
+      ! adminAddress || !mobile || storeFile || !menuArr){
       //모달
       return alert('all section must be filled')
     }else{
+      setConfirmModal(true);
       const adminPostInfo = {
       title:title,
       category:category,
@@ -153,12 +147,13 @@ function AdminEditForm() {
       yvalue:yValue,
     }
       dispatch(adminPostEdit(adminPostInfo))
-      // 모달띄워지고(메뉴등록이 완료되었습니다.) 메인화면
       console.log(adminPostInfo);
       //history.push('/');
     }
-  }
-  //!kakao add
+  },[storeImgArr,title,category,
+    description,time,adminAddress,mobile,storeFile,menuArr])
+
+  //kakao add
   const switchAddress = useCallback((address) => {
     const geocoder = new kakao.maps.services.Geocoder();
     //! 주소를 좌표로
@@ -178,18 +173,39 @@ function AdminEditForm() {
   };
   }, []);
 
-
-  //store 삭제
-  const handleClickCancle = () => {
-    dispatch(deleteAdminPost())
-    //모달 다셔야해요 네?
-    history.push('/');
+  //! store 삭제
+  const deleteStoreHandler = () => {
+    alert('가게삭제 성공')
+    // dispatch(deleteAdminPost())    
+    // .then((res: any) => {
+    //   if (res.payload.message  === 'good bye') {
+    //     alert('탈퇴성공')
+    //     window.location.href="http://localhost:3000/"
+    //   } else {
+    //     alert('탈퇴 실패. 못벗어남.');
+    //   }
+    // })
+    // .catch((err: any) => {
+    //   console.log(err)
+    // });
   }
+
+  const deleteModalHandler = () => {
+    setOpenModal(true)
+  }
+
+  useEffect(() => {
+    console.log(user.store_id);
+    axios.get(`${END_POINTS}/admin/store/7`)
+      .then((res) => {
+        console.log(res.data);
+    })
+  },[])
 
   return (
     <Container>
       <Title>가게 수정</Title>
-      <form onSubmit = {(e:any)=>submitHandler(e)}>
+      <form onSubmit = {submitHandler}>
       <Wrapper>
       <FlexBox>
         <AdminForm>
@@ -229,7 +245,7 @@ function AdminEditForm() {
             <label>배달 가능시간</label>
             <StoreNameInput 
             required
-            type = 'time'
+            type = 'type'
             defaultValue = {time} 
             placeholder = '배달 가능한 시간을 작성하세요' 
             onChange = {changeTimeHandler}/>
@@ -256,11 +272,10 @@ function AdminEditForm() {
             onChange = {changeMobileHandler}/>
           </StoreInputBox>
 
-            <AdminFileUploadEdit
-            setMenuArr={setMenuArr}
-            setStoreFile={setStoreFile}
-            updateStoreFile = {updateStoreFile}
-
+          <AdminFileUploadEdit
+          setMenuArr={setMenuArr}
+          setStoreFile={setStoreFile}
+          updateStoreFile = {updateStoreFile}
           />
 
         <AdminUploadMenuEdit
@@ -270,15 +285,45 @@ function AdminEditForm() {
         />
         <BtnBox flexable>
           <SmallButton
+          type = 'submit'
           primary> 수정 </SmallButton>
-          <SmallButton 
-          onClick = {handleClickCancle}
-          type = 'button'> 삭제 </SmallButton>
+
+          <SmallButton  
+          type = 'button'
+          onClick = {deleteModalHandler}
+          > 삭제 </SmallButton>
         </BtnBox>
         </AdminForm>
         </FlexBox>
       </Wrapper> 
     </form>
+
+    {openModal ?
+      <WarningModal
+      openModal = {openModal}
+      url='/'
+      setOpenModal={setOpenModal}
+      modalTitleText = '정말 가게를 삭제하시겠습니까?'
+      modalText = '가게를 삭제하시면 일주일간 재등록이 불가합니다.'
+      yes = '가게 삭제'
+      no='취소'
+      handler={deleteStoreHandler}
+      />
+      :
+      null
+      }
+    {confirmModal ?
+      <ConfirmModal
+      confirmModal = {confirmModal}
+      url="/"
+      setOpenModal={setOpenModal}
+      modalTitleText = '수정이 완료되었습니다.'
+      modalText = '확인 후 메인페이지로 이동합니다.'
+      modalBtn = '확인'
+      />
+      :
+      null
+      }
     </Container>
   )
 }

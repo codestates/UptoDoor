@@ -9,6 +9,7 @@ import {
   MapInfoWebContainer,
   LinkR,
 } from "./styledMap";
+import {ArrowBtn} from '../common/Button/Button'
 
 function EmptyMap({ filteredList, openInfoModal }) {
   return (
@@ -34,7 +35,7 @@ function EmptyMap({ filteredList, openInfoModal }) {
                   </div>
 
                   <LinkR to={`/storeinfo/${el.id}`}>
-                    <i className="fas fa-angle-double-right"></i>
+                    <ArrowBtn className="fas fa-angle-double-right"></ArrowBtn>
                   </LinkR>
                 </MapInfoWrapper>
               );

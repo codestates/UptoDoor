@@ -18,7 +18,7 @@ export const NAVER_SIGNIN = "NAVER_SIGNIN";
 //admin signUp/signIn/signOut/mypage/deleteAdmin
 export const ADMIN_POST = "ADMIN_POST";
 export const DELETE_ADMIN_POST = "DELETE_ADMIN_POST";
-
+export const GET_ADMIN_DATA = "GET_ADMIN_DATA";
 //Store
 export const STORE_DATAS = "STORE_DATAS";
 export const STORE_FILTER_BY_HASHTAG = "STORE_FILTER_BY_HASHTAG";

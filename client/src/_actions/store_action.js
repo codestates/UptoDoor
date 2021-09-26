@@ -1,14 +1,28 @@
 
 import {
   STORE_DATAS,
-  STORE_FILTER_HASHTAG,
+  STORE_FILTER_BY_HASHTAG,
   STORE_FILTER_BY_SEARCH,
   STORE_FILTER_BY_CLICK,
-  END_POINTS
+  END_POINTS,
+  STORE_FILTER_BY_SELECTED,
 } from "./type";
 import axios from "axios";
 axios.defaults.withCredentials = true;
-import { initialStore } from '../components/dummyData';
+
+export const getFilteredStoreSelected = () => {
+  const request = axios.get(`${END_POINTS}/store`).then((res) => {
+    
+    console.log("ssssssss", res.data);
+    return res.data.storeinfo;
+  });
+
+  return {
+    type: STORE_FILTER_BY_SELECTED,
+    payload: request,
+  };
+}
+
 export const getStoreData = () => {
   const request = axios.get(`${END_POINTS}/store`)
     .then((res) => {
@@ -22,7 +36,7 @@ export const getStoreData = () => {
   };
 };
 
-export const getFitteredStore = (hastag) => {
+export const getFitteredByHastag = (hastag) => {
   const request = axios.get(`${END_POINTS}/store`).then((res) => {
     let data;
     if (hastag === "all") {
@@ -32,13 +46,11 @@ export const getFitteredStore = (hastag) => {
         return el.category === hastag;
       });
     }
-    return data
+    return data;
   });
-  
-  
 
   return {
-    type: STORE_FILTER_HASHTAG,
+    type: STORE_FILTER_BY_HASHTAG,
     payload: request,
   };
 };

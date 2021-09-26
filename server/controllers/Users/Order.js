@@ -13,16 +13,17 @@ module.exports = async (req, res) => {
     const { id,name } = checkAccessToken;
 
     try {
-        //오더테이블에 데이터 추가
+        //오더테이블에 데이터 추가111111111111gi
         const orderData = await order.create({
-            user_name : name,
-            order_address : orderInfo.selected_address,
-            order_address_detail : orderInfo.selected_address_detail,
-            plus_check : orderInfo.plus_check,
-            delivery_detail : `${orderInfo.delivㅇery_detail},${orderInfo.plus_money}`,
-            totalprice : orderInfo.total_price,
-            store_id : orderInfo.store_id,
-            state: "order"
+          user_name: name,
+          plus_check: orderInfo.plus_check,
+          delivery_detail: `${orderInfo.delivery_detail},${orderInfo.plus_money}`,
+          totalprice: orderInfo.total_price,
+          store_id: orderInfo.store_id,
+          state: "order",
+          selected_mobile: orderInfo.selected_mobile,
+          selected_address: orderInfo.selected_address,
+          selected_address_detail: orderInfo.selected_address_detail,
         }); 
     
         //user_order테이블에 데이터추가

@@ -12,8 +12,8 @@ const initialAdminPostInfo = {
     adminAddress : '',
     adminAddressdetail : '',
     menu:[],
-    storeimage:'',
-    storefile : ''
+    storeImage:'',
+    storeFile : ''
 }
 
 export default function admin_reducer(state = initialAdminPostInfo, action) {

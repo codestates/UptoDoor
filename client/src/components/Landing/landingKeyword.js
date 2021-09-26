@@ -1,26 +1,13 @@
 const { kakao } = window;
-
-//1. [앱] 홈 눌렀을때 모든 메뉴가 지도에 표시가 나온다. -> 마커표시
-//2. [앱] 마커를 눌렀을때가 모달이고 
-
-//1. 우리가 갖고있는 지도 : 내데이터 기반 전체마커를 찍는게 우선.
-//2. 현위치 찍었을때 내가찍은 데이터가 마커로 보이냐.
-//3. 마커롤 눌렀을때 모달로 뜨냐.
-//4. 카테고리별 
-
-//searchPlace,dataSet => search 자체
 export default function Keyword(
-  initialStore,
-  selectAddress,
-  filterClickHandler,
-  clickHashtagHandler
+  store,
+  city,
+  onChangeSeoulCity,
 ) {
-  // console.log(initialStore);
-  // console.log("selected", selectAddress);
-  const mapContainer = document.getElementById("map"); // 지도를 표시할 div
+  const mapContainer = document.getElementById("landing-map"); // 지도를 표시할 div
   //* 위치를 선택하면 확대레벨이 달라짐
   let mapOption;
-  if (selectAddress) {
+  if (city) {
     mapOption = {
       center: new kakao.maps.LatLng(37.546985240081895, 126.98087176925493), // 지도의 중심좌표
       level: 6, // 지도의 확대 레벨
@@ -37,20 +24,15 @@ export default function Keyword(
 
   // 주소-좌표 변환 객체를 생성합니다
   const geocoder = new kakao.maps.services.Geocoder();
-
-  // const mapping = initialMap.map((el)=>{
-  //   return el.address;
-  // })
-  // console.log('====map======',mapping);
-  if (!selectAddress) {
+  if (city === '당신 동네') {
     //! 실렉트 주소가 없을경우
     //* 전체 위치 가져오는 좌표, 필터된 좌표가져오기
     //* 마커까지 찍음
     let marker;
-    for (let i = 0; i < initialStore.length; i++) {
+    for (let i = 0; i < store.length; i++) {
       // 주소로 좌표를 검색합니다
       geocoder.addressSearch(
-        initialStore[i].address,
+        store[i].address,
         function (result, status) {
           // 정상적으로 검색이 완료됐으면
           if (status === kakao.maps.services.Status.OK) {
@@ -76,7 +58,7 @@ export default function Keyword(
   } else {
     var marker;
 const markers = [];
-    geocoder.addressSearch(selectAddress, function (result, status) {
+    geocoder.addressSearch(city, function (result, status) {
       // 정상적으로 검색이 완료됐으면
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -103,11 +85,11 @@ const markers = [];
             center: new kakao.maps.LatLng(result[0].y, result[0].x), // 원의 중심좌표 입니다
             radius: 2500, // 미터 단위의 원의 반지름입니다
             strokeWeight: 5, // 선의 두께입니다
-            strokeColor: "#75B8FA", // 선의 색깔입니다
+            strokeColor: "none", // 선의 색깔입니다
             strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-            strokeStyle: "dashed", // 선의 스타일 입니다
+            strokeStyle: "none", // 선의 스타일 입니다
             fillColor: "#CFE7FF", // 채우기 색깔입니다
-            fillOpacity: 0.5, // 채우기 불투명도 입니다
+            fillOpacity: 0, // 채우기 불투명도 입니다
           });
 
           // // 지도에 원을 표시합니다
@@ -117,10 +99,10 @@ const markers = [];
           // // 원(Circle)의 옵션으로 넣어준 반지름
           const radius = 2500;
           
-          for (let i = 0; i < initialStore.length; i++) {
+          for (let i = 0; i < store.length; i++) {
             // 주소로 좌표를 검색합니다
             geocoder.addressSearch(
-              initialStore[i].address,
+              store[i].address,
               function (result, status) {
                 // 정상적으로 검색이 완료됐으면
                 if (status === kakao.maps.services.Status.OK) {
@@ -151,7 +133,7 @@ const markers = [];
 
                   const dist = poly.getLength();
                   if (dist < radius) {
-                    markers.push(initialStore[i]);
+                    markers.push(store[i]);
                     marker.setMap(map);
                   } else {
                     marker.setMap(null);
@@ -159,9 +141,7 @@ const markers = [];
                   // console.log("markers1", markers);
                 }
                 // console.log("markers2-", markers);
-                console.log("makers", markers);
-                clickHashtagHandler(markers);
-                
+                // console.log("makers", markers);
               }
               
             );
@@ -190,7 +170,7 @@ const markers = [];
   
   const callback = function (result, status) {
     if (status === kakao.maps.services.Status.OK) {
-      filterClickHandler(result[0].road_address.address_name);
+      onChangeSeoulCity(result[0].road_address.address_name);
     }
   };
   //*현위치 가져오고, 마커찍음

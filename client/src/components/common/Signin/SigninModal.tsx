@@ -8,15 +8,17 @@ import { signIn,naverSignIn, kakaoSignIn } from '../../../_actions/user_action';
 import axios from 'axios';
 axios.defaults.withCredentials = true
 import { END_POINTS,END_POINT } from '../../../_actions/type';
+import { useHistory } from 'react-router';
 
 interface Iprops {
   modalOpen: boolean;
   setModalOpen: any;
-  setIsOpen: any;
+  setIsOpen?: any;
+
 }
 
-function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
-  const dispatch:any = useDispatch()
+function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
+  const dispatch: any = useDispatch()
   // if (!modalOpen) return null;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -92,8 +94,6 @@ function Signin({ setIsOpen, modalOpen, setModalOpen }: Iprops):any {
       });
     }
   },[])
-
-
   
   return modalOpen ? (
     <SigninContainer>

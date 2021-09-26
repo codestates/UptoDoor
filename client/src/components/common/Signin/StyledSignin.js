@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { TextLightGrey, MainColor } from "../../GlobalStyle";
+import {showModal , showModalBg} from '../Modal/styledModal'
 
 export const SigninContainer = styled.div`
   position: fixed;
   width:100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  animation: ${showModalBg} 0.4s;
   top: 0;
   left: 0;
   transition: 0.3s ease-in-out;
@@ -26,6 +28,7 @@ export const SigninWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  animation: ${showModal}.4s;  
   > form {
     display: flex;
     flex-direction: column;

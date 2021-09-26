@@ -9,6 +9,7 @@ import {
   BaseFont,
   UltraLargeFont,
   } from '../GlobalStyle';
+  import {showModal} from '../common/Modal/styledModal'
 
 export const StoreDataWrapper = styled.div`
   margin: 0 auto;
@@ -28,12 +29,6 @@ export const StoreIntro = styled.div`
     justify-content: space-between;
     align-items: center;
     /* margin : 5px; */
-  }
-  >.store-img-box{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 8px;
-    margin : 12px 0;
   }
   >.store-detail-box{
     padding :8px;
@@ -63,49 +58,54 @@ text-align: right;
 `
 export const StoreBackImg = styled.div`
 width: 100%;
-height:100%;
+height : 37%;
+margin-top : 3px;
 cursor: pointer;
 border-radius: 8px;
 box-shadow: 1px 1px 1px ${TextLightGrey};
-text-align: center;
 font-size: ${UltraLargeFont};
-line-height: 100px;
+/* line-height: 200px; */
 background-size: cover;
 background-repeat: no-repeat;
 background-color: grey;
 background-blend-mode: multiply;
 opacity: 0.9;
 color : #fff;
+display : flex; 
+align-items : center;
+justify-content : center;
+@media screen and (min-width: 568px) {
+  height : 38%;
+}
 @media screen and (min-width: 1140px) {
   padding-top: 5px;
   box-sizing: border-box;
 }
 `
+export const StoreImgBox = styled.div`
+max-width : 1139px;
+max-height : 500px;
+/* border : 3px solid pink; */
+display : flex;
+>div>.second-img{
+  width : 100%;
+  height : 60%;
+}
+`
 export const StoreImg = styled.img`
-width: 100%;
-height:100%;
-border-radius: 8px;
-box-shadow: 1px 1px 1px ${TextLightGrey};
-object-fit: cover;
-
-&:nth-child(1){
-  height: 97%;
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 3;
+width : 60%;
+margin-right : 8px;
+border-radius : 8px;
+object-fit : cover;
+@media screen and (min-width: 568px) {
+  width : 70%;
 }
 @media screen and (min-width: 768px) {
-  &:nth-child(2){
-  height: 100%;
-  }
-  }
+  width : 75%;
+}
 @media screen and (min-width: 1140px) {
-  width: 100%;
-  height: 220px;
-  margin : 0;
-  &:nth-child(2){
-  height: 220px;
-    }
-  }
+
+}
 `
 export const StoreAddressP = styled.p`
 font-size : ${BaseFont};
@@ -232,4 +232,44 @@ margin-top : ${({btnboxMargin})=> (btnboxMargin ? '18px' : 0)};
   display: unset;
   }
 }
+`
+
+//!store img modal style
+export const ModalStoreWrapper = styled.div`
+  padding: 40px 20px;
+  margin: 0 auto;
+  width: 100%;
+  height : 100%;
+  
+  text-align: center;
+  /* max-width: 400px; */
+  background-color: white;
+  border-radius: 10px;
+  animation: ${showModal}.4s;  
+
+  @media screen and (min-width: 500px) {
+    width: 600px;
+    height : 500px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+`
+export const ModalStoreTextWrapper = styled.div`
+
+`
+export const ModalStoreTitleText = styled.h1`
+
+`
+export const ModalStoreText = styled.h3`
+
+`
+//+사진모달
+export const ModalStoreImgSlideBox = styled.div`
+background-color: rgba(0,0,0,0.2);
+`
+export const ModalStoreImgs = styled.img`
+width: 300px;
+height : 300px;
+object-fit: cover;
 `

@@ -1,32 +1,36 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {initialStore} from '../dummyData'
-import MenuList from './MenuList'
 import {
   StoreDataWrapper,
   StoreIntro,
-  StoreName,
-  StoreImg,
-  StoreBackImg,
+  StoreName,StoreImgBox,
+  StoreImg, StoreBackImg,
   StoreAddressP,
   StoreInfoP,
   StoreCategory,
 }
 from './StyledStoreData'
-import {
-  Container,
-  Title
-} from "../GlobalStyle";
-import { useSelector } from 'react-redux';
-import axios from "axios";
-import { END_POINTS } from "../../_actions/type";
+import { Container,Title} from "../GlobalStyle";
+
+import { useDispatch, useSelector } from 'react-redux';
+import { END_POINTS} from "../../_actions/type";
+import { selectStore } from '../../_actions/cart_action';
+import StoreImgModal from './StoreImgModal'
+import MenuList from './MenuList'
 
 
 const StoreData = ({id}) => {
-
+  const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
-  const [store, setStore] = useState({})
+  const [store, setStore] = useState({image:[]})
+  const [openModal , setOpenModal] = useState(false);
 
+  const moreImgHandler = () => {
+    console.log('d')
+    setOpenModal(true);
+  }
 
   useEffect(() => {
     if (state.message === undefined) {
@@ -37,16 +41,19 @@ const StoreData = ({id}) => {
   }, [])
 
   useEffect(() => {
-    axios.get(`${END_POINTS}/store/:${id}`)
-    // axios.get(`${END_POINTS}/store/7`)
-      .then((res) => {
+    dispatch(selectStore(id));
+    axios.get(`${END_POINTS}/admin/store/${id}`)
+    .then((res) => {
+        //메세지가 오케이면
         console.log("스토어 넘버", res.data);
-        return setStore(res.data);
+        res.data.storeData;
+        console.log('!!!store!!!==:',res.data.storeData)
+        return setStore(res.data.storeData);
         
     }).catch((err) => {
       console.log(err);
     })
-  }, [])
+  }, []);
   
   return (
     <Container>
@@ -54,34 +61,54 @@ const StoreData = ({id}) => {
       <StoreDataWrapper>
         <StoreIntro>
           <div className="store-flex-box flex-box">
-            <StoreName>🏠 {initialStore[1].name}</StoreName>
-            <StoreCategory>{initialStore[1].category}</StoreCategory>
+            <StoreName>🏠 {store.name}</StoreName>
+            <StoreCategory>{store.category}</StoreCategory>
           </div>
-          <div className="store-img-box">
-            <StoreImg src={initialStore[1].store_image[0]} />
-            <StoreImg src={initialStore[1].store_image[1]} />
+
+          <StoreImgBox className="store-img-box">
+            <StoreImg src={store.image[0]} className = 'first-img' />
+
+            <div>
+            <StoreImg src={store.image[1]} className = 'second-img'/>
             <StoreBackImg
               style={{
-                backgroundImage: `url(${initialStore[1].store_image[3]})`,
+                backgroundImage: `url(${store.image[2]})`,
               }}
               className="additional-img"
-            >
+              onClick = {moreImgHandler}
+              >
               +
             </StoreBackImg>
-          </div>
+            </div>
+
+          </StoreImgBox>
+
           <div className="store-detail-box">
-            <StoreAddressP>📍 {initialStore[1].address}</StoreAddressP>
-            <StoreAddressP>📱 {initialStore[1].mobile}</StoreAddressP>
+            <StoreAddressP>📍 {store.address}</StoreAddressP>
+            <StoreAddressP>📱 {store.number}</StoreAddressP>
             <hr />
             <StoreInfoP className="store-introduce">
-              {initialStore[1].introduce}
+              {store.introduce}
             </StoreInfoP>
           </div>
         </StoreIntro>
 
         {/* 메뉴리스트 컴포넌트 */}
-        <MenuList />
+        <MenuList 
+        store = {store}
+        />
       </StoreDataWrapper>
+
+      {openModal ?
+      <StoreImgModal
+      openModal = {openModal}
+      setOpenModal = {setOpenModal}
+      modalTitleText = '모든 이미지 나오는부분'
+      modalText = '슬라이드넣을예정'
+      modalBtn = '닫기'
+      />
+      :null    
+    }
     </Container>
   );
 }

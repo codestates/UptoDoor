@@ -11,45 +11,10 @@ import {
 import Item from './Item';
 import ConfirmModal from '../common/Modal/ConfirmModal';
 
-function MenuList():any {
-  const dummy = [
-    {
-      id: 1,
-      name: "버터치킨커리",
-      price: 10000,
-      detail: "대표메뉴, 안매움",
-      image: "./images/curry.png",
-    },
-    {
-      id: 2,
-      name: "마르게리따 피자",
-      price: 13000,
-      detail: "3~4인용",
-      image: "./images/pizza.png",
-    },
-    {
-      id: 4,
-      name: "로제 파스타",
-      price: 12000,
-      detail: "특제 로제소스로 만든 파스타",
-      image: "./images/pasta.png",
-    },
-    {
-      id: 41,
-      name: "오징어 먹물 치아바타",
-      price: 4000,
-      detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
-      image: "./images/salad.png",
-    },
-    {
-      id: 42,
-      name: "스페셜11 스팸에그 토스트",
-      price: 5000,
-      detail: "스팸 + 에그 + 글루텐프리 식빵+ 특제 소스",
-      image: "./images/toast.png",
-    },
-  ];
-  const history = useHistory();
+function MenuList({store}:any):any {
+  console.log('menulist===>',store.menus)
+
+  const history = useHistory();  
   const state = useSelector((state) => state);
   const { cart }: any = state;
   const { menu} = cart
@@ -59,6 +24,7 @@ function MenuList():any {
 
   const addCartHandler = (item:any) => {
     // 메뉴의 id와 item.id 가 같으면 quantity 만 추가, 아니면 디스패치 애드카트에 아이템추가.
+    console.log('받아온아이템',item);
     if (!cart.menu.map((el:any) => el.id).includes(item.id)) {
       item = {...item, quantity : 1 }
       dispatch(addCart(item))
@@ -82,8 +48,8 @@ function MenuList():any {
     <MenuOrderContainer>
       <span>🍽 MENU</span>
       <MenuContainer>
-        {dummy &&
-          dummy.map((item:{}, idx:number) => {
+        {store.menus &&
+          store.menus.map((item:{}, idx:number) => {
             return (
               <Item
                 item={item}
@@ -110,7 +76,6 @@ function MenuList():any {
           취소
         </MiddleButton>
         <br />
-        {/* <MiddleButton className = 'middle call-btn'>사장님한테 전화하기</MiddleButton><br/> */}
       </BtnBox>
       {openModal ? 
         <ConfirmModal

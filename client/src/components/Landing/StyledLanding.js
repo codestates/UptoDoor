@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { UltraLargeFont,
   TextLightGrey,MainColor,TextDarkGrey,
   LargeFont, SmallFont, MediumFont } from '../GlobalStyle'
+import {showModal} from '../common/Modal/styledModal'
 
 //!intro
 export const LandingIntroContainer = styled.main`
@@ -195,13 +196,19 @@ margin : 0;
 `
 export const GradientEdge = styled.div`
 position: absolute;
-bottom : 0;
+bottom : -40px;
 height : 300px;
 max-height : 20%;
 width : 100%;
 background-image: 
 linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255));
 opacity : 1;
+@media screen and (min-width: 768px) {
+  bottom : -10px;
+}
+@media screen and (min-width: 1140px) {
+  bottom : 0;
+}
 `
 //!info
 export const LandingInfoContainer = styled.div`
@@ -213,7 +220,6 @@ export const LandingInfoContainer = styled.div`
     padding: 60px 0;
   }
 `;
-
 export const LandingInfoWrapper = styled.div`
   /* border: 3px solid; */
   /* padding-bottom: 40px; */
@@ -234,7 +240,6 @@ display: grid;
     height: 450px;
   }
 `;
-
 export const InfoRow = styled.div`
   display: grid;
   grid-auto-columns: minmax(1fr, 2fr);
@@ -248,7 +253,6 @@ export const InfoRow = styled.div`
       imgStart ? `'col2 col1'` : `'col1 col2'`};
   }
 `;
-
 export const Column1 = styled.div`
 
   grid-area: col1;
@@ -258,7 +262,6 @@ export const Column1 = styled.div`
     /* padding: 0 15px; */
   }
 `;
-
 export const Column2 = styled.div`
   padding: 0 15px;
   grid-area: col2;
@@ -267,7 +270,6 @@ export const Column2 = styled.div`
     margin-bottom: 15px;
   }
 `;
-
 export const TextWrapper = styled.div`
   max-width: 450px;
   height: 100%;
@@ -277,7 +279,6 @@ export const TextWrapper = styled.div`
     margin: ${({second})=> (second ? '0 30px 24px 0' : '0 0 24px 30px')}
   }
 `;
-
 export const Heading = styled.h1`
   color: #000;
   font-size: 20px;
@@ -296,7 +297,6 @@ export const Heading = styled.h1`
     text-align: left;
   }
 `;
-
 export const Subtitle = styled.p`
   max-width: 440px;
   /* margin-bottom: 35px; */
@@ -315,7 +315,6 @@ export const Subtitle = styled.p`
     margin-bottom: 6px;
   }
 `;
-
 export const ImgWrap = styled.div`
 display: flex;
 justify-content: center;
@@ -325,7 +324,6 @@ justify-content: center;
     height: 330px;
   }
 `;
-
 export const Img = styled.img`
   width: 100%;
   padding-right: 0;
@@ -334,7 +332,6 @@ export const Img = styled.img`
     width:330px;
   }
 `;
-
 //!Value
 export const LandingValueContainer = styled.main`
 width: 100%;
@@ -343,6 +340,7 @@ export const LandingValueWrapper = styled.section`
 display: flex;
 flex-direction: column;
 transition: all 1s ease;
+min-width: 375px;
 >.focus {
   height : 100%;
   @media screen and (min-width: 768px) {
@@ -440,7 +438,10 @@ padding : 20px;
 }
 `
 export const H3 = styled.h3`
-margin : 10px 0;
+/* line-height: 30px; */
+margin-bottom: ${({endText})=> (endText ? '20px' : '10px')};
+color: ${({endText})=> (endText ? TextDarkGrey : 'unset')};
+font-weight: ${({endText})=> (endText ? '500' : '500')};
 @media screen and (min-width: 768px) {
   font-size: ${MediumFont}
   }
@@ -469,5 +470,81 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-border : 3px solid;
+padding : 30px;
+box-sizing: border-box;
+@media screen and (min-width: 768px) {
+}
+`
+export const LanindgFindWrapper = styled.div`
+width: 100%;
+min-width: 375px;
+/* border : 3px solid pink; */
+margin : 20px 0;
+`
+export const LandingEndWrapper = styled.div`
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+/* border : 3px solid magenta; */
+`
+// 랜딩지도 전체부분 스타일
+export const LandingMapWrapperContainer = styled.section`
+transition: all 0.3;
+margin : 0 auto;
+width : 80%;
+max-width: 500px;
+`
+// 랜딩셀렉트부분 스타일
+export const LandingMapSelectContainer = styled.div`
+
+`
+export const LandingMapSelectWrapper = styled.div`
+/* display: flex;
+align-items: flex-end; */
+height : 50px;
+margin : 20px 0 0;
+>.city-selection{
+  /* border : 3px solid skyblue; */
+  z-index : 1;
+  /* width: 50%; */
+  >div>div>div{
+    color : ${TextDarkGrey};
+  }
+}
+`
+export const H4 = styled.h4`
+animation: ${showModal} 0.4s;
+>span{
+  font-size: ${MediumFont};
+  font-weight: 400;
+  color : #000;
+}
+&:nth-child(1){
+  font-size: 34px;
+  font-weight: 800;
+  background: -webkit-linear-gradient(left, mediumturquoise, #5d9cec);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+  @media screen and (min-width: 768px) {
+    font-size: 38px;
+  }
+}
+font-size: ${MediumFont};
+font-weight: 400;
+
+`
+// 랜딩지도부분 스타일
+export const LandingMapContainer = styled.div`
+/* border : 3px solid green; */
+margin : 10px auto;
+width : 100%;
+height : 250px;
+border-radius : 8px;
+z-index : 0;
+@media screen and (min-width: 1140px) {
+    height : 300px; 
+  }
 `

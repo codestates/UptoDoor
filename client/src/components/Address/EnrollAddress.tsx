@@ -12,6 +12,7 @@ import {
 import { SmallButton } from "../common/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from '../../_actions/user_action';
+import ConfirmModal from "../common/Modal/ConfirmModal";
 const { kakao }: any = window;
 
 function EnrollAddress() {
@@ -23,7 +24,7 @@ function EnrollAddress() {
   
   const [current, setCurrent] = useState("")
   const [switched, setSwitched ] = useState("");
-  const dispatch = useDispatch();
+  const dispatch:any = useDispatch();
   const [main, setMain] = useState(mainAddress);
   const [mainDetail, setMainDetail] = useState(mainAddressDetail);
   const [sub, setSub] = useState(subAddress);
@@ -33,7 +34,9 @@ function EnrollAddress() {
   const [xValue, setXValue] = useState('');
   const [yValue, setYValue] = useState('');
 
-  
+  const [openModal, setOpenModal] = useState(false);
+  const [failModal, setFailModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false)
 
   const onChangeMainAddress = useCallback((data) => {
     
@@ -62,7 +65,7 @@ function EnrollAddress() {
   const addressHandler = (e: any, name:string) => {
     e.preventDefault();
     if (!id) {
-      alert("로그인이 필요한 서비스입니다.")
+      setLoginModal(true);
     } else {
         if (name === "main") {
           if (mainAddressDetail === undefined) return alert("상세 주소란을 입력해주세요.");
@@ -73,10 +76,15 @@ function EnrollAddress() {
               main_xvalue: xValue,
               main_yvalue: yValue
             };
-            dispatch(addAddress(mainAdd,name));
+            dispatch(addAddress(mainAdd, name))
+              .then((res: any) => {
+              if (res.payload.message === "address check success") {
+                setOpenModal(true);
+              }
+            })
           }
           else {
-            alert("동네 인증에 실패")
+            setFailModal(true)
           }   
       } else {
           if (subAddressDetail=== undefined) return alert("상세 주소란을 입력해주세요.");
@@ -87,10 +95,14 @@ function EnrollAddress() {
                 sub_xvalue: xValue,
                 sub_yvalue: yValue
               };
-            dispatch(addAddress(subAdd,name));
+            dispatch(addAddress(subAdd,name)).then((res: any) => {
+              if (res.payload.message === "address check success") {
+                setOpenModal(true);
+              }
+            });
           }
         else {
-          alert("동네 인증에 실패")
+          setFailModal(true)
         }
       }
       }
@@ -178,7 +190,6 @@ function EnrollAddress() {
           />
           <DetailAddress>
             <input
-              required
               type="text"
               value={mainDetail}
               onChange={(e) => {setMainDetail(e.target.value) 
@@ -204,7 +215,6 @@ function EnrollAddress() {
           <AddressTitle name="no"/>
           <DetailAddress>
             <input
-              required
               type="text"
               value={subDetail}
               onChange={(e) => {setSubDetail(e.target.value) 
@@ -231,6 +241,39 @@ function EnrollAddress() {
             } }          />
         </ModalContainer>
       ) : null}
+      {openModal ? 
+        <ConfirmModal
+          openModal={openModal}
+          url='/address'
+          modalTitleText="동네 인증"
+          modalText="주소 인증에 성공하였습니다. 감사합니다."
+          modalBtn="확인"
+          setOpenModal={setOpenModal}
+        /> :
+        null
+      }
+      {failModal ?
+        <ConfirmModal
+          openModal={failModal}
+          url='/address'
+          modalTitleText="동네 인증"
+          modalText="주소 인증에 실패하였습니다. 다시 시도해주세요."
+          modalBtn="확인"
+          setOpenModal={setFailModal}
+        />
+        :
+        null
+      }
+      {loginModal ?
+      <ConfirmModal
+          openModal={loginModal}
+          url='/address'
+          modalTitleText="동네 인증"
+          modalText="로그인이 필요한 서비스 입니다."
+          modalBtn="확인"
+          setOpenModal={setLoginModal}
+        />
+      : null}
     </AddressContainer>
   );
 }

@@ -17,7 +17,7 @@ router.post('/users/address', auth, controllers.Address);
 router.post('/admin/store', auth, controllers.Store);
 router.get('/admin/store/:id', controllers.StoreData);
 router.patch('/admin/store/:id', auth, controllers.UpdateStore);
-router.get('/admin/admininfo', auth, controllers.AdminInfo);
+router.get('/admin/admininfo', controllers.AdminInfo);
 router.get('/store', controllers.StoreMap);
 router.get('/storeinfo/:id', auth, controllers.StoreInfo);
 router.get('/auth/email', controllers.Email);

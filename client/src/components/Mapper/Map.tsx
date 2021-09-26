@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 //   Keyword : any,
 // }
 
-function Map({filterClickHandler,selectAddress}:any) {
+function Map({filterClickHandler,selectAddress,clickHashtagHandler}:any) {
   const state = useSelector((state) => state);
   const { store }: any = state;
   // useEffect(() => {
@@ -15,7 +15,7 @@ function Map({filterClickHandler,selectAddress}:any) {
   //   },[initialStore]);  
   
   useEffect(() => {
-    search(store, selectAddress,filterClickHandler)
+    search(store, selectAddress,filterClickHandler,clickHashtagHandler)
   }, [store,selectAddress])
   
   return (

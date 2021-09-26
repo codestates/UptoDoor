@@ -376,6 +376,12 @@ export const InfoCheck = styled.div`
       margin-bottom: 4px;
       letter-spacing: -1px;
       margin-right: 10px;
+
+      >span {
+        font-size: 12px;
+        font-weight:400;
+        margin-left:4px;
+      }
     }
     > span {
       display: flex;

@@ -8,7 +8,6 @@ import {
 } from "./type";
 
 
-
 export const setQuantity = (quantity:number, id:string):any => {
   return {
     type: SET_QUANTITY,
@@ -47,7 +46,8 @@ export const addAllCartToOrder = (data: {}) => {
   };
 };
 
-export const setAddress = (selected_address:string,selected_address_detail:string) => {
+export const setAddress = (selected_address: string, selected_address_detail: string) => {
+
   return {
     type: SET_ADDRESS,
     payload: {

@@ -316,16 +316,11 @@ export const initialHash = [
   },
   {
     id: 6,
-    category: "etc",
-    hash_arr: [],
-  },
-  {
-    id: 7,
     category: "beauty",
     hash_arr: [],
   },
   {
-    id: 8,
+    id: 7,
     category: "etc",
     hash_arr: [],
   },

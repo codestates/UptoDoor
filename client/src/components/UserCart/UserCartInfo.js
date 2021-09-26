@@ -32,15 +32,15 @@ import {
   Title
 } from "../GlobalStyle";
 import { MoneyCheck } from '../UserOrder/StyledUserOrder';
-import Modal from '../common/Modal/Modal'
+import ConfirmModal from "../common/Modal/ConfirmModal";
+import { useHistory } from "react-router";
 
 function UserCartInfo() {
-  
+  const history = useHistory();
   const state = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
-  const [openModal , setOpenModal] = useState(false)
 
   const [timeOtions, setTimeOtions] = useState("");
   const [detailOption, setDetailOption] = useState("");
@@ -106,11 +106,7 @@ function UserCartInfo() {
   //* 제출 핸들러
   const postHandler = useCallback((e) => {
     e.preventDefault();
-    if (cart.selected_address === null && cart.selected_address_detail === null) {
-      console.log("=====user====", user);
-      setOpenModal(true);
-      return false;
-    }
+    
     const menu = []
     let cartArr = state.menu.map((el) => el);
     for (let i = 0; i < cartArr.length; i++) {
@@ -118,7 +114,17 @@ function UserCartInfo() {
         menu.push(cartArr[i]);
       }
     }
-    console.log(menu);
+    console.log("asdasdkadahdkk메뉴",menu);
+    if (menu.length === 0) {
+      console.log("=====user====", user);
+      return setOpenModal(true);
+    }
+    
+
+    console.log(termsOptions, dayOptions, timeOtions);
+    if (!termsOptions || dayOptions.length === 0 || !timeOtions) {
+      return setOptionsModal(true);
+    }
     const data = {
       menu: menu,
       delivery_term: termsOptions,
@@ -132,9 +138,6 @@ function UserCartInfo() {
     //! dispatch 해줘야함
     console.log("data", data);
     dispatch(addAllCartToOrder(data))
-      // .then(() => {
-      
-    // })
     window.location.href = "/userorder";
   });
 
@@ -147,8 +150,8 @@ function UserCartInfo() {
   },[]);
   //*  뒤로가는 핸들러
   const goBackHandler = useCallback(() => {
-    window.history.back();
-  });
+    history.go(-1);
+  },[]);
 
   //계산
   const getPrice = () => {
@@ -200,9 +203,6 @@ function UserCartInfo() {
     return plus;
   }, [termsOptions, dayOptions, plusMoney, plusMoneyChecked]);
     
-  const closeModal = () => {
-    setOpenModal((prev)=>!prev)
-  }
 
   const total = getPrice();
   
@@ -215,6 +215,11 @@ function UserCartInfo() {
     { mon: 6, week: 24 },
     { mon: 12, week: 52 },
   ];
+
+  const [openModal, setOpenModal] = useState(false);
+  const [optionsModal, setOptionsModal] =useState(false)
+
+
   return (
     <Container>
       <Title>장바구니</Title>
@@ -337,7 +342,6 @@ function UserCartInfo() {
                         type="radio"
                         name="delivery_term"
                         defaultValue={mon.mon}
-                        required
                         onClick={() => {
                           setTermsOptions(mon.mon);
                         }}
@@ -390,13 +394,11 @@ function UserCartInfo() {
               <UserCheckListBox>
                 <h4>몇 시에 받고 싶으신가요?</h4>
                 <input
-                  
                   type="time"
                   name="delivery_time"
                   onChange={(e) => {
                     setTimeOtions(e.target.value);
                   }}
-                  required
                 />
               </UserCheckListBox>
               <UserCheckListBox>
@@ -440,25 +442,32 @@ function UserCartInfo() {
                 주문하기
               </SmallButton>
 
-              <SmallButton onClick={goBackHandler}>뒤로가기</SmallButton>
+              <SmallButton type="button" onClick={goBackHandler}>
+                뒤로가기
+              </SmallButton>
             </ButtonWrapper>
           </CartCheckListWrapper>
         </CartWrapper>
       </form>
 
-    {openModal ?
-    <Modal 
-      openModal = {openModal}
-      closeModal = {closeModal}
-      modalTitleText = '동네인증을 완료해주세요'
-      modalBtn='확인' //동네인증 페이지로 가게해야하나?
-      setOpenModal={setOpenModal}
-      url="/address"
-    />
-    :
-    null
-    }
-
+      {openModal ? (
+        <ConfirmModal
+          openModal={openModal}
+          modalTitleText="장바구니"
+          modalText="제품을 선택해주세요"
+          modalBtn="확인" //동네인증 페이지로 가게해야하나?
+          setOpenModal={setOpenModal}
+        />
+      ) : null}
+      {optionsModal ? (
+        <ConfirmModal
+          openModal={optionsModal}
+          modalTitleText="장바구니"
+          modalText="구독 옵션을 선택해주세요"
+          modalBtn="확인" //동네인증 페이지로 가게해야하나?
+          setOpenModal={setOptionsModal}
+        />
+      ) : null}
     </Container>
   );
 }

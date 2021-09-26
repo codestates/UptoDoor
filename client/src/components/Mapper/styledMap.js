@@ -186,12 +186,12 @@ export const MapHashTagBox = styled.div`
 export const MapContainer = styled.div`
 border-radius : 8px;
 margin : 0 auto;
-width : 100%;
-height : 480px;
+width : 95%;
+height : 440px;
 z-index: 1;
 @media screen and (min-width: 768px) {
     height : 400px;
-    margin :0;
+    margin :0 auto;
 }
 @media screen and (min-width: 1000px) {
   max-width: 640px;
@@ -351,14 +351,14 @@ export const MapAppContainer = styled.div`
   position: relative;
   padding: 12px 10px;
   margin: 0 auto;
-  width: 90%;
+  width: 86%;
   background-color: #f7f7f7;
   height: 120px;
   overflow: hidden;
   overflow-y: auto;
   bottom: 120px;
   border-radius: 8px;
-  z-index: 20000;
+  z-index: 12;
 
   /* &::-webkit-scrollbar {
     background-color: ${MainColor};
@@ -385,9 +385,10 @@ export const MapAppContainer = styled.div`
   }
 `;
 
-export const LinkR = styled(Link)`
-  text-decoration: none;
-  
+export const MoveBtn = styled.span`
+width: 20px;
+height: 20px;
+text-align: right;
   @media screen and (min-width: 767px) {
     margin: 0;
     margin-left: 40px;

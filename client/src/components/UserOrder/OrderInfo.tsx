@@ -46,7 +46,7 @@ const OrderInfo = (props:any) => {
           </OrderUserInfoContent>
           <InfoCheck>
             <div>
-              <h5>주문자명</h5>
+              <h5>주문자명<span>(입력)</span></h5>
             </div>
             <input
               type="text"
@@ -54,7 +54,7 @@ const OrderInfo = (props:any) => {
               required
             />
             <div>
-              <h5>받으실 연락처</h5>
+              <h5>받으실 연락처<span>(입력)</span></h5>
               <span >
                 <input type="checkbox"onClick={mobileChecker} />
                 기존 번호와 일치

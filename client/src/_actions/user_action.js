@@ -122,11 +122,13 @@ export const addAddress = (address, name) => {
   console.log("액션에서", address);
 
   const request = 
-  axios.post(`${END_POINTS}/users/address`, address);
+    axios.post(`${END_POINTS}/users/address`, address).then((res) => {
+      return res.data;
+    })
   console.log(request);
   return {
     type: ADD_ADDRESS,
-    payload: "좋아",
+    payload: request,
   };
 };
 

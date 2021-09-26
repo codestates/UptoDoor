@@ -50,6 +50,7 @@ function MenuList():any {
   ];
   const history = useHistory();
   const state = useSelector((state) => state);
+  console.log("state",state)
   const { cart }: any = state;
   const { menu} = cart
   console.log("메뉴", menu)

@@ -205,15 +205,12 @@ export const BtnBox = styled.div`
 text-align: center;
 width: 100%;
 margin-top : ${({btnboxMargin})=> (btnboxMargin ? '18px' : 0)};
-btnboxMargin
->a{
-text-decoration: none;
-}
+
 @media screen and (min-width: 1140px) {
   display: flex;
   justify-content: center;
 }
->.middle, a>.middle{
+>.middle{
   margin : 5px 0;
   width: 100%;
   height: 50px;

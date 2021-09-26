@@ -11,17 +11,7 @@ import { useHistory } from 'react-router-dom';
 
 function Modal(props:any) {
   const history:any = useHistory()
-  const { openModal, setOpenModal, modalTitleText ,modalText, modalBtn,url } = props;
-
-  const closeModal = () => {
-    setOpenModal(false);
-    if (url) {
-      history.push(url);
-    } else {
-      history.push('/');
-    }
-    
-  }
+  const { openModal, setOpenModal, modalTitleText ,modalText, modalBtn,url,closeModal } = props;
 
   return (
       openModal ? (

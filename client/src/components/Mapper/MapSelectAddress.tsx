@@ -7,17 +7,23 @@ import {
 import MapSelectModal from './MapSelectModal';
 import {useDispatch, useSelector } from 'react-redux'
 import {setAddress} from '../../_actions/cart_action'
+import ConfirmModal from '../common/Modal/ConfirmModal';
 
-function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,setSelectAddressDetail }:any):any {
+function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,setSelectAddressDetail,setLoginModal }:any):any {
   //* 주소 가져오기
   const state = useSelector((state) => state);
   const { user }:any = state;
   const { mainAddress, mainAddressDetail, subAddress, subAddressDetail } = user;
   const [openModal, setOpenModal] = useState(false);
-
+  const [selectFailModal, setSelectFailModal] = useState(false);
   const dispatch = useDispatch();
   const MapSelectModalHandler = () => {
-    setOpenModal(true);
+    if (!user.message) {
+      setLoginModal(true)
+    } else {
+      setOpenModal(true);
+    }
+    
   };
   const closeModal = (e:any) => {
     setOpenModal((prev) => !prev);
@@ -25,10 +31,16 @@ function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,
     // resultAdd 의 state 에 값 넣기.
     // console.log(e.target.innerText);
     if (e.target.innerText === "HOME") {
+      if (!mainAddress && !mainAddressDetail) {
+        setSelectFailModal(true)
+      }
       dispatch(setAddress(mainAddress, mainAddressDetail));
       setSelectAddress(mainAddress);
       setSelectAddressDetail(mainAddressDetail)
     } else if (e.target.innerText === "OFFICE") {
+      if (!subAddress && !subAddressDetail) {
+        setSelectFailModal(true)
+      }
       dispatch(setAddress(subAddress, subAddressDetail));
       setSelectAddress(subAddress);
       setSelectAddressDetail(subAddressDetail)
@@ -57,6 +69,16 @@ function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,
           modalTitleText="동네를 선택하세요"
         />
       ) : null}
+      {selectFailModal ? 
+        <ConfirmModal
+        openModal={selectFailModal}
+          url='/mapper'
+          modalTitleText="주소 선택"
+          modalText="주소가 없습니다. 주소를 인증해주세요"
+          modalBtn="확인"
+          setOpenModal={setSelectFailModal}
+        />
+      : null}
     </>
   );
 }

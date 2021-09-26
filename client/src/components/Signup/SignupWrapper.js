@@ -12,9 +12,10 @@ import {
   SignupLogo,
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
-
+import SigninModal from '../common/Signin/SigninModal'
 import axios from "axios";
 import { END_POINTS } from '../../_actions/type'
+import ConfirmModal from '../common/Modal/ConfirmModal'
 axios.defaults.withCredentials=true;
 
 function SignupWrapper() {
@@ -37,6 +38,9 @@ function SignupWrapper() {
   const [age, setAge] = useState('');
   const [isAllchecked , setIsAllchecked] = useState(false);
 
+  const [successModal, setSuccessModal] = useState(false);
+  const [signinModal, setSigninModal] = useState(false);
+
   const signupSubmitHandler = useCallback((e) => {
     e.preventDefault();
     if(password !== passwordChk) return false;
@@ -50,9 +54,11 @@ function SignupWrapper() {
     }
     dispatch(signUp(userinfo))
     .then((res) => {
-      if (res.payload.message  === 'Signup success') {
-        alert('회원가입성공')
-        window.location.href="https://uptodoor.shop/"
+      console.log('===',res.payload)
+      if (res.payload.message === 'Signup success') {
+        setSigninModal(true);
+        setSuccessModal(true);
+        // window.location.href="https://uptodoor.shop/"
       } else {
         alert('회원가입 조건을 충족해주세요.');
       }
@@ -122,90 +128,125 @@ function SignupWrapper() {
     history.push('/');
   }
 
+  useEffect(() => {  
+    console.log("11", successModal);
+    console.log("22", signinModal);
+  }, [successModal, signinModal]);
+
   return (
     <SignupContainer>
       {/* <H1>회원가입</H1> */}
-      <SignupLogoBox className = 'signup-logo-box'>
-        <SignupLogo src = './images/updodoor.png' alt = 'img'/>
+      <SignupLogoBox className="signup-logo-box">
+        <SignupLogo src="./images/updodoor.png" alt="img" />
       </SignupLogoBox>
-      
-      <Form onSubmit = {signupSubmitHandler}>
-        <Label>E-mail</Label><SideSpan>*필수</SideSpan>
-        <SmallButton 
-        className = 'cert-email-btn'
-        type="button"
-        onClick = {()=>certEmailHandler(certEmail)}>
-          이메일 인증</SmallButton><br/>
-        <SignUpInput 
-        required
-        type = 'email' 
-        className = 'email-input'
-        placeholder = 'email@email.com'
-        value = {email} 
-        onChange = {onChangeEmailHandler}
-        />
-        {certEmail ? 
-        <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP>
-        : null}
-        <br/>
 
-        <Label>비밀번호</Label><SideSpan>*필수</SideSpan><br/>
-        <SignUpInput 
-        required
-        type = 'password' 
-        placeholder = 'password'
-        value = {password} 
-        onChange = {onChangePwHandler}
-        /><br/>
-        {passwordRegErr ? 
-        <ErrMsgP>비밀번호는 최소 6자리에서 12자리 사이의<br/> 영문,숫자 조합이어야 합니다.</ErrMsgP>
-        : null}
-
-        <Label>비밀번호 확인</Label><SideSpan>*필수</SideSpan><br/>
-        <SignUpInput 
-        required
-        type = 'password' 
-        placeholder = 'password check'
-        value = {passwordChk} 
-        onChange = {onChangePwChkHandler}
-        /><br/>
-        {passwordErr ? 
-        <ErrMsgP>비밀번호가 일치하지 않습니다.</ErrMsgP>
-        :null}
-        
-        <Label>이름</Label><SideSpan>*필수</SideSpan><br/>
-        <SignUpInput 
-        required
-        type = 'text' 
-        placeholder = '이름'
-        value = {name} 
-        onChange = {onChangeNameHandler}
-        /><br/>
-
-        <Label>모바일</Label><SideSpan>*필수</SideSpan><br/>
+      <Form onSubmit={signupSubmitHandler}>
+        <Label>E-mail</Label>
+        <SideSpan>*필수</SideSpan>
+        <SmallButton
+          className="cert-email-btn"
+          type="button"
+          onClick={() => certEmailHandler(certEmail)}
+        >
+          이메일 인증
+        </SmallButton>
+        <br />
         <SignUpInput
-        required
-        type = 'text' 
-        placeholder = '모바일'
-        value = {mobile} 
-        onChange = {onChangeMobileHandler}
-        /><br/>
-
-        <SignupOptions 
-        selectInputHandler = {selectInputHandler}
+          required
+          type="email"
+          className="email-input"
+          placeholder="email@email.com"
+          value={email}
+          onChange={onChangeEmailHandler}
         />
+        {certEmail ? <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> : null}
+        <br />
 
-        <SignupTerm 
-        setIsAllchecked = {setIsAllchecked}
-        isAllchecked = {isAllchecked}
+        <Label>비밀번호</Label>
+        <SideSpan>*필수</SideSpan>
+        <br />
+        <SignUpInput
+          required
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={onChangePwHandler}
         />
-        <div className = 'signup-btn-box'>
-        <SmallButton primary type = 'submit'>회원가입</SmallButton>
-        <SmallButton onClick = {cancleHandler}>취소</SmallButton>
+        <br />
+        {passwordRegErr ? (
+          <ErrMsgP>
+            비밀번호는 최소 6자리에서 12자리 사이의
+            <br /> 영문,숫자 조합이어야 합니다.
+          </ErrMsgP>
+        ) : null}
+
+        <Label>비밀번호 확인</Label>
+        <SideSpan>*필수</SideSpan>
+        <br />
+        <SignUpInput
+          required
+          type="password"
+          placeholder="password check"
+          value={passwordChk}
+          onChange={onChangePwChkHandler}
+        />
+        <br />
+        {passwordErr ? <ErrMsgP>비밀번호가 일치하지 않습니다.</ErrMsgP> : null}
+
+        <Label>이름</Label>
+        <SideSpan>*필수</SideSpan>
+        <br />
+        <SignUpInput
+          required
+          type="text"
+          placeholder="이름"
+          value={name}
+          onChange={onChangeNameHandler}
+        />
+        <br />
+
+        <Label>모바일</Label>
+        <SideSpan>*필수</SideSpan>
+        <br />
+        <SignUpInput
+          required
+          type="text"
+          placeholder="모바일"
+          value={mobile}
+          onChange={onChangeMobileHandler}
+        />
+        <br />
+
+        <SignupOptions selectInputHandler={selectInputHandler} />
+
+        <SignupTerm
+          setIsAllchecked={setIsAllchecked}
+          isAllchecked={isAllchecked}
+        />
+        <div className="signup-btn-box">
+          <SmallButton primary type="submit">
+            회원가입
+          </SmallButton>
+          <SmallButton onClick={cancleHandler}>취소</SmallButton>
         </div>
       </Form>
+      {successModal ? (
+        <ConfirmModal
+          openModal={successModal}
+          setOpenModal={setSuccessModal}
+          modalTitleText="회원가입"
+          modalText="회원가입에 성공했습니다.로그인 페이지로 이동합니다."
+          modalBtn="확인"
+        />
+      ) : null}
+      {signinModal ? (
+        <SigninModal
+          modalOpen={signinModal}
+          setModalOpen={setSigninModal}
+        />
+      ) : null}
     </SignupContainer>
-  )
+  );
 }
 
 export default SignupWrapper

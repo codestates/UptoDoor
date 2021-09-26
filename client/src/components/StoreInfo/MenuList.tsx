@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {useSelector, useDispatch} from "react-redux";
 import {addCart} from '../../_actions/cart_action'
 import {MiddleButton} from '../common/Button/Button'
@@ -9,6 +9,7 @@ import {
   BtnBox
 } from './StyledStoreData'
 import Item from './Item';
+import ConfirmModal from '../common/Modal/ConfirmModal';
 
 function MenuList({store}:any):any {
   console.log('menulist===>',store.menus)
@@ -17,6 +18,8 @@ function MenuList({store}:any):any {
   const state = useSelector((state) => state);
   const { cart }: any = state;
   const { menu} = cart
+  console.log("메뉴", menu)
+  const [openModal,setOpenModal] = useState(false);
   const dispatch:any = useDispatch()
 
   const addCartHandler = (item:any) => {
@@ -32,6 +35,15 @@ function MenuList({store}:any):any {
   const cancleClickHandler = () => {
     history.go(-1);
   }
+
+  const moveOrderHandler = () => {
+    if (cart.menu.length===0) {
+      setOpenModal(true);
+    } else {
+      history.push(`/usercart`)
+    }
+  }
+
   return (
     <MenuOrderContainer>
       <span>🍽 MENU</span>
@@ -50,12 +62,12 @@ function MenuList({store}:any):any {
           })}
       </MenuContainer>
       <BtnBox>
-        <Link to="/usercart">
-          <MiddleButton className="middle cart-btn">
+        <MiddleButton
+          onClick={moveOrderHandler}
+          className="middle cart-btn">
             장바구니
             <span> ({menu && menu.length})</span>
           </MiddleButton>
-        </Link>
 
         <MiddleButton
           onClick={cancleClickHandler}
@@ -65,6 +77,15 @@ function MenuList({store}:any):any {
         </MiddleButton>
         <br />
       </BtnBox>
+      {openModal ? 
+        <ConfirmModal
+          openModal={openModal}
+          modalTitleText="메뉴 선택"
+          modalText="제품을 선택해주세요"
+          modalBtn="확인"
+          setOpenModal={setOpenModal}
+        />
+      : null}
     </MenuOrderContainer>
   );
 }

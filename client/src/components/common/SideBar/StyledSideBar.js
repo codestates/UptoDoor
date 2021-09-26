@@ -11,7 +11,7 @@ export const SidebarContainer = styled.aside`
   display: grid;
   align-items: center;
   left: 0;
-  z-index: 10;
+  z-index: 19;
   opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
   @media screen and (min-width: 767px) {
@@ -32,7 +32,7 @@ export const SidebarWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   /* opacity:1; */
-  z-index: 11;
+  z-index: 20;
 `;
 
 export const Icon = styled.div`

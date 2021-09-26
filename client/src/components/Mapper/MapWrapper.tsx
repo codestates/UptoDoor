@@ -22,10 +22,13 @@ import {
   getFitteredBySearch,
   getStoreData,
 } from "../../_actions/store_action";
+import ConfirmModal from '../common/Modal/ConfirmModal'
 
 function MapWrapper() {
-  const dispatch:any = useDispatch();
-  const store = useSelector((state:any) => state.store);
+  const dispatch: any = useDispatch();
+  const user = useSelector((state: any) => state.user);
+  const store = useSelector((state: any) => state.store);
+  const cart = useSelector((state: any) => state.cart)
   const inputRef:any = useRef();
   useEffect(() => {
     inputRef.current.focus();
@@ -34,7 +37,8 @@ function MapWrapper() {
   const [selectAddress, setSelectAddress] = useState("");
   const [selectAddressDetail, setSelectAddressDetail] = useState('')
   const [filterList, setFilterList] = useState([]);
-  
+  const [loginModal, setLoginModal] = useState(false)
+  const [selectAddressModal, setSelectAddressModal] = useState(false)
   // setmapData 에 필터링한 값 담아서 보여주기
   // 나온 데이터 값의 name 과 place_name의 이름이 같은것을 좌표로 보여준다. 
   //* submit 설치 섭밋
@@ -100,6 +104,7 @@ function MapWrapper() {
           <MapHashWrapper>
             {/* 주소선택 컴포넌트 */}
             <MapSelectAddress
+              setLoginModal={setLoginModal}
               setSelectAddress={setSelectAddress}
               selectAddress={selectAddress}
               setSelectAddressDetail={setSelectAddressDetail}
@@ -117,7 +122,8 @@ function MapWrapper() {
             openInfoModal={undefined} 
             mapData={undefined} />
             <EmptyMap
-              
+              message={user.message}
+              setLoginModal={setLoginModal}
             filterList={filterList} 
             openInfoModal={openInfoModal} />
           </MapHashWrapper>
@@ -131,11 +137,35 @@ function MapWrapper() {
         </MapFlexWrapper>
         
         {openInfoModal ? 
-          <MapInfoModal 
-          mobile 
+          <MapInfoModal
+            cart={cart}
+            setSelectAddressModal={setSelectAddressModal}
+            message={user.message}
+              setLoginModal={setLoginModal}
+            mobile
           filterList={filterList} />
           : 
           null}
+        {loginModal ? 
+          <ConfirmModal
+          openModal={loginModal}
+          url='/mapper'
+          modalTitleText="구독 찾기"
+          modalText="로그인이 필요한 서비스 입니다."
+          modalBtn="확인"
+          setOpenModal={setLoginModal}
+          />
+          : null}
+        {selectAddressModal ? 
+          <ConfirmModal
+          openModal={selectAddressModal}
+          url='/mapper'
+          modalTitleText="구독 찾기"
+          modalText="주소를 선택해주세요"
+          modalBtn="확인"
+          setOpenModal={setSelectAddressModal}
+          />
+        : null}
       </MapWrapperContainer>
     </>
   );

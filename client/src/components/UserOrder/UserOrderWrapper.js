@@ -30,7 +30,8 @@ function UserOrderWrapper() {
   const [orderMobile, setOrderMobile] = useState("");
   const [deliveryName, onChangeDeliveryName] = useInput('')
 
-  const [openModal, setOpenModal]= useState(false)
+  const [openModal, setOpenModal] = useState(false)
+  const [optionsModal, setOptionsModal] = useState(false);
   // console.log("orderMobile", orderMobile);
   // console.log("mobileCheck", mobileCheck);
   // console.log("paymentCheck", paymentCheck);
@@ -58,7 +59,7 @@ function UserOrderWrapper() {
         }
       }).catch((err)=> alert("err입니다", err));
     } else {
-      alert("erro3");
+      setOptionsModal(true);
     }
 
     
@@ -136,17 +137,25 @@ useEffect(() => {
           <MiddleButton>뒤로가기</MiddleButton>
         </ButtonWrapper>
       </div>
-      {openModal ? 
-      <ConfirmModal
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        modalTitleText="주문 완료"
-        modalText="주문이 완료되었습니다. 감사합니다."
-        url="/"
-        modalBtn="확인"
-      />
-      : null
-      }
+      {openModal ? (
+        <ConfirmModal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          modalTitleText="주문 완료"
+          modalText="주문이 완료되었습니다. 감사합니다."
+          url="/"
+          modalBtn="확인"
+        />
+      ) : null}
+      {optionsModal ? (
+        <ConfirmModal
+          openModal={optionsModal}
+          setOpenModal={setOptionsModal}
+          modalTitleText="주문 실패"
+          modalText="모든 정보를 확인해주세요"
+          modalBtn="확인"
+        />
+      ) : null}
     </Container>
   );
 }

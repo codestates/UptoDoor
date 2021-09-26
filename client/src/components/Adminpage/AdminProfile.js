@@ -1,6 +1,4 @@
-import React, {
-  useState
-} from 'react'
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   MypageProfileWrapper,
@@ -14,6 +12,8 @@ import { AdimUl, AdminLi, AdminUlListWrapper } from "./StyledAdminPage";
 import AdminOrderList from './AdminOrderList';
 import AdminOrderWrapper from '../AdminOrderInfo/AdminOrderWrapper';
 import { useSelector } from "react-redux";
+import axios from 'axios';
+import { END_POINTS } from '../../_actions/type';
 
 function AdminProfile() {
 
@@ -32,6 +32,12 @@ function AdminProfile() {
   const listbackHandler = () => {
     setFilteredOrderId("");
   }
+
+  useEffect(() => {
+    axios.get(`${END_POINTS}/admin/store`).then((res) => {
+      console.log(res.data);
+    })
+  }, [])
 
   return (
     <Container>

@@ -27,7 +27,7 @@ export const Header = styled.header`
   justify-content: space-between;
   margin-bottom: 30px;
   transition: all 0.4s;
-  z-index: 4;
+  z-index: 17;
   @media screen and (min-width: 767px) {
     height: 80px;
     margin: 0px auto;

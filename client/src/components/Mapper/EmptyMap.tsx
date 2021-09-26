@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import {
   EmptyMapContainer,
   MapInfoWrapper,
@@ -7,11 +8,20 @@ import {
   StoreName,
   StoreAddress,
   MapInfoWebContainer,
-  LinkR,
+  MoveBtn,
 } from "./styledMap";
 import {ArrowBtn} from '../common/Button/Button'
+import { selectStore } from '../../_actions/cart_action';
+function EmptyMap({ filterList, openInfoModal, message, setLoginModal }:any) {
+const dispatch:any = useDispatch()
+const moveStoreHandler = (id: number) => {
+  if (!message) {
+    setLoginModal(true);
+  }
+  dispatch(selectStore(id));
+};
 
-function EmptyMap({ filterList, openInfoModal }) {
+
   return (
     <EmptyMapContainer>
       {!openInfoModal ? (
@@ -22,7 +32,7 @@ function EmptyMap({ filterList, openInfoModal }) {
       ) : (
         <MapInfoWebContainer>
           {filterList &&
-            filterList.map((el) => {
+            filterList.map((el:any) => {
               return (
                 <MapInfoWrapper key={el.id} className="mapinfo-wrapper">
                   <StoreImg
@@ -34,9 +44,14 @@ function EmptyMap({ filterList, openInfoModal }) {
                     <StoreAddress>{el.address}</StoreAddress>
                   </div>
 
-                  <LinkR to={`/storeinfo/${el.id}`}>
-                    <ArrowBtn className="fas fa-angle-double-right"></ArrowBtn>
-                  </LinkR>
+                  <MoveBtn>
+                    <ArrowBtn
+                      onClick={() => {
+                        moveStoreHandler(el.id);
+                      }}
+                      className="fas fa-angle-double-right"
+                    ></ArrowBtn>
+                  </MoveBtn>
                 </MapInfoWrapper>
               );
             })}

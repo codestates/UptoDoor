@@ -55,12 +55,13 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.h1`
-  width: 80%;
+  width: 90%;
   font-size: 20px;
   margin: 20px auto 24px;
 
   @media screen and (min-width: 1140px) {
     font-size: 24px;
+    width: 85%;
   }
 `;
 

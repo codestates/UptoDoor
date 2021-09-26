@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     const { id,name } = checkAccessToken;
 
     try {
-        //오더테이블에 데이터 추가
+        //오더테이블에 데이터 추가111111111111gi
         const orderData = await order.create({
           user_name: name,
           plus_check: orderInfo.plus_check,

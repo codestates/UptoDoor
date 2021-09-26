@@ -11,7 +11,7 @@ export const showModal = keyframes`
     margin-top: 0;
   }
 `
-const showModalBg = keyframes`
+export const showModalBg = keyframes`
   from {
     opacity: 0;
   }

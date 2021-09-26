@@ -120,7 +120,7 @@ function MyProfile(): any {
               </MypageContent>
               <ButtonWrapper>
                 {user.position === "1" ?
-                  (<button><Link to="/adminedit">가게 관리</Link></button>) :
+                  (<button><Link to="/adminpage">관리자 페이지</Link></button>) :
                   (<button><Link to="/adminpost">가게 등록</Link></button>)
                 }
                 <button><Link to="/mypageedit">프로필 수정</Link></button>

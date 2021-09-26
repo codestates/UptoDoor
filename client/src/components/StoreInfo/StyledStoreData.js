@@ -267,3 +267,12 @@ export const ModalStoreTitleText = styled.h1`
 export const ModalStoreText = styled.h3`
 
 `
+//+사진모달
+export const ModalStoreImgSlideBox = styled.div`
+background-color: rgba(0,0,0,0.2);
+`
+export const ModalStoreImgs = styled.img`
+width: 300px;
+height : 300px;
+object-fit: cover;
+`

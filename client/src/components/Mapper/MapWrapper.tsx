@@ -23,7 +23,6 @@ import {
   getStoreData,
 } from "../../_actions/store_action";
 
-
 function MapWrapper() {
   const dispatch:any = useDispatch();
   const store = useSelector((state:any) => state.store);
@@ -61,7 +60,7 @@ function MapWrapper() {
   };
 
   const clickHashtagHandler = (markers: any) => {
-    console.log("markers클릭", markers)
+    // console.log("markers클릭", markers)
     const filtered = store.filter((el: any) => {
       for (let i = 0; i < markers.length; i++){
         if (markers[i].address == el.address) {
@@ -69,18 +68,18 @@ function MapWrapper() {
         }
       }
     })
-    console.log("filter", filtered);
+    // console.log("filter", filtered);
     setFilterList(filtered);
     setOpenInfoModal(true);
   }
   const filterClickHandler = (address: string) => {
-    console.log("adadasd", address);
-    console.log("Adsadasd", store);
+    // console.log("adadasd", address);
+    // console.log("Adsadasd", store);
     const filtered = store.filter((el: any) => {
       // console.log("el",el)
       return el.address === address
     })
-    console.log("filtered", filtered);
+    // console.log("filtered", filtered);
     setFilterList(filtered);
     setOpenInfoModal(true);
   }

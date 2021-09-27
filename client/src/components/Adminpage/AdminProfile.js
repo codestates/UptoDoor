@@ -53,7 +53,7 @@ function AdminProfile() {
           <MypageProfileBtnWrapper>
             <MypageProfileWrapper>
               <MypageContent>
-                <h3>안녕하세요. {admin.name}님.</h3>
+                <h3>안녕하세요. {admin.nickname}님.</h3>
                 {admin.title === "" ? (
                   <p>가게를 등록해주세요.</p>
                 ) : (

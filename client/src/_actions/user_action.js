@@ -44,7 +44,7 @@ export const signIn = (userinfo) => {
       message: res.data.message,
       id: res.data.userinfo.id,
       email: res.data.userinfo.email,
-      name: res.data.userinfo.name,
+      nickname: res.data.userinfo.nickname,
       mainAddress: res.data.userinfo.mainAddress,
       mainAddressDetail: res.data.userinfo.mainAddressDetail,
       subAddress: res.data.userinfo.subAddress,
@@ -83,9 +83,9 @@ export const editUser = (userinfoEdit) => {
   const request = axios.patch(`${END_POINTS}/users/userinfo`,
   userinfoEdit)
   .then((res)=>{
-  const{name ,mobile,age,gender} =res.data.userinfo
+  const{nickname ,mobile,age,gender} =res.data.userinfo
     return {
-      name,
+      nickname,
       mobile,
       age,
       gender
@@ -179,7 +179,7 @@ export const kakaoSignIn = (authorizationCode) => {
         message: res.data.message,
         id: res.data.userinfo.id,
         email: res.data.userinfo.email,
-        name: res.data.userinfo.name,
+        nickname: res.data.userinfo.nickname,
         mainAddress: res.data.userinfo.mainAddress,
         mainAddressDetail: res.data.userinfo.mainAddressDetail,
         subAddress: res.data.userinfo.subAddress,
@@ -210,7 +210,7 @@ export const naverSignIn = (authorizationCode, state) => {
         message: res.data.message,
         id: res.data.userinfo.id,
         email: res.data.userinfo.email,
-        name: res.data.userinfo.name,
+        nickname: res.data.userinfo.nickname,
         mainAddress: res.data.userinfo.mainAddress,
         mainAddressDetail: res.data.userinfo.mainAddressDetail,
         subAddress: res.data.userinfo.subAddress,

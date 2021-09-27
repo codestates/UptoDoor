@@ -299,3 +299,6 @@ object-fit: contain;
 export const PlusIcon = styled.p`
 text-align: center;
 `
+export const FileUp = styled.input`
+display: none;
+`

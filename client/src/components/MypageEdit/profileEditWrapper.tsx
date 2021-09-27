@@ -25,10 +25,9 @@ function MyProfileEdit() {
 
   const dispatch:any = useDispatch();
   const user = useSelector((state:any) => state.user);
-  
-  // const [name, onChangeNameHandler, setName] = useInput();
 
-  const [name , setName] = useState(user.name);
+
+  const [nickname , setNickname] = useState(user.nickname);
   const [password , setPassword] = useState('');
   const [passwordChk, setPasswordChk] = useState('');
   const [passwordRegErr , setPasswordRegErr ] = useState(false);
@@ -42,8 +41,8 @@ function MyProfileEdit() {
   const [openModal , setOpenModal] = useState(false);
   const [confirmModal , setConfirmModal] = useState(false);
 
-  const onChangeNameHandler = useCallback((e)=>{
-    setName(e.target.value);
+  const onChangeNicknameHandler = useCallback((e)=>{
+    setNickname(e.target.value);
   },[])
 
   const onChangePwHandler = useCallback((e) => {
@@ -112,7 +111,7 @@ function MyProfileEdit() {
 
     const userinfoEdit = {
       password,
-      name,mobile,
+      nickname,mobile,
       gender,age
     }
     dispatch(editUser(userinfoEdit))
@@ -128,7 +127,7 @@ function MyProfileEdit() {
     // .catch((err: any) => {
     //   console.log(err)
     // });
-  },[name,password,passwordChk,mobile,gender,age])
+  },[nickname,password,passwordChk,mobile,gender,age])
 
   return (
     <Container>
@@ -179,8 +178,8 @@ function MyProfileEdit() {
           <ProfileEditInput
           required
           type = 'text'
-          defaultValue = {name}
-          onChange = {onChangeNameHandler}
+          defaultValue = {nickname}
+          onChange = {onChangeNicknameHandler}
           />
         </ProfileEditBox>
 

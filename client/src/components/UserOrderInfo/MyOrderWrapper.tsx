@@ -54,7 +54,7 @@ function MyOrderWrapper({
         </StoreInfoWrapper>
 
         <FlexBox distance>
-          <H3>{user.name} 님</H3>
+          <H3>{user.nickname} 님</H3>
           {orderitem.state === 'cancel' ? 
           <span>의 취소내역을 확인하세요</span>
           :

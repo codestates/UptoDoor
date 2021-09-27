@@ -63,21 +63,3 @@ function MapInfoModal({cart, filterList, setLoginModal, message,setSelectAddress
 }
 
 export default MapInfoModal
-
-
-      // {mapData && mapData.map((el:any,idx:number)=>{
-      //   return (
-      //       <MapInfoWrapper 
-      //       key = {idx}
-      //       className = 'mapinfo-wrapper' 
-      //       onClick={clickChange}>
-      //         <Link to ='/storeinfo'>
-      //           <StoreImg src = '' alt = '업체사진'/>
-      //           <div>
-      //           <StoreName>{el.place_name}</StoreName>
-      //           <StoreAddress>{el.address_name}</StoreAddress>
-      //           </div>
-      //         </Link>
-      //       </MapInfoWrapper>
-      //   )
-      // })}

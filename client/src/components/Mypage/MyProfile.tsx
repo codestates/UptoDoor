@@ -93,7 +93,7 @@ function MyProfile(): any {
           <MypageProfileBtnWrapper>
             <MypageProfileWrapper>
               <MypageContent>
-                <h3>안녕하세요. {user.name}님</h3>
+                <h3>안녕하세요. {user.nickname}님</h3>
                 <p>{user.email}</p>
                 {
                 user.mainAddress === null || 

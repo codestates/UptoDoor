@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     try {
         //오더테이블에 데이터 추가111111111111gi
         const orderData = await order.create({
-          user_name: nickname,
+          user_name: orderInfo.user_name,
           plus_check: orderInfo.plus_check,
           delivery_detail: orderInfo.delivery_detail,
           plus_money: orderInfo.plus_money,

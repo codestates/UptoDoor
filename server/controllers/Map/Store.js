@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
             attributes: { exclude : ['yvalue','xvalue','createdAt','updatedAt','Business_paper']}
         });
         const storeimg = await store.findAll({
-            attributes: { exclude : ['id', 'name', 'number', 'address', 'xvalue', 'yvalue', 'category', 'introduce', 'delivery_time', 'Business_paper','createdAt','updatedAt'] }
+            attributes: { exclude : ['id', 'nickname', 'number', 'address', 'xvalue', 'yvalue', 'category', 'introduce', 'delivery_time', 'Business_paper','createdAt','updatedAt'] }
         })
         const img = storeimg.map((el) => {
             return image = el.image.split(',');

@@ -7,8 +7,7 @@ import {useDispatch} from 'react-redux'
 import { signIn,naverSignIn, kakaoSignIn } from '../../../_actions/user_action';
 import axios from 'axios';
 axios.defaults.withCredentials = true
-import { END_POINTS,END_POINT } from '../../../_actions/type';
-import { useHistory } from 'react-router';
+import { END_POINT } from '../../../_actions/type';
 
 interface Iprops {
   modalOpen: boolean;

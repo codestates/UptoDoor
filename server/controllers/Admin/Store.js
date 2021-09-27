@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
     try {
         const data1 = await store.create({
         name: title, category: category, introduce: description, adminAddressDetail:adminAddressDetail,
-        number: mobile, address: adminAddress, xvalue: xvalue, yvalue: yvalue, image: storeImg, Bussiness_paper: storeFile[0] });
+        number: mobile, address: adminAddress, xvalue: xvalue, yvalue: yvalue, image: storeImg, Bussiness_paper: storeFile });
 
     for (let i=0; i<menu.length; i++) {
         const data2 = await models.menu.create({

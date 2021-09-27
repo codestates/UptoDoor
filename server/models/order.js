@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     selected_address_detail: DataTypes.STRING,
     plus_check: DataTypes.STRING,
     delivery_detail: DataTypes.STRING,
+    plus_money: DataTypes.INTEGER,
     totalprice: DataTypes.INTEGER,
     state: DataTypes.STRING
   }, {

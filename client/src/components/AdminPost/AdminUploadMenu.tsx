@@ -22,23 +22,24 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   const [menuName , setMenuName] = useState('');
   const [price , setPrice] = useState(0);
   const [menuDescription , setMenuDescription] = useState('');
+  const [imgIdx , setimgIdx] = useState(0);
 
   const priceHandler = (e:any) => {
     setPrice(e.target.value)
     const lastIdx = menuArr.length-1;
     const copyArr = menuArr.slice()
     copyArr[lastIdx].price = e.target.value;
-    setMenuArr(copyArr);
+    // setMenuArr(copyArr);
   }
   const changeMenuName = (e:any) => {
     setMenuName(e.target.value)
     const lastIdx = menuArr.length-1;
     const copyArr = menuArr.slice()
     copyArr[lastIdx].menuName = e.target.value
-    setMenuArr(copyArr);
-
+    // setMenuArr(copyArr);
   }
     const dropHandler = (file:any) => {
+      console.log("e벨류",file)
       const formData = new FormData();
       const config = {
         headers: { 'content-type' : 'multipart/form-data'}
@@ -51,7 +52,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           const copyArr = menuArr.slice()
           const lastIdx = copyArr.length-1;
           copyArr[lastIdx].menuImg = res.data.filePath
-          console.log("copyImg만들어가는 배열",copyArr)
+          // console.log("copyImg만들어가는 배열",copyArr)
           setMenuImg(res.data.filePath)
 
         }else{
@@ -62,12 +63,14 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
         return console.log('==file 가져오기 실패===',err)
       })
     }
+    
+
     const changeMenuDesc = (e:any) => {
       setMenuDescription(e.target.value)
       const lastIdx = menuArr.length-1;
       const copyArr = menuArr.slice()
       copyArr[lastIdx].menuDescription = e.target.value;
-      setMenuArr(copyArr);
+      // setMenuArr(copyArr);
     }
 
     const addMenuItemHandler = () => {
@@ -87,6 +90,8 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
         alert("항목을 다 입력해 주세요")
       }
     }
+
+
 //form 제출 시 onsubmit -> 해당 데이터 담겨서 전달 
   return (
     <StoreInputBox>
@@ -100,12 +105,12 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
             <Dropzone onDrop={dropHandler}>
               {({getRootProps, getInputProps}) => (
                   <MenuUploadDiv {...getRootProps()}>
-                    <input 
+                    <input
                     required {...getInputProps()} />
                     {el.menuImg.length === 0 ? 
                     <PlusIcon>+</PlusIcon>
                     : 
-                    <MenuImg 
+                    <MenuImg id={idx}
                     src = {el.menuImg}
                     alt = {el.menuImg}/>
                     }

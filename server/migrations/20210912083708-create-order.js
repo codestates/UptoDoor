@@ -29,6 +29,9 @@ module.exports = {
       delivery_detail: {
         type: Sequelize.STRING
       },
+      plus_money: {
+        type: Sequelize.INTEGER
+      },
       totalprice: {
         type: Sequelize.INTEGER
       },

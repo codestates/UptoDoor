@@ -26,7 +26,7 @@ function SignupWrapper() {
   //required
   const [email, setEmail] = useState('');
   const [certEmail, setCertEmail] = useState(false);
-  const [name , setName] = useState('');
+  const [nickname , setNickname] = useState('');
   const [mobile, setMobile] = useState('');
   const [password , setPassword] = useState('');
   const [passwordChk, setPasswordChk] = useState('');
@@ -39,7 +39,6 @@ function SignupWrapper() {
   const [isAllchecked , setIsAllchecked] = useState(false);
 
   const [successModal, setSuccessModal] = useState(false);
-  const [signinModal, setSigninModal] = useState(false);
 
   const signupSubmitHandler = useCallback((e) => {
     e.preventDefault();
@@ -49,16 +48,15 @@ function SignupWrapper() {
     // if(isAllchecked === false ) return false;
 
     let userinfo = {
-      email,password,name,mobile,
+      email,password,nickname,mobile,
       gender,age
     }
     dispatch(signUp(userinfo))
     .then((res) => {
       console.log('===',res.payload)
       if (res.payload.message === 'Signup success') {
-        setSigninModal(true);
         setSuccessModal(true);
-        // window.location.href="https://uptodoor.shop/"
+        window.location.href = "http://localhost:3000";
       } else {
         alert('회원가입 조건을 충족해주세요.');
       }
@@ -96,8 +94,8 @@ function SignupWrapper() {
     setPasswordErr(e.target.value !== password);
   },[password])
 
-  const onChangeNameHandler = useCallback((e) => {
-    setName(e.target.value);
+  const onChangeNicknameHandler = useCallback((e) => {
+    setNickname(e.target.value);
   }, []);
   
   const onChangeMobileHandler = useCallback((e) => {
@@ -127,11 +125,6 @@ function SignupWrapper() {
   const cancleHandler = () => {
     history.push('/');
   }
-
-  useEffect(() => {  
-    console.log("11", successModal);
-    console.log("22", signinModal);
-  }, [successModal, signinModal]);
 
   return (
     <SignupContainer>
@@ -200,8 +193,8 @@ function SignupWrapper() {
           required
           type="text"
           placeholder="이름"
-          value={name}
-          onChange={onChangeNameHandler}
+          value={nickname}
+          onChange={onChangeNicknameHandler}
         />
         <br />
 
@@ -237,12 +230,6 @@ function SignupWrapper() {
           modalTitleText="회원가입"
           modalText="회원가입에 성공했습니다.로그인 페이지로 이동합니다."
           modalBtn="확인"
-        />
-      ) : null}
-      {signinModal ? (
-        <SigninModal
-          modalOpen={signinModal}
-          setModalOpen={setSigninModal}
         />
       ) : null}
     </SignupContainer>

@@ -1,8 +1,9 @@
-import { 
+import {
   ADMIN_POST,
-  DELETE_ADMIN_POST ,
-  STORE_DATAS, 
-  END_POINTS } from "./type";
+  DELETE_ADMIN_POST,
+  GET_ADMIN_DATA,
+  END_POINTS,
+} from "./type";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
@@ -57,3 +58,15 @@ export const deleteAdminPost = (adminposts) => {
     payload: adminposts
   };
 };
+
+export const getAdminData = () => {
+  const request = axios.get(`${END_POINTS}/admin/admininfo`).then((res) => {
+    console.log("goasdas", res.data);
+    return res.data;
+  });
+
+  return {
+    type: GET_ADMIN_DATA,
+    payload: request
+  }
+}

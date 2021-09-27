@@ -15,37 +15,40 @@ import Slider,{Settings} from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-interface storeSliderProps {
-  autoplay?: boolean | number;
-  speed?: number;
-  loop?: boolean; 
-}
+// interface storeSliderProps {
+//   autoplay?: boolean | number;
+//   speed?: number;
+//   loop?: boolean; 
+// }
 
 function StoreImgModal(
-  props:any, {
-  autoplay = false,
-  speed = 800,
-  loop = false,
-}:storeSliderProps) {
+  props:any,store:{image:[]}, 
+  // {
+  // autoplay = false,
+  // speed = 800,
+  // loop = false,
+// }:storeSliderProps
+) 
+{
 
   const history:any = useHistory()
-  const store = useSelector((state:any) => state.store);
-  const storeImg = store[1].image;
-  console.log('==store info==',storeImg);
+  // const store = useSelector((state:any) => state.store);
+  // const storeImg = store;
+  console.log('==store info img==',store);
 
   const settings = useMemo<Settings>(
     ()=>({
       dots: true,
       arrows : true,
       // infinite: loop,
-      speed: 800,
+      // speed: 800,
       slidesToShow: 1,
       slidesToScroll: 1,  
       centerMode: true,
       centerPadding: '0px',  
-      autoplay: Boolean(autoplay),
+      // autoplay: Boolean(autoplay),
       // autoplaySpeed: typeof autoplay === 'boolean' ? 5000 : autoplay,
-    }),[autoplay, loop, speed,]);
+    }),[]);
 
   const { openModal, setOpenModal, 
     modalTitleText ,modalText, modalBtn,url } = props;
@@ -68,15 +71,15 @@ function StoreImgModal(
             onClick = {closeModal}>
             <i className="fas fa-times"></i>
           </CloseBtnIcon>  
-            <Slider {...settings}>
-              {storeImg.map((el:any,idx:any)=>{
+            {/* <Slider {...settings}>
+              {storeImg&&storeImg.map((el:any,idx:any)=>{
                 return (
                   <ModalStoreImgSlideBox key = {idx}>
                   <ModalStoreImgs src = {el} alt = 'store-imgs'/>
                   </ModalStoreImgSlideBox>
                 )
               })}
-            </Slider>
+            </Slider> */}
             </ModalStoreWrapper>
         </ModalContainer>
       )

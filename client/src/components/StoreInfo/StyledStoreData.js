@@ -87,12 +87,23 @@ export const StoreImgBox = styled.div`
 max-width : 1139px;
 max-height : 400px;
 /* border : 3px solid pink; */
+margin : 15px 0;
 display : flex;
+>div{
+  width: 40%;
+}
 >div>.second-img{
   width : 100%;
   height : 60%;
 }
 `
+export const EmptyStoreImg = styled.div`
+width: 100%;
+height : 60%;
+border-radius: 8px;
+background-color: gray;
+`
+
 export const StoreImg = styled.img`
 width : 60%;
 margin-right : 8px;

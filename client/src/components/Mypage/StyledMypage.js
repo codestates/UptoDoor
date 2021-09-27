@@ -15,7 +15,7 @@ export const MypageWrapper = styled.div`
     flex-direction: row;
     width: 100%;
     margin: 0 auto;
-    max-width: 1000px;
+    max-width: 1020px;
   }
 `;
 
@@ -24,7 +24,7 @@ export const MypageProfileBtnWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-right: 20px;
-    height: 400px;
+    height: 450px;
   }
   @media screen and (min-width: 1140px) {
     display: flex;
@@ -35,7 +35,6 @@ export const MypageProfileBtnWrapper = styled.div`
 
 export const MypageProfileWrapper = styled.div`
   width: 100%;
-
   padding: 18px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -241,7 +240,7 @@ export const ListDate = styled.div`
 export const ListInfo = styled.div`
   padding: 2px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   > div {
     min-width: 140px;

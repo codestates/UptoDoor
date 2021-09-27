@@ -12,13 +12,24 @@ import {
 } from "./styledMap";
 import {ArrowBtn} from '../common/Button/Button'
 import { selectStore } from '../../_actions/cart_action';
-function EmptyMap({ filterList, openInfoModal, message, setLoginModal }:any) {
+
+import { useHistory } from 'react-router';
+
+function EmptyMap({ filterList, openInfoModal, message, 
+  cart, setLoginModal,setSelectAddressModal }:any) {
 const dispatch:any = useDispatch()
+const history: any = useHistory();
 const moveStoreHandler = (id: number) => {
   if (!message) {
     setLoginModal(true);
+  } else {
+    if (!cart.selected_address) {
+      setSelectAddressModal(true)
+    } else {
+      dispatch(selectStore(id));
+      history.push(`/storeinfo/${id}`)
+    }
   }
-  dispatch(selectStore(id));
 };
 
 

@@ -10,14 +10,15 @@ module.exports = async (req, res) => {
     //현재 로그인한 유저의 정보 뽑기
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
-    const { id,name } = checkAccessToken;
+    const { id,nickname } = checkAccessToken;
 
     try {
         //오더테이블에 데이터 추가111111111111gi
         const orderData = await order.create({
-          user_name: name,
+          user_name: orderInfo.user_name,
           plus_check: orderInfo.plus_check,
-          delivery_detail: `${orderInfo.delivery_detail},${orderInfo.plus_money}`,
+          delivery_detail: orderInfo.delivery_detail,
+          plus_money: orderInfo.plus_money,
           totalprice: orderInfo.total_price,
           store_id: orderInfo.store_id,
           state: "order",

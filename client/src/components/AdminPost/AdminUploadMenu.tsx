@@ -62,9 +62,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
         return console.log('==file 가져오기 실패===',err)
       })
     }
-  
     const changeMenuDesc = (e:any) => {
-
       setMenuDescription(e.target.value)
       const lastIdx = menuArr.length-1;
       const copyArr = menuArr.slice()

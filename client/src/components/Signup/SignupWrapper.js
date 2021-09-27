@@ -39,7 +39,6 @@ function SignupWrapper() {
   const [isAllchecked , setIsAllchecked] = useState(false);
 
   const [successModal, setSuccessModal] = useState(false);
-  const [signinModal, setSigninModal] = useState(false);
 
   const signupSubmitHandler = useCallback((e) => {
     e.preventDefault();
@@ -57,8 +56,7 @@ function SignupWrapper() {
       console.log('===',res.payload)
       if (res.payload.message === 'Signup success') {
         setSuccessModal(true);
-        setSigninModal(true);
-        // window.location.href="https://uptodoor.shop/"
+        window.location.href = "http://localhost:3000";
       } else {
         alert('회원가입 조건을 충족해주세요.');
       }
@@ -127,16 +125,6 @@ function SignupWrapper() {
   const cancleHandler = () => {
     history.push('/');
   }
-  const [count, setCount] =useState(0)
-  useEffect(() => {
-    setCount(count + 1);
-    console.log("count", count)
-    if (count >= 3 && !successModal && !signinModal) {
-      window.location.href = "http://localhost:3000";
-    }
-      console.log("11", successModal);
-    console.log("22", signinModal);
-  }, [successModal, signinModal]);
 
   return (
     <SignupContainer>
@@ -242,12 +230,6 @@ function SignupWrapper() {
           modalTitleText="회원가입"
           modalText="회원가입에 성공했습니다.로그인 페이지로 이동합니다."
           modalBtn="확인"
-        />
-      ) : null}
-      {signinModal ? (
-        <SigninModal
-          modalOpen={signinModal}
-          setModalOpen={setSigninModal}
         />
       ) : null}
     </SignupContainer>

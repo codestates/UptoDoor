@@ -26,10 +26,17 @@ function AdminUploadMenu({
   const [menuDescription , setMenuDescription] = useState('');
   
   const priceHandler = (e:any) => {
-    setPrice(e.target.value)
-    const copyArr = JSON.parse(JSON.stringify(menuArr));
-    copyArr[e.target.id].price = e.target.value
-    setMenuArr(copyArr)
+    // console.log(typeof Number(e.target.value));
+    if(Number(e.target.value) < 0 ){
+      console.log('0보다 작음', typeof e.target.value)
+      setPrice(0)
+    }else{
+      console.log('0보다 큼')
+      setPrice(e.target.value)
+      const copyArr = JSON.parse(JSON.stringify(menuArr));
+      copyArr[e.target.id].price = e.target.value
+      setMenuArr(copyArr)
+    }
   }
   const changeMenuName = (e:any) => {
     setMenuName(e.target.value)
@@ -50,7 +57,7 @@ function AdminUploadMenu({
         if(res.data.success){
           //깊은복사
           const copyArr = JSON.parse(JSON.stringify(menuArr));
-          // console.log('copyArr===',copyArr)
+          console.log('copyArr===',copyArr)
           // console.log('copyArr target===',copyArr[e.target.id])
           copyArr[e.target.id].menuImg = res.data.filePath
           setMenuArr(copyArr)
@@ -65,7 +72,7 @@ function AdminUploadMenu({
   }
   const changeMenuDesc = (e:any) => {
     setMenuDescription(e.target.value)
-    console.log('menuDescription',menuDescription)
+    // console.log('menuDescription',menuDescription)
     const copyArr = JSON.parse(JSON.stringify(menuArr));
     copyArr[e.target.id].menuDescription = e.target.value
     setMenuArr(copyArr)
@@ -100,7 +107,7 @@ function AdminUploadMenu({
     <StoreInputBox>
       <label className = 'menu-enroll-label'>메뉴 등록</label>
       {menuArr && menuArr.map((el:any,idx:number) => {
-      console.log('-----el----',el,idx);
+      // console.log('-----el----',el,idx);
         return (
           <StoreMenuAddWrapper key={idx}>
             <MenuUploadDiv2 >
@@ -132,7 +139,6 @@ function AdminUploadMenu({
                   id={idx}
                   required
                   type = 'text' 
-                  step = '1000'
                   onChange = {(e:any)=>{changeMenuName(e)}} 
                   defaultValue = {el.menuName} 
                   />
@@ -143,9 +149,9 @@ function AdminUploadMenu({
                   required
                   id={idx}
                   type = 'number' 
-                  step = '1000'
+                  step = '100'
                   onChange = {(e:any)=>{priceHandler(e)}}
-                  defaultValue = {el.price}/>
+                  value = {el.price}/>
               </MenuInputBox>
     
               <MenuInputBox>

@@ -54,6 +54,8 @@ function UserCartInfo() {
   // console.log(termsOptions)
   // console.log(dayOptions);
 
+  const [minusQuantity , setMinusQuantity] = useState(0)
+
   //*  하나씩 선택하고 지우는 핸들러
   const onChangeChecked = (checked, id) => {
     if (checked) {
@@ -91,6 +93,10 @@ function UserCartInfo() {
     //! dispatch 해줘야함
     dispatch(setQuantity(target.value, id))
   });
+
+  const onChangeQuantity = (e) => {
+    setMinusQuantity(e.target.value)
+  }
   //* 숫자 빼는 핸들러
   const decrement = useCallback((e,id) =>{
     const btn = e.target.parentNode.parentElement.querySelector(
@@ -98,9 +104,13 @@ function UserCartInfo() {
     );
     const target = btn.nextElementSibling;
     let value = Number(target.value);
-    value--;
-    target.value = value;
-    dispatch(setQuantity(target.value, id));
+    if(value < 1){
+      return false;
+    }else{
+      value--;
+      target.value = value;
+      dispatch(setQuantity(target.value, id));
+    }
   });
 
   //* 제출 핸들러
@@ -274,7 +284,8 @@ function UserCartInfo() {
                           <input
                             type="number"
                             name="custom-input-number"
-                            defaultValue={item.quantity}
+                            value={item.quantity}
+                            onChange = {onChangeQuantity}
                           ></input>
                           <button
                             type="button"

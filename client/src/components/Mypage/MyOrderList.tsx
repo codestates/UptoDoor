@@ -24,7 +24,7 @@ function MyOrderList({
                 <OrderListContent>
                   <ListDate>
                     <p>다음 결제일: </p>
-                    <h5>{order.nextPayDay}</h5>
+                    <h5>{el.nextPayDay}</h5>
                   </ListDate>
                   
                   <ListInfo>

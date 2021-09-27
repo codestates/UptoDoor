@@ -13,6 +13,10 @@ export const ArrowBtn = styled.i`
 color : ${MainColor};
 font-size: ${LargeFont};
 cursor: pointer;
+&:before{
+  /* border : 3px solid red; */
+  content : ">>";
+}
   &:hover{
     animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
 }

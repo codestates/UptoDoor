@@ -8,6 +8,7 @@ import {
   PointColor,
   BaseFont,
   UltraLargeFont,
+  LargeFont,
   } from '../GlobalStyle';
   import {showModal} from '../common/Modal/styledModal'
 
@@ -84,14 +85,25 @@ justify-content : center;
 `
 export const StoreImgBox = styled.div`
 max-width : 1139px;
-max-height : 500px;
+max-height : 400px;
 /* border : 3px solid pink; */
+margin : 15px 0;
 display : flex;
+>div{
+  width: 40%;
+}
 >div>.second-img{
   width : 100%;
   height : 60%;
 }
 `
+export const EmptyStoreImg = styled.div`
+width: 100%;
+height : 60%;
+border-radius: 8px;
+background-color: gray;
+`
+
 export const StoreImg = styled.img`
 width : 60%;
 margin-right : 8px;
@@ -170,8 +182,16 @@ padding : 5px 0;
 margin : 8px;
 >.flex-box{
   display: flex;
+  align-items: center;
+  >div{
+    width: 70%;
+    @media screen and (min-width: 767px) {
+    width: 80%;
+    }
+  }
 }
 >.order-btn{
+  font-size: ${SmallFont};
   width: 50px;
 }
 @media screen and (min-width: 1140px) {
@@ -182,6 +202,7 @@ export const MenuImg = styled.img`
 width: 80px;
 height:80px;
 border-radius: 8px;
+object-fit: cover;
 box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 margin: 0 10px;
@@ -240,23 +261,87 @@ export const ModalStoreWrapper = styled.div`
   margin: 0 auto;
   width: 100%;
   height : 100%;
-  
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
   text-align: center;
-  /* max-width: 400px; */
-  background-color: white;
-  border-radius: 10px;
-  animation: ${showModal}.4s;  
+  background-color: rgba(0,0,0,0.9);
+  animation: ${showModal}.4s; 
 
-  @media screen and (min-width: 500px) {
-    width: 600px;
-    height : 500px;
-    background-color: #fff;
-    border-radius: 10px;
+@media screen and (min-width: 767px) {
+  position: relative;
+}
+  >.slick-slider{
+    position: relative;
+    width: 90%;
+    border-radius: 8px;
+  }
+  >.slick-slider>.slick-prev{
+    position: absolute;
+    top : 120%;
+    left : 0;
+    &::before{
+      content: '◀️ BACK';
+      /* margin-left: 150px; */
+    }
+  }
+  >.slick-slider>.slick-next{
+    position: absolute;
+    top : 120%;
+    right : 0;
+    &::before{
+      content: 'NEXT ▶️';
+    }
+  }
+
+  >.slick-slider >.slick-arrow{
+    display: none;
+    &::before{
+      display: none;
+      opacity: 1;
+      font-size: 30px;
+      font-weight : 700;
+      @media screen and (min-width: 767px) {
+      display: unset;
+    }
+    }
+    @media screen and (min-width: 767px) {
+    display: unset;
+    width: 200px;
+    }
+  }
+  >.slick-slider >.slick-list{
+  }
+
+  //slick dot
+  >div>ul>li{
+    margin : -50px 10px;
+  }
+  >div>ul>li>button::before{
+    font-size: 20px;
+    margin : 10px 0;
+    color : #fff;
+    /* border : 3px solid pink; */
+    opacity: 1;
+  }
+  >div>ul>.slick-active>button::before{
+    /* border : 3px solid red; */
+    opacity: 1;
+    color: ${PointColor};
   }
 
 `
-export const ModalStoreTextWrapper = styled.div`
-
+export const CloseBtnIcon = styled.div`
+width: 100%;
+padding : 0 20px;
+text-align: right;
+cursor: pointer;
+margin-bottom: 100px;
+>i{
+  font-size: 40px;
+  color : #fff;
+}
 `
 export const ModalStoreTitleText = styled.h1`
 
@@ -266,10 +351,26 @@ export const ModalStoreText = styled.h3`
 `
 //+사진모달
 export const ModalStoreImgSlideBox = styled.div`
-background-color: rgba(0,0,0,0.2);
+/* background-color: rgba(0,0,0,0.2); */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-radius: 8px;
+height: 400px;
+width: 100%;
+@media screen and (min-width: 767px) {
+/* width: 200px; */
+}
 `
 export const ModalStoreImgs = styled.img`
-width: 300px;
-height : 300px;
-object-fit: cover;
+width: 100%;
+height : 100%;
+border-radius: 8px;
+object-fit: contain;
+margin : 0 auto;
+@media screen and (min-width: 767px) {
+  /* width: 80%; */
+  height: 100%;
+}
 `

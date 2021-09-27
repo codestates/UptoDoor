@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import { Container, Title, Wrapper } from "../GlobalStyle";
 import MyOrderWrapper from '../UserOrderInfo/MyOrderWrapper';
-import AdminOrderWrapper from '../AdminOrderInfo/AdminOrderWrapper'
+import AdminOrderWrapper from '../Adminpage/AdminOrderWrapper'
 import axios from 'axios';
 import { getAdminData } from '../../_actions/post_action';
 import MyOrderList from './MyOrderList';

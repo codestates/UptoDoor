@@ -12,10 +12,13 @@ import {
 } from "./styledMap";
 import {ArrowBtn} from '../common/Button/Button'
 import { selectStore } from '../../_actions/cart_action';
+
 import { useHistory } from 'react-router';
-function EmptyMap({ filterList, openInfoModal, message, setLoginModal, cart, setSelectAddressModal }:any) {
-const history: any = useHistory();
+
+function EmptyMap({ filterList, openInfoModal, message, 
+  cart, setLoginModal,setSelectAddressModal }:any) {
 const dispatch:any = useDispatch()
+const history: any = useHistory();
 const moveStoreHandler = (id: number) => {
   
   if (!message) {
@@ -27,7 +30,6 @@ const moveStoreHandler = (id: number) => {
       dispatch(selectStore(id));
       history.push(`/storeinfo/${id}`)
     }
-    
   }
 };
 

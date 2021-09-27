@@ -30,7 +30,7 @@ function MenuList({store}:any):any {
       item = {...item, quantity : 1 }
       dispatch(addCart(item))
     }else{
-      console.log('=장바구니담겼지만 이미 카트에 상품있음=',item)
+      // console.log('=장바구니담겼지만 이미 카트에 상품있음=',item)
     }
   }
   const cancleClickHandler = () => {

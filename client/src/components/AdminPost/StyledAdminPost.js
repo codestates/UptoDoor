@@ -292,8 +292,8 @@ export const StoreBtnBox = styled.div`
 text-align: center;
 `
 export const MenuImg = styled.img`
-width: 100%;
-height : 100%;
+width: 90%;
+height : 90%;
 object-fit: contain;
 `
 export const PlusIcon = styled.p`
@@ -301,4 +301,15 @@ text-align: center;
 `
 export const FileUp = styled.input`
 display: none;
+`
+//메뉴삭제버튼
+export const RemoveMenuBtn = styled.button`
+background-color: ${PointColor};
+color : #fff;
+border: none;
+padding : 3px 10px;
+margin-bottom : 10px; 
+border-radius: 8px;
+float: right;
+cursor: pointer;
 `

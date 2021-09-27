@@ -8,14 +8,22 @@ import {OrderListWrapper} from '../Mypage/StyledMypage'
 import {ArrowBtn ,NextBtn } from '../common/Button/Button'
 
 function AdminOrderList({
-  moveDetailHandler, data }: any) {
+  moveDetailHandler, data,selectedDay }: any) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const postsPerPage = 10;
   
   console.log("ㅁㄴㅇㅁㄴ", data)
-  for (let i = 0; i < data.length; i++){
-    const hour = Number(data[i].order_deliveries[0].delivery_time.split(":")[0])
-    const min = Number(data[i].order_deliveries[0].delivery_time.split(":")[1])
+  for (let i = 0; i < data.length-1; i++){
+    
+
+    for (let j = 1; j < data.length; j++) {
+      const hour1 = Number(data[i].order_deliveries[0].delivery_time.split(":")[0])
+      const min1 = Number(data[i].order_deliveries[0].delivery_time.split(":")[1])
+      const hour2 = Number(data[i].order_deliveries[0].delivery_time.split(":")[0])
+      const min2 = Number(data[i].order_deliveries[0].delivery_time.split(":")[1])
+
+      if(hour1 < hour2 ){}
+    }
   }
   
   const indexOfLast = currentPage * postsPerPage;
@@ -25,15 +33,13 @@ function AdminOrderList({
     currentPosts = tmp.slice(indexOfFirst, indexOfLast);
     return currentPosts;
   }
-  const posts: any = currentPosts(data);
+
   const pageNumbers = [];
-  console.log(data.length, postsPerPage)
   for (let i = 1; i <= Math.ceil(data.length / postsPerPage); i++) {
     pageNumbers.push(i);
   }
 
-  
-  console.log("adsas",posts);
+  const posts: any = currentPosts(data);
   return (
     <MypageOrderListWrapper>
       {posts.map((el:any,idx:any)=>{
@@ -42,7 +48,7 @@ function AdminOrderList({
             <OrderListContent>
               <OrderListInfo>
                 <div>
-                  <div>{idx + 1}번째 주문</div>
+                  {/* <div>{idx + 1}번째 주문</div> */}
                   <h5>주문자명: {el.user_name}</h5>
                   <h5>{el.selected_address}{" "}{el.selected_address_detail }</h5>
                   <OrderListInfoP><span>주문 내용:</span>{" "}{el.order_menus.map((el1:any) => {
@@ -65,7 +71,6 @@ function AdminOrderList({
       <PageNumberWrapper>
 
         {pageNumbers.map(number => {
-          console.log("페이지넘버", number)
           return (
             <li key={number} onClick={() => {setCurrentPage(number) }}>
               {number}

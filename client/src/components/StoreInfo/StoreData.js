@@ -103,8 +103,6 @@ const StoreData = ({id}) => {
       <StoreImgModal
       openModal = {openModal}
       setOpenModal = {setOpenModal}
-      modalTitleText = '모든 이미지 나오는부분'
-      modalText = '슬라이드넣을예정'
       modalBtn = '닫기'
       />
       :null    

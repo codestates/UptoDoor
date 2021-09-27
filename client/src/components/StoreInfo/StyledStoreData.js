@@ -8,6 +8,7 @@ import {
   PointColor,
   BaseFont,
   UltraLargeFont,
+  LargeFont,
   } from '../GlobalStyle';
   import {showModal} from '../common/Modal/styledModal'
 
@@ -240,23 +241,60 @@ export const ModalStoreWrapper = styled.div`
   margin: 0 auto;
   width: 100%;
   height : 100%;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-  /* max-width: 400px; */
-  background-color: white;
-  border-radius: 10px;
-  animation: ${showModal}.4s;  
+  background-color: rgba(0,0,0,0.9);
+  animation: ${showModal}.4s; 
 
-  @media screen and (min-width: 500px) {
-    width: 600px;
-    height : 500px;
-    background-color: #fff;
-    border-radius: 10px;
+  >.slick-slider >.slick-arrow{
+    visibility: hidden;
+    &::before{
+      opacity: 1;
+      font-size: 50px;
+    }
+    @media screen and (min-width: 767px) {
+    visibility: visible;
+    /* margin : 0 50px; */
+    /* border : 3px solid red; */
+    }
+  }
+  >.slick-slider >.slick-list{
+  }
+
+  //slick dot
+  >div>ul>li{
+    margin : -50px 10px;
+  }
+  >div>ul>li>button::before{
+    font-size: 20px;
+    margin : 10px 0;
+    color : #fff;
+    /* border : 3px solid pink; */
+    opacity: 1;
+  }
+  >div>ul>.slick-active>button::before{
+    /* border : 3px solid red; */
+    opacity: 1;
+    color: ${PointColor};
+  }
+
+  @media screen and (min-width: 767px) {
+    
   }
 
 `
-export const ModalStoreTextWrapper = styled.div`
-
+export const CloseBtnIcon = styled.div`
+width: 100%;
+padding : 20px;
+margin-top: -80px;
+text-align: right;
+cursor: pointer;
+>i{
+  font-size: 40px;
+  color : #fff;
+}
 `
 export const ModalStoreTitleText = styled.h1`
 
@@ -266,10 +304,24 @@ export const ModalStoreText = styled.h3`
 `
 //+사진모달
 export const ModalStoreImgSlideBox = styled.div`
-background-color: rgba(0,0,0,0.2);
+/* background-color: rgba(0,0,0,0.2); */
+display: flex;
+flex-direction: column;
+justify-content: center;
+height: 400px;
+/* align-items: center; */
+@media screen and (min-width: 767px) {
+/* width: 200px; */
+}
 `
 export const ModalStoreImgs = styled.img`
-width: 300px;
-height : 300px;
-object-fit: cover;
+width: 90%;
+height : 100%;
+border-radius: 8px;
+object-fit: contain;
+margin : 0 auto;
+@media screen and (min-width: 767px) {
+  /* width: 80%; */
+  height: 500px;
+}
 `

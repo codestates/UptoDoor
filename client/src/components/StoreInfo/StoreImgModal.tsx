@@ -4,9 +4,7 @@ import {
 } from '../common/Modal/styledModal'
 import {
   ModalStoreWrapper ,
-  ModalStoreTextWrapper , 
-  ModalStoreTitleText,
-  ModalStoreText,
+  CloseBtnIcon,
   ModalStoreImgSlideBox,
   ModalStoreImgs,
 } from './StyledStoreData'
@@ -24,9 +22,11 @@ interface storeSliderProps {
 }
 
 function StoreImgModal(
-  props:any, {autoplay = true,
-  speed = 300,
-  loop = true,}:storeSliderProps) {
+  props:any, {
+  autoplay = false,
+  speed = 800,
+  loop = false,
+}:storeSliderProps) {
 
   const history:any = useHistory()
   const store = useSelector((state:any) => state.store);
@@ -37,14 +37,14 @@ function StoreImgModal(
     ()=>({
       dots: true,
       arrows : true,
-      infinite: loop,
+      // infinite: loop,
       speed: 800,
       slidesToShow: 1,
       slidesToScroll: 1,  
       centerMode: true,
       centerPadding: '0px',  
       autoplay: Boolean(autoplay),
-      autoplaySpeed: typeof autoplay === 'boolean' ? 5000 : autoplay,
+      // autoplaySpeed: typeof autoplay === 'boolean' ? 5000 : autoplay,
     }),[autoplay, loop, speed,]);
 
   const { openModal, setOpenModal, 
@@ -61,12 +61,13 @@ function StoreImgModal(
   return (
       openModal ? (
         <ModalContainer 
-        onClick = {closeModal}
+        // onClick = {closeModal}
         className = 'modal-container' >
           <ModalStoreWrapper className = 'modal-wrapper'>
-          <ModalStoreTextWrapper >
-            <ModalStoreTitleText>{modalTitleText}</ModalStoreTitleText>
-            <ModalStoreText>{modalText}</ModalStoreText>
+            <CloseBtnIcon  
+            onClick = {closeModal}>
+            <i className="fas fa-times"></i>
+            </CloseBtnIcon>   
 
             <Slider {...settings}>
               {storeImg.map((el:any,idx:any)=>{
@@ -77,14 +78,6 @@ function StoreImgModal(
                 )
               })}
             </Slider>
-
-          </ModalStoreTextWrapper>
-
-          <button 
-            onClick = {closeModal}
-            className = 'modal-btn'>
-            {modalBtn}
-            </button>
             </ModalStoreWrapper>
         </ModalContainer>
       )

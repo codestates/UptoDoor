@@ -1,51 +1,78 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   MypageOrderListWrapper,
   OrderListContent,
-  ListDate,
-  ListInfo,
-  // DeliveryState,
 } from "../Mypage/StyledMypage";
-import { PageNumberBtn,OrderContent } from './StyledAdminPage'
+import { PageNumberWrapper,OrderListInfoP,DeliveryTime,OrderListInfo } from './StyledAdminPage'
 import {OrderListWrapper} from '../Mypage/StyledMypage'
 import {ArrowBtn ,NextBtn } from '../common/Button/Button'
 
 function AdminOrderList({
-  moveDetailHandler,user,cart}:any) {
+  moveDetailHandler, data }: any) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+  
+  console.log("ㅁㄴㅇㅁㄴ", data)
+  for (let i = 0; i < data.length; i++){
+    const hour = Number(data[i].order_deliveries[0].delivery_time.split(":")[0])
+    const min = Number(data[i].order_deliveries[0].delivery_time.split(":")[1])
+  }
+  
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+  const currentPosts =( tmp:any ) => {
+    let currentPosts = 0;
+    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
+  const posts: any = currentPosts(data);
+  const pageNumbers = [];
+  console.log(data.length, postsPerPage)
+  for (let i = 1; i <= Math.ceil(data.length / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
+  
+  console.log("adsas",posts);
   return (
     <MypageOrderListWrapper>
-      {cart.menu.map((el:any,idx:any)=>{
+      {posts.map((el:any,idx:any)=>{
         return (
           <OrderListWrapper key = {idx}>
             <OrderListContent>
-              <ListDate>
-                <p>다음 배송일: </p>
-                <h5>2021.10.17 </h5>
-              </ListDate>
-    
-              <ListInfo>
-                <img src={el.image} alt="order-img" />
-                <OrderContent >
-                  <h4>주문자명: {user.nickname}</h4>
-                  <p><span>내용:</span>{el.detail}</p>
-                  <p><span>배송시간: </span>{cart.delivery_time}</p>
-                </OrderContent>  
-
-
+              <OrderListInfo>
+                <div>
+                  <div>{idx + 1}번째 주문</div>
+                  <h5>주문자명: {el.user_name}</h5>
+                  <h5>{el.selected_address}{" "}{el.selected_address_detail }</h5>
+                  <OrderListInfoP><span>주문 내용:</span>{" "}{el.order_menus.map((el1:any) => {
+                    return `${el1.menu.name} ${el1.quantity}개, ${" "}`
+                  })}</OrderListInfoP>
+                  </div>
+                <DeliveryTime >
+                    배송시간: {el.order_deliveries[0].delivery_time}
+                </DeliveryTime>  
             <NextBtn type="button" 
             onClick={()=>{moveDetailHandler(el.id)}}>
               <ArrowBtn className="fas fa-angle-double-right" ></ArrowBtn>            
             </NextBtn>
-            </ListInfo>
+            </OrderListInfo>
             </OrderListContent>
         </OrderListWrapper>
           )
         })}
 
-      <PageNumberBtn>
-            -1- 
-      </PageNumberBtn>
+      <PageNumberWrapper>
+
+        {pageNumbers.map(number => {
+          console.log("페이지넘버", number)
+          return (
+            <li key={number} onClick={() => {setCurrentPage(number) }}>
+              {number}
+                </li>
+              )
+            })}
+      </PageNumberWrapper>
     </MypageOrderListWrapper>
   );
 }

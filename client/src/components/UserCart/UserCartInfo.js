@@ -121,10 +121,11 @@ function UserCartInfo() {
     }
     
 
-    console.log(termsOptions, dayOptions, timeOtions);
+    console.log("여기 중요합니다.",termsOptions, dayOptions, timeOtions);
     if (!termsOptions || dayOptions.length === 0 || !timeOtions) {
       return setOptionsModal(true);
     }
+    
     const data = {
       menu: menu,
       delivery_term: termsOptions,

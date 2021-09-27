@@ -26,23 +26,41 @@ function AdminProfile() {
   console.log("오더스", orders);
   
   const [currentTab, setCurrentTab] = useState(0);
-  const [filteredOrderId, setFilteredOrderId]=useState("")
-  
+  const [filteredOrderId, setFilteredOrderId] = useState("")
+  const [filteredData, setFilteredData] = useState([])
   const days = ["일", "월", "화", "수", "목", "금", "토"];
 
-  const moveDetailHandler = (id, day) => {
-    
+  const moveDetailHandler = (id) => {
     setFilteredOrderId(id)
-
   }
   const listbackHandler = () => {
     setFilteredOrderId("");
   }
 
+  const changeList = (id, day) => {
+    setCurrentTab(id);
+    const filtered = orders.filter((el) => {
+      const { delivery_day } = el.order_deliveries[0];
+      const deliveryDay = delivery_day.split(",");
+      return deliveryDay.includes(day);
+    });
+    setFilteredData(filtered);
+  }
   useEffect(() => {
-    dispatch(getAdminData()).then((res) => {
-      console.log("ㅇㅓ드민인포데이터",res)
-    })
+    console.log("20")
+    dispatch(getAdminData())
+    
+    //들어오자마자 오늘 날짜 선택
+    const day = new Date().getDay();
+    const today = days[day];
+    const filtered = orders.filter((el) => {
+      const { delivery_day } = el.order_deliveries[0];
+      const deliveryDay = delivery_day.split(",");
+      return deliveryDay.includes(today);
+    });
+    setCurrentTab(day)
+    setFilteredData(filtered);
+    
   }, [])
 
   return (
@@ -81,7 +99,7 @@ function AdminProfile() {
                     <button
                       type="button"
                       onClick={() => {
-                        setCurrentTab(idx,day);
+                        changeList(idx, day);
                       }}
                       className={currentTab === idx ? "focus" : ""}
                     >
@@ -102,6 +120,7 @@ function AdminProfile() {
                 cart={cart}
                 user={user}
                 moveDetailHandler={moveDetailHandler}
+                data={filteredData}
               />
             )}
           </AdminUlListWrapper>

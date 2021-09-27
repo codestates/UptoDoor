@@ -62,13 +62,12 @@ function StoreImgModal(
       openModal ? (
         <ModalContainer 
         // onClick = {closeModal}
-        className = 'modal-container' >
+        className = 'modal-container' >            
           <ModalStoreWrapper className = 'modal-wrapper'>
-            <CloseBtnIcon  
+          <CloseBtnIcon  
             onClick = {closeModal}>
             <i className="fas fa-times"></i>
-            </CloseBtnIcon>   
-
+          </CloseBtnIcon>  
             <Slider {...settings}>
               {storeImg.map((el:any,idx:any)=>{
                 return (

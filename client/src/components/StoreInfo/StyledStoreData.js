@@ -85,7 +85,7 @@ justify-content : center;
 `
 export const StoreImgBox = styled.div`
 max-width : 1139px;
-max-height : 500px;
+max-height : 400px;
 /* border : 3px solid pink; */
 display : flex;
 >div>.second-img{
@@ -171,8 +171,16 @@ padding : 5px 0;
 margin : 8px;
 >.flex-box{
   display: flex;
+  align-items: center;
+  >div{
+    width: 70%;
+    @media screen and (min-width: 767px) {
+    width: 80%;
+    }
+  }
 }
 >.order-btn{
+  font-size: ${SmallFont};
   width: 50px;
 }
 @media screen and (min-width: 1140px) {
@@ -183,6 +191,7 @@ export const MenuImg = styled.img`
 width: 80px;
 height:80px;
 border-radius: 8px;
+object-fit: cover;
 box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 margin: 0 10px;
@@ -243,21 +252,52 @@ export const ModalStoreWrapper = styled.div`
   height : 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
+  align-items: center;
   text-align: center;
   background-color: rgba(0,0,0,0.9);
   animation: ${showModal}.4s; 
 
-  >.slick-slider >.slick-arrow{
-    visibility: hidden;
+@media screen and (min-width: 767px) {
+  position: relative;
+}
+  >.slick-slider{
+    position: relative;
+    width: 90%;
+    border-radius: 8px;
+  }
+  >.slick-slider>.slick-prev{
+    position: absolute;
+    top : 120%;
+    left : 0;
     &::before{
+      content: '◀️ BACK';
+      /* margin-left: 150px; */
+    }
+  }
+  >.slick-slider>.slick-next{
+    position: absolute;
+    top : 120%;
+    right : 0;
+    &::before{
+      content: 'NEXT ▶️';
+    }
+  }
+
+  >.slick-slider >.slick-arrow{
+    display: none;
+    &::before{
+      display: none;
       opacity: 1;
-      font-size: 50px;
+      font-size: 30px;
+      font-weight : 700;
+      @media screen and (min-width: 767px) {
+      display: unset;
+    }
     }
     @media screen and (min-width: 767px) {
-    visibility: visible;
-    /* margin : 0 50px; */
-    /* border : 3px solid red; */
+    display: unset;
+    width: 200px;
     }
   }
   >.slick-slider >.slick-list{
@@ -280,17 +320,13 @@ export const ModalStoreWrapper = styled.div`
     color: ${PointColor};
   }
 
-  @media screen and (min-width: 767px) {
-    
-  }
-
 `
 export const CloseBtnIcon = styled.div`
 width: 100%;
-padding : 20px;
-margin-top: -80px;
+padding : 0 20px;
 text-align: right;
 cursor: pointer;
+margin-bottom: 100px;
 >i{
   font-size: 40px;
   color : #fff;
@@ -308,20 +344,22 @@ export const ModalStoreImgSlideBox = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
+align-items: center;
+border-radius: 8px;
 height: 400px;
-/* align-items: center; */
+width: 100%;
 @media screen and (min-width: 767px) {
 /* width: 200px; */
 }
 `
 export const ModalStoreImgs = styled.img`
-width: 90%;
+width: 100%;
 height : 100%;
 border-radius: 8px;
 object-fit: contain;
 margin : 0 auto;
 @media screen and (min-width: 767px) {
   /* width: 80%; */
-  height: 500px;
+  height: 100%;
 }
 `

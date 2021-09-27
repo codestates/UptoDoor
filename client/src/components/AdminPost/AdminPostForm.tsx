@@ -144,12 +144,12 @@ function AdminPostForm() {
       xvalue:xValue,
       yvalue:yValue,
     }
-      dispatch(adminPost(adminPostInfo))
-      .then((res:any) => {
-        if (res.payload.message === 'Store registration is complete') {
-          setOpenModal(true);
-        }
-      })
+      // dispatch(adminPost(adminPostInfo))
+      // .then((res:any) => {
+      //   if (res.payload.message === 'Store registration is complete') {
+      //     setOpenModal(true);
+      //   }
+      // })
       // 모달띄워지고(메뉴등록이 완료되었습니다.) 메인화면
       // console.log(adminPostInfo);
       //history.push('/');

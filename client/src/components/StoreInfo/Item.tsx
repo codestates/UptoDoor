@@ -19,9 +19,9 @@ function Item({addCartHandler,item}:ItemProps) {
         <div className = 'menu-flex-box flex-box'>
           <MenuImg src= {item.image} alt = 'menu-img'/>
           <div>
-          <MenuName>{item.name}</MenuName>
-          <MenuPrice>{item.price} 원</MenuPrice>
-          <MenuDetail>{item.detail}</MenuDetail>
+            <MenuName>{item.name}</MenuName>
+            <MenuPrice>{item.price} 원</MenuPrice>
+            <MenuDetail>{item.detail}</MenuDetail>
           </div>
         </div>
         <SmallButton 

@@ -10,6 +10,7 @@ import {
   StoreAddressP,
   StoreInfoP,
   StoreCategory,
+  EmptyStoreImg,
 }
 from './StyledStoreData'
 import { Container,Title} from "../GlobalStyle";
@@ -24,6 +25,7 @@ import MenuList from './MenuList'
 const StoreData = ({id}) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
+  // const [store, setStore] = useState({image:[]})
   const [store, setStore] = useState({image:[]})
   const [openModal , setOpenModal] = useState(false);
 
@@ -54,6 +56,8 @@ const StoreData = ({id}) => {
       console.log(err);
     })
   }, []);
+
+  console.log('전달해주기 전 store',store)
   
   return (
     <Container>
@@ -69,7 +73,14 @@ const StoreData = ({id}) => {
             <StoreImg src={store.image[0]} className = 'first-img' />
 
             <div>
+            {store.image.length < 2 ? 
+            <EmptyStoreImg className = 'second-img empty-secont-img'>
+            <p>이미지가 없습니다.어떻게 해야할까.</p>
+            </EmptyStoreImg>
+            :
             <StoreImg src={store.image[1]} className = 'second-img'/>
+            }
+
             <StoreBackImg
               style={{
                 backgroundImage: `url(${store.image[2]})`,
@@ -101,10 +112,9 @@ const StoreData = ({id}) => {
 
       {openModal ?
       <StoreImgModal
+      store = {store}
       openModal = {openModal}
       setOpenModal = {setOpenModal}
-      modalTitleText = '모든 이미지 나오는부분'
-      modalText = '슬라이드넣을예정'
       modalBtn = '닫기'
       />
       :null    

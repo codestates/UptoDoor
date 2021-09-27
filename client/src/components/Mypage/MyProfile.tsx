@@ -2,11 +2,12 @@ import React,{useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import { Container, Title, Wrapper } from "../GlobalStyle";
 import MyOrderWrapper from '../UserOrderInfo/MyOrderWrapper';
-import AdminOrderWrapper from '../AdminOrderInfo/AdminOrderWrapper'
+import AdminOrderWrapper from '../Adminpage/AdminOrderWrapper'
 import axios from 'axios';
-
+import { getAdminData } from '../../_actions/post_action';
 import MyOrderList from './MyOrderList';
 // import MyPaymentList from './MyPaymentList';
+import { useDispatch} from "react-redux";
 import { 
   ButtonWrapper, 
   MypageWrapper,MypageContent,
@@ -14,9 +15,12 @@ import {
   MypageProfileBtnWrapper,
   MypageUl,MypageLi } from './StyledMypage';
 import { END_POINTS } from '../../_actions/type';
+import { useHistory } from 'react-router-dom';
 
 function MyProfile(): any {
-  const [user,setUser]:any = useState('')
+  const dispatch:any = useDispatch();
+  const history = useHistory();
+  const [user, setUser]: any = useState('')
 
   const [orderList,setOrderList] = useState([])
   const [orderitem , setOrderItem] = useState({})
@@ -85,6 +89,14 @@ function MyProfile(): any {
     })
   },[])
 
+  const moveAdminPage = () => {
+    dispatch(getAdminData()).then((res:any) => {
+      if (res.payload.message === "ok") {
+        history.push('/adminpage')
+      }
+  })
+  }
+  
   return (
     <Container>
       <Title>프로필</Title>
@@ -120,7 +132,9 @@ function MyProfile(): any {
               </MypageContent>
               <ButtonWrapper>
                 {user.position === "1" ?
-                  (<button><Link to="/adminpage">관리자 페이지</Link></button>) :
+                  (<button onClick={() => {
+                    moveAdminPage()
+                  }}>관리자 페이지</button>) :
                   (<button><Link to="/adminpost">가게 등록</Link></button>)
                 }
                 <button><Link to="/mypageedit">프로필 수정</Link></button>

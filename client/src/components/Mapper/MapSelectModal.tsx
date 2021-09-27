@@ -39,7 +39,7 @@ function MapSelectModal(props:any) {
                 </MiddleButton>
               </div>
               <MapModalInfo>
-                선택한 주소로 바로 배송됩디다.
+                선택한 주소로 바로 배송됩니다.
               </MapModalInfo>
             </ModalBtnWrapper>
           </ModalSelectAddWrapper>

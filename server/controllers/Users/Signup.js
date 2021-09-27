@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
         res.status(409).send({message: 'require email check'})
     }else{
         const hashpassword = crypto.createHash('sha512').update(Data.password).digest('hex');
-        await user.update({age:Data.age,gender:Data.gender,mobile:Data.mobile,name:Data.name,password:hashpassword}, {where : {email : receiverEmail}});
+        await user.update({age:Data.age,gender:Data.gender,mobile:Data.mobile,nickname:Data.name,password:hashpassword}, {where : {email : receiverEmail}});
         res.status(200).send({message: 'Signup success'});
     }
 }

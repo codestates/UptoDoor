@@ -15,10 +15,10 @@ import {
 import AdminOrderInfo from './AdminOrderInfo'
 import AdminStoreInfo from './AdminStoreInfo'
 
-function AdminOrderWrapper({ filteredOrderId, listbackHandler }:any) {
+function AdminOrderWrapper({ orderitem, listbackHandler }:any) {
 
   useEffect(() => {
-    console.log(filteredOrderId);
+    console.log("ㅁㅇㄴㅈㅂㅈ1131", orderitem);
   }, []);
 
   return (

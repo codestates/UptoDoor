@@ -99,7 +99,7 @@ export const OrderListInfo = styled.div`
   }
   @media screen and (min-width: 1140px) {
     > div {
-      width: 75%;
+      width: 440px;
       > div {
         margin-bottom: 6px;
         font-size: 16px;
@@ -143,10 +143,9 @@ export const DeliveryTime = styled.p`
   height: 100%;
   text-align: right;
   margin-right: 10px;
-  width: 30%;
   font-size: 14px;
   margin-bottom: 2px;
-
+  /* width:90%; */
   @media screen and (min-width: 1140px) {
     font-size:16px;
   }

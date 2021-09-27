@@ -6,18 +6,17 @@ import {
   ButtonWrapper,
   MypageContent,
   MypageWrapper,
+  MypageUl,
+  MypageLi,
 } from "../Mypage/StyledMypage";
 import { Container, Title, Wrapper } from "../GlobalStyle";  
 import { AdimUl, AdminLi, AdminUlListWrapper } from "./StyledAdminPage";
 import AdminOrderList from './AdminOrderList';
-import AdminOrderWrapper from '../AdminOrderInfo/AdminOrderWrapper';
+import AdminOrderWrapper from './AdminOrderWrapper';
 import { useSelector } from "react-redux";
 
 
 function AdminProfile() {
-  
-  const user = useSelector((state) => state.user);
-  const cart = useSelector((state) => state.cart);
   const admin = useSelector((state) => state.admin?.orderdata);
   console.log(admin);
   const { store } = admin;
@@ -25,20 +24,29 @@ function AdminProfile() {
   console.log("스토어", store)
   console.log("오더스", orders);
   
-  const [currentTab, setCurrentTab] = useState(0);
-  const [filteredOrderId, setFilteredOrderId] = useState("")
+  
   const [filteredData, setFilteredData] = useState([])
   const days = ["일", "월", "화", "수", "목", "금", "토"];
-
+  const [selectedDay, setSelectedDay] = useState(days[new Date().getDay()]);
+  const [currentTab, setCurrentTab] = useState(new Date().getDay());
+  const [orderitem, setOrderItem] = useState({});
+  const [cur, setCur] = useState(0);
   const moveDetailHandler = (id) => {
-    setFilteredOrderId(id)
+    const filtered = filteredData.filter((el) => {
+      return el.id === id;
+    })[0];
+    setOrderItem(filtered);
+    setCur(1);
   }
   const listbackHandler = () => {
-    setFilteredOrderId("");
+    setOrderItem("");
+    setCur(0);
   }
 
   const changeList = (id, day) => {
+    setCur(0);
     setCurrentTab(id);
+    setSelectedDay(day)
     const filtered = orders.filter((el) => {
       const { delivery_day } = el.order_deliveries[0];
       const deliveryDay = delivery_day.split(",");
@@ -48,20 +56,13 @@ function AdminProfile() {
   }
 
   useEffect(() => {
-    console.log("20")
-    
-    
-    //들어오자마자 오늘 날짜 선택
-    const day = new Date().getDay();
-    const today = days[day];
+    setCur(0);
     const filtered = orders.filter((el) => {
       const { delivery_day } = el.order_deliveries[0];
       const deliveryDay = delivery_day.split(",");
-      return deliveryDay.includes(today);
+      return deliveryDay.includes(selectedDay);
     });
-    setCurrentTab(day)
     setFilteredData(filtered);
-    
   }, [])
 
   return (
@@ -72,7 +73,7 @@ function AdminProfile() {
           <MypageProfileBtnWrapper>
             <MypageProfileWrapper>
               <MypageContent>
-                <h3>안녕하세요. {admin.nickname}님.</h3>
+                <h3>안녕하세요. {admin.nickname}님</h3>
                 {admin.title === "" ? (
                   <p>가게를 등록해주세요.</p>
                 ) : (
@@ -91,6 +92,9 @@ function AdminProfile() {
                 </button>
               </ButtonWrapper>
             </MypageProfileWrapper>
+            <MypageUl>
+              <MypageLi>주문관리</MypageLi>
+            </MypageUl>
           </MypageProfileBtnWrapper>
           <AdminUlListWrapper>
             <AdimUl>
@@ -111,17 +115,16 @@ function AdminProfile() {
               })}
             </AdimUl>
 
-            {filteredOrderId ? (
+            {cur === 1 ? (
               <AdminOrderWrapper
-                filteredOrderId={filteredOrderId}
+                orderitem={orderitem}
                 listbackHandler={listbackHandler}
               />
             ) : (
               <AdminOrderList
-                cart={cart}
-                user={user}
                 moveDetailHandler={moveDetailHandler}
                 data={filteredData}
+                selectedDay={selectedDay}
               />
             )}
           </AdminUlListWrapper>

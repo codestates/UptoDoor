@@ -122,6 +122,8 @@ function MapWrapper() {
             openInfoModal={undefined} 
             mapData={undefined} />
             <EmptyMap
+              cart = {cart}
+              setSelectAddressModal={setSelectAddressModal}
               message={user.message}
               setLoginModal={setLoginModal}
             filterList={filterList} 

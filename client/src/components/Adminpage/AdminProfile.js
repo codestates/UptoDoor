@@ -11,14 +11,14 @@ import { Container, Title, Wrapper } from "../GlobalStyle";
 import { AdimUl, AdminLi, AdminUlListWrapper } from "./StyledAdminPage";
 import AdminOrderList from './AdminOrderList';
 import AdminOrderWrapper from '../AdminOrderInfo/AdminOrderWrapper';
-import { useDispatch, useSelector } from "react-redux";
-import { getAdminData } from '../../_actions/post_action';
+import { useSelector } from "react-redux";
+
 
 function AdminProfile() {
-  const dispatch = useDispatch();
+  
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
-  const admin = useSelector((state) => state.admin.orderdata);
+  const admin = useSelector((state) => state.admin?.orderdata);
   console.log(admin);
   const { store } = admin;
   const { orders } = store;
@@ -46,9 +46,10 @@ function AdminProfile() {
     });
     setFilteredData(filtered);
   }
+
   useEffect(() => {
     console.log("20")
-    dispatch(getAdminData())
+    
     
     //들어오자마자 오늘 날짜 선택
     const day = new Date().getDay();

@@ -156,10 +156,7 @@ const markers = [];
                   } else {
                     marker.setMap(null);
                   }
-                  // console.log("markers1", markers);
                 }
-                // console.log("markers2-", markers);
-                console.log("makers", markers);
                 clickHashtagHandler(markers);
                 
               }

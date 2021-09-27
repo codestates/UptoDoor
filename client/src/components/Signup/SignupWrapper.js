@@ -39,6 +39,7 @@ function SignupWrapper() {
   const [isAllchecked , setIsAllchecked] = useState(false);
 
   const [successModal, setSuccessModal] = useState(false);
+  // const [signinModal, setSigninModal] = useState(false);
 
   const signupSubmitHandler = useCallback((e) => {
     e.preventDefault();
@@ -56,6 +57,7 @@ function SignupWrapper() {
       console.log('===',res.payload)
       if (res.payload.message === 'Signup success') {
         setSuccessModal(true);
+        // setSigninModal(true);
         window.location.href = "http://localhost:3000";
       } else {
         alert('회원가입 조건을 충족해주세요.');
@@ -125,6 +127,12 @@ function SignupWrapper() {
   const cancleHandler = () => {
     history.push('/');
   }
+  // const [count, setCount] =useState(0)
+  // useEffect(() => {
+  //   if (count >= 3 && !successModal && !signinModal) {
+  //     window.location.href = "http://localhost:3000";
+  //   }
+  // }, [successModal, signinModal]);
 
   return (
     <SignupContainer>
@@ -232,6 +240,12 @@ function SignupWrapper() {
           modalBtn="확인"
         />
       ) : null}
+      {/* {signinModal ? (
+        <SigninModal
+          modalOpen={signinModal}
+          setModalOpen={setSigninModal}
+        />
+      ) : null}*/}
     </SignupContainer>
   );
 }

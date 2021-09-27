@@ -22,7 +22,7 @@ import 'slick-carousel/slick/slick-theme.css';
 // }
 
 function StoreImgModal(
-  props:any,store:{image:[]}, 
+  props:any,store:any, 
   // {
   // autoplay = false,
   // speed = 800,
@@ -30,11 +30,11 @@ function StoreImgModal(
 // }:storeSliderProps
 ) 
 {
-
+  console.log('props',props);
   const history:any = useHistory()
   // const store = useSelector((state:any) => state.store);
   // const storeImg = store;
-  console.log('==store info img==',store);
+  console.log('==store info img==',props.store);
 
   const settings = useMemo<Settings>(
     ()=>({

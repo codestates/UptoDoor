@@ -1,5 +1,7 @@
 import {
   ADMIN_POST,
+  ADMIN_POST_GET,
+  ADMIN_POST_EDIT,
   DELETE_ADMIN_POST,
   GET_ADMIN_DATA,
   END_POINTS,
@@ -24,6 +26,22 @@ export const adminPost = (adminposts) => {
   };
 };
 
+export const adminPostGet = (adminpostEditGet) => {
+  axios.get(`${END_POINTS}/admin/store/59`,
+  adminpostEditGet)
+  .then((res)=>{
+    //수정성공
+    console.log(res.data)
+  })
+  .catch((err)=>{
+    console.log('==수정 실패==',err)
+  })
+  return {
+    type: ADMIN_POST_GET,
+    payload: adminpostEditGet
+  };
+};
+
 export const adminPostEdit = (adminpostEdit) => {
   // axios.patch(`${END_POINTS}/admin/store`,
   // adminpostEdit)
@@ -34,9 +52,8 @@ export const adminPostEdit = (adminpostEdit) => {
   // .catch((err)=>{
   //   console.log('==수정 실패==',err)
   // })
-
   return {
-    type: ADMIN_POST,
+    type: ADMIN_POST_EDIT,
     payload: adminpostEdit
   };
 };

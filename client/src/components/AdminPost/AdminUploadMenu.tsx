@@ -9,15 +9,16 @@ import {
   MenuUploadDiv,
   MenuUploadDiv2,
   MenuImg,
-  PlusIcon,
-  FileUp
-,StoreMenuAddBtn
+  PlusIcon,RemoveMenuBtn,
+  FileUp ,StoreMenuAddBtn
 } from './StyledAdminPost'
 import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
 axios.defaults.withCredentials = true;
 
-function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
+function AdminUploadMenu({
+  addMenuHandler,menuArr,
+  setMenuArr,removeMenuHandler
   }:any):any {
   const [menuImg , setMenuImg]:any = useState(''); 
   const [menuName , setMenuName] = useState('');
@@ -36,7 +37,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
     copyArr[e.target.id].menuName = e.target.value
     setMenuArr(copyArr)
   }
-    const dropHandler = (e:any) => {
+  const dropHandler = (e:any) => {
       const file = e.target.files
       const formData = new FormData();
       const config = {
@@ -49,6 +50,8 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
         if(res.data.success){
           //깊은복사
           const copyArr = JSON.parse(JSON.stringify(menuArr));
+          // console.log('copyArr===',copyArr)
+          // console.log('copyArr target===',copyArr[e.target.id])
           copyArr[e.target.id].menuImg = res.data.filePath
           setMenuArr(copyArr)
           setMenuImg(res.data.filePath)
@@ -59,48 +62,45 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
       .catch((err)=>{
         return console.log('==file 가져오기 실패===',err)
       })
-    }
-    
-
-    const changeMenuDesc = (e:any) => {
-      setMenuDescription(e.target.value)
-      const copyArr = JSON.parse(JSON.stringify(menuArr));
-      copyArr[e.target.id].menuDescription = e.target.value
-      setMenuArr(copyArr)
-    }
-
-    const addMenuItemHandler = () => {
-      if(menuImg && menuName && price && menuDescription){
-        const menus = {
-          menuImg : menuImg,
-          menuName : menuName,
-          price : price,
-          menuDescription : menuDescription
-        }
-        addMenuHandler(menus);
-        setMenuImg('');
-        setPrice(0);
-        setMenuName('');
-        setMenuDescription('');
-      }else{
-        alert("항목을 다 입력해 주세요")
+  }
+  const changeMenuDesc = (e:any) => {
+    setMenuDescription(e.target.value)
+    console.log('menuDescription',menuDescription)
+    const copyArr = JSON.parse(JSON.stringify(menuArr));
+    copyArr[e.target.id].menuDescription = e.target.value
+    setMenuArr(copyArr)
+  }
+  const addMenuItemHandler = () => {
+    if(menuImg && menuName && price && menuDescription){
+      const menus = {
+        menuImg : menuImg,
+        menuName : menuName,
+        price : price,
+        menuDescription : menuDescription
       }
+      addMenuHandler(menus);
+      setMenuImg('');
+      setPrice(0);
+      setMenuName('');
+      setMenuDescription('');
+    }else{
+      alert("항목을 다 입력해 주세요")
     }
+  }
 
-    const uploadHandler = (e:any) => {
-      e.target.previousSibling.click();
-    }
-
-    const checkHandler = (e:any) => {   
-      dropHandler(e)
-    }
+  const uploadHandler = (e:any) => {
+    e.target.previousSibling.click();
+  }
+  const checkHandler = (e:any) => {   
+    dropHandler(e)
+  }
 
 //form 제출 시 onsubmit -> 해당 데이터 담겨서 전달 
   return (
     <StoreInputBox>
       <label className = 'menu-enroll-label'>메뉴 등록</label>
       {menuArr && menuArr.map((el:any,idx:number) => {
-      // console.log('-----el----',el);
+      console.log('-----el----',el,idx);
         return (
           <StoreMenuAddWrapper key={idx}>
             <MenuUploadDiv2 >
@@ -119,6 +119,14 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
             </MenuUploadDiv2>
             <MenuUploadDiv2>
               <MenuInputBox>
+
+                <RemoveMenuBtn
+                type = 'button'
+                id = {idx}
+                onClick = 
+                {(e:any)=>removeMenuHandler(e)}
+                >삭제</RemoveMenuBtn>
+
                 <label>메뉴이름</label>
                 <MenuInput 
                   id={idx}

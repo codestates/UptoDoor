@@ -1,5 +1,6 @@
 import {
   ADMIN_POST,
+  ADMIN_POST_GET,
   DELETE_ADMIN_POST,
   GET_ADMIN_DATA,
 } from "../_actions/type";
@@ -21,6 +22,10 @@ export default function admin_reducer(state = initialAdminPostInfo, action) {
   switch (action.type) {
     case ADMIN_POST:
       return {...state, ...action.payload};
+    case ADMIN_POST_GET:
+      return {...state, ...action.payload };
+    case ADMIN_POST_EDIT:
+      return {...state, ...action.payload };
     case DELETE_ADMIN_POST:
       return (state = {})
     case GET_ADMIN_DATA:

@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
         let email = userData.email;
         let age = userData.age;
         let gender = userData.gender;
-        let name = userData.nickname;
+        let nickname = userData.nickname;
 
         //네이버에서 받아온 데이터를 기존의 회원가입 형식과 일치하게 데이터핸들링
         age = `${age.split('-')[0]}대`
@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
         if(count === 0){
             await user.create({
                 email : email, 
-                name : name, 
+                nickname : nickname, 
                 age : age,
                 gender : gender, 
                 emailcheck:"true",
@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
         const UserInfo = {
             id: Data.id,
             email: Data.email,
-            name: Data.name,
+            nickname: Data.nickname,
             mainAddress: Data.mainAddress,
             mainAddressDetail: Data.mainAddressDetail,
             subAddress: Data.subAddress,
@@ -75,7 +75,7 @@ module.exports = async (req, res) => {
         };
 
         //자체적인 토큰 만들어서 발급
-        const accessData = { email: Data.email, id: Data.id, name: Data.name };
+        const accessData = { email: Data.email, id: Data.id, nickname: Data.nickname };
         const accesstoken = generateAccessToken(accessData);
         const refreshtoken = generateRefreshToken(accessData);
         sendAccessToken(res, accesstoken);

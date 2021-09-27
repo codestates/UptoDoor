@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
     const UserInfo = {
       id: Data.id,
       email: Data.email,
-      name: Data.name,
+      nickname: Data.nickname,
       mainAddress: Data.mainAddress,
       mainAddressDetail: Data.mainAddressDetail,
       subAddress: Data.subAddress,

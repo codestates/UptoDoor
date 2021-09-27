@@ -27,6 +27,8 @@ module.exports = async (req, res) => {
   if(count === 0){
     let data = await user.create({email : receiverEmail, emailcheck:"false"});
       
+    let str = ``
+
     // 전송할 email 내용 작성
     const mailOptions = {
         from: EMAIL,

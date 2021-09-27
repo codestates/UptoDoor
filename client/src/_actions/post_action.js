@@ -26,19 +26,18 @@ export const adminPost = (adminposts) => {
   };
 };
 
-export const adminPostGet = (adminpostEditGet) => {
-  axios.get(`${END_POINTS}/admin/store/59`,
-  adminpostEditGet)
+export const adminPostGet = () => {
+  const result = axios.get(`${END_POINTS}/admin/store/59`)
   .then((res)=>{
-    //수정성공
     console.log(res.data)
+    return res.data
   })
   .catch((err)=>{
-    console.log('==수정 실패==',err)
+    console.log('==받아오기 실패==',err)
   })
   return {
     type: ADMIN_POST_GET,
-    payload: adminpostEditGet
+    payload: result
   };
 };
 

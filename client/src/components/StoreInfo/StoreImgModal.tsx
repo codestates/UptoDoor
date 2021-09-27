@@ -71,15 +71,15 @@ function StoreImgModal(
             onClick = {closeModal}>
             <i className="fas fa-times"></i>
           </CloseBtnIcon>  
-            {/* <Slider {...settings}>
-              {storeImg&&storeImg.map((el:any,idx:any)=>{
+            <Slider {...settings}>
+              {props.store.image&&props.store.image.map((el:any,idx:any)=>{
                 return (
                   <ModalStoreImgSlideBox key = {idx}>
                   <ModalStoreImgs src = {el} alt = 'store-imgs'/>
                   </ModalStoreImgSlideBox>
                 )
               })}
-            </Slider> */}
+            </Slider>
             </ModalStoreWrapper>
         </ModalContainer>
       )

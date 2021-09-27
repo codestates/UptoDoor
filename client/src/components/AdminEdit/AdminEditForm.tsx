@@ -12,7 +12,7 @@ import { BtnBox, SmallButton } from '../common/Button/Button';
 
 import { useHistory } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux'
-import { adminPostEdit , deleteAdminPost } from '../../_actions/post_action';
+import { adminPostGet, adminPostEdit , deleteAdminPost } from '../../_actions/post_action';
 
 import AdminUploadStoreEdit from './AdminUploadStoreEdit'
 import AdminEnrollStoreEdit from './AdminEnrollStoreEdit'
@@ -107,6 +107,7 @@ function AdminEditForm() {
       setMobile(mobile.replace(/-/g, '').replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3'));
     }
   }, [mobile]);
+
   
   //!add menu onchange handler
   const addMenuHandler = (menu: any) => {
@@ -145,7 +146,7 @@ function AdminEditForm() {
       storeFile : storeFile,
       xvalue:xValue,
       yvalue:yValue,
-    }
+    } 
       dispatch(adminPostEdit(adminPostInfo))
       console.log(adminPostInfo);
       //history.push('/');

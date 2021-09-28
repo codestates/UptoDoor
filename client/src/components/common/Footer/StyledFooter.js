@@ -1,61 +1,198 @@
 import styled from "styled-components";
+import { MainColor } from "../../GlobalStyle";
 
 export const FooterContainer = styled.div`
   margin: 0;
-  padding: 10px 0 0 20px;
+  padding: 50px 0 0 0;
   box-sizing: border-box;
-  height: 200px;
+  height: 400px;
   width: 100%;
   /* border: 1px solid black; */
   background: #f0f0f2;
-  position: flxed;
-  bottom:0;
+  bottom: 0;
   left: 0;
+
+  @media screen and (min-width: 767px) {
+    padding: 80px 0 0 0;
+  }
 `;
 
 export const FooterWrapper = styled.div`
-  box-sizing: border-box;
   margin: 0 auto;
-  padding: 30px auto;
-
+  padding: 0 60px 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  > h5 {
-    margin-top: 12px;
-    margin-bottom: 3px;
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 60px 50px;
+    width: 90%;
   }
 
-  > h2 {
-    margin: 3px;
+  @media screen and (min-width: 767px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 60px 50px;
+    width: 90%;
+    min-width: 740px;
   }
-
-  > p {
-    margin: 0;
-  }
-
   @media screen and (min-width: 1140px) {
+    padding: 0 100px 50px;
+    min-width: 1140px;
+    width: 80%;
   }
 `;
 
-export const AboutCompany = styled.div`
-  > p {
-    margin: 0;
-    color: #8c8c8c;
+export const FooterTitle = styled.div`
+  > h1 {
+    margin-bottom: 12px;
+  }
+  > h3 {
+    font-weight: 500;
+    margin-bottom: 6px;
+    padding-left: 2px;
+    letter-spacing: -1px;
+  }
+  > h5 {
+    display: none;
+  }
+  @media screen and (min-width: 767px) {
+    > h5 {
+      display: block;
+    }
+  }
+
+  @media screen and (min-width: 767px) {
+    > h1 {
+      font-size: 28px;
+    }
+    > h3 {
+      font-size: 16px;
+    }
+    > h5 {
+      font-weight: 500;
+      margin-bottom: 6px;
+      padding-left: 2px;
+      font-size: 12px;
+    }
+  }
+  @media screen and (min-width: 1140px) {
+    > h1 {
+      font-size: 32px;
+    }
+    > h3 {
+      font-size: 18px;
+    }
+    h5 {
+      font-weight: 500;
+      margin-bottom: 6px;
+      padding-left: 2px;
+      font-size: 15px;
+    }
   }
 `;
 
-export const AdminLink = styled.div`
-  width: 90%;
-  >span,
-  small {
-    color: #8c8c8c;
+export const FooterLinkItems = styled.div`
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+  box-sizing: border-box;
+  color: #000;
+  display: ${({ none }) => (none ? "none" : "flex")};
+  @media screen and (min-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    > h1 {
+      margin-bottom: 12px;
+    }
+    > h3,
+    h5 {
+      font-weight: 500;
+      margin-bottom: 6px;
+      padding-left: 2px;
+      letter-spacing: -1px;
+    }
+  }
+`;
+
+export const FooterLinkTitle = styled.h1`
+  font-size: 20px;
+  margin-bottom: 16px;
+  text-align: center;
+  display: ${({ none }) => (none ? "none" : "block")};
+  @media screen and (min-width: 600px) {
+    display: block;
   }
 
-  > a {
-    text-decoration: none;
-    color: #8c8c8c;
-    cursor: pointer;
+  @media screen and (min-width: 767px) {
+    display: block;
+    font-size: 22px;
+  }
+  @media screen and (min-width: 1140px) {
+    font-size: 24px;
+  }
+`;
+
+export const FooterLink = styled.a`
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  font-size: 16px;
+  letter-spacing: -1px;
+
+  &:hover {
+    color: ${MainColor};
+    transition: 0.3s ease-out;
+  }
+
+  @media screen and (min-width: 767px) {
+    font-size: 16px;
+  }
+  @media screen and (min-width: 1140px) {
+    font-size: 18px;
+  }
+`;
+
+export const SocialIcons = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 5px;
+
+  @media screen and (min-width: 767px) {
+    margin-top: 0;
+    justify-content: center;
+  }
+`;
+
+export const SocialIconLink = styled.a`
+  color: #000;
+  font-size: 32px;
+  margin-right: 5px;
+
+  @media screen and (min-width: 767px) {
+    font-size: 32px;
+    margin-top: 4px;
+  }
+  @media screen and (min-width: 1140px) {
+    margin-top: 2px;
+    font-size: 40px;
+  }
+`;
+
+export const WebsiteRights = styled.p`
+  color: #000;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  
+
+  @media screen and (max-width: 600px) {
+    padding: 0 60px;
+    text-align: left;
+    font-size: 14px;
   }
 `;

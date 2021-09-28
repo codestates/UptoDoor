@@ -153,7 +153,9 @@ export const MypageUl = styled.ul`
   width: 100%;
   height: 40px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-
+  > .focus {
+    background-color: #f7f7f7;
+  }
   @media screen and (min-width: 767px) {
     flex-direction: column;
     height: 50px;
@@ -169,11 +171,13 @@ export const MypageLi = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f7f7f7;
+  background-color: #fff;
   border: none;
   cursor: pointer;
   color: #656d78;
   letter-spacing: -1px;
+  
+
   @media screen and (min-width: 767px) {
     height: 50px;
     width: 100%;

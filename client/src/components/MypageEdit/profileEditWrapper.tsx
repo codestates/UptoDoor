@@ -40,6 +40,7 @@ function MyProfileEdit() {
 
   const [openModal , setOpenModal] = useState(false);
   const [confirmModal , setConfirmModal] = useState(false);
+  const [deleteUserModal, setDeleteUserModal] = useState(false);
 
   const onChangeNicknameHandler = useCallback((e)=>{
     setNickname(e.target.value);
@@ -82,11 +83,12 @@ function MyProfileEdit() {
 
   //!회원탈퇴 버튼
   const withdrawalConfirm = () => {
-    alert('탈퇴성공')
+    // alert('탈퇴성공')
     // dispatch(deleteUser())
     // .then((res: any) => {
     //   if (res.payload.message  === 'good bye') {
-    //     alert('탈퇴성공')
+    //     setOpenModal(false);
+    //     setDeleteUserModal(true);
     //     window.location.href="http://localhost:3000/"
     //   } else {
     //     alert('탈퇴 실패. 못벗어남.');
@@ -95,6 +97,8 @@ function MyProfileEdit() {
     // .catch((err: any) => {
     //   console.log(err)
     // });
+    setOpenModal(false);
+    setDeleteUserModal(true);
   }
 
   const withdrawalModalHandler = () => {
@@ -117,7 +121,7 @@ function MyProfileEdit() {
     dispatch(editUser(userinfoEdit))
     // .then((res: any) => {
     //   console.log('===',res.payload)
-    //   if (res.payload.message  === 'good bye') {
+    //   if (res.payload.message  === 'user update success') {
     //     alert('프로필 수정 성공')
     //     window.location.href="http://localhost:3000/"
     //   } else {
@@ -237,6 +241,18 @@ function MyProfileEdit() {
       setOpenModal={setOpenModal}
       modalTitleText = '수정이 완료되었습니다.'
       modalText = '확인 후 메인페이지로 이동합니다.'
+      modalBtn = '확인'
+      />
+      :
+      null
+      }
+      {deleteUserModal ?
+      <ConfirmModal
+      confirmModal = {deleteUserModal}
+      url="/"
+      setOpenModal={setDeleteUserModal}
+      modalTitleText = '회원 탈퇴'
+      modalText = 'Good Bye'
       modalBtn = '확인'
       />
       :

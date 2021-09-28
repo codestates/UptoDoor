@@ -12,7 +12,7 @@ import {
   SignupLogo,
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
-import SigninModal from '../common/Signin/SigninModal'
+// import SigninModal from '../common/Signin/SigninModal'
 import axios from "axios";
 import { END_POINTS } from '../../_actions/type'
 import ConfirmModal from '../common/Modal/ConfirmModal'
@@ -37,25 +37,63 @@ function SignupWrapper() {
   const [gender , setGender] = useState('');
   const [age, setAge] = useState('');
   const [isAllchecked , setIsAllchecked] = useState(false);
-
+  
+  
   const [signupModal, setSignupModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
+  // const [signinModal, setSigninModal] = useState(false);
+  
+
+  const signupSubmitHandler = useCallback((e) => {
+    e.preventDefault();
+    if(password !== passwordChk) return false;
+    if(passwordRegErr === true) return setPasswordRegErr(true);
+    if(certEmail === false) return setCertEmail(true);
+    // if(isAllchecked === false ) return false;
+
+    let userinfo = {
+      email,password,nickname,mobile,
+      gender,age
+    }
+    dispatch(signUp(userinfo))
+    .then((res) => {
+      console.log('===',res.payload)
+      if (res.payload.message === 'Signup success') {
+        setModalSuccess(true);
+        setSignupModal(true);
+        // setSigninModal(true);
+        window.location.href = "http://localhost:3000";
+      } else {
+        alert('회원가입 조건을 충족해주세요.');
+      }
+    })
+    .catch((err) => {
+      setModalSuccess(false);
+        setSignupModal(true);
+    });
+  },[email,password,passwordChk,certEmail])
+  
 
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
   },[])
 
+  const [certSuccessModal, setCertSuccessModal] = useState(false);
+  const [certFailModal, setCertFailModal] = useState(false);
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
-    console.log(email)
     axios
     .post(
       `${END_POINTS}/auth/email`,
       {email:email},
       {withCredentials: true, credentials: 'include'}
-    ).then((res)=>
-    console.log("응답성공",res),
-    )
+    ).then((res) => {
+      if (res.data.message === "send success") {
+        setCertSuccessModal(true);
+      }
+    }).catch(() => {
+      setCertFailModal(true)
+    })
   }
   const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
@@ -151,6 +189,12 @@ function SignupWrapper() {
   const cancleHandler = () => {
     history.push('/');
   }
+  // const [count, setCount] =useState(0)
+  // useEffect(() => {
+  //   if (count >= 3 && !successModal && !signinModal) {
+  //     window.location.href = "http://localhost:3000";
+  //   }
+  // }, [successModal, signinModal]);
 
   return (
     <SignupContainer>
@@ -270,9 +314,31 @@ function SignupWrapper() {
           }
           modalBtn="확인"
         />
-      ) : 
-        null
-      }
+      ) : null}
+      {certSuccessModal ? (
+        <ConfirmModal
+          openModal={certSuccessModal}
+          setOpenModal={setCertSuccessModal}
+          modalTitleText="이메일 인증"
+          modalText="10분 이내에 이메일을 인증해주세요."
+          modalBtn="확인"
+        />
+      ) : null}
+      {certFailModal ? (
+        <ConfirmModal
+          openModal={certFailModal}
+          setOpenModal={setCertFailModal}
+          modalTitleText="이메일 인증"
+          modalText="10분 이내에 이메일을 인증해주세요."
+          modalBtn="확인"
+        />
+      ) : null}
+      {/* {signinModal ? (
+        <SigninModal
+          modalOpen={signinModal}
+          setModalOpen={setSigninModal}
+        />
+      ) : null}*/}
     </SignupContainer>
   );
 }

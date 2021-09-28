@@ -131,11 +131,9 @@ function MyProfile(): any {
                 } */}
               </MypageContent>
               <ButtonWrapper>
-                {user.position === "1" ?
-                  (<button onClick={() => {
-                    moveAdminPage()
-                  }}>관리자 페이지</button>) :
-                  (<button><Link to="/adminpost">가게 등록</Link></button>)
+                {user.position === "1"
+                  ? (<button onClick={() => { moveAdminPage() }}>관리자 페이지</button>)
+                  : (<button><Link to="/adminpost">가게 등록</Link></button>)
                 }
                 <button><Link to="/mypageedit">프로필 수정</Link></button>
               </ButtonWrapper>

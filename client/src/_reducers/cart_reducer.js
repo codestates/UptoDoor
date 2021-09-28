@@ -7,6 +7,7 @@ import {
   ADD_ALL_CART_TO_ORDER,
   SET_ADDRESS,
   SELECT_STORE,
+  REMOVE_ALL_CART,
 } from "../_actions/type";
 
 
@@ -55,7 +56,8 @@ export default function cart_reducer(state = initialState, action) {
     //* 카트에서 오더로 옮기기
     case ADD_ALL_CART_TO_ORDER:
       return { ...state, ...action.payload };
-
+    case REMOVE_ALL_CART:
+      return (state={})
     default:
       return state;
   }

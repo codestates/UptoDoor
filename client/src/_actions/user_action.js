@@ -39,7 +39,7 @@ export const signUp = (userinfo) => {
 export const signIn = (userinfo) => {
   const result = 
   axios.post(`${END_POINTS}/users/signin`, userinfo)
-  .then((res) => {
+      .then((res) => {
     return {
       message: res.data.message,
       id: res.data.userinfo.id,
@@ -56,9 +56,12 @@ export const signIn = (userinfo) => {
       billingkey: res.data.userinfo.billingkey,
       login_type: res.data.login_type,
     };
-  });
+      }).catch(() => {
+    return {
+      message: "error"
+    }
+  })
 
-  console.log("result", result);
   return {
     type: SIGNIN,
     payload: result,
@@ -66,11 +69,15 @@ export const signIn = (userinfo) => {
 };
 //유저 signout post 요청
 export const signOut = () => {
+  console.log("액션까지")
   const request = axios
     .post(`${END_POINTS}/users/signout`)
     .then((res) => {
+      console.log("안에", res.data);
       return res.data.message;
-    });
+    }).catch((err) => {
+      console.log(err);
+    })
     
   
   return {

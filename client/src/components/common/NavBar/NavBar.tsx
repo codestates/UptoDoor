@@ -32,8 +32,9 @@ function NavBar() {
   const [needLoginModal, setNeedLoginModal] = useState(false);
   const closeModal = () => { setNeedLoginModal(false) };
   //사인아웃 핸들러
-  const signoutHandler = useCallback((e) => {
+  const signoutHandler = (e:any) => {
     e.preventDefault();
+    
     if (user.login_type === 'kakao') {
       dispatch(kakaoSignOut())
       .then((res: any) => {
@@ -43,7 +44,7 @@ function NavBar() {
       } else {
         alert("로그아웃에 실패했습니다.")
       }
-    });
+    })
     }
     else if (user.login_type === 'naver') {
       dispatch(naverSignOut())
@@ -57,9 +58,10 @@ function NavBar() {
     });
     }
     else {
+      console.log("d여기까지")
       dispatch(signOut())
       .then((res: any) => {
-        console.log(res);
+        console.log("여기서 찍히녀", res);
       if (res.payload === "signout success") {
         window.location.href=`${END_POINT}`
       } else {
@@ -69,7 +71,7 @@ function NavBar() {
   }
     
     
-  },[])
+  }
 
 const accessInto = useCallback((name) => {
   
@@ -141,7 +143,7 @@ const accessInto = useCallback((name) => {
         </MiddleButton></div>) }
         
       </ButtonWrapper>
-      <SideBar history={ history} setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={(e:any) => { signoutHandler(e) }} />
+      <SideBar history={ history} setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={signoutHandler} />
       <Signin setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
       {!user.message && needLoginModal ? <Modal closeModal={closeModal}
         openModal={needLoginModal} modalTitleText="UptoDoor"

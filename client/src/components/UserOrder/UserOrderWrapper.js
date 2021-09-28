@@ -16,6 +16,7 @@ import { addOrder } from '../../_actions/user_action';
 import { Container, Wrapper, Title } from "../GlobalStyle";
 import useInput from "../../utils/useInput";
 import ConfirmModal from "../common/Modal/ConfirmModal";
+import { removeAllCart } from "../../_actions/cart_action";
 
 function UserOrderWrapper() {
   const state = useSelector((state) => state);
@@ -54,7 +55,8 @@ function UserOrderWrapper() {
       const selected_mobile = state.user.mobile;
       dispatch(addOrder(state.cart, selected_mobile, deliveryName)).
         then((res) => {
-        if (res.payload.message === 'Your order has been completed') {
+          if (res.payload.message === 'Your order has been completed') {
+          dispatch(removeAllCart())
           setOpenModal(true);
         }
       }).catch((err)=> alert("err입니다", err));

@@ -37,6 +37,7 @@ export const ADD_CART = "ADD_CART";
 export const ADD_ALL_CART_TO_ORDER = "ADD_ALL_CART_TO_ORDER";
 export const SET_ADDRESS = "SET_ADDRESS";
 export const SELECT_STORE = "SELECT_STORE";
+export const REMOVE_ALL_CART = "REMOVE_ALL_CART";
 
 //
 // export const END_POINTS = "https://uptodoors.shop"

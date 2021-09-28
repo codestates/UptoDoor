@@ -8,6 +8,7 @@ import { signIn,naverSignIn, kakaoSignIn } from '../../../_actions/user_action';
 import axios from 'axios';
 axios.defaults.withCredentials = true
 import { END_POINT } from '../../../_actions/type';
+import ConfirmModal from '../Modal/ConfirmModal';
 
 interface Iprops {
   modalOpen: boolean;
@@ -21,6 +22,8 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
   // if (!modalOpen) return null;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // 실패시 모달
+  const [failModal, setFailModal] = useState(false);
 
   const onChangePassword = useCallback((e) => {
     setPassword(e.target.value);
@@ -29,7 +32,7 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
   const onChangeEmail = useCallback((e) => {
     setEmail(e.target.value);
   }, [email])
-  
+
   const signinHandler = useCallback((e) => {
     e.preventDefault();
     console.log("제출", email, password);
@@ -39,11 +42,11 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
         if (res.payload.message  === 'login success') {
           window.location.href=`${END_POINT}`
         } else {
-          alert('로그인 실패하였습니다.');
+          setFailModal(true);
         } 
       })
-      .catch((err: any) => {
-        console.log(err)
+      .catch(() => {
+        setFailModal(true);
       });
   },[email,password])
   
@@ -71,11 +74,11 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
         if (res.payload.message  === 'login success') {
           window.location.href=`${END_POINT}`
         } else {
-          alert('로그인 실패하였습니다.');
+          setFailModal(true);
         } 
       })
-      .catch((err: any) => {
-        console.log(err)
+      .catch(() => {
+        setFailModal(true);
       });
       //인가코드만 있으면 카카오 로그인        
     } else if (authorizationCode) {
@@ -85,11 +88,11 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
         if (res.payload.message  === 'login success') {
           window.location.href=`${END_POINT}`
         } else {
-          alert('로그인 실패하였습니다.');
+          setFailModal(true);
         } 
       })
-      .catch((err: any) => {
-        console.log(err)
+      .catch(() => {
+        setFailModal(true);
       });
     }
   },[])
@@ -116,11 +119,18 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
         }}>
             지금 가입하기
           </SignupLink></LeadSignup>
-        
-          
       </SigninWrapper>
+      {failModal ?
+        <ConfirmModal
+        openModal={failModal}
+          setOpenModal={setFailModal}
+          modalTitleText="로그인"
+          modalText="회원 정보가 일치하지 않습니다. 다시 시도해주세요"
+          modalBtn="확인"
+        />:null }
     </SigninContainer>
   ) : null;
+  
 }
 
 export default Signin

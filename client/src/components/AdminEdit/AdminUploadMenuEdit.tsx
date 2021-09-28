@@ -25,17 +25,14 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
 
   const priceHandler = (e:any) => {
     setPrice(e.target.value)
-    const lastIdx = menuArr.length-1;
-    const copyArr = menuArr.slice()
-    copyArr[lastIdx].price = e.target.value;
-    setMenuArr(copyArr);
+    //setMenuArr(copyArr);
   }
   const changeMenuName = (e:any) => {
     setMenuName(e.target.value)
-    const lastIdx = menuArr.length-1;
-    const copyArr = menuArr.slice()
-    copyArr[lastIdx].menuName = e.target.value
-    setMenuArr(copyArr);
+    // const lastIdx = menuArr.length-1;
+    // const copyArr = menuArr.slice()
+    // copyArr[lastIdx].menuName = e.target.value
+    // setMenuArr(copyArr);
 
   }
     const dropHandler = (file:any) => {
@@ -66,10 +63,10 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
     const changeMenuDesc = (e:any) => {
 
       setMenuDescription(e.target.value)
-      const lastIdx = menuArr.length-1;
-      const copyArr = menuArr.slice()
-      copyArr[lastIdx].menuDescription = e.target.value;
-      setMenuArr(copyArr);
+      // const lastIdx = menuArr.length-1;
+      // const copyArr = menuArr.slice()
+      // copyArr[lastIdx].menuDescription = e.target.value;
+      // setMenuArr(copyArr);
     }
 
     const addMenuItemHandler = () => {
@@ -104,12 +101,12 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
                   <MenuUploadDiv {...getRootProps()}>
                     <input 
                     required {...getInputProps()} />
-                    {el.menuImg.length === 0 ? 
+                    {false ? 
                     <PlusIcon>+</PlusIcon>
                     : 
                     <MenuImg 
-                    src = {el.menuImg}
-                    alt = {el.menuImg}/>
+                    src = {el.image}
+                    alt = {el.image}/>
                     }
                   </MenuUploadDiv>
               )}
@@ -123,7 +120,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
                   type = 'text' 
                   step = '1000'
                   onChange = {(e:any)=>{changeMenuName(e)}} 
-                  defaultValue = {el.menuName} 
+                  defaultValue = {el.name} 
                   />
               </MenuInputBox>
               <MenuInputBox>
@@ -140,7 +137,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
                 <label>메뉴 설명</label>
                 <MenuIntroTextArea 
                   required
-                  defaultValue = {el.menuDescription} 
+                  defaultValue = {el.detail} 
                   onChange={(e:any)=>{changeMenuDesc(e)}}
                   placeholder = '100자 이내로 작성해주세요.' 
                   maxlength="100" />

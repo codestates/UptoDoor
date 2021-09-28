@@ -38,33 +38,8 @@ function SignupWrapper() {
   const [age, setAge] = useState('');
   const [isAllchecked , setIsAllchecked] = useState(false);
 
-  const [successModal, setSuccessModal] = useState(false);
-
-  const signupSubmitHandler = useCallback((e) => {
-    e.preventDefault();
-    if(password !== passwordChk) return false;
-    if(passwordRegErr === true) return setPasswordRegErr(true);
-    if(certEmail === false) return setCertEmail(true);
-    // if(isAllchecked === false ) return false;
-
-    let userinfo = {
-      email,password,nickname,mobile,
-      gender,age
-    }
-    dispatch(signUp(userinfo))
-    .then((res) => {
-      console.log('===',res.payload)
-      if (res.payload.message === 'Signup success') {
-        setSuccessModal(true);
-        window.location.href = "http://localhost:3000";
-      } else {
-        alert('회원가입 조건을 충족해주세요.');
-      }
-    })
-    .catch((err) => {
-      console.log(err)
-    });
-  },[email,password,passwordChk,certEmail])
+  const [signupModal, setSignupModal] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
 
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
@@ -82,7 +57,6 @@ function SignupWrapper() {
     console.log("응답성공",res),
     )
   }
-
   const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
     let pwRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,12}$/;
@@ -114,13 +88,65 @@ function SignupWrapper() {
     }
   }, [mobile]);
   
-  const selectInputHandler = (e,name) => {
+  const selectInputHandler = useCallback((e,name) => {
     if(name === '성별'){
       setGender(e.value);
     }else if(name === '연령대'){
       setAge(e.value);
     }
-  }
+  },[])
+
+  //!약관
+  const [checkedInputs, setCheckedInputs] = useState([]);
+
+  const onChangeTermHandler = (checked, idx) => {
+    if (checked) {
+      setCheckedInputs([...checkedInputs, idx]);
+      // setCheckedInputs(checkedInputs.concat(idx));
+      setIsAllchecked(checked)
+      console.log('--chk 반영--',checked)
+    } else {
+      setCheckedInputs(checkedInputs.filter((el) => el !== idx));
+      setIsAllchecked(checked)
+      console.log('--chk 해제반영--',checked)
+    }
+  };
+
+  useEffect(() => {
+    setIsAllchecked(checkedInputs.length === 3);
+  }, [checkedInputs]);
+
+  //!form 제출핸들러.
+  const signupSubmitHandler = useCallback((e) => {
+    console.log('파이널 isAllchk' , isAllchecked)
+    e.preventDefault();
+    if(password !== passwordChk) return false;
+    if(passwordRegErr === true) return setPasswordRegErr(true);
+    if(certEmail === false) return setCertEmail(true);
+    if(isAllchecked === false ) return false;
+
+    let userinfo = {
+      email,password,nickname,mobile,
+      gender,age
+    }
+    dispatch(signUp(userinfo))
+    .then((res) => {
+      console.log('===',res.payload)
+      if (res.payload.message === 'Signup success') {
+        setModalSuccess(true)
+        setSignupModal(true);
+        // window.location.href = "http://localhost:3000";
+      } else {
+        setModalSuccess(false);
+        setSignupModal(true);
+      }
+    })
+    .catch((err) => {
+      console.log(err)        
+      setModalSuccess(false);
+      setSignupModal(true);
+    });
+  },[email,password,passwordChk,certEmail,isAllchecked])
 
   const cancleHandler = () => {
     history.push('/');
@@ -128,7 +154,6 @@ function SignupWrapper() {
 
   return (
     <SignupContainer>
-      {/* <H1>회원가입</H1> */}
       <SignupLogoBox className="signup-logo-box">
         <SignupLogo src="./images/updodoor.png" alt="img" />
       </SignupLogoBox>
@@ -212,10 +237,14 @@ function SignupWrapper() {
 
         <SignupOptions selectInputHandler={selectInputHandler} />
 
+        {/* 약관 */}
         <SignupTerm
+          onChangeTermHandler = {onChangeTermHandler}
+          checkedInputs = {checkedInputs}
           setIsAllchecked={setIsAllchecked}
           isAllchecked={isAllchecked}
         />
+
         <div className="signup-btn-box">
           <SmallButton primary type="submit">
             회원가입
@@ -223,15 +252,27 @@ function SignupWrapper() {
           <SmallButton onClick={cancleHandler}>취소</SmallButton>
         </div>
       </Form>
-      {successModal ? (
+
+      {signupModal ? (
         <ConfirmModal
-          openModal={successModal}
-          setOpenModal={setSuccessModal}
-          modalTitleText="회원가입"
-          modalText="회원가입에 성공했습니다.로그인 페이지로 이동합니다."
+          openModal={signupModal}
+          setOpenModal={setSignupModal}
+          modalSuccess = {modalSuccess}
+          url = '/'
+          modalTitleText=
+          {modalSuccess === true ? 
+            '회원가입 성공' : '회원가입 실패'}
+          modalText=
+          {modalSuccess === true ? 
+            '로그인 페이지로 이동합니다.'
+          :
+            '회원가입에 실패하셨습니다.'
+          }
           modalBtn="확인"
         />
-      ) : null}
+      ) : 
+        null
+      }
     </SignupContainer>
   );
 }

@@ -59,7 +59,7 @@ const state = useSelector((state) => state)
           <SidebarLi onClick={()=>{accessInto("map")}}>구독찾기</SidebarLi>
           <SidebarLi onClick={()=>{accessInto("address")}}>동네인증</SidebarLi>
           <SidebarLi onClick={() => { accessInto("mypage") }}>마이페이지</SidebarLi>
-          {message === undefined ? null : <SidebarBtn onClick={signoutHandler}>로그아웃</SidebarBtn>}
+          {message === undefined ? null : <SidebarBtn onClick={(e:any) => { signoutHandler(e) }}>로그아웃</SidebarBtn>}
           
         </SidebarUl>
       </SidebarWrapper>

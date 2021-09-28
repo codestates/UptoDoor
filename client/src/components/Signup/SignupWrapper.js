@@ -12,7 +12,7 @@ import {
   SignupLogo,
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
-import SigninModal from '../common/Signin/SigninModal'
+// import SigninModal from '../common/Signin/SigninModal'
 import axios from "axios";
 import { END_POINTS } from '../../_actions/type'
 import ConfirmModal from '../common/Modal/ConfirmModal'
@@ -72,17 +72,22 @@ function SignupWrapper() {
     setEmail(e.target.value);
   },[])
 
+  const [certSuccessModal, setCertSuccessModal] = useState(false);
+  const [certFailModal, setCertFailModal] = useState(false);
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
-    console.log(email)
     axios
     .post(
       `${END_POINTS}/auth/email`,
       {email:email},
       {withCredentials: true, credentials: 'include'}
-    ).then((res)=>
-    console.log("응답성공",res),
-    )
+    ).then((res) => {
+      if (res.data.message === "send success") {
+        setCertSuccessModal(true);
+      }
+    }).catch(() => {
+      setCertFailModal(true)
+    })
   }
 
   const onChangePwHandler = useCallback((e) => {
@@ -237,6 +242,24 @@ function SignupWrapper() {
           setOpenModal={setSuccessModal}
           modalTitleText="회원가입"
           modalText="회원가입에 성공했습니다.로그인 페이지로 이동합니다."
+          modalBtn="확인"
+        />
+      ) : null}
+      {certSuccessModal ? (
+        <ConfirmModal
+          openModal={certSuccessModal}
+          setOpenModal={setCertSuccessModal}
+          modalTitleText="이메일 인증"
+          modalText="10분 이내에 이메일을 인증해주세요."
+          modalBtn="확인"
+        />
+      ) : null}
+      {certFailModal ? (
+        <ConfirmModal
+          openModal={certFailModal}
+          setOpenModal={setCertFailModal}
+          modalTitleText="이메일 인증"
+          modalText="10분 이내에 이메일을 인증해주세요."
           modalBtn="확인"
         />
       ) : null}

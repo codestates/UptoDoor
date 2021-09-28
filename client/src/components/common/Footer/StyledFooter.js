@@ -22,7 +22,7 @@ export const FooterContainer = styled.div`
 
 export const FooterWrapper = styled.div`
   margin: 0 auto;
-  padding: 0 60px 10px;
+  padding: 0 60px;
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 600px) {

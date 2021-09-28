@@ -2,20 +2,24 @@ import React, { useState , useCallback, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { signUp } from '../../_actions/user_action'
-import SignupOptions from './SignupOptions'
-import SignupTerm from './SignupTerm'
+import {
+  Container,
+} 
+from '../GlobalStyle';
 import { 
   Form ,
   SignUpInput ,
   Label,
   SignupLogoBox,
-  SignupLogo,
+  SignupLogo,SignupBox,
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
 // import SigninModal from '../common/Signin/SigninModal'
 import axios from "axios";
 import { END_POINTS } from '../../_actions/type'
 import ConfirmModal from '../common/Modal/ConfirmModal'
+import SignupOptions from './SignupOptions'
+import SignupTerm from './SignupTerm'
 axios.defaults.withCredentials=true;
 
 function SignupWrapper() {
@@ -164,89 +168,93 @@ function SignupWrapper() {
   // }, [successModal, signinModal]);
 
   return (
+    <Container>
     <SignupContainer>
       <SignupLogoBox className="signup-logo-box">
-        <SignupLogo src="./images/updodoor.png" alt="img" />
+        <SignupLogo src="./images/upToDoorLogo.png" alt="img" />
       </SignupLogoBox>
 
       <Form onSubmit={signupSubmitHandler}>
+
         <Label>E-mail</Label>
         <SideSpan>*필수</SideSpan>
         <SmallButton
           className="cert-email-btn"
           type="button"
-          onClick={() => certEmailHandler(certEmail)}
-        >
+          onClick={() => certEmailHandler(certEmail)}>
           이메일 인증
         </SmallButton>
-        <br />
-        <SignUpInput
-          required
-          type="email"
-          className="email-input"
-          placeholder="email@email.com"
-          value={email}
-          onChange={onChangeEmailHandler}
-        />
-        {certEmail ? <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> : null}
-        <br />
+
+        <SignupBox>
+          <SignUpInput
+            required
+            type="email"
+            className="email-input"
+            placeholder="email@email.com"
+            value={email}
+            onChange={onChangeEmailHandler}
+          />
+          {certEmail ? <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> : null}
+        </SignupBox>
 
         <Label>비밀번호</Label>
         <SideSpan>*필수</SideSpan>
-        <br />
-        <SignUpInput
-          required
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={onChangePwHandler}
-        />
-        <br />
-        {passwordRegErr ? (
-          <ErrMsgP>
-            비밀번호는 최소 6자리에서 12자리 사이의
-            <br /> 영문,숫자 조합이어야 합니다.
-          </ErrMsgP>
-        ) : null}
+        
+        <SignupBox>
+          <SignUpInput
+            required
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={onChangePwHandler}
+          />
+          {passwordRegErr ? (
+            <ErrMsgP>
+              비밀번호는 최소 6자리에서 12자리 사이의
+              <br /> 영문,숫자 조합이어야 합니다.
+            </ErrMsgP>
+          ) : null}
+        </SignupBox>
 
         <Label>비밀번호 확인</Label>
         <SideSpan>*필수</SideSpan>
-        <br />
-        <SignUpInput
-          required
-          type="password"
-          placeholder="password check"
-          value={passwordChk}
-          onChange={onChangePwChkHandler}
-        />
-        <br />
-        {passwordErr ? <ErrMsgP>비밀번호가 일치하지 않습니다.</ErrMsgP> : null}
+        <SignupBox>
+          <SignUpInput
+            required
+            type="password"
+            placeholder="password check"
+            value={passwordChk}
+            onChange={onChangePwChkHandler}
+          />
+          {passwordErr ? <ErrMsgP>비밀번호가 일치하지 않습니다.</ErrMsgP> : null}
+        </SignupBox>
 
         <Label>이름</Label>
         <SideSpan>*필수</SideSpan>
-        <br />
-        <SignUpInput
-          required
-          type="text"
-          placeholder="이름"
-          value={nickname}
-          onChange={onChangeNicknameHandler}
-        />
-        <br />
+        <SignupBox>
+          <SignUpInput
+            required
+            type="text"
+            placeholder="이름"
+            value={nickname}
+            onChange={onChangeNicknameHandler}
+          />
+        </SignupBox>
 
         <Label>모바일</Label>
         <SideSpan>*필수</SideSpan>
-        <br />
-        <SignUpInput
-          required
-          type="text"
-          placeholder="모바일"
-          value={mobile}
-          onChange={onChangeMobileHandler}
-        />
-        <br />
+        <SignupBox>
+          <SignUpInput
+            required
+            type="text"
+            placeholder="모바일"
+            value={mobile}
+            onChange={onChangeMobileHandler}
+          />
+        </SignupBox>
 
-        <SignupOptions selectInputHandler={selectInputHandler} />
+        <SignupOptions 
+        selectInputHandler={selectInputHandler} />
 
         {/* 약관 */}
         <SignupTerm
@@ -307,6 +315,7 @@ function SignupWrapper() {
         />
       ) : null}*/}
     </SignupContainer>
+    </Container>
   );
 }
 

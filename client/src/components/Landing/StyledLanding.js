@@ -104,9 +104,9 @@ margin : 10px auto ;
 }
 `
 export const CategoryTitle = styled.h2`
-font-weight: 700;
-font-size: 26px;
-background: -webkit-linear-gradient(left, mediumturquoise, #5d9cec);
+font-weight: 800;
+font-size: 28px;
+background: -webkit-linear-gradient(45deg, mediumturquoise, #5d9cec);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -141,10 +141,11 @@ visibility: hidden;
 export const CategoryImgWrapper = styled.div`
 position : relative;
 display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
 grid-template-rows: 1fr 1fr ;
 grid-gap: 12px;
 margin-bottom : 20px;
+
 @media screen and (min-width: 768px) {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
@@ -154,39 +155,41 @@ export const CategoryImgs = styled.img`
 position : relative;
 transition : all .3s;
 top :0;
-left : -60px;
-&:nth-child(1),&:nth-child(7){
+left : -100px;
+width: 180px;
+height : 260px;
+border-radius : 8px;
+object-fit: cover;
+&:nth-child(1),&:nth-child(7),&:nth-child(13){
   position : relative;
   top : 40px;
 }
 &:nth-child(2),&:nth-child(4),&:nth-child(6)
-,&:nth-child(8),&:nth-child(10),&:nth-child(12){
+,&:nth-child(8),&:nth-child(10),&:nth-child(12),&:nth-child(14),&:nth-child(16){
   position : relative;
   top : 90px;
 }
-
-width: 160px;
-height : 240px;
-border-radius : 8px;
-object-fit: cover;
+@media screen and (min-width: 768px) {
+  width: 280px;height : 380px;
+}
 
 @media screen and (min-width: 768px) {
-  width: 250px;height : 350px;
-  &:nth-child(1),&:nth-child(8){
+  width: 270px;height : 370px;
+  &:nth-child(1),&:nth-child(8),&:nth-child(14){
   position : relative;
   top : 40px;
   }
   &:nth-child(2),&:nth-child(4),&:nth-child(6)
-,&:nth-child(9),&:nth-child(11),&:nth-child(13){
+  ,&:nth-child(9),&:nth-child(11),&:nth-child(13){
   position : relative;
   top : 90px;
-}
-&:nth-child(10),&:nth-child(12){
+  }
+  &:nth-child(10),&:nth-child(12){
   top : 0;
+  }
 }
-}
-@media screen and (min-width: 768px) {
-  width: 280px;height : 380px;
+@media screen and (min-width: 1140px) {
+  left : 0;
 }
 `
 export const H1 = styled.h1`
@@ -213,17 +216,17 @@ opacity : 1;
 //!info
 export const LandingInfoContainer = styled.div`
   min-width: 375px;
-  padding: 30px 0;
+  padding: 100px 0;
   background-color: #f7f7f7;
 
   @media screen and (min-width: 768px) {
-    padding: 60px 0;
+    padding: 150px 0;
   }
 `;
 export const LandingInfoWrapper = styled.div`
   /* border: 3px solid; */
   /* padding-bottom: 40px; */
-  padding: 0 0 10px;
+  padding: 20px 0 0;
   @media screen and (min-width: 768px) {
   }
 `;
@@ -335,43 +338,71 @@ export const Img = styled.img`
 //!Value
 export const LandingValueContainer = styled.main`
 width: 100%;
+@media screen and (min-width:768px){
+  height:calc(100vh - 80px);
+  box-sizing: border-box;
+  }
 `
 export const LandingValueWrapper = styled.section`
 display: flex;
 flex-direction: column;
-transition: all 1s ease;
 min-width: 375px;
+
+@media screen and (min-width: 768px) {
+
+}
+@media screen and (min-width: 1140px) {
+flex-direction: row;
+justify-content: center;
+height:calc(100vh - 80px);
+padding : 100px;
+}
+@media screen and (min-width: 1440px) {
+padding : 100px 200px;
+}
+
 >.focus {
   height : 100%;
   @media screen and (min-width: 768px) {
+    >.textbox{
+    /* height : 220px;
+    border :3px solid; */
+    }
   }
   @media screen and (min-width: 1140px) {
-    /* width: 60%; */
-    flex : 3px;
-}
+    >.imgbox{
+    flex : 2;
+  }
+  >.textbox{
+    flex : 1.5;
+  }
+  }
 }
 >.not{
   overflow: hidden;
   min-height : 120px;
   @media screen and (min-width: 768px) {
-    min-height : 200px;
+    min-height : 220px;
   }
   @media screen and (min-width: 1140px) {
-    /* width : 25%; */
-    flex : 1px;
-}
-}
-@media screen and (min-width: 768px) {
-
+  min-height :none;
+  height : 100%;
   }
-@media screen and (min-width: 1140px) {
-  flex-direction: row;
-  justify-content: center; 
+  >.textbox{
+    display: none;
+  }
 }
 `
 export const LandingValueBox = styled.div`
 height : 120px;
-/* transition: all 1s ease; */
+@media screen and (min-width: 768px) {
+  height : 170px;
+  }
+@media screen and (min-width: 1140px) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 &:nth-child(1)>.unstressful-imgbox{
   background-image: url('./images/rank/salad.png');  
 }
@@ -381,21 +412,8 @@ height : 120px;
 &:nth-child(3)>.winwin-imgbox{
   background-image: url('./images/rank/bread.png');
 }
-@media screen and (min-width: 768px) {
-  height : 170px;
-  }
-@media screen and (min-width: 1140px) {
-  /* display: grid;
-  grid-template-columns: 1fr 1fr; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height : 615px;
-  max-height: 700px;
-}
 `
 export const ValueImgBox = styled.div`
-/* transition: all 1s ease; */
 background-size: cover;
 background-blend-mode: multiply;
 background-color : rgba(0,0,0,0.3);
@@ -405,36 +423,44 @@ align-items: flex-end;
 justify-content: flex-end;
 padding : 10px;
 cursor: pointer;  
+transition : all 0.8s ease;
 &:hover{
     background-color: grey;
     background-blend-mode: multiply;
-    transition: all 0.3s;
+    transition: all 0.8s ease;
   }
 @media screen and (min-width: 768px) {
-  height : 200px;
+  height : 230px;
   }
 @media screen and (min-width: 1140px) {
-  height : 615px;
-  min-width :400px ;
-  background-position-x: center;
+  position : relative;
+  width: 600px;
+  height : 100%;
 }
 `
 export const H2 = styled.h2`
 font-size: ${LargeFont};
-font-size: 32px;
-/* text-transform: uppercase; */
-/* letter-spacing: 1px; */
 color : #fff;
-`
-export const ValueTextBox = styled.div`
-transition: all 1s ease;
-padding : 20px;
 @media screen and (min-width: 768px) {
-  padding : 40px;
+font-size: 36px;
   }
 @media screen and (min-width: 1140px) {
-  padding : 30px;
+  position : absolute;
+  bottom : 170px;
+  right: -160px;
   width : 400px;
+  transform: rotate(270deg);
+  font-size: ${UltraLargeFont};
+}
+`
+export const ValueTextBox = styled.div`
+padding : 20px;
+@media screen and (min-width: 768px) {
+  padding : 50px;
+  height : 220px;
+  }
+@media screen and (min-width: 1140px) {
+  padding : 0 40px;
 }
 `
 export const H3 = styled.h3`
@@ -446,7 +472,6 @@ font-weight: ${({endText})=> (endText ? '500' : '500')};
   font-size: ${MediumFont}
   }
 @media screen and (min-width: 1140px) {
-
 }
 `
 export const P = styled.p`
@@ -459,27 +484,32 @@ margin : 5px 0 10px 0;
   font-size: ${SmallFont}
   }
 @media screen and (min-width: 1140px) {
-  padding : 0 5px;
+  padding : 10px 20px;
+  line-height: 25px;
 }
 `
 //!End
 export const LandingEndContainer = styled.main`
 width: 100%;
-height:calc(100vh - 80px); //footer 영역만큼 뺴주기.
+height: 100%;//footer 영역만큼 뺴주기.
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-padding : 30px;
-box-sizing: border-box;
-@media screen and (min-width: 768px) {
+padding : 100px 0 ;
+background-color: #f7f7f7;
+@media screen and (min-width: 767px) {
+  padding : 100px 0 0;
 }
 `
 export const LanindgFindWrapper = styled.div`
 width: 100%;
 min-width: 375px;
 /* border : 3px solid pink; */
-margin : 20px 0;
+/* margin : 20px 0; */
+@media screen and (min-width: 1140px) {
+
+}
 `
 export const LandingEndWrapper = styled.div`
 width: 100%;
@@ -487,7 +517,25 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-/* border : 3px solid magenta; */
+margin : 30px 0 0;  
+>div>button{
+  background : linear-gradient(45deg , mediumturquoise ,#5d9cec);
+  color : #fff;
+  height : 50px;
+  margin-top : 20px;
+  font-weight : 600;
+  border: none;
+}
+@media screen and (min-width: 767px) {
+  margin : 100px 0 0;
+  color : black;
+  padding : 50px 0;
+  background-color: #fff;
+}
+
+@media screen and (min-width: 1140px) {
+  padding : 110px 0;
+}
 `
 // 랜딩지도 전체부분 스타일
 export const LandingMapWrapperContainer = styled.section`
@@ -495,10 +543,12 @@ transition: all 0.3;
 margin : 0 auto;
 width : 80%;
 max-width: 500px;
+@media screen and (min-width: 1140px) {
+  max-width: 950px;
+  }
 `
 // 랜딩셀렉트부분 스타일
 export const LandingMapSelectContainer = styled.div`
-
 `
 export const LandingMapSelectWrapper = styled.div`
 /* display: flex;
@@ -508,7 +558,9 @@ margin : 20px 0 0;
 >.city-selection{
   /* border : 3px solid skyblue; */
   z-index : 1;
-  /* width: 50%; */
+  @media screen and (min-width: 1140px) {
+    width: 30%;
+  }
   >div>div>div{
     color : ${TextDarkGrey};
   }
@@ -516,6 +568,9 @@ margin : 20px 0 0;
 `
 export const H4 = styled.h4`
 animation: ${showModal} 0.4s;
+@media screen and (min-width: 1140px) {
+  font-size: ${LargeFont};
+  }
 >span{
   font-size: ${MediumFont};
   font-weight: 400;
@@ -524,12 +579,15 @@ animation: ${showModal} 0.4s;
 &:nth-child(1){
   font-size: 34px;
   font-weight: 800;
-  background: -webkit-linear-gradient(left, mediumturquoise, #5d9cec);
+  background: -webkit-linear-gradient(45deg, mediumturquoise,#5d9cec);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-  @media screen and (min-width: 768px) {
-    font-size: 38px;
+ @media screen and (min-width: 768px) {
+    font-size: 36px;
+  }
+  @media screen and (min-width: 1140px) {
+    font-size: 42px;
   }
 }
 font-size: ${MediumFont};
@@ -544,7 +602,21 @@ width : 100%;
 height : 250px;
 border-radius : 8px;
 z-index : 0;
-@media screen and (min-width: 1140px) {
-    height : 300px; 
+@media screen and (min-width: 767px) {
+    height : 450px; 
   }
+@media screen and (min-width: 1140px) {
+    height : 550px; 
+  }
+`
+export const EndingH3 = styled.h3`
+margin : 0 0 10px;
+font-size: 24px;
+color : ${TextDarkGrey};
+@media screen and (min-width: 767px) {
+  /* color : #fff; */
+  margin : 0 0 30px;
+  font-size: 38px;
+  font-weight : 800;
+}
 `

@@ -15,7 +15,6 @@ function LandingMapWrapper() {
   const [filterCityList , setFilterCityList] = useState([]);
   
   const onChangeSeoulCity = (e:any) => {
-    console.log('===',e.value)
     if(e.value === 'ALL'){
       setCity('당신 동네')
     }else{
@@ -38,7 +37,6 @@ function LandingMapWrapper() {
       <LandingMapSelect 
       city = {city}
       filterCityList = {filterCityList}
-      // onChangeSeoulCity = {(data)=>onChangeSeoulCity(data)}
       onChangeSeoulCity = {onChangeSeoulCity}
       />
 

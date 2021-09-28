@@ -12,11 +12,6 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
->.signup-line{
-  border-bottom : 1px solid rgba(0,0,0,0.6);
-  width : 80%;
-  margin-bottom: 20px;
-}
 `
 export const H1 = styled.h1`
 font-size: ${LargeFont};
@@ -25,9 +20,9 @@ margin : 20px 0 40px;
 export const Form = styled.form`
 margin : 10px auto;
 >.cert-email-btn{
-  width: 60%;
+  width: 68%;
+  height : 24px;
   text-align: right;
-  /* float: right; */
   border:none;
   font-size: ${SmallFont};
 }
@@ -41,9 +36,10 @@ margin : 10px auto;
 }
 `
 export const Label = styled.label`
-color : ${TextDarkGrey};
-font-size: ${MediumFont};
-margin-right: 10px;
+  font-weight: 400 !important;
+  font-size:16px;
+  color : ${TextDarkGrey};
+  font-weight: 600;
 `
 export const SignupLogoBox = styled.div`
 margin : 20px;
@@ -56,35 +52,40 @@ object-fit: contain;
 export const SideSpan = styled.span`
 color : ${TextLightGrey};
 font-size: ${SmallFont};
+margin-left: 5px;
 `
 export const SignUpInput = styled.input`
-  width: 280px;
-  height: 55px;
-  font-size: ${MediumFont};
-  padding: 8px;
-  margin: 6px 0 10px;
-  font-weight: 400;
-  border-radius: 8px;
-  border: 1px solid ${TextLightGrey};
+background-color: hsl(0, 0%, 100%);
+border-color: hsl(0, 0%, 80%);
+border-radius: 4px;
+border-style: solid;
+border-width: 1px;
+min-height: 38px;
+padding : 8px;
+margin : 8px 0;
+font-size: 16px;
+width: 100%;
+color : ${TextLightGrey};
 `
 export const SelectBox = styled.div`
 >.selection{
-  width: 280px;
-  height: 55px;
-  font-size: ${MediumFont};
-  padding: 5px;
-  margin: 6px 0 10px;
-  font-weight: 400;
-  border-radius: 8px;
-  border: 1px dashed ${TextLightGrey};
-  /* z-index : -1; */
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: dotted;
+  border-width: 2px;
+  min-height: 38px;
+  padding : 0 8px;
+  margin : 8px 0;
+  font-size: 16px;
+  color : ${TextLightGrey};
   >.css-yk16xz-control,.css-g1d714-ValueContainer{
     border:none;  
   }
 }
 `
 export const TermWrapper = styled.div`
-width: 280px;
+width: 300px;
 >.term-array-box{
   border-radius : 8px;
   background-color: rgba(0,0,0,0.1);
@@ -106,5 +107,10 @@ margin-left : 5px;
 export const ErrMsgP = styled.p`
 color : ${PointColor};
 font-size: ${SmallFont};
-margin-left : 5px 0;
+margin : 5px 0;
+`
+export const SignupBox = styled.div`
+display: flex;
+justify-content: center;
+flex-direction: column;
 `

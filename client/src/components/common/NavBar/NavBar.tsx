@@ -18,6 +18,7 @@ import {  signOut,naverSignOut,kakaoSignOut } from '../../../_actions/user_actio
 import Modal from '../Modal/Modal';
 import { useHistory } from 'react-router';
 import { END_POINT } from '../../../_actions/type';
+import ConfirmModal from '../Modal/ConfirmModal';
 
 function NavBar() {
   const history:any = useHistory();
@@ -144,9 +145,13 @@ const accessInto = useCallback((name) => {
         
       </ButtonWrapper>
       <SideBar history={ history} setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={signoutHandler} />
-      <Signin setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
-      {!user.message && needLoginModal ? <Modal closeModal={closeModal}
-        openModal={needLoginModal} modalTitleText="UptoDoor"
+      <Signin 
+      setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      {!user.message && needLoginModal ? 
+      <ConfirmModal 
+        closeModal={closeModal}
+        openModal={needLoginModal} 
+        modalTitleText="UptoDoor"
         modalText="로그인이 필요한 서비스 입니다."
         modalBtn="확인"
         setOpenModal={setNeedLoginModal}

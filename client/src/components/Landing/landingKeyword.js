@@ -1,5 +1,3 @@
-
-
 const { kakao } = window;
 export default function Keyword(
   store

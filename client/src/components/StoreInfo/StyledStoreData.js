@@ -60,17 +60,16 @@ text-align: right;
 export const StoreBackImg = styled.div`
 width: 100%;
 height : 37%;
-margin-top : 3px;
+margin-top : 8px;
 cursor: pointer;
 border-radius: 8px;
 box-shadow: 1px 1px 1px ${TextLightGrey};
 font-size: ${UltraLargeFont};
-/* line-height: 200px; */
 background-size: cover;
 background-repeat: no-repeat;
 background-color: grey;
 background-blend-mode: multiply;
-opacity: 0.9;
+opacity: 0.6;
 color : #fff;
 display : flex; 
 align-items : center;
@@ -85,8 +84,8 @@ justify-content : center;
 `
 export const StoreImgBox = styled.div`
 max-width : 1139px;
+height : 300px;
 max-height : 400px;
-/* border : 3px solid pink; */
 margin : 15px 0;
 display : flex;
 >div{
@@ -95,15 +94,32 @@ display : flex;
 >div>.second-img{
   width : 100%;
   height : 60%;
+  margin-bottom:-5px;
+  @media screen and (min-width: 568px) {
+    height : 59%;
 }
+  @media screen and (min-width: 1140px) {
+}
+}
+
 `
 export const EmptyStoreImg = styled.div`
 width: 100%;
 height : 60%;
 border-radius: 8px;
-background-color: gray;
+opacity: 0.5;
+background-color: grey;
+background-position: center;
+background-image : url('/images/upToDoorLogo.png');
+background-size: 70%;
+background-repeat: no-repeat;
+background-blend-mode: multiply;
+@media screen and (min-width: 568px) {
+  height : 59%!important;
+}
+@media screen and (min-width: 1140px) {
+}
 `
-
 export const StoreImg = styled.img`
 width : 60%;
 margin-right : 8px;
@@ -176,7 +192,6 @@ export const MenuWrapper = styled.div`
 display: flex;
 justify-content: space-between;
 background-color: #fff;
-
 border-radius: 8px;
 padding : 5px 0;
 margin : 8px;
@@ -184,9 +199,20 @@ margin : 8px;
   display: flex;
   align-items: center;
   >div{
-    width: 70%;
+    width: 150px;
+    /* max-width: 350px; */
+    @media screen and (min-width: 490px) {
+      width: 260px;
+    }    
+    @media screen and (min-width: 600px) {
+      width: 350px;
+    }
     @media screen and (min-width: 767px) {
-    width: 80%;
+      width: 450px;
+    }
+    @media screen and (min-width: 1140px) {
+      width: 250px;
+      max-width: 350px;
     }
   }
 }

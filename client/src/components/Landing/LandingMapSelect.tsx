@@ -46,11 +46,11 @@ function LandingMapSelect({city,filterCityList,onChangeSeoulCity}:any) {
 
       <H4><strong>구독서비스</strong>를 확인하세요👇🏼</H4>
       <LandingMapSelectWrapper>
-        {/* <p>당신의 동네를 선택해보세요👉🏻</p> */}
         <Select 
           className = 'city-selection selection'
           options = {cityDummy[0]}
           name={cityDummy[1]}
+          placeholder = {cityDummy[0][0].value}
           onChange = {onChangeSeoulCity}
         />
       </LandingMapSelectWrapper>

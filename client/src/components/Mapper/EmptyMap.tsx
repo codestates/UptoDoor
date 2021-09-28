@@ -20,6 +20,7 @@ function EmptyMap({ filterList, openInfoModal, message,
 const dispatch:any = useDispatch()
 const history: any = useHistory();
 const moveStoreHandler = (id: number) => {
+  
   if (!message) {
     setLoginModal(true);
   } else {

@@ -23,6 +23,7 @@ import ConfirmModal from '../common/Modal/ConfirmModal';
 
 import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
+import { Category } from '../UserOrderInfo/StyledUserOrderInfo';
 
 const { kakao }: any = window;
 
@@ -31,27 +32,31 @@ function AdminEditForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state:any) => state.user);
+  const admin = useSelector((state:any) => state.admin);
 
   const [openModal , setOpenModal] = useState(false);
   const [confirmModal , setConfirmModal] = useState(false);
 
-  const selectCategory: {value: string, label: string}[] = 
-  [
-    { value : 'food' , label : 'food'},
-    { value : 'cafe' , label : 'cafe'},
-    { value : 'living/home' , label : 'living/home'},
-    { value : 'beauty' , label : 'beauty'},
-    { value : 'hobby' , label : 'hobby'},
-  ]
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);
-  const [storeFile , setStoreFile]:any = useState('');
+  const [storeFile , setStoreFile]:any = useState(null);
   //store
   const [title , setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [description , setDescription] = useState('');
   const [time , setTime] = useState('');
   const [mobile , setMobile] = useState('');
+  const [storeinfo, setStoreinfo] = useState({});
+  const [imageArr, setImageArr] = useState([]);
+
+  const selectCategory: {value: string, label: string}[] = 
+  [ 
+    { value : 'food' , label : 'food'},
+    { value : 'cafe' , label : 'cafe'},
+    { value : 'living/home' , label : 'living/home'},
+    { value : 'beauty' , label : 'beauty'},
+    { value : 'hobby' , label : 'hobby'},
+  ]
    //주소 
   const [switched, setSwitched ] = useState("");
   const [adminAddress , setAdminAddress] = useState('');
@@ -196,10 +201,23 @@ function AdminEditForm() {
   }
 
   useEffect(() => {
-    console.log(user.store_id);
-    axios.get(`${END_POINTS}/admin/store/59`)
+    const store_id = admin.orderdata.store.id
+    console.log("스토어아이디",admin.orderdata.store.id);
+    axios.get(`${END_POINTS}/admin/store/${store_id}`)
       .then((res) => {
-        console.log(res.data);
+        console.log("1",res.data);
+        const store_info = res.data.storeData
+        console.log("2",store_info);
+        setStoreinfo(store_info)
+        setImageArr(store_info.image)
+        setTitle(store_info.name)
+        setCategory(store_info.category)
+        setDescription(store_info.introduce) 
+        setTime(store_info.delivery_time)
+        setAdminAddress(store_info.address)
+        setMobile(store_info.number)
+        setStoreFile(store_info.Business_paper)
+        setMenuArr(store_info.menus)
     })
   },[])
 
@@ -212,7 +230,9 @@ function AdminEditForm() {
         <AdminForm>
 
         <AdminUploadStoreEdit 
-        updateStoreImg = {updateStoreImg}/>
+        updateStoreImg = {updateStoreImg}
+        imageArr = {imageArr}   
+        />
         
           <StoreInputBox>
             <label>상호명</label>
@@ -274,6 +294,7 @@ function AdminEditForm() {
           </StoreInputBox>
 
           <AdminFileUploadEdit
+          storeFile={storeFile}
           setMenuArr={setMenuArr}
           setStoreFile={setStoreFile}
           updateStoreFile = {updateStoreFile}

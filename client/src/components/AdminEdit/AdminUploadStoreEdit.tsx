@@ -28,6 +28,8 @@ function AdminUploadStoreEdit(
   speed = 300,
   loop = true,}:sliderProps) {
 
+    console.log("프롭스",props)
+  
   // img 5개 제한
   const [openModal , setOpenModal] = useState(false);
   const [imgs , setImgs]:any = useState([]); 
@@ -79,7 +81,7 @@ function AdminUploadStoreEdit(
       autoplay: Boolean(autoplay),
       autoplaySpeed: typeof autoplay === 'boolean' ? 3000 : autoplay,
     }),[autoplay, loop, speed,]);
-
+    console.log("가게사진",props.imageArr)
   return (
     <StyledImgUpload>
       <StoreImgFlexWrapper>
@@ -94,14 +96,14 @@ function AdminUploadStoreEdit(
         </Dropzone>
       </StoreImgFlexWrapper>
 
-      {imgs.length === 0 ? 
+      {props.imageArr.length === 0 ? 
       <EmptyImgWrapper>
         <PlusIcon>가게 사진을<br/> 등록해주세요</PlusIcon>
       </EmptyImgWrapper> 
       : 
       <SliderWrapper className = 'slide-img-wrapper'>
         <Slider {...settings}>
-          {imgs.map((el:any,idx:any)=>{
+          {props.imageArr.map((el:any,idx:any)=>{
             return (
               <StoreImgBox 
               className = 'store-img-box'

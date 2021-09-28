@@ -38,42 +38,9 @@ function SignupWrapper() {
   const [age, setAge] = useState('');
   const [isAllchecked , setIsAllchecked] = useState(false);
   
-  
   const [signupModal, setSignupModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
-  // const [signinModal, setSigninModal] = useState(false);
   
-
-  const signupSubmitHandler = useCallback((e) => {
-    e.preventDefault();
-    if(password !== passwordChk) return false;
-    if(passwordRegErr === true) return setPasswordRegErr(true);
-    if(certEmail === false) return setCertEmail(true);
-    // if(isAllchecked === false ) return false;
-
-    let userinfo = {
-      email,password,nickname,mobile,
-      gender,age
-    }
-    dispatch(signUp(userinfo))
-    .then((res) => {
-      console.log('===',res.payload)
-      if (res.payload.message === 'Signup success') {
-        setModalSuccess(true);
-        setSignupModal(true);
-        // setSigninModal(true);
-        window.location.href = "http://localhost:3000";
-      } else {
-        alert('회원가입 조건을 충족해주세요.');
-      }
-    })
-    .catch((err) => {
-      setModalSuccess(false);
-        setSignupModal(true);
-    });
-  },[email,password,passwordChk,certEmail])
-  
-
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
   },[])

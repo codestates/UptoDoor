@@ -3,7 +3,7 @@ import { MainColor } from "../../GlobalStyle";
 
 export const FooterContainer = styled.div`
   margin: 0;
-  padding: 50px 0 0 0;
+  padding: 40px 0 40px 0;
   box-sizing: border-box;
   height: 400px;
   width: 100%;
@@ -13,7 +13,10 @@ export const FooterContainer = styled.div`
   left: 0;
 
   @media screen and (min-width: 767px) {
-    padding: 80px 0 0 0;
+    padding: 40px 0 60px 0;
+  }
+  @media screen and (min-width: 1140px) {
+    padding: 40px 0 60px 0;
   }
 `;
 
@@ -34,12 +37,12 @@ export const FooterWrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 0 60px 50px;
+    padding: 30px 60px 30px;
     width: 90%;
     min-width: 740px;
   }
   @media screen and (min-width: 1140px) {
-    padding: 0 100px 50px;
+    padding: 30px 100px 30px;
     min-width: 1140px;
     width: 80%;
   }

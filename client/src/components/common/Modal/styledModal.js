@@ -110,7 +110,7 @@ export const ModalSelectAddContainer = styled.div`
   bottom: 0;
   left: 0;
   position: fixed;
-  z-index: 100;
+  z-index: 120;
   background-color: rgba(0, 0, 0, 0.6);
   animation: ${showModalBg} .4s;
   display: flex;

@@ -5,8 +5,8 @@ const auth = require('../middlewares/auth');
 const upload = require('../middlewares/multer');
 
 router.post('/users/signup', controllers.SignUp);
-router.post('/users/signin', auth ,controllers.Login);
-router.post('/users/signout/',auth, controllers.SignOut);
+router.post('/users/signin', controllers.Login);
+router.post('/users/signout/', controllers.SignOut);
 router.delete('/users', auth, controllers.Withdraw);
 router.get('/users/userinfo',  controllers.UserInfo);
 router.patch('/users/userinfo', auth, controllers.UpdateUser);

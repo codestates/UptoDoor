@@ -66,71 +66,71 @@ function AdminProfile() {
   }, [])
 
   return (
-    <Container>
-      <Title>관리자 페이지</Title>
-      <Wrapper>
-        <MypageWrapper>
-          <MypageProfileBtnWrapper>
-            <MypageProfileWrapper>
-              <MypageContent>
-                <h3>안녕하세요. {admin.nickname}님</h3>
-                {admin.title === "" ? (
-                  <p>가게를 등록해주세요.</p>
-                ) : (
-                  <>
-                    <h3>{admin.title}</h3>
-                    <p>{admin.email}</p>
-                    <p>{admin.mobile}</p>
-                    <p>{admin.mainAddress}</p>
-                    <p>({admin.mainAddressDetail})</p>
-                  </>
-                )}
-              </MypageContent>
-              <ButtonWrapper>
-                <button type="button">
-                  <Link to="/adminedit">내 가게 관리</Link>
-                </button>
-              </ButtonWrapper>
-            </MypageProfileWrapper>
-            <MypageUl>
-              <MypageLi>주문관리</MypageLi>
-            </MypageUl>
-          </MypageProfileBtnWrapper>
-          <AdminUlListWrapper>
-            <AdimUl>
-              {days.map((day, idx) => {
-                return (
-                  <AdminLi key={day}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        changeList(idx, day);
-                      }}
-                      className={currentTab === idx ? "focus" : ""}
-                    >
-                      {day}
-                    </button>
-                  </AdminLi>
-                );
-              })}
-            </AdimUl>
+      <Container>
+        <Title>관리자 페이지</Title>
+        <Wrapper>
+          <MypageWrapper>
+            <MypageProfileBtnWrapper>
+              <MypageProfileWrapper>
+                <MypageContent>
+                  <h3>안녕하세요. {admin.nickname}님</h3>
+                  {admin.title === "" ? (
+                    <p>가게를 등록해주세요.</p>
+                  ) : (
+                    <>
+                      <h3>{admin.title}</h3>
+                      <p>{admin.email}</p>
+                      <p>{admin.mobile}</p>
+                      <p>{admin.mainAddress}</p>
+                      <p>({admin.mainAddressDetail})</p>
+                    </>
+                  )}
+                </MypageContent>
+                <ButtonWrapper>
+                  <button type="button">
+                    <Link to="/adminedit">내 가게 관리</Link>
+                  </button>
+                </ButtonWrapper>
+              </MypageProfileWrapper>
+              <MypageUl>
+                <MypageLi>주문관리</MypageLi>
+              </MypageUl>
+            </MypageProfileBtnWrapper>
+            <AdminUlListWrapper>
+              <AdimUl>
+                {days.map((day, idx) => {
+                  return (
+                    <AdminLi key={day}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          changeList(idx, day);
+                        }}
+                        className={currentTab === idx ? "focus" : ""}
+                      >
+                        {day}
+                      </button>
+                    </AdminLi>
+                  );
+                })}
+              </AdimUl>
 
-            {cur === 1 ? (
-              <AdminOrderWrapper
-                orderitem={orderitem}
-                listbackHandler={listbackHandler}
-              />
-            ) : (
-              <AdminOrderList
-                moveDetailHandler={moveDetailHandler}
-                data={filteredData}
-                selectedDay={selectedDay}
-              />
-            )}
-          </AdminUlListWrapper>
-        </MypageWrapper>
-      </Wrapper>
-    </Container>
+              {cur === 1 ? (
+                <AdminOrderWrapper
+                  orderitem={orderitem}
+                  listbackHandler={listbackHandler}
+                />
+              ) : (
+                <AdminOrderList
+                  moveDetailHandler={moveDetailHandler}
+                  data={filteredData}
+                  selectedDay={selectedDay}
+                />
+              )}
+            </AdminUlListWrapper>
+          </MypageWrapper>
+        </Wrapper>
+      </Container>
   );
 }
 

@@ -6,6 +6,7 @@ import {
   STORE_FILTER_BY_CLICK,
   END_POINTS,
   STORE_FILTER_BY_SELECTED,
+  STORE_FILTER_BY_CITY,
 } from "./type";
 import axios from "axios";
 axios.defaults.withCredentials = true;
@@ -103,6 +104,29 @@ export const getFitteredByClick = (address) => {
   });
   return {
     type: STORE_FILTER_BY_CLICK,
+    payload: request,
+  };
+}
+
+export const storeFilterByCity = (data) => {
+  console.log('action===>',data)
+  const request = axios.get(`${END_POINTS}/store`)
+  .then((res) => {
+    console.log('res.data===>',res.data);
+    if(data === 'ALL') {
+      return res.data.storeinfo;
+    }else{
+      const addressFilter = res.data.storeinfo.filter((el)=>{
+        let splitAdd = el.address.split(' ')[1];
+        return splitAdd === data
+      })
+      console.log('addressFilter',addressFilter)
+      return addressFilter;
+    }
+
+  });
+  return {
+    type: STORE_FILTER_BY_CITY,
     payload: request,
   };
 }

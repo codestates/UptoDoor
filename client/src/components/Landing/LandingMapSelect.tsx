@@ -7,6 +7,7 @@ import {
 function LandingMapSelect({city,filterCityList,onChangeSeoulCity}:any) {
   const cityDummy: [{value: string, label: string}[], string] = [
     [
+      { value : 'ALL' , label : 'ALL'},
       { value : '용산구' , label : '용산구'},
       { value : '강남구' , label : '강남구'},
       { value : '종로구' , label : '종로구'},

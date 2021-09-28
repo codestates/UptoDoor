@@ -37,5 +37,5 @@ module.exports = async (req, res, next) => {
   } else if (!checkRefreshToken) {
     res.status(401).send({ message: 'invalid token, try again login' });
   }
- }
+  }
 };

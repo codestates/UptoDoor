@@ -8,7 +8,7 @@ import {
   ModalStoreImgSlideBox,
   ModalStoreImgs,
 } from './StyledStoreData'
-// import {MiddleButton} from '../Button/Button'
+
 import { useHistory } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import Slider,{Settings} from "react-slick";
@@ -22,7 +22,7 @@ import 'slick-carousel/slick/slick-theme.css';
 // }
 
 function StoreImgModal(
-  props:any,store:any, 
+  props:any
   // {
   // autoplay = false,
   // speed = 800,
@@ -40,14 +40,10 @@ function StoreImgModal(
     ()=>({
       dots: true,
       arrows : true,
-      // infinite: loop,
-      // speed: 800,
       slidesToShow: 1,
       slidesToScroll: 1,  
       centerMode: true,
       centerPadding: '0px',  
-      // autoplay: Boolean(autoplay),
-      // autoplaySpeed: typeof autoplay === 'boolean' ? 5000 : autoplay,
     }),[]);
 
   const { openModal, setOpenModal, 
@@ -64,7 +60,6 @@ function StoreImgModal(
   return (
       openModal ? (
         <ModalContainer 
-        // onClick = {closeModal}
         className = 'modal-container' >            
           <ModalStoreWrapper className = 'modal-wrapper'>
           <CloseBtnIcon  

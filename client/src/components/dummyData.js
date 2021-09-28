@@ -328,12 +328,6 @@ export const initialHash = [
 
 export const category = ['음식','생활','미용','취미']
 export const categoryDummy = [
-  // [
-  //   {category : '음식'},
-  //   {category : '생활'},
-  //   {category : '미용'},
-  //   {category : '취미'},
-  // ],
   [
     {id : 1 , category : '음식', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/foods/food1.png'},
     {id : 2 , category : '음식', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/foods/food2.png'},

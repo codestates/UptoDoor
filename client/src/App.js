@@ -11,6 +11,7 @@ import Signup from './pages/Signup'
 import Mypage from './pages/Mypage'
 import Mapper from './pages/Mapper'
 import Address from './pages/Address'
+import Analysis from './pages/Analysis' 
 
 //!그외 라우터페이지
 import MypageEdit from './pages/MypageEdit'
@@ -79,11 +80,13 @@ function App() {
             <Route path="/adminedit">
               <AdminEdit />
             </Route>
+            <Route path="/analysis">
+              <Analysis />
+            </Route>
           </Switch>
           <Footer />
         </Suspense>
       </BrowserRouter>
-      
     </>
   );
 }

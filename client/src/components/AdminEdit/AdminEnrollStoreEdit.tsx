@@ -12,6 +12,7 @@ import { ModalContainer } from '../common/Modal/styledModal';
 
 interface AdminAddProps {
   adminAddress : string,
+  adminAddressDetail : string,
   addressModal : boolean,
   setAddressModal : any,
   changeAdminAddress : any,
@@ -19,7 +20,7 @@ interface AdminAddProps {
 }
 
 function AdminEnrollStoreEdit({
-  adminAddress,addressModal,setAddressModal,
+  adminAddress,adminAddressDetail,addressModal,setAddressModal,
   changeAdminAddress,changeAddDetailHandler
   }:AdminAddProps) {
 
@@ -30,14 +31,14 @@ function AdminEnrollStoreEdit({
       <StoreNameInput 
         readOnly
         type="text"
-        defaultValue = {adminAddress} 
+        value = {adminAddress} 
         />
 
         <StoreNameInput 
         type="text"
-        onChange={changeAddDetailHandler}
+        onChange={(e:any)=>{changeAddDetailHandler(e)}}
         placeholder = '상세 주소 작성' 
-        defaultValue = {null}
+        value = {adminAddressDetail}
         />
       </StoreAddressWrapper>
 

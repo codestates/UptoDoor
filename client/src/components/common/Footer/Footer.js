@@ -22,10 +22,10 @@ function Footer() {
         <FooterTitle>
           <h1>UptoDoor</h1>
           <h3>EteamMerge</h3>
-          <h5 none>문의사항:</h5>
-          <h5 none>heoyjun6@gmail.com</h5>
+          <h5 noapp="noapp">문의사항:</h5>
+          <h5 noapp="noapp">heoyjun6@gmail.com</h5>
         </FooterTitle>
-        <FooterLinkItems none>
+        <FooterLinkItems noapp="noapp">
           <FooterLinkTitle>About Us</FooterLinkTitle>
           <FooterLink
             href="https://github.com/codestates/UptoDoor/wiki"
@@ -50,7 +50,7 @@ function Footer() {
           </FooterLink>
         </FooterLinkItems>
         <FooterLinkItems>
-          <FooterLinkTitle none>Cantact</FooterLinkTitle>
+          <FooterLinkTitle noapp="noapp">Cantact</FooterLinkTitle>
           <FooterLink
             href="https://github.com/dydwns2441"
             target="_blank"

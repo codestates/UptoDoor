@@ -118,7 +118,8 @@ function AdminProfile() {
           </MypageProfileBtnWrapper>
 
           {changeListItem === 1 ? (
-            <AdminStoreInfo />
+            <AdminStoreInfo store={admin.store}
+            />
           ) : cur === 0 ? (
             <AdminUlListWrapper>
               <AdimUl>

@@ -45,7 +45,7 @@ function MapWrapper() {
   //* submit 설치 섭밋
   const searchSubmitHandler = (e:any) => {
     e.preventDefault();
-    console.log("serrchsubmit", e.target[0].value);
+    // console.log("serrchsubmit", e.target[0].value);
     // if(word === ''){
     //   word = '동네 구독서비스'
     // }

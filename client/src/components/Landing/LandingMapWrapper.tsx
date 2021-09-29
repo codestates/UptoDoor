@@ -30,7 +30,7 @@ function LandingMapWrapper() {
     setFilterCityList(store);
   }, [store])
 
-  console.log('cities:::',city)
+  // console.log('cities:::',city)
 
   return (
     <LandingMapWrapperContainer>

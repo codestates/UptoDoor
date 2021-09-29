@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Dropzone from 'react-dropzone'
 import {
   StoreInputBox,
@@ -9,33 +9,37 @@ import {
   MenuUploadDiv,
   MenuUploadDiv2,
   MenuImg,
-  PlusIcon
+  PlusIcon,
+  FileUp,
+  RemoveMenuBtn
 ,StoreMenuAddBtn
 } from '../AdminPost/StyledAdminPost'
 import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
+import { I } from '../common/Modal/styledModal';
 axios.defaults.withCredentials = true;
 
 function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   }:any):any {
   const [menuImg , setMenuImg]:any = useState(''); 
   const [menuName , setMenuName] = useState('');
-  const [price , setPrice] = useState(0);
+  const [price , setPrice] = useState(6000);
   const [menuDescription , setMenuDescription] = useState('');
 
   const priceHandler = (e:any) => {
     setPrice(e.target.value)
-    //setMenuArr(copyArr);
+    const copyArr = JSON.parse(JSON.stringify(menuArr));
+    copyArr[e.target.id].price = e.target.value
+    setMenuArr(copyArr)
   }
   const changeMenuName = (e:any) => {
     setMenuName(e.target.value)
-    // const lastIdx = menuArr.length-1;
-    // const copyArr = menuArr.slice()
-    // copyArr[lastIdx].menuName = e.target.value
-    // setMenuArr(copyArr);
-
+    const copyArr = JSON.parse(JSON.stringify(menuArr));
+    copyArr[e.target.id].name = e.target.value
+    setMenuArr(copyArr)
   }
-    const dropHandler = (file:any) => {
+    const dropHandler = (e:any) => {
+      const file = e.target.files
       const formData = new FormData();
       const config = {
         headers: { 'content-type' : 'multipart/form-data'}
@@ -45,12 +49,11 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
       axios.post(`${END_POINTS}/image`,formData,config)
       .then((res)=>{
         if(res.data.success){
-          const copyArr = menuArr.slice()
-          const lastIdx = copyArr.length-1;
-          copyArr[lastIdx].menuImg = res.data.filePath
-          console.log("copyImg만들어가는 배열",copyArr)
+          //깊은복사
+          const copyArr = JSON.parse(JSON.stringify(menuArr));
+          copyArr[e.target.id].image = res.data.filePath
+          setMenuArr(copyArr)
           setMenuImg(res.data.filePath)
-
         }else{
           alert('파일저장실패')
         }
@@ -61,23 +64,16 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
     }
   
     const changeMenuDesc = (e:any) => {
-
       setMenuDescription(e.target.value)
-      // const lastIdx = menuArr.length-1;
-      // const copyArr = menuArr.slice()
-      // copyArr[lastIdx].menuDescription = e.target.value;
-      // setMenuArr(copyArr);
+      const copyArr = JSON.parse(JSON.stringify(menuArr));
+      copyArr[e.target.id].detail = e.target.value
+      setMenuArr(copyArr)
     }
 
     const addMenuItemHandler = () => {
-      if(menuImg && menuName && price && menuDescription){
-        const menus = {
-          menuImg : menuImg,
-          menuName : menuName,
-          price : price,
-          menuDescription : menuDescription
-        }
-        addMenuHandler(menus);
+      const idx = menuArr.length-1
+      if(menuArr[idx].image.includes('http') && menuArr[idx].price !== 0 && menuArr[idx].name !== '' && menuArr[idx].detail !== ''){
+        addMenuHandler();
         setMenuImg('');
         setPrice(0);
         setMenuName('');
@@ -86,6 +82,29 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
         alert("항목을 다 입력해 주세요")
       }
     }
+
+    const uploadHandler = (e:any) => {
+      e.target.previousSibling.click();
+    }
+    const checkHandler = (e:any) => {   
+      dropHandler(e)
+    }
+
+     //!remove menu onclick handler
+    const removeMenuHandler = (e:any) => {
+   
+    const idx = parseInt(e.target.id)
+    const copyArr = JSON.parse(JSON.stringify(menuArr));
+    // for(let i=e.target.id;i<copyArr.length;i++){
+
+    // }  
+    copyArr.splice(idx,1)
+    console.log('filtering',copyArr);
+    console.log("같은지",copyArr === menuArr)
+    setMenuArr(copyArr);
+  }
+
+  
 //form 제출 시 onsubmit -> 해당 데이터 담겨서 전달 
   return (
     <StoreInputBox>
@@ -94,50 +113,57 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
       // console.log('-----el----',el);
         return (
           <StoreMenuAddWrapper key={idx}>
-            <MenuUploadDiv2>
-            <label>메뉴 이미지</label>
-            <Dropzone onDrop={dropHandler}>
-              {({getRootProps, getInputProps}) => (
-                  <MenuUploadDiv {...getRootProps()}>
-                    <input 
-                    required {...getInputProps()} />
-                    {false ? 
-                    <PlusIcon>+</PlusIcon>
-                    : 
-                    <MenuImg 
-                    src = {el.image}
-                    alt = {el.image}/>
-                    }
-                  </MenuUploadDiv>
-              )}
-            </Dropzone>
+            <MenuUploadDiv2 >
+              <label>메뉴 이미지</label> 
+                <FileUp 
+                  required
+                  id={idx}
+                  type = 'file' 
+                  onChange={(e:any)=>{checkHandler(e)}}
+                />
+                <MenuImg 
+                  onClick={(e:any)=>{uploadHandler(e)}}
+                  id={idx}
+                  src = {el.image}
+                  alt = {el.image}/>
             </MenuUploadDiv2>
             <MenuUploadDiv2>
               <MenuInputBox>
+
+              <RemoveMenuBtn
+                type = 'button'
+                id = {idx}
+                onClick = 
+                {(e:any)=>removeMenuHandler(e)}
+                >삭제</RemoveMenuBtn>
+
                 <label>메뉴이름</label>
                 <MenuInput 
+                  id={idx}
                   required
                   type = 'text' 
                   step = '1000'
-                  onChange = {(e:any)=>{changeMenuName(e)}} 
-                  defaultValue = {el.name} 
+                  onChange = {(e:any)=>{changeMenuName(e)}}
+                  value = {el.name} 
                   />
               </MenuInputBox>
               <MenuInputBox>
                 <label>가격</label>
                 <MenuInput 
+                  id={idx}
                   required
                   type = 'number' 
                   step = '1000'
                   onChange = {(e:any)=>{priceHandler(e)}}
-                  defaultValue = {el.price}/>
+                  value = {el.price}/>
               </MenuInputBox>
     
               <MenuInputBox>
                 <label>메뉴 설명</label>
                 <MenuIntroTextArea 
+                  id={idx}
                   required
-                  defaultValue = {el.detail} 
+                  value = {el.detail} 
                   onChange={(e:any)=>{changeMenuDesc(e)}}
                   placeholder = '100자 이내로 작성해주세요.' 
                   maxlength="100" />

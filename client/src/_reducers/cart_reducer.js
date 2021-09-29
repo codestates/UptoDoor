@@ -2,7 +2,6 @@
 import {
   SET_QUANTITY,
   REMOVE_FROM_CART,
-  REMOVE_FROM_All_CART,
   ADD_CART,
   ADD_ALL_CART_TO_ORDER,
   SET_ADDRESS,
@@ -50,14 +49,11 @@ export default function cart_reducer(state = initialState, action) {
       state.menu = filtered;
       return { ...state };
     }
-    //* 스토어 빠져나가면 전부 지우기
-    case REMOVE_FROM_All_CART:
-      return (state = {});
     //* 카트에서 오더로 옮기기
     case ADD_ALL_CART_TO_ORDER:
       return { ...state, ...action.payload };
     case REMOVE_ALL_CART:
-      return (state={})
+      return (state = initialState);
     default:
       return state;
   }

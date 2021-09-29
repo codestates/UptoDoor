@@ -1,8 +1,7 @@
 import React , {useState ,useEffect} from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import {
-  LandingMapWrapperContainer,
-  H4} from './StyledLanding'
+  LandingMapWrapperContainer} from './StyledLanding'
 import LandingMap from './LandingMap';
 import LandingMapSelect from './LandingMapSelect'
 import {getStoreData,storeFilterByCity} from '../../_actions/store_action'
@@ -15,7 +14,6 @@ function LandingMapWrapper() {
   const [filterCityList , setFilterCityList] = useState([]);
   
   const onChangeSeoulCity = (e:any) => {
-    console.log('===',e.value)
     if(e.value === 'ALL'){
       setCity('당신 동네')
     }else{
@@ -38,7 +36,6 @@ function LandingMapWrapper() {
       <LandingMapSelect 
       city = {city}
       filterCityList = {filterCityList}
-      // onChangeSeoulCity = {(data)=>onChangeSeoulCity(data)}
       onChangeSeoulCity = {onChangeSeoulCity}
       />
 

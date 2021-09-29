@@ -3,9 +3,9 @@ import Fade from 'react-reveal/Fade'
 import {
   LandingEndContainer, 
   LanindgFindWrapper,
-  LandingEndWrapper,H3,
+  LandingEndWrapper,EndingH3,
   } from './StyledLanding'
-import {SmallButton} from '../common/Button/Button'
+import {MiddleButton} from '../common/Button/Button'
 import LandingMapWrapper from './LandingMapWrapper'
 import SigninModal from '../common/Signin/SigninModal'
 import { useSelector } from "react-redux";
@@ -14,7 +14,6 @@ import {useHistory} from 'react-router-dom'
 const LandingEnd = () => {
 
   const user = useSelector((state) => state.user);
-  console.log('==user==',user.message);
   let history = useHistory();
   
   const [modalOpen , setModalOpen] = useState(false);
@@ -36,17 +35,18 @@ const LandingEnd = () => {
 
       <LandingEndWrapper>
       <Fade bottom>
-      <H3
+      <EndingH3
       endText>
-      {/* 지금바로 <br/> */}
-      UptoDoor 의 서비스를 이용해보세요</H3>
+      Make your life easier</EndingH3>
+      {/* <p>upToDoor 를 통해 당신에게 꼭 맞는 구독서비스를 찾아보세요</p> */}
+      <p>UpToDoor와 함께 더 편한 생활을 누려보세요.</p>
       </Fade>
 
       <Fade bottom>
-      <SmallButton
-      primary
+      <MiddleButton
+      className = 'end-button'
       onClick = {moveSigninHandler}
-      >구독 찾기</SmallButton>
+      >구독 찾기</MiddleButton>
       </Fade>
       </LandingEndWrapper>
 

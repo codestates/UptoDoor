@@ -48,24 +48,18 @@ export const NavWrapper = styled.div`
 `;
 
 export const NavLogo = styled(Link)`
-  color: ${MainColor};
-  /* background: linear-gradient(45deg,mediumturquoise,#5d9cec); */
-  /* background: -webkit-linear-gradient(45deg, mediumturquoise, #5d9cec);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent; */
-            /* smooth : -webkit-font-smoothing: antialiased; */
   cursor: pointer;
   font-size: 28px;
   font-weight: 700;
   text-decoration: none;
-  line-height: 1em;
+  /* line-height: 1em; */
   margin-right: 12px;
   letter-spacing: -3px;
-  width: 100px;
-  background-image: url('./images/UptoDoorFavicon.png');
+  width: 150px;
+  background-image: url('./images/upToDoorLogo.png');
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
 
   @media screen and (min-width: 767px) {
     font-size: 40px;
@@ -88,7 +82,7 @@ export const Nav = styled.nav`
     list-style: none;
     cursor: pointer;
     > li {
-      margin: 10px 15px;
+      margin: 13px 15px;
     }
   }
 

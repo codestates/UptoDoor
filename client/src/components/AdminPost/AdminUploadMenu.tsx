@@ -140,7 +140,7 @@ function AdminUploadMenu({
                   required
                   type = 'text' 
                   onChange = {(e:any)=>{changeMenuName(e)}} 
-                  defaultValue = {el.menuName} 
+                  value = {el.menuName} 
                   />
               </MenuInputBox>
               <MenuInputBox>
@@ -159,7 +159,7 @@ function AdminUploadMenu({
                 <MenuIntroTextArea 
                   required
                   id={idx}
-                  defaultValue = {el.menuDescription} 
+                  value = {el.menuDescription} 
                   onChange={(e:any)=>{changeMenuDesc(e)}}
                   placeholder = '100자 이내로 작성해주세요.' 
                   maxlength="100" />

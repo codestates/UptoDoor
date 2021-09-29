@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { TextLightGrey } from '../../GlobalStyle';
 
 export const SidebarContainer = styled.aside`

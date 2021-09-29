@@ -61,7 +61,8 @@ function SignupTerm({
 
             <TermSpan 
             onClick={() => termModalHandler(el.termTitle , el.termContent)}
-            >{el.termTitle}</TermSpan>에 동의합니다.<SideSpan>필수</SideSpan>
+            >{el.termTitle}</TermSpan>에 동의합니다.
+            <SideSpan>*필수</SideSpan>
           </div>
         )
       })}
@@ -78,7 +79,7 @@ function SignupTerm({
           >{terms.optional.termTitle}</TermSpan>에 동의합니다.<SideSpan>선택</SideSpan>
 
       {termErr ? 
-          <ErrMsgP>약관에 모두 동의하셔야 합니다.</ErrMsgP> 
+          <ErrMsgP>필수 약관에 모두 동의하셔야 합니다.</ErrMsgP> 
           : null}
       </div>
 

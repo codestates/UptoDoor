@@ -2,20 +2,24 @@ import React, { useState , useCallback, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { signUp } from '../../_actions/user_action'
-import SignupOptions from './SignupOptions'
-import SignupTerm from './SignupTerm'
+import {
+  Container,
+} 
+from '../GlobalStyle';
 import { 
   Form ,
   SignUpInput ,
   Label,
   SignupLogoBox,
-  SignupLogo,
+  SignupLogo,SignupBox,
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
 // import SigninModal from '../common/Signin/SigninModal'
 import axios from "axios";
 import { END_POINTS } from '../../_actions/type'
 import ConfirmModal from '../common/Modal/ConfirmModal'
+import SignupOptions from './SignupOptions'
+import SignupTerm from './SignupTerm'
 axios.defaults.withCredentials=true;
 
 function SignupWrapper() {
@@ -38,48 +42,16 @@ function SignupWrapper() {
   const [age, setAge] = useState('');
   const [isAllchecked , setIsAllchecked] = useState(false);
   
-  
   const [signupModal, setSignupModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   // const [signinModal, setSigninModal] = useState(false);
-  
-
-  const signupSubmitHandler = useCallback((e) => {
-    e.preventDefault();
-    if(password !== passwordChk) return false;
-    if(passwordRegErr === true) return setPasswordRegErr(true);
-    if(certEmail === false) return setCertEmail(true);
-    // if(isAllchecked === false ) return false;
-
-    let userinfo = {
-      email,password,nickname,mobile,
-      gender,age
-    }
-    dispatch(signUp(userinfo))
-    .then((res) => {
-      console.log('===',res.payload)
-      if (res.payload.message === 'Signup success') {
-        setModalSuccess(true);
-        setSignupModal(true);
-        // setSigninModal(true);
-        window.location.href = "http://localhost:3000";
-      } else {
-        alert('회원가입 조건을 충족해주세요.');
-      }
-    })
-    .catch((err) => {
-      setModalSuccess(false);
-        setSignupModal(true);
-    });
-  },[email,password,passwordChk,certEmail])
-  
-
+  const [certModal, setCertModal] = useState(false);
+ 
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
   },[])
 
-  const [certSuccessModal, setCertSuccessModal] = useState(false);
-  const [certFailModal, setCertFailModal] = useState(false);
+  
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
     axios
@@ -89,10 +61,12 @@ function SignupWrapper() {
       {withCredentials: true, credentials: 'include'}
     ).then((res) => {
       if (res.data.message === "send success") {
-        setCertSuccessModal(true);
+        setModalSuccess(true);
+        setCertModal(true);
       }
     }).catch(() => {
-      setCertFailModal(true)
+      setModalSuccess(false);
+      setCertModal(true);
     })
   }
   const onChangePwHandler = useCallback((e) => {
@@ -197,94 +171,98 @@ function SignupWrapper() {
   // }, [successModal, signinModal]);
 
   return (
+    <Container>
     <SignupContainer>
       <SignupLogoBox className="signup-logo-box">
-        <SignupLogo src="./images/updodoor.png" alt="img" />
+        <SignupLogo src="./images/upToDoorLogo.png" alt="img" />
       </SignupLogoBox>
 
       <Form onSubmit={signupSubmitHandler}>
+
         <Label>E-mail</Label>
         <SideSpan>*필수</SideSpan>
         <SmallButton
           className="cert-email-btn"
           type="button"
-          onClick={() => certEmailHandler(certEmail)}
-        >
+          onClick={() => certEmailHandler(certEmail)}>
           이메일 인증
         </SmallButton>
-        <br />
-        <SignUpInput
-          required
-          type="email"
-          className="email-input"
-          placeholder="email@email.com"
-          value={email}
-          onChange={onChangeEmailHandler}
-        />
-        {certEmail ? <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> : null}
-        <br />
+
+        <SignupBox>
+          <SignUpInput
+            required
+            type="email"
+            className="email-input"
+            placeholder="email@email.com"
+            value={email}
+            onChange={onChangeEmailHandler}
+          />
+          {certEmail ? <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> : null}
+        </SignupBox>
 
         <Label>비밀번호</Label>
         <SideSpan>*필수</SideSpan>
-        <br />
-        <SignUpInput
-          required
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={onChangePwHandler}
-        />
-        <br />
-        {passwordRegErr ? (
-          <ErrMsgP>
-            비밀번호는 최소 6자리에서 12자리 사이의
-            <br /> 영문,숫자 조합이어야 합니다.
-          </ErrMsgP>
-        ) : null}
+        
+        <SignupBox>
+          <SignUpInput
+            required
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={onChangePwHandler}
+          />
+          {passwordRegErr ? (
+            <ErrMsgP>
+              비밀번호는 최소 6자리에서 12자리 사이의
+              <br /> 영문,숫자 조합이어야 합니다.
+            </ErrMsgP>
+          ) : null}
+        </SignupBox>
 
         <Label>비밀번호 확인</Label>
         <SideSpan>*필수</SideSpan>
-        <br />
-        <SignUpInput
-          required
-          type="password"
-          placeholder="password check"
-          value={passwordChk}
-          onChange={onChangePwChkHandler}
-        />
-        <br />
-        {passwordErr ? <ErrMsgP>비밀번호가 일치하지 않습니다.</ErrMsgP> : null}
+        <SignupBox>
+          <SignUpInput
+            required
+            type="password"
+            placeholder="password check"
+            value={passwordChk}
+            onChange={onChangePwChkHandler}
+          />
+          {passwordErr ? <ErrMsgP>비밀번호가 일치하지 않습니다.</ErrMsgP> : null}
+        </SignupBox>
 
         <Label>이름</Label>
         <SideSpan>*필수</SideSpan>
-        <br />
-        <SignUpInput
-          required
-          type="text"
-          placeholder="이름"
-          value={nickname}
-          onChange={onChangeNicknameHandler}
-        />
-        <br />
+        <SignupBox>
+          <SignUpInput
+            required
+            type="text"
+            placeholder="이름"
+            value={nickname}
+            onChange={onChangeNicknameHandler}
+          />
+        </SignupBox>
 
         <Label>모바일</Label>
         <SideSpan>*필수</SideSpan>
-        <br />
-        <SignUpInput
-          required
-          type="text"
-          placeholder="모바일"
-          value={mobile}
-          onChange={onChangeMobileHandler}
-        />
-        <br />
+        <SignupBox>
+          <SignUpInput
+            required
+            type="text"
+            placeholder="모바일"
+            value={mobile}
+            onChange={onChangeMobileHandler}
+          />
+        </SignupBox>
 
-        <SignupOptions selectInputHandler={selectInputHandler} />
+        <SignupOptions 
+        selectInputHandler={selectInputHandler} />
 
         {/* 약관 */}
         <SignupTerm
-          onChangeTermHandler = {onChangeTermHandler}
-          checkedInputs = {checkedInputs}
+          onChangeTermHandler={onChangeTermHandler}
+          checkedInputs={checkedInputs}
           setIsAllchecked={setIsAllchecked}
           isAllchecked={isAllchecked}
         />
@@ -301,35 +279,30 @@ function SignupWrapper() {
         <ConfirmModal
           openModal={signupModal}
           setOpenModal={setSignupModal}
-          modalSuccess = {modalSuccess}
-          url = '/'
-          modalTitleText=
-          {modalSuccess === true ? 
-            '회원가입 성공' : '회원가입 실패'}
-          modalText=
-          {modalSuccess === true ? 
-            '로그인 페이지로 이동합니다.'
-          :
-            '회원가입에 실패하셨습니다.'
+          modalSuccess={modalSuccess}
+          url="/"
+          modalTitleText={
+            modalSuccess === true ? "회원가입 성공" : "회원가입 실패"
+          }
+          modalText={
+            modalSuccess === true
+              ? "로그인 페이지로 이동합니다."
+              : "회원가입에 실패하셨습니다."
           }
           modalBtn="확인"
         />
       ) : null}
-      {certSuccessModal ? (
+      {certModal ? (
         <ConfirmModal
-          openModal={certSuccessModal}
-          setOpenModal={setCertSuccessModal}
+          openModal={certModal}
+          setOpenModal={setCertModal}
+          modalSuccess={modalSuccess}
           modalTitleText="이메일 인증"
-          modalText="10분 이내에 이메일을 인증해주세요."
-          modalBtn="확인"
-        />
-      ) : null}
-      {certFailModal ? (
-        <ConfirmModal
-          openModal={certFailModal}
-          setOpenModal={setCertFailModal}
-          modalTitleText="이메일 인증"
-          modalText="10분 이내에 이메일을 인증해주세요."
+          modalText={
+            modalSuccess === true
+              ? "10분안에 이메일을 인증해주세요."
+              : "새로고침 후 다시 해주세요."
+          }
           modalBtn="확인"
         />
       ) : null}
@@ -340,6 +313,7 @@ function SignupWrapper() {
         />
       ) : null}*/}
     </SignupContainer>
+    </Container>
   );
 }
 

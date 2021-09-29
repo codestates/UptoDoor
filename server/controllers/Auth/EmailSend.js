@@ -47,9 +47,7 @@ module.exports = async (req, res) => {
           display: flex;
           justify-content: space-between;
           width : 100%;'>
-            <img 
-            style = 'width : 130px; object-fit: contain;'
-            src = '../../../client/public/images/upToDoorLogo.png'/>
+            <h2>UptoDoor</h2>
             <p style = 'color : grey;font-size: 20px;'>회원가입 절차</p>
           </header>
       
@@ -65,7 +63,7 @@ module.exports = async (req, res) => {
       
             <div>
               <div style="font-size : 14px; text-align: left; color: rgb(86, 86, 87);">
-                <p style='margin: 5px 0;' >안녕하세요. 우리동네 구독서비스, upToDoor입니다.</p>
+                <p style='margin: 5px 0;' >안녕하세요. 우리동네 구독서비스, UptoDoor.</p>
                 <span style="color : #3381e1">${data.email}</span><span>님, 아래 버튼을 클릭하여 이메일 인증을 완료해주세요.</span>
               </div>
               <a 

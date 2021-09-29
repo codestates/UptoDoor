@@ -245,7 +245,8 @@ transition : all 0.3s;
   font-size: ${({scollup})=> (scollup ? '36px' : UltraLargeFont)};
   }
 }
-
+`
+export const I = styled.i`
 `
 export const GradientEdge = styled.div`
 position: absolute;
@@ -432,7 +433,7 @@ padding : 100px 200px;
   overflow: hidden;
   min-height : 120px;
   @media screen and (min-width: 768px) {
-    min-height : 220px;
+    min-height : 190px;
   }
   @media screen and (min-width: 1140px) {
   min-height :none;
@@ -480,8 +481,8 @@ transition : all 1s linear;
     background-blend-mode: multiply;
     transition: all 1s linear;
   }
-  @media screen and (min-width: 768px) {
-    height: 230px;
+  @media screen and (min-width: 767px) {
+    height: 190px;
   }
   @media screen and (min-width: 1140px) {
     position: relative;
@@ -506,12 +507,13 @@ font-size: 36px;
 `
 export const ValueTextBox = styled.div`
 padding : 20px;
-@media screen and (min-width: 768px) {
-  padding : 50px;
-  height : 220px;
+@media screen and (min-width: 767px) {
+  padding : 45px;
+  height : 100%;
   }
 @media screen and (min-width: 1140px) {
-  padding : 0 40px;
+  padding : 0 35px;
+  height: 50%;
 }
 `
 export const H3 = styled.h3`

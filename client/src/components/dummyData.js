@@ -364,7 +364,7 @@ export const categoryDummy = [
     {id : 14 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life14.png'},
     {id : 15 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life9.png'},
     {id : 16 , category : '생활', image : 'https://uptodoor-landing-img2.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life16.png'},
-    {id : 17 , category : '생활', image : 'https://uptodoor-landing-img2.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life8.png'},
+    {id : 17 , category : '생활', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/life/life8.png'},
   ],
   [
     {id : 1 , category : '미용', image : 'https://uptodoor-landing-img.s3.ap-northeast-2.amazonaws.com/landingImgs/beauty/beauty1.png'},

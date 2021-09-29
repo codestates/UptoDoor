@@ -33,6 +33,7 @@ function AdminFileUploadEdit(props:any) {
           })
   
     }
+   
   return (
     <StoreInputBox>
       <label>사업자 등록증 업로드</label>
@@ -41,7 +42,7 @@ function AdminFileUploadEdit(props:any) {
               <div {...getRootProps()}>
                 <input 
                 required {...getInputProps()} />
-                {addressFile.length === 0 ? 
+                {props.storeFile === null ? 
                 <StoreAddressBtn>+ 사업자 등록증 첨부</StoreAddressBtn>
                 :
                 <StoreAddressBtn>첨부파일 등록완료</StoreAddressBtn>

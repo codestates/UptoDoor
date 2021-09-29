@@ -57,3 +57,4 @@ module.exports = async (req, res) => {
     res.status(404).send({ message: "admin info load fail" });
   }
 };
+

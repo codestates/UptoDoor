@@ -169,7 +169,7 @@ export const cancelOrder = (id) => {
   //id랑 메시지 같이 받아오기
   return {
     type: CALCEL_ORDER,
-    payload: { request,id }
+    payload: request
   };
 }
 

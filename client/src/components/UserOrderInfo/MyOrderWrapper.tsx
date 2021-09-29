@@ -19,21 +19,34 @@ import OrderInfo from '../UserOrder/OrderInfo'
 import { useDispatch } from 'react-redux'
 import { cancelOrder } from '../../_actions/user_action'
 import WarningModal from '../common/Modal/WarningModal'
+import ConfirmModal from '../common/Modal/ConfirmModal'
 
 // eslint-disable-next-line react/prop-types
 function MyOrderWrapper({ 
   listbackHandler,orderitem,
   user }:any, ) {
-
-  const history = useHistory();
+  const dispatch: any = useDispatch();
+  const history:any = useHistory();
   const [openModal , setOpenModal] = useState(false);
 
   const cancelStoreHandler = () => {
     setOpenModal(true);
   }
   
+  const [DeleteModal, setDeleteModal] = useState(false);
+  // const [modalSuccess, setModalSuccess] = useState(false);
+
   const cancelOrderHandler = () => {
-    console.log("이렇게도 된다")
+    //* 디스패치 주석풀어야함, 밑에 2줄 지우고,
+
+    // dispatch(cancelOrder()).then((res:any) => {
+    //   if (res.payload.message === "success delete order") {
+    //     setOpenModal(false);
+    //     setDeleteModal(true);
+    //   }
+    // })
+    setOpenModal(false);
+    setDeleteModal(true);
   }
   
   return (
@@ -120,7 +133,17 @@ function MyOrderWrapper({
         /> : 
         null
       }
-
+      {
+        DeleteModal ?
+          <ConfirmModal
+          openModal = {DeleteModal} 
+        modalTitleText = '구독 취소'
+        modalText = '구독이 취소되었습니다. 감사합니다.'
+        modalBtn='확인'
+        setOpenModal={setDeleteModal}
+          />
+          : null
+      }
     </MypageOrderListWrapper>
   );
 }

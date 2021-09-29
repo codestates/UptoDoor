@@ -22,6 +22,7 @@ import {
   getFitteredBySearch,
   getStoreData,
 } from "../../_actions/store_action";
+import { removeAllCart } from '../../_actions/cart_action'
 import ConfirmModal from '../common/Modal/ConfirmModal'
 
 function MapWrapper() {
@@ -89,7 +90,9 @@ function MapWrapper() {
   }
   
   useEffect(() => {
-    dispatch(getStoreData())
+    dispatch(getStoreData()).then(() => {
+      dispatch(removeAllCart());
+    })
   }, [])
 
   useEffect(() => {

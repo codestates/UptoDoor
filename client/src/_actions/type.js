@@ -32,7 +32,6 @@ export const STORE_FILTER_BY_CITY = 'STORE_FILTER_BY_CITY'
 //cart action
 export const SET_QUANTITY = "SET_QUANTITY";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
-export const REMOVE_FROM_All_CART = "REMOVE_FROM_All_CART";
 export const ADD_CART = "ADD_CART";
 export const ADD_ALL_CART_TO_ORDER = "ADD_ALL_CART_TO_ORDER";
 export const SET_ADDRESS = "SET_ADDRESS";

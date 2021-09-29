@@ -1,6 +1,6 @@
 import styled,{keyframes} from 'styled-components'
-import { PointColor, SmallFont, 
-  TextLightGrey, TextDarkGrey, MainColor, MediumFont, LargeFont } from '../GlobalStyle'
+import { PointColor, 
+  TextLightGrey, TextDarkGrey, MainColor} from '../GlobalStyle'
 
 const moving = keyframes`
   0% {

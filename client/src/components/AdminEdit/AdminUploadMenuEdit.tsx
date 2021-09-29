@@ -92,16 +92,14 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
 
      //!remove menu onclick handler
     const removeMenuHandler = (e:any) => {
-   
-    const idx = parseInt(e.target.id)
-    const copyArr = JSON.parse(JSON.stringify(menuArr));
-    // for(let i=e.target.id;i<copyArr.length;i++){
-
-    // }  
+      const idx = parseInt(e.target.id)
+      const copyArr = JSON.parse(JSON.stringify(menuArr));
+    if(copyArr.length > 1){
     copyArr.splice(idx,1)
-    console.log('filtering',copyArr);
-    console.log("같은지",copyArr === menuArr)
     setMenuArr(copyArr);
+    }else{
+      alert("최소한 1개의 메뉴는 있어야 합니다.")
+    }
   }
 
   

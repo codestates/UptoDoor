@@ -117,9 +117,13 @@ function AdminPostForm() {
     console.log('menuArr:',menuArr)
     console.log('e:',e.target.id);
     // console.log('idx:',idx);
-    const filtering = menuArr.filter((el:any) => el !== menuArr[e.target.id])
-    console.log('filtering',filtering);
-    setMenuArr(filtering);
+    if(menuArr.length > 1){
+      const filtering = menuArr.filter((el:any) => el !== menuArr[e.target.id])
+      console.log('filtering',filtering);
+      setMenuArr(filtering);
+    }else{
+     alert("최소한 1개의 메뉴는 있어야 합니다.")
+    }
   }
 
   //!upload storeimg

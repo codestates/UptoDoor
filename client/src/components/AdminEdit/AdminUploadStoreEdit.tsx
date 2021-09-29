@@ -33,7 +33,7 @@ function AdminUploadStoreEdit(
   const [imgs , setImgs]:any = useState([]); 
 
   const dropHandler = async (files:any) => {
-    if(imgs.length === 5){
+    if(props.imageArr.length === 5){
       setOpenModal(true);
     }else{
     const formData = new FormData();

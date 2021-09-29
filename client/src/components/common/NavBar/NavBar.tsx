@@ -70,7 +70,6 @@ function NavBar() {
     });
   }
 }
-
 const accessInto = useCallback((name) => {
   
   if (name === "mypage") {
@@ -81,8 +80,6 @@ const accessInto = useCallback((name) => {
     }
   }
   }, [history, message]);
-
-
   return (
     <Header>
       <NavWrapper>
@@ -115,25 +112,48 @@ const accessInto = useCallback((name) => {
         </IconButton>
         
         {message === undefined ?
-          (
-          <UL>
-          <Listli type="button" aria-label="로그인"
-        onClick={()=>{setModalOpen(true)}}
-        >
-          로그인
-        </Listli>
-        <Listli type="button" aria-label="회원가입">
-          <BtnLink to="/signup">회원가입</BtnLink>
-        </Listli></UL>)
-          :
-        ( <UL><Listli type="button" aria-label="로그인"
-            onClick={() => { accessInto("mypage") }}
-        >
-          프로필
-        </Listli>
-        <Listli type="button" aria-label="회원가입" onClick={(e:any) => { signoutHandler(e) }}>
-          로그아웃
-        </Listli></UL>) }
+          (<UL>
+            <Listli 
+            type="button" 
+            aria-label="로그인"
+            className = 'icons'
+            title = 'log-in'
+            onClick={()=>{setModalOpen(true)}}>
+              <i className="fas fa-sign-in-alt"></i>
+            </Listli>
+            <Listli 
+            type="button" 
+            aria-label="회원가입"
+            className = 'icons'
+            title = 'sign-up'>
+              <BtnLink to="/signup" >
+              <i className="fas fa-user-plus"></i>
+              </BtnLink>
+            </Listli>
+          </UL>)
+            :
+          (<UL>
+            <Listli>
+              <span>{user.nickname}님,</span> 반갑습니다.
+            </Listli>
+              <Listli 
+              type="button" 
+              aria-label="프로필"
+              title = 'profile'
+              className = 'icons'
+              onClick={() => {accessInto("mypage")}}>
+                <i className="fas fa-user"></i>
+              </Listli>
+              <Listli 
+              type="button" 
+              title = 'log-out'
+              aria-label='로그아웃'
+              className = 'icons'
+              onClick={(e:any) => {signoutHandler(e)}}>
+                <i className="fas fa-sign-out-alt"></i>
+              </Listli>
+          </UL>) 
+        }
       </ButtonWrapper>
 
       <SideBar history={ history} setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={signoutHandler} />

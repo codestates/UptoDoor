@@ -1,5 +1,18 @@
-import styled from "styled-components";
+import styled,{keyframes} from "styled-components";
 import { TextLightGrey } from '../../GlobalStyle';
+import {showModal,showModalBg} from '../Modal/styledModal'
+
+
+export const showSidebar = keyframes`
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+`
 
 export const SidebarContainer = styled.aside`
   position: fixed;
@@ -11,8 +24,11 @@ export const SidebarContainer = styled.aside`
   align-items: center;
   left: 0;
   z-index: 19;
+  animation: ${showModalBg} 0.4s;
   opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
+
+  /* animation: ${showSidebar} 0.7s ease;   */
   @media screen and (min-width: 767px) {
     display: none;
   }
@@ -29,9 +45,10 @@ export const SidebarWrapper = styled.div`
   background: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-start;  
   /* opacity:1; */
   z-index: 20;
+  /* animation: ${showSidebar} 0.3s ease;   */
 `;
 
 export const Icon = styled.div`

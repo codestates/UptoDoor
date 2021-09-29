@@ -29,12 +29,13 @@ padding : 100px 0 20px;
 }
 `
 export const IntroH1 = styled.h1`
-font-size: ${LargeFont};
+font-size: ${MediumFont};
 font-weight : 500;
 color : ${TextDarkGrey};
 @media screen and (min-width: 768px) {
   display : inline ;
-  font-size: 32px;
+  font-size: 30px;
+  font-weight: 600;
 }
 `
 export const IntroH2 = styled.h2`
@@ -44,6 +45,7 @@ color : ${TextLightGrey};
 @media screen and (min-width: 768px) {
   display : inline ;
   font-size: 32px;
+  font-weight: 500;
 }
 @media screen and (min-width: 1140px) {
   font-size: 40px;
@@ -613,6 +615,11 @@ margin : 20px 0 0;
   z-index : 1;
   @media screen and (min-width: 1140px) {
     width: 30%;
+  }
+  >div{
+    box-shadow : none !important;
+    border-color : rgba(0,0,0,0.3);
+
   }
   >div>div>div{
     color : ${TextDarkGrey};

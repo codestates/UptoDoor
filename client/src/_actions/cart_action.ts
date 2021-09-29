@@ -4,7 +4,7 @@ import {
   REMOVE_FROM_All_CART,
   ADD_CART,
   ADD_ALL_CART_TO_ORDER,
-  SET_ADDRESS,SELECT_STORE
+  SET_ADDRESS,SELECT_STORE,REMOVE_ALL_CART
 } from "./type";
 
 
@@ -61,5 +61,11 @@ export const selectStore = (id: any) => {
   return {
     type: SELECT_STORE,
     payload: id
+  }
+}
+
+export const removeAllCart = () => {
+  return {
+    type: REMOVE_ALL_CART
   }
 }

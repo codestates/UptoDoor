@@ -12,6 +12,7 @@ function ConfirmModal(props: any) {
   const history:any = useHistory()
   const { 
     openModal, url,confirmModal,
+    modalSuccess,
     modalTitleText ,modalText,modalBtn,setOpenModal
     } = props;
 
@@ -27,10 +28,17 @@ function ConfirmModal(props: any) {
         <ModalSelectAddWrapper flexable >
           
           <ModalTextBox >
+            {!modalSuccess ? 
+            <I 
+            confirm
+            bigger
+            className="fas fa-exclamation"></I>
+            :
             <I 
             confirm
             bigger
             className="far fa-check-circle"></I>
+            } 
             <h2>{modalTitleText}</h2>
             <p>{modalText}</p>
           </ModalTextBox>

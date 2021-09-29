@@ -7,7 +7,7 @@ import {
   MenuInput,
   MenuIntroTextArea,
   MenuUploadDiv,
-  MenuUploadDiv2,
+  MenuUploadDiv2,MenuUploadImgBox,
   MenuImg,
   PlusIcon,
   FileUp,
@@ -113,6 +113,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
           <StoreMenuAddWrapper key={idx}>
             <MenuUploadDiv2 >
               <label>메뉴 이미지</label> 
+              <MenuUploadImgBox className ='menu-upload-imgbox'> 
                 <FileUp 
                   required
                   id={idx}
@@ -124,6 +125,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
                   id={idx}
                   src = {el.image}
                   alt = {el.image}/>
+              </MenuUploadImgBox>
             </MenuUploadDiv2>
             <MenuUploadDiv2>
               <MenuInputBox>

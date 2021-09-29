@@ -27,12 +27,11 @@ function AdminUploadStoreEdit(
   autoplay = true,
   speed = 300,
   loop = true,}:sliderProps) {
-
-    console.log("프롭스",props)
-  
+ 
   // img 5개 제한
   const [openModal , setOpenModal] = useState(false);
   const [imgs , setImgs]:any = useState([]); 
+
   const dropHandler = async (files:any) => {
     if(imgs.length === 5){
       setOpenModal(true);
@@ -47,7 +46,7 @@ function AdminUploadStoreEdit(
     .then((res)=>{
       if(res.data.success){
         setImgs([...imgs,res.data.filePath])
-        props.updateStoreImg([...imgs,res.data.filePath])
+        props.updateStoreImg(res.data.filePath)
       }else{
         alert('파일저장실패')
       }
@@ -61,11 +60,11 @@ function AdminUploadStoreEdit(
     setOpenModal((prev)=>!prev)
   }
   const deleteImgHandler = (files:any) => {
-    const curIdx = imgs.indexOf(files)  
-    const newImgs = [...imgs]
-    newImgs.splice(curIdx,1);
-    setImgs(newImgs); 
-    props.updateStoreImg(newImgs)
+    const copyArr = JSON.parse(JSON.stringify(props.imageArr));
+    const curIdx = copyArr.indexOf(files)  
+    copyArr.splice(curIdx,1);
+    setImgs(copyArr); 
+    props.setImageArr(copyArr)
   }
   //img slider
   const settings = useMemo<Settings>(
@@ -81,7 +80,7 @@ function AdminUploadStoreEdit(
       autoplay: Boolean(autoplay),
       autoplaySpeed: typeof autoplay === 'boolean' ? 3000 : autoplay,
     }),[autoplay, loop, speed,]);
-    console.log("가게사진",props.imageArr)
+ 
   return (
     <StyledImgUpload>
       <StoreImgFlexWrapper>

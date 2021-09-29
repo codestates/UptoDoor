@@ -36,7 +36,8 @@ module.exports = async (req, res) => {
         to: receiverEmail,
         subject: 'UptoDoor 이메일 인증',
         html: `
-        <main style = 
+        <div>
+        <div style = 
         'margin:10px auto; width: 600px; 
         text-align: center;border : 1px solid rgba(0,0,0,0.3)'>
       
@@ -46,8 +47,8 @@ module.exports = async (req, res) => {
           box-sizing: border-box;
           display: flex;
           justify-content: space-between;
-          width : 100%;'>
-            <h2>UptoDoor</h2>
+          '>
+            <h1 style = 'color : grey;font-size: 20px;>UptoDoor</h1>
             <p style = 'color : grey;font-size: 20px;'>회원가입 절차</p>
           </header>
       
@@ -108,8 +109,8 @@ module.exports = async (req, res) => {
           <p style="margin:7px; color :rgb(86, 86, 87); font-size: 12px;">본 메일은 발신전용입니다.</p>
           <p style="margin:7px; color :rgb(86, 86, 87); font-size: 12px;">문의사항이 있으시다면 UptoDoor Github를 확인해주세요.</p>
         </footer>
-        </main>
-        
+        </div>
+        </div>
         `,
     };
 

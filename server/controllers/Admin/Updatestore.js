@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
     const storeImg = storeInfo.image.join();
     const originMenu = []
     const newMenu = []
-
+ 
     console.log('스토어 정보',storeInfo)
     console.log('이미지',storeImg)
 

@@ -38,7 +38,6 @@ export default function user_reducer(state = {}, action) {
       }
     }
     case CALCEL_ORDER: {
-      // const filtered = state.order.filter((el)=> el.id !== action.payload.id)
       return {...state }
     }
       

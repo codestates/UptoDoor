@@ -42,44 +42,14 @@ function SignupWrapper() {
   const [signupModal, setSignupModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   // const [signinModal, setSigninModal] = useState(false);
-  
-
-  const signupSubmitHandler = useCallback((e) => {
-    e.preventDefault();
-    if(password !== passwordChk) return false;
-    if(passwordRegErr === true) return setPasswordRegErr(true);
-    if(certEmail === false) return setCertEmail(true);
-    // if(isAllchecked === false ) return false;
-
-    let userinfo = {
-      email,password,nickname,mobile,
-      gender,age
-    }
-    dispatch(signUp(userinfo))
-    .then((res) => {
-      console.log('===',res.payload)
-      if (res.payload.message === 'Signup success') {
-        setModalSuccess(true);
-        setSignupModal(true);
-        // setSigninModal(true);
-        window.location.href = "http://localhost:3000";
-      } else {
-        alert('회원가입 조건을 충족해주세요.');
-      }
-    })
-    .catch((err) => {
-      setModalSuccess(false);
-        setSignupModal(true);
-    });
-  },[email,password,passwordChk,certEmail])
+  const [certModal, setCertModal] = useState(false);
   
 
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
   },[])
 
-  const [certSuccessModal, setCertSuccessModal] = useState(false);
-  const [certFailModal, setCertFailModal] = useState(false);
+  
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
     axios
@@ -89,10 +59,12 @@ function SignupWrapper() {
       {withCredentials: true, credentials: 'include'}
     ).then((res) => {
       if (res.data.message === "send success") {
-        setCertSuccessModal(true);
+        setModalSuccess(true);
+        setCertModal(true);
       }
     }).catch(() => {
-      setCertFailModal(true)
+      setModalSuccess(false);
+      setCertModal(true);
     })
   }
   const onChangePwHandler = useCallback((e) => {
@@ -283,8 +255,8 @@ function SignupWrapper() {
 
         {/* 약관 */}
         <SignupTerm
-          onChangeTermHandler = {onChangeTermHandler}
-          checkedInputs = {checkedInputs}
+          onChangeTermHandler={onChangeTermHandler}
+          checkedInputs={checkedInputs}
           setIsAllchecked={setIsAllchecked}
           isAllchecked={isAllchecked}
         />
@@ -301,35 +273,30 @@ function SignupWrapper() {
         <ConfirmModal
           openModal={signupModal}
           setOpenModal={setSignupModal}
-          modalSuccess = {modalSuccess}
-          url = '/'
-          modalTitleText=
-          {modalSuccess === true ? 
-            '회원가입 성공' : '회원가입 실패'}
-          modalText=
-          {modalSuccess === true ? 
-            '로그인 페이지로 이동합니다.'
-          :
-            '회원가입에 실패하셨습니다.'
+          modalSuccess={modalSuccess}
+          url="/"
+          modalTitleText={
+            modalSuccess === true ? "회원가입 성공" : "회원가입 실패"
+          }
+          modalText={
+            modalSuccess === true
+              ? "로그인 페이지로 이동합니다."
+              : "회원가입에 실패하셨습니다."
           }
           modalBtn="확인"
         />
       ) : null}
-      {certSuccessModal ? (
+      {certModal ? (
         <ConfirmModal
-          openModal={certSuccessModal}
-          setOpenModal={setCertSuccessModal}
+          openModal={certModal}
+          setOpenModal={setCertModal}
+          modalSuccess={modalSuccess}
           modalTitleText="이메일 인증"
-          modalText="10분 이내에 이메일을 인증해주세요."
-          modalBtn="확인"
-        />
-      ) : null}
-      {certFailModal ? (
-        <ConfirmModal
-          openModal={certFailModal}
-          setOpenModal={setCertFailModal}
-          modalTitleText="이메일 인증"
-          modalText="10분 이내에 이메일을 인증해주세요."
+          modalText={
+            modalSuccess === true
+              ? "10분안에 이메일을 인증해주세요."
+              : "새로고침 후 다시 해주세요."
+          }
           modalBtn="확인"
         />
       ) : null}

@@ -59,7 +59,7 @@ export const CartMenuItemContainer = styled.div`
 
 export const CartMenuItemWrapper = styled.div`
   margin: 0 auto 6px;
-  height: 100px;
+  height: 100%;
   /* border: 1px solid black; */
   display: flex;
   background-color: #fff;
@@ -67,7 +67,7 @@ export const CartMenuItemWrapper = styled.div`
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   justify-content: flex-start;
   align-items: center;
-
+  padding: 10px 5px;
   > img {
     width: 70px;
     height: 70px;
@@ -76,8 +76,9 @@ export const CartMenuItemWrapper = styled.div`
   }
 
   @media screen and (min-width: 767px) {
+    padding: 15px 10px;
     > img {
-      margin-left: 18px;
+
       margin-right: 24px;
     }
   }
@@ -101,23 +102,18 @@ export const CartMenuItemDetailWrapper = styled.div`
     > h4 {
       margin-bottom: 2px;
       font-weight: 500;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      
     }
     > p {
       font-size: 12px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      white-space: normal;
       margin-left: 1px;
     }
-
   }
 
   @media screen and (min-width: 767px) {
     display: flex;
-    width:  80%;
+    width: 80%;
     justify-content: space-between;
     align-items: center;
 
@@ -129,11 +125,10 @@ export const CartMenuItemDetailWrapper = styled.div`
       }
       > p {
         font-size: 14px;
+        
       }
     }
   }
-
-  
 `;
 
 export const InputNumberButton = styled.div`
@@ -191,10 +186,11 @@ export const InputNumberButton = styled.div`
   }
 
   @media screen and (min-width: 767px) {
-    margin-right: 18px;
+    margin-left: 8px;
+    margin-right: 10px;
 
     > .delete-action {
-      margin-left: 20px;
+      margin-left: 16px;
     }
   }
 `;

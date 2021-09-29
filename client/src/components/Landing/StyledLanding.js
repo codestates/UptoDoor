@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { UltraLargeFont,
-  TextLightGrey,MainColor,TextDarkGrey,
+  TextLightGrey,TextDarkGrey,
   LargeFont, SmallFont, MediumFont } from '../GlobalStyle'
 import {showModal} from '../common/Modal/styledModal'
 

@@ -39,7 +39,9 @@ const LandingEnd = () => {
       endText>
       Make your life easier</EndingH3>
       {/* <p>upToDoor 를 통해 당신에게 꼭 맞는 구독서비스를 찾아보세요</p> */}
+      <Fade bottom>
       <p>UpToDoor와 함께 더 편한 생활을 누려보세요.</p>
+      </Fade>
       </Fade>
 
       <Fade bottom>

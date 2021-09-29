@@ -60,7 +60,7 @@ function AdminEditForm() {
    //주소 
   const [switched, setSwitched ] = useState("");
   const [adminAddress , setAdminAddress] = useState('');
-  const [adminAddressDetail, setadminAddressDetail] = useState("");
+  const [adminAddressDetail, setadminAddressDetail] = useState('');
   const [addressModal, setAddressModal] = useState(false);
   const [xValue, setXValue] = useState('');
   const [yValue, setYValue] = useState('');
@@ -143,9 +143,11 @@ function AdminEditForm() {
         image : imageArr,
         description : description,
         time : time,
+        adminAddressDetail : adminAddressDetail,
         mobile : mobile,
         menuArr : menuArr
       }
+      console.log("보내기전 데이터",sendInfo)
       //history.push('/');
       axios.patch(`http://localhost:3060/admin/store/${storeinfo.id}`,{sendInfo})
       .then((res)=>{
@@ -208,6 +210,7 @@ function AdminEditForm() {
         setDescription(store_info.introduce) 
         setTime(store_info.delivery_time)
         setAdminAddress(store_info.address)
+        setadminAddressDetail(store_info.address_detail)
         setMobile(store_info.number)
         setStoreFile(store_info.Business_paper)
         setMenuArr(store_info.menus)
@@ -270,6 +273,7 @@ function AdminEditForm() {
             addressModal = {addressModal}
             setAddressModal = {setAddressModal}
             adminAddress = {adminAddress}
+            adminAddressDetail = {adminAddressDetail}
             changeAdminAddress = {changeAdminAddress}
             changeAddDetailHandler = {changeAddDetailHandler}
           />

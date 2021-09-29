@@ -45,7 +45,7 @@ const LandingIntro = () => {
   }
 
   useEffect(() => {
-    console.log('scroll now ===> ', scrollY);
+    // console.log('scroll now ===> ', scrollY);
     const chkScroll = () => {
       window.addEventListener('scroll',showScrollBtn)
     }

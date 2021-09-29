@@ -95,7 +95,7 @@ const accessInto = useCallback((name) => {
               <Listli onClick={()=> history.push("/mapper")}>구독찾기</Listli>
               <Listli onClick={()=> history.push("/address")}>동네인증</Listli>
 
-            <Listli onClick={() => { accessInto("mypage") }}>마이페이지</Listli>
+            <Listli onClick={() => history.push("/analysis")}>구독 데이터</Listli>
           </UL>
         </Nav>
       </NavWrapper>

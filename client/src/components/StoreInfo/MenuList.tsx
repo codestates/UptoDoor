@@ -12,20 +12,16 @@ import Item from './Item';
 import ConfirmModal from '../common/Modal/ConfirmModal';
 
 function MenuList({store}:any):any {
-  console.log('menulist===>',store.menus)
 
   const history = useHistory();  
   const state = useSelector((state) => state);
-  console.log("state",state)
   const { cart }: any = state;
   const { menu} = cart
-  console.log("메뉴", menu)
   const [openModal,setOpenModal] = useState(false);
   const dispatch:any = useDispatch()
 
   const addCartHandler = (item:any) => {
     // 메뉴의 id와 item.id 가 같으면 quantity 만 추가, 아니면 디스패치 애드카트에 아이템추가.
-    console.log('받아온아이템',item);
     if (!cart.menu.map((el:any) => el.id).includes(item.id)) {
       item = {...item, quantity : 1 }
       dispatch(addCart(item))

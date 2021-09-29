@@ -45,18 +45,13 @@ const StoreData = ({id}) => {
     dispatch(selectStore(id));
     axios.get(`${END_POINTS}/admin/store/${id}`)
     .then((res) => {
-        //메세지가 오케이면
-        console.log("스토어 넘버", res.data);
         res.data.storeData;
-        console.log('!!!store!!!==:',res.data.storeData)
         return setStore(res.data.storeData);
         
     }).catch((err) => {
       console.log(err);
     })
   }, []);
-
-  console.log('전달해주기 전 store',store)
   
   return (
     <Container>
@@ -74,7 +69,6 @@ const StoreData = ({id}) => {
             <div>
             {store.image.length < 2 ? 
             <EmptyStoreImg className = 'second-img empty-secont-img'>
-            <p>이미지가 없습니다.어떻게 해야할까.</p>
             </EmptyStoreImg>
             :
             <StoreImg src={store.image[1]} className = 'second-img'/>

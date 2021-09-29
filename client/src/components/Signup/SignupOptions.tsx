@@ -32,7 +32,7 @@ function SignupOptions({selectInputHandler}:OptionsProps) {
 
     return (
       <SelectBox>
-        <Label>{gender[1]}</Label><SideSpan>옵션</SideSpan><br/>
+        <Label>{gender[1]}</Label><SideSpan>선택</SideSpan><br/>
         <Select 
           className = 'gender-selection selection'
           options = {gender[0]}
@@ -40,7 +40,7 @@ function SignupOptions({selectInputHandler}:OptionsProps) {
           onChange = {(e)=>selectInputHandler(e,gender[1])}
         />
 
-        <Label>{age[1]}</Label><SideSpan>옵션</SideSpan><br/>
+        <Label>{age[1]}</Label><SideSpan>선택</SideSpan><br/>
         <Select 
           className = 'age-selection selection'
           options = {age[0]}

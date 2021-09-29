@@ -30,7 +30,6 @@ function ConfirmModal(props: any) {
           <ModalTextBox >
             {!modalSuccess ? 
             <I 
-            confirm
             bigger
             className="fas fa-exclamation"></I>
             :

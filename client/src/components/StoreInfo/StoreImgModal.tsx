@@ -10,31 +10,16 @@ import {
 } from './StyledStoreData'
 
 import { useHistory } from 'react-router-dom';
-import { useSelector } from "react-redux";
 import Slider,{Settings} from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// interface storeSliderProps {
-//   autoplay?: boolean | number;
-//   speed?: number;
-//   loop?: boolean; 
-// }
-
 function StoreImgModal(
   props:any
-  // {
-  // autoplay = false,
-  // speed = 800,
-  // loop = false,
-// }:storeSliderProps
 ) 
 {
   console.log('props',props);
   const history:any = useHistory()
-  // const store = useSelector((state:any) => state.store);
-  // const storeImg = store;
-  console.log('==store info img==',props.store);
 
   const settings = useMemo<Settings>(
     ()=>({

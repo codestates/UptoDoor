@@ -41,7 +41,6 @@ function AdminEnrollStore({
         }
         
         <StoreNameInput 
-        required
         type="text"
         onChange={changeAddDetailHandler}
         placeholder = '상세 주소 작성' 

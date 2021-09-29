@@ -1,9 +1,17 @@
-import styled from 'styled-components'
+import styled,{keyframes} from 'styled-components'
 import { UltraLargeFont,
-  TextLightGrey,MainColor,TextDarkGrey,
+  TextLightGrey,TextDarkGrey,
   LargeFont, SmallFont, MediumFont } from '../GlobalStyle'
 import {showModal} from '../common/Modal/styledModal'
 
+const upNdown = keyframes`
+  0%{
+    margin-top: -5px;
+  }
+  100%{
+    margin-top: 5px;
+  }
+`
 //!intro
 export const LandingIntroContainer = styled.main`
 width: 100%;
@@ -23,6 +31,7 @@ padding : 100px 0 20px;
 export const IntroH1 = styled.h1`
 font-size: ${LargeFont};
 font-weight : 500;
+color : ${TextDarkGrey};
 @media screen and (min-width: 768px) {
   display : inline ;
   font-size: 32px;
@@ -124,7 +133,6 @@ text-align: center;
 //////////////////////slider-  img/////////////////////
 //이미지랑감싸고있는 래퍼.
 export const SliderWrapper = styled.div`
-/* border :3px solid magenta; */
 `
 export const ImgContainer = styled.div`
 margin-top : 50px;
@@ -196,6 +204,48 @@ export const H1 = styled.h1`
 font-size: 45px;
 padding : 0;
 margin : 0;
+`
+export const ArrowChk = styled.div`
+>.active{
+  opacity: 1;
+}
+`
+export const ArrowDisplay = styled.div`
+width : 100%;
+height : 30px;
+position: ${({scollup})=> (scollup ? 'fixed' : 'absolute')};
+left: ${({scollup})=> (scollup ? '40%' : '0')};
+bottom: ${({scollup})=> (scollup ? '40px' : '70px')};
+opacity: ${({scollup})=> (scollup ? '0' : '1')};
+z-index: 1;
+transition : all 0.3s;
+@media screen and (min-width: 767px) {
+  left: ${({scollup})=> (scollup ? '45%' : '0')};
+  bottom: ${({scollup})=> (scollup ? '70px' : '70px')};
+}
+>i{
+  width : 60px; height: 50px;
+  font-size: ${({scollup})=> (scollup ? '30px' : UltraLargeFont)};
+  color : rgba(0,0,0,0.7);
+  animation: ${upNdown} 0.7s 0s ease infinite alternate-reverse;
+  transition : all 0.3s;
+  &:hover{  
+    width: ${({scollup})=> (scollup ? '50px' : '70px')};
+    height: ${({scollup})=> (scollup ? '50px' : '70px')};
+    cursor: ${({scollup})=> (scollup ? 'pointer' : 'unset')};
+    padding-top : 8px;
+    box-sizing: border-box;
+    transition : all 0.1s;
+    background: ${({scollup})=> (scollup ? 'linear-gradient(45deg, mediumturquoise,#5d9cec)' : '')};
+    color: ${({scollup})=> (scollup ? '#fff' : 'rgba(0,0,0,0.5)')};
+    border-radius: 50%;
+}
+@media screen and (min-width: 1140px) {
+  bottom : 90px;
+  font-size: ${({scollup})=> (scollup ? '36px' : UltraLargeFont)};
+  }
+}
+
 `
 export const GradientEdge = styled.div`
 position: absolute;
@@ -423,11 +473,11 @@ align-items: flex-end;
 justify-content: flex-end;
 padding : 10px;
 cursor: pointer;  
-transition : all 0.8s ease;
+transition : all 1s linear;
 &:hover{
     background-color: grey;
     background-blend-mode: multiply;
-    transition: all 0.8s ease;
+    transition: all 1s linear;
   }
 @media screen and (min-width: 768px) {
   height : 230px;

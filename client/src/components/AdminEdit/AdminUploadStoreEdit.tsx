@@ -27,10 +27,11 @@ function AdminUploadStoreEdit(
   autoplay = true,
   speed = 300,
   loop = true,}:sliderProps) {
-
+ 
   // img 5개 제한
   const [openModal , setOpenModal] = useState(false);
   const [imgs , setImgs]:any = useState([]); 
+
   const dropHandler = async (files:any) => {
     if(imgs.length === 5){
       setOpenModal(true);
@@ -45,7 +46,7 @@ function AdminUploadStoreEdit(
     .then((res)=>{
       if(res.data.success){
         setImgs([...imgs,res.data.filePath])
-        props.updateStoreImg([...imgs,res.data.filePath])
+        props.updateStoreImg(res.data.filePath)
       }else{
         alert('파일저장실패')
       }
@@ -59,11 +60,11 @@ function AdminUploadStoreEdit(
     setOpenModal((prev)=>!prev)
   }
   const deleteImgHandler = (files:any) => {
-    const curIdx = imgs.indexOf(files)  
-    const newImgs = [...imgs]
-    newImgs.splice(curIdx,1);
-    setImgs(newImgs); 
-    props.updateStoreImg(newImgs)
+    const copyArr = JSON.parse(JSON.stringify(props.imageArr));
+    const curIdx = copyArr.indexOf(files)  
+    copyArr.splice(curIdx,1);
+    setImgs(copyArr); 
+    props.setImageArr(copyArr)
   }
   //img slider
   const settings = useMemo<Settings>(
@@ -79,7 +80,7 @@ function AdminUploadStoreEdit(
       autoplay: Boolean(autoplay),
       autoplaySpeed: typeof autoplay === 'boolean' ? 3000 : autoplay,
     }),[autoplay, loop, speed,]);
-
+ 
   return (
     <StyledImgUpload>
       <StoreImgFlexWrapper>
@@ -94,14 +95,14 @@ function AdminUploadStoreEdit(
         </Dropzone>
       </StoreImgFlexWrapper>
 
-      {imgs.length === 0 ? 
+      {props.imageArr.length === 0 ? 
       <EmptyImgWrapper>
         <PlusIcon>가게 사진을<br/> 등록해주세요</PlusIcon>
       </EmptyImgWrapper> 
       : 
       <SliderWrapper className = 'slide-img-wrapper'>
         <Slider {...settings}>
-          {imgs.map((el:any,idx:any)=>{
+          {props.imageArr.map((el:any,idx:any)=>{
             return (
               <StoreImgBox 
               className = 'store-img-box'

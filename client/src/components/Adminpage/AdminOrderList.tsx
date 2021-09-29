@@ -1,10 +1,9 @@
 import React,{useState} from "react";
 import {
   MypageOrderListWrapper,
-  OrderListContent,
+  OrderListContent,OrderListWrapper
 } from "../Mypage/StyledMypage";
 import { PageNumberWrapper,OrderListInfoP,DeliveryTime,OrderListInfo } from './StyledAdminPage'
-import {OrderListWrapper} from '../Mypage/StyledMypage'
 import {ArrowBtn ,NextBtn } from '../common/Button/Button'
 
 function AdminOrderList({

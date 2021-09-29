@@ -1,6 +1,7 @@
 import React, { Suspense ,lazy} from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/GlobalStyle'
+import ScrollToTop from './ScrollToTop'
 import Loading from './components/common/Loading/Loading'
 import Footer from './components/common/Footer/Footer'
 import NavBar from './components/common/NavBar/NavBar'
@@ -40,6 +41,7 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Suspense fallback={<Loading />}>
+          <ScrollToTop />
           <SideBar />
           <NavBar />
           <Switch>

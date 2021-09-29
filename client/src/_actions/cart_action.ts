@@ -1,7 +1,6 @@
 import {
   SET_QUANTITY,
   REMOVE_FROM_CART,
-  REMOVE_FROM_All_CART,
   ADD_CART,
   ADD_ALL_CART_TO_ORDER,
   SET_ADDRESS,SELECT_STORE,REMOVE_ALL_CART
@@ -24,12 +23,6 @@ export const removeFromCart = (id:string):any => {
     payload: { id}
   };
 }
-
-export const removeFromAllCart = async() => {
-  return await {
-    type: REMOVE_FROM_All_CART,
-  };
-};
 
 export const addCart = async (item: {}) => {
   return await {

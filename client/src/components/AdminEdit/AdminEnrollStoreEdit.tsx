@@ -27,24 +27,17 @@ function AdminEnrollStoreEdit({
     <StoreInputBox>
       <label>가게주소</label>
       <StoreAddressWrapper>
-        {adminAddress.length === 0 ? 
-        <StoreAddressBtn
-        required
-        type="button"
-        onClick={()=>setAddressModal((prev:any)=>!prev)}
-        >가게 주소 등록하기</StoreAddressBtn>
-        :
-        <StoreAddressBtn
-        type="button"
-        onClick={()=>setAddressModal((prev:any)=>!prev)}
-        >{adminAddress}</StoreAddressBtn>
-        }
-        
+      <StoreNameInput 
+        readOnly
+        type="text"
+        defaultValue = {adminAddress} 
+        />
+
         <StoreNameInput 
-        required
         type="text"
         onChange={changeAddDetailHandler}
         placeholder = '상세 주소 작성' 
+        defaultValue = {null}
         />
       </StoreAddressWrapper>
 

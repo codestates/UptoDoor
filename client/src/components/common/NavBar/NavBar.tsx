@@ -9,7 +9,7 @@ import {
   NavLogo,
   //ListLink,
   NavWrapper,
-  MiddleButton,
+  UL,
   IconButton,
   BtnLink,
   Listli
@@ -59,7 +59,6 @@ function NavBar() {
     });
     }
     else {
-      console.log("d여기까지")
       dispatch(signOut())
       .then((res: any) => {
         console.log("여기서 찍히녀", res);
@@ -70,9 +69,7 @@ function NavBar() {
       }
     });
   }
-    
-    
-  }
+}
 
 const accessInto = useCallback((name) => {
   
@@ -90,24 +87,18 @@ const accessInto = useCallback((name) => {
     <Header>
       <NavWrapper>
         {/* 로고 */}
-        <NavLogo to="/"> 
-          {/* <img src="./images/UptoDoorFavicon.png" alt="s" style={{
-            width: "150px", height: "35px" ,
-            objectFit : 'contain'}} 
-            /> */}
-        
-        </NavLogo> 
-    
+        <NavLogo to="/"/> 
         {/* nav */}
         <Nav>
           <h2 className="visually-hidden">메뉴</h2>
-          <ul>
+          <UL>
               <Listli onClick={()=> history.push("/mapper")}>구독찾기</Listli>
               <Listli onClick={()=> history.push("/address")}>동네인증</Listli>
             <Listli onClick={() => { accessInto("mypage") }}>마이페이지</Listli>
-          </ul>
+          </UL>
         </Nav>
       </NavWrapper>
+      
       <ButtonWrapper>
         {/* 알림 버튼 */}
         <IconButton type="button" aria-label="알림 버튼">
@@ -124,26 +115,26 @@ const accessInto = useCallback((name) => {
         
         {message === undefined ?
           (
-          <div>
-          <MiddleButton type="button" aria-label="로그인"
+          <UL>
+          <Listli type="button" aria-label="로그인"
         onClick={()=>{setModalOpen(true)}}
         >
           로그인
-        </MiddleButton>
-        <MiddleButton type="button" aria-label="회원가입">
+        </Listli>
+        <Listli type="button" aria-label="회원가입">
           <BtnLink to="/signup">회원가입</BtnLink>
-        </MiddleButton></div>)
+        </Listli></UL>)
           :
-        ( <div><MiddleButton type="button" aria-label="로그인"
+        ( <UL><Listli type="button" aria-label="로그인"
             onClick={() => { accessInto("mypage") }}
         >
           프로필
-        </MiddleButton>
-        <MiddleButton type="button" aria-label="회원가입" onClick={(e:any) => { signoutHandler(e) }}>
+        </Listli>
+        <Listli type="button" aria-label="회원가입" onClick={(e:any) => { signoutHandler(e) }}>
           로그아웃
-        </MiddleButton></div>) }
-        
+        </Listli></UL>) }
       </ButtonWrapper>
+
       <SideBar history={ history} setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={signoutHandler} />
       <Signin 
       setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />

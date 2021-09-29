@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
           selected_address: orderInfo.selected_address,
           selected_address_detail: orderInfo.selected_address_detail,
         }); 
-    
+
         //user_order테이블에 데이터추가
         await user_order.create({
             user_id : id,

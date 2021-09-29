@@ -73,19 +73,6 @@ export const NavLogo = styled(Link)`
 `;
 
 export const Nav = styled.nav`
-  > ul {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: ${MediumFont};
-    font-weight: 500;
-    list-style: none;
-    cursor: pointer;
-    > li {
-      margin: 13px 15px;
-    }
-  }
-
   > .visually-hidden {
     position: absolute !important;
     width: 1px !important;
@@ -102,6 +89,22 @@ export const Nav = styled.nav`
     display: none !important;
   }
 `;
+export const UL = styled.ul`
+  display : none ;
+  @media screen and (min-width: 767px) {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: ${MediumFont};
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+  > li {
+    margin: 13px 15px;
+  }
+  }
+
+`
 
 // export const ListLink = styled(Link)`
   
@@ -159,5 +162,5 @@ export const MiddleButton = styled.button`
 
 export const BtnLink = styled(Link)`
   text-decoration: none;
-  color: #fff;
+  color: ${TextColor};
 `;

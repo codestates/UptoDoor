@@ -29,13 +29,15 @@ const { kakao }: any = window;
 
 function AdminEditForm() {
 
-  const dispatch = useDispatch();
+  const dispatch:any = useDispatch();
   const history = useHistory();
   const user = useSelector((state:any) => state.user);
   const admin = useSelector((state:any) => state.admin);
-
-  const [openModal , setOpenModal] = useState(false);
-  const [confirmModal , setConfirmModal] = useState(false);
+  //모달 수정, 삭제
+  const [editModal, setEditModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteOkModal, setDeleteOkModal] = useState(false);
+  const [modalSuccess , setModalSuccess] = useState(false);
 
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);
@@ -147,9 +149,15 @@ function AdminEditForm() {
         menuArr : menuArr
       }
       //history.push('/');
-      axios.patch(`http://localhost:3060/admin/store/${storeinfo.id}`,{sendInfo})
-      .then((res)=>{
-        console.log("res",res.data)
+      dispatch(adminPostEdit(sendInfo, storeinfo.id))
+      .then((res:any)=>{
+        if (res.payload.message === 'update success') {
+          setModalSuccess(true);
+          setEditModal(true)
+        }
+      }).catch((err:void) => {
+          setModalSuccess(false);
+          setEditModal(true)
       })
   }
 
@@ -176,24 +184,30 @@ function AdminEditForm() {
   //! store 삭제
   const deleteStoreHandler = () => {
     alert('가게삭제 성공')
-    // dispatch(deleteAdminPost())    
-    // .then((res: any) => {
-    //   if (res.payload.message  === 'good bye') {
-    //     alert('탈퇴성공')
-    //     window.location.href="http://localhost:3000/"
-    //   } else {
-    //     alert('탈퇴 실패. 못벗어남.');
-    //   }
-    // })
-    // .catch((err: any) => {
-    //   console.log(err)
-    // });
+    dispatch(deleteAdminPost())    
+    .then((res: any) => {
+      if (res.payload.message  === 'good bye') {
+        setDeleteModal(false);
+        setModalSuccess(true);
+        setDeleteOkModal(true);
+        
+      } else {
+        setDeleteModal(false);
+        setModalSuccess(false);
+        setDeleteOkModal(true);
+      }
+    })
+    .catch((err: any) => {
+        setDeleteModal(false);
+        setModalSuccess(false);
+        setDeleteOkModal(true);
+    });
   }
 
   const deleteModalHandler = () => {
-    setOpenModal(true)
+    setDeleteModal(true)
   }
-
+  
   useEffect(() => {
     const store_id = admin.orderdata.store.id
     axios.get(`${END_POINTS}/admin/store/${store_id}`)
@@ -313,11 +327,11 @@ function AdminEditForm() {
       </Wrapper> 
     </form>
 
-    {openModal ?
+    {deleteModal ?
       <WarningModal
-      openModal = {openModal}
+      openModal = {deleteModal}
       url='/'
-      setOpenModal={setOpenModal}
+      setOpenModal={setDeleteModal}
       modalTitleText = '정말 가게를 삭제하시겠습니까?'
       modalText = '가게를 삭제하시면 일주일간 재등록이 불가합니다.'
       yes = '가게 삭제'
@@ -327,13 +341,35 @@ function AdminEditForm() {
       :
       null
       }
-    {confirmModal ?
+      {deleteOkModal ?
       <ConfirmModal
-      confirmModal = {confirmModal}
+      confirmModal = {deleteOkModal}
       url="/"
-      setOpenModal={setOpenModal}
-      modalTitleText = '수정이 완료되었습니다.'
-      modalText = '확인 후 메인페이지로 이동합니다.'
+      modalSuccess={modalSuccess}
+      setOpenModal={setDeleteOkModal}
+      modalTitleText = '스토어 삭제'
+      modalText={
+            modalSuccess === true
+              ? "스토어를 삭제하였습니다. 감사합니다."
+              : "스토어 삭제에 실패했습니다. 새로고침 후 다시 시도해주세요."
+          }
+      modalBtn = '확인'
+      />
+      :
+      null
+      }
+    {editModal ?
+      <ConfirmModal
+      confirmModal = {editModal}
+      url="/"
+      modalSuccess={modalSuccess}
+      setOpenModal={setEditModal}
+      modalTitleText = '스토어 수정'
+      modalText={
+            modalSuccess === true
+              ? "스토어 정보 수정에 성공하였습니다."
+              : "새로고침 후 다시 해주세요."
+          }
       modalBtn = '확인'
       />
       :

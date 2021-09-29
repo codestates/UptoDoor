@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Postcode from "react-daum-postcode";
 import { BaseFont, SmallFont, PointColor, TextDarkGrey, MainColor } from '../GlobalStyle'
 
 export const StyledPost = styled.div`
@@ -118,7 +119,6 @@ align-items: center;
   width: 100%;
   padding : 0 10px;
   object-fit: contain;
-  /* margin : 0 auto 10px; */
 }
 `
 export const AdminForm = styled.div`
@@ -313,3 +313,5 @@ border-radius: 8px;
 float: right;
 cursor: pointer;
 `
+
+

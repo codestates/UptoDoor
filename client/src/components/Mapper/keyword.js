@@ -8,6 +8,7 @@ const { kakao } = window;
 //3. 마커롤 눌렀을때 모달로 뜨냐.
 //4. 카테고리별 
 
+
 //searchPlace,dataSet => search 자체
 export default function Keyword(
   initialStore,
@@ -16,7 +17,13 @@ export default function Keyword(
   clickHashtagHandler
 ) {
   // console.log(initialStore);
-  // console.log("selected", selectAddress);
+  console.log(
+    "selected",
+    initialStore,
+    selectAddress,
+    filterClickHandler,
+    clickHashtagHandler
+  );
   const mapContainer = document.getElementById("map"); // 지도를 표시할 div
   //* 위치를 선택하면 확대레벨이 달라짐
   let mapOption;
@@ -55,11 +62,18 @@ export default function Keyword(
           // 정상적으로 검색이 완료됐으면
           if (status === kakao.maps.services.Status.OK) {
             const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            // 결과값으로 받은 위치를 마커로 표시합니다
-            marker = new kakao.maps.Marker({
-              map: map,
-              position: coords,
-            });
+//             var imageSrc =
+//                 "./images/marker1.png", // 마커이미지의 주소입니다
+//               imageSize = new kakao.maps.Size(35, 35), // 마커이미지의 크기입니다
+//               imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+// var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+  // 결과값으로 받은 위치를 마커로 표시합니다
+  //! ------------
+  marker = new kakao.maps.Marker({
+    map: map,
+    position: coords,
+    // image: markerImage,
+  });
 
             kakao.maps.event.addListener(marker, "click", () => {
               geocoder.coord2Address(
@@ -68,6 +82,9 @@ export default function Keyword(
                 callback
               );
             });
+            //!-------------
+            //!==========도전
+            //!==========
           }
         }
       );
@@ -75,7 +92,7 @@ export default function Keyword(
     //! 콜백함수 클릭한 가게
   } else {
     var marker;
-const markers = [];
+    const markers = [];
     geocoder.addressSearch(selectAddress, function (result, status) {
       // 정상적으로 검색이 완료됐으면
       if (status === kakao.maps.services.Status.OK) {
@@ -116,7 +133,7 @@ const markers = [];
           // //! 3km 내의 마커만 표시------
           // // 원(Circle)의 옵션으로 넣어준 반지름
           const radius = 2500;
-          
+
           for (let i = 0; i < initialStore.length; i++) {
             // 주소로 좌표를 검색합니다
             geocoder.addressSearch(
@@ -158,12 +175,9 @@ const markers = [];
                   }
                 }
                 clickHashtagHandler(markers);
-                
               }
-              
             );
           }
-          
         } else {
           map.setCenter(marker);
         }
@@ -182,9 +196,8 @@ const markers = [];
     //     marker[i].setMap(null);
     //   }
     // }
-    
   }
-  
+
   const callback = function (result, status) {
     if (status === kakao.maps.services.Status.OK) {
       filterClickHandler(result[0].road_address.address_name);

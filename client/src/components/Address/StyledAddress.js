@@ -1,4 +1,14 @@
-import styled from 'styled-components';
+import Postcode from "react-daum-postcode";
+import styled, { keyframes } from "styled-components";
+
+export const showModalBg = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 export const AddressContainer = styled.section`
   width: 100%;
@@ -10,8 +20,6 @@ export const AddressWrapper = styled.div`
   padding: 100px 0;
   width: 95%;
   margin: 0 auto;
-
-  
 `;
 
 export const Addressh3 = styled.h3`
@@ -160,4 +168,24 @@ export const DetailAddress = styled.div`
       height: 45px;
     }
   }
+`;
+
+export const AddressModalContainer = styled.div`
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 9999;
+  animation: ${showModalBg} 0.4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
+
+export const Postcoder = styled(Postcode)`
+  width:500px;
+  height: 500px;
 `;

@@ -41,45 +41,42 @@ export const adminPostGet = () => {
   };
 };
 
-export const adminPostEdit = (adminpostEdit) => {
-  // axios.patch(`${END_POINTS}/admin/store`,
-  // adminpostEdit)
-  // .then((res)=>{
-  //   //수정성공
-  //   console.log(res.data)
-  // })
-  // .catch((err)=>{
-  //   console.log('==수정 실패==',err)
-  // })
+export const adminPostEdit = (sendInfo, id) => {
+  const request = axios.patch(`http://localhost:3060/admin/store/${id}`, { sendInfo }).then((res) => {
+    return res.data
+  })
+  .catch((err)=>{
+    console.log('==수정 실패==',err)
+  })
   return {
     type: ADMIN_POST_EDIT,
-    payload: adminpostEdit
+    payload: request
   };
 };
 
 //delete store 삭제 
-export const deleteAdminPost = (adminposts) => {
-  // axios.delete(`${END_POINTS}/admin/admin`,
-  // adminposts)
-  // .then((res)=>{
-  //   console.log(res.data)
-  //   return alert('스토어삭제.')
-  // })
-  // .catch((err)=>{
-  //   console.log('==상품업로드 실패==',err)
-  // })
+export const deleteAdminPost = () => {
+  const request = axios.delete(`${END_POINTS}/admin/admin`)
+  .then((res)=>{
+    return res.data;
+  })
+  .catch((err)=>{
+    console.log("deleteAdminPost action", err);
+  })
 
   return {
     type: DELETE_ADMIN_POST,
-    payload: adminposts
+    payload: request,
   };
 };
 
 export const getAdminData = () => {
   const request = axios.get(`${END_POINTS}/admin/admininfo`).then((res) => {
-    console.log("goasdas", res.data);
+    console.log("getAdminData action", res.data);
     return res.data;
-  });
+  }).catch((err) => {
+    console.log("getAdminData action", err);
+  })
 
   return {
     type: GET_ADMIN_DATA,

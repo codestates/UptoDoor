@@ -81,11 +81,10 @@ function AdminPostForm() {
     setTime(e.target.value)
   }
   //admin address
-  const changeAdminAddress = useCallback((data) => {
-    const resultAddress = JSON.parse(data).address
-    switchAddress(resultAddress)
-    setAdminAddress(resultAddress);
-    setAddressModal((prev)=>!prev);
+  const changeAdminAddress = useCallback( async (data) => {
+    await switchAddress(data.address);
+    await setAdminAddress(data.address);
+    await setAddressModal((prev)=>!prev);
   },[])
   const changeAddDetailHandler = (e:any) => {
     setadminAddressDetail(e.target.value)

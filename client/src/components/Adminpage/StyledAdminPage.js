@@ -226,8 +226,10 @@ export const StoreDescImg = styled.div`
   width: 95%;
   min-height: 190px;
   height: 40%;
-  border: 1px solid black;
-
+  /* border: 1px solid black; */
+  > img {
+    object-fit: contain;
+  }
   @media screen and (min-width: 500px) {
     height: 240px;
   }
@@ -280,13 +282,15 @@ export const StoreDesc = styled.div`
       padding: 0 6px;
 
       > span {
-        font-size: 20px;
+        font-size: 18px;
+        letter-spacing: -1px;
       }
 
       > p {
         padding: 0 6px;
-        font-size: 20px;
+        font-size: 18px;
         margin-bottom: 8px;
+        letter-spacing: -1px;
       }
     }
   }
@@ -299,21 +303,31 @@ export const StoreMenu = styled.div`
   > h3 {
     margin: 12px 0;
   }
+`;
 
-  > div {
-    height: 100%;
-    background-color: #f7f7f7;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-radius: 8px;
-  }
+export const MenuContent = styled.div`
+  height: 100%;
+  background-color: #f7f7f7;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
 `;
 
 export const MenuImg = styled.div`
-border: 1px solid black;
-min-width:70px;
-min-height: 70px;
+  width: 65px;
+  height: 65px;
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  @media screen and (min-width: 767px) {
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 export const MenuDesc = styled.div`
@@ -321,11 +335,25 @@ export const MenuDesc = styled.div`
   width: 75%;
   > h4 {
     margin-bottom: 3px;
+    font-size:14px;
   }
   > p {
     margin-bottom: 2px;
-    font-size: 14px;
+    font-size: 12px;
     word-break: break-all;
+  }
+
+  @media screen and (min-width: 767px) {
+    margin-left: 15px;
+    width: 75%;
+    > h4 {
+      margin-bottom: 3px;
+    }
+    > p {
+      margin-bottom: 2px;
+      font-size: 14px;
+      word-break: break-all;
+    }
   }
 `;
 

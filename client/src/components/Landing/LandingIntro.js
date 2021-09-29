@@ -66,6 +66,7 @@ const LandingIntro = () => {
     slidesToScroll: 1,  // 3장씩 뒤로 넘어가게
     draggable : false,
     centerMode: true,
+    draggable : false,
     centerPadding: '0px', 
     pauseOnHover : false,	// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
 		vertical : true,

@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     const storeImg = req.body.storeImage.join();
     try {
         const data1 = await store.create({
-        name: title, category: category, introduce: description, adminAddressDetail:adminAddressDetail,
+        name: title, category: category, introduce: description, address_detail:adminAddressDetail,
         number: mobile, address: adminAddress, xvalue: xvalue, yvalue: yvalue, image: storeImg, Bussiness_paper: storeFile });
 
     for (let i=0; i<menu.length; i++) {

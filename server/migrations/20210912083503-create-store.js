@@ -20,6 +20,9 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
+      address_detail: {
+        type: Sequelize.STRING
+      },
       xvalue: {
         type: Sequelize.FLOAT
       },

@@ -3,42 +3,50 @@ import {
   MypageOrderListWrapper,
   OrderListWrapper
 } from "../Mypage/StyledMypage";
-import { StoreTitle,StoreDesc,StoreDescContent,StoreDescImg,StoreMenu ,MenuDesc,MenuImg} from './StyledAdminPage'
+import { StoreTitle,StoreDesc,StoreDescContent,StoreDescImg,StoreMenu ,MenuDesc,MenuImg,MenuContent} from './StyledAdminPage'
 
-const AdminStoreInfo = () => {
+const AdminStoreInfo = ({store}:any) => {
+  console.log("11", store);
   return (
       <MypageOrderListWrapper>
       <OrderListWrapper >
         <StoreDescContent>
           <StoreTitle>
-            <h2>쑥이네 공방</h2>
-            <div>food</div>
+            <h2>{store.name}</h2>
+            <div>{store.category}</div>
           </StoreTitle>
           <StoreDescImg>
-            <img src="" alt="store"></img>
+            <img src={store.image.split(",")[0]} alt="store" width="100%" height="100%"></img>
           </StoreDescImg>
           <StoreDesc>
             <h3>스토어 정보</h3>
             <div>
               <span>주소:</span>
-              <p> 서울시 용산구 신흥로32길 4-33(용산동2가)</p>
+              <p>{store.address}</p>
             </div>
-            <div><span>연락처:</span><p> 010-7185-2791</p></div>
-            <div><span>영업시간:</span><p> 11:00 - 21:00</p></div>
-            <div><span>가게 설명:</span><p> 녹사평역이나 이태원역 아무데서나 와도 접근성이 좋은 녹9 입니다. 깔끔하고 안전한 왁싱샵에 맞기세요 영업시간 : 11:00 - 21:00  </p></div>
+            <div><span>연락처:</span><p>{store.number}</p></div>
+            <div><span>영업시간:</span><p> 10:00 - 19:00</p></div>
+            <div><span>가게 설명:</span><p>{store.introduce } </p></div>
             <div></div>
           </StoreDesc>
           <StoreMenu>
             <h3>메뉴 정보</h3>
-            <div>
-              <MenuImg src="" alt="menu" />
+            {store.store_menus.map((item:any) => {
+              return (
+                <MenuContent key={item.menu.name}>
+                  <MenuImg>
+                    <img src={item.menu.image} alt="menu" />
+              </MenuImg>
               <MenuDesc>
-                <h4>녹구녹구</h4>
-                <p>가격</p>
-                <p>설명asdjlaksdjklafjklafjkl</p>
+                    <h4>{item.menu.name}</h4>
+                <p>{item.menu.price} 원</p>
+                <p>{item.menu.detail}</p>
               </MenuDesc>
               
-            </div>
+            </MenuContent>
+              )
+            })}
+            
           </StoreMenu>
         </StoreDescContent> 
          

@@ -464,6 +464,7 @@ height : 120px;
 }
 `
 export const ValueImgBox = styled.div`
+
 background-size: cover;
 background-blend-mode: multiply;
 background-color : rgba(0,0,0,0.3);
@@ -479,15 +480,15 @@ transition : all 1s linear;
     background-blend-mode: multiply;
     transition: all 1s linear;
   }
-@media screen and (min-width: 768px) {
-  height : 230px;
+  @media screen and (min-width: 768px) {
+    height: 230px;
   }
-@media screen and (min-width: 1140px) {
-  position : relative;
-  width: 600px;
-  height : 100%;
-}
-`
+  @media screen and (min-width: 1140px) {
+    position: relative;
+    width: 600px;
+    height: 100%;
+  }
+`;
 export const H2 = styled.h2`
 font-size: ${LargeFont};
 color : #fff;

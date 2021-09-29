@@ -3,12 +3,11 @@ import {
   StoreInputBox,
   StoreNameInput,
   StoreAddressWrapper,
-  StoreAddressBtn
-
+  StoreAddressBtn,
 } from './StyledAdminPost'
-
 import Postcode from "@actbase/react-daum-postcode";
-import { ModalContainer } from '../common/Modal/styledModal';
+import { ModalContainer,Postcoder } from '../common/Modal/styledModal';
+
 
 interface AdminAddProps {
   adminAddress : string,
@@ -49,10 +48,9 @@ function AdminEnrollStore({
 
       {addressModal ? (
         <ModalContainer>
-          <Postcode
-            // jsOptions={{ animated: true, hideMapBtn: true }}
-            onSelected={(data) => 
-              changeAdminAddress(JSON.stringify(data))} 
+          <Postcoder
+            autoClose
+            onComplete={(data:any) => { changeAdminAddress(data) }}
             onError={function (error:any): void {
             throw new Error(`${error} Function not implemented.`);
             } }          />

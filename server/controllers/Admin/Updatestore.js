@@ -22,9 +22,10 @@ module.exports = async (req, res) => {
         //기본적인 스토어의 정보 업데이트
         await store.update({
             image : storeImg,
-            number : storeInfo.mobile,
             introduce : storeInfo.description,
-            delivery_time : storeInfo.time
+            delivery_time : storeInfo.time,
+            address_detail : storeInfo.adminAddressDetail,
+            number : storeInfo.mobile
         }, {where : {id : store_id}})   
 
         //기존에 등록했던 메뉴중에 삭제된것이 있는지 파악 하기 위해서 
@@ -42,11 +43,11 @@ module.exports = async (req, res) => {
         //새로운 메뉴의 아이디들이 기존 아이디배열에 있으면 기존의 아이디 배열에서 삭제
         //이과정 이후에 기존 아이디 배열에 남아있는 메뉴는 클라이언트에서 삭제된걸로 판단
         for(let el of newMenu){
-            if(originMenu.includes(el) !== -1){
-                originMenu.splice(originMenu.includes(el),1)
+            if(originMenu.includes(el)){
+                originMenu.splice(originMenu.indexOf(el),1)
             }
         }
-        
+
         //삭제된 메뉴들을 데이터베이스에서 삭제
         if(originMenu.length>=1){
            for(let el of originMenu){

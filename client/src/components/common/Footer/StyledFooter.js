@@ -103,7 +103,7 @@ export const FooterLinkItems = styled.div`
   margin-top: 10px;
   box-sizing: border-box;
   color: #000;
-  display: ${({ none }) => (none ? "none" : "flex")};
+  display: ${({ noapp }) => (noapp ? "none" : "flex")};
   @media screen and (min-width: 767px) {
     display: flex;
     flex-direction: column;
@@ -125,7 +125,7 @@ export const FooterLinkTitle = styled.h1`
   font-size: 20px;
   margin-bottom: 16px;
   text-align: center;
-  display: ${({ none }) => (none ? "none" : "block")};
+  display: ${({ noapp }) => (noapp ? "none" : "block")};
   @media screen and (min-width: 600px) {
     display: block;
   }

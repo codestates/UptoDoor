@@ -4,7 +4,7 @@ import { Container, Title, Wrapper } from "../GlobalStyle";
 import MyOrderWrapper from '../UserOrderInfo/MyOrderWrapper';
 import AdminOrderWrapper from '../Adminpage/AdminOrderWrapper'
 import axios from 'axios';
-import { getAdminData } from '../../_actions/post_action';
+import { AdminStoreGetData } from '../../_actions/admin_action';
 import MyOrderList from './MyOrderList';
 // import MyPaymentList from './MyPaymentList';
 import { useDispatch} from "react-redux";
@@ -45,8 +45,7 @@ function MyProfile(): any {
     axios.get(`${END_POINTS}/users/userinfo`)
       .then((res) => {
         const order = res.data.userdata.user_orders.map((el:any) => {
-          console.log('order_deliveries : ==',el.order.order_deliveries);
-          const { delivery_day, delivery_term, delivery_time } = el.order.order_deliveries;
+          const { delivery_day, delivery_term, delivery_time } = el.order.order_deliveries[0];
           const { 
             state, totalprice, order_menus, store, user_name, 
             selected_address, selected_address_detail, 
@@ -90,7 +89,7 @@ function MyProfile(): any {
   },[])
 
   const moveAdminPage = () => {
-    dispatch(getAdminData()).then((res:any) => {
+    dispatch(AdminStoreGetData()).then((res:any) => {
       if (res.payload.message === "ok") {
         history.push('/adminpage')
       }

@@ -6,10 +6,8 @@ import {
   MenuInputBox,
   MenuInput,
   MenuIntroTextArea,
-  MenuUploadDiv,
-  MenuUploadDiv2,MenuUploadImgBox,
+  MenuUploadContent,MenuUploadImgBox,
   MenuImg,
-  PlusIcon,
   FileUp,
   RemoveMenuBtn
 ,StoreMenuAddBtn
@@ -112,7 +110,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
       // console.log('-----el----',el);
         return (
           <StoreMenuAddWrapper key={idx}>
-            <MenuUploadDiv2 >
+            <MenuUploadContent >
               <label>메뉴 이미지</label> 
               <MenuUploadImgBox className ='menu-upload-imgbox'> 
                 <FileUp 
@@ -127,8 +125,8 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
                   src = {el.image}
                   alt = {el.image}/>
               </MenuUploadImgBox>
-            </MenuUploadDiv2>
-            <MenuUploadDiv2>
+            </MenuUploadContent>
+            <MenuUploadContent>
               <MenuInputBox>
 
               <RemoveMenuBtn
@@ -169,7 +167,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
                   placeholder = '100자 이내로 작성해주세요.' 
                   maxlength="100" />
               </MenuInputBox>
-            </MenuUploadDiv2>
+            </MenuUploadContent>
           </StoreMenuAddWrapper>
           )
         })}

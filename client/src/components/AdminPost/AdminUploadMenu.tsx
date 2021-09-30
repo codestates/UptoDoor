@@ -1,15 +1,13 @@
 import React,{useState} from 'react'
-import Dropzone from 'react-dropzone'
 import {
   StoreInputBox,
   StoreMenuAddWrapper,
   MenuInputBox,
   MenuInput,
   MenuIntroTextArea,
-  MenuUploadDiv,
-  MenuUploadDiv2,MenuUploadImgBox,
+  MenuUploadContent,MenuUploadImgBox,
   MenuImg,
-  PlusIcon,RemoveMenuBtn,
+  RemoveMenuBtn,
   FileUp ,StoreMenuAddBtn
 } from './StyledAdminPost'
 import axios from 'axios';
@@ -26,7 +24,6 @@ function AdminUploadMenu({
   const [menuDescription , setMenuDescription] = useState('');
   
   const priceHandler = (e:any) => {
-    // console.log(typeof Number(e.target.value));
     if(Number(e.target.value) < 0 ){
       console.log('0보다 작음', typeof e.target.value)
       setPrice(0)
@@ -57,8 +54,6 @@ function AdminUploadMenu({
         if(res.data.success){
           //깊은복사
           const copyArr = JSON.parse(JSON.stringify(menuArr));
-          console.log('copyArr===',copyArr)
-          // console.log('copyArr target===',copyArr[e.target.id])
           copyArr[e.target.id].menuImg = res.data.filePath
           setMenuArr(copyArr)
           setMenuImg(res.data.filePath)
@@ -107,10 +102,9 @@ function AdminUploadMenu({
     <StoreInputBox>
       <label className = 'menu-enroll-label'>메뉴 등록</label>
       {menuArr && menuArr.map((el:any,idx:number) => {
-      // console.log('-----el----',el,idx);
         return (
           <StoreMenuAddWrapper key={idx}>
-            <MenuUploadDiv2 
+            <MenuUploadContent
             className ='menu-upload-imgs'>
                 <label>메뉴 이미지</label>
                   <MenuUploadImgBox className ='menu-upload-imgbox'> 
@@ -126,9 +120,9 @@ function AdminUploadMenu({
                     src = {el.menuImg}
                     alt = {el.menuImg}/>
                   </MenuUploadImgBox>
-            </MenuUploadDiv2>
+            </MenuUploadContent>
 
-            <MenuUploadDiv2>
+            <MenuUploadContent>
               <MenuInputBox>
 
                 <RemoveMenuBtn
@@ -168,7 +162,7 @@ function AdminUploadMenu({
                   placeholder = '100자 이내로 작성해주세요.' 
                   maxlength="100" />
               </MenuInputBox>
-            </MenuUploadDiv2>
+            </MenuUploadContent>
           </StoreMenuAddWrapper>
           )
         })}

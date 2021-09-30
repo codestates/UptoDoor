@@ -16,7 +16,6 @@ function AdminFileUpload(props:any) {
       headers: { 'content-type': 'multipart/form-data' }
     }
     formData.append('file', files[0]);
-    console.log('==fileconfig==', formData, config);
     //dispatch action axios 관리된거 와야함.
     axios.post(`${END_POINTS}/image`,formData,config)
           .then((res)=>{

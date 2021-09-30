@@ -11,20 +11,6 @@ function AdminOrderList({
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10;
   
-  console.log("ㅁㄴㅇㅁㄴ", data)
-  for (let i = 0; i < data.length-1; i++){
-    
-
-    for (let j = 1; j < data.length; j++) {
-      const hour1 = Number(data[i].order_deliveries[0].delivery_time.split(":")[0])
-      const min1 = Number(data[i].order_deliveries[0].delivery_time.split(":")[1])
-      const hour2 = Number(data[i].order_deliveries[0].delivery_time.split(":")[0])
-      const min2 = Number(data[i].order_deliveries[0].delivery_time.split(":")[1])
-
-      if(hour1 < hour2 ){}
-    }
-  }
-  
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
   const currentPosts =( tmp:any ) => {
@@ -55,7 +41,7 @@ function AdminOrderList({
                   })}</OrderListInfoP>
                   </div>
                 <DeliveryTime >
-                    배송시간: {el.order_deliveries[0].delivery_time}
+                    배송시간: {el.order_deliveries.delivery_time}
                 </DeliveryTime>  
             <NextBtn type="button" 
             onClick={()=>{moveDetailHandler(el.id)}}>

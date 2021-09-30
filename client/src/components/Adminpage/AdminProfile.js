@@ -52,8 +52,9 @@ function AdminProfile() {
     setCur(0);
     setCurrentTab(id);
     setSelectedDay(day)
+    console.log("11111",orders);
     const filtered = orders.filter((el) => {
-      const { delivery_day } = el.order_deliveries[0];
+      const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(day);
     });
@@ -64,7 +65,7 @@ function AdminProfile() {
   useEffect(() => {
     setCur(0);
     const filtered = orders.filter((el) => {
-      const { delivery_day } = el.order_deliveries[0];
+      const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(selectedDay);
     });

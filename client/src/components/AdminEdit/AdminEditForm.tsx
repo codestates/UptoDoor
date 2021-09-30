@@ -5,7 +5,7 @@ import {
   FlexBox,
   StoreInputBox,
   StoreNameInput,
-  StoreIntroTextArea,OpenCloseInputWrapper
+  StoreIntroTextArea,OpenCloseInputWrapper,
   StoreBtnBox,
 } from '../AdminPost/StyledAdminPost'
 import {Container,Wrapper,Title} from "../GlobalStyle";

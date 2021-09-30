@@ -20,7 +20,7 @@ function AdminDetailInfo({ userMobile,userAddress,deliveryInfo,detailInfo}: Ipro
         <FlexBox col>
           <EachItemBox>
             <H4>🗓 구독기간</H4>
-            <P>{deliveryInfo[0].delivery_term}개월({Number(deliveryInfo[0].delivery_term) * 4}주) / 매주 {deliveryInfo[0].delivery_day}요일 / {deliveryInfo[0].delivery_time}</P>
+            <P>{deliveryInfo.delivery_term}개월({Number(deliveryInfo.delivery_term) * 4}주) / 매주 {deliveryInfo.delivery_day}요일 / {deliveryInfo.delivery_time}</P>
           </EachItemBox>
           <EachItemBox>
             <H4>📍 고객 주소</H4>

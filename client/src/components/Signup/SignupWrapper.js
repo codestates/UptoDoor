@@ -30,6 +30,7 @@ function SignupWrapper() {
   //required
   const [email, setEmail] = useState('');
   const [certEmail, setCertEmail] = useState(false);
+  const [certEmailErr, setCertEmailErr] = useState(false);
   const [nickname , setNickname] = useState('');
   const [mobile, setMobile] = useState('');
   const [password , setPassword] = useState('');
@@ -44,13 +45,11 @@ function SignupWrapper() {
   
   const [signupModal, setSignupModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
-  // const [signinModal, setSigninModal] = useState(false);
   const [certModal, setCertModal] = useState(false);
  
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
   },[])
-
   
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
@@ -63,12 +62,15 @@ function SignupWrapper() {
       if (res.data.message === "send success") {
         setModalSuccess(true);
         setCertModal(true);
+        setCertEmail(true);
+        setCertEmailErr(false);
       }
     }).catch(() => {
       setModalSuccess(false);
       setCertModal(true);
     })
   }
+
   const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
     let pwRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,12}$/;
@@ -110,17 +112,16 @@ function SignupWrapper() {
 
   //!약관
   const [checkedInputs, setCheckedInputs] = useState([]);
-
   const onChangeTermHandler = (checked, idx) => {
     if (checked) {
       setCheckedInputs([...checkedInputs, idx]);
       // setCheckedInputs(checkedInputs.concat(idx));
       setIsAllchecked(checked)
-      console.log('--chk 반영--',checked)
+      // console.log('--chk 반영--',checked)
     } else {
       setCheckedInputs(checkedInputs.filter((el) => el !== idx));
       setIsAllchecked(checked)
-      console.log('--chk 해제반영--',checked)
+      // console.log('--chk 해제반영--',checked)
     }
   };
 
@@ -130,12 +131,21 @@ function SignupWrapper() {
 
   //!form 제출핸들러.
   const signupSubmitHandler = useCallback((e) => {
-    console.log('파이널 isAllchk' , isAllchecked)
+    // console.log('파이널 isAllchk' , isAllchecked)
+    console.log('certEmail :::::: ',certEmail)
     e.preventDefault();
     if(password !== passwordChk) return false;
     if(passwordRegErr === true) return setPasswordRegErr(true);
-    if(certEmail === false) return setCertEmail(true);
     if(isAllchecked === false ) return false;
+    if(certEmail === false) {
+      setCertEmailErr(true);
+      setCertEmail(false);
+      console.log('에러날때 최종가아앖',certEmailErr , certEmail)
+    }else if(certEmail === true){
+      setCertEmailErr(false);
+      setCertEmail(true);
+      console.log('진짜최종갑아아아ㅏ앙',certEmailErr , certEmail)
+    }
 
     let userinfo = {
       email,password,nickname,mobile,
@@ -163,12 +173,6 @@ function SignupWrapper() {
   const cancleHandler = () => {
     history.push('/');
   }
-  // const [count, setCount] =useState(0)
-  // useEffect(() => {
-  //   if (count >= 3 && !successModal && !signinModal) {
-  //     window.location.href = "http://localhost:3000";
-  //   }
-  // }, [successModal, signinModal]);
 
   return (
     <Container>
@@ -184,7 +188,7 @@ function SignupWrapper() {
         <SmallButton
           className="cert-email-btn"
           type="button"
-          onClick={() => certEmailHandler(certEmail)}>
+          onClick={certEmailHandler}>
           이메일 인증
         </SmallButton>
 
@@ -197,7 +201,9 @@ function SignupWrapper() {
             value={email}
             onChange={onChangeEmailHandler}
           />
-          {certEmail ? <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> : null}
+          {certEmailErr ? 
+          <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> 
+          : null} 
         </SignupBox>
 
         <Label>비밀번호</Label>

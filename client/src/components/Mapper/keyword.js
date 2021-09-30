@@ -17,13 +17,13 @@ export default function Keyword(
   clickHashtagHandler
 ) {
   // console.log(initialStore);
-  console.log(
-    "selected",
-    initialStore,
-    selectAddress,
-    filterClickHandler,
-    clickHashtagHandler
-  );
+  // console.log(
+  //   "selected",
+  //   initialStore,
+  //   selectAddress,
+  //   filterClickHandler,
+  //   clickHashtagHandler
+  // );
   const mapContainer = document.getElementById("map"); // 지도를 표시할 div
   //* 위치를 선택하면 확대레벨이 달라짐
   let mapOption;

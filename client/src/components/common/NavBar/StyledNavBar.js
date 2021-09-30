@@ -1,19 +1,12 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import {
-  // BackgroundColor,
   MainColor,
-  // PointColor,
   TextColor,
-  // TextDarkGrey,
-  // TextLightGrey,
+  TextDarkGrey,
 } from "../../GlobalStyle";
 import {
-//   SmallFont,
-//   BaseFont,
   MediumFont,
-  // LargeFont,
-//   UltraLargeFont,
 } from "../../GlobalStyle";
 
 export const Header = styled.header`
@@ -23,7 +16,8 @@ export const Header = styled.header`
   width: 100%;
   height: 75px;
   display: flex;
-  padding: 15px 12px 30px 12px;
+  /* padding: 15px 12px 30px 12px; */
+  padding : 25px 12px;
   justify-content: space-between;
   margin-bottom: 30px;
   transition: all 0.4s;
@@ -55,7 +49,7 @@ export const NavLogo = styled(Link)`
   /* line-height: 1em; */
   margin-right: 12px;
   letter-spacing: -3px;
-  width: 150px;
+  width: 130px;
   background-image: url('./images/upToDoorLogo.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -98,23 +92,61 @@ export const UL = styled.ul`
   font-size: ${MediumFont};
   font-weight: 500;
   list-style: none;
-  cursor: pointer;
-  > li {
-    margin: 13px 15px;
   }
-  }
-
+>.icons{
+  margin : 13px 0;
+  /* color : ${MainColor}; */
+}
 `
-
-// export const ListLink = styled(Link)`
-  
-// `;
-
 export const Listli = styled.li`
-  color: ${TextColor};
+  color: ${TextDarkGrey};
   text-decoration: none;
   font-size: 16px;
   font-weight: 400;
+  margin: 13px 15px;
+  cursor: ${({geeting}) => (geeting ? 'auto' : 'pointer')};
+  >a{color : ${TextDarkGrey}};
+  >span{font-weight:700; color : ${MainColor};}
+  >a>i,i{
+    font-size: 20px;
+    width : 60px;
+    text-align: center;
+    /* color : ${TextDarkGrey}; */
+    &:hover{    
+      transition : all 0.3s;
+      font-weight: 400;
+      &:before{
+        content : '프로필';
+        font-size: 16px;
+        font-weight: 400;
+        color : ${TextDarkGrey};
+      }
+    }
+  }
+  >a>i{
+    /* color : ${MainColor}; */
+    &:hover{    
+      &:before{
+        content : '회원가입';
+      }
+    }
+  }
+  >.fa-sign-in-alt{
+  font-size: 22px;
+    &:hover{    
+      &:before{
+        content : '로그인';
+      }
+    }
+  }
+  >.fa-sign-out-alt{
+    font-size: 22px;
+    &:hover{    
+      &:before{
+        content : '로그아웃';
+      }
+    }
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -133,7 +165,7 @@ export const IconButton = styled.button`
 
   > i {
     font-size: 26px;
-    color: ${MainColor};
+    color: ${TextDarkGrey};
     background: none;
     border: none;
   }

@@ -18,7 +18,7 @@ import {
   IntroH1,
   IntroH2,
   ArrowDisplay,
-  ArrowChk,
+  ArrowChk, I
 } from './StyledLanding'
 import {category, categoryDummy} from '../dummyData'
 
@@ -66,7 +66,6 @@ const LandingIntro = () => {
     slidesToScroll: 1,  // 3장씩 뒤로 넘어가게
     draggable : false,
     centerMode: true,
-    draggable : false,
     centerPadding: '0px', 
     pauseOnHover : false,	// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
 		vertical : true,
@@ -118,23 +117,30 @@ const LandingIntro = () => {
         </Container>
         {/* 화살표 표시 */}
         <ArrowDisplay className = 'arrow-display-bottom'>
-          <i className="fas fa-angle-double-down"></i>
+          <I className="fas fa-angle-double-down"></I>
         </ArrowDisplay>
 
         <ArrowChk>
-        <ArrowDisplay 
-        className = {
-          btnStatus ? 
-          'arrow-display-top active' 
-          : 
-          'arrow-display-top'}
-        onClick = {scrollTop}
-        scollup>
-          <i 
-          scrollup
-          className="fas fa-angle-double-up"></i>
-        </ArrowDisplay>
+          <ArrowDisplay 
+          className = {
+            btnStatus ? 
+            'arrow-display-top active' 
+            : 
+            'arrow-display-top'}
+          onClick = {scrollTop}
+          scollup
+          >
+          <div>
+            <I 
+            scrollup
+            className="far fa-bell alarm-btn"></I>
+            <I 
+            scrollup
+            className="fas fa-angle-double-up"></I>
+          </div>
+          </ArrowDisplay>
         </ArrowChk>
+
 
         {/* 흐림효과 */}
         <GradientEdge ></GradientEdge>

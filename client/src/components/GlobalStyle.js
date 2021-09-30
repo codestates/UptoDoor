@@ -42,7 +42,7 @@ export const Container = styled.section`
   margin: 30px auto;
   min-width: 375px;
   width: 100%;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   @media screen and (min-width: 768px) {
     margin: 50px auto 70px;
   }
@@ -54,7 +54,7 @@ export const Container = styled.section`
 export const Wrapper = styled.div`
   margin: 0 auto;
   width: 90%;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   @media screen and (min-width: 1140px) {
     max-width: 1140px;
   }

@@ -1,15 +1,11 @@
 import styled ,{keyframes} from 'styled-components'
 import { 
   SmallFont, 
-  MediumFont ,
   TextLightGrey, 
   TextColor, 
-  LargeFont, 
-  MainColor,
   BaseFont,
   UltraLargeFont,
   TextDarkGrey,
-  PointColor
 } from '../GlobalStyle'
 import { Link } from "react-router-dom";
 
@@ -312,7 +308,7 @@ export const MapAppContainer = styled.div`
   position: relative;
   padding: 12px 10px;
   margin: 0 auto;
-  width: 86%;
+  width: 100%;
   background-color: #f7f7f7;
   height: 120px;
   overflow: hidden;
@@ -321,28 +317,15 @@ export const MapAppContainer = styled.div`
   border-radius: 8px;
   z-index: 12;
 
-  /* &::-webkit-scrollbar {
-    background-color: ${MainColor};
-    width: 6px;
-    padding : 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-  } */
   @media screen and (min-width: 499px) {
     bottom: 0px;
     height: 300px;
     padding: 15px 10px;
+    max-width: 820px;
   }
 
   @media screen and (min-width: 1140px) {
     display: none;
-    /* position: relative;
-    top: 10px;
-    width: 100%;
-    margin: 0;
-    padding: 0; */
   }
 `;
 

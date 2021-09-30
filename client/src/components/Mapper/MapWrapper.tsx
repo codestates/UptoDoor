@@ -39,21 +39,13 @@ function MapWrapper() {
   const [filterList, setFilterList] = useState([]);
   const [loginModal, setLoginModal] = useState(false)
   const [selectAddressModal, setSelectAddressModal] = useState(false)
-  // setmapData 에 필터링한 값 담아서 보여주기
-  // 나온 데이터 값의 name 과 place_name의 이름이 같은것을 좌표로 보여준다. 
+  
   //* submit 설치 섭밋
   const searchSubmitHandler = (e:any) => {
     e.preventDefault();
-    // console.log("serrchsubmit", e.target[0].value);
-    // if(word === ''){
-    //   word = '동네 구독서비스'
-    // }
     dispatch(getFitteredBySearch(e.target[0].value));
   } 
-  // const categoryFilter = () => {
-  // console.log('===filteringHashClick',filterHashList)
-  // setOpenInfoModal(true);
-  // }
+  
   const filterListHandler = (hastag:string) => {
     dispatch(getFitteredByHastag(hastag))
     if (hastag === "all" || hastag === "") {
@@ -63,8 +55,7 @@ function MapWrapper() {
     }
   };
 
-  const clickHashtagHandler = (markers: any) => {
-    // console.log("markers클릭", markers)
+  const hashtagClickHandler = (markers: any) => {
     const filtered = store.filter((el: any) => {
       for (let i = 0; i < markers.length; i++){
         if (markers[i].address == el.address) {
@@ -72,18 +63,13 @@ function MapWrapper() {
         }
       }
     })
-    // console.log("filter", filtered);
     setFilterList(filtered);
     setOpenInfoModal(true);
   }
   const filterClickHandler = (address: string) => {
-    // console.log("adadasd", address);
-    // console.log("Adsadasd", store);
     const filtered = store.filter((el: any) => {
-      // console.log("el",el)
       return el.address === address
     })
-    // console.log("filtered", filtered);
     setFilterList(filtered);
     setOpenInfoModal(true);
   }
@@ -137,7 +123,7 @@ function MapWrapper() {
 
           {/* 지도 컴포넌트 */}
           <Map
-            clickHashtagHandler={clickHashtagHandler}
+            hashtagClickHandler={hashtagClickHandler}
             filterClickHandler={filterClickHandler}
             selectAddress={selectAddress}
           />

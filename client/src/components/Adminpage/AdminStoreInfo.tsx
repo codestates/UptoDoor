@@ -1,15 +1,11 @@
 import React from 'react'
-import {
-  MypageOrderListWrapper,
-  OrderListWrapper
-} from "../Mypage/StyledMypage";
-import { StoreTitle,StoreDesc,StoreDescContent,StoreDescImg,StoreMenu ,MenuDesc,MenuImg,MenuContent} from './StyledAdminPage'
+import { StoreTitle,StoreDesc,StoreDescContent,StoreDescImg,StoreMenu ,MenuDesc,MenuImg,MenuContent,AdminContainer,AdminWrapper} from './StyledAdminPage'
 
 const AdminStoreInfo = ({store}:any) => {
   console.log("11", store);
   return (
-      <MypageOrderListWrapper>
-      <OrderListWrapper >
+      <AdminContainer>
+      <AdminWrapper >
         <StoreDescContent>
           <StoreTitle>
             <h2>{store.name}</h2>
@@ -50,8 +46,8 @@ const AdminStoreInfo = ({store}:any) => {
           </StoreMenu>
         </StoreDescContent> 
          
-        </OrderListWrapper>
-    </MypageOrderListWrapper>
+        </AdminWrapper>
+    </AdminContainer>
   )
 }
 

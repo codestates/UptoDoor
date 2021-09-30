@@ -18,7 +18,6 @@ function StoreImgModal(
   props:any
 ) 
 {
-  console.log('props',props);
   const history:any = useHistory()
 
   const settings = useMemo<Settings>(
@@ -31,15 +30,10 @@ function StoreImgModal(
       centerPadding: '0px',  
     }),[]);
 
-  const { openModal, setOpenModal, 
-    modalTitleText ,modalText, modalBtn,url } = props;
+  const { openModal, setOpenModal } = props;
 
   const closeModal = () => {
-    if (url) {
-      history.push(url);
-    } else {
       setOpenModal(false);
-    }
   }
   //여기는 가게 이미지슬라이더만 보여지는 모달입니덩.
   return (

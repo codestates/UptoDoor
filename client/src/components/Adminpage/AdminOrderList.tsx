@@ -1,9 +1,5 @@
 import React,{useState} from "react";
-import {
-  MypageOrderListWrapper,
-  OrderListContent,OrderListWrapper
-} from "../Mypage/StyledMypage";
-import { PageNumberWrapper,OrderListInfoP,DeliveryTime,OrderListInfo } from './StyledAdminPage'
+import { PageNumberWrapper,AdminOrderListInfoP,DeliveryTime,AdminOrderListItem,AdminWrapper,AdminContainer,AdminOrderListContent, } from './StyledAdminPage'
 import {ArrowBtn ,NextBtn } from '../common/Button/Button'
 
 function AdminOrderList({
@@ -26,19 +22,18 @@ function AdminOrderList({
 
   const posts: any = currentPosts(data);
   return (
-    <MypageOrderListWrapper>
+    <AdminContainer>
       {posts.map((el:any,idx:any)=>{
         return (
-          <OrderListWrapper key = {idx}>
-            <OrderListContent>
-              <OrderListInfo>
+          <AdminWrapper key = {idx}>
+            <AdminOrderListContent>
+              <AdminOrderListItem>
                 <div>
-                  {/* <div>{idx + 1}번째 주문</div> */}
                   <h5>주문자명: {el.user_name}</h5>
                   <h5>{el.selected_address}{" "}{el.selected_address_detail }</h5>
-                  <OrderListInfoP><span>주문 내용:</span>{" "}{el.order_menus.map((el1:any) => {
+                  <AdminOrderListInfoP><span>주문 내용:</span>{" "}{el.order_menus.map((el1:any) => {
                     return `${el1.menu.name} ${el1.quantity}개, ${" "}`
-                  })}</OrderListInfoP>
+                  })}</AdminOrderListInfoP>
                   </div>
                 <DeliveryTime >
                     배송시간: {el.order_deliveries.delivery_time}
@@ -47,9 +42,9 @@ function AdminOrderList({
             onClick={()=>{moveDetailHandler(el.id)}}>
               <ArrowBtn className="fas fa-angle-double-right" ></ArrowBtn>            
             </NextBtn>
-            </OrderListInfo>
-            </OrderListContent>
-        </OrderListWrapper>
+            </AdminOrderListItem>
+            </AdminOrderListContent>
+        </AdminWrapper>
           )
         })}
 
@@ -63,7 +58,7 @@ function AdminOrderList({
               )
             })}
       </PageNumberWrapper>
-    </MypageOrderListWrapper>
+    </AdminContainer>
   );
 }
 

@@ -11,21 +11,21 @@ module.exports = async (req, res) => {
     const store_id = req.params.id
     console.log("store_id",store_id);
 
-    const check = await user.findOne({ where: { id: id }})
+    // const check = await user.findOne({ where: { id: id }})
 
     if(`${check.store_id}` === store_id){
-        const storeMenus = await store_menu.findAll(
-            {raw: true, where:{store_id : store_id}, attributes : ['menu_id']});
+    //     const storeMenus = await store_menu.findAll(
+    //         {raw: true, where:{store_id : store_id}, attributes : ['menu_id']});
         
-        console.log('storeMenus',storeMenus)
+    //     console.log('storeMenus',storeMenus)
 
-        for(let el of storeMenus){
-            await menu.destroy({where: {id:el.menu_id}});
-        }
+    //     for(let el of storeMenus){
+    //         await menu.destroy({where: {id:el.menu_id}});
+    //     }
 
-        await store.destroy({where: {id:store_id}});
+    //     await store.destroy({where: {id:store_id}});
 
-        await user.update({ position: null, store_id: null }, { where : { id: id }}); 
+    //     await user.update({ position: null, store_id: null }, { where : { id: id }}); 
     
         res.send({message:'delete success'})
     }else{

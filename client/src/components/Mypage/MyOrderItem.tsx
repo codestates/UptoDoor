@@ -5,7 +5,7 @@ import {
   OrderImg,
   OrderSection,
   EachItemBox,
-} from './StyledMyPage'
+} from './StyledMypage'
 
 function MyOrderItem({orderitem}:any) {
 

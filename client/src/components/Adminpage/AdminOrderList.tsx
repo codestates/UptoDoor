@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import {
   MypageOrderListWrapper,
   OrderListContent,OrderListWrapper
-} from "../Mypage/StyledMyPage";
+} from '../Mypage/StyledMypage'
 import { PageNumberWrapper,OrderListInfoP,DeliveryTime,OrderListInfo } from './StyledAdminPage'
 import {ArrowBtn ,NextBtn } from '../common/Button/Button'
 

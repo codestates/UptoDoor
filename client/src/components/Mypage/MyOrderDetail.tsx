@@ -10,7 +10,7 @@ import {
   TtlPricemBox,
   MypageOrderListWrapper,
   OrderListContent,
-} from './StyledMyPage'
+} from './StyledMypage';
 
 import { SmallButton,ArrowBtn } from '../common/Button/Button'
 import WarningModal from '../common/Modal/WarningModal'

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { 
   ButtonWrapper, 
-  MypageUl,MypageLi } from './StyledMyPage';
+  MypageUl,MypageLi } from './StyledMypage'
 import { 
   Container,Title, Wrapper,
   PageWrapper,PageProfileBtnWrapper,

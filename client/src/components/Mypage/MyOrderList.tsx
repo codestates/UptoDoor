@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { 
   MypageOrderListWrapper,
   OrderListContent,
   ListDate,ListInfo,
   DeliveryState,
-  OrderListWrapper } from './StyledMyPage';
-import {NextBtn,ArrowBtn} from '../common/Button/Button'
+  OrderListWrapper } from './StyledMypage';
+import {NextBtn,ArrowBtn} from '../common/Button/Button';
 
 function MyOrderList({ 
   moveDetailHandler , 

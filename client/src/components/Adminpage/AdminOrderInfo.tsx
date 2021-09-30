@@ -13,7 +13,7 @@ import {
   EachItemBox, 
   MypageOrderListWrapper,
   OrderListContent,
-} from '../Mypage/StyledMyPage'
+} from '../Mypage/StyledMypage'
 
 function AdminOrderInfo({ orderitem, listbackHandler }:any) {
   const { selected_address, selected_address_detail, selected_mobile, order_deliveries,delivery_detail } = orderitem;

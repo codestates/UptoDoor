@@ -14,7 +14,7 @@ import {
 } from "../GlobalStyle";
 import {
   MypageLi,
-} from '../Mypage/StyledMyPage'
+} from '../Mypage/StyledMypage';
 import {
   AdimUl,
   AdminLi,

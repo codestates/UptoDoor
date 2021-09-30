@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import {
   StoreInfoWrapper,
   FlexBox,H3,H4,P,Category,
   DetailTextArea,
   EachItemBox,
-} from './StyledMyPage'
+} from './StyledMypage';
 
 function MyOrderStore({orderitem}:any) {
 

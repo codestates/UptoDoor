@@ -121,19 +121,28 @@ align-items: center;
 }
 `
 export const AdminForm = styled.div`
-&:nth-child(1){
-  @media screen and (min-width: 767px) {
-    margin-right : 30px;
-    width: 45%;
+  &:nth-child(1) {
+    @media screen and (min-width: 767px) {
+      margin-right: 15px;
+      width: 50%;
+    }
+
+    @media screen and (min-width: 1140px) {
+      margin-right: 30px;
+      width: 50%;
+    }
   }
-}
-&:nth-child(2){
-  @media screen and (min-width: 767px) {
-    margin-right : 30px;
-    width: 55%;
+  &:nth-child(2) {
+    @media screen and (min-width: 767px) {
+      margin-left: 15px;
+      width: 50%;
+    }
+    @media screen and (min-width: 1140px) {
+      margin-left: 30px;
+      width: 50%;
+    }
   }
-}
-`
+`;
 export const FlexBox = styled.div`
   @media screen and (min-width: 767px) {
     display : flex;

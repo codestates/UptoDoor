@@ -28,32 +28,40 @@ export const SigninWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  animation: ${showModal}.4s;  
-  > form {
+  animation: ${showModal}.4s;
+  > .sample {
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  > .btn {
-    color: #000;
-    height: 40px;
-    font-size: 16px;
-    font-weight: 400;
-    background-color: #fff;
-    border: 1px solid #dddddd;
-    display: flex;
     justify-content: center;
     align-items: center;
-    > img {
-      border-radius: 6px;
-      border: 1px solid #fff;
-      width: 25px;
-      height: 25px;
+    
+    > form {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
     }
-    > div {
-      margin-left: 8px;
+
+    > .btn {
+      color: #000;
+      height: 40px;
+      font-size: 16px;
+      font-weight: 400;
+      background-color: #fff;
+      border: 1px solid #dddddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      > img {
+        border-radius: 6px;
+        border: 1px solid #fff;
+        width: 25px;
+        height: 25px;
+      }
+      > div {
+        margin-left: 8px;
+      }
     }
   }
 
@@ -61,6 +69,10 @@ export const SigninWrapper = styled.div`
     width: 550px;
     height: 550px;
     border-radius: 25px;
+
+    >.sample {
+      margin-top: 0;
+    }
   }
 `;
 
@@ -84,7 +96,7 @@ export const Icon = styled.div`
   > i {
     color: #000;
   }
-
+  
   @media screen and (min-width: 767px) {
     left: 15rem;
   }

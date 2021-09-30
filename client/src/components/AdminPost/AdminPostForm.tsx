@@ -1,25 +1,27 @@
-import React, {useState,useCallback,useEffect} from 'react' 
+import React, { useState, useCallback, useEffect } from 'react'
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { adminStorePost } from '../../_actions/admin_action';
 import Select from 'react-select';
+
 import {
   AdminForm,
   FlexBox,
   StoreInputBox,
-  StoreNameInput,
+  StoreInput,
   StoreIntroTextArea,
   StoreBtnBox,OpenCloseInputWrapper
 } from './StyledAdminPost'
-import {Container,Wrapper,Title,} from "../GlobalStyle";
+import { Container, Wrapper, Title } from "../GlobalStyle";
+
 import { SmallButton } from '../common/Button/Button';
-
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-import { adminPost } from '../../_actions/post_action';
-
 import AdminUploadStore from  './AdminUploadStore';
 import AdminEnrollStore from './AdminEnrollStore'
 import AdminUploadMenu from './AdminUploadMenu';
 import AdminFileUpload from './AdminFileUpload';
 import ConfirmModal from '../common/Modal/ConfirmModal';
+
+import useInput from '../../utils/useInput'
 
 const { kakao }: any = window;
 function AdminPostForm() {
@@ -42,16 +44,16 @@ function AdminPostForm() {
   const [storeImgArr , setStoreImgArr]:any = useState([]);
   const [storeFile , setStoreFile]:any = useState('');
   //store
-  const [title , setTitle] = useState('');
+  const [title, onChangeTitle] = useInput('');
   const [category, setCategory] = useState('');
-  const [description , setDescription] = useState('');
+  const [description , onChangeDescription] = useInput('');
   const [openTime, setOpenTime] = useState('');
   const [closeTime, setCloseTime] = useState('')
   const [mobile , setMobile] = useState('');
    //주소 
   const [switched, setSwitched ] = useState("");
   const [adminAddress , setAdminAddress] = useState('');
-  const [adminAddressDetail, setadminAddressDetail] = useState("");
+  const [adminAddressDetail, onChangeAdminAddressDetail] = useInput('');
   const [addressModal, setAddressModal] = useState(false);
   const [xValue, setXValue] = useState('');
   const [yValue, setYValue] = useState('');
@@ -62,37 +64,24 @@ function AdminPostForm() {
     menuName:'', menuDescription:'', price:0
   }]);
 
-  const changeTitleHandler = (e:any) => {
-    setTitle(e.target.value)
-  }
   const changeCategoryHandler = (e:any) => {
     setCategory(e.value)
-    // setCategory(e.target.value)
   }
-  const changeDescHandler = (e:any) => {
-    const limitWord = e.target.value;
-    //설명제한
-    if(limitWord.length > 150){
-      alert('글자는 150자까지유효성검사 ?')
-    }else{
-      setDescription(limitWord);
-    }
-  }
-  //admin address
-  const changeAdminAddress = useCallback( async (data) => {
-    await switchAddress(data.address);
-    await setAdminAddress(data.address);
-    await setAddressModal((prev)=>!prev);
-  },[])
-  const changeAddDetailHandler = (e:any) => {
-    setadminAddressDetail(e.target.value)
-  }
+  
+  const changeAdminAddress = useCallback((data) => {
+    switchAddress(data.address);
+    setAdminAddress(data.address);
+    setAddressModal((prev)=>!prev);
+  }, [])
+  
+  //모바일
   const changeMobileHandler = useCallback((e) => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
       setMobile(e.target.value);
     }
-  },[])
+  }, [])
+  
   useEffect(() => {
     if (mobile.length === 10) {
       setMobile(mobile.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
@@ -112,13 +101,9 @@ function AdminPostForm() {
   };
   //!remove menu onclick handler
   const removeMenuHandler = (e:any) => {
-
-    console.log('menuArr:',menuArr)
-    console.log('e:',e.target.id);
     // console.log('idx:',idx);
     if(menuArr.length > 1){
       const filtering = menuArr.filter((el:any) => el !== menuArr[e.target.id])
-      console.log('filtering',filtering);
       setMenuArr(filtering);
     }else{
       alert("최소한 1개의 메뉴는 있어야 합니다.")
@@ -134,12 +119,10 @@ function AdminPostForm() {
   }
   //!폼제출 핸들러
   const submitHandler = (e:any) => {
-    console.log("메뉴에레이",menuArr)
     e.preventDefault();
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
     if(
-      !storeImgArr || !title || !category || !description || !openTime || !closeTime ||
-      ! adminAddress || !mobile || storeFile && !menuArr
+      !storeImgArr || !description || ! adminAddress || storeFile || !menuArr
       ){
       //모달
       return alert('all section must be filled')
@@ -153,14 +136,13 @@ function AdminPostForm() {
       close_time:closeTime,
       adminAddress : adminAddress,
       adminAddressDetail: adminAddressDetail,
-
       menu:menuArr,
       storeImage:storeImgArr,
       storeFile : storeFile,
       xvalue:xValue,
       yvalue:yValue,
     }
-      dispatch(adminPost(adminPostInfo))
+      dispatch(adminStorePost(adminPostInfo))
       .then((res:any) => {
         if (res.payload.message === 'Store registration is complete') {
           setOpenModal(true);
@@ -204,12 +186,12 @@ return (
         updateStoreImg = {updateStoreImg}/>
           <StoreInputBox>
             <label>상호명</label>
-            <StoreNameInput 
+            <StoreInput 
             required
             type = 'text'
             defaultValue = {title} 
             placeholder = '가게 이름을 적어주세요' 
-            onChange = {changeTitleHandler}/>
+            onChange = {onChangeTitle}/>
           </StoreInputBox>
 
           <StoreInputBox>
@@ -225,9 +207,10 @@ return (
           <StoreInputBox>
             <label>가게 설명</label>
             <StoreIntroTextArea 
-            defaultValue = {description} 
-            placeholder = '150자 이내로 작성해주세요.' 
-            onChange = {changeDescHandler}/>
+              defaultValue = {description} 
+              placeholder='150자 이내로 작성해주세요.'
+              maxLength="150"
+              onChange = {onChangeDescription}/>
           </StoreInputBox>
 
           <StoreInputBox>
@@ -260,12 +243,12 @@ return (
             setAddressModal = {setAddressModal}
             adminAddress = {adminAddress}
             changeAdminAddress = {changeAdminAddress}
-            changeAddDetailHandler = {changeAddDetailHandler}
+            changeAddDetailHandler = {onChangeAdminAddressDetail}
           />
 
           <StoreInputBox>
             <label>모바일</label>
-            <StoreNameInput 
+            <StoreInput 
             required
             type = 'text' 
             placeholder = '모바일'

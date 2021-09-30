@@ -20,19 +20,18 @@ export const setQuantity = (quantity:number, id:string):any => {
 export const removeFromCart = (id:string):any => {
   return {
     type: REMOVE_FROM_CART,
-    payload: { id}
+    payload: { id }
   };
 }
 
 export const addCart = async (item: {}) => {
-  return await {
+  return {
     type: ADD_CART,
-    payload : item
+    payload: item
   };
 };
 
 export const addAllCartToOrder = (data: {}) => {
-  console.log("액션이다", data);
   return {
     type: ADD_ALL_CART_TO_ORDER,
     payload: data

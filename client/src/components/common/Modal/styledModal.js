@@ -1,6 +1,6 @@
 import styled,{keyframes} from 'styled-components'
 import { MainColor, TextColor, SmallFont, MediumFont, TextDarkGrey, UltraLargeFont, PointColor } from '../../GlobalStyle'
-import Postcode from "react-daum-postcode";
+
 
 export const showModal = keyframes`
   from {
@@ -163,28 +163,3 @@ export const MapModalInfo = styled.p`
   color : ${TextDarkGrey};
 `
 
-export const Postcoder = styled(Postcode)`
-  width: 375px !important;
-  height: 500px !important;
-  transition: all 0.2s;
-
-  @media screen and (min-width: 500px) {
-    width: 500px !important;
-    height: 500px !important;
-  }
-`;
-
-export const AddressModalContainer = styled.div`
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: 9999;
-  animation: ${showModalBg} 0.4s;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
-`;

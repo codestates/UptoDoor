@@ -1,12 +1,11 @@
 import React from 'react'
 import {
   StoreInputBox,
-  StoreNameInput,
+  StoreInput,
   StoreAddressWrapper,
   StoreAddressBtn,
 } from './StyledAdminPost'
-import { AddressModalContainer, ModalContainer,Postcoder } from '../common/Modal/styledModal';
-
+import { AddressModalContainer, Postcoder } from '../CertAddress/StyledAddress';
 
 interface AdminAddProps {
   adminAddress : string,
@@ -42,7 +41,7 @@ function AdminEnrollStore({
         >{adminAddress}</StoreAddressBtn>
         }
         
-        <StoreNameInput 
+        <StoreInput 
         type="text"
         onChange={changeAddDetailHandler}
         placeholder = '상세 주소 작성' 

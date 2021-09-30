@@ -7,7 +7,6 @@ import {
   Nav,
   ButtonWrapper,
   NavLogo,
-  //ListLink,
   NavWrapper,
   UL,
   IconButton,
@@ -15,12 +14,11 @@ import {
   Listli
 } from "./StyledNavBar";
 import {  signOut,naverSignOut,kakaoSignOut } from '../../../_actions/user_action';
-import Modal from '../Modal/Modal';
 import { useHistory } from 'react-router';
 import { END_POINT } from '../../../_actions/type';
 import ConfirmModal from '../Modal/ConfirmModal';
 import Alram from '../Alram/Alram';
-import { resetAdmin } from '../../../_actions/post_action';
+import { AdminStoreReset } from '../../../_actions/admin_action';
 
 function NavBar() {
   const history:any = useHistory();
@@ -41,7 +39,7 @@ function NavBar() {
     e.preventDefault();
     
     if (user.login_type === 'kakao') {
-      dispatch(resetAdmin());
+      dispatch(AdminStoreReset());
       dispatch(kakaoSignOut())
       .then((res: any) => {
         if (res.payload === "signout success") {
@@ -53,7 +51,7 @@ function NavBar() {
     })
     }
     else if (user.login_type === 'naver') {
-      dispatch(resetAdmin());
+      dispatch(AdminStoreReset());
       dispatch(naverSignOut())
       .then((res: any) => {
         if (res.payload === "signout success") {
@@ -64,7 +62,7 @@ function NavBar() {
     });
     }
     else {
-      dispatch(resetAdmin())
+      dispatch(AdminStoreReset())
       dispatch(signOut())
       .then((res: any) => {
         console.log("여기서 찍히녀", res);

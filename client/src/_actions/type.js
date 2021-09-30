@@ -1,27 +1,24 @@
 //user signUp/signIn/signOut/mypage/deleteUser
-export const SIGNUP = 'SIGNUP';
-export const SIGNUPSUCCESS = 'SIGNUPSUCCESS';
-export const SIGNUPFAILURE = 'SIGNUPFAILURE';
-export const SIGNIN = 'SIGNIN';
-export const SIGNOUT = 'SIGNOUT';
-export const EDIT_USER = 'EDIT_USER';
-export const DELETE_USER = 'DELETE_USER';
-export const ADD_ADDRESS = "ADD_ADDRESS";
-export const ADD_ORDER = "ADD_ORDER";
-export const CALCEL_ORDER = "CALCEL_ORDER";
-export const NAVER_SIGNOUT = "NAVER_SIGNOUT";
-export const KAKAO_SIGNOUT = "KAKAO_SIGNOUT";
-export const KAKAO_SIGNIN = "KAKAO_SIGNIN";
-export const NAVER_SIGNIN = "NAVER_SIGNIN";
-export const SEND_CERT_EMAIL = "SEND_CERT_EMAIL"
-
+export const USER_SEND_CERT_EMAIL = "USER_SEND_CERT_EMAIL";
+export const USER_SIGNUP = "USER_SIGNUP";
+export const USER_SIGNIN = "USER_SIGNIN";
+export const USER_SIGNOUT = "USER_SIGNOUT";
+export const USER_KAKAO_SIGNIN = "USER_KAKAO_SIGNIN";
+export const USER_KAKAO_SIGNOUT = "USER_KAKAO_SIGNOUT";
+export const USER_NAVER_SIGNIN = "USER_NAVER_SIGNIN";
+export const USER_NAVER_SIGNOUT = "USER_NAVER_SIGNOUT";
+export const USER_EDIT = "USER_EDIT";
+export const USER_DELETE = "USER_DELETE";
+export const USER_ADD_ADDRESS = "USER_ADD_ADDRESS";
+export const USER_ADD_ORDER = "USER_ADD_ORDER";
+export const USER_CALCEL_ORDER = "USER_CALCEL_ORDER";
 
 //admin signUp/signIn/signOut/mypage/deleteAdmin
-export const ADMIN_POST = "ADMIN_POST";
-export const ADMIN_POST_EDIT = 'ADMIN_POST_EDIT';
-export const DELETE_ADMIN_POST = "DELETE_ADMIN_POST";
-export const GET_ADMIN_DATA = "GET_ADMIN_DATA";
-export const RESET_ADMIN = "RESET_ADMIN";
+export const ADMIN_STORE_POST = "ADMIN_STORE_POST";
+export const ADMIN_STORE_EDIT = "ADMIN_STORE_EDIT";
+export const ADMIN_STORE_DELETE = "ADMIN_STORE_DELETE";
+export const ADMIN_STORE_GET_DATA = "ADMIN_STORE_GET_DATA";
+export const ADMIN_STORE_RESET = "ADMIN_STORE_RESET";
 //Store
 export const STORE_DATAS = "STORE_DATAS";
 export const STORE_FILTER_BY_HASHTAG = "STORE_FILTER_BY_HASHTAG";

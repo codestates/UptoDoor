@@ -4,7 +4,7 @@ import {
   AdminForm,
   FlexBox,
   StoreInputBox,
-  StoreNameInput,
+  StoreInput,
   StoreIntroTextArea,OpenCloseInputWrapper,
   StoreBtnBox,
 } from '../AdminPost/StyledAdminPost'
@@ -13,7 +13,7 @@ import { BtnBox, SmallButton } from '../common/Button/Button';
 
 import { useHistory } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux'
-import {  adminPostEdit , deleteAdminPost } from '../../_actions/post_action';
+import {  adminStoreEdit , adminStoreDelete } from '../../_actions/admin_action';
 
 import AdminUploadStoreEdit from './AdminUploadStoreEdit'
 import AdminEnrollStoreEdit from './AdminEnrollStoreEdit'
@@ -150,7 +150,7 @@ function AdminEditForm() {
       }
       console.log("보내기전 데이터",sendInfo)
       //history.push('/');
-      dispatch(adminPostEdit(sendInfo, storeinfo.id))
+      dispatch(adminStoreEdit(sendInfo, storeinfo.id))
       .then((res:any)=>{
         if (res.payload.message === 'update success') {
           setModalSuccess(true);
@@ -186,7 +186,7 @@ function AdminEditForm() {
   const deleteStoreHandler = () => {
     console.log('함수실행')
     alert('가게삭제 성공')
-    dispatch(deleteAdminPost(admin.id))   
+    dispatch(adminStoreDelete(admin.id))   
     .then((res: any) => {
       if (res.payload.message  === 'good bye') {
         setDeleteModal(false);
@@ -248,7 +248,7 @@ function AdminEditForm() {
         
           <StoreInputBox>
             <label>상호명</label>
-            <StoreNameInput 
+            <StoreInput 
             readOnly
             type = 'text'
             defaultValue = {title} 
@@ -257,7 +257,7 @@ function AdminEditForm() {
 
           <StoreInputBox>
             <label>카테고리</label>
-            <StoreNameInput 
+            <StoreInput 
             readOnly
             type = 'text'
             defaultValue = {category} 
@@ -307,7 +307,7 @@ function AdminEditForm() {
 
           <StoreInputBox>
             <label>모바일</label>
-            <StoreNameInput 
+            <StoreInput 
             required
             type = 'text' 
             placeholder = '모바일'

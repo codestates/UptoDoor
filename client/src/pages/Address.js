@@ -1,5 +1,5 @@
 import React from 'react'
-import EnrollAddress from '../components/Address/EnrollAddress';
+import EnrollAddress from '../components/CertAddress/EnrollAddress';
 
 function Address() {
   return (

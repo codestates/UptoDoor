@@ -1,3 +1,4 @@
+
 import Postcode from "react-daum-postcode";
 import styled, { keyframes } from "styled-components";
 
@@ -35,7 +36,7 @@ export const Addressh3 = styled.h3`
   }
 `;
 
-export const EnrollAddressWrapper = styled.form`
+export const EnrollAddressForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -170,9 +171,29 @@ export const DetailAddress = styled.div`
   }
 `;
 
+export const AddressModalContainer = styled.div`
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 9999;
+  animation: ${showModalBg} 0.4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
 
 
 export const Postcoder = styled(Postcode)`
-  width:500px;
-  height: 500px;
+  width: 375px !important;
+  height: 500px !important;
+  transition: all 0.2s;
+
+  @media screen and (min-width: 500px) {
+    width: 500px !important;
+    height: 500px !important;
+  }
 `;

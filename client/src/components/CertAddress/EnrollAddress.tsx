@@ -1,25 +1,28 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { AddressModalContainer,Postcoder } from "../common/Modal/styledModal";
-import AddressTitle from "./AddressTitle";
+import { useDispatch, useSelector } from "react-redux";
+import { addAddress } from '../../_actions/user_action';
 
 import {
   AddressContainer,
   AddressWrapper,
   Addressh3,
-  EnrollAddressWrapper,
+  EnrollAddressForm,
   AddressFormDiv,
   DetailAddress,
-  
+  AddressModalContainer,
+  Postcoder
 } from "./StyledAddress";
+
 import { SmallButton } from "../common/Button/Button";
-import { useDispatch, useSelector } from "react-redux";
-import { addAddress } from '../../_actions/user_action';
+import AddressTitle from "./AddressTitle";
 import ConfirmModal from "../common/Modal/ConfirmModal";
+
 const { kakao }:any = window;
 
 
 function EnrollAddress() {
   const state = useSelector((state) => state);
+  const dispatch:any = useDispatch();
   const { user }:any = state;
   //* 주소 값이 있을경우에 input창에 띄워줘야하기때문에 
   //* address 안붙임
@@ -27,41 +30,41 @@ function EnrollAddress() {
   
   const [current, setCurrent] = useState("")
   const [switched, setSwitched ] = useState("");
-  const dispatch:any = useDispatch();
-  const [main, setMain] = useState(mainAddress);
-  const [mainDetail, setMainDetail] = useState(mainAddressDetail);
-  const [sub, setSub] = useState(subAddress);
-  const [subDetail, setSubDetail] = useState(subAddressDetail);
-  const [mainModal, setMainModal] = useState(false)
-  const [subModal, setSubModal] = useState(false);
+  
+  const [mainPlace , setMainPlace] = useState(mainAddress);
+  const [mainPlaceDetail, setMainPlaceDetail] = useState(mainAddressDetail);
+  const [subPlace, setSubPlace] = useState(subAddress);
+  const [subPlaceDetail, setSubPlaceDetail] = useState(subAddressDetail);
   const [xValue, setXValue] = useState('');
   const [yValue, setYValue] = useState('');
 
+  const [mainPlaceModal, setMainPlaceModal] = useState(false)
+  const [subPlaceModal, setSubPlaceModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   const [loginModal, setLoginModal] = useState(false)
 
 
-  const onChangeMainAddress = useCallback(async(data) => {
-    await setMain(data.address);
-    await switchAddress(data.address);
-    await setMainModal(false);
-  },[])
-  const onChangeSubAddress = useCallback(async (data) => {
-    console.log(data.address);
-    await setSub(data.address);
-    await switchAddress(data.address);
-    await setSubModal(false);
+  const onChangeMainAddress = useCallback((data) => {
+    setMainPlace(data.address);
+    switchAddress(data.address);
+    setMainPlaceModal(false);
+  }, [])
+  
+  const onChangeSubAddress = useCallback((data) => {
+    setSubPlace(data.address);
+    switchAddress(data.address);
+    setSubPlaceModal(false);
   },[]);
   
   //* 지우는 함수
   const deleteHandler = useCallback((name) => {
     if (name === "main") {
-      setMainDetail("");
-      setMain("");
+      setMainPlaceDetail("");
+      setMainPlace("");
     } else {
-      setSub("");
-      setSubDetail("");
+      setSubPlaceDetail("");
+      setSubPlace("");
     }
   },[])
 
@@ -75,8 +78,8 @@ function EnrollAddress() {
           if (mainAddressDetail === undefined) return alert("상세 주소란을 입력해주세요.");
           if (switched === current) {
             const mainAdd = {
-              mainAddress:main,
-              mainAddressDetail: mainDetail,
+              mainAddress:mainPlace,
+              mainAddressDetail: mainPlace,
               main_xvalue: xValue,
               main_yvalue: yValue
             };
@@ -96,8 +99,8 @@ function EnrollAddress() {
           if (subAddressDetail=== undefined) return alert("상세 주소란을 입력해주세요.");
             if (switched === current) {
               const subAdd = {
-                subAddress: sub,
-                subAddressDetail: subDetail,
+                subAddress: subPlace,
+                subAddressDetail: subPlaceDetail,
                 sub_xvalue: xValue,
                 sub_yvalue: yValue
               };
@@ -120,44 +123,30 @@ function EnrollAddress() {
 
   const switchAddress = useCallback((address) => {
     const geocoder = new kakao.maps.services.Geocoder();
-    //! 주소를 좌표로
     geocoder.addressSearch(address, function (result:any, status:any) {
-      // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK) {
-        // console.log("제주도 주소", result)
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         setYValue(result[0].x);
         setXValue(result[0].y);
-        // console.log("1",coords)
         geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
       }
     });
-    const callback = (result:any, status:any) => {
-    //? 좌표로 도오명 주소 정보 요청
-      if (status === kakao.maps.services.Status.OK) {
-      console.log("주소-------1",result[0].address.address_name.split(" ")[1])
-      setSwitched(result[0].address.address_name.split(" ")[1]);
-    }
+      const callback = (result:any, status:any) => {
+        if (status === kakao.maps.services.Status.OK) {
+        setSwitched(result[0].address.address_name.split(" ")[1]);
+      }
     };
   }, []);
 
-  // const postHandler = useCallback((name) => {
-  //   console.log("name", name);
-  //   //조건이 
-  //   console.log("current 제출할때",switched, current)
-    
-  // },[mainAddress,mainAddressDetail])
-
-
+  const closeModal = () => {
+    setMainPlaceModal(false);
+    setSubPlaceModal(false);
+  }
 
   useEffect(() => {
-    //!이페이지에 들어오면 현재 위치의 자표로 동을 찾는다.
-    //현재 위치 좌표를 지번 주소로 바꿔준다
-    // current에 넣어준다.
+    //현재위치
     const geocoder = new kakao.maps.services.Geocoder();
-    //현재 위치 좌표를 받아서 도로명 주소로 바꿔준다
     if (navigator.geolocation) {
-      // GeoLocation을 이용해서 접속 위치를 얻어옵니다
       navigator.geolocation.getCurrentPosition(function (position) {
         const lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
@@ -166,19 +155,11 @@ function EnrollAddress() {
       });
     }
     const callback = (result:any, status:any) => {
-      //? 좌표로 도오명 주소 정보 요
       if (status === kakao.maps.services.Status.OK) {
-        console.log("주소-----2",result[0].address.address_name.split(" ")[1]);
         setCurrent(result[0].address.address_name.split(" ")[1]);
       }
     };
   },[current]);
-
-  const closeModal = () => {
-    setMainModal(false);
-    setSubModal(false);
-  }
-
 
   return (
     <AddressContainer>
@@ -187,17 +168,17 @@ function EnrollAddress() {
           주소 인증하고 <br />
           다양한 구독서비스를 만나보세요
         </Addressh3>
-        <EnrollAddressWrapper
+        <EnrollAddressForm
           onSubmit={(e:any) => {
             addressHandler(e, "main");
           }}
         >
           <AddressTitle deleteHandler={deleteHandler} name="main" />
           <AddressFormDiv>
-            <div>{main}</div>
+            <div>{mainPlace}</div>
             <SmallButton
               type="button"
-              onClick={() => setMainModal((prev) => !prev)}
+              onClick={() => setMainPlaceModal((prev) => !prev)}
             >
               주소 찾기
             </SmallButton>
@@ -206,26 +187,26 @@ function EnrollAddress() {
           <DetailAddress>
             <input
               type="text"
-              value={mainDetail}
+              value={mainPlaceDetail}
               onChange={(e) => {
-                setMainDetail(e.target.value);
+                setMainPlaceDetail(e.target.value);
               }}
             ></input>
             <SmallButton primary>주소 제출</SmallButton>
           </DetailAddress>
-        </EnrollAddressWrapper>
+        </EnrollAddressForm>
         {/* 밑에는 서브 */}
-        <EnrollAddressWrapper
+        <EnrollAddressForm
           onSubmit={(e:any) => {
             addressHandler(e, "sub");
           }}
         >
           <AddressTitle deleteHandler={deleteHandler} name="sub" />
           <AddressFormDiv>
-            <div>{sub}</div>
+            <div>{subPlace}</div>
             <SmallButton
               type="button"
-              onClick={() => setSubModal((prev) => !prev)}
+              onClick={() => setSubPlaceModal((prev) => !prev)}
             >
               주소 찾기
             </SmallButton>
@@ -234,18 +215,18 @@ function EnrollAddress() {
           <DetailAddress>
             <input
               type="text"
-              value={subDetail}
+              value={subPlaceDetail}
               onChange={(e) => {
-                setSubDetail(e.target.value);
+                setSubPlaceDetail(e.target.value);
               }}
             ></input>
             <SmallButton primary type="submit">
               주소 제출
             </SmallButton>
           </DetailAddress>
-        </EnrollAddressWrapper>
+        </EnrollAddressForm>
       </AddressWrapper>
-      {mainModal ? (
+      {mainPlaceModal ? (
         <AddressModalContainer onClick={closeModal}>
           <Postcoder
             autoClose
@@ -255,8 +236,9 @@ function EnrollAddress() {
             }}
           />
         </AddressModalContainer>
-      ) : null}
-      {subModal ? (
+      )
+      : null}
+      {subPlaceModal ? (
         <AddressModalContainer onClick={closeModal}>
           <Postcoder
             autoClose
@@ -266,18 +248,23 @@ function EnrollAddress() {
             }}
           />
         </AddressModalContainer>
-      ) : null}
+        ) 
+      : null}
       {openModal ? (
         <ConfirmModal
           openModal={openModal}
           modalSuccess={modalSuccess}
           url="/address"
           modalTitleText="동네 인증"
-          modalText={modalSuccess ? "주소 인증에 성공하였습니다. 감사합니다." : "주소 인증에 실패하였습니다. 다시 시도해주세요."}
+          modalText={modalSuccess
+            ? "주소 인증에 성공하였습니다. 감사합니다."
+            : "주소 인증에 실패하였습니다. 다시 시도해주세요."
+          }
           modalBtn="확인"
           setOpenModal={setOpenModal}
         />
-      ) : null}
+      )
+      : null}
       {loginModal ? (
         <ConfirmModal
           openModal={loginModal}
@@ -287,10 +274,11 @@ function EnrollAddress() {
           modalBtn="확인"
           setOpenModal={setLoginModal}
         />
-      ) : null}
+      )
+      : null}
     </AddressContainer>
   );
 }
 
-          export default EnrollAddress
+export default EnrollAddress
 

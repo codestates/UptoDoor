@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   StoreInputBox,
-  StoreNameInput,
+  StoreInput,
   StoreAddressWrapper,
   StoreAddressBtn
 
@@ -24,13 +24,13 @@ function AdminEnrollStoreEdit({
     <StoreInputBox>
       <label>가게주소</label>
       <StoreAddressWrapper>
-      <StoreNameInput 
+      <StoreInput 
         readOnly
         type="text"
         value = {adminAddress} 
         />
 
-        <StoreNameInput 
+        <StoreInput 
         type="text"
         onChange={(e:any)=>{changeAddDetailHandler(e)}}
         placeholder = '상세 주소 작성' 

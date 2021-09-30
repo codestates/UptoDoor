@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Postcode from "react-daum-postcode";
 import { BaseFont, SmallFont, PointColor, TextDarkGrey, MainColor } from '../GlobalStyle'
 
 export const StyledPost = styled.div`
@@ -177,17 +176,17 @@ flex-direction: column;
 >.menu-enroll-label{
 }
 `
-export const StoreNameInput = styled.input`
-background-color: hsl(0, 0%, 100%);
-border-color: hsl(0, 0%, 80%);
-border-radius: 4px;
-border-style: solid;
-border-width: 1px;
-min-height: 38px;
-padding : 8px;
-margin : 8px 0;
-font-size: ${BaseFont};
-`
+export const StoreInput = styled.input`
+  background-color: hsl(0, 0%, 100%);
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  min-height: 38px;
+  padding: 8px;
+  margin: 8px 0;
+  font-size: ${BaseFont};
+`;
 export const StoreIntroTextArea = styled.textarea`
 padding : 8px;
 margin : 8px 0;
@@ -243,30 +242,15 @@ display: flex;
 align-items: center;
 justify-content: center;
 `
-export const MenuUploadDiv = styled.div`
-height: 160px;
-cursor: pointer;
-background-color: rgba(0,0,0,0.05);
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 8px;
-margin-right : 10px;
-&:hover{
-  transition : all 0.5s;
-  background-color: rgba(0,0,0,0.1);
-  opacity: 0,7;
-}
 
-`
-export const MenuUploadDiv2 = styled.div`
->label{
-  font-size: ${SmallFont};
-  font-weight: 500;
-  @media screen and (min-width: 767px) {
+export const MenuUploadContent = styled.div`
+  > label {
+    font-size: ${SmallFont};
+    font-weight: 500;
+    @media screen and (min-width: 767px) {
+    }
   }
-}
-`
+`;
 export const MenuInputBox = styled.div`
 >label{
   font-size: ${SmallFont};

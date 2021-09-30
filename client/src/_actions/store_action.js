@@ -4,15 +4,17 @@ import {
   STORE_FILTER_BY_HASHTAG,
   STORE_FILTER_BY_SEARCH,
   STORE_FILTER_BY_CLICK,
-  END_POINTS,
   STORE_FILTER_BY_SELECTED,
   STORE_FILTER_BY_CITY,
+  END_POINTS
 } from "./type";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
 export const getFilteredStoreSelected = () => {
-  const request = axios.get(`${END_POINTS}/store`).then((res) => {
+  const request = axios
+    .get(`${END_POINTS}/store`)
+    .then((res) => {
     return res.data.storeinfo;
   });
 
@@ -23,7 +25,8 @@ export const getFilteredStoreSelected = () => {
 }
 
 export const getStoreData = () => {
-  const request = axios.get(`${END_POINTS}/store`)
+  const request = axios
+    .get(`${END_POINTS}/store`)
     .then((res) => {
       return res.data.storeinfo;
   })
@@ -35,7 +38,9 @@ export const getStoreData = () => {
 };
 
 export const getFitteredByHastag = (hastag) => {
-  const request = axios.get(`${END_POINTS}/store`).then((res) => {
+  const request = axios
+    .get(`${END_POINTS}/store`)
+    .then((res) => {
     let data;
     if (hastag === "all") {
       data = res.data.storeinfo;
@@ -55,13 +60,14 @@ export const getFitteredByHastag = (hastag) => {
 
 export const getFitteredBySearch = (keyword) => {
 
-  const request = axios.get(`${END_POINTS}/store`).then((res) => {
+  const request = axios
+    .get(`${END_POINTS}/store`)
+    .then((res) => {
     const info = res.data.storeinfo
     let data;
     if (keyword === "") {
       data = info;
     } else {
-      // let RegExp = /[안녕]/g;
       let RegExp1 = new RegExp(`${keyword}`, "g");
 
       data = info.filter((el) => {
@@ -74,10 +80,8 @@ export const getFitteredBySearch = (keyword) => {
         }
       });
     }
-
     return data;
   });
-
 
   return {
     type: STORE_FILTER_BY_SEARCH,
@@ -86,7 +90,9 @@ export const getFitteredBySearch = (keyword) => {
 };
 
 export const getFitteredByClick = (address) => {
-  const request = axios.get(`${END_POINTS}/store`).then((res) => {
+  const request = axios
+    .get(`${END_POINTS}/store`)
+    .then((res) => {
     const info = res.data.storeinfo
     let data;
     if (address) {
@@ -96,7 +102,8 @@ export const getFitteredByClick = (address) => {
       });
     }
     return data;
-  });
+    });
+  
   return {
     type: STORE_FILTER_BY_CLICK,
     payload: request,
@@ -104,8 +111,9 @@ export const getFitteredByClick = (address) => {
 }
 
 export const storeFilterByCity = (data) => {
-  const request = axios.get(`${END_POINTS}/store`)
-  .then((res) => {
+  const request = axios
+    .get(`${END_POINTS}/store`)
+    .then((res) => {
     if(data === 'ALL') {
       return res.data.storeinfo;
     }else{
@@ -115,8 +123,8 @@ export const storeFilterByCity = (data) => {
       })
       return addressFilter;
     }
-
-  });
+    });
+  
   return {
     type: STORE_FILTER_BY_CITY,
     payload: request,

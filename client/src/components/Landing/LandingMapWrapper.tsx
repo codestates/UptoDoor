@@ -30,6 +30,8 @@ function LandingMapWrapper() {
     setFilterCityList(store);
   }, [store])
 
+  // console.log('cities:::',city)
+
   return (
     <LandingMapWrapperContainer>
 
@@ -40,6 +42,7 @@ function LandingMapWrapper() {
       />
 
       <LandingMap
+      city = {city}
       />
     </LandingMapWrapperContainer>
   )

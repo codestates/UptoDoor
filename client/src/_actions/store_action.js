@@ -74,6 +74,7 @@ export const getFitteredBySearch = (keyword) => {
         }
       });
     }
+
     return data;
   });
 

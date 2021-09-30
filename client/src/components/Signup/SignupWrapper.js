@@ -27,12 +27,13 @@ function SignupWrapper() {
   //required
   const [email, setEmail] = useState("");
   const [certEmail, setCertEmail] = useState(false);
-  const [nickname, setNickname] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordChk, setPasswordChk] = useState("");
-  const [passwordRegErr, setPasswordRegErr] = useState(false);
-  const [passwordErr, setPasswordErr] = useState(false);
+  const [certEmailErr, setCertEmailErr] = useState(false);
+  const [nickname , setNickname] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [password , setPassword] = useState('');
+  const [passwordChk, setPasswordChk] = useState('');
+  const [passwordRegErr , setPasswordRegErr ] = useState(false);
+  const [passwordErr , setPasswordErr ] = useState(false);
 
   //optional
   const [gender, setGender] = useState("");
@@ -41,13 +42,11 @@ function SignupWrapper() {
 
   const [signupModal, setSignupModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
-  // const [signinModal, setSigninModal] = useState(false);
   const [certModal, setCertModal] = useState(false);
 
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
   }, []);
-
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
     dispatch(certEmail(email))
@@ -55,6 +54,8 @@ function SignupWrapper() {
         if (res.payload.message === "send success") {
           setModalSuccess(true);
           setCertModal(true);
+          setCertEmailErr(false);
+           setCertEmail(true);
         }
       })
       .catch(() => {
@@ -62,6 +63,7 @@ function SignupWrapper() {
         setCertModal(true);
       });
   };
+
   const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
     let pwRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,12}$/;
@@ -108,17 +110,16 @@ function SignupWrapper() {
 
   //!약관
   const [checkedInputs, setCheckedInputs] = useState([]);
-
   const onChangeTermHandler = (checked, idx) => {
     if (checked) {
       setCheckedInputs([...checkedInputs, idx]);
       // setCheckedInputs(checkedInputs.concat(idx));
-      setIsAllchecked(checked);
-      console.log("--chk 반영--", checked);
+      setIsAllchecked(checked)
+      // console.log('--chk 반영--',checked)
     } else {
       setCheckedInputs(checkedInputs.filter((el) => el !== idx));
-      setIsAllchecked(checked);
-      console.log("--chk 해제반영--", checked);
+      setIsAllchecked(checked)
+      // console.log('--chk 해제반영--',checked)
     }
   };
 
@@ -127,14 +128,22 @@ function SignupWrapper() {
   }, [checkedInputs]);
 
   //!form 제출핸들러.
-  const signupSubmitHandler = useCallback(
-    (e) => {
-      console.log("파이널 isAllchk", isAllchecked);
-      e.preventDefault();
-      if (password !== passwordChk) return false;
-      if (passwordRegErr === true) return setPasswordRegErr(true);
-      if (certEmail === false) return setCertEmail(true);
-      if (isAllchecked === false) return false;
+  const signupSubmitHandler = useCallback((e) => {
+    // console.log('파이널 isAllchk' , isAllchecked)
+    console.log('certEmail :::::: ',certEmail)
+    e.preventDefault();
+    if(password !== passwordChk) return false;
+    if(passwordRegErr === true) return setPasswordRegErr(true);
+    if(isAllchecked === false ) return false;
+    if(certEmail === false) {
+      setCertEmailErr(true);
+      setCertEmail(false);
+      console.log('에러날때 최종가아앖',certEmailErr , certEmail)
+    }else if(certEmail === true){
+      setCertEmailErr(false);
+      setCertEmail(true);
+      console.log('진짜최종갑아아아ㅏ앙',certEmailErr , certEmail)
+    }
 
       let userinfo = {
         email,
@@ -166,14 +175,8 @@ function SignupWrapper() {
   );
 
   const cancleHandler = () => {
-    history.push("/");
-  };
-  // const [count, setCount] =useState(0)
-  // useEffect(() => {
-  //   if (count >= 3 && !successModal && !signinModal) {
-  //     window.location.href = `${END_POINT}`;
-  //   }
-  // }, [successModal, signinModal]);
+    history.push('/');
+  }
 
   return (
     <Container>
@@ -183,30 +186,28 @@ function SignupWrapper() {
         </SignupLogoBox>
 
         <Form onSubmit={signupSubmitHandler}>
-          <Label>E-mail</Label>
-          <SideSpan>*필수</SideSpan>
-          <SmallButton
-            className="cert-email-btn"
-            type="button"
-            onClick={() => certEmailHandler(certEmail)}
-          >
-            이메일 인증
-          </SmallButton>
+        <Label>E-mail</Label>
+        <SideSpan>*필수</SideSpan>
+        <SmallButton
+          className="cert-email-btn"
+          type="button"
+          onClick={certEmailHandler}>
+          이메일 인증
+        </SmallButton>
 
-          <SignupBox>
-            <SignUpInput
-              required
-              type="email"
-              className="email-input"
-              placeholder="email@email.com"
-              value={email}
-              onChange={onChangeEmailHandler}
-            />
-            {certEmail ? <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> : null}
-          </SignupBox>
-
-          <Label>비밀번호</Label>
-          <SideSpan>*필수</SideSpan>
+        <SignupBox>
+          <SignUpInput
+            required
+            type="email"
+            className="email-input"
+            placeholder="email@email.com"
+            value={email}
+            onChange={onChangeEmailHandler}
+          />
+          {certEmailErr ? 
+          <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> 
+          : null} 
+        </SignupBox>
 
           <SignupBox>
             <SignUpInput

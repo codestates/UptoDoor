@@ -6,6 +6,7 @@ import {
   StoreInputBox,
   StoreNameInput,
   StoreIntroTextArea,OpenCloseInputWrapper
+  StoreBtnBox,
 } from '../AdminPost/StyledAdminPost'
 import {Container,Wrapper,Title} from "../GlobalStyle";
 import { BtnBox, SmallButton } from '../common/Button/Button';
@@ -325,7 +326,7 @@ function AdminEditForm() {
           menuArr = {menuArr}
           setMenuArr = {setMenuArr}
         />
-        <BtnBox flexable>
+        <StoreBtnBox flexable>
           <SmallButton
           type = 'submit'
           primary
@@ -336,7 +337,7 @@ function AdminEditForm() {
           type = 'button'
           onClick = {deleteModalHandler}
           > 삭제 </SmallButton>
-        </BtnBox>
+        </StoreBtnBox>
         </AdminForm>
         </FlexBox>
       </Wrapper> 

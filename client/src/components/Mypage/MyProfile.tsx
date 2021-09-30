@@ -1,18 +1,14 @@
 import React,{useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
-import { Container, Title, Wrapper } from "../GlobalStyle";
+import { Container, Title, Wrapper,PageWrapper,PageProfileBtnWrapper ,PageProfileWrapper,PageContent,PageBtnWrapper} from "../GlobalStyle";
 import MyOrderWrapper from '../UserOrderInfo/MyOrderWrapper';
-import AdminOrderWrapper from '../Adminpage/AdminOrderWrapper'
+import AdminOrderWrapper from '../Adminpage/AdminOrderInfo'
 import axios from 'axios';
 import { AdminStoreGetData } from '../../_actions/admin_action';
 import MyOrderList from './MyOrderList';
 // import MyPaymentList from './MyPaymentList';
 import { useDispatch} from "react-redux";
 import { 
-  ButtonWrapper, 
-  MypageWrapper,MypageContent,
-  MypageProfileWrapper,
-  MypageProfileBtnWrapper,
   MypageUl,MypageLi } from './StyledMypage';
 import { END_POINTS } from '../../_actions/type';
 import { useHistory } from 'react-router-dom';
@@ -100,10 +96,10 @@ function MyProfile(): any {
     <Container>
       <Title>프로필</Title>
       <Wrapper>
-        <MypageWrapper>
-          <MypageProfileBtnWrapper>
-            <MypageProfileWrapper>
-              <MypageContent>
+        <PageWrapper>
+          <PageProfileBtnWrapper>
+            <PageProfileWrapper>
+              <PageContent>
                 <h3>안녕하세요. {user.nickname}님</h3>
                 <p>{user.email}</p>
                 {
@@ -128,21 +124,21 @@ function MyProfile(): any {
                 <p>{user.msubAddressDetail}</p>
                 </>
                 } */}
-              </MypageContent>
-              <ButtonWrapper>
+              </PageContent>
+              <PageBtnWrapper>
                 {user.position === "1"
                   ? (<button onClick={() => { moveAdminPage() }}>관리자 페이지</button>)
                   : (<button><Link to="/adminpost">가게 등록</Link></button>)
                 }
                 <button><Link to="/mypageedit">프로필 수정</Link></button>
-              </ButtonWrapper>
-            </MypageProfileWrapper>
+              </PageBtnWrapper>
+            </PageProfileWrapper>
             <MypageUl>
               <MypageLi>
                 구독관리
               </MypageLi>
             </MypageUl>
-            </MypageProfileBtnWrapper>
+            </PageProfileBtnWrapper>
 
             {cur === 1 ? 
             <MyOrderWrapper 
@@ -156,7 +152,7 @@ function MyProfile(): any {
             moveDetailHandler={moveDetailHandler} 
             />}
 
-        </MypageWrapper>
+        </PageWrapper>
       </Wrapper>
     </Container>
   );

@@ -25,7 +25,7 @@ const AdminStoreInfo = ({store}:any) => {
               <p>{store.address}</p>
             </div>
             <div><span>연락처:</span><p>{store.number}</p></div>
-            <div><span>영업시간:</span><p> 10:00 - 19:00</p></div>
+            <div><span>영업시간:</span><p>{store.open_time} - {store.close_time}</p></div>
             <div><span>가게 설명:</span><p>{store.introduce } </p></div>
             <div></div>
           </StoreDesc>

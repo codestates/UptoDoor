@@ -13,11 +13,11 @@ import {
   TtlPricemBox,P,
   OrderImg,
   OrderSection,
+  DetailTextArea,
   EachItemBox,
 } from '../UserOrderInfo/StyledUserOrderInfo'
-import AdminDetailInfo from './AdminDetailInfo'
 
-function AdminOrderWrapper({ orderitem, listbackHandler }:any) {
+function AdminOrderInfo({ orderitem, listbackHandler }:any) {
   const { selected_address, selected_address_detail, selected_mobile, order_deliveries,delivery_detail } = orderitem;
   useEffect(() => {
     console.log("asd", orderitem);
@@ -43,12 +43,29 @@ function AdminOrderWrapper({ orderitem, listbackHandler }:any) {
         </FlexBox>
 
         {/* 구독가게정보 */}
-        <AdminDetailInfo
-          userMobile={selected_mobile}
-          userAddress={`${selected_address} ${selected_address_detail}`}
-          deliveryInfo={order_deliveries}
-          detailInfo={delivery_detail}
-        />
+        <StoreInfoWrapper className="storeinfo-wrapper">
+        <FlexBox col>
+          <EachItemBox>
+            <H4>🗓 구독기간</H4>
+            <P>{order_deliveries.delivery_term}개월({Number(order_deliveries.delivery_term) * 4}주) / 매주 {order_deliveries.delivery_day}요일 / {order_deliveries.delivery_time}</P>
+          </EachItemBox>
+          <EachItemBox>
+            <H4>📍 고객 주소</H4>
+            <P>{`${selected_address} ${selected_address_detail}`}</P>
+          </EachItemBox>
+          <EachItemBox>
+            <H4>📱 고객 연락처</H4>
+            <P>{selected_mobile }</P>
+          </EachItemBox>
+          <EachItemBox>
+            <H4>✍🏼 요청사항</H4>
+            <DetailTextArea 
+              defaultValue={delivery_detail}
+            readOnly>
+            </DetailTextArea>
+          </EachItemBox>
+        </FlexBox>
+        </StoreInfoWrapper>
 
         {/* 오더인포 */}
         <OrderInfoWrapper className="orderinfo-wrapper">
@@ -97,4 +114,4 @@ function AdminOrderWrapper({ orderitem, listbackHandler }:any) {
   )
 }
 
-export default AdminOrderWrapper
+export default AdminOrderInfo

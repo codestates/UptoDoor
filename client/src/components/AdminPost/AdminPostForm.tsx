@@ -243,7 +243,7 @@ return (
                 <h1>-</h1>
                 <input
                   required
-                  type='text'
+                  type='time'
                   defaultValue={closeTime}
                   placeholder='Close Time'
                   onChange={(e:any)=>{setCloseTime(e.target.value)}} />

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@actbase/react-daum-postcode": "^1.0.1",
+    "@bootpay/server-rest-client": "^1.0.8",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.0",
     "@types/jest": "^27.0.1",

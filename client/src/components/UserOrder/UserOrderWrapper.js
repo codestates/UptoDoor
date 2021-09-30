@@ -17,6 +17,9 @@ import { Container, Wrapper, Title } from "../GlobalStyle";
 import useInput from "../../utils/useInput";
 import ConfirmModal from "../common/Modal/ConfirmModal";
 import { removeAllCart } from "../../_actions/cart_action";
+import BootPay from 'bootpay-js';
+import { RestClient } from "@bootpay/server-rest-client"
+import axios from "axios";
 
 function UserOrderWrapper() {
   const state = useSelector((state) => state);
@@ -45,18 +48,18 @@ function UserOrderWrapper() {
     // console.log("mobileCheck", mobileCheck);
     // console.log("paymentCheck", paymentCheck);
     BootPay.request({
-      price: cart.total_price, //실제 결제되는 가격
+      price: 0, //실제 결제되는 가격
       application_id: "6152052e7b5ba4002352bc60",
       name: 'UptoDoor', //결제창에서 보여질 이름
       pg: 'kcp',
-      method: '', //결제수단, 입력하지 않으면 결제수단 선택
+      method: 'card_rebill', //결제수단, 입력하지 않으면 결제수단 선택
       show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
       items: [
         {
-          item_name: menu[0].name, //상품명
-          qty: menu[0].quantity, //수량
+          item_name: '테스트', //상품명
+          qty: 1, //수량
           unique: '123', //해당 상품을 구분짓는 primary key
-          price: menu[0].price, //상품 단가
+          price: 1000, //상품 단가
         }
       ],
       user_info: {
@@ -70,7 +73,7 @@ function UserOrderWrapper() {
       account_expire_at: '2020-10-25', // 가상계좌 입금기간 제한 ( yyyy-mm-dd )
       extra: {
           start_at: '', // 정기 결제 시작일 - 시작일을 지정하지 않으면 그 날 당일로부터 결제가 가능한 Billing key 지급
-        end_at: ``, // 정기결제 만료일 -  기간 없음 - 무제한
+        end_at: '', // 정기결제 만료일 -  기간 없음 - 무제한
             vbank_result: 0, // 가상계좌 사용시 사용, 가상계좌 결과창을 볼지(1), 말지(0), 미설정시 봄(1)
             quota: [0,2,3], // 결제금액이 5만원 이상시 할부개월 허용범위를 설정할 수 있음, [0(일시불), 2개월, 3개월] 허용, 미설정시 12개월까지 허용,
         theme: 'purple', // [ red, purple(기본), custom ]
@@ -103,21 +106,7 @@ function UserOrderWrapper() {
       }
     }).close(function (data) {
         // 결제창이 닫힐(성공 실패 상관없이 됨)
-        console.log('--close--',data);
-    }).done(function (data) {
-      RestClient.setConfig(
-        '6152052e7b5ba4002352bc60',
-        'n2dbrcZi2B7g66Rt1WEnuToz0GF6DDPjoRYGuZgI+Wc='
-      );
-      
-      RestClient.getAccessToken().then(function (response) {
-        if (response.status === 200) {
-          console.log(response.data.token);
-        }
-      });
-      // 결제 정상 완료
-      // 여기서 결제 검증 해야함
-      setOpenModal(true);
+        setOpenModal(true);
       <ConfirmModal
           openModal={openModal}
           setOpenModal={setOpenModal}
@@ -126,6 +115,11 @@ function UserOrderWrapper() {
           url="/"
           modalBtn="확인"
       />
+    }).done(function (data) {
+      axios.post('https://uptodoors.shop/payment', data)
+      .then((rsp) => {
+        console.log(rsp)
+      })
       console.log('-- 결제 완료 -- ',data);
     });
 

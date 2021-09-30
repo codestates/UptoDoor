@@ -1,6 +1,8 @@
+const { default: axios } = require('axios');
+const { user } = require('../../models');
+const { checkAccess } = require('../Tokenfunc');
 module.exports = async (req, res) => {
     
-async function getAccessToken() { //액세스 토큰 발급
     const Bootpay = require('bootpay-backend-nodejs').Bootpay
     Bootpay.setConfig(
         '6152052e7b5ba4002352bc63',
@@ -8,28 +10,34 @@ async function getAccessToken() { //액세스 토큰 발급
     )
     try {
         const response = await Bootpay.getAccessToken()
-        console.log(response);
+        if(response.status === 200){
+            const result = await Bootpay.verify(req.body.receipt_id)
+            .then( async (rsp) => {
+                //console.log('---axios token---',response.data.token)
+                const respon = await Bootpay.reserveSubscribeBilling({
+                    billingKey: req.body.billing_key,
+                    itemName: '테스트',
+                    price: 1000,
+                    orderId: (new Date()).getTime(),
+                    userInfo: {
+                        username: '테스트',
+                        phone: '01000000000'
+                    },
+                    feedbackUrl: 'https://uptodoors.shop/feedback',
+                    //feedbackContentType: 'json',
+                    schedulerType: 'oneshot',
+                    executeAt: ((new Date()).getTime() / 1000) + 5
+                })
+                res.status(200).send({ message: 'order ok'});
+                console.log('----time-----',new Date(respon.data.execute_at*1000));
+                console.log('----data-----',respon);
+                })
+            }
     } catch (err) {
         console.log('-- 액세스 토큰 발급 에러 --',err)
     }
 }
 
-async function verify() { //결제 검증
-    const BootPay = require('bootpay-backend-nodejs').Bootpay
-    BootPay.setConfig(
-        '6152052e7b5ba4002352bc63',
-        'n2dbrcZi2B7g66Rt1WEnuToz0GF6DDPjoRYGuZgI+Wc='
-    )
-    const token = await BootPay.getAccessToken()
-    if(token.status === 200){
-        let result
-        try {
-            result = await BootPay.verify('receiptId');
-        } catch (err) {
-            return console.log('-- recipt 검증 에러 --',err)
-        }
-    }
-}
 
 async function cancel() { //결제 취소
     const BootPay = require('bootpay-backend-nodejs').Bootpay
@@ -42,8 +50,8 @@ async function cancel() { //결제 취소
         let response
         try {
             response = await BootPay.cancel({
-                receiptId: '',
-                price: 1, //취소 금액
+                receiptId: '6155972023868400215fb3f8',
+                price: 16000, //취소 금액
                 name: '',
                 reason: '개인 변심',
             })
@@ -67,13 +75,13 @@ async function getBillingKey() { //빌링키 발급
         try {
             response = await BootPay.requestSubscribeBillingKey({
                 orderId: (new Date()).getTime(),
-                pg: '',
+                pg: 'kcp',
                 itemName: '정기결제',
-                cardNo: '카드번호',
-                cardPw: '카드 비밀번호 앞 2자리',
-                expireYear: '카드만료연도',
-                expireMonth: '카드만료월',
-                identifyNumber: '카드 소유주 생년월일 혹은 법인번호',
+                cardNo: '',
+                cardPw: '',
+                expireYear: '',
+                expireMonth: '',
+                identifyNumber: '',
                 extra: {
                     subscribeTestPayment: 1 //100원 결제 후 결제가 되면 빌링키 발급, 결제 실패하면 에러
                 }
@@ -97,10 +105,10 @@ async function subscribeBilling() { //발급된 빌링키로 결제 승인 요�
         let response
         try {
             response = await BootPay.requestSubscribeBillingPayment({
-                billingKey: '', //회원 빌링키
+                billingKey: '61559be17b5ba4001f116c13', //회원 빌링키
                 itemName:'테스트',
-                price: 1,
-                orderid: (new Date()).getTime(),
+                price: 1000,
+                orderId: (new Date()).getTime(),
                 feedbackUrl: 'http://localhost:3060/feedback',
                 feedbackContentType: 'json'
             })
@@ -183,14 +191,13 @@ async function deleteBillingKey() { //빌링키 삭제
 
 // async function goTest() {
 //     await getAccessToken();
-//     await verify();
-//     await cancel();
-//     await getBillingKey();
-//     await subscribeBilling();
-//     await subscribeBillingReserve();
-//     await subscribeBillingReserveCancel();
-//     await deleteBillingKey();
-// }
+// //     await verify();
+// //     // await cancel();
+// //     // await getBillingKey();
+// //     // await subscribeBilling();
+// //     // await subscribeBillingReserve();
+// //     // await subscribeBillingReserveCancel();
+// //     // await deleteBillingKey();
+//  }
 
-// goTest();
-}
+//goTest();

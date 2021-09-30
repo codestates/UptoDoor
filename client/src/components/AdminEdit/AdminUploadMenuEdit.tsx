@@ -51,6 +51,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
         if(res.data.success){
           //깊은복사
           const copyArr = JSON.parse(JSON.stringify(menuArr));
+          //const copyArr = menuArr.slice();
           copyArr[e.target.id].image = res.data.filePath
           setMenuArr(copyArr)
           setMenuImg(res.data.filePath)

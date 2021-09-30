@@ -24,7 +24,7 @@ import AdminStoreInfo from "./AdminStoreInfo";
 function AdminProfile() {
   const admin = useSelector((state) => state.admin);
   console.log(admin);
-  const { store } = admin;
+  const  store  = admin;
   const { orders } = store;
   
   

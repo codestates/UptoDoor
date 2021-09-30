@@ -10,15 +10,26 @@ module.exports = async (req, res, next) => {
   if(!req.headers.cookie){
     const { email, password } = req.body;
     const Password = crypto.createHash('sha512').update(password).digest('hex');
-    const Data = await user.findOne({ where: { email: email, password: Password } });
-    console.log('------',Data);
-    const accessData = { email: Data.email, id: Data.id, nickname: Data.nickname };
-    const accesstoken = generateAccessToken(accessData);
-    const refreshtoken = generateRefreshToken(accessData);
-    sendAccessToken(res, accesstoken);
-    sendRefreshToken(res, refreshtoken);
-    next();
-    
+    //const Data = await user.findOne({ where: { email: email, password: Password } });
+    let Data =  await user.findOne({ where: { email: email }});
+    if (Data) {
+      if(Data.emailcheck === 'true'){
+        if(Data.password === Password){
+        const accessData = { email: Data.email, id: Data.id, nickname: Data.nickname };
+        const accesstoken = generateAccessToken(accessData);
+        const refreshtoken = generateRefreshToken(accessData);
+        sendAccessToken(res, accesstoken);
+        sendRefreshToken(res, refreshtoken);
+        next();
+        }else{
+          res.status(404).send({ message: "login fail password" });
+        }    
+      }else{
+        res.status(404).send({ message: "login fail email_check" });
+      }
+    }else{
+      res.status(404).send({ message: "login fail email" });
+    }    
   } else {
 
   const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];

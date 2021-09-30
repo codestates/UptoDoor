@@ -8,7 +8,6 @@ const AnalysisWrapper = () => {
       <Wrapper>
         안녕하세요 분석페이지입니다.
       </Wrapper>
-      
     </Container>
   )
 }

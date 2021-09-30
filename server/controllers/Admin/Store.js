@@ -7,11 +7,11 @@ module.exports = async (req, res) => {
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
     const { id } = checkAccessToken;
-    const { menu, title, category, description, adminAddressDetail, mobile, xvalue, yvalue, adminAddress, storeFile } = req.body;
+    const { menu, title, category, description, adminAddressDetail, mobile, xvalue, yvalue, adminAddress, storeFile,open_time , close_time } = req.body;
     const storeImg = req.body.storeImage.join();
     try {
         const data1 = await store.create({
-        name: title, category: category, introduce: description, address_detail:adminAddressDetail,
+        name: title, category: category, introduce: description, open_time:open_time, close_time:close_time, address_detail:adminAddressDetail,
         number: mobile, address: adminAddress, xvalue: xvalue, yvalue: yvalue, image: storeImg, Bussiness_paper: storeFile });
 
     for (let i=0; i<menu.length; i++) {

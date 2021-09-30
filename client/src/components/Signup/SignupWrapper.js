@@ -1,7 +1,7 @@
 import React, { useState , useCallback, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { signUp, certEmail } from "../../_actions/user_action";
+import { signUp, sendCertEmail } from "../../_actions/user_action";
 import {
   Container,
 } 
@@ -49,7 +49,7 @@ function SignupWrapper() {
   }, []);
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
-    dispatch(certEmail(email))
+    dispatch(sendCertEmail(email))
       .then((res) => {
         if (res.payload.message === "send success") {
           setModalSuccess(true);

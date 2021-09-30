@@ -40,8 +40,8 @@ export const adminPostEdit = (sendInfo, id) => {
 };
 
 //delete store 삭제 
-export const deleteAdminPost = () => {
-  const request = axios.delete(`${END_POINTS}/admin/admin`)
+export const deleteAdminPost = (id) => {
+  const request = axios.delete(`${END_POINTS}/admin/store/${id}`)
   .then((res)=>{
     return res.data;
   })

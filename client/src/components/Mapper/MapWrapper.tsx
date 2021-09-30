@@ -7,13 +7,12 @@ import MapSearchBar from './MapSearchBar'
 import EmptyMap from './EmptyMap'
 
 import { 
-  MapWrapperContainer,
   MapFlexWrapper,
   MapHashWrapper,
 } from './styledMap'
 import {
-  // Container,
-  // Wrapper,
+  Container,
+  Wrapper,
   Title
 } from "../GlobalStyle";
 import { useSelector, useDispatch } from "react-redux";
@@ -101,8 +100,9 @@ function MapWrapper() {
   
   return (
     <>
-      <MapWrapperContainer className="container">
+      <Container className="container">
         <Title>구독 찾기</Title>
+        <Wrapper>
         <MapFlexWrapper>
           <MapHashWrapper>
             {/* 주소선택 컴포넌트 */}
@@ -173,7 +173,8 @@ function MapWrapper() {
           setOpenModal={setSelectAddressModal}
           />
         : null}
-      </MapWrapperContainer>
+        </Wrapper>
+      </Container>
     </>
   );
 }

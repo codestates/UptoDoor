@@ -81,7 +81,7 @@ export const LagreButton = styled.button`
 
 export const BtnBox = styled.div`
 text-align: center;
-width: 100%;
+width: 300px;
 margin-top : ${({btnboxMargin})=> (btnboxMargin ? '18px' : 0)};
 display: ${({flexable})=> (flexable ?'flex' : 'unset')};
 justify-content: center;

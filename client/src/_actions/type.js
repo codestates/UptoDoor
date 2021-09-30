@@ -13,7 +13,7 @@ export const NAVER_SIGNOUT = "NAVER_SIGNOUT";
 export const KAKAO_SIGNOUT = "KAKAO_SIGNOUT";
 export const KAKAO_SIGNIN = "KAKAO_SIGNIN";
 export const NAVER_SIGNIN = "NAVER_SIGNIN";
-export const CERT_EMAIL = "CERT_EMAIL"
+export const SEND_CERT_EMAIL = "SEND_CERT_EMAIL"
 
 
 //admin signUp/signIn/signOut/mypage/deleteAdmin

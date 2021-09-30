@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Postcoder } from "../common/Modal/styledModal";
+import { AddressModalContainer,Postcoder } from "../common/Modal/styledModal";
 import AddressTitle from "./AddressTitle";
 
 import {
@@ -9,7 +9,7 @@ import {
   EnrollAddressWrapper,
   AddressFormDiv,
   DetailAddress,
-  AddressModalContainer,
+  
 } from "./StyledAddress";
 import { SmallButton } from "../common/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,7 +38,7 @@ function EnrollAddress() {
   const [yValue, setYValue] = useState('');
 
   const [openModal, setOpenModal] = useState(false);
-  const [failModal, setFailModal] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
   const [loginModal, setLoginModal] = useState(false)
 
 
@@ -80,15 +80,17 @@ function EnrollAddress() {
               main_xvalue: xValue,
               main_yvalue: yValue
             };
-            dispatch(addAddress(mainAdd, name))
+            dispatch(addAddress(mainAdd))
               .then((res:any) => {
-              if (res.payload.message === "address check success") {
+                if (res.payload.message === "address check success") {
+                setModalSuccess(true)
                 setOpenModal(true);
               }
             })
           }
           else {
-            setFailModal(true)
+            setModalSuccess(false)
+            setOpenModal(true)
           }   
       } else {
           if (subAddressDetail=== undefined) return alert("상세 주소란을 입력해주세요.");
@@ -99,14 +101,16 @@ function EnrollAddress() {
                 sub_xvalue: xValue,
                 sub_yvalue: yValue
               };
-            dispatch(addAddress(subAdd,name)).then((res:any) => {
+            dispatch(addAddress(subAdd)).then((res:any) => {
               if (res.payload.message === "address check success") {
+                setModalSuccess(true)
                 setOpenModal(true);
               }
             });
           }
         else {
-          setFailModal(true)
+          setModalSuccess(false)
+            setOpenModal(true)
         }
       }
       }
@@ -170,7 +174,10 @@ function EnrollAddress() {
     };
   },[current]);
 
-  
+  const closeModal = () => {
+    setMainModal(false);
+    setSubModal(false);
+  }
 
 
   return (
@@ -199,7 +206,7 @@ function EnrollAddress() {
           <DetailAddress>
             <input
               type="text"
-              defaultValue={mainDetail}
+              value={mainDetail}
               onChange={(e) => {
                 setMainDetail(e.target.value);
               }}
@@ -227,7 +234,7 @@ function EnrollAddress() {
           <DetailAddress>
             <input
               type="text"
-              defaultValue={subDetail}
+              value={subDetail}
               onChange={(e) => {
                 setSubDetail(e.target.value);
               }}
@@ -239,7 +246,7 @@ function EnrollAddress() {
         </EnrollAddressWrapper>
       </AddressWrapper>
       {mainModal ? (
-        <AddressModalContainer>
+        <AddressModalContainer onClick={closeModal}>
           <Postcoder
             autoClose
             onComplete={(data:any) => { onChangeMainAddress(data) }}
@@ -250,7 +257,7 @@ function EnrollAddress() {
         </AddressModalContainer>
       ) : null}
       {subModal ? (
-        <AddressModalContainer>
+        <AddressModalContainer onClick={closeModal}>
           <Postcoder
             autoClose
             onComplete={(data:any) => { onChangeSubAddress(data) }}
@@ -263,21 +270,12 @@ function EnrollAddress() {
       {openModal ? (
         <ConfirmModal
           openModal={openModal}
+          modalSuccess={modalSuccess}
           url="/address"
           modalTitleText="동네 인증"
-          modalText="주소 인증에 성공하였습니다. 감사합니다."
+          modalText={modalSuccess ? "주소 인증에 성공하였습니다. 감사합니다." : "주소 인증에 실패하였습니다. 다시 시도해주세요."}
           modalBtn="확인"
           setOpenModal={setOpenModal}
-        />
-      ) : null}
-      {failModal ? (
-        <ConfirmModal
-          openModal={failModal}
-          url="/address"
-          modalTitleText="동네 인증"
-          modalText="주소 인증에 실패하였습니다. 다시 시도해주세요."
-          modalBtn="확인"
-          setOpenModal={setFailModal}
         />
       ) : null}
       {loginModal ? (

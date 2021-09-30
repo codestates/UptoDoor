@@ -5,14 +5,14 @@ import {
   FlexBox,
   StoreInputBox,
   StoreNameInput,
-  StoreIntroTextArea,
+  StoreIntroTextArea,OpenCloseInputWrapper
 } from '../AdminPost/StyledAdminPost'
 import {Container,Wrapper,Title} from "../GlobalStyle";
 import { BtnBox, SmallButton } from '../common/Button/Button';
 
 import { useHistory } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux'
-import { adminPostGet, adminPostEdit , deleteAdminPost } from '../../_actions/post_action';
+import {  adminPostEdit , deleteAdminPost } from '../../_actions/post_action';
 
 import AdminUploadStoreEdit from './AdminUploadStoreEdit'
 import AdminEnrollStoreEdit from './AdminEnrollStoreEdit'
@@ -46,7 +46,8 @@ function AdminEditForm() {
   const [title , setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [description , setDescription] = useState('');
-  const [time , setTime] = useState('');
+  const [openTime, setOpenTime] = useState('');
+  const [closeTime, setCloseTime] = useState('')
   const [mobile , setMobile] = useState('');
   const [storeinfo, setStoreinfo]:any = useState({});
   const [imageArr, setImageArr]:any = useState([]);
@@ -85,14 +86,10 @@ function AdminEditForm() {
       setDescription(limitWord);
     }
   }
-  const changeTimeHandler = (e:any) => {
-    setTime(e.target.value)
-  }
   //admin address
   const changeAdminAddress = useCallback((data) => {
-    const resultAddress = JSON.parse(data).address
-    switchAddress(resultAddress)
-    setAdminAddress(resultAddress);
+    switchAddress(data.address)
+    setAdminAddress(data.address);
     setAddressModal((prev)=>!prev);
   },[])
   const changeAddDetailHandler = (e:any) => {
@@ -144,7 +141,8 @@ function AdminEditForm() {
       const sendInfo = {
         image : imageArr,
         description : description,
-        time : time,
+        open_time: openTime,
+        close_time:closeTime,
         adminAddressDetail : adminAddressDetail,
         mobile : mobile,
         menuArr : menuArr
@@ -222,7 +220,8 @@ function AdminEditForm() {
         setTitle(store_info.name)
         setCategory(store_info.category)
         setDescription(store_info.introduce) 
-        setTime(store_info.delivery_time)
+        setOpenTime(store_info.open_time)
+        setCloseTime(store_info.close_time)
         setAdminAddress(store_info.address)
         setadminAddressDetail(store_info.address_detail)
         setMobile(store_info.number)
@@ -272,13 +271,25 @@ function AdminEditForm() {
           </StoreInputBox>
 
           <StoreInputBox>
-            <label>배달 가능시간</label>
-            <StoreNameInput 
-            type = 'type'
-            defaultValue = {time} 
-            placeholder = '배달 가능한 시간을 작성하세요' 
-            onChange = {changeTimeHandler}/>
-          </StoreInputBox>
+              <label>배달 가능시간<span>(ex.09:00-17:00)</span></label>
+              
+              <OpenCloseInputWrapper>
+            <input 
+            required
+            type = 'text'
+            defaultValue = {openTime} 
+            placeholder = 'Open Time' 
+            onChange={(e:any)=>{setOpenTime(e.target.value)}} />
+                <h1>-</h1>
+                <input
+                  required
+                  type='text'
+                  defaultValue={closeTime}
+                  placeholder='Close Time'
+                  onChange={(e:any)=>{setCloseTime(e.target.value)}} />
+              </OpenCloseInputWrapper>
+            
+            </StoreInputBox>
           
         </AdminForm>
 

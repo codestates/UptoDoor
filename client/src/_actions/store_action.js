@@ -13,8 +13,6 @@ axios.defaults.withCredentials = true;
 
 export const getFilteredStoreSelected = () => {
   const request = axios.get(`${END_POINTS}/store`).then((res) => {
-    
-    console.log("ssssssss", res.data);
     return res.data.storeinfo;
   });
 
@@ -27,7 +25,6 @@ export const getFilteredStoreSelected = () => {
 export const getStoreData = () => {
   const request = axios.get(`${END_POINTS}/store`)
     .then((res) => {
-      console.log("ssssssss", res.data)
       return res.data.storeinfo;
   })
 
@@ -77,7 +74,6 @@ export const getFitteredBySearch = (keyword) => {
         }
       });
     }
-    console.log("서치서치=========", data);
     return data;
   });
 
@@ -90,9 +86,7 @@ export const getFitteredBySearch = (keyword) => {
 
 export const getFitteredByClick = (address) => {
   const request = axios.get(`${END_POINTS}/store`).then((res) => {
-    console.log("res.data---cliock", res.data);
     const info = res.data.storeinfo
-    console.log("info", info);
     let data;
     if (address) {
       data = info.filter((el) => {
@@ -109,10 +103,8 @@ export const getFitteredByClick = (address) => {
 }
 
 export const storeFilterByCity = (data) => {
-  console.log('action===>',data)
   const request = axios.get(`${END_POINTS}/store`)
   .then((res) => {
-    console.log('res.data===>',res.data);
     if(data === 'ALL') {
       return res.data.storeinfo;
     }else{
@@ -120,7 +112,6 @@ export const storeFilterByCity = (data) => {
         let splitAdd = el.address.split(' ')[1];
         return splitAdd === data
       })
-      console.log('addressFilter',addressFilter)
       return addressFilter;
     }
 

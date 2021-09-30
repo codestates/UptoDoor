@@ -170,20 +170,7 @@ export const DetailAddress = styled.div`
   }
 `;
 
-export const AddressModalContainer = styled.div`
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: 9999;
-  animation: ${showModalBg} 0.4s;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
-`;
+
 
 export const Postcoder = styled(Postcode)`
   width:500px;

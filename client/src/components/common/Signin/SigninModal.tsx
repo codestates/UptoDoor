@@ -61,8 +61,7 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
   },[email,password])
   
   useEffect(()=>{
-    const url = new URL(window.location.href)
-    console.log("url",url)
+    const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get('code')
     const state = url.searchParams.get('state')
     //인가코드,state값 둘다 있으면 네이버로그인

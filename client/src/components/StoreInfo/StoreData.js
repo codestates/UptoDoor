@@ -15,8 +15,7 @@ from './StyledStoreData'
 import { Container,Title} from "../GlobalStyle";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { END_POINTS} from "../../_actions/type";
-import { selectStore } from '../../_actions/cart_action';
+import { END_POINTS } from "../../_actions/type";
 import StoreImgModal from './StoreImgModal'
 import MenuList from './MenuList'
 
@@ -24,6 +23,7 @@ import MenuList from './MenuList'
 const StoreData = ({id}) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
+  
   // const [store, setStore] = useState({image:[]})
   const [store, setStore] = useState({image:[]})
   const [openModal , setOpenModal] = useState(false);
@@ -42,15 +42,10 @@ const StoreData = ({id}) => {
   }, [])
 
   useEffect(() => {
-    dispatch(selectStore(id));
-    axios.get(`${END_POINTS}/admin/store/${id}`)
-    .then((res) => {
-        res.data.storeData;
-        return setStore(res.data.storeData);
-        
-    }).catch((err) => {
-      console.log(err);
-    })
+    axios.get(`${END_POINTS}/admin/store/${id}`).then((res) => {
+      console.log(res.data);
+      setStore(res.data.storeData);
+    });
   }, []);
   
   return (
@@ -64,7 +59,7 @@ const StoreData = ({id}) => {
           </div>
 
           <StoreImgBox className="store-img-box">
-            <StoreImg src={store.image[0]} className = 'first-img' />
+            <StoreImg src={store.image && store.image[0]} className = 'first-img' />
 
             <div>
             {store.image.length < 2 ? 

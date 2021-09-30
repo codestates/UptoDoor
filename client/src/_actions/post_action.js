@@ -1,19 +1,19 @@
 import {
   ADMIN_POST,
-  ADMIN_POST_GET,
   ADMIN_POST_EDIT,
   DELETE_ADMIN_POST,
   GET_ADMIN_DATA,
   END_POINTS,
+  RESET_ADMIN,
 } from "./type";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
 export const adminPost = (adminposts) => {
-  console.log("ssss", adminposts)
+  console.log("adminPost action 들어오는 값", adminposts)
   const result = axios.post(`${END_POINTS}/admin/store`,adminposts)
   .then((res)=>{
-    console.log(res.data)
+    console.log("adminPost 요청 후 응답값",res.data)
     return res.data
   })
   .catch((err)=>{
@@ -22,21 +22,6 @@ export const adminPost = (adminposts) => {
 
   return {
     type: ADMIN_POST,
-    payload: result
-  };
-};
-
-export const adminPostGet = () => {
-  const result = axios.get(`${END_POINTS}/admin/store/59`)
-  .then((res)=>{
-    console.log(res.data)
-    return res.data
-  })
-  .catch((err)=>{
-    console.log('==받아오기 실패==',err)
-  })
-  return {
-    type: ADMIN_POST_GET,
     payload: result
   };
 };
@@ -81,5 +66,12 @@ export const getAdminData = () => {
   return {
     type: GET_ADMIN_DATA,
     payload: request
+  }
+}
+
+export const resetAdmin = () => {
+  
+  return {
+    type: RESET_ADMIN
   }
 }

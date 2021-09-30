@@ -13,7 +13,7 @@ import {
   ErrMsgP,
 } from './StyledMypageEdit'
 import {SmallButton,BtnBox} from '../common/Button/Button'
-
+import { END_POINT } from '../../_actions/type';
 import { useDispatch,useSelector } from 'react-redux'
 import { editUser,deleteUser} from '../../_actions/user_action'
 import ProfileEditOptions from './ProfileEditOptions';
@@ -32,7 +32,7 @@ function MyProfileEdit() {
   const [passwordChk, setPasswordChk] = useState('');
   const [passwordRegErr , setPasswordRegErr ] = useState(false);
   const [passwordErr , setPasswordErr ] = useState(false);
-  const [mobile , setMobile] = useState(user.mobile);
+  const [mobile , setMobile] = useState(user.mobile || "");
 
   //optional
   const [gender , setGender] = useState(user.gender);
@@ -89,7 +89,7 @@ function MyProfileEdit() {
     //   if (res.payload.message  === 'good bye') {
     //     setOpenModal(false);
     //     setDeleteUserModal(true);
-    //     window.location.href="http://localhost:3000/"
+    //     window.location.href=`${END_POINT}`
     //   } else {
     //     alert('탈퇴 실패. 못벗어남.');
     //   }
@@ -123,7 +123,7 @@ function MyProfileEdit() {
     //   console.log('===',res.payload)
     //   if (res.payload.message  === 'user update success') {
     //     alert('프로필 수정 성공')
-    //     window.location.href="http://localhost:3000/"
+    //     window.location.href=`${END_POINT}`
     //   } else {
     //     alert('못벗어남');
     //   }

@@ -19,6 +19,8 @@ import Modal from '../Modal/Modal';
 import { useHistory } from 'react-router';
 import { END_POINT } from '../../../_actions/type';
 import ConfirmModal from '../Modal/ConfirmModal';
+import Alram from '../Alram/Alram';
+import { resetAdmin } from '../../../_actions/post_action';
 
 function NavBar() {
   const history:any = useHistory();
@@ -28,6 +30,8 @@ function NavBar() {
   const message = user.message;
   //사이드바 모달창
   const [isOpen, setIsOpen] = useState(false);
+  const [alarmBtnModal, setAlarmBtnModal] = useState(false);
+  const closeAlarmModal = () => {setAlarmBtnModal(!alarmBtnModal) };
   //로그인 모달
   const [modalOpen, setModalOpen] = useState(false);
   const [needLoginModal, setNeedLoginModal] = useState(false);
@@ -40,7 +44,8 @@ function NavBar() {
       dispatch(kakaoSignOut())
       .then((res: any) => {
         console.log(res);
-      if (res.payload === "signout success") {
+        if (res.payload === "signout success") {
+          dispatch(resetAdmin());
         window.location.href=`${END_POINT}`
       } else {
         alert("로그아웃에 실패했습니다.")
@@ -51,7 +56,8 @@ function NavBar() {
       dispatch(naverSignOut())
       .then((res: any) => {
         console.log(res);
-      if (res.payload === "signout success") {
+        if (res.payload === "signout success") {
+        dispatch(resetAdmin());
         window.location.href=`${END_POINT}`
       } else {
         alert("로그아웃에 실패했습니다.")
@@ -62,7 +68,8 @@ function NavBar() {
       dispatch(signOut())
       .then((res: any) => {
         console.log("여기서 찍히녀", res);
-      if (res.payload === "signout success") {
+        if (res.payload === "signout success") {
+        dispatch(resetAdmin());
         window.location.href=`${END_POINT}`
       } else {
         alert("로그아웃에 실패했습니다.")
@@ -102,7 +109,7 @@ const accessInto = useCallback((name) => {
       
       <ButtonWrapper>
         {/* 알림 버튼 */}
-        <IconButton type="button" aria-label="알림 버튼">
+        <IconButton type="button" aria-label="알림 버튼" onClick={closeAlarmModal}>
           <i className="far fa-bell"></i>
         </IconButton>
         {/* 메뉴 버튼 */}
@@ -147,7 +154,10 @@ const accessInto = useCallback((name) => {
         modalText="로그인이 필요한 서비스 입니다."
         modalBtn="확인"
         setOpenModal={setNeedLoginModal}
-      /> : null}
+        /> : null}
+      {alarmBtnModal ?
+      <Alram />
+      : null}
     </Header>
   );
 }

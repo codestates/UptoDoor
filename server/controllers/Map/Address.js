@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
     }
     catch(err) {
         console.log('-- 주소 등록 실패 -- ',err);
-        res.status(404).send({ message: 'address check fail' });
+        res.status(404).send({ message: 'address check fail'  });
     }
-    res.status(201).send({ message: 'address check success' });
+    res.status(201).send({ message: 'address check success',data:{mainAddress, mainAddressDetail,subAddress,subAddressDetail} });
 }

@@ -22,12 +22,10 @@ import AdminStoreInfo from "./AdminStoreInfo";
 
 
 function AdminProfile() {
-  const admin = useSelector((state) => state.admin?.orderdata);
+  const admin = useSelector((state) => state.admin);
   console.log(admin);
   const { store } = admin;
   const { orders } = store;
-  console.log("스토어", store)
-  console.log("오더스", orders);
   
   
   const [filteredData, setFilteredData] = useState([])
@@ -54,8 +52,9 @@ function AdminProfile() {
     setCur(0);
     setCurrentTab(id);
     setSelectedDay(day)
+    console.log("11111",orders);
     const filtered = orders.filter((el) => {
-      const { delivery_day } = el.order_deliveries[0];
+      const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(day);
     });
@@ -66,7 +65,7 @@ function AdminProfile() {
   useEffect(() => {
     setCur(0);
     const filtered = orders.filter((el) => {
-      const { delivery_day } = el.order_deliveries[0];
+      const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(selectedDay);
     });

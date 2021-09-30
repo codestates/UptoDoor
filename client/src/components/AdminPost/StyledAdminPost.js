@@ -41,12 +41,13 @@ align-items: flex-start;
 export const ImgUploadWrapper = styled.div`
 cursor: pointer;
 color : #fff;
+font-weight: 500;
 font-size: 12px;
 height : 24px;
 padding : 3px 8px;
 border-radius: 8px;
 text-align: center;
-background-color: ${PointColor};
+background-color: ${MainColor};
 @media screen and (min-width: 767px) {
   color : #fff;
   padding : 2px 10px;
@@ -96,16 +97,14 @@ margin : 10px 0 20px;
     }
   }
   >ul{
-    
   }
   >ul>li>button{
     &::before{
-      color: ${PointColor};
+      color: ${MainColor};
       margin : 0;
     }
   }
 }
-
 `
 
 export const StoreImgBox = styled.div`
@@ -158,6 +157,11 @@ flex-direction: column;
 >label{
   font-size: ${BaseFont};
   font-weight: 600;
+
+  >span {
+    font-size: ${SmallFont};
+    font-weight:400;
+  }
   @media screen and (min-width: 767px) {
   }
 }
@@ -222,6 +226,14 @@ border-radius: 4px;
 border-style: solid;
 border-width: 1px;
 `
+export const MenuUploadImgBox = styled.div`
+width: 100%;
+height : 90%;
+/* border:3px solid red; */
+display: flex;
+align-items: center;
+justify-content: center;
+`
 export const MenuUploadDiv = styled.div`
 height: 160px;
 cursor: pointer;
@@ -236,13 +248,13 @@ margin-right : 10px;
   background-color: rgba(0,0,0,0.1);
   opacity: 0,7;
 }
+
 `
 export const MenuUploadDiv2 = styled.div`
 >label{
   font-size: ${SmallFont};
   font-weight: 500;
-  @media screen and (min-width: 768px) {
-    
+  @media screen and (min-width: 767px) {
   }
 }
 `
@@ -282,6 +294,7 @@ line-height: 42px;
 font-size: ${SmallFont};
 font-weight: 600;
 cursor: pointer;
+margin-top : 10px;
 &:hover{
   transition : all 0.5s;
   background-color: rgba(0,0,0,0.1);
@@ -290,11 +303,31 @@ cursor: pointer;
 `
 export const StoreBtnBox = styled.div`
 text-align: center;
+margin : 20px 0;
 `
 export const MenuImg = styled.img`
 width: 90%;
 height : 90%;
-object-fit: contain;
+max-height: 160px;
+margin-right: 10px;
+object-fit: cover;
+border-radius: 8px;
+cursor: pointer;
+&:hover{
+  opacity: 0.8;
+}
+@media screen and (min-width: 767px) {
+  width: 120px;
+  height : 120px;
+  }
+@media screen and (min-width: 1140px) {
+  width: 190px;
+  height : 190px;
+  }
+@media screen and (min-width: 1440px) {
+  width: 220px;
+  height : 220px;
+  }
 `
 export const PlusIcon = styled.p`
 text-align: center;
@@ -315,3 +348,27 @@ cursor: pointer;
 `
 
 
+export const OpenCloseInputWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  > input {
+    background-color: hsl(0, 0%, 100%);
+    border-color: hsl(0, 0%, 80%);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    height: 38px;
+    padding: 8px;
+    margin: 8px 0;
+    font-size: ${BaseFont};
+    width: 45%;
+  }
+  > h1 {
+    font-weight: 500;
+    margin: 8px 0 10px;
+    
+    
+  }
+`;

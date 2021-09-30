@@ -29,12 +29,13 @@ padding : 100px 0 20px;
 }
 `
 export const IntroH1 = styled.h1`
-font-size: ${LargeFont};
+font-size: ${MediumFont};
 font-weight : 500;
 color : ${TextDarkGrey};
 @media screen and (min-width: 768px) {
   display : inline ;
-  font-size: 32px;
+  font-size: 30px;
+  font-weight: 600;
 }
 `
 export const IntroH2 = styled.h2`
@@ -44,6 +45,7 @@ color : ${TextLightGrey};
 @media screen and (min-width: 768px) {
   display : inline ;
   font-size: 32px;
+  font-weight: 500;
 }
 @media screen and (min-width: 1140px) {
   font-size: 40px;
@@ -219,11 +221,27 @@ bottom: ${({scollup})=> (scollup ? '40px' : '70px')};
 opacity: ${({scollup})=> (scollup ? '0' : '1')};
 z-index: 1;
 transition : all 0.3s;
+>div{
+  width: 50px;
+  height : 100px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+}
+>div>.alarm-btn{
+  display: none;
+  margin : 10px 0;
+  animation: none;
+}
 @media screen and (min-width: 767px) {
   left: ${({scollup})=> (scollup ? '45%' : '0')};
   bottom: ${({scollup})=> (scollup ? '70px' : '70px')};
+  >div>.alarm-btn{
+  display: unset;
+  }
 }
->i{
+
+>div>i{
   width : 60px; height: 50px;
   font-size: ${({scollup})=> (scollup ? '30px' : UltraLargeFont)};
   color : rgba(0,0,0,0.7);
@@ -245,7 +263,8 @@ transition : all 0.3s;
   font-size: ${({scollup})=> (scollup ? '36px' : UltraLargeFont)};
   }
 }
-
+`
+export const I = styled.i`
 `
 export const GradientEdge = styled.div`
 position: absolute;
@@ -432,7 +451,7 @@ padding : 100px 200px;
   overflow: hidden;
   min-height : 120px;
   @media screen and (min-width: 768px) {
-    min-height : 220px;
+    min-height : 190px;
   }
   @media screen and (min-width: 1140px) {
   min-height :none;
@@ -480,8 +499,8 @@ transition : all 1s linear;
     background-blend-mode: multiply;
     transition: all 1s linear;
   }
-  @media screen and (min-width: 768px) {
-    height: 230px;
+  @media screen and (min-width: 767px) {
+    height: 190px;
   }
   @media screen and (min-width: 1140px) {
     position: relative;
@@ -506,12 +525,13 @@ font-size: 36px;
 `
 export const ValueTextBox = styled.div`
 padding : 20px;
-@media screen and (min-width: 768px) {
-  padding : 50px;
-  height : 220px;
+@media screen and (min-width: 767px) {
+  padding : 45px;
+  height : 100%;
   }
 @media screen and (min-width: 1140px) {
-  padding : 0 40px;
+  padding : 0 35px;
+  height: 50%;
 }
 `
 export const H3 = styled.h3`
@@ -611,6 +631,11 @@ margin : 20px 0 0;
   z-index : 1;
   @media screen and (min-width: 1140px) {
     width: 30%;
+  }
+  >div{
+    box-shadow : none !important;
+    border-color : rgba(0,0,0,0.3);
+
   }
   >div>div>div{
     color : ${TextDarkGrey};

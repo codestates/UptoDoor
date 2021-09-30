@@ -11,10 +11,13 @@ import {
   KAKAO_SIGNIN,
   NAVER_SIGNIN,
   CALCEL_ORDER,
+  CERT_EMAIL,
 } from "../_actions/type";
 
 export default function user_reducer(state = {}, action) {
   switch (action.type) {
+    case CERT_EMAIL:
+      return {...state }
     case SIGNUP:
       return { ...state, signUp: action.payload };
 
@@ -26,8 +29,7 @@ export default function user_reducer(state = {}, action) {
       return (state = {});
 
     case ADD_ADDRESS: {
-      console.log({ ...state });
-      return { ...state };
+      return { ...state, ...action.payload.data };
     }
     case ADD_ORDER: {
       console.log("addorder", action.payload);

@@ -21,7 +21,10 @@ import { removeAllCart } from "../../_actions/cart_action";
 function UserOrderWrapper() {
   const state = useSelector((state) => state);
   const menu = state.cart.menu;
-  console.log(menu)
+  // const store = useSleector((state) => state.store);
+  // const filtered = store.filter((el) => el.id === state.cart.store_id)[0];
+  // const { open_time, close_time } = filtered;
+  
   const dispatch = useDispatch();
   const [mobileCheck, setMobileCheck] = useState(false);
   const mobileChecker = () => setMobileCheck((mobileCheck) => !mobileCheck);
@@ -35,7 +38,7 @@ function UserOrderWrapper() {
   const [optionsModal, setOptionsModal] = useState(false);
   // console.log("orderMobile", orderMobile);
   // console.log("mobileCheck", mobileCheck);
-  // console.log("paymentCheck", paymentCheck);
+  console.log("paymentCheck", paymentCheck);
  
   const orderHander = useCallback(() => {
     // console.log(orderMobile.length)

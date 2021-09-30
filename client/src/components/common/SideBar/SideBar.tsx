@@ -21,7 +21,7 @@ const SideBar = ({ history,setIsOpen, isOpen,signoutHandler }: Iprops):any => {
 const state = useSelector((state) => state)
   const { user }: any = state;
   const { message,nickname } = user;
-
+  
   const [modalOpen, setModalOpen] = useState(false);
 
   const accessInto = useCallback((name) => {

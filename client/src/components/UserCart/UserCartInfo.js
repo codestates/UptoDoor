@@ -104,7 +104,7 @@ function UserCartInfo() {
     );
     const target = btn.nextElementSibling;
     let value = Number(target.value);
-    if(value < 1){
+    if(value < 2){
       return false;
     }else{
       value--;

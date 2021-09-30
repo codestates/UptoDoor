@@ -8,14 +8,13 @@ export const MypageWrapper = styled.div`
     flex-direction: row;
     width: 100%;
     margin: 0 auto;
-    max-width: 800px;
   }
   @media screen and (min-width: 1140px) {
     display: flex;
     flex-direction: row;
     width: 100%;
     margin: 0 auto;
-    max-width: 1020px;
+    max-width: 1140px;
   }
 `;
 
@@ -23,13 +22,13 @@ export const MypageProfileBtnWrapper = styled.div`
   @media screen and (min-width: 767px) {
     display: flex;
     flex-direction: column;
-    margin-right: 20px;
+    margin-right: 30px;
     height: 450px;
   }
   @media screen and (min-width: 1140px) {
     display: flex;
     flex-direction: column;
-    margin-right: 15px;
+    margin-right: 30px;
   }
 `;
 

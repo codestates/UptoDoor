@@ -14,6 +14,7 @@ module.exports = {
     Store: require('./Admin/Store'),
     StoreData: require('./Admin/Storedata'),
     UpdateStore: require('./Admin/Updatestore'),
+    DeleteStore: require('./Admin/Deletestore'),
     Email: require('./Auth/Email'),
     EmailSend: require('./Auth/EmailSend'),
     Kakaologin: require('./Oauth/kakao/Login'),

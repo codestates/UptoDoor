@@ -23,7 +23,8 @@ module.exports = async (req, res) => {
         await store.update({
             image : storeImg,
             introduce : storeInfo.description,
-            delivery_time : storeInfo.time,
+            open_time : storeInfo.open_time,
+            close_time : storeInfo.close_time,
             address_detail : storeInfo.adminAddressDetail,
             number : storeInfo.mobile
         }, {where : {id : store_id}})   

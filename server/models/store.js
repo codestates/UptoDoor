@@ -25,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     yvalue: DataTypes.FLOAT,
     category: DataTypes.STRING,
     introduce: DataTypes.STRING,
-    delivery_time: DataTypes.STRING,
+    open_time: DataTypes.STRING,
+    close_time: DataTypes.STRING,
     Business_paper: DataTypes.STRING
   }, {
     sequelize,

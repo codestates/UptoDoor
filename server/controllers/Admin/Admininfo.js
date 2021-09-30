@@ -46,6 +46,8 @@ module.exports = async (req, res) => {
             return preTime - nextTime
         })
 
+        orderdata = orderdata.store 
+        
         res.status(200).send({ message: 'ok', orderdata });
     }
     catch(err){

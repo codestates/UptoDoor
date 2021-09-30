@@ -43,7 +43,7 @@ function MapInfoModal({cart, filterList, setLoginModal, message,setSelectAddress
           className = 'mapinfo-wrapper'>
             
             <StoreImg 
-            src = {el.image.length === 0 ? '' :el.image[0] } alt = '업체사진'/>
+            src = {el.image.length === 0 ? '' :el.image } alt = '업체사진'/>
             <div>
             <StoreName>{el.name}</StoreName>
             <StoreAddress>{el.address}</StoreAddress>

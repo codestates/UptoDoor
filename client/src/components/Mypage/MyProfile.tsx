@@ -46,7 +46,7 @@ function MyProfile(): any {
       .then((res) => {
         const order = res.data.userdata.user_orders.map((el:any) => {
           console.log('order_deliveries : ==',el.order.order_deliveries);
-          const { delivery_day, delivery_term, delivery_time } = el.order.order_deliveries[0];
+          const { delivery_day, delivery_term, delivery_time } = el.order.order_deliveries;
           const { 
             state, totalprice, order_menus, store, user_name, 
             selected_address, selected_address_detail, 

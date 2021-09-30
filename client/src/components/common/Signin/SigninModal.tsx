@@ -103,6 +103,7 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
         <Icon onClick={() => { setModalOpen(false) }}>
           <i className="fas fa-times"></i>
         </Icon>
+        <div className="sample">
         <form onSubmit={(e) => {signinHandler(e)}} >
         <SigninInput type="email" placeholder="email" value={email} onChange={onChangeEmail} />
         <SigninInput type="password" placeholder="password" value={password} onChange={onChangePassword} />
@@ -118,6 +119,7 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
         }}>
             지금 가입하기
           </SignupLink></LeadSignup>
+          </div>
       </SigninWrapper>
       {failModal ?
         <ConfirmModal

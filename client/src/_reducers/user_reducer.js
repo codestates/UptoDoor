@@ -11,12 +11,12 @@ import {
   KAKAO_SIGNIN,
   NAVER_SIGNIN,
   CALCEL_ORDER,
-  CERT_EMAIL,
+  SEND_CERT_EMAIL,
 } from "../_actions/type";
 
 export default function user_reducer(state = {}, action) {
   switch (action.type) {
-    case CERT_EMAIL:
+    case SEND_CERT_EMAIL:
       return {...state }
     case SIGNUP:
       return { ...state, signUp: action.payload };

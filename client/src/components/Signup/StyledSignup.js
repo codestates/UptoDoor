@@ -12,7 +12,8 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-`
+`;
+
 export const H1 = styled.h1`
 font-size: ${LargeFont};
 margin : 20px 0 40px;

@@ -1,7 +1,7 @@
 import React, { useState , useCallback, useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { signUp, certEmail } from "../../_actions/user_action";
+import { signUp, sendCertEmail } from "../../_actions/user_action";
 import {
   Container,
 } 
@@ -27,7 +27,7 @@ function SignupWrapper() {
   //required
   const [email, setEmail] = useState("");
   const [certEmail, setCertEmail] = useState(false);
-  const [certEmailErr, setCertEmailErr] = useState(false);
+  // const [certEmailErr, setCertEmailErr] = useState(false);
   const [nickname , setNickname] = useState('');
   const [mobile, setMobile] = useState('');
   const [password , setPassword] = useState('');
@@ -49,12 +49,12 @@ function SignupWrapper() {
   }, []);
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
-    dispatch(certEmail(email))
+    dispatch(sendCertEmail(email))
       .then((res) => {
         if (res.payload.message === "send success") {
           setModalSuccess(true);
           setCertModal(true);
-          setCertEmailErr(false);
+          // setCertEmailErr(false);
            setCertEmail(true);
         }
       })
@@ -130,19 +130,17 @@ function SignupWrapper() {
   //!form 제출핸들러.
   const signupSubmitHandler = useCallback((e) => {
     // console.log('파이널 isAllchk' , isAllchecked)
-    console.log('certEmail :::::: ',certEmail)
+    // console.log('certEmail :::::: ',certEmail)
     e.preventDefault();
     if(password !== passwordChk) return false;
     if(passwordRegErr === true) return setPasswordRegErr(true);
     if(isAllchecked === false ) return false;
     if(certEmail === false) {
-      setCertEmailErr(true);
+      // setCertEmailErr(true);
       setCertEmail(false);
-      console.log('에러날때 최종가아앖',certEmailErr , certEmail)
     }else if(certEmail === true){
-      setCertEmailErr(false);
+      // setCertEmailErr(false);
       setCertEmail(true);
-      console.log('진짜최종갑아아아ㅏ앙',certEmailErr , certEmail)
     }
 
       let userinfo = {
@@ -204,9 +202,9 @@ function SignupWrapper() {
             value={email}
             onChange={onChangeEmailHandler}
           />
-          {certEmailErr ? 
+          {/* {certEmailErr ? 
           <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> 
-          : null} 
+          : null}  */}
         </SignupBox>
 
           <SignupBox>

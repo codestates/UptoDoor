@@ -184,8 +184,9 @@ function AdminEditForm() {
 
   //! store 삭제
   const deleteStoreHandler = () => {
+    console.log('함수실행')
     alert('가게삭제 성공')
-    dispatch(deleteAdminPost())    
+    dispatch(deleteAdminPost(admin.id))   
     .then((res: any) => {
       if (res.payload.message  === 'good bye') {
         setDeleteModal(false);
@@ -210,7 +211,7 @@ function AdminEditForm() {
   }
   
   useEffect(() => {
-    const store_id = admin.orderdata.store.id
+    const store_id = admin.id
     axios.get(`${END_POINTS}/admin/store/${store_id}`)
       .then((res) => {
         console.log("1",res.data);

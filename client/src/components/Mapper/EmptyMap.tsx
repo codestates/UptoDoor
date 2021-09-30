@@ -48,7 +48,7 @@ const moveStoreHandler = (id: number) => {
               return (
                 <MapInfoWrapper key={el.id} className="mapinfo-wrapper">
                   <StoreImg
-                    src={el.image.length === 0 ? "" : el.image[0]}
+                    src={el.image.length === 0 ? "" : el.image}
                     alt="업체사진"
                   />
                   <div>

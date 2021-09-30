@@ -221,11 +221,27 @@ bottom: ${({scollup})=> (scollup ? '40px' : '70px')};
 opacity: ${({scollup})=> (scollup ? '0' : '1')};
 z-index: 1;
 transition : all 0.3s;
+>div{
+  width: 50px;
+  height : 100px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+}
+>div>.alarm-btn{
+  display: none;
+  margin : 10px 0;
+  animation: none;
+}
 @media screen and (min-width: 767px) {
   left: ${({scollup})=> (scollup ? '45%' : '0')};
   bottom: ${({scollup})=> (scollup ? '70px' : '70px')};
+  >div>.alarm-btn{
+  display: unset;
+  }
 }
->i{
+
+>div>i{
   width : 60px; height: 50px;
   font-size: ${({scollup})=> (scollup ? '30px' : UltraLargeFont)};
   color : rgba(0,0,0,0.7);

@@ -130,11 +130,17 @@ const LandingIntro = () => {
           onClick = {scrollTop}
           scollup
           >
+          <div>
+            <I 
+            scrollup
+            className="far fa-bell alarm-btn"></I>
             <I 
             scrollup
             className="fas fa-angle-double-up"></I>
+          </div>
           </ArrowDisplay>
         </ArrowChk>
+
 
         {/* 흐림효과 */}
         <GradientEdge ></GradientEdge>

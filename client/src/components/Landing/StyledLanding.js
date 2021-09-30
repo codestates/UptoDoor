@@ -210,48 +210,49 @@ margin : 0;
 export const ArrowChk = styled.div`
 >.active{
   opacity: 1;
+  display: flex;
+  /* width : 50%; */
+  bottom : 30px;
+  text-align: right;
 }
 `
 export const ArrowDisplay = styled.div`
 width : 100%;
-height : 30px;
 position: ${({scollup})=> (scollup ? 'fixed' : 'absolute')};
-left: ${({scollup})=> (scollup ? '40%' : '0')};
-bottom: ${({scollup})=> (scollup ? '40px' : '70px')};
+left: ${({scollup})=> (scollup ? '80%' : '0')};
+bottom: ${({scollup})=> (scollup ? '40px' : '30px')};
 opacity: ${({scollup})=> (scollup ? '0' : '1')};
 z-index: 1;
 transition : all 0.3s;
->div{
-  width: 50px;
-  height : 100px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
+@media screen and (min-width: 499px) {
+  left: ${({scollup})=> (scollup ? '90%' : '0')};
 }
->div>.alarm-btn{
+>.fa-angle-double-down{
+  animation: ${upNdown} 0.7s 0s ease infinite alternate-reverse;
+}
+>.fa-bell{
   display: none;
-  margin : 10px 0;
-  animation: none;
+  animation:none;
 }
+//반드시 .fa-bell 밑에있어야함.
 @media screen and (min-width: 767px) {
-  left: ${({scollup})=> (scollup ? '45%' : '0')};
+  left: ${({scollup})=> (scollup ? '90%' : '0')};
   bottom: ${({scollup})=> (scollup ? '70px' : '70px')};
-  >div>.alarm-btn{
+  >.fa-bell{
   display: unset;
   }
 }
-
->div>i{
-  width : 60px; height: 50px;
+>i{
+  width : 50px; height: 50px;
+  text-align: center;
   font-size: ${({scollup})=> (scollup ? '30px' : UltraLargeFont)};
   color : rgba(0,0,0,0.7);
-  animation: ${upNdown} 0.7s 0s ease infinite alternate-reverse;
-  transition : all 0.3s;
+  transition : all 0.1s;
+  line-height: 50px;
   &:hover{  
     width: ${({scollup})=> (scollup ? '50px' : '70px')};
     height: ${({scollup})=> (scollup ? '50px' : '70px')};
     cursor: ${({scollup})=> (scollup ? 'pointer' : 'unset')};
-    padding-top : 8px;
     box-sizing: border-box;
     transition : all 0.1s;
     background: ${({scollup})=> (scollup ? 'linear-gradient(45deg, mediumturquoise,#5d9cec)' : '')};
@@ -265,6 +266,17 @@ transition : all 0.3s;
 }
 `
 export const I = styled.i`
+margin : 5px 0;
+`
+export const AlarmI = styled.i`
+position : fixed;
+bottom: 30px; left : 70%;
+font-size : 30px;
+
+@media screen and (min-width: 767px) {
+}
+@media screen and (min-width: 1140px) {
+}
 `
 export const GradientEdge = styled.div`
 position: absolute;

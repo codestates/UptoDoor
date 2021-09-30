@@ -18,7 +18,7 @@ import {
   IntroH1,
   IntroH2,
   ArrowDisplay,
-  ArrowChk, I
+  ArrowChk, I,AlarmI
 } from './StyledLanding'
 import {category, categoryDummy} from '../dummyData'
 
@@ -42,6 +42,9 @@ const LandingIntro = () => {
     });
     setScrollY(0);
     setBtnStatus(false);
+  }
+  const alarmHandler = () => {
+    alert('알람이동')
   }
 
   useEffect(() => {
@@ -118,6 +121,11 @@ const LandingIntro = () => {
         {/* 화살표 표시 */}
         <ArrowDisplay className = 'arrow-display-bottom'>
           <I className="fas fa-angle-double-down"></I>
+
+          <AlarmI 
+          scrollup
+          className="far fa-bell alarm-btn"
+          onClick = {alarmHandler}></AlarmI>
         </ArrowDisplay>
 
         <ArrowChk>
@@ -127,19 +135,14 @@ const LandingIntro = () => {
             'arrow-display-top active' 
             : 
             'arrow-display-top'}
-          onClick = {scrollTop}
           scollup
           >
-          <div>
-            <I 
-            scrollup
-            className="far fa-bell alarm-btn"></I>
-            <I 
-            scrollup
-            className="fas fa-angle-double-up"></I>
-          </div>
-          </ArrowDisplay>
-        </ArrowChk>
+          <I 
+          scrollup
+          className="fas fa-angle-double-up"
+          onClick = {scrollTop}></I>
+        </ArrowDisplay>
+      </ArrowChk>
 
 
         {/* 흐림효과 */}

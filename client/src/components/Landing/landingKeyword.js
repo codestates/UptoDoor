@@ -21,9 +21,15 @@ export default function Keyword(
   // 지도를 생성합니다
   const map = new kakao.maps.Map(mapContainer, mapOption);
 
+// 지도범위 재설정하기, 지도 확대축소막기 강북밑에   
+// const points = [
+//     new kakao.maps.LatLng(33.452278, 126.567803),
+//     new kakao.maps.LatLng(33.452671, 126.574792),
+//     new kakao.maps.LatLng(33.451744, 126.572441)
+// ];
+
   // 주소-좌표 변환 객체를 생성합니다
   const geocoder = new kakao.maps.services.Geocoder();
-    //! 실렉트 주소가 없을경우
     //* 전체 위치 가져오는 좌표, 필터된 좌표가져오기
     //* 마커까지 찍음
     let marker;

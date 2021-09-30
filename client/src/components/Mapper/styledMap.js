@@ -32,22 +32,10 @@ const showInfoModalBg = keyframes`
   }
 `
 export const MapWrapperContainer = styled.section`
-/* transition : all 0.3s;
-padding : 0 8px;
-max-width: 1440px; */
 margin: 30px auto;
 min-width: 375px;
 width: 100%;
 height : 716px;
-
->.line{
-  visibility: hidden;
-  @media screen and (min-width: 768px) {
-    visibility: visible;
-    margin: 20px 0 10px;
-    border-bottom : 1px solid ${TextLightGrey};
-  }
-}
 @media screen and (min-width: 499px) {
   height: unset;
 }

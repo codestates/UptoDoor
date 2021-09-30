@@ -22,12 +22,10 @@ import AdminStoreInfo from "./AdminStoreInfo";
 
 
 function AdminProfile() {
-  const admin = useSelector((state) => state.admin?.orderdata);
+  const admin = useSelector((state) => state.admin);
   console.log(admin);
   const { store } = admin;
   const { orders } = store;
-  console.log("스토어", store)
-  console.log("오더스", orders);
   
   
   const [filteredData, setFilteredData] = useState([])

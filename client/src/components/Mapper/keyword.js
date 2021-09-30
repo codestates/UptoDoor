@@ -17,13 +17,6 @@ export default function Keyword(
   clickHashtagHandler
 ) {
   // console.log(initialStore);
-  // console.log(
-  //   "selected",
-  //   initialStore,
-  //   selectAddress,
-  //   filterClickHandler,
-  //   clickHashtagHandler
-  // );
   const mapContainer = document.getElementById("map"); // 지도를 표시할 div
   //* 위치를 선택하면 확대레벨이 달라짐
   let mapOption;
@@ -62,19 +55,24 @@ export default function Keyword(
           // 정상적으로 검색이 완료됐으면
           if (status === kakao.maps.services.Status.OK) {
             const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-//             var imageSrc =
-//                 "./images/marker1.png", // 마커이미지의 주소입니다
-//               imageSize = new kakao.maps.Size(35, 35), // 마커이미지의 크기입니다
-//               imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-// var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-  // 결과값으로 받은 위치를 마커로 표시합니다
-  //! ------------
-  marker = new kakao.maps.Marker({
-    map: map,
-    position: coords,
-    // image: markerImage,
-  });
+            //             var imageSrc =
+            //                 "./images/marker1.png", // 마커이미지의 주소입니다
+            //               imageSize = new kakao.maps.Size(35, 35), // 마커이미지의 크기입니다
+            //               imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+            // var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            //! ------------
+            marker = new kakao.maps.Marker({
+              map: map,
+              position: coords,
+              // image: markerImage,
+            });
+            const infowindow = new kakao.maps.InfoWindow({
+              content: `<div>${initialStore[i].name}</div>`, // 인포윈도우에 표시할 내용
+            });
 
+            kakao.maps.event.addListener(marker,"mouseover",makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker,"mouseout",makeOutListener(infowindow));
             kakao.maps.event.addListener(marker, "click", () => {
               geocoder.coord2Address(
                 coords.getLng(),
@@ -106,8 +104,11 @@ export default function Keyword(
 
         if (selected) {
           selected.setMap(map);
-          const iwContent =
-            '<div style="width:60px; margin:0; padding:0;z-index:2000;">현위치</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          const iwContent = `<span class="left"></span><span style = "width:100%; z-index:2000;background-color: #f7f7f7; text-align: center;color:#245CCE;" class="center">현위치</span><span class="right"></span>`;
+          
+          // 
+            
+            // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
           const iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
           const infowindow = new kakao.maps.InfoWindow({
             position: iwPosition,
@@ -151,6 +152,12 @@ export default function Keyword(
                     position: coords,
                   });
 
+                  const infowindow = new kakao.maps.InfoWindow({
+                    content: `<div>${initialStore[i].name}</div>`, // 인포윈도우에 표시할 내용
+                  });
+                  
+                  kakao.maps.event.addListener(marker,"mouseover",makeOverListener(map, marker, infowindow));
+                  kakao.maps.event.addListener(marker,"mouseout", makeOutListener(infowindow));
                   kakao.maps.event.addListener(marker, "click", () => {
                     geocoder.coord2Address(
                       coords.getLng(),
@@ -196,6 +203,19 @@ export default function Keyword(
     //     marker[i].setMap(null);
     //   }
     // }
+  }
+  // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+  function makeOverListener(map, marker, infowindow) {
+    return function () {
+      infowindow.open(map, marker);
+    };
+  }
+
+  // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+  function makeOutListener(infowindow) {
+    return function () {
+      infowindow.close();
+    };
   }
 
   const callback = function (result, status) {

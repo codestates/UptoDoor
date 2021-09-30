@@ -17,7 +17,8 @@ function MapSelectModal(props:any) {
   return (
     <StyledModal>
       {openModal ? (
-        <ModalSelectAddContainer className = 'modal-container' >
+        <ModalSelectAddContainer onClick={closeModal}
+          className='modal-container' >
           <ModalSelectAddWrapper className = 'modal-wrapper'>
             <ModalTitleText>{modalTitleText}</ModalTitleText>
             <hr></hr>

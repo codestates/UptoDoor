@@ -12,11 +12,28 @@ import {
   NAVER_SIGNIN,
   KAKAO_SIGNIN,
   CALCEL_ORDER,
+  CERT_EMAIL,
 } from "./type";
 
 import axios from 'axios'
 axios.defaults.withCredentials = true
+//
+export const certEmail = (email) => {
+  const request = axios
+    .post(
+      `${END_POINTS}/auth/email`,
+      { email: email },
+      { withCredentials: true, credentials: "include" }
+    )
+    .then((res) => {
+      return res.data;
+    });
 
+  return {
+    type: CERT_EMAIL,
+    payload: request,
+  };
+};
 //!유저 signup post 요청
 export const signUp = (userinfo) => {
   const result = 
@@ -34,6 +51,7 @@ export const signUp = (userinfo) => {
     payload : result 
   }
 }
+
 
 //유저 signin post 요청
 export const signIn = (userinfo) => {
@@ -125,14 +143,12 @@ export const deleteUser = (userinfo) => {
 }
 
 //main email 보내기
-export const addAddress = (address, name) => {
-  console.log("액션에서", address);
-
+export const addAddress = (address) => {
   const request = 
     axios.post(`${END_POINTS}/users/address`, address).then((res) => {
       return res.data;
     })
-  console.log(request);
+  
   return {
     type: ADD_ADDRESS,
     payload: request,

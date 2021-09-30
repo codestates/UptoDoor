@@ -13,14 +13,15 @@ export const NAVER_SIGNOUT = "NAVER_SIGNOUT";
 export const KAKAO_SIGNOUT = "KAKAO_SIGNOUT";
 export const KAKAO_SIGNIN = "KAKAO_SIGNIN";
 export const NAVER_SIGNIN = "NAVER_SIGNIN";
+export const CERT_EMAIL = "CERT_EMAIL"
 
 
 //admin signUp/signIn/signOut/mypage/deleteAdmin
 export const ADMIN_POST = "ADMIN_POST";
 export const ADMIN_POST_EDIT = 'ADMIN_POST_EDIT';
-export const ADMIN_POST_GET = 'ADMIN_POST_GET'
 export const DELETE_ADMIN_POST = "DELETE_ADMIN_POST";
 export const GET_ADMIN_DATA = "GET_ADMIN_DATA";
+export const RESET_ADMIN = "RESET_ADMIN";
 //Store
 export const STORE_DATAS = "STORE_DATAS";
 export const STORE_FILTER_BY_HASHTAG = "STORE_FILTER_BY_HASHTAG";

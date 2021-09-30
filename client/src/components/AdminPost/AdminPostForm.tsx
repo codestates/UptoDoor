@@ -6,7 +6,7 @@ import {
   StoreInputBox,
   StoreNameInput,
   StoreIntroTextArea,
-  StoreBtnBox,
+  StoreBtnBox,OpenCloseInputWrapper
 } from './StyledAdminPost'
 import {Container,Wrapper,Title,} from "../GlobalStyle";
 import { SmallButton } from '../common/Button/Button';
@@ -45,10 +45,10 @@ function AdminPostForm() {
   const [title , setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [description , setDescription] = useState('');
-  const [time , setTime] = useState('');
+  const [openTime, setOpenTime] = useState('');
+  const [closeTime, setCloseTime] = useState('')
   const [mobile , setMobile] = useState('');
    //주소 
-  const [current, setCurrent] = useState("")
   const [switched, setSwitched ] = useState("");
   const [adminAddress , setAdminAddress] = useState('');
   const [adminAddressDetail, setadminAddressDetail] = useState("");
@@ -77,9 +77,6 @@ function AdminPostForm() {
     }else{
       setDescription(limitWord);
     }
-  }
-  const changeTimeHandler = (e:any) => {
-    setTime(e.target.value)
   }
   //admin address
   const changeAdminAddress = useCallback( async (data) => {
@@ -141,7 +138,7 @@ function AdminPostForm() {
     e.preventDefault();
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
     if(
-      !storeImgArr || !title || !category || !description || !time ||
+      !storeImgArr || !title || !category || !description || !openTime || !closeTime ||
       ! adminAddress || !mobile || storeFile && !menuArr
       ){
       //모달
@@ -152,7 +149,8 @@ function AdminPostForm() {
       category:category,
       description:description,
       mobile : mobile,
-      delivery_time : time,
+      open_time: openTime,
+      close_time:closeTime,
       adminAddress : adminAddress,
       adminAddressDetail: adminAddressDetail,
 
@@ -233,14 +231,26 @@ return (
           </StoreInputBox>
 
           <StoreInputBox>
-            <label>배달 가능시간</label>
-            <StoreNameInput 
+              <label>배달 가능시간<span>(ex.09:00-17:00)</span></label>
+              
+              <OpenCloseInputWrapper>
+            <input 
             required
-            type = 'time'
-            defaultValue = {time} 
-            placeholder = '배달 가능한 시간을 작성하세요' 
-            onChange = {changeTimeHandler}/>
-          </StoreInputBox>
+            type = 'text'
+            defaultValue = {openTime} 
+            placeholder = 'Open Time' 
+            onChange={(e:any)=>{setOpenTime(e.target.value)}} />
+                <h1>-</h1>
+                <input
+                  required
+                  type='text'
+                  defaultValue={closeTime}
+                  placeholder='Close Time'
+                  onChange={(e:any)=>{setCloseTime(e.target.value)}} />
+              </OpenCloseInputWrapper>
+            
+            </StoreInputBox>
+            
         </AdminForm>
 
         <AdminForm>

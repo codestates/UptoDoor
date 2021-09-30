@@ -41,36 +41,36 @@ function NavBar() {
     e.preventDefault();
     
     if (user.login_type === 'kakao') {
+      dispatch(resetAdmin());
       dispatch(kakaoSignOut())
       .then((res: any) => {
-        console.log(res);
         if (res.payload === "signout success") {
-          dispatch(resetAdmin());
-        window.location.href=`${END_POINT}`
+          window.location.href = `${END_POINT}`
+          
       } else {
         alert("로그아웃에 실패했습니다.")
       }
     })
     }
     else if (user.login_type === 'naver') {
+      dispatch(resetAdmin());
       dispatch(naverSignOut())
       .then((res: any) => {
-        console.log(res);
         if (res.payload === "signout success") {
-        dispatch(resetAdmin());
-        window.location.href=`${END_POINT}`
+          window.location.href = `${END_POINT}`
       } else {
         alert("로그아웃에 실패했습니다.")
       }
     });
     }
     else {
+      dispatch(resetAdmin())
       dispatch(signOut())
       .then((res: any) => {
         console.log("여기서 찍히녀", res);
         if (res.payload === "signout success") {
-        dispatch(resetAdmin());
-        window.location.href=`${END_POINT}`
+          
+            window.location.href=`${END_POINT}`
       } else {
         alert("로그아웃에 실패했습니다.")
       }

@@ -136,9 +136,9 @@ function MyProfileEdit() {
   return (
     <Container>
       <Title>프로필 수정</Title>
-      <Form onSubmit = {profileEditSubmitHandler}  >
+      
       <Wrapper>
-
+      <Form onSubmit = {profileEditSubmitHandler}  >
         <ProfileEditBox>
           <Label>E-mail</Label>
           <ProfileEditInput
@@ -216,9 +216,9 @@ function MyProfileEdit() {
           onClick = {withdrawalModalHandler}
           >회원 탈퇴</SmallButton>
         </BtnBox>
-
+        </Form>
       </Wrapper>
-      </Form>
+      
 
       {openModal ?
       <WarningModal

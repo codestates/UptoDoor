@@ -210,7 +210,7 @@ function AdminEditForm() {
   }
   
   useEffect(() => {
-    const store_id = admin.orderdata.store.id
+    const store_id = admin.store.id
     axios.get(`${END_POINTS}/admin/store/${store_id}`)
       .then((res) => {
         console.log("1",res.data);

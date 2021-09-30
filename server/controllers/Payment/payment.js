@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
         const response = await Bootpay.getAccessToken()
         if(response.status === 200){
             const result = await Bootpay.verify(req.body.receipt_id)
+            //const receipt = await user.update({ receipt : req.body.receipt_id}, { where : { id: id }})
             .then( async (rsp) => {
                 //console.log('---axios token---',response.data.token)
                 const respon = await Bootpay.reserveSubscribeBilling({
@@ -28,6 +29,7 @@ module.exports = async (req, res) => {
                     schedulerType: 'oneshot',
                     executeAt: ((new Date()).getTime() / 1000) + 5
                 })
+                //await user.update({ billingkey : respon.data.billingKey }, { where: { id: id }})
                 res.status(200).send({ message: 'order ok'});
                 console.log('----time-----',new Date(respon.data.execute_at*1000));
                 console.log('----data-----',respon);
@@ -63,37 +65,6 @@ async function cancel() { //결제 취소
     }
 }
 
-async function getBillingKey() { //빌링키 발급
-    const BootPay = require('bootpay-backend-nodejs').Bootpay
-    BootPay.setConfig(
-        '6152052e7b5ba4002352bc63',
-        'n2dbrcZi2B7g66Rt1WEnuToz0GF6DDPjoRYGuZgI+Wc='
-    )
-    const token = await BootPay.getAccessToken();
-    if(token.status === 200){
-        let response
-        try {
-            response = await BootPay.requestSubscribeBillingKey({
-                orderId: (new Date()).getTime(),
-                pg: 'kcp',
-                itemName: '정기결제',
-                cardNo: '',
-                cardPw: '',
-                expireYear: '',
-                expireMonth: '',
-                identifyNumber: '',
-                extra: {
-                    subscribeTestPayment: 1 //100원 결제 후 결제가 되면 빌링키 발급, 결제 실패하면 에러
-                }
-            })
-        } catch (err) {
-            console.log('-- 빌링키 발급 에러 --', err)
-            return
-        }
-        console.log(response)
-    } 
-}
-
 async function subscribeBilling() { //발급된 빌링키로 결제 승인 요청
     const BootPay = require('bootpay-backend-nodejs').Bootpay
     BootPay.setConfig(
@@ -119,37 +90,6 @@ async function subscribeBilling() { //발급된 빌링키로 결제 승인 요�
     }
 }
 
-async function subscribeBillingReserve() { //발급된 빌링키로 결제 예약 요청
-    const Bootpay = require('bootpay-backend-nodejs').Bootpay
-    Bootpay.setConfig(
-        '6152052e7b5ba4002352bc63',
-        'n2dbrcZi2B7g66Rt1WEnuToz0GF6DDPjoRYGuZgI+Wc='
-    )
-    let token = await Bootpay.getAccessToken()
-    if (token.status === 200) {
-        let response
-        try {
-            response = await Bootpay.reserveSubscribeBilling({
-                billingKey: '',
-                itemName: '테스트',
-                price: 1000,
-                orderId: (new Date()).getTime(),
-                userInfo: {
-                    username: '테스트',
-                    phone: '01000000000'
-                },
-                feedbackUrl: 'http://localhost:3060/callback',
-                feedbackContentType: 'json',
-                schedulerType: 'oneshot',
-                executeAt: ((new Date()).getTime() / 1000) + 5
-            })
-        } catch (err) {
-            return console.log('-- 빌링키 결제 예약 요청 에러 --',err)
-        }
-        console.log(response)
-    }
-}
-
 async function subscribeBillingReserveCancel() { //빌링키로 결제 예약 - 취소 요청
     const Bootpay = require('bootpay-backend-nodejs').Bootpay
     Bootpay.setConfig(
@@ -168,7 +108,6 @@ async function subscribeBillingReserveCancel() { //빌링키로 결제 예약 - 
         console.log(response)
     }
 }
-
 
 async function deleteBillingKey() { //빌링키 삭제
     const Bootpay = require('bootpay-backend-nodejs').Bootpay

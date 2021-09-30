@@ -4,12 +4,9 @@ import {
   FlexBox,H3,H4,P,Category,
   DetailTextArea,
   EachItemBox,
-} from './StyledUserOrderInfo'
+} from './StyledMyPage'
 
-function MyStoreInfo({orderitem}:any) {
-  console.log('===orderitem==',orderitem)
-  console.log('===orderitemstore==',orderitem.store)
-  // const store = orderitem.store;
+function MyOrderStore({orderitem}:any) {
 
   return (
     <>
@@ -56,4 +53,4 @@ function MyStoreInfo({orderitem}:any) {
   )
 }
 
-export default MyStoreInfo
+export default MyOrderStore

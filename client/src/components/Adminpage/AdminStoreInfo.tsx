@@ -2,7 +2,7 @@ import React from 'react'
 import {
   MypageOrderListWrapper,
   OrderListWrapper
-} from "../Mypage/StyledMypage";
+} from "../Mypage/StyledMyPage";
 import { StoreTitle,StoreDesc,StoreDescContent,StoreDescImg,StoreMenu ,MenuDesc,MenuImg,MenuContent} from './StyledAdminPage'
 
 const AdminStoreInfo = ({store}:any) => {

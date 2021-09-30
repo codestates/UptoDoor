@@ -1,7 +1,7 @@
 import styled,{keyframes} from 'styled-components'
 import { UltraLargeFont,
   TextLightGrey,TextDarkGrey,
-  LargeFont, SmallFont, MediumFont } from '../GlobalStyle'
+  LargeFont, SmallFont, MediumFont, PointColor } from '../GlobalStyle'
 import {showModal} from '../common/Modal/styledModal'
 
 const upNdown = keyframes`
@@ -9,7 +9,7 @@ const upNdown = keyframes`
     margin-top: -5px;
   }
   100%{
-    margin-top: 5px;
+    margin-bottom: 5px;
   }
 `
 //!intro
@@ -28,7 +28,7 @@ margin : 0 auto;
 padding : 100px 0 20px;
 }
 `
-export const IntroH1 = styled.h1`
+export const MainTitle = styled.h1`
 font-size: ${MediumFont};
 font-weight : 500;
 color : ${TextDarkGrey};
@@ -38,7 +38,7 @@ color : ${TextDarkGrey};
   font-weight: 600;
 }
 `
-export const IntroH2 = styled.h2`
+export const MainSubTitle = styled.h2`
 font-size: 18px;
 font-weight : 400;
 color : ${TextLightGrey};
@@ -51,7 +51,7 @@ color : ${TextLightGrey};
   font-size: 40px;
 }
 `
-export const Container = styled.div`
+export const MainContainer = styled.div`
   margin : 0 auto;
   text-align: center;
   width: 375px;
@@ -72,7 +72,6 @@ justify-content:center;
 align-items: flex-end;
 width: 100%;
 height : 50px;
-/* border-bottom: 3px solid; */
 >div{
   width: 70px;
 }
@@ -108,7 +107,6 @@ export const CategoryTitleWrapper = styled.div`
 width: fit-content;
 text-align: center;
 margin : 10px auto ;
-
 @media screen and (min-width: 768px) {
   width: 800px;
   margin : 0px auto ;
@@ -132,11 +130,10 @@ font-size: 72px;
 text-align: center;
 }
 `
-//////////////////////slider-  img/////////////////////
-//이미지랑감싸고있는 래퍼.
 export const SliderWrapper = styled.div`
+background:linear-gradient(#fff,rgba(0,0,0,0.1));
 `
-export const ImgContainer = styled.div`
+export const ImgWrapper = styled.div`
 margin-top : 50px;
 visibility: hidden;
 >.slick-slider>.slick-list{
@@ -149,7 +146,6 @@ visibility: hidden;
 }
 `
 export const CategoryImgWrapper = styled.div`
-position : relative;
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
 grid-template-rows: 1fr 1fr ;
@@ -207,77 +203,83 @@ font-size: 45px;
 padding : 0;
 margin : 0;
 `
-export const ArrowChk = styled.div`
->.active{
-  opacity: 1;
-  display: flex;
-  /* width : 50%; */
-  bottom : 30px;
-  text-align: right;
-}
-`
 export const ArrowDisplay = styled.div`
-width : 100%;
-position: ${({scollup})=> (scollup ? 'fixed' : 'absolute')};
-left: ${({scollup})=> (scollup ? '80%' : '0')};
-bottom: ${({scollup})=> (scollup ? '40px' : '30px')};
-opacity: ${({scollup})=> (scollup ? '0' : '1')};
-z-index: 1;
-transition : all 0.3s;
-@media screen and (min-width: 499px) {
-  left: ${({scollup})=> (scollup ? '90%' : '0')};
-}
->.fa-angle-double-down{
-  animation: ${upNdown} 0.7s 0s ease infinite alternate-reverse;
-}
->.fa-bell{
-  display: none;
-  animation:none;
-}
-//반드시 .fa-bell 밑에있어야함.
-@media screen and (min-width: 767px) {
-  left: ${({scollup})=> (scollup ? '90%' : '0')};
-  bottom: ${({scollup})=> (scollup ? '70px' : '70px')};
-  >.fa-bell{
-  display: unset;
+>.click-icon{
+  cursor: pointer;
+  z-index: 1;
+  border-radius:10px;
+  background:#f7f7f7;
+  &:hover{
+    background: linear-gradient(45deg, mediumturquoise,#5d9cec);
+    color : #fff;
+    border-radius:50%;
+    transition: all 0.1s;
+    >span{display:none}
   }
 }
->i{
-  width : 50px; height: 50px;
-  text-align: center;
-  font-size: ${({scollup})=> (scollup ? '30px' : UltraLargeFont)};
-  color : rgba(0,0,0,0.7);
-  transition : all 0.1s;
-  line-height: 50px;
-  &:hover{  
-    width: ${({scollup})=> (scollup ? '50px' : '70px')};
-    height: ${({scollup})=> (scollup ? '50px' : '70px')};
-    cursor: ${({scollup})=> (scollup ? 'pointer' : 'unset')};
-    box-sizing: border-box;
-    transition : all 0.1s;
-    background: ${({scollup})=> (scollup ? 'linear-gradient(45deg, mediumturquoise,#5d9cec)' : '')};
-    color: ${({scollup})=> (scollup ? '#fff' : 'rgba(0,0,0,0.5)')};
-    border-radius: 50%;
+`
+export const FixI = styled.i`
+animation: ${upNdown} 0.7s 0s ease infinite alternate-reverse;
+position :absolute;
+bottom : 30px;
+font-size: 50px;
+z-index: 1;
+`
+export const AlarmI = styled.i`
+@media screen and (min-width: 767px) {
+width : 50px; height : 50px;
+line-height: 50px;
+position :fixed;
+right : 20px;
+bottom : 30px;
+font-size: 30px;
+>span{
+  border-radius: 50%;
+  width: 18px; height : 18px;
+  background-color: ${PointColor};
+  color : #fff;
+  font-size: 15px;
+  line-height: 17px;
+  position: absolute;
+  left : 60%;
+  bottom: 12%;
+}
 }
 @media screen and (min-width: 1140px) {
-  bottom : 90px;
-  font-size: ${({scollup})=> (scollup ? '36px' : UltraLargeFont)};
+}
+`
+export const ArrowChk = styled.div`
+>.fa-angle-double-up{
+  opacity: 0;
+  transition: all 0.3s;
+}
+>.active{
+  transition: all 0.3s;
+  opacity: 1;
+  z-index: 1;
+  cursor: pointer;
+  border-radius:10px;
+  background:#f7f7f7;
+  &:hover{
+    background: linear-gradient(45deg, mediumturquoise,#5d9cec);
+    color : #fff;
+    border-radius:50%;
+    transition: all 0.1s;
   }
 }
 `
 export const I = styled.i`
-margin : 5px 0;
-`
-export const AlarmI = styled.i`
-position : fixed;
-bottom: 30px; left : 70%;
-font-size : 30px;
-
+width : 50px; height : 50px;
+line-height: 50px;
+font-size: 30px;
+position :fixed;
+right : 30px;
+bottom : 30px;
 @media screen and (min-width: 767px) {
-}
-@media screen and (min-width: 1140px) {
+right : 80px;
 }
 `
+
 export const GradientEdge = styled.div`
 position: absolute;
 bottom : -40px;

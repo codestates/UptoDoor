@@ -1,10 +1,10 @@
 import React from 'react'
-import AdminProfile from '../components/Adminpage/AdminProfile';
+import AdminWrapper from '../components/Adminpage/AdminWrapper';
 
 const AdminPage = () => {
   return (
     <>
-      <AdminProfile/>
+      <AdminWrapper/>
     </>
   )
 }

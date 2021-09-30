@@ -1,5 +1,5 @@
 import React,{ useState ,useEffect } from 'react';
-import Modal from '../common/Modal/Modal'
+import TermModal from '../common/Modal/TermModal'
 import { 
   Label ,
   SideSpan, 
@@ -83,7 +83,7 @@ function SignupTerm({
           : null}
       </div>
 
-      <Modal
+      <TermModal
         openModal={openModal}
         closeModal={closeModal}
         modalTitleText = {modalTitleText}

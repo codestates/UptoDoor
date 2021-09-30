@@ -24,7 +24,7 @@ import ConfirmModal from '../common/Modal/ConfirmModal';
 
 import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
-import { Category } from '../UserOrderInfo/StyledUserOrderInfo';
+import { Category } from '../Mypage/StyledMyPage';
 
 const { kakao }: any = window;
 

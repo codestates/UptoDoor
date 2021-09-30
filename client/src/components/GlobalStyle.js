@@ -89,3 +89,150 @@ export const Title = styled.h1`
 </Wrapper>
 </Container>  
 */}
+
+
+//*Mypage, adminpage
+export const PageWrapper = styled.div`
+  @media screen and (min-width: 767px) {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 1140px) {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1140px;
+  }
+`;
+
+//* PageProfileBtnWrapper
+export const PageProfileBtnWrapper = styled.div`
+  @media screen and (min-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+    height: 450px;
+  }
+  @media screen and (min-width: 1140px) {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+  }
+`;
+
+//* PageProfileWrapper
+export const PageProfileWrapper = styled.div`
+  width: 100%;
+  padding: 18px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 767px) {
+    padding: 28px 20px 20px;
+    width: 240px;
+    height: 70%;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+
+  @media screen and (min-width: 1140px) {
+    width: 300px;
+  }
+`;
+
+//* PageContent
+export const PageContent = styled.div`
+  width: 60%;
+  > h3 {
+    margin-bottom: 6px;
+  }
+  > p {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+
+  @media screen and (min-width: 767px) {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: 0 auto;
+
+    > h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    > p {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+  }
+
+  @media screen and (min-width: 1140px) {
+    > h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    > p {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+  }
+`;
+
+//* PageBtnWrapper
+export const PageBtnWrapper = styled.div`
+  width: 40%;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  > button {
+    padding: 2px;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+    a {
+      text-decoration: none;
+      color: black;
+      background-color: #fff;
+      color: #656d78;
+    }
+  }
+
+  @media screen and (min-width: 767px) {
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    > button {
+      margin: 3px;
+      a {
+        font-size: 14px;
+      }
+    }
+  }
+  
+  @media screen and (min-width: 1140px) {
+    > button {
+      margin: 3px;
+      a {
+        font-size: 16px;
+      }
+    }
+  }
+`;

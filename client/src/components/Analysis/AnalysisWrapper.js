@@ -14,11 +14,11 @@ const AnalysisWrapper = () => {
       <Wrapper>
 
         <AnalysisCategory/>
-        <AnalysisGender/>
+        {/* <AnalysisGender/>
         <AnalysisAge/>
         <AnalysisGenderAge/>
         <AnalysisCity/>
-        <AnalysisAverageMonth/>
+        <AnalysisAverageMonth/> */}
         
       </Wrapper>
       

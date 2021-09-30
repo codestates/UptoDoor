@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', Router);
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('OK');
 });
 
 app.get('/health-check', (req,res) => {

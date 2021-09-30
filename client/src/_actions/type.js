@@ -13,7 +13,7 @@ export const NAVER_SIGNOUT = "NAVER_SIGNOUT";
 export const KAKAO_SIGNOUT = "KAKAO_SIGNOUT";
 export const KAKAO_SIGNIN = "KAKAO_SIGNIN";
 export const NAVER_SIGNIN = "NAVER_SIGNIN";
-export const CERT_EMAIL = "CERT_EMAIL"
+export const SEND_CERT_EMAIL = "SEND_CERT_EMAIL"
 
 
 //admin signUp/signIn/signOut/mypage/deleteAdmin
@@ -40,7 +40,7 @@ export const SELECT_STORE = "SELECT_STORE";
 export const REMOVE_ALL_CART = "REMOVE_ALL_CART";
 
 //
-export const END_POINTS = "https://uptodoors.shop"
-export const END_POINT = "https://uptodoor.shop";
-// export const END_POINTS = "http://localhost:3060";
-// export const END_POINT = "http://localhost:3000";
+// export const END_POINTS = "https://uptodoors.shop"
+// export const END_POINT = "https://uptodoor.shop";
+export const END_POINTS = "http://localhost:3060";
+export const END_POINT = "http://localhost:3000";

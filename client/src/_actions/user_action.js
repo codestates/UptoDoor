@@ -12,13 +12,13 @@ import {
   NAVER_SIGNIN,
   KAKAO_SIGNIN,
   CALCEL_ORDER,
-  CERT_EMAIL,
+  SEND_CERT_EMAIL,
 } from "./type";
 
 import axios from 'axios'
 axios.defaults.withCredentials = true
 //
-export const certEmail = (email) => {
+export const sendCertEmail = (email) => {
   const request = axios
     .post(
       `${END_POINTS}/auth/email`,
@@ -30,7 +30,7 @@ export const certEmail = (email) => {
     });
 
   return {
-    type: CERT_EMAIL,
+    type: SEND_CERT_EMAIL,
     payload: request,
   };
 };

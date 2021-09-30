@@ -35,7 +35,10 @@ module.exports = {
       introduce: {
         type: Sequelize.STRING
       },
-      delivery_time: {
+      open_time: {
+        type: Sequelize.STRING
+      },
+      close_time: {
         type: Sequelize.STRING
       },
       Business_paper: {

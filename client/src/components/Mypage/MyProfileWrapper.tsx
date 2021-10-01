@@ -1,17 +1,4 @@
 import React,{useEffect, useState} from 'react'
-<<<<<<< HEAD:client/src/components/Mypage/MyProfile.tsx
-import {Link} from 'react-router-dom'
-import { Container, Title, Wrapper,PageWrapper,PageProfileBtnWrapper ,PageProfileWrapper,PageContent,PageBtnWrapper} from "../GlobalStyle";
-import MyOrderWrapper from '../UserOrderInfo/MyOrderWrapper';
-import AdminOrderWrapper from '../Adminpage/AdminOrderInfo'
-import axios from 'axios';
-import { AdminStoreGetData } from '../../_actions/admin_action';
-import MyOrderList from './MyOrderList';
-// import MyPaymentList from './MyPaymentList';
-import { useDispatch} from "react-redux";
-import { 
-  MypageUl,MypageLi } from './StyledMypage';
-=======
 import { Link ,useHistory } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 
@@ -25,7 +12,6 @@ import {
 } from "../GlobalStyle";
 
 import { AdminStoreGetData } from '../../_actions/admin_action';
->>>>>>> 42bbef9637afd0cfaecc400389db8d897070a7d3:client/src/components/Mypage/MyProfileWrapper.tsx
 import { END_POINTS } from '../../_actions/type';
 
 import axios from 'axios';
@@ -130,27 +116,6 @@ function MyProfileWrapper(): any {
                 <p>{user.mainAddressDetail}</p>
                 </>
                 }
-<<<<<<< HEAD:client/src/components/Mypage/MyProfile.tsx
-                {/* {
-                user.subAddress === null || 
-                user.subAddressDetail === null
-                ?
-                <p>동네인증이 필요합니다.</p>
-                :
-                <>
-                <p>{user.subAddress}</p>
-                <p>{user.msubAddressDetail}</p>
-                </>
-                } */}
-              </PageContent>
-              <PageBtnWrapper>
-                {user.position === "1"
-                  ? (<button onClick={() => { moveAdminPage() }}>관리자 페이지</button>)
-                  : (<button><Link to="/adminpost">가게 등록</Link></button>)
-                }
-                <button><Link to="/mypageedit">프로필 수정</Link></button>
-              </PageBtnWrapper>
-=======
               </PageContent>
               <ButtonWrapper>
                 {user.position === "1" ? 
@@ -162,18 +127,13 @@ function MyProfileWrapper(): any {
                 <button><Link to="/mypageedit">프로필 수정</Link>
                 </button>
               </ButtonWrapper>
->>>>>>> 42bbef9637afd0cfaecc400389db8d897070a7d3:client/src/components/Mypage/MyProfileWrapper.tsx
             </PageProfileWrapper>
             <MypageUl>
               <MypageLi>
                 구독관리
               </MypageLi>
             </MypageUl>
-<<<<<<< HEAD:client/src/components/Mypage/MyProfile.tsx
-            </PageProfileBtnWrapper>
-=======
           </PageProfileBtnWrapper>
->>>>>>> 42bbef9637afd0cfaecc400389db8d897070a7d3:client/src/components/Mypage/MyProfileWrapper.tsx
 
             {cur === 1 ? 
             <MyOrderDetail 

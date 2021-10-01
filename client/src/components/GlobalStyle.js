@@ -226,11 +226,7 @@ export const PageBtnWrapper = styled.div`
       }
     }
   }
-<<<<<<< HEAD
-
-=======
   
->>>>>>> 42bbef9637afd0cfaecc400389db8d897070a7d3
   @media screen and (min-width: 1140px) {
     > button {
       margin: 3px;

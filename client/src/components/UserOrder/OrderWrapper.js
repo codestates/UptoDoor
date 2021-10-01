@@ -32,7 +32,7 @@ function OrderWrapper() {
   const mobileChecker = () => setMobileCheck((mobileCheck) => !mobileCheck);
   const [paymentCheck, setPaymentCheck] = useState(false);
   const paymentChecker = () => setPaymentCheck((paymentCheck) => !paymentCheck);
-
+  console.log('paymentChecker===>',paymentCheck);
   const [orderMobile, setOrderMobile] = useState("");
   const [deliveryName, onChangeDeliveryName] = useInput("");
 

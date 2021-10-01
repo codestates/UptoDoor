@@ -247,6 +247,7 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
   const request = axios
     .post(`${END_POINTS}/users/order`, orderinfo)
     .then((res) => {
+      console.log('--order res',res);
       return res.data;
     })
     .catch((err) => {

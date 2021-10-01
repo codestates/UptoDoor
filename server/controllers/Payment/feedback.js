@@ -4,20 +4,19 @@ const { checkAccess } = require('../Tokenfunc');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
     console.log('----feedback req----',req)
-    /*const Bootpay = require('bootpay-backend-nodejs').Bootpay
+    const Bootpay = require('bootpay-backend-nodejs').Bootpay
     Bootpay.setConfig(
         '6152052e7b5ba4002352bc63',
         'n2dbrcZi2B7g66Rt1WEnuToz0GF6DDPjoRYGuZgI+Wc='
     )
-    //const receiptdata = await order.findOne({ where: { id: req.body.data.receipt_id }})
+    const receiptdata = await order.findOne({ where: { id: req.body.order_id }})
     console.log('----receipt data',receiptdata);
     const orderinfo = {
         receipt_id: receiptdata.receipt,
         billing_key: receiptdata.billingkey,
-        feedback: feedback_order,
+        feedback: 'feedback',
     }
-    */
     console.log('------ 정기 결제 확인 -------')
-    //axios.post('https://uptodoors.shop/payment', orderinfo)
+    axios.post('https://uptodoors.shop/users/order', orderinfo)
     res.send('OK')
 }

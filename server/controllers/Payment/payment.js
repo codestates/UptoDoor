@@ -13,14 +13,14 @@ module.exports = async (req, res) => {
         
     const response = await Bootpay.getAccessToken()
         if(response.status === 200){
-            const result = await Bootpay.verify(req.body.receipt_id)
-            const receipt = await order.update({ receipt : req.body.receipt_id, billingkey: req.body.billing_key}, { where : { id: req.body.order_id }})
+            const result = await Bootpay.verify(req.body.data.receipt_id)
+            const receipt = await order.update({ receipt : req.body.data.receipt_id, billingkey: req.body.data.billing_key}, { where : { id: req.body.order_id }})
             .then( async () => {
                 //console.log('---axios token---',response.data.token)
                 if(req.body.feedback){ //두번째 정기결제 요청이면?
                     console.log('----if----')
                     const respon = await Bootpay.reserveSubscribeBilling({
-                        billingKey: req.body.billing_key,
+                        billingKey: req.body.data.billing_key,
                         itemName: '테스트',
                         price: 1000,
                         orderId: req.body.order_id,
@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
                         billingKey: req.body.data.billing_key,
                         itemName: '테스트',
                         price: 1000,
-                        orderId: orderData.order_id,
+                        orderId: req.body.order_id,
                         userInfo: {
                             username: '테스트',
                             phone: '01000000000'

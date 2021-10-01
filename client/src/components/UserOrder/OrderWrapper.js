@@ -36,7 +36,7 @@ function OrderWrapper() {
   const mobileChecker = () => setMobileCheck((mobileCheck) => !mobileCheck);
   const [paymentCheck, setPaymentCheck] = useState(false);
   const paymentChecker = () => setPaymentCheck((paymentCheck) => !paymentCheck);
-
+  console.log(paymentCheck)
   const [orderMobile, setOrderMobile] = useState("");
   const [deliveryName, onChangeDeliveryName] = useInput("");
 
@@ -104,7 +104,7 @@ function OrderWrapper() {
     }).close(function (data) {
         // 결제창이 닫힐(성공 실패 상관없이 됨)
     }).done(function (data) {
-      if (!mobileCheck && orderMobile.length >= 11 && paymentCheck) {
+      if (!mobileCheck && orderMobile.length >= 11) { //&& paymentCheck
         const selected_mobile = orderMobile;
         dispatch(addOrder(state.cart, selected_mobile, deliveryName, data))
           .then((res) => {
@@ -113,7 +113,7 @@ function OrderWrapper() {
             }
           })
           .catch((err) => alert("err입니다", err));
-      } else if (mobileCheck && paymentCheck) {
+      } else if (mobileCheck) { // && paymentCheck
         const selected_mobile = state.user.mobile;
         dispatch(addOrder(state.cart, selected_mobile, deliveryName, data))
           .then((res) => {
@@ -126,6 +126,7 @@ function OrderWrapper() {
       } else {
         setOptionsModal(true);
       }
+      console.log('-- 결제 완료 --',data)
     });
     
   }, [paymentCheck, mobileCheck, orderMobile, state]);

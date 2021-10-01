@@ -6,10 +6,12 @@ module.exports = async (req, res) => {
     const receiptdata = await order.findOne({ where: { id: req.body.order_id }})
     console.log('----receipt data',receiptdata);
     const orderinfo = {
+        data: {
         receipt_id: receiptdata.receipt,
-        billing_key: receiptdata.billingkey,
-        feedback: 'feedback',
+        billing_key: receiptdata.billingkey
+        },
         order_id: receiptdata.id,
+        feedback: 'feedback'
     }
     console.log('------ 정기 결제 확인 -------')
     axios.post('https://uptodoors.shop/payment', orderinfo)

@@ -24,8 +24,7 @@ import {
 
 import AdminOrderList from './AdminOrderList';
 import AdminOrderInfo from './AdminOrderInfo';
-import AdminStoreInfo from "./AdminStoreInfo";
-
+import AdminStoreInfo from './AdminStoreInfo';
 
 function AdminWrapper() {
   const admin = useSelector((state) => state.admin);

@@ -1,5 +1,5 @@
 import React from 'react'
-import AdminWrapper from "../components/Adminpage/AdminWrapper";
+import AdminWrapper from "../components/AdminPage/AdminWrapper";
 
 const AdminPage = () => {
   return (

@@ -14,7 +14,6 @@ import {
   SignupLogo,SignupBox,
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
-// import SigninModal from '../common/Signin/SigninModal'
 import { END_POINTS,END_POINT } from '../../_actions/type'
 import ConfirmModal from '../common/Modal/ConfirmModal'
 import SignupOptions from './SignupOptions'
@@ -27,7 +26,6 @@ function SignupWrapper() {
   //required
   const [email, setEmail] = useState("");
   const [certEmail, setCertEmail] = useState(false);
-  // const [certEmailErr, setCertEmailErr] = useState(false);
   const [nickname , setNickname] = useState('');
   const [mobile, setMobile] = useState('');
   const [password , setPassword] = useState('');
@@ -54,8 +52,7 @@ function SignupWrapper() {
         if (res.payload.message === "send success") {
           setModalSuccess(true);
           setCertModal(true);
-          // setCertEmailErr(false);
-           setCertEmail(true);
+          setCertEmail(true);
         }
       })
       .catch(() => {
@@ -113,13 +110,10 @@ function SignupWrapper() {
   const onChangeTermHandler = (checked, idx) => {
     if (checked) {
       setCheckedInputs([...checkedInputs, idx]);
-      // setCheckedInputs(checkedInputs.concat(idx));
       setIsAllchecked(checked)
-      // console.log('--chk 반영--',checked)
     } else {
       setCheckedInputs(checkedInputs.filter((el) => el !== idx));
       setIsAllchecked(checked)
-      // console.log('--chk 해제반영--',checked)
     }
   };
 
@@ -129,17 +123,13 @@ function SignupWrapper() {
 
   //!form 제출핸들러.
   const signupSubmitHandler = useCallback((e) => {
-    // console.log('파이널 isAllchk' , isAllchecked)
-    // console.log('certEmail :::::: ',certEmail)
     e.preventDefault();
     if(password !== passwordChk) return false;
     if(passwordRegErr === true) return setPasswordRegErr(true);
     if(isAllchecked === false ) return false;
     if(certEmail === false) {
-      // setCertEmailErr(true);
       setCertEmail(false);
     }else if(certEmail === true){
-      // setCertEmailErr(false);
       setCertEmail(true);
     }
 
@@ -157,7 +147,6 @@ function SignupWrapper() {
           if (res.payload.message === "Signup success") {
             setModalSuccess(true);
             setSignupModal(true);
-            // window.location.href = `${END_POINT}`;
           } else {
             setModalSuccess(false);
             setSignupModal(true);
@@ -202,9 +191,6 @@ function SignupWrapper() {
             value={email}
             onChange={onChangeEmailHandler}
           />
-          {/* {certEmailErr ? 
-          <ErrMsgP>이메일 인증은 필수입니다.</ErrMsgP> 
-          : null}  */}
         </SignupBox>
 
           <SignupBox>

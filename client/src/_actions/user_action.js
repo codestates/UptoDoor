@@ -236,12 +236,19 @@ export const addAddress = (address) => {
 };
 
 //order관련 구독하기, 취소하기
-export const addOrder = (order, selected_mobile, deliveryName) => {
+export const addOrder = (order, selected_mobile, deliveryName, data) => {
   order.selected_mobile = selected_mobile;
   order.user_name = deliveryName;
+  const orderinfo = {
+    order: order,
+    data: data
+  }
+  console.log('-- addorder --',orderinfo.order)
   const request = axios
-    .post(`${END_POINTS}/users/order`, order)
+    .post(`${END_POINTS}/users/order`, orderinfo)
+    //.post(`https://uptodoors.shop/users/order`, orderinfo)
     .then((res) => {
+      console.log('--order res',res);
       return res.data;
     })
     .catch((err) => {

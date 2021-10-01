@@ -17,6 +17,9 @@ module.exports = {
       delivery_term: {
         type: Sequelize.STRING
       },
+      paycount: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

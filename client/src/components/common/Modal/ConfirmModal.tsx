@@ -17,8 +17,11 @@ function ConfirmModal(props: any) {
     } = props;
 
   const closeModal = () => {
-    setOpenModal(false);
-    history.push(url);
+    if(modalSuccess === true){
+      history.push(url);
+    }else{
+      setOpenModal(false);
+    }
   }
   
   return (

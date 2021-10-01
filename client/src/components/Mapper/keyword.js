@@ -103,8 +103,14 @@ export default function Keyword(
 
         if (selected) {
           selected.setMap(map);
-          const iwContent = `<span class="left"></span><span style = "width:100%; z-index:2000;background-color: #f7f7f7; text-align: center;color:#245CCE;" class="center">현위치</span><span class="right"></span>`;
-          // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          const iwContent = `
+          <span class="left"></span>
+          <span style = "width:100%; z-index:2000;background-color: #f7f7f7; text-align: center;color:#245CCE;" class="center">현위치</span>
+          <span class="right"></span>`;
+          
+          // 
+            
+            // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
           const iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
           const infowindow = new kakao.maps.InfoWindow({
             position: iwPosition,

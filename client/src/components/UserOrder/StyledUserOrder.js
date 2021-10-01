@@ -497,16 +497,9 @@ export const CardCheck = styled.div`
     letter-spacing: -1px;
     margin: 4px 0 10px 0;
   }
-
-  > label {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    > input {
-      margin: 2px 8px 0 0;
-      width: 14px;
-      height: 14px;
-    }
+  > input {
+    margin: 2px 8px 0 0;
+    font-size : 16px;
   }
   @media screen and (min-width: 767px) {
     margin: 20px 0 0 0;

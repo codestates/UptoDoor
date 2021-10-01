@@ -32,16 +32,23 @@ function OrderWrapper() {
   const cart = state.cart;
   const user = state.user;
   const dispatch = useDispatch();
+
   const [mobileCheck, setMobileCheck] = useState(false);
   const mobileChecker = () => setMobileCheck((mobileCheck) => !mobileCheck);
   const [paymentCheck, setPaymentCheck] = useState(false);
   const paymentChecker = () => setPaymentCheck((paymentCheck) => !paymentCheck);
-  console.log(paymentCheck)
+  
   const [orderMobile, setOrderMobile] = useState("");
   const [deliveryName, onChangeDeliveryName] = useInput("");
-
+  
+  //필요모달 
   const [openModal, setOpenModal] = useState(false);
-  const [optionsModal, setOptionsModal] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
+  const [payFailModal, setPayFailModal] = useState(false);
+  const [payCancleModal, setPayCancleModal] = useState(false);
+  const [issueAccountModal, setIssueAccountModal] = useState(false);
+
+  // const [optionsModal, setOptionsModal] = useState(false);
 
   const orderHander = useCallback(() => {
     BootPay.request({
@@ -79,14 +86,18 @@ function OrderWrapper() {
       }
     }).error(function (data) {
       console.log('-- 결제 진행 에러 --',data);
+      setPayFailModal(true)
     }).cancel(function (data) {
       console.log('-- 결제 취소 에러 --',data);
+      setPayCancleModal(true)
     }).ready(function (data) {
       console.log('-- 가상계좌 입금 계좌번호 발급 -- ',data);
+      setIssueAccountModal(true)
     }).confirm(function (data) {
       //결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
       //주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
       console.log('-- confirm --',data);
+      setModalSuccess(true)
       const enable = true; // 재고 수량 관리 로직 혹은 다른 처리
       if (enable) {
         BootPay.transactionConfirm(data); // 조건이 맞으면 승인 처리를 한다.
@@ -102,9 +113,11 @@ function OrderWrapper() {
           .then((res) => {
             if (res.payload.message === "Your order has been completed") {
               setOpenModal(true);
+              setModalSuccess(true)
             }
           })
-          .catch((err) => alert("err입니다", err));
+          //alert("err입니다", err)
+          .catch((err) => setPayFailModal(true));
       } else if (mobileCheck) { // && paymentCheck
         const selected_mobile = state.user.mobile;
         dispatch(addOrder(state.cart, selected_mobile, deliveryName, data))
@@ -112,13 +125,17 @@ function OrderWrapper() {
             if (res.payload.message === "Your order has been completed") {
               dispatch(removeAllCart());
               setOpenModal(true);
+              setModalSuccess(true)
             }
           })
-          .catch((err) => alert("err입니다", err));
+          //alert('err입니다') 
+          .catch((err) => setPayFailModal(true));
       } else {
-        setOptionsModal(true);
+        // setOptionsModal(true);
+        setModalSuccess(false);
       }
       console.log('-- 결제 완료 --',data)
+      setModalSuccess(true);
     });
     
   }, [paymentCheck, mobileCheck, orderMobile, state]);
@@ -144,6 +161,7 @@ function OrderWrapper() {
   }, [orderMobile]);
 
   if (state === undefined) return null;
+
   return (
     <Container>
       <Title>주문 전 확인</Title>
@@ -166,23 +184,43 @@ function OrderWrapper() {
         </SubscriptAndOrderInfoWrapper>
 
         <ButtonWrapper>
-          <MiddleButton type="button" onClick={orderHander}>
+          <MiddleButton 
+          type="button" 
+          onClick={orderHander}>
             결제하기
           </MiddleButton>
           <MiddleButton>뒤로가기</MiddleButton>
         </ButtonWrapper>
       </Wrapper>
-      {/* {openModal ? (
+
+      {openModal ? (
         <ConfirmModal
-          openModal={openModal}
+          openModal={openModal || payFailModal || payCancleModal || issueAccountModal}
           setOpenModal={setOpenModal}
-          modalTitleText="주문 완료"
-          modalText="주문이 완료되었습니다. 감사합니다."
+          modalSuccess={modalSuccess}
           url="/"
+          modalTitleText={
+            modalSuccess
+            ?'주문 완료' 
+            :payFailModal
+            ?'결제 진행 에러'
+            :payCancleModal
+            ?'결제 취소 에러'
+            :issueAccountModal
+            ?'가상계좌 입금 계좌번호 발급'
+            :
+            '주문 실패'
+          }
+          modalText={
+            modalSuccess
+            ?'주문이 완료되었습니다. 감사합니다.'
+            :'모든 정보를 확인해주세요'
+          }
           modalBtn="확인"
         />
       ) : null}
-      {optionsModal ? (
+
+      {/* {optionsModal ? (
         <ConfirmModal
           openModal={optionsModal}
           setOpenModal={setOptionsModal}

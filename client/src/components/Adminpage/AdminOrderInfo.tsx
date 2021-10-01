@@ -12,6 +12,7 @@ import {
   DetailTextArea,
   EachItemBox,
 } from '../Mypage/StyledMypage';
+import { stringToPrice } from '../../utils/validation';
 import { AdminContainer,AdminOrderListContent } from './StyledAdminPage';
 
 function AdminOrderInfo({ orderitem, listbackHandler }:any) {
@@ -84,7 +85,7 @@ function AdminOrderInfo({ orderitem, listbackHandler }:any) {
             </EachItemBox>
             <EachItemBox>
               <H4>가격/수량</H4>
-                  <P>{item.menu.price} 원 / { item.quantity}개</P>
+                  <P>{stringToPrice(item.menu.price)} 원 / { item.quantity}개</P>
             </EachItemBox>
           </div>
         </FlexBox>
@@ -98,7 +99,7 @@ function AdminOrderInfo({ orderitem, listbackHandler }:any) {
     </>
           <TtlPricemBox className="ttl-price-box">
             <H4>총 결제금액</H4>
-            <h2>{orderitem.totalprice} 원</h2>
+            <h2>{stringToPrice(orderitem.totalprice)} 원</h2>
           </TtlPricemBox>
         </OrderInfoWrapper>
       </AdminOrderListContent>

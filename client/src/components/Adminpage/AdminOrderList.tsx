@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import { PageNumberWrapper,AdminOrderListInfoP,DeliveryTime,AdminOrderListItem,AdminWrapper,AdminContainer,AdminOrderListContent, } from './StyledAdminPage'
 import {ArrowBtn ,NextBtn } from '../common/Button/Button'
+import { removeLastStr } from '../../utils/validation';
 
 function AdminOrderList({
   moveDetailHandler, data,selectedDay }: any) {
@@ -31,9 +32,9 @@ function AdminOrderList({
                 <div>
                   <h5>주문자명: {el.user_name}</h5>
                   <h5>{el.selected_address}{" "}{el.selected_address_detail }</h5>
-                  <AdminOrderListInfoP><span>주문 내용:</span>{" "}{el.order_menus.map((el1:any) => {
-                    return `${el1.menu.name} ${el1.quantity}개, ${" "}`
-                  })}</AdminOrderListInfoP>
+                  <AdminOrderListInfoP><span>주문 내용:</span>{" "}{removeLastStr(el.order_menus.map((el1:any) => {
+                    return `${el1.menu.name} ${el1.quantity}개 ${" "}`
+                  }).join() )}</AdminOrderListInfoP>
                   </div>
                 <DeliveryTime >
                     배송시간: {el.order_deliveries.delivery_time}

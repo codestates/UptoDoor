@@ -40,7 +40,7 @@ function OrderWrapper() {
   const [optionsModal, setOptionsModal] = useState(false);
 
   const orderHander = useCallback(() => {
-
+    console.log(paymentCheck);
     if (!mobileCheck && orderMobile.length >= 11 && paymentCheck) {
       const selected_mobile = orderMobile;
       dispatch(addOrder(state.cart, selected_mobile, deliveryName))

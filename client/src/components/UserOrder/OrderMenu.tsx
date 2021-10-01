@@ -7,7 +7,7 @@ import {
   MenuUl,
   MenuContainer,
 } from "./StyledUserOrder";
-
+import { stringToPrice } from '../../utils/validation';
 const OrderMenu = ({menu}:any) => {
   return (
     <MenuContainer>
@@ -30,7 +30,7 @@ const OrderMenu = ({menu}:any) => {
                         <span>수량</span> {item.quantity} 개
                       </div>
                       <div>
-                        <span>가격</span> {item.price} 원
+                        <span>가격</span> {stringToPrice(item.price)} 원
                       </div>
                     </MenuItemDetail>
                   </MenuItemWrapper>

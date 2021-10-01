@@ -1,5 +1,5 @@
 const { kakao } = window;
-
+import './map.css';
 //1. [앱] 홈 눌렀을때 모든 메뉴가 지도에 표시가 나온다. -> 마커표시
 //2. [앱] 마커를 눌렀을때가 모달이고 
 
@@ -62,20 +62,20 @@ export default function Keyword(
               position: coords,
               // image: markerImage,
             });
-            const infowindow = new kakao.maps.InfoWindow({
-              content: `<div>${initialStore[i].name}</div>`, // 인포윈도우에 표시할 내용
-            });
+            // const infowindow = new kakao.maps.InfoWindow({
+            //   content: `<div>${initialStore[i].name}</div>`, // 인포윈도우에 표시할 내용
+            // });
 
-            kakao.maps.event.addListener(
-              marker,
-              "mouseover",
-              makeOverListener(map, marker, infowindow)
-            );
-            kakao.maps.event.addListener(
-              marker,
-              "mouseout",
-              makeOutListener(infowindow)
-            );
+            // kakao.maps.event.addListener(
+            //   marker,
+            //   "mouseover",
+            //   makeOverListener(map, marker, infowindow)
+            // );
+            // kakao.maps.event.addListener(
+            //   marker,
+            //   "mouseout",
+            //   makeOutListener(infowindow)
+            // );
             kakao.maps.event.addListener(marker, "click", () => {
               geocoder.coord2Address(
                 coords.getLng(),
@@ -103,14 +103,18 @@ export default function Keyword(
 
         if (selected) {
           selected.setMap(map);
-          const iwContent = `<span class="left"></span><span style = "width:100%; z-index:2000;background-color: #f7f7f7; text-align: center;color:#245CCE;" class="center">현위치</span><span class="right"></span>`;
+          const iwContent =
+            '<div class="customoverlay" style="color: #ff5954; background-color:#fff;border: 2px solid; margin-bottom: 110px;  font-size: 12px; border-radius: 8px; padding: 4px; z-index: 200; ">' +
+            '    <span class="title">현위치</span>' +
+            "</div>";
           // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
           const iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
-          const infowindow = new kakao.maps.InfoWindow({
+          const customoverlay = new kakao.maps.CustomOverlay({
             position: iwPosition,
             content: iwContent,
           });
-          infowindow.open(map, selected);
+          customoverlay.setZIndex(120);
+          customoverlay.setMap(map, selected);
 
           map.setCenter(new kakao.maps.LatLng(result[0].y, result[0].x));
           const circle = new kakao.maps.Circle({
@@ -148,20 +152,30 @@ export default function Keyword(
                     position: coords,
                   });
 
-                  const infowindow = new kakao.maps.InfoWindow({
-                    content: `<div>${initialStore[i].name}</div>`, // 인포윈도우에 표시할 내용
-                  });
+                  // const iwContent =
+                  //   '<span class="info-title">말풍선타이틀</span>'; 
+                  // // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                  // const iwPosition = new kakao.maps.LatLng(
+                  //   result[0].y,
+                  //   result[0].x
+                  // );
+                  // const customoverlay = new kakao.maps.InfoWindow({
+                  //   position: iwPosition,
+                  //   content: iwContent,
+                  // });
+                  // // customoverlay.setZIndex(120);
 
-                  kakao.maps.event.addListener(
-                    marker,
-                    "mouseover",
-                    makeOverListener(map, marker, infowindow)
-                  );
-                  kakao.maps.event.addListener(
-                    marker,
-                    "mouseout",
-                    makeOutListener(infowindow)
-                  );
+
+                  // kakao.maps.event.addListener(
+                  //   marker,
+                  //   "mouseover",
+                  //   makeOverListener(map, marker, customoverlay)
+                  // );
+                  // kakao.maps.event.addListener(
+                  //   marker,
+                  //   "mouseout",
+                  //   makeOutListener(customoverlay)
+                  // );
                   kakao.maps.event.addListener(marker, "click", () => {
                     geocoder.coord2Address(
                       coords.getLng(),
@@ -196,16 +210,17 @@ export default function Keyword(
     });
   }
   // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-  function makeOverListener(map, marker, infowindow) {
+  function makeOverListener(map, marker, customoverlay) {
     return function () {
-      infowindow.open(map, marker);
+      console.log(marker, customoverlay.Jh.outerHTML);
+      customoverlay.open(map, marker);
     };
   }
 
   // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-  function makeOutListener(infowindow) {
+  function makeOutListener(customoverlay) {
     return function () {
-      infowindow.close();
+      customoverlay.close();
     };
   }
 

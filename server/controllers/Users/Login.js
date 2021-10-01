@@ -28,7 +28,6 @@ module.exports = async (req, res) => {
     age: Data.age,
     gender: Data.gender,
     position: Data.position,
-    billingkey: Data.billingkey,
   };
 
   res.status(200).send({message: "login success",userinfo: UserInfo,login_type: Data.login_type,});

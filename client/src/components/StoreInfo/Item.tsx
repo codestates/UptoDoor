@@ -7,7 +7,7 @@ import {
   MenuPrice,
   MenuDetail,
 } from './StyledStoreData'
-
+import {stringToPrice} from '../../utils/validation'
 interface ItemProps {
   addCartHandler : any,
   item : any,
@@ -20,7 +20,7 @@ function Item({addCartHandler,item}:ItemProps) {
           <MenuImg src= {item.image} alt = 'menu-img'/>
           <div>
             <MenuName>{item.name}</MenuName>
-            <MenuPrice>{item.price} 원</MenuPrice>
+            <MenuPrice>{stringToPrice(item.price)} 원</MenuPrice>
             <MenuDetail>{item.detail}</MenuDetail>
           </div>
         </div>

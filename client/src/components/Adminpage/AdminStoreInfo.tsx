@@ -1,5 +1,6 @@
 import React from 'react'
 import { StoreTitle,StoreDesc,StoreDescContent,StoreDescImg,StoreMenu ,MenuDesc,MenuImg,MenuContent,AdminContainer,AdminWrapper} from './StyledAdminPage'
+import { stringToPrice } from '../../utils/validation';
 
 const AdminStoreInfo = ({store}:any) => {
   console.log("11", store);
@@ -35,7 +36,7 @@ const AdminStoreInfo = ({store}:any) => {
               </MenuImg>
               <MenuDesc>
                     <h4>{item.menu.name}</h4>
-                <p>{item.menu.price} 원</p>
+                <p>{stringToPrice(item.menu.price)} 원</p>
                 <p>{item.menu.detail}</p>
               </MenuDesc>
               

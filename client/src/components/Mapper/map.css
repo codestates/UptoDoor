@@ -1,0 +1,10 @@
+.info-title {
+    display: block;
+    background: #fff;
+    border: 1px solid #245CCE;
+    color: #245CCE;
+    text-align: center;
+    height: 24px;
+    border-radius:8px;
+    padding: 5px;
+}

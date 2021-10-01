@@ -1,3 +1,4 @@
+const { default: axios } = require('axios');
 const { user,order,user_order,order_menu,order_delivery } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
 
@@ -14,8 +15,6 @@ module.exports = async (req, res) => {
     const { id,nickname } = checkAccessToken;
       
     let orderData;
-        if(orderInfo){
-            console.log('----- orderinfo if ------')
         //오더테이블에 데이터 추가111111111111gi
         orderData = await order.create({
           user_name: orderInfo.user_name,
@@ -56,58 +55,14 @@ module.exports = async (req, res) => {
                 quantity : el.quantity
             })
         }
-        }
-
-    const Bootpay = require('bootpay-backend-nodejs').Bootpay
-    Bootpay.setConfig(
-        '6152052e7b5ba4002352bc63',
-        'n2dbrcZi2B7g66Rt1WEnuToz0GF6DDPjoRYGuZgI+Wc=')
-        
-    const response = await Bootpay.getAccessToken()
-        if(response.status === 200){
-            const result = await Bootpay.verify(req.body.data.receipt_id)
-            const receipt = await order.update({ receipt : req.body.data.receipt_id, billingkey: req.body.data.billing_key}, { where : { id: orderData.id }})
-            .then( async () => {
-                //console.log('---axios token---',response.data.token)
-                if(req.body.feedback){ //두번째 정기결제 요청이면?
-                    console.log('----if----')
-                    const respon = await Bootpay.reserveSubscribeBilling({
-                        billingKey: req.body.data.billing_key,
-                        itemName: '테스트',
-                        price: 1000,
-                        orderId: orderData.id,
-                        userInfo: {
-                            username: '재라리',
-                            phone: '01000000000'
-                        },
-                        feedbackUrl: 'https://uptodoors.shop/feedback',
-                        //feedbackContentType: 'json',
-                        schedulerType: 'oneshot',
-                        executeAt: ((new Date()).getTime() / 1000) + 60 //한달로 바꿔야됨
-                    })
-                    console.log('---- if pay -----')
-                } else {
-                    console.log('---- else ----');
-                    const respon = await Bootpay.reserveSubscribeBilling({
-                        billingKey: req.body.data.billing_key,
-                        itemName: '테스트',
-                        price: 1000,
-                        orderId: orderData.id,
-                        userInfo: {
-                            username: '테스트',
-                            phone: '01000000000'
-                        },
-                        feedbackUrl: 'https://uptodoors.shop/feedback',
-                        //feedbackContentType: 'json',
-                        schedulerType: 'oneshot',
-                        executeAt: ((new Date()).getTime() / 1000) + 5
-                    })
-                    console.log('---- else pay -----') 
-                }
-                //console.log('----time-----',new Date(respon.data.execute_at*1000));
-                })
-            }
-            res.status(201).send({message: 'Your order has been completed'});    
+        const orderinfo = {
+            order_id : orderData.id,
+            data: data
+          }
+            await axios.post('http://localhost:3060/payment', orderinfo)
+            .then(() => {
+                res.status(201).send({message: 'Your order has been completed'});    
+            })
         } catch (error) {
             res.status(403).send({message: 'order fail, try again'});
         }

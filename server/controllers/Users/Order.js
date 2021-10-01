@@ -3,9 +3,9 @@ const { checkAccess } = require('../Tokenfunc');
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-    console.log("바디데이터",req.body)
+    //console.log("바디데이터",req.body)
     let orderInfo = req.body
-    console.log("데이터",orderInfo);
+    //console.log("데이터",orderInfo);
 
     //현재 로그인한 유저의 정보 뽑기
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];

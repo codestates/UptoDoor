@@ -17,6 +17,7 @@ function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,
   const [openModal, setOpenModal] = useState(false);
   const [selectFailModal, setSelectFailModal] = useState(false);
   const dispatch = useDispatch();
+
   const MapSelectModalHandler = () => {
     if (!user.message) {
       setLoginModal(true)
@@ -26,10 +27,7 @@ function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,
     
   };
   const closeModal = (e:any) => {
-    setOpenModal((prev) => !prev);
-    // 버튼0번째면 sampleAdd.home 표시, 버튼1번째면 sampleAdd.office 표시 변수에 담아주고
-    // resultAdd 의 state 에 값 넣기.
-    // console.log(e.target.innerText);
+
     if (e.target.innerText === "HOME") {
       if (!mainAddress && !mainAddressDetail) {
         setSelectFailModal(true)
@@ -37,6 +35,7 @@ function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,
       dispatch(setAddress(mainAddress, mainAddressDetail));
       setSelectAddress(mainAddress);
       setSelectAddressDetail(mainAddressDetail)
+      setOpenModal(false);
     } else if (e.target.innerText === "OFFICE") {
       if (!subAddress && !subAddressDetail) {
         setSelectFailModal(true)
@@ -44,6 +43,7 @@ function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,
       dispatch(setAddress(subAddress, subAddressDetail));
       setSelectAddress(subAddress);
       setSelectAddressDetail(subAddressDetail)
+      setOpenModal(false);
     }
   };
 

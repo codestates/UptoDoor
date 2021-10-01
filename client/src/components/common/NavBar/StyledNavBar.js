@@ -103,7 +103,7 @@ export const Listli = styled.li`
   text-decoration: none;
   font-size: 16px;
   font-weight: 400;
-  margin: 13px 15px;
+  margin: 13px 12px;
   cursor: ${({geeting}) => (geeting ? 'auto' : 'pointer')};
   >a{color : ${TextDarkGrey}};
   >span{font-weight:700; color : ${MainColor};}

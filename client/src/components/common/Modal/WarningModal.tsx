@@ -1,15 +1,12 @@
 import React from 'react'
 import { BtnBox, MiddleButton } from '../Button/Button';
 import {
-  ModalSelectAddContainer,I,
-  ModalSelectAddWrapper,ModalTextBox} 
+  ModalContainer,I,
+  ModalWrapper,ModalTextBox} 
   from './styledModal'
-import { useHistory } from 'react-router-dom';
-
 
 function WarningModal(props: any) {
-  const history:any = useHistory()
-  
+
   const { 
     openModal, url,
     modalTitleText ,modalText,yes,no,setOpenModal,handler
@@ -17,16 +14,13 @@ function WarningModal(props: any) {
 
   const closeModal = () => {
     setOpenModal(false);
-    //취소버튼 누르면 그냥닫혀야한다.
-    // history.go(url);
   }
   
-
   return (
     <>
       {openModal ? (
-      <ModalSelectAddContainer >
-        <ModalSelectAddWrapper flexable >
+      <ModalContainer >
+        <ModalWrapper flexable >
           
           <ModalTextBox>
             <I className="fas fa-exclamation"></I>
@@ -44,8 +38,8 @@ function WarningModal(props: any) {
           onClick = {closeModal} >{no}</MiddleButton>
           </BtnBox>
 
-          </ModalSelectAddWrapper>
-      </ModalSelectAddContainer>
+          </ModalWrapper>
+      </ModalContainer>
       )
       :
       null

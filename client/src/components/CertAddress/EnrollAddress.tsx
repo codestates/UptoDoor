@@ -79,7 +79,7 @@ function EnrollAddress() {
           if (switched === current) {
             const mainAdd = {
               mainAddress:mainPlace,
-              mainAddressDetail: mainPlace,
+              mainAddressDetail: mainPlaceDetail,
               main_xvalue: xValue,
               main_yvalue: yValue
             };

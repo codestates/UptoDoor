@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AlramContiainer = styled.aside`
+export const AlarmContiainer = styled.aside`
   width: 300px;
   height: 700px;
   border: 2px solid black;
@@ -12,14 +12,14 @@ export const AlramContiainer = styled.aside`
   margin: 50px 0 0 0;
 `;
 
-export const AlramWrapper = styled.div`
+export const AlarmWrapper = styled.div`
 
 `;
 
-export const AlramUl = styled.ul`
+export const AlarmUl = styled.ul`
   list-style:none;
 `;
 
-export const AlramLi = styled.li`
+export const AlarmLi = styled.li`
 
 `;

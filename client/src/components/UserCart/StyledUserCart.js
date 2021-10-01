@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 // import { TextLightGrey } from '../GlobalStyle';
 
-export const CartWrapper = styled.div`
+//* CartWrapper
+export const CartContainer = styled.div`
   margin: 0 auto;
   width: 90%;
   display: flex;
@@ -9,9 +10,172 @@ export const CartWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 15px;
-  
+  background-color: #fff;
   @media screen and (min-width: 1140px) {
+    width: 100%;
     flex-direction: row;
+    width: 1140px;
+  }
+`;
+
+export const CartCheckListWrapper = styled.div`
+  width: 100%;
+
+  @media screen and (min-width: 1140px) {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+`;
+
+export const UserCheckList = styled.section`
+  margin: 5px auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  margin-bottom: 15px;
+  > h3 {
+    margin: 3px 0 4px 10px;
+    font-size: 18px;
+  }
+  @media screen and (min-width: 767px) {
+    > h3 {
+      margin: 8px 0 8px 15px;
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (min-width: 1140px) {
+    padding: 25px 20px 20px 20px;
+    min-width: 450px;
+    margin: 0 auto 20px;
+    height: 540px;
+    > h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+  }
+`;
+
+export const UserCheckListBox = styled.div`
+  width: 90%;
+  margin: 0 auto 5px;
+  padding: 0 5px 0 5px;
+  padding-bottom: ${({ month }) => (month ? "0px" : "5px")};
+  margin-top: ${({ month }) => (month ? "-8px" : "0")};
+  > h4 {
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  > label {
+    margin-right: 10px;
+    font-size: 14px;
+    > input {
+      margin-right: 5px;
+    }
+  }
+
+  > input {
+    width: 110px;
+    height: 30px;
+    padding: 5px;
+    border: 2px solid #ededed;
+  }
+
+  > textarea {
+    width: 100%;
+    max-width: 470px;
+    height: 100px;
+    padding: 8px;
+    text-decoration: none;
+    outline: none;
+    resize: none;
+    border: 2px solid #ededed;
+  }
+
+  @media screen and (min-width: 1140px) {
+    padding: 0px 40px 8px 0;
+
+    > h4 {
+      font-size: 18px;
+      letter-spacing: -1px;
+      margin: 9px 0;
+    }
+
+    > label {
+      margin-left: 5px;
+      margin-right: 8px;
+      font-size: 16px;
+      > input {
+        margin-right: 10px;
+      }
+    }
+
+    > input {
+      width: 180px;
+      height: 40px;
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid #ededed;
+    }
+
+    > .detail,
+    textarea {
+      display: none;
+    }
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  > button {
+    width: 120px;
+  }
+  @media screen and (min-width: 767px) {
+    > button {
+      width: 220px;
+      height: 50px;
+      height: 60px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+  @media screen and (min-width: 1140px) {
+    margin: 0;
+    justify-content: space-between;
+    > button {
+      margin: 0;
+      width: 220px;
+      height: 60px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+`;
+
+
+//* CartMenuList
+export const CartMenuListWrapper = styled.div`
+  width: 100%;
+  padding: 10px 0 0 0;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  @media screen and (min-width: 1140px) {
+    margin-right: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    padding: 0;
   }
 `;
 
@@ -27,16 +191,10 @@ export const CartCheckBoxAll = styled.div`
   }
 `;
 
-export const CartMenuListWrapper = styled.div`
-  width: 100%;
-  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
-  @media screen and (min-width: 1140px) {
-    width: 620px;
-    margin-right: 20px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  }
+export const CheckBox = styled.input`
+  margin: 0 6px;
+  width: 15px;
+  height: 15px;
 `;
 
 export const CartMenuItemContainer = styled.div`
@@ -48,7 +206,6 @@ export const CartMenuItemContainer = styled.div`
     display: none;
   }
   @media screen and (min-width: 1140px) {
-    width: 620px;
     box-shadow: none;
     margin-bottom: 10px;
     max-height: 340px;
@@ -69,8 +226,8 @@ export const CartMenuItemWrapper = styled.div`
   align-items: center;
   padding: 10px 5px;
   > img {
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     margin-left: 6px;
     margin-right: 10px;
   }
@@ -78,7 +235,8 @@ export const CartMenuItemWrapper = styled.div`
   @media screen and (min-width: 767px) {
     padding: 15px 10px;
     > img {
-
+      width: 70px;
+      height: 70px;
       margin-right: 24px;
     }
   }
@@ -86,16 +244,16 @@ export const CartMenuItemWrapper = styled.div`
   @media screen and (min-width: 1140px) {
     width: 95%;
     margin: 0 auto 6px;
+    > img {
+      width: 75px;
+      height: 75px;
+    }
   }
 `;
 
-export const CheckBox = styled.input`
-  margin: 0 6px;
-  width: 15px;
-  height: 15px;
-`;
 
-export const CartMenuItemDetailWrapper = styled.div`
+
+export const CartMenuItemDetail = styled.div`
   width: 65%;
 
   > div {
@@ -108,6 +266,7 @@ export const CartMenuItemDetailWrapper = styled.div`
       font-size: 12px;
       white-space: normal;
       margin-left: 1px;
+      width:95%;
     }
   }
 
@@ -282,124 +441,6 @@ export const PlusMoneyWrapper = styled.div`
   }
 `;
 
-export const CartCheckListWrapper = styled.div`
-  width: 100%;
-  
-  @media screen and (min-width: 1140px) {
-    width: 450px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-`;
-
-//UserCheckList
-export const UserCheckList = styled.section`
-  margin: 5px auto;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 10px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  margin-bottom: 15px;
-  > h3 {
-    margin: 3px 0 4px 10px;
-    font-size: 18px;
-  }
-  @media screen and (min-width: 767px) {
-    > h3 {
-      margin: 8px 0 8px 15px;
-      font-size: 18px;
-    }
-  }
-
-  @media screen and (min-width: 1140px) {
-    padding: 25px 20px 20px 20px;
-    min-width: 450px;
-    margin: 0 auto 20px;
-    height: 540px;
-    > h3 {  
-      margin: 0;
-      font-size: 20px;
-    }
-  }
-`;
-
-
-
-export const UserCheckListBox = styled.div`
-  width: 90%;
-  margin: 0 auto 5px;
-  padding: 0 5px 0 5px;
-  padding-bottom: ${({ month }) => (month ? "0px" : "5px")};
-  margin-top: ${({ month }) => (month ? "-8px" : "0")};
-  > h4 {
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-
-  > label {
-    margin-right: 5px;
-    font-size: 14px;
-    > input {
-      margin-right: 5px;
-    }
-  }
-
-  > input {
-    width: 110px;
-    height: 30px;
-    padding: 5px;
-    border: 2px solid #ededed;
-  }
-
-  > textarea {
-    width: 100%;
-    max-width: 470px;
-    height: 100px;
-    padding: 8px;
-    text-decoration: none;
-    outline: none;
-    resize: none;
-    border: 2px solid #ededed;
-  }
-
-  @media screen and (min-width: 1140px) {
-    padding: 0px 40px 8px 0;
-
-    > h4 {
-      font-size: 18px;
-      letter-spacing: -1px;
-      margin: 9px 0;
-    }
-
-    > label {
-      margin-left: 5px;
-      margin-right: 8px;
-      font-size: 16px;
-      > input {
-        margin-right: 10px;
-      }
-    }
-
-    > input {
-      width: 180px;
-      height: 40px;
-      padding: 10px;
-      font-size: 18px;
-      border: 2px solid #ededed;
-    }
-
-    > .detail,
-    textarea {
-      display: none;
-    }
-  }
-`;
-
 export const UserCheckListDetailBox = styled.div`
   margin: 10px auto;
   width: 95%;
@@ -423,54 +464,3 @@ export const UserCheckListDetailBox = styled.div`
     display: none;
   }
 `;
-
-// ButtonWrapper
-export const ButtonWrapper = styled.div`
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-  > button {
-      width: 120px;
-  }
-  @media screen and (min-width: 767px) {
-    > button {
-      width: 220px;
-      height: 50px;
-      height: 60px;
-      font-size: 20px;
-      font-weight: 700;
-    }
-  }
-  @media screen and (min-width: 1140px) {
-    margin: 0;
-    justify-content: space-between;
-    > button {
-      margin: 0;
-      width: 220px;
-      height: 60px;
-      font-size: 20px;
-      font-weight: 700;
-    }
-  }
-`;
-
-// export const GoOrderLink = styled(Link)`
-//   text-decoration: none;
-//   color: white;
-  
-//   @media screen and (min-width: 767px) {
-//       width: 150px;
-//       height: 50px;
-//       height: 60px;
-//       font-size: 20px;
-//       font-weight: 700;
-//   }
-//   @media screen and (min-width: 1140px) {
-//       width: 280px;
-//       height: 60px;
-//       font-size: 20px;
-//       font-weight: 700;
-//   }
-// `;

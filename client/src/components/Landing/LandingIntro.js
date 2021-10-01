@@ -1,29 +1,36 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState,useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector,useDispatch } from 'react-redux'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Fade from "react-reveal/Fade"
+
 import {
   LandingIntroContainer,
   LandingIntroWrapper,
-  Container,
+  MainContainer,
+  MainTitle,
+  MainSubTitle,
   FlexBox,
-  ImgContainer,
+  ImgWrapper,
   SliderWrapper,
   CategoryTitleWrapper,
   CategoryTitle,
   CategoryImgWrapper,
   CategoryImgs,
   GradientEdge,
-  IntroH1,
-  IntroH2,
+  FixI,AlarmI,
   ArrowDisplay,
-  ArrowChk, I
+  ArrowChk, I,
 } from './StyledLanding'
 import {category, categoryDummy} from '../dummyData'
+import { AdminStoreGetData } from "../../_actions/admin_action";
 
 const LandingIntro = () => {
-
+  const dispatch = useDispatch();
+  const history = useHistory()
+  const user = useSelector((state) => state.user); 
   const [scrollY , setScrollY] = useState(0);
   const [btnStatus , setBtnStatus] = useState(false);
   
@@ -43,112 +50,121 @@ const LandingIntro = () => {
     setScrollY(0);
     setBtnStatus(false);
   }
+  const alarmHandler = () => {
+    history.push('/adminpage');
+  }
+
+const moveAdminPageHandler = () => {
+  dispatch(AdminStoreGetData()).then((res) => {
+    if (res.payload.message === "ok") {
+      history.push("/adminpage");
+    }
+  });
+};
 
   useEffect(() => {
-    // console.log('scroll now ===> ', scrollY);
     const chkScroll = () => {
       window.addEventListener('scroll',showScrollBtn)
     }
     chkScroll();
     return () => {
-      //cleanup, 여러번 호출됨 방지.
       window.removeEventListener('scroll',showScrollBtn)
     }
   })
 
   const settings = {
     arrows : false,
-    infinite: true,  // 무한으로 반복
-    speed: 500,
+    infinite: true, 
+    speed: 900,
     autoplay: true,
-    autoplaySpeed: 5000,  // 넘어가는 속도
-    slidesToShow: 1,  // 3장씩 보이게
-    slidesToScroll: 1,  // 3장씩 뒤로 넘어가게
+    autoplaySpeed: 5000, 
+    slidesToShow: 1,  
+    slidesToScroll: 1,  
     draggable : false,
     centerMode: true,
     centerPadding: '0px', 
-    pauseOnHover : false,	// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+    pauseOnHover : false,	
 		vertical : true,
   };
+
   return (
     <LandingIntroContainer>
       <LandingIntroWrapper>
-          <Container  id = 'container'>
+        <MainContainer>
           <Fade top>
-            <IntroH1>새로운 라이프스타일 &quot;구독&quot;</IntroH1>
+            <MainTitle>새로운 라이프스타일 &quot;구독&quot;</MainTitle>
           </Fade>
           <FlexBox>
-            <IntroH2>당신 곁의 </IntroH2>
-            <Slider { ...settings }>
-            {category.map((el,idx)=>{
-              return (
-                <CategoryTitleWrapper key = {idx}
-                  className = 'category-title-wrapper'>
-                <Fade bottom>
-                  <CategoryTitle> {el}</CategoryTitle>
-                </Fade>
-                </CategoryTitleWrapper>
-                )
-            })}
-            </Slider>  
-            <IntroH2>서비스를 찾아보세요.</IntroH2>
+            <MainSubTitle>당신 곁의 </MainSubTitle>
+            <Slider {...settings}>
+              {category.map((el, idx) => {
+                return (
+                  <CategoryTitleWrapper
+                    key={idx}
+                    className="category-title-wrapper"
+                  >
+                    <Fade bottom>
+                      <CategoryTitle> {el}</CategoryTitle>
+                    </Fade>
+                  </CategoryTitleWrapper>
+                );
+              })}
+            </Slider>
+            <MainSubTitle>서비스를 찾아보세요.</MainSubTitle>
           </FlexBox>
 
-          <ImgContainer id = 'img-container'>
-            <Slider { ...settings }>
-              {categoryDummy.map((el,idx)=>{
+          <ImgWrapper>
+            <Slider {...settings}>
+              {categoryDummy.map((el, idx) => {
                 return (
-                <SliderWrapper key = {idx} className='slider-wrapper'>
-                  <CategoryImgWrapper className = 'category-img-wrapper'>
-                    {el.map((elements,idx)=>{
-                      return (
-                        <CategoryImgs 
-                      key = {idx} 
-                      src = {elements.image} alt = 'imgs' />
-                    )
-                    })}
-                  </CategoryImgWrapper>
-                </SliderWrapper>
-                )
+                  <SliderWrapper key={idx} className="slider-wrapper">
+                    <CategoryImgWrapper className="category-img-wrapper">
+                      {el.map((elements, idx) => {
+                        return (
+                          <CategoryImgs
+                            key={idx}
+                            src={elements.image}
+                            alt="imgs"
+                          />
+                        );
+                      })}
+                    </CategoryImgWrapper>
+                  </SliderWrapper>
+                );
               })}
-            </Slider>   
-          </ImgContainer>
+            </Slider>
+          </ImgWrapper>
+        </MainContainer>
 
-        </Container>
-        {/* 화살표 표시 */}
-        <ArrowDisplay className = 'arrow-display-bottom'>
-          <I className="fas fa-angle-double-down"></I>
+        <ArrowDisplay className="arrow-below-display">
+          <FixI className="fas fa-angle-double-down"></FixI>
+          {user.position === "1" ? (
+            <AlarmI
+              title="관리자 페이지 이동"
+              className="far fa-bell alarm-btn click-icon"
+              onClick={moveAdminPageHandler}
+            >
+              <span>2</span>
+            </AlarmI>
+          ) : null}
         </ArrowDisplay>
 
         <ArrowChk>
-          <ArrowDisplay 
-          className = {
-            btnStatus ? 
-            'arrow-display-top active' 
-            : 
-            'arrow-display-top'}
-          onClick = {scrollTop}
-          scollup
-          >
-          <div>
-            <I 
-            scrollup
-            className="far fa-bell alarm-btn"></I>
-            <I 
-            scrollup
-            className="fas fa-angle-double-up"></I>
-          </div>
-          </ArrowDisplay>
+          <I
+            className={
+              btnStatus
+                ? "fas fa-angle-double-up click-icon active"
+                : "fas fa-angle-double-up click-icon"
+            }
+            onClick={scrollTop}
+          ></I>
         </ArrowChk>
 
-
         {/* 흐림효과 */}
-        <GradientEdge ></GradientEdge>
-
-
+        <GradientEdge />
       </LandingIntroWrapper>
     </LandingIntroContainer>
-  )
+  );
 }
 
 export default LandingIntro

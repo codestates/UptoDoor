@@ -2,25 +2,28 @@ import styled from 'styled-components';
 import { 
   MediumFont, 
   TextLightGrey,
-  // LargeFont,
   MainColor, 
   SmallFont, 
   PointColor,
   BaseFont,
   UltraLargeFont,
-  LargeFont,
   } from '../GlobalStyle';
   import {showModal} from '../common/Modal/styledModal'
 
 export const StoreDataWrapper = styled.div`
   margin: 0 auto;
-  width: 90%;
-@media screen and (min-width: 1140px) {
+  width: 100%;
+
+  @media screen and (min-width: 767px) {
+    max-width: 820px;
+  }
+  @media screen and (min-width: 1140px) {
     display: flex;
     justify-content: center;
     height: 615px;
+    max-width: 1140px;
   }
-`
+`;
 export const StoreIntro = styled.div`
   max-height: 650px;
   margin : 8px 0;
@@ -29,7 +32,6 @@ export const StoreIntro = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin : 5px; */
   }
   >.store-detail-box{
     padding :8px;
@@ -200,7 +202,6 @@ margin : 8px;
   align-items: center;
   >div{
     width: 150px;
-    /* max-width: 350px; */
     @media screen and (min-width: 490px) {
       width: 260px;
     }    
@@ -274,7 +275,6 @@ margin-top : ${({btnboxMargin})=> (btnboxMargin ? '18px' : 0)};
   }
 }
 >.cancle-btn{
-  /* display: none; */
   @media screen and (min-width: 1140px) {
   display: unset;
   }
@@ -289,7 +289,6 @@ export const ModalStoreWrapper = styled.div`
   height : 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   text-align: center;
   background-color: rgba(0,0,0,0.9);
@@ -309,7 +308,6 @@ export const ModalStoreWrapper = styled.div`
     left : 0;
     &::before{
       content: '◀️ BACK';
-      /* margin-left: 150px; */
     }
   }
   >.slick-slider>.slick-next{
@@ -348,11 +346,9 @@ export const ModalStoreWrapper = styled.div`
     font-size: 20px;
     margin : 10px 0;
     color : #fff;
-    /* border : 3px solid pink; */
     opacity: 1;
   }
   >div>ul>.slick-active>button::before{
-    /* border : 3px solid red; */
     opacity: 1;
     color: ${PointColor};
   }
@@ -377,7 +373,6 @@ export const ModalStoreText = styled.h3`
 `
 //+사진모달
 export const ModalStoreImgSlideBox = styled.div`
-/* background-color: rgba(0,0,0,0.2); */
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -386,7 +381,6 @@ border-radius: 8px;
 height: 400px;
 width: 100%;
 @media screen and (min-width: 767px) {
-/* width: 200px; */
 }
 `
 export const ModalStoreImgs = styled.img`

@@ -14,9 +14,8 @@ export default function Keyword(
   initialStore,
   selectAddress,
   filterClickHandler,
-  clickHashtagHandler
+  hashtagClickHandler
 ) {
-  // console.log(initialStore);
   const mapContainer = document.getElementById("map"); // 지도를 표시할 div
   //* 위치를 선택하면 확대레벨이 달라짐
   let mapOption;
@@ -38,10 +37,6 @@ export default function Keyword(
   // 주소-좌표 변환 객체를 생성합니다
   const geocoder = new kakao.maps.services.Geocoder();
 
-  // const mapping = initialMap.map((el)=>{
-  //   return el.address;
-  // })
-  // console.log('====map======',mapping);
   if (!selectAddress) {
     //! 실렉트 주소가 없을경우
     //* 전체 위치 가져오는 좌표, 필터된 좌표가져오기
@@ -71,8 +66,16 @@ export default function Keyword(
               content: `<div>${initialStore[i].name}</div>`, // 인포윈도우에 표시할 내용
             });
 
-            kakao.maps.event.addListener(marker,"mouseover",makeOverListener(map, marker, infowindow));
-            kakao.maps.event.addListener(marker,"mouseout",makeOutListener(infowindow));
+            kakao.maps.event.addListener(
+              marker,
+              "mouseover",
+              makeOverListener(map, marker, infowindow)
+            );
+            kakao.maps.event.addListener(
+              marker,
+              "mouseout",
+              makeOutListener(infowindow)
+            );
             kakao.maps.event.addListener(marker, "click", () => {
               geocoder.coord2Address(
                 coords.getLng(),
@@ -80,9 +83,6 @@ export default function Keyword(
                 callback
               );
             });
-            //!-------------
-            //!==========도전
-            //!==========
           }
         }
       );
@@ -95,7 +95,6 @@ export default function Keyword(
       // 정상적으로 검색이 완료됐으면
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        // console.log("result", result);
         // 결과값으로 받은 위치를 마커로 표시합니다
         const selected = new kakao.maps.Marker({
           map: map,
@@ -105,10 +104,7 @@ export default function Keyword(
         if (selected) {
           selected.setMap(map);
           const iwContent = `<span class="left"></span><span style = "width:100%; z-index:2000;background-color: #f7f7f7; text-align: center;color:#245CCE;" class="center">현위치</span><span class="right"></span>`;
-          
-          // 
-            
-            // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+          // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
           const iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
           const infowindow = new kakao.maps.InfoWindow({
             position: iwPosition,
@@ -128,11 +124,11 @@ export default function Keyword(
             fillOpacity: 0.5, // 채우기 불투명도 입니다
           });
 
-          // // 지도에 원을 표시합니다
+          // 지도에 원을 표시합니다
           circle.setMap(map);
 
           // //! 3km 내의 마커만 표시------
-          // // 원(Circle)의 옵션으로 넣어준 반지름
+          // 원(Circle)의 옵션으로 넣어준 반지름
           const radius = 2500;
 
           for (let i = 0; i < initialStore.length; i++) {
@@ -155,9 +151,17 @@ export default function Keyword(
                   const infowindow = new kakao.maps.InfoWindow({
                     content: `<div>${initialStore[i].name}</div>`, // 인포윈도우에 표시할 내용
                   });
-                  
-                  kakao.maps.event.addListener(marker,"mouseover",makeOverListener(map, marker, infowindow));
-                  kakao.maps.event.addListener(marker,"mouseout", makeOutListener(infowindow));
+
+                  kakao.maps.event.addListener(
+                    marker,
+                    "mouseover",
+                    makeOverListener(map, marker, infowindow)
+                  );
+                  kakao.maps.event.addListener(
+                    marker,
+                    "mouseout",
+                    makeOutListener(infowindow)
+                  );
                   kakao.maps.event.addListener(marker, "click", () => {
                     geocoder.coord2Address(
                       coords.getLng(),
@@ -181,7 +185,7 @@ export default function Keyword(
                     marker.setMap(null);
                   }
                 }
-                clickHashtagHandler(markers);
+                hashtagClickHandler(markers);
               }
             );
           }
@@ -190,19 +194,6 @@ export default function Keyword(
         }
       }
     });
-
-    // for (let i = 0; i < marker.length - 1; i++) {
-    //   const c1 = map.getCenter();
-    //   const c2 = marker[i].getPosition();
-    //   const poly = new Polyline({ path: [c1, c2] });
-    //   const dist = poly.getLength();
-    //   console.log(dist, poly);
-    //   if (dist < radius) {
-    //     marker[i].setMap(map);
-    //   } else {
-    //     marker[i].setMap(null);
-    //   }
-    // }
   }
   // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
   function makeOverListener(map, marker, infowindow) {

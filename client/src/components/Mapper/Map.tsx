@@ -1,21 +1,14 @@
 import React, { useEffect } from 'react';
 import search from './keyword';
 import { MapContainer } from './styledMap'  
-// import {initialStore} from '../dummyData'
 import { useSelector } from 'react-redux';
-// interface MapProps {
-//   Keyword : any,
-// }
 
-function Map({filterClickHandler,selectAddress,clickHashtagHandler}:any) {
+function Map({filterClickHandler,selectAddress,hashtagClickHandler}:any) {
   const state = useSelector((state) => state);
   const { store }: any = state;
-  // useEffect(() => {
-  //   search(initialStore, null);
-  //   },[initialStore]);  
   
   useEffect(() => {
-    search(store, selectAddress,filterClickHandler,clickHashtagHandler)
+    search(store, selectAddress,filterClickHandler,hashtagClickHandler)
   }, [store,selectAddress])
   
   return (

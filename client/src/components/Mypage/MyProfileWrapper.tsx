@@ -1,30 +1,31 @@
 import React,{useEffect, useState} from 'react'
-import {Link} from 'react-router-dom'
-import { Container, Title, Wrapper } from "../GlobalStyle";
-import MyOrderWrapper from '../UserOrderInfo/MyOrderWrapper';
-import AdminOrderWrapper from '../Adminpage/AdminOrderWrapper'
-import axios from 'axios';
-import { AdminStoreGetData } from '../../_actions/admin_action';
-import MyOrderList from './MyOrderList';
-// import MyPaymentList from './MyPaymentList';
-import { useDispatch} from "react-redux";
+import { Link ,useHistory } from 'react-router-dom'
+import { useDispatch } from "react-redux";
+
 import { 
   ButtonWrapper, 
-  MypageWrapper,MypageContent,
-  MypageProfileWrapper,
-  MypageProfileBtnWrapper,
-  MypageUl,MypageLi } from './StyledMypage';
-import { END_POINTS } from '../../_actions/type';
-import { useHistory } from 'react-router-dom';
+  MypageUl,MypageLi } from './StyledMypage'
+import { 
+  Container,Title, Wrapper,
+  PageWrapper,PageProfileBtnWrapper,
+  PageProfileWrapper,PageContent,
+} from "../GlobalStyle";
 
-function MyProfile(): any {
+import { AdminStoreGetData } from '../../_actions/admin_action';
+import { END_POINTS } from '../../_actions/type';
+
+import axios from 'axios';
+import MyOrderDetail from './MyOrderDetail';
+import MyOrderList from './MyOrderList';
+
+function MyProfileWrapper(): any {
   const dispatch:any = useDispatch();
   const history = useHistory();
   const [user, setUser]: any = useState('')
-
   const [orderList,setOrderList] = useState([])
   const [orderitem , setOrderItem] = useState({})
   const [cur,setCur] = useState(0)
+
   const moveDetailHandler = (id:any) => {
     const filtered = orderList.filter((el:any)=>{
       return el.id === id
@@ -32,12 +33,10 @@ function MyProfile(): any {
     setOrderItem(filtered);
     setCur(1);
   }
-
   const listbackHandler = () => {
     setOrderItem('');
     setCur(0);
   }
-  console.log("asdasdasd", orderitem);
   useEffect(() => {
     setCur(0);
     setOrderItem({});
@@ -80,7 +79,6 @@ function MyProfile(): any {
           }
           return final;
         })
-        console.log('-====order==',order);
         setOrderList(order);
         setUser(res.data.userdata);
       }).catch((err) => {
@@ -88,22 +86,23 @@ function MyProfile(): any {
     })
   },[])
 
-  const moveAdminPage = () => {
-    dispatch(AdminStoreGetData()).then((res:any) => {
+  const moveAdminPageHandler = () => {
+    dispatch(AdminStoreGetData())
+    .then((res:any) => {
       if (res.payload.message === "ok") {
         history.push('/adminpage')
       }
-  })
+    })
   }
   
   return (
     <Container>
       <Title>프로필</Title>
       <Wrapper>
-        <MypageWrapper>
-          <MypageProfileBtnWrapper>
-            <MypageProfileWrapper>
-              <MypageContent>
+        <PageWrapper>
+          <PageProfileBtnWrapper>
+            <PageProfileWrapper>
+              <PageContent>
                 <h3>안녕하세요. {user.nickname}님</h3>
                 <p>{user.email}</p>
                 {
@@ -117,35 +116,27 @@ function MyProfile(): any {
                 <p>{user.mainAddressDetail}</p>
                 </>
                 }
-                {/* {
-                user.subAddress === null || 
-                user.subAddressDetail === null
-                ?
-                <p>동네인증이 필요합니다.</p>
-                :
-                <>
-                <p>{user.subAddress}</p>
-                <p>{user.msubAddressDetail}</p>
-                </>
-                } */}
-              </MypageContent>
+              </PageContent>
               <ButtonWrapper>
-                {user.position === "1"
-                  ? (<button onClick={() => { moveAdminPage() }}>관리자 페이지</button>)
-                  : (<button><Link to="/adminpost">가게 등록</Link></button>)
-                }
-                <button><Link to="/mypageedit">프로필 수정</Link></button>
+                {user.position === "1" ? 
+                <button onClick={moveAdminPageHandler}>관리자 페이지
+                </button>
+                : 
+                <button><Link to="/adminpost">가게 등록</Link>
+                </button>}
+                <button><Link to="/mypageedit">프로필 수정</Link>
+                </button>
               </ButtonWrapper>
-            </MypageProfileWrapper>
+            </PageProfileWrapper>
             <MypageUl>
               <MypageLi>
                 구독관리
               </MypageLi>
             </MypageUl>
-            </MypageProfileBtnWrapper>
+          </PageProfileBtnWrapper>
 
             {cur === 1 ? 
-            <MyOrderWrapper 
+            <MyOrderDetail 
             user= {user}
             orderitem = {orderitem}
             listbackHandler={listbackHandler}
@@ -156,10 +147,10 @@ function MyProfile(): any {
             moveDetailHandler={moveDetailHandler} 
             />}
 
-        </MypageWrapper>
+        </PageWrapper>
       </Wrapper>
     </Container>
   );
 }
 
-export default MyProfile
+export default MyProfileWrapper

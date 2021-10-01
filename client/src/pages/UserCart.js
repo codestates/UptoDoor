@@ -1,12 +1,12 @@
 import React from 'react'
-import UserCartInfo from '../components/UserCart/UserCartInfo'
+import CartWrapper from "../components/UserCart/CartWrapper";
 
 const UserCart = () => {
   return (
     <>
-      <UserCartInfo />
+      <CartWrapper />
     </>
-  )
+  );
 }
 
 export default UserCart

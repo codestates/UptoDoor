@@ -86,7 +86,7 @@ module.exports = async (req, res) => {
                     })
                     console.log('---- if pay -----')
                 } else {
-                    console.log('---- else ----')
+                    console.log('---- else ----');
                     const respon = await Bootpay.reserveSubscribeBilling({
                         billingKey: req.body.data.billing_key,
                         itemName: '테스트',

@@ -56,12 +56,6 @@ module.exports = {
       position: {
         type: Sequelize.STRING
       },
-      billingkey: {
-        type: Sequelize.STRING
-      },
-      receipt: {
-        type: Sequelize.STRING
-      },
       login_type: {
         type: Sequelize.STRING
       },

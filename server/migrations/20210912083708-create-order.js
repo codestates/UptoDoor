@@ -35,6 +35,12 @@ module.exports = {
       totalprice: {
         type: Sequelize.INTEGER
       },
+      billingkey: {
+        type: Sequelize.STRING
+      },
+      receipt: {
+        type: Sequelize.STRING
+      },
       state: {
         type: Sequelize.STRING
       },

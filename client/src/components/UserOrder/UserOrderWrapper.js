@@ -56,7 +56,7 @@ function UserOrderWrapper() {
       show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
       items: [
         {
-          item_name: '테스트', //상품명
+          item_name: '정기구독권', //상품명
           qty: 1, //수량
           unique: '123', //해당 상품을 구분짓는 primary key
           price: 1000, //상품 단가
@@ -106,45 +106,31 @@ function UserOrderWrapper() {
       }
     }).close(function (data) {
         // 결제창이 닫힐(성공 실패 상관없이 됨)
-        setOpenModal(true);
-      <ConfirmModal
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-          modalTitleText="주문 완료"
-          modalText="주문이 완료되었습니다. 감사합니다."
-          url="/"
-          modalBtn="확인"
-      />
     }).done(function (data) {
-      axios.post('https://uptodoors.shop/payment', data)
-      .then((rsp) => {
-        console.log(rsp)
-      })
+        if (!mobileCheck && orderMobile.length >= 11 && paymentCheck) {
+          const selected_mobile = orderMobile;
+          dispatch(addOrder(state.cart, selected_mobile, deliveryName, data))
+            .then((res) => {
+            if (res.payload.message === 'Your order has been completed') {
+              setOpenModal(true);
+            }
+          }).catch((err)=> alert("err입니다", err))
+        } else if (mobileCheck && paymentCheck) {
+          const selected_mobile = state.user.mobile;
+          dispatch(addOrder(state.cart, selected_mobile, deliveryName, data))
+          .then((res) => {
+              if (res.payload.message === 'Your order has been completed') {
+              dispatch(removeAllCart())
+              setOpenModal(true);
+            }
+          }).catch((err)=> alert("err입니다", err));
+        } else {
+          setOptionsModal(true);
+        }
+        //console.log(rsp)
       console.log('-- 결제 완료 -- ',data);
     });
 
-    if (!mobileCheck && orderMobile.length >= 11 && paymentCheck) {
-      const selected_mobile = orderMobile;
-      dispatch(addOrder(state.cart, selected_mobile, deliveryName))
-        .then((res) => {
-        if (res.payload.message === 'Your order has been completed') {
-          setOpenModal(true);
-        }
-      }).catch((err)=> alert("err입니다", err))
-    } else if (mobileCheck && paymentCheck) {
-      const selected_mobile = state.user.mobile;
-      dispatch(addOrder(state.cart, selected_mobile, deliveryName)).
-        then((res) => {
-          if (res.payload.message === 'Your order has been completed') {
-          dispatch(removeAllCart())
-          setOpenModal(true);
-        }
-      }).catch((err)=> alert("err입니다", err));
-    } else {
-      setOptionsModal(true);
-    }
-
-    
   }, [paymentCheck, mobileCheck, orderMobile, state]);
 
 

@@ -31,8 +31,6 @@ module.exports = (sequelize, DataTypes) => {
     gender: DataTypes.STRING,
     emailcheck: DataTypes.STRING,
     position: DataTypes.STRING,
-    billingkey: DataTypes.STRING,
-    receipt: DataTypes.STRING,
     login_type: DataTypes.STRING,
     oauth_token: DataTypes.STRING
   }, {

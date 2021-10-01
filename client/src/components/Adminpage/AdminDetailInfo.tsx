@@ -4,7 +4,7 @@ import {
   FlexBox,H4,P,
   DetailTextArea,
   EachItemBox,
-} from '../Mypage/StyledMyPage'
+} from '../Mypage/StyledMypage'
 
 interface Iprops {
   userMobile: string;

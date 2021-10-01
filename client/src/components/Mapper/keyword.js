@@ -104,7 +104,10 @@ export default function Keyword(
 
         if (selected) {
           selected.setMap(map);
-          const iwContent = `<span class="left"></span><span style = "width:100%; z-index:2000;background-color: #f7f7f7; text-align: center;color:#245CCE;" class="center">현위치</span><span class="right"></span>`;
+          const iwContent = `
+          <span class="left"></span>
+          <span style = "width:100%; z-index:2000;background-color: #f7f7f7; text-align: center;color:#245CCE;" class="center">현위치</span>
+          <span class="right"></span>`;
           
           // 
             

@@ -27,7 +27,7 @@ const AnalysisWrapper = () => {
     <Container>
       <Title>구독 데이터</Title>
       <Wrapper>
-        <Fade bottom>
+        <Fade bottom >
         <AnalysisCategory/>
         </Fade>
 

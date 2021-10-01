@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { UltraLargeFont } from '../GlobalStyle'
+import { LargeFont, UltraLargeFont } from '../GlobalStyle'
 
 //공통부분
 export const ChartContainer = styled.div`
@@ -78,9 +78,27 @@ border:3px solid;
 `
 export const AverageMonthWrapper = styled.div`
 width : 50%;
-/* border:3px solid; */
->h1{
+>div>h1{
+  font-size: 38px;
+  font-weight: 800;
+  background: -webkit-linear-gradient(left, mediumturquoise, #5d9cec);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+}
+@media screen and (min-width: 767px) {
+  >div>h1{
   text-align: center;
   font-size: ${UltraLargeFont};
+  font-weight: 800;
+
+  padding : 20px 0 30px;
 }
+>div>h2{
+  &:nth-child(3){
+    text-align: right;
+  }
+}
+}
+
 `

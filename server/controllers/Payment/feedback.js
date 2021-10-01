@@ -9,6 +9,7 @@ module.exports = async (req, res) => {
         receipt_id: receiptdata.receipt,
         billing_key: receiptdata.billingkey,
         feedback: 'feedback',
+        order_id: receiptdata.id,
     }
     console.log('------ 정기 결제 확인 -------')
     axios.post('https://uptodoors.shop/payment', orderinfo)

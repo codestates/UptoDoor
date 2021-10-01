@@ -22,13 +22,13 @@ import ConfirmModal from "../common/Modal/ConfirmModal";
 import { addOrder } from '../../_actions/user_action';
 import { removeAllCart } from "../../_actions/cart_action";
 import BootPay from 'bootpay-js';
+import useInput from '../../utils/useInput';
 import { RestClient } from "@bootpay/server-rest-client"
 import axios from "axios";
 
 function OrderWrapper() {
   const state = useSelector((state) => state);
   const menu = state.cart.menu;
-  console.log(menu)
   const cart = state.cart;
   const user = state.user;
   const dispatch = useDispatch();
@@ -106,7 +106,7 @@ function OrderWrapper() {
     }).done(function (data) {
       if (!mobileCheck && orderMobile.length >= 11 && paymentCheck) {
         const selected_mobile = orderMobile;
-        dispatch(addOrder(state.cart, selected_mobile, deliveryName))
+        dispatch(addOrder(state.cart, selected_mobile, deliveryName, data))
           .then((res) => {
             if (res.payload.message === "Your order has been completed") {
               setOpenModal(true);
@@ -115,7 +115,7 @@ function OrderWrapper() {
           .catch((err) => alert("err입니다", err));
       } else if (mobileCheck && paymentCheck) {
         const selected_mobile = state.user.mobile;
-        dispatch(addOrder(state.cart, selected_mobile, deliveryName))
+        dispatch(addOrder(state.cart, selected_mobile, deliveryName, data))
           .then((res) => {
             if (res.payload.message === "Your order has been completed") {
               dispatch(removeAllCart());
@@ -126,7 +126,6 @@ function OrderWrapper() {
       } else {
         setOptionsModal(true);
       }
-      console.log('-- 결제 완료 -- ',data);
     });
     
   }, [paymentCheck, mobileCheck, orderMobile, state]);

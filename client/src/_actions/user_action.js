@@ -246,6 +246,7 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
   console.log('-- addorder --',orderinfo.order)
   const request = axios
     .post(`${END_POINTS}/users/order`, orderinfo)
+    //.post(`https://uptodoors.shop/users/order`, orderinfo)
     .then((res) => {
       console.log('--order res',res);
       return res.data;

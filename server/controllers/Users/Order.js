@@ -3,6 +3,7 @@ const { checkAccess } = require('../Tokenfunc');
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
+    try {
     console.log("바디데이터",req.body)
     let orderInfo = req.body.order;
     console.log("데이터",orderInfo);
@@ -11,12 +12,12 @@ module.exports = async (req, res) => {
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
     const { id,nickname } = checkAccessToken;
-
-    
-    try {
+      
+    let orderData;
         if(orderInfo){
+            console.log('----- orderinfo if ------')
         //오더테이블에 데이터 추가111111111111gi
-        const orderData = await order.create({
+        orderData = await order.create({
           user_name: orderInfo.user_name,
           order_time: orderInfo.delivery_time,
           plus_check: orderInfo.plus_check,
@@ -55,7 +56,7 @@ module.exports = async (req, res) => {
                 quantity : el.quantity
             })
         }
-    }
+        }
 
     const Bootpay = require('bootpay-backend-nodejs').Bootpay
     Bootpay.setConfig(
@@ -108,7 +109,6 @@ module.exports = async (req, res) => {
             }
             res.status(201).send({message: 'Your order has been completed'});    
         } catch (error) {
-            
             res.status(403).send({message: 'order fail, try again'});
         }
     }

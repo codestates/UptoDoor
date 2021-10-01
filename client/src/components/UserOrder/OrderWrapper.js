@@ -120,6 +120,7 @@ function OrderWrapper() {
           setOpenModal={setOpenModal}
           modalTitleText="주문 완료"
           modalText="주문이 완료되었습니다. 감사합니다."
+          modalSuccess={true}
           url="/"
           modalBtn="확인"
         />

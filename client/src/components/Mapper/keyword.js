@@ -1,5 +1,4 @@
 const { kakao } = window;
-import './map.css';
 //1. [앱] 홈 눌렀을때 모든 메뉴가 지도에 표시가 나온다. -> 마커표시
 //2. [앱] 마커를 눌렀을때가 모달이고 
 
@@ -185,6 +184,9 @@ export default function Keyword(
                   });
                   const c1 = map.getCenter();
                   const c2 = marker.getPosition();
+                  console.log("c1", c1)
+                  console.log("c2", c2)
+                  console.log("marker", marker);
                   const poly = new kakao.maps.Polyline({
                     map: map,
                     path: [c1, c2],

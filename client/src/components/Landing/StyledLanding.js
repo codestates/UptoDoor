@@ -415,7 +415,8 @@ export const Img = styled.img`
   padding-right: 0;
 
   @media screen and (min-width:768px){
-    width:330px;
+    width:430px;
+    border: 2px solid white;
   }
 `;
 //!Value

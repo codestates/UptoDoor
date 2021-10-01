@@ -46,13 +46,13 @@ export const signUp = (userinfo) => {
 
   return {
     type: USER_SIGNUP,
-    payload: result,
+    payload: request,
   };
 }
 
 //유저 signin post 요청
 export const signIn = (userinfo) => {
-  const result = axios
+  const request = axios
     .post(`${END_POINTS}/users/signin`, userinfo)
     .then((res) => {
       return {
@@ -71,15 +71,16 @@ export const signIn = (userinfo) => {
         billingkey: res.data.userinfo.billingkey,
         login_type: res.data.login_type,
       };
-    }).catch(() => {
-      return {
-        message: "error"
-      }
     })
+    .catch(() => {
+      return {
+        message: "error",
+      };
+    });
 
   return {
     type: USER_SIGNIN,
-    payload: result,
+    payload: request,
   };
 };
 //유저 signout post 요청

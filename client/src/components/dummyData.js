@@ -111,3 +111,9 @@ export const categoryDummy = [
     {id : 17 , category : '취미', image :'https://uptodoor-landing-img2.s3.ap-northeast-2.amazonaws.com/landingImgs/etc/etc17.png'},
   ],
 ]
+export const LandingValues = [
+  'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value1.png',
+  'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value2.png',
+  'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value3.png'
+]
+export const LogoSrc = 'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/uptodoor_logo.png'

@@ -3,7 +3,7 @@ import { LargeFont, UltraLargeFont } from '../GlobalStyle'
 
 //공통부분
 export const ChartContainer = styled.div`
-margin : 30px 0;
+margin : 50px 0;
 @media screen and (min-width: 1140px) {
   display:flex;
   margin :80px 50px;
@@ -13,7 +13,7 @@ export const ChartContentsWrapper = styled.div`
 width: 100%;
 border-radius: 8px;
 background-color: #f7f7f7;
-padding : 12px;
+padding : 15px;
 margin : 30px 0 10px;
 @media screen and (min-width: 1140px) {
   max-width : 400px;
@@ -74,7 +74,6 @@ display : flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-border:3px solid;
 `
 export const AverageMonthWrapper = styled.div`
 width : 50%;

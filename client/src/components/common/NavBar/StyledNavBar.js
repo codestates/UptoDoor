@@ -9,6 +9,8 @@ import {
   MediumFont,
 } from "../../GlobalStyle";
 
+import {LogoSrc} from '../../dummyData'
+
 export const Header = styled.header`
   position: sticky;
   top: 0;
@@ -50,7 +52,7 @@ export const NavLogo = styled(Link)`
   margin-right: 12px;
   letter-spacing: -3px;
   width: 130px;
-  background-image: url('./images/upToDoorLogo.png');
+  background-image: url(${LogoSrc});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

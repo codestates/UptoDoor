@@ -4,6 +4,7 @@ const { checkAccess } = require('../Tokenfunc');
 module.exports = async (req, res) => {
 
     try {
+    console.log('----req.body----',req.body)
     const orderData = req.body;
     const Bootpay = require('bootpay-backend-nodejs').Bootpay
     Bootpay.setConfig(
@@ -55,7 +56,7 @@ module.exports = async (req, res) => {
                 })
             }
         } catch (err) {
-            console.log('--payment err--',err)
+            //console.log('--payment err--',err)
             res.status(404).send({ message: 'not ok' })
         }
      }

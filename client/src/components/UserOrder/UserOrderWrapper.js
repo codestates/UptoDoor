@@ -107,7 +107,7 @@ function UserOrderWrapper() {
     }).close(function (data) {
         // 결제창이 닫힐(성공 실패 상관없이 됨)
     }).done(function (data) {
-        if (!mobileCheck && orderMobile.length >= 11 && paymentCheck) {
+        if (!mobileCheck && orderMobile.length >= 11) {// && paymentCheck
           const selected_mobile = orderMobile;
           dispatch(addOrder(state.cart, selected_mobile, deliveryName, data))
             .then((res) => {
@@ -115,7 +115,7 @@ function UserOrderWrapper() {
               setOpenModal(true);
             }
           }).catch((err)=> alert("err입니다", err))
-        } else if (mobileCheck && paymentCheck) {
+        } else if (mobileCheck) { // && paymentCheck
           const selected_mobile = state.user.mobile;
           dispatch(addOrder(state.cart, selected_mobile, deliveryName, data))
           .then((res) => {

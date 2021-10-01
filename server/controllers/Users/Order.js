@@ -4,16 +4,16 @@ const { checkAccess } = require('../Tokenfunc');
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-    try {
+    
     console.log("바디데이터",req.body)
     let orderInfo = req.body.order;
-    console.log("데이터",orderInfo);
 
     //현재 로그인한 유저의 정보 뽑기
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
-    const { id,nickname } = checkAccessToken;
-      
+    const { id } = checkAccessToken;
+    
+    try {  
     let orderData;
         //오더테이블에 데이터 추가111111111111gi
         orderData = await order.create({
@@ -55,11 +55,13 @@ module.exports = async (req, res) => {
                 quantity : el.quantity
             })
         }
-        const orderinfo = {
+        
+        const sendinfo = {
             order_id : orderData.id,
-            data: data
+            data: req.body.data
           }
-            await axios.post('http://localhost:3060/payment', orderinfo)
+            console.log('----orderinfo 아래----',sendinfo);
+            await axios.post('http://localhost:3060/payment', sendinfo)
             .then(() => {
                 res.status(201).send({message: 'Your order has been completed'});    
             })

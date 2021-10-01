@@ -24,6 +24,5 @@ module.exports = {
     Address: require('./Map/Address'),
     StoreInfo: require('./Map/Storeinfo'),
     StoreMap: require('./Map/Store'),
-    Payment: require('./Payment/payment'),
     Feedback: require('./Payment/feedback')
 }

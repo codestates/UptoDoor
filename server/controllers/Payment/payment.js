@@ -13,9 +13,12 @@ module.exports = async (req, res) => {
     try {
         const response = await Bootpay.getAccessToken()
         if(response.status === 200){
+            console.log('----payment receipt id-----',req.body.receipt_id)
             const result = await Bootpay.verify(req.body.receipt_id)
+            console.log('----payment result id----',result)
             const receipt = await user.update({ receipt : req.body.receipt_id, billingkey: req.body.billing_key}, { where : { id: id }})
-            .then( async (rsp) => {
+            const data = await user.findOne({where: { id: id }})
+            .then( async () => {
                 //console.log('---axios token---',response.data.token)
                 if(req.body.feedback){ //두번째 정기결제 요청이면?
                     const respon = await Bootpay.reserveSubscribeBilling({

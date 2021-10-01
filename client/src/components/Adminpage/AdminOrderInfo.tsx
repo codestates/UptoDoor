@@ -3,15 +3,15 @@ import { ArrowBtn ,MiddleButton } from '../common/Button/Button'
 import { BtnBox } from '../StoreInfo/StyledStoreData'
 import {
   StoreInfoWrapper,
-  FlexBox,H3,H4,
+  FlexBox, H3, H4,
   OrderDate,
   OrderInfoWrapper,
-  TtlPricemBox,P,
+  TtlPricemBox, P,
   OrderImg,
   OrderSection,
   DetailTextArea,
   EachItemBox,
-} from '../UserOrderInfo/StyledUserOrderInfo'
+} from '../Mypage/StyledMypage';
 import { AdminContainer,AdminOrderListContent } from './StyledAdminPage';
 
 function AdminOrderInfo({ orderitem, listbackHandler }:any) {

@@ -27,7 +27,6 @@ const showInfoModalBg = keyframes`
     opacity: 1;
   }
 `
-
 export const MapFlexWrapper = styled.div`
   margin: 0 auto;
   width: 100%;

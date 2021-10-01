@@ -1,18 +1,18 @@
 import React from 'react'
+
 import { BtnBox, MiddleButton } from '../Button/Button';
 import {
-  ModalSelectAddContainer,I,
-  ModalSelectAddWrapper,ModalTextBox} 
+  ModalContainer,I,
+  ModalWrapper,ModalTextBox} 
   from './styledModal'
+
 import { useHistory } from 'react-router-dom';
 
-//주문이완료되었습니다 / 수정이 완료되었습니다 / 회원가입이 완료되었습니다.
 function ConfirmModal(props: any) {
 
   const history:any = useHistory()
   const { 
-    openModal, url,confirmModal,
-    modalSuccess,
+    openModal, url,confirmModal,modalSuccess,
     modalTitleText ,modalText,modalBtn,setOpenModal
     } = props;
 
@@ -24,8 +24,8 @@ function ConfirmModal(props: any) {
   return (
     <>
       {openModal || confirmModal? (
-      <ModalSelectAddContainer >
-        <ModalSelectAddWrapper flexable >
+      <ModalContainer >
+        <ModalWrapper flexable >
           
           <ModalTextBox >
             {!modalSuccess ? 
@@ -43,14 +43,15 @@ function ConfirmModal(props: any) {
           </ModalTextBox>
 
           <BtnBox>
-          <MiddleButton 
-          side
-          primary
-          onClick = {closeModal}>{modalBtn}</MiddleButton>
+            <MiddleButton 
+            side
+            primary
+            onClick = {closeModal}>{modalBtn}
+            </MiddleButton>
           </BtnBox>
 
-          </ModalSelectAddWrapper>
-      </ModalSelectAddContainer>
+          </ModalWrapper>
+      </ModalContainer>
       )
       :
       null

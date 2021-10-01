@@ -3,6 +3,7 @@ import Select from 'react-select';
 import {Label, SelectBox} from './StyledMypageEdit'
 
 function ProfileEditOptions({selectInputHandler,userGender,userAge}:any) {
+
   const gender: [{value: string, label: string}[], string] = [
     [
       { value : '선택안함' , label : '선택안함'},
@@ -10,9 +11,9 @@ function ProfileEditOptions({selectInputHandler,userGender,userAge}:any) {
       { value : '여자' , label : '여자'},
     ],
     '성별',
-]
+  ]
 
-const age: [{value: string, label: string}[], string] = [
+  const age: [{value: string, label: string}[], string] = [
     [
       { value: '선택안함', label: '선택안함' },
       { value: '10대', label: '10대' },
@@ -24,14 +25,14 @@ const age: [{value: string, label: string}[], string] = [
     ],
   '연령대'
   ]
+
   const selectedGenderOption = gender[0].find((el:any)=>{
-    // console.log('===el.gender value ??? ',el.value)
     if(el.value === userGender){
       return el
     }
   })
   const selectedAgeOption = age[0].find((el:any)=>{
-    const age1 = `${userAge}대`
+    const age1 = {userAge}
     if(el.value === age1){
       return el 
     }
@@ -44,6 +45,7 @@ const age: [{value: string, label: string}[], string] = [
           className = 'gender-selection selection'
           options = {gender[0]}
           name={gender[1]}
+          placeholder = {userGender}
           defaultValue = {selectedGenderOption}
           onChange = {(e)=>selectInputHandler(e,gender[1])}
         />
@@ -53,6 +55,7 @@ const age: [{value: string, label: string}[], string] = [
           className = 'age-selection selection'
           options = {age[0]}
           name={age[1]}
+          placeholder = {userAge}
           defaultValue = {selectedAgeOption}
           onChange = {(e)=>selectInputHandler(e,age[1])}
         />

@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from 'react'
+<<<<<<< HEAD:client/src/components/Mypage/MyProfile.tsx
 import {Link} from 'react-router-dom'
 import { Container, Title, Wrapper,PageWrapper,PageProfileBtnWrapper ,PageProfileWrapper,PageContent,PageBtnWrapper} from "../GlobalStyle";
 import MyOrderWrapper from '../UserOrderInfo/MyOrderWrapper';
@@ -10,17 +11,35 @@ import MyOrderList from './MyOrderList';
 import { useDispatch} from "react-redux";
 import { 
   MypageUl,MypageLi } from './StyledMypage';
-import { END_POINTS } from '../../_actions/type';
-import { useHistory } from 'react-router-dom';
+=======
+import { Link ,useHistory } from 'react-router-dom'
+import { useDispatch } from "react-redux";
 
-function MyProfile(): any {
+import { 
+  ButtonWrapper, 
+  MypageUl,MypageLi } from './StyledMypage'
+import { 
+  Container,Title, Wrapper,
+  PageWrapper,PageProfileBtnWrapper,
+  PageProfileWrapper,PageContent,
+} from "../GlobalStyle";
+
+import { AdminStoreGetData } from '../../_actions/admin_action';
+>>>>>>> 42bbef9637afd0cfaecc400389db8d897070a7d3:client/src/components/Mypage/MyProfileWrapper.tsx
+import { END_POINTS } from '../../_actions/type';
+
+import axios from 'axios';
+import MyOrderDetail from './MyOrderDetail';
+import MyOrderList from './MyOrderList';
+
+function MyProfileWrapper(): any {
   const dispatch:any = useDispatch();
   const history = useHistory();
   const [user, setUser]: any = useState('')
-
   const [orderList,setOrderList] = useState([])
   const [orderitem , setOrderItem] = useState({})
   const [cur,setCur] = useState(0)
+
   const moveDetailHandler = (id:any) => {
     const filtered = orderList.filter((el:any)=>{
       return el.id === id
@@ -28,12 +47,10 @@ function MyProfile(): any {
     setOrderItem(filtered);
     setCur(1);
   }
-
   const listbackHandler = () => {
     setOrderItem('');
     setCur(0);
   }
-  console.log("asdasdasd", orderitem);
   useEffect(() => {
     setCur(0);
     setOrderItem({});
@@ -76,7 +93,6 @@ function MyProfile(): any {
           }
           return final;
         })
-        console.log('-====order==',order);
         setOrderList(order);
         setUser(res.data.userdata);
       }).catch((err) => {
@@ -84,12 +100,13 @@ function MyProfile(): any {
     })
   },[])
 
-  const moveAdminPage = () => {
-    dispatch(AdminStoreGetData()).then((res:any) => {
+  const moveAdminPageHandler = () => {
+    dispatch(AdminStoreGetData())
+    .then((res:any) => {
       if (res.payload.message === "ok") {
         history.push('/adminpage')
       }
-  })
+    })
   }
   
   return (
@@ -113,6 +130,7 @@ function MyProfile(): any {
                 <p>{user.mainAddressDetail}</p>
                 </>
                 }
+<<<<<<< HEAD:client/src/components/Mypage/MyProfile.tsx
                 {/* {
                 user.subAddress === null || 
                 user.subAddressDetail === null
@@ -132,16 +150,33 @@ function MyProfile(): any {
                 }
                 <button><Link to="/mypageedit">프로필 수정</Link></button>
               </PageBtnWrapper>
+=======
+              </PageContent>
+              <ButtonWrapper>
+                {user.position === "1" ? 
+                <button onClick={moveAdminPageHandler}>관리자 페이지
+                </button>
+                : 
+                <button><Link to="/adminpost">가게 등록</Link>
+                </button>}
+                <button><Link to="/mypageedit">프로필 수정</Link>
+                </button>
+              </ButtonWrapper>
+>>>>>>> 42bbef9637afd0cfaecc400389db8d897070a7d3:client/src/components/Mypage/MyProfileWrapper.tsx
             </PageProfileWrapper>
             <MypageUl>
               <MypageLi>
                 구독관리
               </MypageLi>
             </MypageUl>
+<<<<<<< HEAD:client/src/components/Mypage/MyProfile.tsx
             </PageProfileBtnWrapper>
+=======
+          </PageProfileBtnWrapper>
+>>>>>>> 42bbef9637afd0cfaecc400389db8d897070a7d3:client/src/components/Mypage/MyProfileWrapper.tsx
 
             {cur === 1 ? 
-            <MyOrderWrapper 
+            <MyOrderDetail 
             user= {user}
             orderitem = {orderitem}
             listbackHandler={listbackHandler}
@@ -158,4 +193,4 @@ function MyProfile(): any {
   );
 }
 
-export default MyProfile
+export default MyProfileWrapper

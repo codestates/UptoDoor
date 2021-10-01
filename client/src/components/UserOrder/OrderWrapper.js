@@ -78,14 +78,6 @@ function OrderWrapper() {
         custom_font_color: '#ffffff' // [ theme가 custom 일 때 font color 색상 지정 가능 ]
       }
     }).error(function (data) {
-      setOptionsModal(true);
-      <ConfirmModal
-          openModal={optionsModal}
-          setOpenModal={setOptionsModal}
-          modalTitleText="주문 실패"
-          modalText="모든 정보를 확인해주세요"
-          modalBtn="확인"
-      />
       console.log('-- 결제 진행 에러 --',data);
     }).cancel(function (data) {
       console.log('-- 결제 취소 에러 --',data);

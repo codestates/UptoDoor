@@ -1,10 +1,10 @@
 import React from 'react'
-import UserOrderWrapper from "../components/UserOrder/UserOrderWrapper";
+import OrderWrapper from "../components/UserOrder/OrderWrapper";
 
 const UserOrder = () => {
   return (
     <>
-      <UserOrderWrapper />
+      <OrderWrapper />
     </>
   );
 }

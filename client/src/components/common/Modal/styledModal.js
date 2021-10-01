@@ -1,6 +1,8 @@
 import styled,{keyframes} from 'styled-components'
-import { MainColor, TextColor, SmallFont, MediumFont, TextDarkGrey, UltraLargeFont, PointColor } from '../../GlobalStyle'
-
+import { 
+  MainColor, TextColor, TextDarkGrey,PointColor,
+  SmallFont, MediumFont,UltraLargeFont,
+} from '../../GlobalStyle'
 
 export const showModal = keyframes`
   from {
@@ -23,7 +25,64 @@ export const showModalBg = keyframes`
 export const StyledModal = styled.div`
   z-index: 9999;
 `
+// 공통모달스타일 
 export const ModalContainer = styled.div`
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  z-index: 120;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: ${showModalBg} .4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media screen and (min-width: 767px) {
+  }
+`
+export const ModalWrapper = styled.div`
+  padding: 40px 20px;
+  margin: 0 auto;
+  width: 90%;
+  height : 350px;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 8px;
+  animation: ${showModal}.4s;  
+  display: ${({flexable})=> (flexable ?'flex' : 'unset')};
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: 767px) {
+    width: 550px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+`
+export const ModalTextBox = styled.div`
+text-align: center;
+margin : 0 0 15px;
+>p{
+  margin: 6px 0;
+}
+`
+export const ModalTitleText = styled.div`
+  color : ${TextColor};
+  font-size : ${MediumFont};
+  text-align : left;
+  margin-bottom: 10px;
+`
+export const I = styled.i`
+  color: ${({confirm})=> (confirm ? '#245CCE' : PointColor)};
+  font-size: ${({bigger})=> (bigger ? '86px' : UltraLargeFont)};
+  margin-bottom:  30px;
+  margin:  20px 0;
+`
+// 약관모달
+export const TermModalContainer = styled.div`
   top: 0;
   left: 0;
   width: 100%;
@@ -39,7 +98,7 @@ export const ModalContainer = styled.div`
     background-color: rgba(0, 0, 0, 0.6);
   }
 `;
-export const ModalWrapper = styled.div`
+export const TermModalWrapper = styled.div`
   padding: 40px 20px;
   margin: 0 auto;
   width: 375px;
@@ -57,7 +116,7 @@ export const ModalWrapper = styled.div`
     border-radius: 10px;
   }
 `
-export const ModalTextWrapper = styled.div`
+export const TermModalTextWrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 100%;
@@ -78,33 +137,19 @@ export const ModalTextWrapper = styled.div`
       border-radius: 150px;
     }
 `
-export const ModalTextBox = styled.div`
-text-align: center;
-margin : 0 0 15px;
->p{
-  margin: 6px 0;
-}
-`
-export const I = styled.i`
-  color: ${({confirm})=> (confirm ? '#245CCE' : PointColor)};
-  font-size: ${({bigger})=> (bigger ? '86px' : UltraLargeFont)};
-  margin-bottom:  30px;
-  margin:  20px 0;
-`
-export const ModalTitleText = styled.div`
+export const TermModalTitleText = styled.div`
   color : ${TextColor};
   font-size : ${MediumFont};
   text-align : left;
   margin-bottom: 10px;
 `
-export const ModalText = styled.div`
+export const TermModalText = styled.div`
   color : ${TextColor};
   font-size : ${SmallFont};
   text-align : left;
   margin-top: 10px;
 `
-
-//! mapInfoModal
+// 지도모달
 export const ModalSelectAddContainer = styled.div`
   top: 0;
   right: 0;

@@ -1,44 +1,38 @@
-import React,{ useEffect, useState } from 'react'
-import { SmallButton,ArrowBtn } from '../common/Button/Button'
-import {
-  MypageOrderListWrapper,
-  OrderListContent,
-} from '../Mypage/StyledMypage'
+import React,{ useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { cancelOrder } from '../../_actions/user_action'
 import { BtnBox } from '../StoreInfo/StyledStoreData'
 import {
   StoreInfoWrapper,
   FlexBox,H2,H3,H4,
   OrderDate,
   OrderInfoWrapper,
-  TtlPricemBox
-} from './StyledUserOrderInfo'
-import { useHistory } from 'react-router-dom'
-import MyOrderInfo from './MyOrderInfo'
-import MyStoreInfo from './MyStoreInfo'
-import OrderInfo from '../UserOrder/OrderInfo'
-import { useDispatch } from 'react-redux'
-import { cancelOrder } from '../../_actions/user_action'
+  TtlPricemBox,
+  MypageOrderListWrapper,
+  OrderListContent,
+} from './StyledMypage';
+
+import { SmallButton,ArrowBtn } from '../common/Button/Button'
 import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal'
+import MyOrderItem from './MyOrderItem'
+import MyOrderStore from './MyOrderStore'
 
-// eslint-disable-next-line react/prop-types
-function MyOrderWrapper({ 
+function MyOrderDetail({ 
   listbackHandler,orderitem,
   user }:any, ) {
-  const dispatch: any = useDispatch();
-  const history:any = useHistory();
+
+  // const dispatch:any = useDispatch();
+  // const [modalSuccess, setModalSuccess] = useState(false);
+
   const [openModal , setOpenModal] = useState(false);
+  const [cancleStoreModal, setCancleStoreModal] = useState(false);
 
   const cancelStoreHandler = () => {
     setOpenModal(true);
   }
-  
-  const [DeleteModal, setDeleteModal] = useState(false);
-  // const [modalSuccess, setModalSuccess] = useState(false);
-
   const cancelOrderHandler = () => {
     //* 디스패치 주석풀어야함, 밑에 2줄 지우고,
-
     // dispatch(cancelOrder()).then((res:any) => {
     //   if (res.payload.message === "success delete order") {
     //     setOpenModal(false);
@@ -46,7 +40,7 @@ function MyOrderWrapper({
     //   }
     // })
     setOpenModal(false);
-    setDeleteModal(true);
+    setCancleStoreModal(true);
   }
   
   return (
@@ -76,7 +70,7 @@ function MyOrderWrapper({
         </FlexBox>
 
         {/* 구독가게정보 component */}
-        <MyStoreInfo
+        <MyOrderStore
         user = {user}
         orderitem = {orderitem}
         />
@@ -84,11 +78,12 @@ function MyOrderWrapper({
         <OrderInfoWrapper className="orderinfo-wrapper">
           <FlexBox between>
           {orderitem.state === 'cancel' ? 
-            <H3>주문취소정보</H3>:<H3>주문상품정보</H3>
+          <H3>주문취소정보</H3>:<H3>주문상품정보</H3>
           }
           </FlexBox>
+
           {/* 오더인포 component */}
-          <MyOrderInfo
+          <MyOrderItem
           orderitem = {orderitem}
           />
 
@@ -98,13 +93,12 @@ function MyOrderWrapper({
           </TtlPricemBox>
 
           <TtlPricemBox className="ttl-price-box">
-
-          <H4>총 결제금액</H4>
-          {orderitem.state === 'cancel' ? 
-          <H2 cancleline >{orderitem.totalprice}원</H2>
-          :
-          <H2>{orderitem.totalprice}원</H2>
-          }
+            <H4>총 결제금액</H4>
+            {orderitem.state === 'cancel' ? 
+            <H2 cancleline >{orderitem.totalprice}원</H2>
+            :
+            <H2>{orderitem.totalprice}원</H2>
+            }
           </TtlPricemBox>
         </OrderInfoWrapper>
       </OrderListContent>
@@ -113,8 +107,7 @@ function MyOrderWrapper({
         <SmallButton 
         primary
         onClick = {listbackHandler}  
-        >
-        뒤로가기</SmallButton>
+        >뒤로가기</SmallButton>
         <SmallButton
         onClick = {cancelStoreHandler}
         >구독취소</SmallButton>
@@ -130,23 +123,25 @@ function MyOrderWrapper({
         handler={cancelOrderHandler}
         yes="확인"
         no="취소"
-        /> : 
+        /> 
+        : 
         null
       }
-      {
-        DeleteModal ?
-          <ConfirmModal
-          openModal = {DeleteModal} 
+
+      {cancleStoreModal ?
+        <ConfirmModal
+        openModal = {cancleStoreModal} 
         modalTitleText = '구독 취소'
         modalText = '구독이 취소되었습니다. 감사합니다.'
         modalBtn='확인'
-        setOpenModal={setDeleteModal}
-          />
-          : null
+        setOpenModal={setCancleStoreModal}
+        />
+        : 
+        null
       }
     </MypageOrderListWrapper>
   );
 }
 
-export default MyOrderWrapper
+export default MyOrderDetail
 

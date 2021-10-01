@@ -1,10 +1,10 @@
 import React from 'react'
-import MyProfile from '../components/Mypage/MyProfile'
+import MyProfileWrapper from '../components/Mypage/MyProfileWrapper'
 
 function Mypage() {
   return (
     <>
-      <MyProfile/>
+      <MyProfileWrapper/>
     </>
   )
 }

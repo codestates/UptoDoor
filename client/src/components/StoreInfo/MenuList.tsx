@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {useSelector, useDispatch} from "react-redux";
 import {addCart} from '../../_actions/cart_action'
 import {MiddleButton} from '../common/Button/Button'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import {
   MenuOrderContainer,
   MenuContainer,
@@ -21,12 +21,10 @@ function MenuList({store}:any):any {
   const dispatch:any = useDispatch()
 
   const addCartHandler = (item:any) => {
-    // 메뉴의 id와 item.id 가 같으면 quantity 만 추가, 아니면 디스패치 애드카트에 아이템추가.
     if (!cart.menu.map((el:any) => el.id).includes(item.id)) {
       item = {...item, quantity : 1 }
       dispatch(addCart(item))
     }else{
-      // console.log('=장바구니담겼지만 이미 카트에 상품있음=',item)
     }
   }
   const cancleClickHandler = () => {

@@ -1,4 +1,6 @@
 import React,{useCallback, useState , useEffect} from 'react'
+import { useDispatch,useSelector } from 'react-redux'
+
 import {
   Container,
   Wrapper , 
@@ -12,20 +14,19 @@ import {
   Label,
   ErrMsgP,
 } from './StyledMypageEdit'
-import {SmallButton,BtnBox} from '../common/Button/Button'
-import { END_POINT } from '../../_actions/type';
-import { useDispatch,useSelector } from 'react-redux'
+
 import { editUser,deleteUser} from '../../_actions/user_action'
+import { END_POINT } from '../../_actions/type';
+
+import {SmallButton,BtnBox} from '../common/Button/Button'
 import ProfileEditOptions from './ProfileEditOptions';
 import WarningModal from '../common/Modal/WarningModal'
-// import useInput from '../../utils/useInput'
 import ConfirmModal from '../common/Modal/ConfirmModal';
 
 function MyProfileEdit() {
 
   const dispatch:any = useDispatch();
   const user = useSelector((state:any) => state.user);
-
 
   const [nickname , setNickname] = useState(user.nickname);
   const [password , setPassword] = useState('');
@@ -39,6 +40,7 @@ function MyProfileEdit() {
   const [age, setAge] = useState(user.age);
 
   const [openModal , setOpenModal] = useState(false);
+  const [modalSuccess,setModalSuccess] = useState(false);
   const [confirmModal , setConfirmModal] = useState(false);
   const [deleteUserModal, setDeleteUserModal] = useState(false);
 
@@ -112,6 +114,7 @@ function MyProfileEdit() {
     if(passwordRegErr === true) return setPasswordRegErr(true);
 
     setConfirmModal(true)
+    setModalSuccess(true)
 
     const userinfoEdit = {
       password,
@@ -138,7 +141,7 @@ function MyProfileEdit() {
       <Title>프로필 수정</Title>
       
       <Wrapper>
-      <Form onSubmit = {profileEditSubmitHandler}  >
+      <Form onSubmit = {profileEditSubmitHandler}>
         <ProfileEditBox>
           <Label>E-mail</Label>
           <ProfileEditInput
@@ -160,7 +163,8 @@ function MyProfileEdit() {
           />
           {passwordRegErr ? 
           <ErrMsgP>비밀번호는 최소 6자리에서 12자리 사이의<br/> 영문,숫자 조합이어야 합니다.</ErrMsgP>
-          : null}
+          : 
+          null}
         </ProfileEditBox>
 
         <ProfileEditBox>
@@ -174,7 +178,8 @@ function MyProfileEdit() {
           />
           {passwordErr ? 
           <ErrMsgP>비밀번호가 일치하지 않습니다.</ErrMsgP>
-          :null}
+          :
+          null}
         </ProfileEditBox>
 
         <ProfileEditBox>
@@ -192,7 +197,6 @@ function MyProfileEdit() {
           <ProfileEditInput
           required
           type = 'text'
-          // value = {mobile}
           defaultValue = {mobile}
           onChange = {onChangeMobileHandler}
           />
@@ -200,8 +204,8 @@ function MyProfileEdit() {
 
         {/* 옵션컴포넌트 */}
         <ProfileEditOptions
-            userGender={gender}
-            userAge={age}
+        userGender={gender}
+        userAge={age}
         selectInputHandler = {selectInputHandler}
         />
 
@@ -216,10 +220,10 @@ function MyProfileEdit() {
           onClick = {withdrawalModalHandler}
           >회원 탈퇴</SmallButton>
         </BtnBox>
+
         </Form>
       </Wrapper>
       
-
       {openModal ?
       <WarningModal
       openModal = {openModal}
@@ -239,6 +243,7 @@ function MyProfileEdit() {
       confirmModal = {confirmModal}
       url="/"
       setOpenModal={setOpenModal}
+      modalSuccess = {modalSuccess}
       modalTitleText = '수정이 완료되었습니다.'
       modalText = '확인 후 메인페이지로 이동합니다.'
       modalBtn = '확인'

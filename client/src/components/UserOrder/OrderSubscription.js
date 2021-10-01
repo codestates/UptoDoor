@@ -7,11 +7,11 @@ import {
   SubscriptionInfoWrapper,
 } from "./StyledUserOrder";
 import { useSelector } from 'react-redux';
-const SubscriptionInfo = () => {
+const OrderSubscription = () => {
   const state = useSelector((state) => state.cart);
 
   return (
-    <OrderWrapper left> 
+    <OrderWrapper left>
       <OrderH3>정기구독 상세 정보</OrderH3>
       <SubscriptionWrapper>
         <h5>구독 정보</h5>
@@ -24,13 +24,10 @@ const SubscriptionInfo = () => {
             <div>
               <OrderP primary>배송 요일 : </OrderP>
               <OrderP>
-                {
-                  state.delivery_day &&
-                    state.delivery_day
-                      .map((day) => {
-                        return `${day}요일 ${" "}`;
-                      })
-                }
+                {state.delivery_day &&
+                  state.delivery_day.map((day) => {
+                    return `${day}요일 ${" "}`;
+                  })}
               </OrderP>
             </div>
             <div>
@@ -51,6 +48,6 @@ const SubscriptionInfo = () => {
       </SubscriptionWrapper>
     </OrderWrapper>
   );
-}
+};
 
-export default SubscriptionInfo
+export default OrderSubscription;

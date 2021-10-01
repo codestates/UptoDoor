@@ -12,7 +12,7 @@ import {
   EmptyStoreImg,
 }
 from './StyledStoreData'
-import { Container,Title} from "../GlobalStyle";
+import { Container, Title, Wrapper } from "../GlobalStyle";
 
 import { useDispatch, useSelector } from 'react-redux';
 import { END_POINTS } from "../../_actions/type";
@@ -24,7 +24,6 @@ const StoreData = ({id}) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
   
-  // const [store, setStore] = useState({image:[]})
   const [store, setStore] = useState({image:[]})
   const [openModal , setOpenModal] = useState(false);
 
@@ -51,62 +50,60 @@ const StoreData = ({id}) => {
   return (
     <Container>
       <Title>가게 정보</Title>
-      <StoreDataWrapper>
-        <StoreIntro>
-          <div className="store-flex-box flex-box">
-            <StoreName>🏠 {store.name}</StoreName>
-            <StoreCategory>{store.category}</StoreCategory>
-          </div>
-
-          <StoreImgBox className="store-img-box">
-            <StoreImg src={store.image && store.image[0]} className = 'first-img' />
-
-            <div>
-            {store.image.length < 2 ? 
-            <EmptyStoreImg className = 'second-img empty-secont-img'>
-            </EmptyStoreImg>
-            :
-            <StoreImg src={store.image[1]} className = 'second-img'/>
-            }
-
-            <StoreBackImg
-              style={{
-                backgroundImage: `url(${store.image[2]})`,
-              }}
-              className="additional-img"
-              onClick = {moreImgHandler}
-              >
-              +
-            </StoreBackImg>
+      <Wrapper>
+        <StoreDataWrapper>
+          <StoreIntro>
+            <div className="store-flex-box flex-box">
+              <StoreName>🏠 {store.name}</StoreName>
+              <StoreCategory>{store.category}</StoreCategory>
             </div>
 
-          </StoreImgBox>
+            <StoreImgBox className="store-img-box">
+              <StoreImg
+                src={store.image && store.image[0]}
+                className="first-img"
+              />
 
-          <div className="store-detail-box">
-            <StoreAddressP>📍 {store.address}</StoreAddressP>
-            <StoreAddressP>📱 {store.number}</StoreAddressP>
-            <hr />
-            <StoreInfoP className="store-introduce">
-              {store.introduce}
-            </StoreInfoP>
-          </div>
-        </StoreIntro>
+              <div>
+                {store.image.length < 2 ? (
+                  <EmptyStoreImg className="second-img empty-secont-img"></EmptyStoreImg>
+                ) : (
+                  <StoreImg src={store.image[1]} className="second-img" />
+                )}
 
-        {/* 메뉴리스트 컴포넌트 */}
-        <MenuList 
-        store = {store}
+                <StoreBackImg
+                  style={{
+                    backgroundImage: `url(${store.image[2]})`,
+                  }}
+                  className="additional-img"
+                  onClick={moreImgHandler}
+                >
+                  +
+                </StoreBackImg>
+              </div>
+            </StoreImgBox>
+
+            <div className="store-detail-box">
+              <StoreAddressP>📍 {store.address}</StoreAddressP>
+              <StoreAddressP>📱 {store.number}</StoreAddressP>
+              <hr />
+              <StoreInfoP className="store-introduce">
+                {store.introduce}
+              </StoreInfoP>
+            </div>
+          </StoreIntro>
+
+          {/* 메뉴리스트 컴포넌트 */}
+          <MenuList store={store} />
+        </StoreDataWrapper>
+      </Wrapper>
+      {openModal ? (
+        <StoreImgModal
+          store={store}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
         />
-      </StoreDataWrapper>
-
-      {openModal ?
-      <StoreImgModal
-      store = {store}
-      openModal = {openModal}
-      setOpenModal = {setOpenModal}
-      modalBtn = '닫기'
-      />
-      :null    
-    }
+      ) : null}
     </Container>
   );
 }

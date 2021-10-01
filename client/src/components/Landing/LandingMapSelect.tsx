@@ -1,21 +1,24 @@
 import React from 'react'
 import Select from 'react-select';
+
 import {
   LandingMapSelectContainer,
   LandingMapSelectWrapper,
   H4} from './StyledLanding'
-function LandingMapSelect({city,filterCityList,onChangeSeoulCity}:any) {
+
+function LandingMapSelect({city,onChangeSeoulCity}:any) {
+  
   const cityDummy: [{value: string, label: string}[], string] = [
     [
       { value : 'ALL' , label : 'ALL'},
       { value : '용산구' , label : '용산구'},
       { value : '강남구' , label : '강남구'},
-      { value : '종로구' , label : '종로구'},
+      { value : '강서구' , label : '강서구'},
       { value : '중구' , label : '중구'},
       { value : '성동구' , label : '성동구'},
       { value : '성북구' , label : '성북구'},
       { value : '은평구' , label : '은평구'},
-      { value : '강서구' , label : '강서구'},
+      { value : '종로구' , label : '종로구'},
       { value : '동작구' , label : '동작구'},
       { value : '송파구' , label : '송파구'},
       { value : '광진구' , label : '광진구'},
@@ -40,11 +43,9 @@ function LandingMapSelect({city,filterCityList,onChangeSeoulCity}:any) {
   return (
     <LandingMapSelectContainer>
 
-      <H4>{city}
-      <span> 의</span>
-      </H4>
-
+      <H4>{city}<span> 의</span></H4>
       <H4><strong>구독서비스</strong>를 확인하세요👇🏼</H4>
+      
       <LandingMapSelectWrapper>
         <Select 
           className = 'city-selection selection'

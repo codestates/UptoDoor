@@ -1,12 +1,12 @@
 import React from 'react'
-import AdminProfile from '../components/AdminPage/AdminProfile';
+import AdminWrapper from "../components/AdminPage/AdminWrapper";
 
 const AdminPage = () => {
   return (
     <>
-      <AdminProfile/>
+      <AdminWrapper />
     </>
-  )
+  );
 }
 
 export default AdminPage

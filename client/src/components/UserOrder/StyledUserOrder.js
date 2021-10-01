@@ -1,29 +1,11 @@
 import styled from 'styled-components';
 
-
-
+//*공통
 export const OrderWrapper = styled.div`
   margin: 0 auto;
-  width: 90%;
+  width: 100%;
   @media screen and (min-width: 1140px) {
     margin: ${({ left }) => (left ? "0 20px 0 0" : "0 auto")};
-  }
-`;
-
-export const SubscriptAndOrderInfoWrapper = styled.div`
-  @media screen and (min-width: 767px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  @media screen and (min-width: 1140px) {
-    margin: 20px auto;
-    width: 85%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    max-width: 1200px;
   }
 `;
 
@@ -33,10 +15,96 @@ export const OrderH3 = styled.h3`
   margin: 12px 0 12px;
   letter-spacing: -1px;
   @media screen and (min-width: 1140px) {
-    width:90%;
-    font-size: 24px;
+    width: 100%;
+    font-size: 22px;
     max-width: 1200px;
     margin: 12px auto;
+  }
+`;
+
+export const OrderP = styled.p`
+  font-size: 14px;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: -1px;
+  font-weight: ${({ primary }) => (primary ? "500" : "400")};
+  margin-right: 16px;
+  @media screen and (min-width: 767px) {
+    font-size: 16px;
+    margin-right: 16px;
+  }
+
+  @media screen and (min-width: 1140px) {
+    font-size: 16px;
+    margin: ${({ money }) =>
+      money ? "0" : "0 16px 0 10px"};
+  }
+`;
+
+export const OrderH5 = styled.h5`
+  font-size: 14px;
+  letter-spacing: -1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: ${({ money }) => (money ? "0 0 2px 0" : "3px 10px 3px 0")};
+  > span {
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 4px;
+  }
+
+  @media screen and (min-width: 1140px) {
+    font-size: 16px;
+    margin: ${({ money }) => (money ? "0 0 4px 0" : "6px 0 6px 0")};
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  margin: 0 auto 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  > button {
+    font-weight: 500;
+    width: 150px;
+    margin: 0 10px;
+  }
+
+  @media screen and (min-width: 767px) {
+    height: 80px;
+
+    display: block;
+    > button {
+      font-size: 20px;
+      width: 250px;
+      height: 60px;
+      margin: 0 10px 0 15px;
+    }
+  }
+`;
+
+//* OrderMenu
+export const MenuContainer = styled.div`
+  width: 100%;
+`;
+
+export const MenuWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 10px 5px;
+  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7f7f7;
+  @media screen and (min-width: 1140px) {
+    max-width: 1140px;
+    margin: 0 auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
 `;
 
@@ -66,29 +134,12 @@ export const MenuUl = styled.ul`
   }
 `;
 
-export const MenuWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  padding: 10px 5px;
-  border-radius: 8px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #f7f7f7;
-  @media screen and (min-width: 1140px) {
-    width: 95%;
-    max-width: 1200px;
-    margin: 0 auto;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  }
-`;
 
 export const MenuItemWrapper = styled.div`
   border-radius: 8px;
   width: 95%;
-  height: 85px;
   margin-bottom: 6px;
+  padding: 10px;
   background-color: #fff;
   display: flex;
   justify-content: flex-start;
@@ -97,16 +148,19 @@ export const MenuItemWrapper = styled.div`
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
   > img {
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     margin-left: 8px;
-    margin-right: 12px;
+    margin-right: 30px;
+    object-fit: contain;
   }
 
   @media screen and (min-width: 1140px) {
     > img {
-      margin-left: 14px;
-      margin-right: 18px;
+      min-width: 70px;
+      min-height: 70px;
+      margin-left: 20px;
+      margin-right: 30px;
     }
   }
 `;
@@ -140,7 +194,7 @@ export const MenuItemDetail = styled.div`
       font-size: 14px;
       width: 20%;
       text-align: center;
-      
+
       > span {
         display: none;
       }
@@ -150,14 +204,38 @@ export const MenuItemDetail = styled.div`
   @media screen and (min-width: 1140px) {
     > h5 {
       font-size: 16px;
-      margin-left:20px;
+      margin-left: 20px;
     }
     > div {
       font-size: 16px;
-      margin-right:5px;
+      margin-right: 5px;
     }
   }
 `;
+
+
+//* SubscriptAndOrderInfoWrapper
+export const SubscriptAndOrderInfoWrapper = styled.div`
+  width: 100%;
+  @media screen and (min-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 1140px) {
+    margin: 30px auto;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    max-width: 1140px;
+  }
+`;
+
+//* OrderSubscription
+
 
 export const SubscriptionWrapper = styled.div`
   padding: 14px 12px;
@@ -191,7 +269,7 @@ export const SubscriptionWrapper = styled.div`
     }
     > h5 {
       height: 30px;
-      font-size: 22px;
+      font-size: 20px;
     }
   }
 `;
@@ -200,10 +278,7 @@ export const SubscriptionInfoWrapper = styled.div`
   margin-left: 10px;
   > div {
     display: flex;
-
-    > p {
-      margin-right: 5px;
-    }
+    margin: 0 0 5px 0;
   }
   > textarea {
     width: 100%;
@@ -214,7 +289,7 @@ export const SubscriptionInfoWrapper = styled.div`
     resize: none;
     letter-spacing: -1px;
     border-radius: 8px;
-    max-width:311px;
+    max-width: 350px;
   }
 
   @media screen and (min-width: 767px) {
@@ -226,7 +301,7 @@ export const SubscriptionInfoWrapper = styled.div`
     > textarea {
       width: 320px;
       font-size: 14px;
-      max-width:100%;
+      max-width: 100%;
     }
   }
   @media screen and (min-width: 1140px) {
@@ -247,27 +322,7 @@ export const SubscriptionInfoWrapper = styled.div`
   }
 `;
 
-export const OrderP = styled.p`
-  font-size: 14px;
-  font-weight: 400;
-  margin-bottom: 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  letter-spacing: -1px;
-  font-weight: ${({ primary }) => (primary ? "500" : "400")};
-  @media screen and (min-width: 767px) {
-    font-size: 16px;
-  }
-
-  @media screen and (min-width: 1140px) {
-    font-size: 18px;
-    margin-right: 16px;
-    margin-left:10px;
-  }
-`;
-
-//오더인포
+//* OrderInfo
 export const OrderInfoContainer = styled.div`
   width: 100%;
 
@@ -296,7 +351,6 @@ export const OrderInfoContainer = styled.div`
   }
 `;
 
-
 export const OrderInfoWrraper = styled.div`
   width: 100%;
   padding: 0;
@@ -307,11 +361,8 @@ export const OrderInfoWrraper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   > h5 {
-    font-size: 14px;
-    margin-bottom: 8px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 16px;
+    margin: 4px 0 8px;
     letter-spacing: -1px;
   }
   > p {
@@ -322,16 +373,15 @@ export const OrderInfoWrraper = styled.div`
   @media screen and (min-width: 767px) {
     padding: 14px 14px;
     > h5 {
-      font-size: 16px;
+      font-size: 18px;
       margin-bottom: 10px;
     }
-
   }
 
   @media screen and (min-width: 1140px) {
     padding: 10px 14px;
     > h5 {
-      font-size: 22px;
+      font-size: 20px;
     }
   }
 `;
@@ -339,25 +389,14 @@ export const OrderInfoWrraper = styled.div`
 export const OrderUserInfoContent = styled.div`
   width: 95%;
   display: flex;
-    > h4 {
-      font-size: 12px;
-      padding-left:10px;
-      margin-right: 5px;
-    }
-    > p {
-      font-size: 12px;
-      margin-bottom: 2px;
-    }
-  @media screen and (min-width: 767px) {
+  > h4 {
+    font-size: 12px;
+    padding-left: 10px;
+    margin-right: 5px;
   }
   @media screen and (min-width: 1140px) {
-    justify-content: space-between;
     > h4 {
       font-size: 16px;
-    }
-    > p {
-      font-size: 14px;
-      line-height: 1.5rem;
     }
   }
 `;
@@ -371,18 +410,7 @@ export const InfoCheck = styled.div`
   > div {
     display: flex;
     align-items: flex-start;
-    > h5 {
-      font-size: 14px;
-      margin-bottom: 4px;
-      letter-spacing: -1px;
-      margin-right: 10px;
-
-      >span {
-        font-size: 12px;
-        font-weight:400;
-        margin-left:4px;
-      }
-    }
+    
     > span {
       display: flex;
       justify-content: flex-start;
@@ -396,11 +424,6 @@ export const InfoCheck = styled.div`
         margin: 4px 4px 0 4px;
       }
     }
-  }
-  > h5 {
-    font-size: 14px;
-    margin: 4px 0 4px 0;
-    letter-spacing: -1px;
   }
   > input {
     margin-top: 4px;
@@ -426,11 +449,6 @@ export const InfoCheck = styled.div`
     margin: 16px auto 0;
     > div {
       justify-content: space-between;
-      > h5 {
-        font-size: 16px;
-        margin-top: 6px;
-        margin-bottom: 6px;
-      }
       span {
         justify-content: flex-start;
         align-items: flex-end;
@@ -443,10 +461,6 @@ export const InfoCheck = styled.div`
         }
       }
     }
-    > h5 {
-      font-size: 16px;
-      margin-bottom: 6px;
-    }
     > input {
       width: 100%;
     }
@@ -455,28 +469,21 @@ export const InfoCheck = styled.div`
 
 export const MoneyCheck = styled.div`
   width: 95%;
-  margin:4px 8px 0 8px;
+  margin: 4px 8px 0 8px;
   display: flex;
   justify-content: space-between;
-  max-width: 470px;
+  max-width: 311px;
   > h4 {
     letter-spacing: -1px;
   }
   @media screen and (min-width: 1140px) {
     width: 95%;
     margin: 3px auto 0;
+    max-width: 428px;
     > h4 {
       letter-spacing: -1px;
       font-size: 20px;
       font-weight: 500;
-    }
-    > h5 {
-      font-size: 18px;
-      letter-spacing: -1px;
-      font-weight: 500;
-    }
-    > p {
-      font-size: 16px;
     }
   }
 `;
@@ -484,7 +491,7 @@ export const MoneyCheck = styled.div`
 export const CardCheck = styled.div`
   border-top: 2px solid #fff;
   width: 100%;
-  padding: 10px 8px 8px 8px;
+  padding: 10px 0 8px ;
   margin: 10px 4px 4px 4px;
   > h4 {
     letter-spacing: -1px;
@@ -494,7 +501,7 @@ export const CardCheck = styled.div`
   > label {
     display: flex;
     align-items: center;
-    font-size: 15px;
+    font-size: 14px;
     > input {
       margin: 2px 8px 0 0;
       width: 14px;
@@ -504,28 +511,22 @@ export const CardCheck = styled.div`
   @media screen and (min-width: 767px) {
     margin: 20px 0 0 0;
     padding: 20px 0 0 0;
-    width: 300px;
+    > h4 {
+      font-size: 18px;
+    }
     > label {
       margin: 8px 0 0 16px;
-
-      > input {
-        margin: 3px 8px 0 0;
-      }
     }
   }
 
   @media screen and (min-width: 1140px) {
-    width: 95%;
     margin: 10px auto;
     padding: 10px 0 0 0;
     > h4 {
       letter-spacing: -1px;
       font-size: 20px;
-      margin-left: -11px;
     }
     > label {
-      text-align:center;
-      margin: 8px 0 0 16px;
       font-size: 18px;
       > input {
         width: 18px;
@@ -537,27 +538,3 @@ export const CardCheck = styled.div`
 `;
 
 
-
-export const ButtonWrapper = styled.div`
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  > button {
-    width: 150px;
-    margin: 0 10px;
-  }
-
-  @media screen and (min-width: 767px) {
-    height: 80px;
-    margin: 0 auto;
-    width: 80%;
-    text-align: center;
-    display: block;
-    > button {
-      width: 250px;
-      height: 60px;
-      margin: 0 10px 0 15px;
-    }
-  }
-`;

@@ -1,36 +1,32 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import { ArrowBtn ,MiddleButton } from '../common/Button/Button'
-import {
-  MypageOrderListWrapper,
-  OrderListContent,
-} from '../Mypage/StyledMypage'
 import { BtnBox } from '../StoreInfo/StyledStoreData'
 import {
   StoreInfoWrapper,
-  FlexBox,H3,H4,
+  FlexBox, H3, H4,
   OrderDate,
   OrderInfoWrapper,
-  TtlPricemBox,P,
+  TtlPricemBox, P,
   OrderImg,
   OrderSection,
+  DetailTextArea,
   EachItemBox,
-} from '../UserOrderInfo/StyledUserOrderInfo'
-import AdminDetailInfo from './AdminDetailInfo'
+} from '../Mypage/StyledMypage';
+import { AdminContainer,AdminOrderListContent } from './StyledAdminPage';
 
-function AdminOrderWrapper({ orderitem, listbackHandler }:any) {
-  const { selected_address, selected_address_detail, selected_mobile, order_deliveries,delivery_detail } = orderitem;
-  useEffect(() => {
-    console.log("asd", orderitem);
-  }, []);
+function AdminOrderInfo({ orderitem, listbackHandler }:any) {
+  const { selected_address, selected_address_detail, selected_mobile, order_deliveries,delivery_detail, order_menus } = orderitem;
+
+  const {delivery_term,delivery_day,delivery_time} = order_deliveries
 
   return (
-    <MypageOrderListWrapper>
-      <OrderListContent>
+    <AdminContainer>
+      <AdminOrderListContent>
         <StoreInfoWrapper className="storeinfo-wrapper">
           <FlexBox between align>
             <div className="i-wrapper">
               <ArrowBtn className="fas fa-angle-double-left" 
-              onClick={listbackHandler}></ArrowBtn>
+                onClick={listbackHandler}></ArrowBtn>
               <span>전체주문내역 보기</span>
             </div>
             <OrderDate> 다음 결제일 : 2021.12.25 </OrderDate>
@@ -38,17 +34,34 @@ function AdminOrderWrapper({ orderitem, listbackHandler }:any) {
         </StoreInfoWrapper>
 
         <FlexBox distance>
-          <H3>{orderitem.user_name} 님</H3>
+          <H3>주문자 {orderitem.user_name} 님</H3>
           <span>의 구독내역입니다.</span>
         </FlexBox>
 
         {/* 구독가게정보 */}
-        <AdminDetailInfo
-          userMobile={selected_mobile}
-          userAddress={`${selected_address} ${selected_address_detail}`}
-          deliveryInfo={order_deliveries}
-          detailInfo={delivery_detail}
-        />
+        <StoreInfoWrapper className="storeinfo-wrapper">
+        <FlexBox col>
+          <EachItemBox>
+            <H4>🗓 구독기간</H4>
+            <P>{delivery_term}개월({Number(delivery_term) * 4}주) / 매주 {delivery_day}요일 / {delivery_time}</P>
+          </EachItemBox>
+          <EachItemBox>
+            <H4>📍 고객 주소</H4>
+            <P>{`${selected_address} ${selected_address_detail}`}</P>
+          </EachItemBox>
+          <EachItemBox>
+            <H4>📱 고객 연락처</H4>
+            <P>{selected_mobile }</P>
+          </EachItemBox>
+          <EachItemBox>
+            <H4>✍🏼 요청사항</H4>
+            <DetailTextArea 
+              defaultValue={delivery_detail}
+            readOnly>
+            </DetailTextArea>
+          </EachItemBox>
+        </FlexBox>
+        </StoreInfoWrapper>
 
         {/* 오더인포 */}
         <OrderInfoWrapper className="orderinfo-wrapper">
@@ -56,7 +69,7 @@ function AdminOrderWrapper({ orderitem, listbackHandler }:any) {
             <H3>주문상품정보</H3>
           </FlexBox>
           <>
-          {orderitem.order_menus.map((item:any) => {
+          {order_menus.map((item:any) => {
         return (
           <OrderSection shadow key={item.menu.name}>
               <FlexBox align>
@@ -88,13 +101,13 @@ function AdminOrderWrapper({ orderitem, listbackHandler }:any) {
             <h2>{orderitem.totalprice} 원</h2>
           </TtlPricemBox>
         </OrderInfoWrapper>
-      </OrderListContent>
+      </AdminOrderListContent>
 
       <BtnBox btnboxMargin>
         <MiddleButton primary onClick={listbackHandler}>확인</MiddleButton>
       </BtnBox>
-    </MypageOrderListWrapper>
+    </AdminContainer>
   )
 }
 
-export default AdminOrderWrapper
+export default AdminOrderInfo

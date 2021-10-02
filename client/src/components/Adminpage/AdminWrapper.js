@@ -93,7 +93,9 @@ function AdminWrapper() {
                     <p>{user.email}</p>
                     <p>{user.mobile}</p>
                     <p>{admin.address}</p>
-                    <p>({admin.address_detail})</p>
+                    <p>{admin.address_detail === null 
+                    ? '' 
+                    : (admin.address_detail)}</p>
                   </>
                 )}
               </PageContent>

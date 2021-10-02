@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MediumFont, SmallFont, UltraLargeFont } from '../GlobalStyle';
 // import { TextLightGrey } from '../GlobalStyle';
 
 //* CartWrapper
@@ -215,10 +216,35 @@ export const CheckBox = styled.input`
   width: 15px;
   height: 15px;
 `;
-
+export const EmptyCart = styled.div`
+  height : 190px;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin : 10px;
+  >i{
+    font-size: 40px;
+    color : rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+  }
+  >p{
+    color : rgba(0,0,0,0.7);
+    font-size: 14px;
+  }
+  @media screen and (min-width: 1140px) {
+    height : 340px;
+    >i{
+    font-size: ${UltraLargeFont};
+  }
+  >p{
+    font-size: ${SmallFont};
+  }
+  }
+`;
 export const CartMenuItemContainer = styled.div`
   width: 100%;
-
   background-color: #f7f7f7;
   padding: 6px;
   &::-webkit-scrollbar {

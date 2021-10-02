@@ -1,5 +1,5 @@
 import styled,{keyframes} from 'styled-components'
-import { PointColor, TextLightGrey, TextDarkGrey, MainColor} from '../GlobalStyle'
+import { PointColor, TextLightGrey, TextDarkGrey, MainColor, UltraLargeFont} from '../GlobalStyle'
 
 const moving = keyframes`
   0% {
@@ -32,6 +32,33 @@ font-size : 14px;
 margin: 3px;
 color : ${TextDarkGrey};
 `
+export const EmptyStore = styled.div`
+background-color: #f7f7f7;
+height : 200px;
+border-radius: 4px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+>i{
+  font-size: 40px;
+  color : rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
+>p{
+  color : rgba(0,0,0,0.6);
+}
+@media screen and (min-width: 767px) {
+  height: 400px;  
+  >i{
+    font-size: ${UltraLargeFont};
+  }
+    >p{
+    font-size: 14px;
+  }
+}
+`
+
 export const StoreInfoWrapper = styled.section`
 border-bottom: 2px solid #f3f3f3;
 padding : 0 8px 8px;

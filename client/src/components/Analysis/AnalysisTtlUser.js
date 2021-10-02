@@ -64,19 +64,19 @@ function AnalysisTtlUser() {
   };
   const series = [{
     name: 'Food',
-    data: [44, 55, 41, 37, 22, 43, 21]
+    data: [44, 55, 41, 37, 22, 43]
   }, {
     name: 'Cafe',
-    data: [53, 32, 33, 52, 13, 43, 32]
+    data: [53, 32, 33, 52, 13, 43]
   }, {
     name: 'Living/Home',
-    data: [12, 17, 11, 9, 15, 11, 20]
+    data: [12, 17, 11, 9, 15, 11]
   }, {
     name: 'Beauty',
-    data: [9, 7, 5, 8, 6, 9, 4]
+    data: [9, 7, 5, 8, 6, 9]
   }, {
     name: 'Etc',
-    data: [25, 12, 19, 32, 25, 24, 10]
+    data: [25, 12, 19, 32, 25, 24]
   }];
 
   return (

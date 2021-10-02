@@ -17,7 +17,7 @@ function AnalysisAverageMonth() {
     let start = 0;
     // const end = Number(count.number.substring(0,3))
     const end = count.number
-    console.log('end::',end)
+    // console.log('end::',end)
     // console.log('end::', end,count.number,count.number.substring(0,3))
     if(start === end) return;
     
@@ -45,9 +45,9 @@ function AnalysisAverageMonth() {
       <AverageMonthWrapper>
       <Fade bottom cascade>
         <div className = 'count'>
-          <h2>{count.label}</h2>
+          <h2>{count.label},</h2>
           <h1>{Number(counting)} 개월</h1>
-          <h2>동안 꾸준히 이용중이십니다.</h2>
+          <h2>동안 꾸준히 이용중입니다.</h2>
         </div>
         </Fade>
       </AverageMonthWrapper>

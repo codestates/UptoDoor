@@ -91,9 +91,10 @@ function AnalysisCategory() {
   return (
       <ChartContainer id="chart">
         <ChartContentsWrapper>
-          <ChartTitle>인기있는 구독아이템은?</ChartTitle>
+          <ChartTitle>인기있는 <br/>구독아이템은?</ChartTitle>
           <ChartText>UptoDoor 에서 가장많이 찾는 카테고리별 순위입니다.</ChartText>
         </ChartContentsWrapper>
+        
         <ChartCategoryWrapper>
         <Chart
         className = 'category-chart' 

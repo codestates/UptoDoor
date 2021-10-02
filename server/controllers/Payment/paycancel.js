@@ -1,14 +1,13 @@
-const { user_order, order } = require('../../models');
+const { order, order_delivery } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
 module.exports = async (req, res) => {
 
-    const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
-    const checkAccessToken = checkAccess(access);
-    const { id } = checkAccessToken;
-    
-    const data = await user_order.findOne({ where: { user_id : id }})
-    const data2 = await order.findOne({ where: { id : data.order_id}})
-
+    //delivery_term > paycount 면 예약이 걸려있는 상태이니까 orders state cancel로 바꿔줌
+    try {
+    const data2 = await order.findOne({ where: { id : req.params.id}})
+    const data1 = await order_delivery.findOne({ where: { order_id: data2.id }})
+        console.log('------ check 1------')
+    if(Number(data1.delivery_term) > data1.paycount){
     const BootPay = require('bootpay-backend-nodejs').Bootpay
     BootPay.setConfig(
         '6152052e7b5ba4002352bc63',
@@ -16,28 +15,18 @@ module.exports = async (req, res) => {
     )
     const token = await BootPay.getAccessToken();
     if (token.status === 200){
-        let canceldata;
-        let destorySub;
-        let destorykey;
-        try {
-            canceldata = await BootPay.cancel({
-                receiptId: data2.receipt,
-                price: data2.totalprice, //취소 금액
-                name: data2.user_name,
-                reason: '개인 변심',
-            })
-            destorySub = await BootPay.destroyReserveSubscribeBilling(data2.billingkey)
-            destorykey = await BootPay.destroySubscribeBillingKey(data2.billingkey)
-        } catch (err) {
-            console.log('----- 결제 취소 및 빌링키 결제 예약 취소 에러 -----',err)
-            res.status(404).send({ message: 'try again payment cancel '})
-        }
-        const data = {
-            cancel: canceldata,
-            desSub: destorySub,
-            desKey: destorykey
-        }
-        console.log('----- 결제 취소 및 빌링키 결제 예약 취소 성공 -----',data)
-        res.status(200).send({ message: 'cancel for your order'})
-    } //디비 지우는거까지 해야함.
+        console.log('------ check 2------')
+        console.log('--billing',data2.billingkey)
+            //await BootPay.destroyReserveSubscribeBilling(data2.billingkey) //빌링키로 결제 예약한거 취소 요청하는거
+             await BootPay.destroySubscribeBillingKey(data2.billingkey) //빌링키 삭제하는거고
+    }
+    }
+    console.log('------ check 3------')
+        await order.update({ state: 'cancel'}, { where: { id: req.params.id }})
+        console.log('----- 결제 취소 및 빌링키 결제 예약 취소 성공 -----')
+        res.status(200).send({ message: 'cancel for your order'});
+    } catch(err) {
+        console.log('--- 결제 취소 실패 ---',err)
+        res.status(401).send({ message: 'cancel fail, try again'});
+    }
 }

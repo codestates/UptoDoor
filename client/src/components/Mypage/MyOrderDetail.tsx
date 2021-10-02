@@ -22,27 +22,29 @@ function MyOrderDetail({
   listbackHandler,orderitem,
   user }:any, ) {
 
-  // const dispatch:any = useDispatch();
-  // const [modalSuccess, setModalSuccess] = useState(false);
+  const dispatch:any = useDispatch();
+  const [modalSuccess, setModalSuccess] = useState(false);
 
   const [openModal , setOpenModal] = useState(false);
   const [cancleStoreModal, setCancleStoreModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [selectOrder, setselectOrder] = useState('');
 
   const cancelStoreHandler = () => {
     setOpenModal(true);
   }
   const cancelOrderHandler = () => {
     //* 디스패치 주석풀어야함, 밑에 2줄 지우고,
-    // dispatch(cancelOrder()).then((res:any) => {
-    //   if (res.payload.message === "success delete order") {
-    //     setOpenModal(false);
-    //     setDeleteModal(true);
-    //   }
-    // })
-    setOpenModal(false);
-    setCancleStoreModal(true);
+    dispatch(cancelOrder(orderitem.id)).then((res:any) => {
+      if (res.payload.message === "success delete order") {
+        setOpenModal(false);
+        setDeleteModal(true);
+      }
+    })
+    // setOpenModal(false);
+    // setCancleStoreModal(true);
   }
-  console.log(orderitem.totalprice)
+  console.log(orderitem)
   return (
     <MypageOrderListWrapper>
       <OrderListContent>

@@ -7,20 +7,13 @@ module.exports = async (req, res) => {
     const count1 = await order_delivery.findOne({ where : { order_id: req.body.order_id }})
     
     const day = count1.payday.split('.')
-    console.log('---year---',day[0])
-    console.log('---month---',day[1])
-    console.log('---day---',day[2])
-    const date = new Date(day[0], day[1]+1, day[2]);
-    console('--- date ----',date)
+    const date = new Date(Number(day[0]), Number(day[1])-1, Number(day[2]));
     const date1 = date.getDate()+28
-    console('-- date1 --', date1)
     date.setDate(date1);
-    console('--- dateset ----',date)
     const newYear = date.getFullYear();
-    const newMonth = date.getMonth();
-    const newDay = date.getDay();
+    const newMonth = date.getMonth()+1;
+    const newDay = date.getDate();
     const nextPayDay = `${newYear}.${newMonth}.${newDay}`
-    console('--- next ----',nextPayDay)
     await order_delivery.update({ paycount: sequelize.literal('paycount + 1'), payday: nextPayDay },{ where: { order_id : req.body.order_id}})
     const count2 = await order_delivery.findOne({ where : { order_id: req.body.order_id }})
     
@@ -35,7 +28,7 @@ module.exports = async (req, res) => {
         }
         console.log('------ 정기 결제 확인 -------')
         
-        //axios.post('https://uptodoors.shop/payment', orderinfo)
+        axios.post('https://uptodoors.shop/payment', orderinfo)
     }
     
     res.send('OK')

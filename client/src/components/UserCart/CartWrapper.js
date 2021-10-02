@@ -310,13 +310,16 @@ function CartWrapper() {
                   }}
                 />
               </UserCheckListBox>
+
               <h3>주문 합계</h3>
-              <UserCheckListBox cart>
-                <MoneyCheck>
+              <UserCheckListBox 
+              cart 
+              className = 'cart-ttl-price'>
+                <MoneyCheck className = 'cart-ttl'>
                   <h5>총 상품 개수</h5>
                   <p> {total.quantity} 개</p>
                 </MoneyCheck>
-                <MoneyCheck>
+                <MoneyCheck className = 'cart-ttl'>
                   <h5>구독 금액 / 월</h5>
                   <p>
                     +{" "}
@@ -326,7 +329,9 @@ function CartWrapper() {
                     원
                   </p>
                 </MoneyCheck>
-                <MoneyCheck cart>
+                <MoneyCheck 
+                cart
+                className = 'cart-ttl-price-text cart-ttl'>
                   <h4>
                     월 결제 금액은{" "}
                     {total.price

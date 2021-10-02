@@ -225,6 +225,10 @@ position :absolute;
 bottom : 30px;
 font-size: 50px;
 z-index: 1;
+color : rgba(0,0,0,0.7);
+&:hover{
+  color : rgba(0,0,0,0.5);
+}
 `
 export const AlarmI = styled.i`
 @media screen and (min-width: 767px) {

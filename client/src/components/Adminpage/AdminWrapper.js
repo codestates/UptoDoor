@@ -29,12 +29,11 @@ import AdminStoreInfo from './AdminStoreInfo';
 function AdminWrapper() {
   const admin = useSelector((state) => state.admin);
   const user = useSelector((state) => state.user);
-  console.log(admin);
   const store = admin;
   const { orders } = store;
-  console.log(orders);
-  const [filteredData, setFilteredData] = useState([]);
+  
   const days = ["일", "월", "화", "수", "목", "금", "토"];
+  const [filteredData, setFilteredData] = useState([]);
   const [selectedDay, setSelectedDay] = useState(days[new Date().getDay()]);
   const [currentTab, setCurrentTab] = useState(new Date().getDay());
   const [orderitem, setOrderItem] = useState({});
@@ -57,7 +56,7 @@ function AdminWrapper() {
     setCur(0);
     setCurrentTab(id);
     setSelectedDay(day);
-    console.log("11111", orders);
+
     const filtered = orders.filter((el) => {
       const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
@@ -71,12 +70,12 @@ function AdminWrapper() {
     const filtered = orders.filter((el) => {
       const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
-      console.log("22", deliveryDay);
       return deliveryDay.includes(selectedDay);
     });
     setFilteredData(filtered);
   }, []);
   const listItem = ["주문관리", "가게 정보"];
+
   return (
     <Container>
       <Title>관리자 페이지</Title>

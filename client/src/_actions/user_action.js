@@ -37,7 +37,6 @@ export const signUp = (userinfo) => {
   const request = axios
     .post(`${END_POINTS}/users/signup`, userinfo)
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((err) => {
@@ -244,12 +243,10 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
     order: order,
     data: data
   }
-  console.log('-- addorder --',orderinfo.order)
   const request = axios
     .post(`${END_POINTS}/users/order`, orderinfo)
     //.post(`https://uptodoors.shop/users/order`, orderinfo)
     .then((res) => {
-      console.log('--order res',res);
       return res.data;
     })
     .catch((err) => {

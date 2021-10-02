@@ -86,10 +86,10 @@ function Footer() {
             target="_blank"
             aria-label="Facebook"
           >
-            <FaGithub />
+            <FaGithub title = 'UptoDoor_Github'/>
           </SocialIconLink>
           <SocialIconLink href="/" target="_blank" aria-label="Facebook">
-            <FaInstagram />
+            <FaInstagram title = 'UptoDoor_WebSite' />
           </SocialIconLink>
         </SocialIcons>
       </FooterWrapper>

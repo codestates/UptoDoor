@@ -36,15 +36,31 @@ export const UserCheckList = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 10px;
+  padding: 20px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   > h3 {
     margin: 3px 0 4px 10px;
     font-size: 18px;
   }
+  >.cart-ttl-price{
+    width : 100%;
+    margin : 10px 0;
+    padding : 0;
+    >.cart-ttl-price-text{
+    display: flex;
+    justify-content: right;
+    margin-top : 20px;       
+    max-width: none;
+    }
+    >.cart-ttl{
+      max-width: none;
+    }
+  }
+
   @media screen and (min-width: 767px) {
+    margin-bottom: 50px;
     > h3 {
       margin: 8px 0 8px 15px;
       font-size: 18px;
@@ -64,7 +80,7 @@ export const UserCheckList = styled.section`
 `;
 
 export const UserCheckListBox = styled.div`
-  width: 90%;
+  width: 95%;
   margin: 0 auto 5px;
   padding: 0 5px 0 5px;
   padding-bottom: ${({ month }) => (month ? "0px" : "5px")};
@@ -91,13 +107,16 @@ export const UserCheckListBox = styled.div`
 
   > textarea {
     width: 100%;
-    max-width: 470px;
+    /* max-width: 470px; */
     height: 100px;
     padding: 8px;
     text-decoration: none;
     outline: none;
     resize: none;
     border: 2px solid #ededed;
+    /* @media screen and (min-width: 767px) {
+    max-width: none;
+    } */
   }
 
   @media screen and (min-width: 1140px) {
@@ -272,7 +291,7 @@ export const CartMenuItemDetail = styled.div`
 
   @media screen and (min-width: 767px) {
     display: flex;
-    width: 80%;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
 

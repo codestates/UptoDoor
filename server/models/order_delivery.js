@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     delivery_day: DataTypes.STRING,
     delivery_term: DataTypes.STRING,
     paycount: DataTypes.INTEGER,
+    payday: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'order_delivery',

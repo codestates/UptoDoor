@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     const newDay = date.getDay();
     const nextPayDay = `${newYear}.${newMonth}.${newDay}`
 
-    await order_delivery.update({ where: { order_id : req.body.order_id}}, { paycount: sequelize.literal(paycount + 1)},
+    await order_delivery.update({ paycount: sequelize.literal('paycount + 1')},{ where: { order_id : req.body.order_id}}, 
     { payday: nextPayDay })
     const count2 = await order_delivery.findOne({ where : { order_id: req.body.order_id }})
     

@@ -45,9 +45,10 @@ module.exports = async (req, res) => {
         console.log('--getmonth--',date.getMonth())
         console.log('--getday--',date.getDate())
         const newYear = date.getFullYear();
-        const newMonth = date.getMonth();
-        const newDay = date.getDay();
+        const newMonth = date.getMonth()+1;
+        const newDay = date.getDate();
         const nextPayDay = `${newYear}.${newMonth}.${newDay}`
+        console.log('---nextpayday',nextPayDay);
         for(let el of orderInfo.delivery_day){
             await order_delivery.create({
                 order_id : orderData.id,

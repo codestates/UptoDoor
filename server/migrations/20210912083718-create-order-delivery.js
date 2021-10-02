@@ -20,6 +20,9 @@ module.exports = {
       paycount: {
         type: Sequelize.INTEGER
       },
+      payday: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

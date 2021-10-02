@@ -11,11 +11,24 @@ import
 
 function AnalysisUser() {
 
+  const arr = [
+    {name : '10대 남자',number: 123},
+    {name : '20대 남자',number : 323},
+    {name : '30대 남자',number : 23},
+    {name : '40대 남자',number : 133},
+    {name : '50대 남자',number : 123},
+    {name : '10대 여자',number : 12},
+    {name : '20대 여자',number : 303},
+    {name : '30대 여자',number : 83},
+  ]
+
+  arr.sort((a,b)=>b.number-a.number)
+
+  const name = arr.map((el)=>el.name);
+  const number = arr.map((ele)=>ele.number);
+
   const options = { 
-    labels: 
-    ['10대 남자','20대 남자' ,'30대 남자','40대 남자','50대 남자','60대 이상 남자',
-    '10대 여자','20대 여자' ,'30대 여자','40대 여자','50대 여자','60대 이상 여자'
-    ],
+    labels: name,
     colors: [
       '#519ddb',
       '#6cafe6',
@@ -53,13 +66,13 @@ function AnalysisUser() {
       show: false
     }
   };
-  const series = [
-    15, 115, 134, 61, 27, 11,
-    45, 105, 114, 75, 30, 8
-  ]; //실제 데이터 들어오는곳!! 배열로.
+  
+  const series = number.splice(0,6) //실제 데이터 들어오는곳!! 배열로.
+  console.log('name,number:::::',name , number)
+  // console.log('series',Object.values(arr))
 
   // console.log('chkkk',series , options.labels);
-  let splicing = series.sort((a,b)=>b-a).splice(0,5);
+  // let splicing = series.sort((a,b)=>b-a).splice(0,5);
   // console.log('splicing',splicing)
 
   return (
@@ -73,7 +86,7 @@ function AnalysisUser() {
         <ChartUserWrapper id = 'chart'>
           <Chart 
           options={options} 
-          series={splicing} 
+          series={series} 
           type="pie"
           height='350px'/>
         </ChartUserWrapper>

@@ -450,6 +450,7 @@ export const categoryDummy = [
         "https://uptodoor-landing-img2.s3.ap-northeast-2.amazonaws.com/landingImgs/etc/etc17.png",
     },
   ],
+]
 
 export const LandingValues = [
   'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value1.png',

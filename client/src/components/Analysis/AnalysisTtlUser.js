@@ -11,8 +11,9 @@ import
 
 function AnalysisTtlUser() {
   
-  const options = { 
-    labels: ['10대', '20대','30대','40대','50대','60대이상'],
+  const options1 = { 
+    //바 높이줄이기
+    labels: ['10대','20대','30대','40대','50대','60대이상'],
     chart: {
       stacked: true,
     },
@@ -34,7 +35,7 @@ function AnalysisTtlUser() {
       colors: ['#fff']
     },
     xaxis: {
-      categories: ['10대', '20대','30대','40대','50대','60대이상'],
+      // categories: ['10대', '20대','30대','40대','50대','60대이상'],
       labels: {
         formatter: function (val) {
           return val
@@ -43,7 +44,7 @@ function AnalysisTtlUser() {
     },
     yaxis: {
       title: {
-        text: undefined
+        text: '남자'
       },
     },
     tooltip: {
@@ -62,22 +63,93 @@ function AnalysisTtlUser() {
       offsetX: 40
     }
   };
-  const series = [{
+
+  const options2 = { 
+    //바 높이줄이기
+    labels: ['10대','20대','30대','40대','50대','60대이상'],
+    chart: {
+      stacked: true,
+    },
+    colors: [
+      '#e5abed',
+      '#e096eb',
+      '#efbaf7',
+      '#d979e8',
+      '#cf6dde',
+      '#d33feb',
+    ],
+    plotOptions: {
+      bar: {
+        horizontal: true,
+      },
+    },
+    stroke: {
+      width: 1,
+      colors: ['#fff']
+    },
+    xaxis: {
+      // categories: ['10대', '20대','30대','40대','50대','60대이상'],
+      labels: {
+        formatter: function (val) {
+          return val
+        }
+      }
+    },
+    yaxis: {
+      title: {
+        text: '여자'
+      },
+    },
+    tooltip: {
+      y: {
+        formatter: function (val) {
+          return val + "%"
+        }
+      }
+    },
+    fill: {
+      opacity: 1
+    },
+    legend: {
+      position: 'top',
+      horizontalAlign: 'left',
+      offsetX: 40
+    }
+  };
+
+  const series1 = [{
     name: 'Food',
-    data: [44, 55, 41, 37, 22, 43, 21]
+    data: [44, 55, 41, 37, 22, 43],
   }, {
     name: 'Cafe',
-    data: [53, 32, 33, 52, 13, 43, 32]
+    data: [53, 32, 33, 52, 13, 43]
   }, {
     name: 'Living/Home',
-    data: [12, 17, 11, 9, 15, 11, 20]
+    data: [12, 17, 11, 9, 15, 11]
   }, {
     name: 'Beauty',
-    data: [9, 7, 5, 8, 6, 9, 4]
+    data: [9, 7, 5, 8, 6, 9]
   }, {
     name: 'Etc',
-    data: [25, 12, 19, 32, 25, 24, 10]
+    data: [25, 12, 19, 32, 25, 24]
   }];
+
+  // const series2 = [{
+  //   name: 'Food',
+  //   data: [44, 55, 41, 37, 22, 43],
+  // }, {
+  //   name: 'Cafe',
+  //   data: [53, 32, 33, 52, 13, 43]
+  // }, {
+  //   name: 'Living/Home',
+  //   data: [12, 17, 11, 9, 15, 11]
+  // }, {
+  //   name: 'Beauty',
+  //   data: [9, 7, 5, 8, 6, 9]
+  // }, {
+  //   name: 'Etc',
+  //   data: [25, 12, 19, 32, 25, 24]
+  // }];
 
   return (
       <ChartContainer>
@@ -90,11 +162,19 @@ function AnalysisTtlUser() {
         <ChartTtlUseryWrapper id = 'chart'>
           <Chart 
           className = 'ttl-user-chart' 
-          options={options} 
-          series={series} 
+          options={options1} 
+          series={series1} 
           type="bar" 
           height='400px'
           />
+
+          {/* <Chart 
+          className = 'ttl-user-chart' 
+          options={options2} 
+          series={series2} 
+          type="bar" 
+          height='400px'
+          /> */}
         </ChartTtlUseryWrapper>
 
       </ChartContainer>

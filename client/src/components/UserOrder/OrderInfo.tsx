@@ -94,9 +94,9 @@ const OrderInfo = (props:any) => {
           <CardCheck>
             <h4>결제 수단 선택</h4>
 
-            <label onClick={paymentChecker}>
-              <input type="checkbox" /> 일반 카드 결제
-            </label>
+            <input 
+            onClick={paymentChecker}
+            type="checkbox" /> 일반 카드 결제
           </CardCheck>
         </OrderInfoWrraper>
       </OrderInfoContainer>

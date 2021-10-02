@@ -1,21 +1,24 @@
+const { default: axios } = require('axios');
 const { user,order,user_order,order_menu,order_delivery } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
+    
     console.log("바디데이터",req.body)
-    let orderInfo = req.body
-    console.log("데이터",orderInfo);
+    let orderInfo = req.body.order;
 
     //현재 로그인한 유저의 정보 뽑기
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
-    const { id,nickname } = checkAccessToken;
-
-    try {
+    const { id } = checkAccessToken;
+    
+    try {  
+    let orderData;
         //오더테이블에 데이터 추가111111111111gi
-        const orderData = await order.create({
+        orderData = await order.create({
           user_name: orderInfo.user_name,
+          order_time: orderInfo.delivery_time,
           plus_check: orderInfo.plus_check,
           delivery_detail: orderInfo.delivery_detail,
           plus_money: orderInfo.plus_money,
@@ -27,6 +30,8 @@ module.exports = async (req, res) => {
           selected_address_detail: orderInfo.selected_address_detail,
         }); 
 
+        console.log('----billing----',req.body.data.billing_key);
+        console.log('----orderid----',orderData.id)
         //user_order테이블에 데이터추가
         await user_order.create({
             user_id : id,
@@ -50,8 +55,17 @@ module.exports = async (req, res) => {
                 quantity : el.quantity
             })
         }
-        res.status(201).send({message: 'Your order has been completed'});
-    } catch (error) {
-        res.status(403).send({message: 'order fail, try again'});
+        
+        const sendinfo = {
+            order_id : orderData.id,
+            data: req.body.data
+          }
+            console.log('----orderinfo 아래----',sendinfo);
+            await axios.post('http://localhost:3060/payment', sendinfo)
+            .then(() => {
+                res.status(201).send({message: 'Your order has been completed'});    
+            })
+        } catch (error) {
+            res.status(403).send({message: 'order fail, try again'});
+        }
     }
-}

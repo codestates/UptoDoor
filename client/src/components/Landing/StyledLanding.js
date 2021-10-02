@@ -3,6 +3,7 @@ import { UltraLargeFont,
   TextLightGrey,TextDarkGrey,
   LargeFont, SmallFont, MediumFont, PointColor } from '../GlobalStyle'
 import {showModal} from '../common/Modal/styledModal'
+import {LandingValues} from '../dummyData'
 
 const upNdown = keyframes`
   0%{
@@ -279,7 +280,6 @@ bottom : 30px;
 right : 80px;
 }
 `
-
 export const GradientEdge = styled.div`
 position: absolute;
 bottom : -40px;
@@ -488,13 +488,13 @@ height : 120px;
   align-items: center;
 }
 &:nth-child(1)>.unstressful-imgbox{
-  background-image: url('./images/rank/salad.png');  
+  background-image: url(${LandingValues[0]});  
 }
 &:nth-child(2)>.comfortable-imgbox{
-  background-image: url('./images/rank/laundry.png');
+  background-image: url(${LandingValues[1]});
 }
 &:nth-child(3)>.winwin-imgbox{
-  background-image: url('./images/rank/bread.png');
+  background-image: url(${LandingValues[2]});
 }
 `
 export const ValueImgBox = styled.div`

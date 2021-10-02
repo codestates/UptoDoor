@@ -23,5 +23,7 @@ module.exports = {
     NaverSignout: require('./Oauth/naver/Signout'),
     Address: require('./Map/Address'),
     StoreInfo: require('./Map/Storeinfo'),
-    StoreMap: require('./Map/Store')
+    StoreMap: require('./Map/Store'),
+    Feedback: require('./Payment/feedback'),
+    Payment: require('./Payment/payment')
 }

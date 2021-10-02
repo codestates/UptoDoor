@@ -10,6 +10,8 @@ import {
 } from "../../GlobalStyle";
 import { LogoSrc } from "../../dummyData";
 
+import {LogoSrc} from '../../dummyData'
+
 export const Header = styled.header`
   position: sticky;
   top: 0;

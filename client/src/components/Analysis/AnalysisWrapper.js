@@ -1,15 +1,15 @@
 import React from 'react'
+import Fade from 'react-reveal/Fade'
 import axios from 'axios'
 import {ENDPOINT} from '../../_actions/type'
 
 import { Container, Title, Wrapper } from '../GlobalStyle'
 
-import AnalysisAge from './AnalysisAge'
-import AnalysisAverageMonth from './AnalysisAverageMonth'
 import AnalysisCategory from './AnalysisCategory'
+import AnalysisUser from './AnalysisUser'
+import AnalysisTtlUser from './AnalysisTtlUser'
 import AnalysisCity from './AnalysisCity'
-import AnalysisGender from './AnalysisGender'
-import AnalysisGenderAge from './AnalysisGenderAge'
+import AnalysisAverageMonth from './AnalysisAverageMonth'
 
 const AnalysisWrapper = () => {
 
@@ -28,12 +28,22 @@ const AnalysisWrapper = () => {
       <Title>구독 데이터</Title>
       <Wrapper>
 
-        <AnalysisCategory/>
-        <AnalysisGender/>
-        <AnalysisAge/>
-        <AnalysisGenderAge/>
-        <AnalysisCity/>
+        <Fade bottom>
         <AnalysisAverageMonth/>
+        </Fade>
+
+        <Fade bottom >
+        <AnalysisCategory/>
+        </Fade>
+
+        <Fade bottom>
+        <AnalysisUser/>
+        </Fade>
+
+        <Fade bottom>
+        <AnalysisTtlUser/>
+        </Fade>
+        <AnalysisCity/>
         
       </Wrapper>
       

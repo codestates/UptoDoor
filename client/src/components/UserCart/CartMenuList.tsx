@@ -10,6 +10,7 @@ import {
   UserCheckListDetailBox,
   CartMenuItemContainer,
 } from "./StyledUserCart";
+import {stringToPrice} from '../../utils/validation'
 
 const CheckList = ({
   onChangeAllChecked,
@@ -53,8 +54,9 @@ const CheckList = ({
                 <CartMenuItemDetail>
                   <div>
                     <h4>{item.name}</h4>
+                    <p>{stringToPrice(item.price)} 원</p>
                     <p>{item.detail}</p>
-                    <p>{item.price} 원</p>
+                    
                   </div>
                   <InputNumberButton>
                     <button

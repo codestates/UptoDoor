@@ -28,9 +28,8 @@ function EnrollAddress() {
   //* address 안붙임
   const { mainAddress, mainAddressDetail, subAddress, subAddressDetail, id } = user;
   
-  const [current, setCurrent] = useState("")
-  const [switched, setSwitched ] = useState("");
-  
+  const [current, setCurrent] = useState([])
+  const [switched, setSwitched ] = useState([]);
   const [mainPlace , setMainPlace] = useState(mainAddress);
   const [mainPlaceDetail, setMainPlaceDetail] = useState(mainAddressDetail);
   const [subPlace, setSubPlace] = useState(subAddress);
@@ -69,55 +68,70 @@ function EnrollAddress() {
   },[])
 
   //* 보내는 주소 함수
-  const addressHandler = (e:any, name:any) => {
+  const addressHandler = (e: any, name: any) => {
     e.preventDefault();
     if (!id) {
       setLoginModal(true);
     } else {
-        if (name === "main") {
-          if (mainAddressDetail === undefined) return alert("상세 주소란을 입력해주세요.");
-          if (switched === current) {
-            const mainAdd = {
-              mainAddress:mainPlace,
-              mainAddressDetail: mainPlaceDetail,
-              main_xvalue: xValue,
-              main_yvalue: yValue
-            };
-            dispatch(addAddress(mainAdd))
-              .then((res:any) => {
-                if (res.payload.message === "address check success") {
-                setModalSuccess(true)
-                setOpenModal(true);
-              }
-            })
-          }
-          else {
-            setModalSuccess(false)
-            setOpenModal(true)
-          }   
-      } else {
-          if (subAddressDetail=== undefined) return alert("상세 주소란을 입력해주세요.");
-            if (switched === current) {
-              const subAdd = {
-                subAddress: subPlace,
-                subAddressDetail: subPlaceDetail,
-                sub_xvalue: xValue,
-                sub_yvalue: yValue
-              };
-            dispatch(addAddress(subAdd)).then((res:any) => {
+      const radius = 2500;
+      if (name === "main") {
+        if (mainAddressDetail === undefined) return alert("상세 주소란을 입력해주세요.");
+          
+        const poly = new kakao.maps.Polyline({
+          path: [new kakao.maps.LatLng(current[0], current[1]),
+          new kakao.maps.LatLng(switched[0], switched[1])
+          ]
+        })
+        
+        const dist = poly.getLength();
+        if (dist < radius) {
+          const mainAdd = {
+            mainAddress: mainPlace,
+            mainAddressDetail: mainPlaceDetail,
+            main_xvalue: xValue,
+            main_yvalue: yValue
+          };
+          dispatch(addAddress(mainAdd))
+            .then((res: any) => {
               if (res.payload.message === "address check success") {
                 setModalSuccess(true)
                 setOpenModal(true);
               }
-            });
-          }
+            })
+        }
         else {
           setModalSuccess(false)
-            setOpenModal(true)
+          setOpenModal(true)
         }
       }
+      else if (name === "sub") {
+        if (subAddressDetail === undefined) return alert("상세 주소란을 입력해주세요.");
+        const poly = new kakao.maps.Polyline({
+          path: [new kakao.maps.LatLng(current[0], current[1]),
+          new kakao.maps.LatLng(switched[0], switched[1])
+          ]
+        })
+        const dist = poly.getLength();
+        if (dist < radius) {
+          const subAdd = {
+            subAddress: subPlace,
+            subAddressDetail: subPlaceDetail,
+            sub_xvalue: xValue,
+            sub_yvalue: yValue
+          };
+          dispatch(addAddress(subAdd)).then((res: any) => {
+            if (res.payload.message === "address check success") {
+              setModalSuccess(true)
+              setOpenModal(true);
+            }
+          });
+        }
+        else {
+          setModalSuccess(false)
+          setOpenModal(true)
+        }
       }
-
+        }
   };
 
 
@@ -128,14 +142,9 @@ function EnrollAddress() {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         setYValue(result[0].x);
         setXValue(result[0].y);
-        geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
+        setSwitched(switched.concat(coords.getLat(), coords.getLng()))
       }
     });
-      const callback = (result:any, status:any) => {
-        if (status === kakao.maps.services.Status.OK) {
-        setSwitched(result[0].address.address_name.split(" ")[1]);
-      }
-    };
   }, []);
 
   const closeModal = () => {
@@ -151,15 +160,17 @@ function EnrollAddress() {
         const lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
         const coord = new kakao.maps.LatLng(lat, lon);
-          geocoder.coord2Address(coord.getLng(), coord.getLat(), callback)
+        // geocoder.coord2Address(coord.getLng(), coord.getLat(), callback)
+        setCurrent(current.concat(coord.getLat(),coord.getLng()))
       });
     }
-    const callback = (result:any, status:any) => {
-      if (status === kakao.maps.services.Status.OK) {
-        setCurrent(result[0].address.address_name.split(" ")[1]);
-      }
-    };
-  },[current]);
+    // const callback = (result:any, status:any) => {
+    //   if (status === kakao.maps.services.Status.OK) {
+        // console.log("현위치", result[0])
+        // setCurrent(result[0].address.address_name.split(" ")[1]);
+    //   }
+    // };
+  },[]);
 
   return (
     <AddressContainer>

@@ -8,6 +8,7 @@ import {
 import {
   MediumFont,
 } from "../../GlobalStyle";
+import { LogoSrc } from "../../dummyData";
 
 import {LogoSrc} from '../../dummyData'
 

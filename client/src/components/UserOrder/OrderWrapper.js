@@ -137,7 +137,6 @@ function OrderWrapper() {
       console.log('-- 결제 완료 --',data)
       setModalSuccess(true);
     });
-    
   }, [paymentCheck, mobileCheck, orderMobile, state]);
 
   const onChangeMobileHandler = useCallback((e) => {

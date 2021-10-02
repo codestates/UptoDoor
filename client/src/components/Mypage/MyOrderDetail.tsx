@@ -11,7 +11,7 @@ import {
   MypageOrderListWrapper,
   OrderListContent,
 } from './StyledMypage';
-
+import { stringToPrice } from '../../utils/validation';
 import { SmallButton,ArrowBtn } from '../common/Button/Button'
 import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal'
@@ -42,7 +42,7 @@ function MyOrderDetail({
     setOpenModal(false);
     setCancleStoreModal(true);
   }
-  
+  console.log(orderitem.totalprice)
   return (
     <MypageOrderListWrapper>
       <OrderListContent>
@@ -84,20 +84,20 @@ function MyOrderDetail({
 
           {/* 오더인포 component */}
           <MyOrderItem
-          orderitem = {orderitem}
+            orderitem={orderitem}
           />
 
           <TtlPricemBox>
             <H4>추가 금액 </H4>
-            <H3> {orderitem.plusMoney} 원</H3>
+            <H3> {stringToPrice(orderitem.plusMoney)} 원</H3>
           </TtlPricemBox>
 
           <TtlPricemBox className="ttl-price-box">
             <H4>총 결제금액</H4>
             {orderitem.state === 'cancel' ? 
-            <H2 cancleline >{orderitem.totalprice}원</H2>
+            <H2 cancleline >{stringToPrice(orderitem.totalprice)}원</H2>
             :
-            <H2>{orderitem.totalprice}원</H2>
+              <H2>{stringToPrice(orderitem.totalprice)}원</H2>
             }
           </TtlPricemBox>
         </OrderInfoWrapper>

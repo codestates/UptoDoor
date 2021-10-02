@@ -6,6 +6,7 @@ import {
   OrderSection,
   EachItemBox,
 } from './StyledMypage'
+import { stringToPrice } from '../../utils/validation';
 
 function MyOrderItem({orderitem}:any) {
 
@@ -31,7 +32,7 @@ function MyOrderItem({orderitem}:any) {
                 
                 <EachItemBox>
                   <H4>가격/수량</H4>
-                  <P>{el.menu.price}원 / {el.menu.quantity}개</P>
+                  <P>{stringToPrice(el.menu.price)}원 / {el.menu.quantity}개</P>
                 </EachItemBox>
               </div>
 

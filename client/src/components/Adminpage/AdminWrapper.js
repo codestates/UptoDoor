@@ -32,7 +32,7 @@ function AdminWrapper() {
   console.log(admin);
   const store = admin;
   const { orders } = store;
-
+  console.log(orders);
   const [filteredData, setFilteredData] = useState([]);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   const [selectedDay, setSelectedDay] = useState(days[new Date().getDay()]);
@@ -71,6 +71,7 @@ function AdminWrapper() {
     const filtered = orders.filter((el) => {
       const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
+      console.log("22", deliveryDay);
       return deliveryDay.includes(selectedDay);
     });
     setFilteredData(filtered);

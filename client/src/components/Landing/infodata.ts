@@ -51,7 +51,7 @@ export const homeObjThree = {
   descriptionThree:`우리가게 구독서비스를 알릴 수 있어요`,
   buttonLabel: "Get started",
   imgStart: false,
-  img: "./images/americano.png",
+  img: "./images/gif/gif_3.gif",
   alt: "descrition1",
   dark: true,
   primary: true,

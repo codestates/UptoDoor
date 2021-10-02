@@ -63,8 +63,23 @@ function AnalysisUser() {
       }
     },
     legend: {
-      show: false
-    }
+      show: false,
+      position : 'bottom',
+    },
+    responsive: [
+        {
+          breakpoint: 1140,
+          options: {
+            chart: {
+              width: 500,
+              height: 500,
+            },
+            legend: {
+              position: 'bottom',
+            },
+          },
+        },
+      ],
   };
   
   const series = number.splice(0,6) //실제 데이터 들어오는곳!! 배열로.
@@ -77,20 +92,20 @@ function AnalysisUser() {
 
   return (
       <ChartContainer>
-
-        <ChartContentsWrapper>
-          <ChartTitle>많이 찾는 사용자는?</ChartTitle>
-          <ChartText>UptoDoor와 함께하는 사용자의 성별 및 연령대별 순위입니다.</ChartText>
-        </ChartContentsWrapper>
-
-        <ChartUserWrapper id = 'chart'>
-          <Chart 
-          options={options} 
-          series={series} 
-          type="pie"
-          height='350px'/>
-        </ChartUserWrapper>
-
+          <ChartContentsWrapper>
+            <ChartTitle>많이 찾는 사용자는?</ChartTitle>
+            <ChartText>UptoDoor와 함께하는 사용자의 성별 및 연령대별 순위입니다.</ChartText>
+          </ChartContentsWrapper>
+  
+          <ChartUserWrapper id = 'chart'>
+            <Chart 
+            className = 'user-chart'
+            options={options} 
+            series={series} 
+            type="pie"
+            height ='360px'
+            />
+          </ChartUserWrapper>
       </ChartContainer>
   );
 }

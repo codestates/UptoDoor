@@ -32,18 +32,21 @@ const AnalysisWrapper = () => {
         <AnalysisAverageMonth/>
         </Fade>
 
-        <Fade bottom >
+        <Fade left >
         <AnalysisCategory/>
         </Fade>
 
-        <Fade bottom>
+        <Fade right>
         <AnalysisUser/>
         </Fade>
 
-        <Fade bottom>
+        <Fade left>
         <AnalysisTtlUser/>
         </Fade>
+
+        <Fade bottom>
         <AnalysisCity/>
+        </Fade>
         
       </Wrapper>
       

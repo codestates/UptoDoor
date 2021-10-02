@@ -50,6 +50,7 @@ const LandingIntro = () => {
     setScrollY(0);
     setBtnStatus(false);
   }
+  
   const alarmHandler = () => {
     history.push('/adminpage');
   }

@@ -12,14 +12,18 @@ import
 function AnalysisUser() {
 
   const arr = [
-    {name : '10대 남자',number: 123},
-    {name : '20대 남자',number : 323},
-    {name : '30대 남자',number : 23},
-    {name : '40대 남자',number : 133},
-    {name : '50대 남자',number : 123},
+    {name : '10대 남자',number: 23},
+    {name : '20대 남자',number : 223},
+    {name : '30대 남자',number : 123},
+    {name : '40대 남자',number : 83},
+    {name : '50대 남자',number : 33},
+    {name : '60대 남자',number : 13},
     {name : '10대 여자',number : 12},
-    {name : '20대 여자',number : 303},
-    {name : '30대 여자',number : 83},
+    {name : '20대 여자',number : 209},
+    {name : '30대 여자',number : 143},
+    {name : '40대 여자',number : 42},
+    {name : '50대 여자',number : 23},
+    {name : '60대 여자',number : 3},
   ]
 
   arr.sort((a,b)=>b.number-a.number)
@@ -27,8 +31,17 @@ function AnalysisUser() {
   const name = arr.map((el)=>el.name);
   const number = arr.map((ele)=>ele.number);
 
+
+
+    //name
+    let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
+    let splicingNameFirst = name.splice(0,5).concat(['그 외']);
+    
+    console.log('splicingFirst::',splicingNameLast)
+    console.log('splicingFirst::',splicingNameFirst)
+
   const options = { 
-    labels: name,
+    labels: splicingNameFirst,
     colors: [
       '#519ddb',
       '#6cafe6',
@@ -71,24 +84,21 @@ function AnalysisUser() {
           breakpoint: 1140,
           options: {
             chart: {
-              width: 500,
-              height: 500,
-            },
-            legend: {
-              position: 'bottom',
+              width: 300,
+              height: 300,
             },
           },
         },
       ],
   };
   
-  const series = number.splice(0,6) //실제 데이터 들어오는곳!! 배열로.
-  console.log('name,number:::::',name , number)
-  // console.log('series',Object.values(arr))
-
-  // console.log('chkkk',series , options.labels);
-  // let splicing = series.sort((a,b)=>b-a).splice(0,5);
-  // console.log('splicing',splicing)
+  // const series = number.splice(0,6) //실제 데이터 들어오는곳!! 배열로.
+  let splicingLast = number.splice(5).reduce((acc,cur)=>acc+cur);
+  // console.log('외 몇개 표시할 숫자들 더한고~!::',splicingLast)
+  // let splicingFirst = number.splice(0,5).concat([`외 ${splicingLast}`]);
+  let splicingFirst = number.splice(0,5).concat([splicingLast]);
+  console.log('splicingFirst::',splicingFirst)
+  const series = splicingFirst
 
   return (
       <ChartContainer>

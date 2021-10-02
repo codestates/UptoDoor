@@ -28,10 +28,12 @@ const state = useSelector((state) => state)
     setIsOpen(false);
     if (name === "map") {
       history.push('/mapper')
-      
     }
     else if (name === "address") {
       history.push('/address')
+    }
+    else if (name === "analysis") {
+      history.push('/analysis')
     }
     else if (name === "mypage") {
     if (message) {
@@ -58,6 +60,7 @@ const state = useSelector((state) => state)
         <SidebarUl>
           <SidebarLi onClick={()=>{accessInto("map")}}>구독찾기</SidebarLi>
           <SidebarLi onClick={()=>{accessInto("address")}}>동네인증</SidebarLi>
+          <SidebarLi onClick={() => { accessInto("analysis") }}>구독 데이터</SidebarLi>
           <SidebarLi onClick={() => { accessInto("mypage") }}>마이페이지</SidebarLi>
           {message === undefined ? null : <SidebarBtn onClick={(e:any) => { signoutHandler(e) }}>로그아웃</SidebarBtn>}
           

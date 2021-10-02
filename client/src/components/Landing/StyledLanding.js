@@ -5,7 +5,7 @@ import { UltraLargeFont,
 import {showModal} from '../common/Modal/styledModal'
 import {LandingValues} from '../dummyData'
 
-const upNdown = keyframes`
+export const upNdown = keyframes`
   0%{
     margin-top: -5px;
   }

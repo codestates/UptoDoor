@@ -96,7 +96,7 @@ function AnalysisCity() {
   return (
       <ChartContainer>
         <ChartContentsWrapper>
-          <ChartTitle>많이 이용하는<br/> 지역은?</ChartTitle>
+          <ChartTitle>많이 이용하는 지역은?</ChartTitle>
           <ChartText>UptoDoor 에서 많이 사용하는 지역을 차트로 확인하세요.</ChartText>
         </ChartContentsWrapper>
 

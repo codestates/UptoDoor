@@ -42,6 +42,7 @@ function MyProfileWrapper(): any {
 
     axios.get(`${END_POINTS}/users/userinfo`)
       .then((res) => {
+        console.log('----',res.data.userdata.user_orders);
         const order = res.data.userdata.user_orders.map((el:any) => {
           const { delivery_day, delivery_term, delivery_time } = el.order.order_deliveries[0];
           const { 

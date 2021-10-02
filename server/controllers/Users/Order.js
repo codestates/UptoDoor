@@ -39,6 +39,15 @@ module.exports = async (req, res) => {
         })
          
         //order_delivery테이블에 지정요일의 개수만큼 데이터 저장
+        let date = new Date();
+        console.log('--getdate--',date)
+        console.log('--getfullyear--',date.getFullYear())
+        console.log('--getmonth--',date.getMonth())
+        console.log('--getday--',date.getDate())
+        const newYear = date.getFullYear();
+        const newMonth = date.getMonth();
+        const newDay = date.getDay();
+        const nextPayDay = `${newYear}.${newMonth}.${newDay}`
         for(let el of orderInfo.delivery_day){
             await order_delivery.create({
                 order_id : orderData.id,
@@ -46,6 +55,7 @@ module.exports = async (req, res) => {
                 delivery_day : el,
                 delivery_term : orderInfo.delivery_term,
                 paycount: 0,
+                payday: nextPayDay,
             })
         }
        //order_menu테이블에 지정메뉴의 개수만큼 데이터 저장

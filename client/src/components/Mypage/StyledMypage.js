@@ -46,38 +46,46 @@ box-shadow: ${({shadow})=>(shadow ?
 padding : 10px;
 `
 export const FlexBox = styled.div`
-display : flex;
-align-items: ${({align})=> (align ?'center' : 'flex-start')};
-justify-content: ${({between})=>(between ? 'space-between' : 'flex-start')};
-flex-direction: ${({col})=>(col ? 'column' : 'row')};
-margin : 8px 0;
-margin-bottom: ${({distance})=>(distance ? '0' : '8px')};
-padding: ${({distance})=>(distance ? '8px' : '0')};
->.i-wrapper{
   display: flex;
-  align-items: center;
-}
->.order-text-content{
-  flex : 2;
-  >div>div{
-    margin : 0;
+  align-items: ${({ align }) => (align ? "center" : "flex-start")};
+  justify-content: ${({ between }) =>
+    between ? "space-between" : "flex-start"};
+  flex-direction: ${({ col }) => (col ? "column" : "row")};
+  margin: 8px 0;
+  margin-bottom: ${({ distance }) => (distance ? "0" : "8px")};
+  padding: ${({ distance }) => (distance ? "8px" : "0")};
+  > .i-wrapper {
+    display: flex;
+    align-items: center;
   }
-}
-&:nth-child(1){
->div>i{
-  color : ${MainColor};
-  cursor: pointer;
-  &:hover{
-    animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
+  > .order-text-content {
+    flex: 2;
+    > div > div {
+      margin: 0;
+    }
   }
-}
->div>span{
-    font-weight : 500;
-    margin : 0 7px;
-    padding-bottom : 1px;
+  &:nth-child(1) {
+    > div > i {
+      color: ${MainColor};
+      cursor: pointer;
+      &:hover {
+        animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
+      }
+    }
+    > div > span {
+      font-weight: 500;
+      margin: 0 7px;
+      padding-bottom: 1px;
+      font-size: 12px;
+    }
+
+    @media screen and (min-width: 767px) {
+      > div > span {
+        font-size: 16px;
+      }
+    }
   }
-}
-`
+`;
 export const EachItemBox = styled.div`
 margin : 5px 0;
 width: 100%;
@@ -125,46 +133,48 @@ margin : 5px 10px 5px 0;
 `
 //Myprofile
 export const ButtonWrapper = styled.div`
-width: 40%;
-align-self: flex-end;
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-align-items: flex-end;
-> button {
-  padding: 2px;
-  background-color: #fff;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  a {
-    text-decoration: none;
-    color: black;
-    background-color: #fff;
-    color: #656d78;
-  }
-}
-
-@media screen and (min-width: 767px) {
-  width: 100%;
+  width: 40%;
+  align-self: flex-end;
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: flex-end;
+  align-items: flex-end;
   > button {
-    margin: 3px;
+    padding: 2px;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #656d78;
+
     a {
+      text-decoration: none;
+      color: #656d78;
+    }
+  }
+
+  @media screen and (min-width: 767px) {
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    > button {
+      margin: 3px;
       font-size: 14px;
+      a {
+        font-size: 14px;
+      }
     }
   }
-}
-@media screen and (min-width: 1140px) {
-  > button {
-    margin: 3px;
-    a {
+  @media screen and (min-width: 1140px) {
+    > button {
+      margin: 3px;
       font-size: 16px;
+      a {
+        font-size: 16px;
+      }
     }
   }
-}
 `;
 
 export const MypageUl = styled.ul`
@@ -206,17 +216,20 @@ letter-spacing: -1px;
 `;
 
 export const MypageOrderListWrapper = styled.div`
-width: 100%;
-padding: 16px;
-box-shadow: 
-rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-display: flex;
-flex-direction: column;
-margin: 0 0 20px;
-@media screen and (min-width: 1140px) {
-  padding: 32px;
-}
+  width: 100%;
+  padding: 16px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 20px;
+  @media screen and (min-width: 767px) {
+    width:80%;
+  }
+
+  @media screen and (min-width: 1140px) {
+    padding: 32px;
+  }
 `;
 
 export const OrderListContent = styled.div`
@@ -258,36 +271,85 @@ justify-content: flex-start;
 `;
 
 export const ListInfo = styled.div`
-padding: 2px;
+  width:100%;
+  padding: 2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  > img {
+    min-width: 60px;
+    height: 60px;
+    margin-top: 6px;
+    margin-right: 15px;
+  }
+  @media screen and (min-width: 767px) {
+    padding: 2px 10px;
+    
+  }
+  @media screen and (min-width: 1140px) {
+    padding: 2px 16px;
+    
+    > img {
+      min-width: 80px;
+      min-height: 80px;
+      margin-top: 10px;
+      margin-right: 20px;
+    }
+  }
+`;
+
+export const DeliveryState = styled.h5`
+  margin-right: 8px;
+  color: #fff;
+  min-width: 40px;
+  font-weight: 400;
+  height: 20px;
+  border-radius: 4px;
+  text-align: center;
+  padding: 2px;
+  font-size: 10px;
+  background-color: ${({ blue }) => (blue ? MainColor : PointColor)};
+  @media screen and (min-width: 767px) {
+    width: 50px;
+    height: 24px;
+    margin: 0 15px 0 0;
+    font-size: 12px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: -1.5rem;
+  }
+  @media screen and (min-width: 1140px) {
+    min-width: 60px;
+    width:60px;
+    margin-right: 15px;
+    font-size: 14px;
+    /* padding: 5px; */
+    height:25px;
+    border-radius: 8px;
+    text-align: center;
+    line-height:-3rem;
+  }
+`;
+
+export const OrderListWrapper = styled.div`
 display: flex;
-justify-content: space-between;
 align-items: center;
-> div {
-  min-width: 140px;
-  width: 65%;
+`;
+
+export const ListInfoDetail = styled.div`
+  width:100%;
+
   > h4 {
     font-weight: 500;
     font-size: 14px;
   }
   > p {
     font-size: 14px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     > span {
       display: none;
     }
   }
-}
-> img {
-  width: 60px;
-  height: 60px;
-  margin-top: 6px;
-  margin-right: 15px;
-}
-@media screen and (min-width: 767px) {
-  padding: 2px 10px;
-  > div {
+  @media screen and (min-width: 767px) {
     > p {
       margin-top: 4px;
       > span {
@@ -296,57 +358,14 @@ align-items: center;
       }
     }
   }
-}
-@media screen and (min-width: 1140px) {
-  padding: 2px 16px;
-  > div {
-    font-size: 18px;
-    > p {
-      margin-top: 4px;
-      > span {
-        margin-right: 10px;
+
+  @media screen and (min-width: 1140px) {
+      font-size: 18px;
+      > p {
+        margin-top: 4px;
+        > span {
+          margin-right: 10px;
+        }
       }
-    }
   }
-  > img {
-    width: 80px;
-    height: 80px;
-    margin-top: 10px;
-    margin-right: 20px;
-  }
-}
-`;
-
-export const DeliveryState = styled.h5`
-margin-right: 8px;
-color: #fff;
-width: 40px;
-font-weight: 400;
-height:20px;
-border-radius: 4px;
-text-align: center;
-padding:2px;
-font-size: 10px;
-background-color: ${({ blue }) => (blue ? MainColor : PointColor)};
-@media screen and (min-width: 767px) {
-  width: 50px;
-  height: 22px;
-  margin: 0 15px 0 0;
-  font-size: 12px;
-  border-radius: 8px;
-  text-align: center;
-}
-@media screen and (min-width: 1140px) {
-  width: 60px;
-  margin-right: 15px;
-  font-size: 12px;
-  padding: 5px;
-  border-radius: 8px;
-  text-align: center;
-}
-`;
-
-export const OrderListWrapper = styled.div`
-display: flex;
-align-items: center;
 `;

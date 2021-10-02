@@ -11,7 +11,7 @@ import {
   OrderP,OrderH5
 } from "./StyledUserOrder";
 import { useSelector} from "react-redux";
-
+import {stringToPrice} from '../../utils/validation'
 
 const OrderInfo = (props:any) => {
   const {
@@ -77,19 +77,19 @@ const OrderInfo = (props:any) => {
           <h5>결제 금액</h5>
           <MoneyCheck>
             <OrderH5 money>상품 금액</OrderH5>
-            <OrderP money>{cart.total_price} 원</OrderP>
+            <OrderP money>{stringToPrice(cart.total_price)} 원</OrderP>
           </MoneyCheck>
           <MoneyCheck>
             <OrderH5 money>추가 금액</OrderH5>
-            <OrderP money>+ {cart.plus_money} 원</OrderP>
+            <OrderP money>+ {stringToPrice(cart.plus_money)} 원</OrderP>
           </MoneyCheck>
           <MoneyCheck>
             <OrderH5 money>배송비</OrderH5>
-            <OrderP money>+ {cart.delivery_fee} 원</OrderP>
+            <OrderP money>+ {stringToPrice(cart.delivery_fee)} 원</OrderP>
           </MoneyCheck>
           <MoneyCheck>
             <OrderH5 money>월 결제 금액</OrderH5>
-            <OrderP money>{cart.total_price} 원</OrderP>
+            <OrderP money>{stringToPrice(cart.total_price)} 원</OrderP>
           </MoneyCheck>
           <CardCheck>
             <h4>결제 수단 선택</h4>

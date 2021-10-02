@@ -26,7 +26,7 @@ function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,
     }
     
   };
-  const closeModal = (e:any) => {
+  const selctModal = (e:any) => {
 
     if (e.target.innerText === "HOME") {
       if (!mainAddress && !mainAddressDetail) {
@@ -47,6 +47,9 @@ function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,
     }
   };
 
+  const closeModal = () => {
+    setOpenModal(false);
+  }
   return (
     <>
       <MapSelectAddressWrapper>
@@ -63,8 +66,9 @@ function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,
 
       {openModal ? (
         <MapSelectModal
-          openModal={openModal}
           closeModal={closeModal}
+          openModal={openModal}
+          selctModal={selctModal}
           selectAddress={selectAddress}
           modalTitleText="동네를 선택하세요"
         />

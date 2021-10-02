@@ -172,8 +172,8 @@ export const AdminOrderListItem = styled.div`
 
   @media screen and (min-width: 1140px) {
     > div {
-      width: 65%;
-      max-width: 490px;
+      width:100%;
+      max-width: 580px;
       > div {
         margin-bottom: 6px;
         font-size: 16px;
@@ -191,9 +191,6 @@ export const AdminOrderListItem = styled.div`
 `;
 
 export const AdminOrderListInfoP = styled.p`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   margin-bottom: 4px;
   padding-left: 4px;
   font-size: 14px;
@@ -223,13 +220,15 @@ export const DeliveryTime = styled.p`
   font-size: 14px;
   margin-bottom: 2px;
   margin-right: 8px;
-  width: 25%;
   @media screen and (min-width: 767px) {
+    min-width: 120px;
     font-size: 14px;
   }
   /* width:90%; */
   @media screen and (min-width: 1140px) {
+    min-width: 120px;
     font-size: 16px;
+    width: 20%;
   }
 `;
 

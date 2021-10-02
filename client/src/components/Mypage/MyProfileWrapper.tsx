@@ -13,7 +13,6 @@ import {
 
 import { AdminStoreGetData } from '../../_actions/admin_action';
 import { END_POINTS } from '../../_actions/type';
-
 import axios from 'axios';
 import MyOrderDetail from './MyOrderDetail';
 import MyOrderList from './MyOrderList';
@@ -106,15 +105,23 @@ function MyProfileWrapper(): any {
                 <h3>안녕하세요. {user.nickname}님</h3>
                 <p>{user.email}</p>
                 {
-                user.mainAddress === null || 
-                user.mainAddressDetail === null
-                ?
-                <p>동네인증이 필요합니다.</p>
-                :
-                <>
+                user.mainAddress &&
+                user.mainAddressDetail 
+                    ?
+                    <>
                 <p>{user.mainAddress}</p>
                 <p>{user.mainAddressDetail}</p>
-                </>
+                    </>
+                    :
+                    user.subAddress &&
+                    user.subAddressDetail
+                      ?
+                      <>
+                <p>{user.subAddress}</p>
+                <p>{user.subAddressDetail}</p>
+                    </>
+                      :
+                <p>동네인증이 필요합니다.</p>
                 }
               </PageContent>
               <ButtonWrapper>

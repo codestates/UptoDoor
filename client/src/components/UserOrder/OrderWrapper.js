@@ -40,7 +40,7 @@ function OrderWrapper() {
   const [optionsModal, setOptionsModal] = useState(false);
 
   const orderHander = useCallback(() => {
-
+    console.log(paymentCheck);
     if (!mobileCheck && orderMobile.length >= 11 && paymentCheck) {
       const selected_mobile = orderMobile;
       dispatch(addOrder(state.cart, selected_mobile, deliveryName))
@@ -120,6 +120,7 @@ function OrderWrapper() {
           setOpenModal={setOpenModal}
           modalTitleText="주문 완료"
           modalText="주문이 완료되었습니다. 감사합니다."
+          modalSuccess={true}
           url="/"
           modalBtn="확인"
         />

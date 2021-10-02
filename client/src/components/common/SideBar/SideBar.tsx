@@ -51,9 +51,9 @@ const state = useSelector((state) => state)
           <i className="fas fa-times"></i>
         </Icon>
         <Logo>UptoDoor</Logo>
-        {message === undefined ? <User onClick={() => {
+        {message === 'login success' ? <User>{nickname}</User>: <User onClick={() => {
           setModalOpen(true);
-        }}>로그인(닉네임)</User> : <User>{nickname}</User>}
+        }}>로그인</User> }
         
         <SidebarUl>
           <SidebarLi onClick={()=>{accessInto("map")}}>구독찾기</SidebarLi>

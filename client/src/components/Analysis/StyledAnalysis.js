@@ -166,12 +166,19 @@ height : 500px;
 }
 `
 export const ChartUserWrapper = styled.div`
+display: flex;
+justify-content: center;
+align-content: center;
 >.user-chart>div>svg>foreignObject>div{
   position :absolute;
   bottom : -20px!important;
 }
 @media screen and (min-width: 1140px) {
   width : 600px;
+  /* >.user-chart>div>svg{
+    border:3px solid;
+    width : 400px!important;
+  } */
 }
 `
 //!토탈유저 카테고리 섹션

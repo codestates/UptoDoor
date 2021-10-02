@@ -31,8 +31,6 @@ function AnalysisUser() {
   const name = arr.map((el)=>el.name);
   const number = arr.map((ele)=>ele.number);
 
-
-
     //name
     let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
     let splicingNameFirst = name.splice(0,5).concat(['그 외']);
@@ -84,8 +82,8 @@ function AnalysisUser() {
           breakpoint: 1140,
           options: {
             chart: {
-              width: 300,
-              height: 300,
+              width: 340,
+              height: 340,
             },
           },
         },
@@ -113,7 +111,7 @@ function AnalysisUser() {
             options={options} 
             series={series} 
             type="pie"
-            height ='360px'
+            height ='430px'
             />
           </ChartUserWrapper>
       </ChartContainer>

@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
                         feedbackUrl: 'https://uptodoors.shop/feedback',
                         //feedbackContentType: 'json',
                         schedulerType: 'oneshot',
-                        executeAt: ((new Date()).getTime() / 1000) + 60 //한달로 바꿔야됨
+                        executeAt: ((new Date()).getTime() / 1000) + 60 //28일 2419200
                     })
                     console.log('---- if pay -----')
                 } else {

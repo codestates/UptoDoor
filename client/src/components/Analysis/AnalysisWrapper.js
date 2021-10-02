@@ -27,6 +27,11 @@ const AnalysisWrapper = () => {
     <Container>
       <Title>구독 데이터</Title>
       <Wrapper>
+
+        <Fade bottom>
+        <AnalysisAverageMonth/>
+        </Fade>
+
         <Fade bottom >
         <AnalysisCategory/>
         </Fade>
@@ -39,10 +44,7 @@ const AnalysisWrapper = () => {
         <AnalysisTtlUser/>
         </Fade>
         <AnalysisCity/>
-
-        <Fade bottom>
-        <AnalysisAverageMonth/>
-        </Fade>
+        
       </Wrapper>
       
     </Container>

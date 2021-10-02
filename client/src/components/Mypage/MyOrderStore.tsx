@@ -7,7 +7,6 @@ import {
 } from './StyledMypage';
 
 function MyOrderStore({orderitem}:any) {
-
   return (
     <>
       <StoreInfoWrapper className="storeinfo-wrapper">
@@ -21,13 +20,13 @@ function MyOrderStore({orderitem}:any) {
               {orderitem.state === 'cancel' ? 
               <P cancleline lightColorText> 
               {orderitem.delivery_term}개월({Number(orderitem.delivery_term) * 4}주) /
-              매주 {orderitem.delivery_day&&orderitem.delivery_day.map((ele:any)=>ele)} 요일 / 
+              매주 {orderitem.delivery_day.map((ele:any)=>`${ele}요일 `)} / 
               {orderitem.delivery_time} 시
               </P>
               :
               <P>
               {orderitem.delivery_term}개월({Number(orderitem.delivery_term * 4)}주) /
-              매주 {orderitem.delivery_day&&orderitem.delivery_day.map((ele:any)=>ele)}요일 / 
+              매주 {orderitem.delivery_day.map((ele:any)=>`${ele}요일 `)} / 
               {orderitem.delivery_time} 시
               </P>
             }

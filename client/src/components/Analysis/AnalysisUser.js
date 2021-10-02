@@ -50,7 +50,7 @@ function AnalysisUser() {
       }
     },
     legend: {
-      show: true
+      show: false
     }
   };
   const series = [
@@ -71,10 +71,11 @@ function AnalysisUser() {
         </ChartContentsWrapper>
 
         <ChartUserWrapper id = 'chart'>
-          <Chart options={options} 
+          <Chart 
+          options={options} 
           series={splicing} 
           type="pie"
-          height='400px' />
+          height='350px'/>
         </ChartUserWrapper>
 
       </ChartContainer>

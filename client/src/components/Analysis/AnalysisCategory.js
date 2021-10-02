@@ -100,7 +100,7 @@ function AnalysisCategory() {
         options={options} 
         series={series} 
         type="bar" 
-        height='400px' />
+        height='420px' />
         </ChartCategoryWrapper>
 
     </ChartContainer>

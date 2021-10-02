@@ -12,7 +12,7 @@ import {MiddleButton} from '../common/Button/Button'
 
 function MapSelectModal(props:any) {
 
-  const { openModal, closeModal, modalTitleText } = props;
+  const { openModal, selctModal, modalTitleText,closeModal } = props;
 
   return (
     <StyledModal>
@@ -26,7 +26,7 @@ function MapSelectModal(props:any) {
               <div>
                 <Icon>🏡</Icon>
                 <MiddleButton 
-                  onClick = {(e:any)=>closeModal(e)}
+                  onClick = {(e:any)=>selctModal(e)}
                   className = 'modal-btn'>
                   HOME
                 </MiddleButton>
@@ -34,7 +34,7 @@ function MapSelectModal(props:any) {
               <div>
                 <Icon>🏢</Icon>
                 <MiddleButton 
-                  onClick = {(e:any)=>closeModal(e)}
+                  onClick = {(e:any)=>selctModal(e)}
                   className = 'modal-btn'>
                   OFFICE
                 </MiddleButton>

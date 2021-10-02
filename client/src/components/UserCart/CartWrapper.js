@@ -327,13 +327,13 @@ function CartWrapper() {
                   </p>
                 </MoneyCheck>
                 <MoneyCheck cart>
-                  <h5>
+                  <h4>
                     월 결제 금액은{" "}
                     {total.price
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     원 입니다.
-                  </h5>
+                  </h4>
                 </MoneyCheck>
               </UserCheckListBox>
             </UserCheckList>

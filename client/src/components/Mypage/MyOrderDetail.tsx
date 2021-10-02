@@ -44,7 +44,7 @@ function MyOrderDetail({
     // setOpenModal(false);
     // setCancleStoreModal(true);
   }
-  console.log(orderitem)
+  //console.log(orderitem)
   return (
     <MypageOrderListWrapper>
       <OrderListContent>

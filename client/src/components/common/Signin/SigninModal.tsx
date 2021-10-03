@@ -3,7 +3,8 @@ import { LagreButton } from '../Button/Button';
 import {
   SigninContainer, SigninWrapper, SigninInput, LeadSignup, Icon, SignupLink, TextOr, Logo,
 } from './StyledSignin';
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 import { signIn,naverSignIn, kakaoSignIn } from '../../../_actions/user_action';
 import axios from 'axios';
 axios.defaults.withCredentials = true
@@ -14,11 +15,15 @@ interface Iprops {
   modalOpen: boolean;
   setModalOpen: any;
   setIsOpen?: any;
-
+  request ? :any;
+  url ? :any;
 }
 
-function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
-  const dispatch: any = useDispatch()
+function Signin({ setIsOpen, modalOpen,setModalOpen ,request,url }: Iprops):any {
+  
+  const history = useHistory();
+  const dispatch: any = useDispatch();
+  const user = useSelector((state:any) => state.user);
   // if (!modalOpen) return null;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,14 +38,23 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
     setEmail(e.target.value);
   }, [email])
 
+  const link = window.location.href
+  console.log('link',link)
   const signinHandler = useCallback((e) => {
     e.preventDefault();
     const userinfo = {email, password}
     dispatch(signIn(userinfo))
       .then((res: any) => {
         if (res.payload.message  === 'login success') {
-          window.location.href=`${END_POINT}`
-        } else {
+          if(
+            link === 'http://localhost:3000/usercart'||
+            link ==='http://localhost:3000/userorder'){
+            history.push('/')
+          }else{
+            window.location.href=link
+          }
+        }
+        else {
           setFailModal(true);
         } 
       })
@@ -94,12 +108,23 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
       });
     }
   },[])
+
+  const closeModal = () => {
+    //엑스표시 되어있을때 로그인이 안되있으면 메인으로 보내버리고
+    if(request === true){
+      history.push('/')
+    }else{
+      //로그인이 되어있을땐?
+      setModalOpen(false)
+    }
+  }
+
   
   return modalOpen ? (
     <SigninContainer>
       <SigninWrapper>
           <Logo>UptoDoor</Logo>
-        <Icon onClick={() => { setModalOpen(false) }}>
+        <Icon onClick={closeModal}>
           <i className="fas fa-times"></i>
         </Icon>
         <div className="sample">

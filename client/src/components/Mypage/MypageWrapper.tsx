@@ -17,6 +17,9 @@ import axios from 'axios';
 import MyOrderDetail from './MyOrderDetail';
 import MyOrderList from './MyOrderList';
 
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
+
 function MyProfileWrapper(): any {
   const dispatch:any = useDispatch();
   const history = useHistory();
@@ -24,6 +27,7 @@ function MyProfileWrapper(): any {
   const [orderList,setOrderList] = useState([])
   const [orderitem , setOrderItem] = useState({})
   const [cur,setCur] = useState(0)
+  const [loginModal , setLoginModal] = useState(false);
 
   const moveDetailHandler = (id:any) => {
     const filtered = orderList.filter((el:any)=>{
@@ -92,6 +96,13 @@ function MyProfileWrapper(): any {
       }
     })
   }
+
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
   
   return (
     <Container>
@@ -155,6 +166,16 @@ function MyProfileWrapper(): any {
 
         </PageWrapper>
       </Wrapper>
+    
+    {loginModal ? 
+    <Signin
+    modalOpen = {loginModal}
+    setModalOpen = {setLoginModal}
+    request = {Auth(true)===undefined}
+    url = '/mypage'
+    />
+    :
+    null}
     </Container>
   );
 }

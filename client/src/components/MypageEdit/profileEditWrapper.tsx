@@ -22,6 +22,8 @@ import {SmallButton,BtnBox} from '../common/Button/Button'
 import ProfileEditOptions from './ProfileEditOptions';
 import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal';
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
 
 function MyProfileEdit() {
 
@@ -39,6 +41,7 @@ function MyProfileEdit() {
   const [gender , setGender] = useState(user.gender);
   const [age, setAge] = useState(user.age);
 
+  const [loginModal , setLoginModal] = useState(false);
   const [openModal , setOpenModal] = useState(false);
   const [modalSuccess,setModalSuccess] = useState(false);
   const [confirmModal , setConfirmModal] = useState(false);
@@ -137,6 +140,13 @@ function MyProfileEdit() {
     //   console.log(err)
     // });
   },[nickname,password,passwordChk,mobile,gender,age])
+
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
 
   return (
     <Container>
@@ -265,6 +275,15 @@ function MyProfileEdit() {
       :
       null
       }
+      {loginModal ? 
+      <Signin
+      modalOpen = {loginModal}
+      setModalOpen = {setLoginModal}
+      request = {Auth(true)===undefined}
+      url = '/mypageedit'
+      />
+      :
+      null}
 
     </Container>
   )

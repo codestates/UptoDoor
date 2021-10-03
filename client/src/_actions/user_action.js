@@ -55,7 +55,6 @@ export const signIn = (userinfo) => {
   const request = axios
     .post(`${END_POINTS}/users/signin`, userinfo)
     .then((res) => {
-      console.log("11", res.data);
       return {
         message: res.data.message,
         id: res.data.userinfo.id,

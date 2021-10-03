@@ -18,6 +18,8 @@ import OrderMenu from './OrderMenu';
 import OrderSubscription from "./OrderSubscription";
 import OrderInfo from "./OrderInfo";
 import ConfirmModal from "../common/Modal/ConfirmModal";
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
 
 import { addOrder } from '../../_actions/user_action';
 import { removeAllCart } from "../../_actions/cart_action";
@@ -42,6 +44,7 @@ function OrderWrapper() {
   const [deliveryUserName, onChangeDeliveryUserName] = useInput("");
   
   //필요모달 
+  const [loginModal , setLoginModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   const [payErrorModal, setPayErrorModal] = useState(false);
@@ -160,6 +163,13 @@ return setOpenModal(true);
 
   if (state === undefined) return null;
 
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
+
   return (
     <Container>
       <Title>주문 전 확인</Title>
@@ -220,6 +230,15 @@ return setOpenModal(true);
               : null}
         />
       ) : null}
+      {loginModal ? 
+      <Signin
+      modalOpen = {loginModal}
+      setModalOpen = {setLoginModal}
+      request = {Auth(true)===undefined}
+      url = '/'
+      />
+      :
+      null}
     </Container>
   );
 }

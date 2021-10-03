@@ -1,4 +1,4 @@
-import React, { useState,useCallback } from 'react';
+import React, { useState,useCallback,useEffect } from 'react';
 import SigninModal from '../Signin/SigninModal';
 import {
   SidebarContainer,
@@ -44,7 +44,6 @@ const state = useSelector((state) => state)
   }
     
   }, [history, message]);
-
 
   return (
     <SidebarContainer isOpen={isOpen} >

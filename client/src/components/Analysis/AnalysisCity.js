@@ -14,25 +14,41 @@ function AnalysisCity() {
     legend: {
       show: false
     },
-    animations: {
-      enabled: true,
-      easing: 'easeinout',
-      speed: 1200,
-      animateGradually: {
-        enabled: true,
-        delay: 300,
-      },
-      dynamicAnimation: {
-        enabled: true,
-        speed: 1000,
+    chart: {
+      animations: {
+          enabled: true,
+          easing: 'easeinout',
+          speed: 700,
+          animateGradually: {
+              enabled: true,
+              delay: 150
+          },
+          dynamicAnimation: {
+              enabled: true,
+              speed: 400
+          }
+      }
+    },
+    plotOptions: {
+      treemap: {
+        enableShades: true,
+        shadeIntensity: 0.5,
+        colorScale: {
+          ranges: [
+            {
+              from: -6,
+              to: 0,
+              color: 'rgba(115, 194, 253, 0.85)'
+            },
+            {
+              from: 0.001,
+              to: 6,
+              color: '#245CCE'
+            }
+          ]
+        }
       },
     },
-    // plotOptions: {
-    //   treemap: {
-    //     distributed: true,
-    //     enableShades: false,
-    //   },
-    // },
     // responsive: [
     //   {
     //     breakpoint: 767,

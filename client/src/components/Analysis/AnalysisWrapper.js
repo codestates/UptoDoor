@@ -7,8 +7,6 @@ import { Container, Title, Wrapper } from '../GlobalStyle'
 import {
   chartObjOne,
   chartObjTwo,
-  chartObjThree,
-  chartObjFour
 } from './chartProperty';
 
 import AnalysisCategory from './AnalysisCategory'
@@ -38,20 +36,20 @@ const AnalysisWrapper = () => {
         <AnalysisAverageMonth/>
         </Fade>
 
-        <Fade left >
+        <Fade right >
         <AnalysisCategory {...chartObjOne}/>
         </Fade>
 
+        <Fade left>
+        <AnalysisUser/>
+        </Fade>
+
         <Fade right>
-        <AnalysisUser {...chartObjTwo}/>
+        <AnalysisTtlUser  {...chartObjTwo}/>
         </Fade>
 
         <Fade left>
-        <AnalysisTtlUser {...chartObjThree}/>
-        </Fade>
-
-        <Fade bottom>
-        <AnalysisCity {...chartObjFour}/>
+        <AnalysisCity />
         </Fade>
         
       </Wrapper>

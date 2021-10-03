@@ -54,6 +54,7 @@ export const signIn = (userinfo) => {
   const request = axios
     .post(`${END_POINTS}/users/signin`, userinfo)
     .then((res) => {
+      console.log('resres',res.data)
       return {
         message: res.data.message,
         id: res.data.userinfo.id,
@@ -205,10 +206,11 @@ export const editUser = (userinfoEdit) => {
   };
 }
 //회원탈퇴 delete 요청 -> state 전부 초기화하기
-export const deleteUser = (userinfo) => {
+export const deleteUser = () => {
   const request = axios
-    .delete(`${END_POINTS}/users/signout`,userinfo)
+    .delete(`${END_POINTS}/users`,)
     .then((res)=>{
+    console.log('rerere',res.data)
       return res.data.message;
     })
     .catch((err)=>{

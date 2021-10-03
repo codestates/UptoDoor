@@ -24,6 +24,9 @@ import AdminUploadMenuEdit from './AdminUploadMenuEdit'
 import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal';
 
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
+
 import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
 
@@ -36,6 +39,7 @@ function AdminEditForm() {
   const user = useSelector((state:any) => state.user);
   const admin = useSelector((state:any) => state.admin);
   //모달 수정, 삭제
+  const [loginModal , setLoginModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteOkModal, setDeleteOkModal] = useState(false);
@@ -247,6 +251,13 @@ function AdminEditForm() {
     setCloseTime(value && value.format(str));
   }
 
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
+
   return (
     <Container>
       <Title>가게 수정</Title>
@@ -415,6 +426,16 @@ function AdminEditForm() {
       :
       null
       }
+
+    {loginModal ? 
+    <Signin
+    modalOpen = {loginModal}
+    setModalOpen = {setLoginModal}
+    request = {Auth(true)===undefined}
+    url = '/adminedit'
+    />
+    :
+    null}
     </Container>
   )
 }

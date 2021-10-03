@@ -78,11 +78,7 @@ function AnalysisTtlUser({chartStart,second}) {
 
   const series1 = [{
     name: 'Food',
-<<<<<<< HEAD
-    data: [44, 55, 41, 37, 22, 43]
-=======
     data: [44, 55, 41, 37, 22, 43],
->>>>>>> 9860c11bb6a1151c8cd9fdf5d52511feff93ba13
   }, {
     name: 'Cafe',
     data: [53, 32, 33, 52, 13, 43]

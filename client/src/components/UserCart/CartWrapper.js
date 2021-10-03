@@ -1,4 +1,4 @@
-import React, {useCallback,useState } from "react";
+import React, {useCallback,useState,useEffect } from "react";
 import {useSelector,useDispatch} from "react-redux";
 import { SmallButton } from "../common/Button/Button";
 
@@ -27,11 +27,16 @@ import ConfirmModal from "../common/Modal/ConfirmModal";
 import CartMenuList from "./CartMenuList";
 import { useHistory } from "react-router";
 
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
+
 function CartWrapper() {
   const monent = moment();
   const history = useHistory();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  
+  const [loginModal , setLoginModal] = useState(false);
   
   const [timeOtions, setTimeOtions] = useState("");
   const [changeMoment, setChangeMoment] = useState(monent);
@@ -216,6 +221,16 @@ function CartWrapper() {
     setTimeOtions(value && value.format(str));
     
   }
+  useEffect(() => {
+    const request = Auth(true);
+    const cartRequest = Cart(true);
+    //로그인 성공시에도 카트에 물건이 없으면 메인으로 보내야한다.
+    console.log('cartRequest:',cartRequest)
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
+
   return (
     <Container>
       <Title>장바구니</Title>
@@ -385,6 +400,16 @@ function CartWrapper() {
           setOpenModal={setOptionsModal}
         />
       ) : null}
+      {loginModal ? 
+      <Signin
+      modalOpen = {loginModal}
+      setModalOpen = {setLoginModal}
+      request = {Auth(true)===undefined}
+      
+      url = '/'
+      />
+      :
+      null}
     </Container>
   );
 }

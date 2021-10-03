@@ -26,11 +26,15 @@ import AdminOrderList from './AdminOrderList';
 import AdminOrderInfo from './AdminOrderInfo';
 import AdminStoreInfo from './AdminStoreInfo';
 
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
+
 function AdminWrapper() {
   const admin = useSelector((state:any) => state.admin);
   const user = useSelector((state:any) => state.user);
   const store = admin;
   const { orders } = store;
+  
   const [filteredData, setFilteredData] = useState([]);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   const [selectedDay, setSelectedDay] = useState(days[new Date().getDay()]);
@@ -38,6 +42,9 @@ function AdminWrapper() {
   const [orderitem, setOrderItem] = useState({});
   const [cur, setCur] = useState(0);
   const [changeListItem, setChangeListItem] = useState(0);
+
+  //모달
+  const [loginModal , setLoginModal] = useState(false);
 
   const moveDetailHandler = (id:number) => {
     const filtered = filteredData.filter((el:any) => {
@@ -73,6 +80,13 @@ function AdminWrapper() {
     setFilteredData(filtered);
   }, []);
   const listItem = ["주문관리", "가게 정보"];
+
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
 
   return (
     <Container>
@@ -174,6 +188,16 @@ function AdminWrapper() {
           )}
         </PageWrapper>
       </Wrapper>
+
+      {loginModal ? 
+      <Signin
+      modalOpen = {loginModal}
+      setModalOpen = {setLoginModal}
+      request = {Auth(true)===undefined}
+      url = '/adminpage'
+      />
+      :
+      null}
     </Container>
   );
 }

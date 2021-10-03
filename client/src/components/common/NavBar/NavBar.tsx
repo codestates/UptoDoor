@@ -40,6 +40,8 @@ function NavBar() {
   const [rejectModal, setRejectModal] = useState(false);
   const closeModal = () => { setRejectModal(false) };
 
+  const [urls, setUrls] = useState()
+
   const signoutHandler = (e:any) => {
     e.preventDefault();
     
@@ -89,6 +91,7 @@ const accessInto = useCallback((name) => {
     }
   }
   }, [history, message]);
+
   return (
     <Header>
       <NavWrapper>
@@ -118,7 +121,7 @@ const accessInto = useCallback((name) => {
           <i className="fas fa-bars"></i>
         </IconButton>
         
-        {message === undefined ?
+        {message !== 'login success' ?
           <UL>
             <Listli 
             type="button" 
@@ -168,10 +171,20 @@ const accessInto = useCallback((name) => {
       setIsOpen={setIsOpen} 
       isOpen={isOpen} 
       signoutHandler={signoutHandler} />
+
       <Signin 
       setIsOpen={setIsOpen} 
       modalOpen={modalOpen} 
-      setModalOpen={setModalOpen} />
+      setModalOpen={setModalOpen}
+      url = {
+        `${END_POINT}/address` 
+        ? '/address' : 
+        `${END_POINT}/mapper` 
+        ? '/mapper' :
+        `${END_POINT}/analysis` 
+        ? '/analysis':
+        '/'}
+      />
 
       {!user.message && rejectModal ? 
       <ConfirmModal 

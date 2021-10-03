@@ -21,7 +21,10 @@ import AdminUploadStore from  './AdminUploadStore';
 import AdminEnrollStore from './AdminEnrollStore'
 import AdminUploadMenu from './AdminUploadMenu';
 import AdminFileUpload from './AdminFileUpload';
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
 import ConfirmModal from '../common/Modal/ConfirmModal';
+
 
 import useInput from '../../utils/useInput'
 
@@ -41,6 +44,7 @@ function AdminPostForm() {
     { value: 'etc', label: 'etc' },
   ]
   //* 모달관련
+  const [loginModal , setLoginModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);
@@ -189,6 +193,13 @@ function AdminPostForm() {
     setChangeCloseMoment(value);
     setCloseTime(value && value.format(str));
   }
+
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
   
 return (
   <Container>
@@ -321,6 +332,16 @@ return (
     />
     : 
     null}
+
+      {loginModal ? 
+      <Signin
+      modalOpen = {loginModal}
+      setModalOpen = {setLoginModal}
+      request = {Auth(true)===undefined}
+      url = '/adminpost'
+      />
+      :
+      null}
   </Container>
   )
 }

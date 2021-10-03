@@ -193,6 +193,8 @@ function SignupWrapper() {
           />
         </SignupBox>
 
+          <Label>비밀번호</Label>
+          <SideSpan>*필수</SideSpan>
           <SignupBox>
             <SignUpInput
               required

@@ -18,6 +18,7 @@ function ConfirmModal(props: any) {
 
   const closeModal = () => {
     if(modalSuccess === true){
+      setOpenModal(false);
       history.push(url);
     }else{
       setOpenModal(false);

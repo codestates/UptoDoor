@@ -23,18 +23,10 @@ function MyOrderDetail({
   user }:any, ) {
 
   const dispatch:any = useDispatch();
-<<<<<<< HEAD
-  const [modalSuccess, setModalSuccess] = useState(false);
-
-  const [openModal , setOpenModal] = useState(false);
-  const [cancleStoreModal, setCancleStoreModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
-=======
 
   const [openModal , setOpenModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   const [cancelStoreModal, setCancelStoreModal] = useState(false);
->>>>>>> 7aa89294683145cec8f5ab5eca889c758cb2805d
   const [selectOrder, setselectOrder] = useState('');
 
   const cancelStoreHandler = () => {
@@ -45,15 +37,6 @@ function MyOrderDetail({
     dispatch(cancelOrder(orderitem.id)).then((res:any) => {
       if (res.payload.message === "success delete order") {
         setOpenModal(false);
-<<<<<<< HEAD
-        setDeleteModal(true);
-      }
-    })
-    // setOpenModal(false);
-    // setCancleStoreModal(true);
-  }
-  //console.log(orderitem)
-=======
         setModalSuccess(true)
         setCancelStoreModal(true);
       }
@@ -61,7 +44,6 @@ function MyOrderDetail({
     
   }
 
->>>>>>> 7aa89294683145cec8f5ab5eca889c758cb2805d
   return (
     <MypageOrderListWrapper>
       <OrderListContent>

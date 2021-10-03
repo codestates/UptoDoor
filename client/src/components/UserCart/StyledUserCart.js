@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { MediumFont, SmallFont, UltraLargeFont } from '../GlobalStyle';
 // import { TextLightGrey } from '../GlobalStyle';
-
+import TimePicker from "rc-time-picker";
 //* CartWrapper
 export const CartContainer = styled.div`
   margin: 0 auto;
@@ -36,15 +37,31 @@ export const UserCheckList = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 10px;
+  padding: 20px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   > h3 {
     margin: 3px 0 4px 10px;
     font-size: 18px;
   }
+  >.cart-ttl-price{
+    width : 100%;
+    margin : 10px 0;
+    padding : 0;
+    >.cart-ttl-price-text{
+    display: flex;
+    justify-content: right;
+    margin-top : 20px;       
+    max-width: none;
+    }
+    >.cart-ttl{
+      max-width: none;
+    }
+  }
+
   @media screen and (min-width: 767px) {
+    margin-bottom: 50px;
     > h3 {
       margin: 8px 0 8px 15px;
       font-size: 18px;
@@ -64,7 +81,7 @@ export const UserCheckList = styled.section`
 `;
 
 export const UserCheckListBox = styled.div`
-  width: 90%;
+  width: 95%;
   margin: 0 auto 5px;
   padding: 0 5px 0 5px;
   padding-bottom: ${({ month }) => (month ? "0px" : "5px")};
@@ -91,13 +108,16 @@ export const UserCheckListBox = styled.div`
 
   > textarea {
     width: 100%;
-    max-width: 470px;
+    /* max-width: 470px; */
     height: 100px;
     padding: 8px;
     text-decoration: none;
     outline: none;
     resize: none;
     border: 2px solid #ededed;
+    /* @media screen and (min-width: 767px) {
+    max-width: none;
+    } */
   }
 
   @media screen and (min-width: 1140px) {
@@ -196,10 +216,35 @@ export const CheckBox = styled.input`
   width: 15px;
   height: 15px;
 `;
-
+export const EmptyCart = styled.div`
+  height : 190px;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin : 10px;
+  >i{
+    font-size: 40px;
+    color : rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+  }
+  >p{
+    color : rgba(0,0,0,0.7);
+    font-size: 14px;
+  }
+  @media screen and (min-width: 1140px) {
+    height : 340px;
+    >i{
+    font-size: ${UltraLargeFont};
+  }
+  >p{
+    font-size: ${SmallFont};
+  }
+  }
+`;
 export const CartMenuItemContainer = styled.div`
   width: 100%;
-
   background-color: #f7f7f7;
   padding: 6px;
   &::-webkit-scrollbar {
@@ -272,7 +317,7 @@ export const CartMenuItemDetail = styled.div`
 
   @media screen and (min-width: 767px) {
     display: flex;
-    width: 80%;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
 
@@ -462,5 +507,180 @@ export const UserCheckListDetailBox = styled.div`
 
   @media screen and (max-width: 1140px) {
     display: none;
+  }
+`;
+
+export const CartTimePicker = styled(TimePicker)`
+  > .rc-time-picker {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+  }
+  > .rc-time-picker * {
+    box-sizing: border-box;
+  }
+  > .rc-time-picker-clear {
+    position: relative;
+    /* right: 24px; */
+    cursor: pointer;
+    overflow: hidden;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 20px;
+    right: 8%;
+    top: -2px;
+    /* @media screen and (min-width: 500px) {
+      right: 6%;
+    }
+    @media screen and (min-width: 767px) {
+      right: 5%;
+    }
+    @media screen and (min-width: 900px) {
+      right: 4%;
+    } */
+    @media screen and (min-width: 1140px) {
+      position: absolute;
+      top: 6px;
+      right: 150px;
+    }
+  }
+  > .rc-time-picker-clear-icon:after {
+    content: "x";
+    font-size: 16px;
+    font-style: normal;
+    color: #000;
+    display: inline-block;
+    line-height: 1;
+    height: 20px;
+    width: 20px;
+    transition: color 0.3s ease;
+  }
+  > .rc-time-picker-clear-icon:hover:after {
+    color: #000;
+  }
+  > .rc-time-picker-input {
+    width: 187px;
+    position: relative;
+    display: inline-block;
+    padding: 4px 0 4px 15px;
+    height: 36px;
+    cursor: text;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    transition: border 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+      background 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+      box-shadow 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  > .rc-time-picker-input[disabled] {
+    color: #ccc;
+    background: #f7f7f7;
+    cursor: not-allowed;
+  }
+  > .rc-time-picker-panel {
+    z-index: 1070;
+    width: 187px;
+    position: absolute;
+    box-sizing: border-box;
+  }
+  > .rc-time-picker-panel * {
+    box-sizing: border-box;
+  }
+  > .rc-time-picker-panel-inner {
+    display: inline-block;
+    position: relative;
+    outline: none;
+    list-style: none;
+    width: 100%;
+    top: 3px;
+    font-size: 14px;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px #ccc;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    line-height: 1.5;
+  }
+  > .rc-time-picker-panel-narrow {
+    max-width: 113px;
+  }
+  > .rc-time-picker-panel-input {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    cursor: auto;
+    line-height: 1.5;
+    outline: 0;
+    border: 1px solid transparent;
+  }
+  > .rc-time-picker-panel-input-wrap {
+    box-sizing: border-box;
+    position: relative;
+    padding: 6px;
+    height: 40px;
+    border-bottom: 1px solid #e9e9e9;
+  }
+  > .rc-time-picker-panel-input-invalid {
+    border-color: red;
+  }
+  > .rc-time-picker-panel-select {
+    float: left;
+    font-size: 12px;
+    border: 1px solid #e9e9e9;
+    border-width: 0 1px;
+    margin-left: -1px;
+    box-sizing: border-box;
+    width: 62px;
+    max-height: 144px;
+    overflow-y: auto;
+    position: relative;
+  }
+  > .rc-time-picker-panel-select-active {
+    overflow-y: auto;
+  }
+  > .rc-time-picker-panel-select:first-child {
+    border-left: 0;
+    margin-left: 0;
+  }
+  > .rc-time-picker-panel-select:last-child {
+    border-right: 0;
+  }
+  > .rc-time-picker-panel-select ul {
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  > .rc-time-picker-panel-select li {
+    list-style: none;
+    margin: 0;
+    /* padding: 0 0 0 16px; */
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  > .rc-time-picker-panel-select li:hover {
+    background: #edfaff;
+  }
+  > li.rc-time-picker-panel-select-option-selected {
+    background: #f7f7f7;
+    font-weight: bold;
+  }
+  > li.rc-time-picker-panel-select-option-disabled {
+    color: #ccc;
+  }
+  > li.rc-time-picker-panel-select-option-disabled:hover {
+    background: transparent;
+    cursor: not-allowed;
   }
 `;

@@ -5,7 +5,7 @@ import { UltraLargeFont,
 import {showModal} from '../common/Modal/styledModal'
 import {LandingValues} from '../dummyData'
 
-const upNdown = keyframes`
+export const upNdown = keyframes`
   0%{
     margin-top: -5px;
   }
@@ -225,6 +225,10 @@ position :absolute;
 bottom : 30px;
 font-size: 50px;
 z-index: 1;
+color : rgba(0,0,0,0.5);
+&:hover{
+  color : rgba(0,0,0,0.7);
+}
 `
 export const AlarmI = styled.i`
 @media screen and (min-width: 767px) {
@@ -331,7 +335,7 @@ export const InfoRow = styled.div`
   grid-auto-columns: minmax(1fr, 2fr);
   align-items: flex-start;
   grid-template-areas: ${({ imgStart }) =>
-    imgStart ? `'col1' 'col2'` : `'col1 col1' 'col2 col2'`};
+    imgStart ? `'col1' 'col2'` : `'col1' 'col2'`};
   @media screen and (min-width: 768px) {
     align-items: center;
 

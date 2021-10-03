@@ -3,7 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { adminStorePost } from '../../_actions/admin_action';
 import Select from 'react-select';
-
+import TimePicker from "rc-time-picker";
+import moment from "moment";
+import '../AdminEdit/style.css'
 import {
   AdminForm,
   FlexBox,
@@ -19,7 +21,10 @@ import AdminUploadStore from  './AdminUploadStore';
 import AdminEnrollStore from './AdminEnrollStore'
 import AdminUploadMenu from './AdminUploadMenu';
 import AdminFileUpload from './AdminFileUpload';
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
 import ConfirmModal from '../common/Modal/ConfirmModal';
+
 
 import useInput from '../../utils/useInput'
 
@@ -39,7 +44,9 @@ function AdminPostForm() {
     { value: 'etc', label: 'etc' },
   ]
   //* 모달관련
+  const [loginModal , setLoginModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);
   const [storeFile , setStoreFile]:any = useState('');
@@ -47,11 +54,8 @@ function AdminPostForm() {
   const [title, onChangeTitle] = useInput('');
   const [category, setCategory] = useState('');
   const [description , onChangeDescription] = useInput('');
-  const [openTime, setOpenTime] = useState('');
-  const [closeTime, setCloseTime] = useState('')
   const [mobile , setMobile] = useState('');
    //주소 
-  const [switched, setSwitched ] = useState("");
   const [adminAddress , setAdminAddress] = useState('');
   const [adminAddressDetail, onChangeAdminAddressDetail] = useInput('');
   const [addressModal, setAddressModal] = useState(false);
@@ -144,6 +148,7 @@ function AdminPostForm() {
       dispatch(adminStorePost(adminPostInfo))
       .then((res:any) => {
         if (res.payload.message === 'Store registration is complete') {
+          setModalSuccess(true);
           setOpenModal(true);
         }
       })
@@ -156,22 +161,39 @@ function AdminPostForm() {
     geocoder.addressSearch(address, function (result: any, status: any) {
       // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         setYValue(result[0].x);
         setXValue(result[0].y);
-        geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
       }
     });
-    const callback = (result:any, status:any) => {
-    if (status === kakao.maps.services.Status.OK) {
-      setSwitched(result[0].address.address_name.split(" ")[1]);
-    }
-  };
   }, []);
 
   const handleClickCancle = () => {
     history.push('/');
   }
+
+  const [openTime, setOpenTime] = useState('');
+  const [closeTime, setCloseTime] = useState('')
+  const monent = moment();
+  const [changeOpenMoment, setChangeOpenMoment] = useState(monent);
+  const [changeCloseMoment, setChangeCloseMoment] = useState(monent);
+  const str =  "HH:mm";
+  const onChangeOpenTime = (value: any) => {
+    console.log(value && value.format(str));
+    setChangeOpenMoment(value);
+    setOpenTime(value && value.format(str));
+  }
+  const onChangeCloseTime = (value: any) => {
+    console.log(value && value.format(str));
+    setChangeCloseMoment(value);
+    setCloseTime(value && value.format(str));
+  }
+
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
   
 return (
   <Container>
@@ -216,19 +238,27 @@ return (
               <label>배달 가능시간<span>(ex.09:00-17:00)</span></label>
               
               <OpenCloseInputWrapper>
-            <input 
-            required
-            type = 'text'
-            defaultValue = {openTime} 
-            placeholder = 'Open Time' 
-            onChange={(e:any)=>{setOpenTime(e.target.value)}} />
-                <h1>-</h1>
-                <input
-                  required
-                  type='time'
-                  defaultValue={closeTime}
-                  placeholder='Close Time'
-                  onChange={(e:any)=>{setCloseTime(e.target.value)}} />
+            <TimePicker
+                  value={changeOpenMoment}
+                  showSecond={false}
+                  minuteStep={15}
+                  format="HH:mm"
+                  use12Hours
+                  inputReadOnly
+                  onChange={onChangeOpenTime}
+                  ></TimePicker>
+                  {" "}
+                  <h1>-</h1>
+                  {" "}
+                <TimePicker
+                  value={changeCloseMoment}
+                  showSecond={false}
+                  minuteStep={15}
+                  format="HH:mm"
+                  use12Hours
+                  inputReadOnly
+                  onChange={onChangeCloseTime}
+                ></TimePicker>
               </OpenCloseInputWrapper>
             
             </StoreInputBox>
@@ -285,17 +315,30 @@ return (
       </Wrapper>
     </form>
 
-    {openModal ? 
-    <ConfirmModal
-      openModal={openModal}
-      setOpenModal={setOpenModal}
-      modalTitleText="가게 등록 완료"
-      modalText="가게 신청이 완료되었습니다. 승인까지 1-2일 걸립니다."
+    {openModal ?
+      <ConfirmModal
+        modalSuccess={modalSuccess}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        modalTitleText="스토어 등록"
+        modalText={modalSuccess
+          ? "가게 신청이 완료되었습니다. 승인까지 1-2일 걸립니다."
+          : "새로고침 후 다시 시도해주세요."}
       modalBtn="확인"
       url='/mypage'
     />
     : 
     null}
+
+      {loginModal ? 
+      <Signin
+      modalOpen = {loginModal}
+      setModalOpen = {setLoginModal}
+      request = {Auth(true)===undefined}
+      url = '/adminpost'
+      />
+      :
+      null}
   </Container>
   )
 }

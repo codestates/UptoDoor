@@ -74,8 +74,6 @@ export const ButtonWrapper = styled.div`
   }
 
   @media screen and (min-width: 767px) {
-    height: 80px;
-
     display: block;
     > button {
       font-size: 20px;
@@ -83,6 +81,9 @@ export const ButtonWrapper = styled.div`
       height: 60px;
       margin: 0 10px 0 15px;
     }
+  }
+  @media screen and (min-width: 1140px) {
+    margin-top: 70px;
   }
 `;
 
@@ -244,7 +245,7 @@ export const SubscriptionWrapper = styled.div`
   > h5 {
     font-size: 14px;
     margin-bottom: 8px;
-  }
+  }  
   @media screen and (min-width: 767px) {
     padding: 28px 26px;
     > div {
@@ -281,7 +282,7 @@ export const SubscriptionInfoWrapper = styled.div`
     margin: 0 0 5px 0;
   }
   > textarea {
-    width: 100%;
+    width: 95%;
     height: 100px;
     padding: 8px 10px;
     outline: none;
@@ -290,6 +291,7 @@ export const SubscriptionInfoWrapper = styled.div`
     letter-spacing: -1px;
     border-radius: 8px;
     max-width: 350px;
+    margin-top: 10px;
   }
 
   @media screen and (min-width: 767px) {
@@ -325,7 +327,6 @@ export const SubscriptionInfoWrapper = styled.div`
 //* OrderInfo
 export const OrderInfoContainer = styled.div`
   width: 100%;
-
   padding: 14px 12px;
   border-radius: 8px;
   display: flex;
@@ -333,12 +334,13 @@ export const OrderInfoContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #f7f7f7;
-  margin-bottom: 12px;
+  margin-bottom: 30px;
 
   @media screen and (min-width: 767px) {
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+    margin-bottom: 50px;
   }
   @media screen and (min-width: 1140px) {
     flex-direction: column;
@@ -360,6 +362,7 @@ export const OrderInfoWrraper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  /* margin-bottom: 30px; */
   > h5 {
     font-size: 16px;
     margin: 4px 0 8px;
@@ -389,6 +392,8 @@ export const OrderInfoWrraper = styled.div`
 export const OrderUserInfoContent = styled.div`
   width: 95%;
   display: flex;
+  margin-left : 10px;
+  line-height: 25px;
   > h4 {
     font-size: 12px;
     padding-left: 10px;

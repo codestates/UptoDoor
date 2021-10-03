@@ -4,6 +4,12 @@ import axios from 'axios'
 import {ENDPOINT} from '../../_actions/type'
 
 import { Container, Title, Wrapper } from '../GlobalStyle'
+import {
+  chartObjOne,
+  chartObjTwo,
+  chartObjThree,
+  chartObjFour
+} from './chartProperty';
 
 import AnalysisCategory from './AnalysisCategory'
 import AnalysisUser from './AnalysisUser'
@@ -32,18 +38,21 @@ const AnalysisWrapper = () => {
         <AnalysisAverageMonth/>
         </Fade>
 
-        <Fade bottom >
-        <AnalysisCategory/>
+        <Fade left >
+        <AnalysisCategory {...chartObjOne}/>
+        </Fade>
+
+        <Fade right>
+        <AnalysisUser {...chartObjTwo}/>
+        </Fade>
+
+        <Fade left>
+        <AnalysisTtlUser {...chartObjThree}/>
         </Fade>
 
         <Fade bottom>
-        <AnalysisUser/>
+        <AnalysisCity {...chartObjFour}/>
         </Fade>
-
-        <Fade bottom>
-        <AnalysisTtlUser/>
-        </Fade>
-        <AnalysisCity/>
         
       </Wrapper>
       

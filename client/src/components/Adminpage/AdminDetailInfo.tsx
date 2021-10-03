@@ -13,7 +13,11 @@ interface Iprops {
   detailInfo: string;
 }
 
-function AdminDetailInfo({ userMobile,userAddress,deliveryInfo,detailInfo}: Iprops) {
+function AdminDetailInfo({ 
+  userMobile,userAddress,
+  deliveryInfo,detailInfo}: Iprops) {
+
+    console.log('detailInfo=========',detailInfo,userMobile)
   return (
     <>
       <StoreInfoWrapper className="storeinfo-wrapper">
@@ -28,7 +32,7 @@ function AdminDetailInfo({ userMobile,userAddress,deliveryInfo,detailInfo}: Ipro
           </EachItemBox>
           <EachItemBox>
             <H4>📱 고객 연락처</H4>
-            <P>{userMobile }</P>
+            <P>{userMobile}</P>
           </EachItemBox>
           <EachItemBox>
             <H4>✍🏼 요청사항</H4>

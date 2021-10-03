@@ -40,6 +40,7 @@ module.exports = async (req, res) => {
          
         //order_delivery테이블에 지정요일의 개수만큼 데이터 저장
         let date = new Date();
+<<<<<<< HEAD
         console.log('--getdate--',date)
         console.log('--getfullyear--',date.getFullYear())
         console.log('--getmonth--',date.getMonth())
@@ -49,6 +50,18 @@ module.exports = async (req, res) => {
         const newDay = date.getDate();
         const nextPayDay = `${newYear}.${newMonth}.${newDay}`
         console.log('---nextpayday',nextPayDay);
+=======
+        console.log("--getdate--", date);
+        console.log("--getfullyear--", date.getFullYear());
+        console.log("--getmonth--", date.getMonth());
+        console.log("--getday--", date.getDate());
+        const newYear = date.getFullYear();
+        const newMonth = date.getMonth() + 1;
+        const newDay = date.getDate();
+        const nextPayDay = `${newYear}.${newMonth}.${newDay}`;
+        console.log("---nextpayday", nextPayDay);
+
+>>>>>>> 7aa89294683145cec8f5ab5eca889c758cb2805d
         for(let el of orderInfo.delivery_day){
             await order_delivery.create({
                 order_id : orderData.id,
@@ -72,7 +85,11 @@ module.exports = async (req, res) => {
             order_id : orderData.id,
             data: req.body.data
           }
+<<<<<<< HEAD
             console.log('----orderinfo -----',sendinfo);
+=======
+            console.log("----orderinfo -----", sendinfo);
+>>>>>>> 7aa89294683145cec8f5ab5eca889c758cb2805d
             await axios.post('http://localhost:3060/payment', sendinfo)
             .then(() => {
                 res.status(201).send({message: 'Your order has been completed'});    

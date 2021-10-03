@@ -1,12 +1,16 @@
-import React, {useCallback,useState } from "react";
+import React, {useCallback,useState,useEffect } from "react";
 import {useSelector,useDispatch} from "react-redux";
 import { SmallButton } from "../common/Button/Button";
+
+import moment from "moment";
+
 import {
   CartContainer,
   UserCheckList,
   UserCheckListBox,
   ButtonWrapper,
   CartCheckListWrapper,
+  CartTimePicker
 } from "./StyledUserCart";
 import {
   setQuantity,
@@ -23,13 +27,19 @@ import ConfirmModal from "../common/Modal/ConfirmModal";
 import CartMenuList from "./CartMenuList";
 import { useHistory } from "react-router";
 
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
+
 function CartWrapper() {
+  const monent = moment();
   const history = useHistory();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   
-
+  const [loginModal , setLoginModal] = useState(false);
+  
   const [timeOtions, setTimeOtions] = useState("");
+  const [changeMoment, setChangeMoment] = useState(monent);
   const [detailOption, setDetailOption] = useState("");
   const [plusMoney, setPlusMoney] = useState(0);
   const [plusMoneyChecked, setPlusMoneyChecked] = useState(false);
@@ -204,6 +214,22 @@ function CartWrapper() {
 
   const [openModal, setOpenModal] = useState(false);
   const [optionsModal, setOptionsModal] = useState(false);
+  const str =  "HH:mm";
+  const onChangeTime = (value) => {
+    console.log(value && value.format(str));
+    setChangeMoment(value);
+    setTimeOtions(value && value.format(str));
+    
+  }
+  useEffect(() => {
+    const request = Auth(true);
+    const cartRequest = Cart(true);
+    //로그인 성공시에도 카트에 물건이 없으면 메인으로 보내야한다.
+    console.log('cartRequest:',cartRequest)
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
 
   return (
     <Container>
@@ -293,13 +319,15 @@ function CartWrapper() {
               </UserCheckListBox>
               <UserCheckListBox>
                 <h4>몇 시에 받고 싶으신가요?</h4>
-                <input
-                  type="time"
-                  name="delivery_time"
-                  onChange={(e) => {
-                    setTimeOtions(e.target.value);
-                  }}
-                />
+                <CartTimePicker
+                  value={changeMoment}
+                  showSecond={false}
+                  minuteStep={15}
+                  format="HH:mm"
+                  use12Hours
+                  inputReadOnly
+                  onChange={onChangeTime}
+                ></CartTimePicker>
               </UserCheckListBox>
               <UserCheckListBox>
                 <h4 className="detail">세부사항</h4>
@@ -310,13 +338,16 @@ function CartWrapper() {
                   }}
                 />
               </UserCheckListBox>
+
               <h3>주문 합계</h3>
-              <UserCheckListBox cart>
-                <MoneyCheck>
+              <UserCheckListBox 
+              cart 
+              className = 'cart-ttl-price'>
+                <MoneyCheck className = 'cart-ttl'>
                   <h5>총 상품 개수</h5>
                   <p> {total.quantity} 개</p>
                 </MoneyCheck>
-                <MoneyCheck>
+                <MoneyCheck className = 'cart-ttl'>
                   <h5>구독 금액 / 월</h5>
                   <p>
                     +{" "}
@@ -326,7 +357,9 @@ function CartWrapper() {
                     원
                   </p>
                 </MoneyCheck>
-                <MoneyCheck cart>
+                <MoneyCheck 
+                cart
+                className = 'cart-ttl-price-text cart-ttl'>
                   <h4>
                     월 결제 금액은{" "}
                     {total.price
@@ -367,6 +400,16 @@ function CartWrapper() {
           setOpenModal={setOptionsModal}
         />
       ) : null}
+      {loginModal ? 
+      <Signin
+      modalOpen = {loginModal}
+      setModalOpen = {setLoginModal}
+      request = {Auth(true)===undefined}
+      
+      url = '/'
+      />
+      :
+      null}
     </Container>
   );
 }

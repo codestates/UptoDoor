@@ -9,6 +9,10 @@ import {
   MediumFont,
 } from "../../GlobalStyle";
 import { LogoSrc } from "../../dummyData";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7aa89294683145cec8f5ab5eca889c758cb2805d
 export const Header = styled.header`
   position: sticky;
   top: 0;

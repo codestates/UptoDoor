@@ -1,8 +1,5 @@
 export const homeObjOne = {
   id: "about",
-  lightBg: false,
-  lightText: true,
-  lightTextDesc: true,
   topLine: "Premium Bank",
   headline1: `구독 서비스를`,
   headline2: `찾아보세요`,
@@ -20,9 +17,6 @@ export const homeObjOne = {
 
 export const homeObjTwo = {
   id: "about",
-  lightBg: false,
-  lightText: true,
-  lightTextDesc: true,
   topLine: "Premium Bank",
   headline1: `원하는 서비스를`,
   headline2: `구독하세요`,
@@ -40,9 +34,6 @@ export const homeObjTwo = {
 
 export const homeObjThree = {
   id: "about",
-  lightBg: false,
-  lightText: true,
-  lightTextDesc: true,
   topLine: "Premium Bank",
   headline1: `구독 서비스를`,
   headline2: `판매하세요`,
@@ -51,7 +42,7 @@ export const homeObjThree = {
   descriptionThree:`우리가게 구독서비스를 알릴 수 있어요`,
   buttonLabel: "Get started",
   imgStart: false,
-  img: "./images/americano.png",
+  img: "./images/gif/gif_3.gif",
   alt: "descrition1",
   dark: true,
   primary: true,

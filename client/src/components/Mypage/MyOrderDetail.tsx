@@ -23,11 +23,18 @@ function MyOrderDetail({
   user }:any, ) {
 
   const dispatch:any = useDispatch();
+<<<<<<< HEAD
   const [modalSuccess, setModalSuccess] = useState(false);
 
   const [openModal , setOpenModal] = useState(false);
   const [cancleStoreModal, setCancleStoreModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+=======
+
+  const [openModal , setOpenModal] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
+  const [cancelStoreModal, setCancelStoreModal] = useState(false);
+>>>>>>> 7aa89294683145cec8f5ab5eca889c758cb2805d
   const [selectOrder, setselectOrder] = useState('');
 
   const cancelStoreHandler = () => {
@@ -38,6 +45,7 @@ function MyOrderDetail({
     dispatch(cancelOrder(orderitem.id)).then((res:any) => {
       if (res.payload.message === "success delete order") {
         setOpenModal(false);
+<<<<<<< HEAD
         setDeleteModal(true);
       }
     })
@@ -45,6 +53,15 @@ function MyOrderDetail({
     // setCancleStoreModal(true);
   }
   //console.log(orderitem)
+=======
+        setModalSuccess(true)
+        setCancelStoreModal(true);
+      }
+    })
+    
+  }
+
+>>>>>>> 7aa89294683145cec8f5ab5eca889c758cb2805d
   return (
     <MypageOrderListWrapper>
       <OrderListContent>
@@ -130,13 +147,15 @@ function MyOrderDetail({
         null
       }
 
-      {cancleStoreModal ?
+      {cancelStoreModal ?
         <ConfirmModal
-        openModal = {cancleStoreModal} 
+        openModal = {cancelStoreModal} 
+        modalSuccess={modalSuccess}
         modalTitleText = '구독 취소'
         modalText = '구독이 취소되었습니다. 감사합니다.'
         modalBtn='확인'
-        setOpenModal={setCancleStoreModal}
+        url="/"
+        setOpenModal={setCancelStoreModal}
         />
         : 
         null

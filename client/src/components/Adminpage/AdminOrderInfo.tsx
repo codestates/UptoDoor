@@ -20,6 +20,7 @@ function AdminOrderInfo({ orderitem, listbackHandler }:any) {
 
   const {delivery_term,delivery_day,delivery_time} = order_deliveries
 
+  console.log('delivery_detail:::',delivery_detail)
   return (
     <AdminContainer>
       <AdminOrderListContent>
@@ -57,7 +58,8 @@ function AdminOrderInfo({ orderitem, listbackHandler }:any) {
           <EachItemBox>
             <H4>✍🏼 요청사항</H4>
             <DetailTextArea 
-              defaultValue={delivery_detail}
+              defaultValue={delivery_detail === '' ? 
+              '요청사항이 없습니다.' : delivery_detail}
             readOnly>
             </DetailTextArea>
           </EachItemBox>

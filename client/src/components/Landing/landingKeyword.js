@@ -2,34 +2,35 @@ const { kakao } = window;
 
 
 export default function Keyword(
-  store,city
+  store, city
 ) {
-  const mapContainer = document.getElementById("landing-map"); // 지도를 표시할 div
+  window.kakao.maps.load(() => {
+    const mapContainer = document.getElementById("landing-map"); // 지도를 표시할 div
   
-  let mapOption;
-  if (city === '당신 동네') {
-    mapOption = {
-      center: new kakao.maps.LatLng(37.51357849584562, 126.9731872494877), // 지도의 중심좌표
-      level: 8,
-    };
-  } else {
-    const filtered = cities.filter((el) => el.value === city)[0];
-    mapOption = {
-      center: new kakao.maps.LatLng(filtered.x, filtered.y), // 지도의 중심좌표
-      level: 7,
-    };
-  }
-  const map = new kakao.maps.Map(mapContainer, mapOption);
+    let mapOption;
+    if (city === '당신 동네') {
+      mapOption = {
+        center: new kakao.maps.LatLng(37.51357849584562, 126.9731872494877), // 지도의 중심좌표
+        level: 8,
+      };
+    } else {
+      const filtered = cities.filter((el) => el.value === city)[0];
+      mapOption = {
+        center: new kakao.maps.LatLng(filtered.x, filtered.y), // 지도의 중심좌표
+        level: 7,
+      };
+    }
+    const map = new kakao.maps.Map(mapContainer, mapOption);
 
-// 지도범위 재설정하기, 지도 확대축소막기 강북밑에   
-// const points = [
-//     new kakao.maps.LatLng(33.452278, 126.567803),
-//     new kakao.maps.LatLng(33.452671, 126.574792),
-//     new kakao.maps.LatLng(33.451744, 126.572441)
-// ];
+    // 지도범위 재설정하기, 지도 확대축소막기 강북밑에   
+    // const points = [
+    //     new kakao.maps.LatLng(33.452278, 126.567803),
+    //     new kakao.maps.LatLng(33.452671, 126.574792),
+    //     new kakao.maps.LatLng(33.451744, 126.572441)
+    // ];
 
-  // 주소-좌표 변환 객체를 생성합니다
-  const geocoder = new kakao.maps.services.Geocoder();
+    // 주소-좌표 변환 객체를 생성합니다
+    const geocoder = new kakao.maps.services.Geocoder();
     let marker;
     for (let i = 0; i < store.length; i++) {
       geocoder.addressSearch(store[i].address,
@@ -47,12 +48,12 @@ export default function Keyword(
           }
         }
       );
-  };
+    };
   
-
-  const zoomControl = new kakao.maps.ZoomControl();
-  map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-}
+  
+    const zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+  })}
 
 export const cities = [
   { value: "ALL", x: 37.51357849584562, y: 126.9731872494877 },

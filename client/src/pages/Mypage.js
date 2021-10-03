@@ -1,12 +1,12 @@
 import React from 'react'
-import MyProfileWrapper from '../components/Mypage/MyProfileWrapper'
+import MypageWrapper from '../components/Mypage/MypageWrapper'
 
 function Mypage() {
   return (
     <>
-      <MyProfileWrapper/>
+      <MypageWrapper />
     </>
-  )
+  );
 }
 
 export default Mypage

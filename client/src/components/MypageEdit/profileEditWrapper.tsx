@@ -22,6 +22,8 @@ import {SmallButton,BtnBox} from '../common/Button/Button'
 import ProfileEditOptions from './ProfileEditOptions';
 import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal';
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
 
 function MyProfileEdit() {
 
@@ -39,6 +41,7 @@ function MyProfileEdit() {
   const [gender , setGender] = useState(user.gender);
   const [age, setAge] = useState(user.age);
 
+  const [loginModal , setLoginModal] = useState(false);
   const [openModal , setOpenModal] = useState(false);
   const [modalSuccess,setModalSuccess] = useState(false);
   const [confirmModal , setConfirmModal] = useState(false);
@@ -85,22 +88,24 @@ function MyProfileEdit() {
 
   //!회원탈퇴 버튼
   const withdrawalConfirm = () => {
-    // alert('탈퇴성공')
-    // dispatch(deleteUser())
-    // .then((res: any) => {
-    //   if (res.payload.message  === 'good bye') {
-    //     setOpenModal(false);
-    //     setDeleteUserModal(true);
-    //     window.location.href=`${END_POINT}`
-    //   } else {
-    //     alert('탈퇴 실패. 못벗어남.');
-    //   }
-    // })
+    dispatch(deleteUser())
+      .then((res: any) => {
+        console.log("payload",res.payload);
+      if (res.payload.message  === 'good bye') {
+        setOpenModal(false);
+        setModalSuccess(true);
+        setDeleteUserModal(true);
+        // window.location.href=`${END_POINT}`
+      } else {
+        alert('탈퇴 실패. 못벗어남.');
+      }
+    })
     // .catch((err: any) => {
     //   console.log(err)
     // });
-    setOpenModal(false);
-    setDeleteUserModal(true);
+    // setOpenModal(false);
+    // setModalSuccess(true);
+    // setDeleteUserModal(true);
   }
 
   const withdrawalModalHandler = () => {
@@ -135,6 +140,13 @@ function MyProfileEdit() {
     //   console.log(err)
     // });
   },[nickname,password,passwordChk,mobile,gender,age])
+
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
 
   return (
     <Container>
@@ -227,7 +239,6 @@ function MyProfileEdit() {
       {openModal ?
       <WarningModal
       openModal = {openModal}
-      url='/'
       setOpenModal={setOpenModal}
       modalTitleText = '정말 회원 탈퇴하시겠습니까?'
       modalText = '회원탈퇴 해도 결제된 정기구독 상품은 배송됩니다.'
@@ -253,16 +264,26 @@ function MyProfileEdit() {
       }
       {deleteUserModal ?
       <ConfirmModal
-      confirmModal = {deleteUserModal}
-      url="/"
-      setOpenModal={setDeleteUserModal}
-      modalTitleText = '회원 탈퇴'
-      modalText = 'Good Bye'
-      modalBtn = '확인'
+          confirmModal={deleteUserModal}
+          url="/"
+          setOpenModal={setDeleteUserModal}
+          modalTitleText='회원 탈퇴'
+          modalText='Good Bye'
+          modalBtn='확인'
+          modalSuccess={modalSuccess}
       />
       :
       null
       }
+      {loginModal ? 
+      <Signin
+      modalOpen = {loginModal}
+      setModalOpen = {setLoginModal}
+      request = {Auth(true)===undefined}
+      url = '/mypageedit'
+      />
+      :
+      null}
 
     </Container>
   )

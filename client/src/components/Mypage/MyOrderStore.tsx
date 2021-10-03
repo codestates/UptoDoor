@@ -42,7 +42,9 @@ function MyOrderStore({orderitem}:any) {
             <EachItemBox>
               <H4>✍🏼 요청사항</H4>
               <DetailTextArea 
-              defaultValue={orderitem.delivery_detail}
+              defaultValue={
+                orderitem.delivery_detail === 'undefined' 
+              ? '요청사항이 없습니다.' : orderitem.delivery_detail}
               readOnly>
               </DetailTextArea>
             </EachItemBox>

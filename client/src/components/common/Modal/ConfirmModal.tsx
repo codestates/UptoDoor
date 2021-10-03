@@ -5,7 +5,7 @@ import {
   ModalContainer,I,
   ModalWrapper,ModalTextBox} 
   from './styledModal'
-
+import { END_POINT } from '../../../_actions/type';
 import { useHistory } from 'react-router-dom';
 
 function ConfirmModal(props: any) {
@@ -13,13 +13,21 @@ function ConfirmModal(props: any) {
   const history:any = useHistory()
   const { 
     openModal, url,confirmModal,modalSuccess,
-    modalTitleText ,modalText,modalBtn,setOpenModal
+    modalTitleText ,modalText,modalBtn,setOpenModal,setHandler
     } = props;
 
   const closeModal = () => {
-    if(modalSuccess === true){
-      history.push(url);
-    }else{
+    if (modalSuccess === true) {
+      setOpenModal(false);
+      if (url) {
+        window.location.href=`${END_POINT}${url}`
+      }
+      
+    } else {
+      if (setHandler) {
+        setHandler(false);
+      }
+      
       setOpenModal(false);
     }
   }

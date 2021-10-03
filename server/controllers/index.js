@@ -1,4 +1,5 @@
 module.exports = {
+<<<<<<< HEAD
     Login: require('./Users/Login'),
     SignOut: require('./Users/Signout'),
     SignUp: require('./Users/Signup'),
@@ -29,3 +30,34 @@ module.exports = {
     Cancel: require('./Payment/paycancel'),
     Term: require('./SubAnalysis/analysis')
 }
+=======
+  Login: require("./Users/Login"),
+  SignOut: require("./Users/Signout"),
+  SignUp: require("./Users/Signup"),
+  Withdraw: require("./Users/Withdraw"),
+  UserInfo: require("./Users/Userinfo"),
+  UpdateUser: require("./Users/Updateuser"),
+  UserOrder: require("./Users/Userorder"),
+  Order: require("./Users/Order"),
+  DeleteOrder: require("./Users/Deleteorder"),
+  AdminInfo: require("./Admin/Admininfo"),
+  Position: require("./Admin/Position"),
+  Image: require("./Image/Image"),
+  Store: require("./Admin/Store"),
+  StoreData: require("./Admin/Storedata"),
+  UpdateStore: require("./Admin/Updatestore"),
+  DeleteStore: require("./Admin/Deletestore"),
+  Email: require("./Auth/Email"),
+  EmailSend: require("./Auth/EmailSend"),
+  Kakaologin: require("./Oauth/kakao/Login"),
+  KakaoSignout: require("./Oauth/kakao/Signout"),
+  Naverlogin: require("./Oauth/naver/Login"),
+  NaverSignout: require("./Oauth/naver/Signout"),
+  Address: require("./Map/Address"),
+  StoreInfo: require("./Map/Storeinfo"),
+  StoreMap: require("./Map/Store"),
+  Feedback: require("./Payment/feedback"),
+  Payment: require("./Payment/payment"),
+  Cancel: require("./Payment/paycancel"),
+};
+>>>>>>> 7aa89294683145cec8f5ab5eca889c758cb2805d

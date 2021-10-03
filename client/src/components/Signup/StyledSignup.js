@@ -21,7 +21,7 @@ margin : 20px 0 40px;
 export const Form = styled.form`
 margin : 10px auto;
 >.cert-email-btn{
-  width: 68%;
+  width: 69%;
   height : 24px;
   text-align: right;
   border:none;
@@ -52,7 +52,7 @@ object-fit: contain;
 `
 export const SideSpan = styled.span`
 color : ${TextLightGrey};
-font-size: ${SmallFont};
+font-size: 12px;
 margin-left: 5px;
 `
 export const SignUpInput = styled.input`

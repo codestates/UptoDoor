@@ -117,7 +117,7 @@ export const TermModalWrapper = styled.div`
   }
 `
 export const TermModalTextWrapper = styled.div`
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color:  #f5f5f5;
   border-radius: 8px;
   width: 100%;
   height : 92%;

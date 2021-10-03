@@ -35,39 +35,43 @@ function AnalysisUser() {
     let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
     let splicingNameFirst = name.splice(0,5).concat(['그 외']);
     
-    console.log('splicingFirst::',splicingNameLast)
-    console.log('splicingFirst::',splicingNameFirst)
+    // console.log('splicingFirst::',splicingNameLast)
+    // console.log('splicingFirst::',splicingNameFirst)
 
   const options = { 
     labels: splicingNameFirst,
-    colors: [
-      '#519ddb',
-      '#6cafe6',
-      '#85e0f2',
-      '#6fd8ed',
-      '#5bcce3',
-      '#45c0d9',
-
-      '#519ddb',
-      '#6cafe6',
-      '#85e0f2',
-      '#6fd8ed',
-      '#5bcce3',
-      '#45c0d9',
-    ],
     theme: {
       monochrome: {
         enabled: true
       }
     },
+    chart: {
+      animations: {
+          enabled: true,
+          easing: 'easeinout',
+          speed: 700,
+          animateGradually: {
+              enabled: true,
+              delay: 150
+          },
+          dynamicAnimation: {
+              enabled: true,
+              speed: 400
+          }
+      }
+    },
     plotOptions: {
       pie: {
         dataLabels: {
-          offset: -5
-        }
+          offset: 0
+        },
       }
     },
     dataLabels: {
+      textAnchor: 'start',
+      style :{
+        fontSize : '20px',
+      },
       formatter(val, opts) {
         const name = opts.w.globals.labels[opts.seriesIndex]
         return [name, val.toFixed(1) + '%']
@@ -85,6 +89,11 @@ function AnalysisUser() {
               width: 340,
               height: 340,
             },
+            dataLabels: {
+              style :{
+                fontSize : '16px',
+              },
+            }
           },
         },
       ],
@@ -111,7 +120,7 @@ function AnalysisUser() {
             options={options} 
             series={series} 
             type="pie"
-            height ='430px'
+            height ='500px'
             />
           </ChartUserWrapper>
       </ChartContainer>

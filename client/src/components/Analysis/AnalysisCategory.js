@@ -15,6 +15,21 @@ function AnalysisCategory({chartStart,second}) {
     console.log('=asdkfhslkdck==',chartStart,second)
     const options = { 
       labels: ["Food","Cafe",'Living/Home','Beauty','Etc'],
+      chart: {
+        animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 700,
+            animateGradually: {
+                enabled: true,
+                delay: 150
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 400
+            }
+        }
+      },
       plotOptions: {
         bar: {
           borderRadius: 10,

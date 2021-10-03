@@ -641,20 +641,16 @@ max-width: 500px;
 export const LandingMapSelectContainer = styled.div`
 `
 export const LandingMapSelectWrapper = styled.div`
-/* display: flex;
-align-items: flex-end; */
 height : 50px;
 margin : 20px 0 0;
 >.city-selection{
-  /* border : 3px solid skyblue; */
   z-index : 1;
   @media screen and (min-width: 1140px) {
     width: 30%;
   }
   >div{
-    box-shadow : none !important;
+    box-shadow : 0 0 0 0.3px rgba(0,0,0,0.3) !important;
     border-color : rgba(0,0,0,0.3);
-
   }
   >div>div>div{
     color : ${TextDarkGrey};

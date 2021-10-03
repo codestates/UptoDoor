@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import { RootReducerType } from "../../store/store";
 import {
   Container,
   Title,
@@ -25,12 +25,13 @@ import {
 import AdminOrderList from './AdminOrderList';
 import AdminOrderInfo from './AdminOrderInfo';
 import AdminStoreInfo from './AdminStoreInfo';
+import { Orders } from "../../@type/adminInfo";
 
 function AdminWrapper() {
-  const admin = useSelector((state:any) => state.admin);
-  const user = useSelector((state:any) => state.user);
+  const admin = useSelector((state:RootReducerType) => state.admin);
+  const user = useSelector((state:RootReducerType) => state.user);
   const store = admin;
-  const { orders } = store;
+  const orders = store?.orders;
   const [filteredData, setFilteredData] = useState([]);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   const [selectedDay, setSelectedDay] = useState(days[new Date().getDay()]);
@@ -55,12 +56,13 @@ function AdminWrapper() {
     setCur(0);
     setCurrentTab(id);
     setSelectedDay(day);
-    const filtered = orders.filter((el:any) => {
+    let filtered = orders?.filter((el:any) => {
       const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(day);
     });
-    setFilteredData(filtered);
+    console.log("22222",filtered);
+    // setFilteredData(filtered);
   };
 
   useEffect(() => {
@@ -70,7 +72,8 @@ function AdminWrapper() {
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(selectedDay);
     });
-    setFilteredData(filtered);
+    console.log("1111", filtered);
+    // setFilteredData(filtered);
   }, []);
   const listItem = ["주문관리", "가게 정보"];
 

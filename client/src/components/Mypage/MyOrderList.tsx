@@ -32,8 +32,11 @@ function MyOrderList({
                 <ListInfo>
                   {el.state === 'order' ? 
                   <DeliveryState blue>구독중</DeliveryState>
-                  :
-                  <DeliveryState>취소됨</DeliveryState>
+                    : el.state === 'canceling' ?
+                      <DeliveryState blue>취소예정</DeliveryState>
+                    : el.state === 'cancel' ?
+                      <DeliveryState>취소됨</DeliveryState>
+                        : <DeliveryState yellow="#ffae00">기간만료</DeliveryState>
                   }
                   <img 
                   src={el.menu[0].menu.image} 

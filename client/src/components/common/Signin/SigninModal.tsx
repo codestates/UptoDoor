@@ -35,7 +35,6 @@ function Signin({ setIsOpen, modalOpen,setModalOpen }: Iprops):any {
 
   const signinHandler = useCallback((e) => {
     e.preventDefault();
-    console.log("제출", email, password);
     const userinfo = {email, password}
     dispatch(signIn(userinfo))
       .then((res: any) => {

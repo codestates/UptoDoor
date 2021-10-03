@@ -12,8 +12,8 @@ export interface AdminInfo {
 	profileImage: string | null;
   createdAt?: string;
   message?: string;
-  store_menus: Array<StoreMenus>;
-  orders: Array<Orders>;
+  store_menus: StoreMenus[];
+  orders: Orders[];
 }
 
 export interface StoreMenus {
@@ -28,22 +28,24 @@ export interface StoreMenus {
 }
 
 export interface Orders {
-  id: number;
-  order_time: string;
-  user_name: string;
+  billingkey?: any;
+  createdAt?: string;
+  delivery_detail?: string;
+  id?: number;
+  order_deliveries?: OrderDeliveries;
+  order_menus?: OrderMenus[];
+  order_time?: string;
+  plus_check?: string;
+  plus_money?: number;
+  user_name?: string;
+  receipt?: any;
   selected_mobile: string;
   selected_address: string;
   selected_address_detail: string;
-  plus_check: string;
-  delivery_detail: string;
   totalprice: string;
-  billingkey:any;
-  receipt: any;
   state: string;
-  createdAt: string;
   store_id: number;
-  order_menus: Array<OrderMenus>;
-  order_deliveries: OrderDeliveries;
+  user_name: string;
 }
 
 export interface OrderMenus {

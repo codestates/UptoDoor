@@ -18,7 +18,6 @@ import { signOut,naverSignOut,kakaoSignOut } from '../../../_actions/user_action
 import { useHistory } from 'react-router';
 import { END_POINT } from '../../../_actions/type';
 
-import ConfirmModal from '../Modal/ConfirmModal';
 import Signin from '../Signin/SigninModal';
 import SideBar from '../SideBar/SideBar';
 import Alarm from '../Alarm/Alarm';
@@ -30,15 +29,12 @@ function NavBar() {
   const { user }: any = state;
   const message = user.message;
   
-  const [logoutFailure , setLogoutFailure] = useState(false)
   //사이드바 모달창
   const [isOpen, setIsOpen] = useState(false);
   const [alarmBtnModal, setAlarmBtnModal] = useState(false);
   const closeAlarmModal = () => {setAlarmBtnModal(!alarmBtnModal) };
   //로그인 모달
   const [modalOpen, setModalOpen] = useState(false);
-  const [rejectModal, setRejectModal] = useState(false);
-  const closeModal = () => { setRejectModal(false) };
 
   const signoutHandler = (e:any) => {
     e.preventDefault();
@@ -49,9 +45,6 @@ function NavBar() {
       .then((res: any) => {
         if (res.payload === "signout success") {
           window.location.href = `${END_POINT}`
-      } else {
-        setLogoutFailure(true)
-        setRejectModal(true)
       }
     })
     }
@@ -61,10 +54,7 @@ function NavBar() {
       .then((res: any) => {
         if (res.payload === "signout success") {
           window.location.href = `${END_POINT}`
-      } else {
-        setLogoutFailure(true)
-        setRejectModal(true)
-      }
+      } 
     });
     }
     else {
@@ -73,10 +63,7 @@ function NavBar() {
       .then((res: any) => {
         if (res.payload === "signout success") {
             window.location.href=`${END_POINT}`
-        }else{
-        setLogoutFailure(true)
-        setRejectModal(true)
-      }
+        }
     });
   }
 }
@@ -84,8 +71,6 @@ const accessInto = useCallback((name) => {
   if (name === "mypage") {
       if (message) {
       history.push('/mypage');
-    } else {
-      setRejectModal(true);
     }
   }
   }, [history, message]);
@@ -118,7 +103,7 @@ const accessInto = useCallback((name) => {
           <i className="fas fa-bars"></i>
         </IconButton>
         
-        {message === undefined ?
+        {message !== 'login success' ?
           <UL>
             <Listli 
             type="button" 
@@ -172,21 +157,6 @@ const accessInto = useCallback((name) => {
       setIsOpen={setIsOpen} 
       modalOpen={modalOpen} 
       setModalOpen={setModalOpen} />
-
-      {!user.message && rejectModal ? 
-      <ConfirmModal 
-        closeModal={closeModal}
-        openModal={rejectModal} 
-        modalTitleText="UptoDoor"
-        modalText={logoutFailure ? 
-          '로그아웃에 실패했습니다.'
-          :
-          '로그인이 필요한 서비스입니다.'}
-        modalBtn="확인"
-        setOpenModal={setRejectModal}
-        /> 
-        : 
-        null}
       {alarmBtnModal ?
       <Alarm />
       : null}

@@ -6,7 +6,7 @@
     "node": true
   },
   //"plugin:@typescript-eslint/recommended"
-  "extends": ["plugin:react/recommended"],
+  "extends": ["plugin:react/recommended","react-app"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true

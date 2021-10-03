@@ -62,22 +62,12 @@ function AdminEditForm() {
     { value : 'hobby' , label : 'hobby'},
   ]
    //주소 
-  const [switched, setSwitched ] = useState("");
   const [adminAddress , setAdminAddress] = useState('');
   const [adminAddressDetail, setadminAddressDetail] = useState('');
   const [addressModal, setAddressModal] = useState(false);
-  const [xValue, setXValue] = useState('');
-  const [yValue, setYValue] = useState('');
   //menu
   const [menuArr, setMenuArr]:any = useState([]);
 
-  const changeTitleHandler = (e:any) => {
-    setTitle(e.target.value)
-  }
-  const changeCategoryHandler = (e:any) => {
-    setCategory(e.value)
-    // setCategory(e.target.value)
-  }
   const changeDescHandler = (e:any) => {
     const limitWord = e.target.value;
     //설명제한
@@ -86,15 +76,6 @@ function AdminEditForm() {
     }else{
       setDescription(limitWord);
     }
-  }
-  //admin address
-  const changeAdminAddress = useCallback((data) => {
-    switchAddress(data.address)
-    setAdminAddress(data.address);
-    setAddressModal((prev)=>!prev);
-  },[])
-  const changeAddDetailHandler = (e:any) => {
-    setadminAddressDetail(e.target.value)
   }
   const changeMobileHandler = useCallback((e) => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
@@ -122,12 +103,8 @@ function AdminEditForm() {
   const updateStoreImg = (storeImgs:any) => {
     setImageArr([...imageArr,storeImgs])
   }
-  const updateStoreFile = (addressFile:any) => {
-    setStoreFile(addressFile)
-  }
   //!폼제출 핸들러
   const submitHandler = (e:any) => {
-    console.log(e);
     e.preventDefault();   
     // if(!storeImgArr || !title || !category || !description || !time ||
       // ! adminAddress || !mobile || storeFile || !menuArr){
@@ -147,7 +124,6 @@ function AdminEditForm() {
         menuArr : menuArr
       }
       console.log("보내기전 데이터",sendInfo)
-      //history.push('/');
       dispatch(adminStoreEdit(sendInfo, storeinfo.id))
       .then((res:any)=>{
         if (res.payload.message === 'update success') {
@@ -160,30 +136,8 @@ function AdminEditForm() {
       })
   }
 
-  //kakao add
-  const switchAddress = useCallback((address) => {
-    const geocoder = new kakao.maps.services.Geocoder();
-    //! 주소를 좌표로
-    geocoder.addressSearch(address, function (result: any, status: any) {
-      // 정상적으로 검색이 완료됐으면 
-      if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        setYValue(result[0].x);
-        setXValue(result[0].y);
-        geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
-      }
-    });
-    const callback = (result:any, status:any) => {
-    if (status === kakao.maps.services.Status.OK) {
-      setSwitched(result[0].address.address_name.split(" ")[1]);
-    }
-  };
-  }, []);
-
   //! store 삭제
   const deleteStoreHandler = () => {
-    console.log('함수실행')
-    alert('가게삭제 성공')
     dispatch(adminStoreDelete(admin.id))   
     .then((res: any) => {
       if (res.payload.message  === 'good bye') {
@@ -324,8 +278,6 @@ function AdminEditForm() {
             setAddressModal = {setAddressModal}
             adminAddress = {adminAddress}
             adminAddressDetail = {adminAddressDetail}
-            changeAdminAddress = {changeAdminAddress}
-            changeAddDetailHandler = {changeAddDetailHandler}
           />
 
           <StoreInputBox>

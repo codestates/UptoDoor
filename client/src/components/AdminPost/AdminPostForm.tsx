@@ -42,6 +42,7 @@ function AdminPostForm() {
   ]
   //* 모달관련
   const [openModal, setOpenModal] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
   //upload store img,file
   const [storeImgArr , setStoreImgArr]:any = useState([]);
   const [storeFile , setStoreFile]:any = useState('');
@@ -51,7 +52,6 @@ function AdminPostForm() {
   const [description , onChangeDescription] = useInput('');
   const [mobile , setMobile] = useState('');
    //주소 
-  const [switched, setSwitched ] = useState("");
   const [adminAddress , setAdminAddress] = useState('');
   const [adminAddressDetail, onChangeAdminAddressDetail] = useInput('');
   const [addressModal, setAddressModal] = useState(false);
@@ -144,6 +144,7 @@ function AdminPostForm() {
       dispatch(adminStorePost(adminPostInfo))
       .then((res:any) => {
         if (res.payload.message === 'Store registration is complete') {
+          setModalSuccess(true);
           setOpenModal(true);
         }
       })
@@ -156,17 +157,10 @@ function AdminPostForm() {
     geocoder.addressSearch(address, function (result: any, status: any) {
       // 정상적으로 검색이 완료됐으면 
       if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         setYValue(result[0].x);
         setXValue(result[0].y);
-        geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
       }
     });
-    const callback = (result:any, status:any) => {
-    if (status === kakao.maps.services.Status.OK) {
-      setSwitched(result[0].address.address_name.split(" ")[1]);
-    }
-  };
   }, []);
 
   const handleClickCancle = () => {
@@ -310,12 +304,15 @@ return (
       </Wrapper>
     </form>
 
-    {openModal ? 
-    <ConfirmModal
-      openModal={openModal}
-      setOpenModal={setOpenModal}
-      modalTitleText="가게 등록 완료"
-      modalText="가게 신청이 완료되었습니다. 승인까지 1-2일 걸립니다."
+    {openModal ?
+      <ConfirmModal
+        modalSuccess={modalSuccess}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        modalTitleText="스토어 등록"
+        modalText={modalSuccess
+          ? "가게 신청이 완료되었습니다. 승인까지 1-2일 걸립니다."
+          : "새로고침 후 다시 시도해주세요."}
       modalBtn="확인"
       url='/mypage'
     />

@@ -88,7 +88,7 @@ export const signOut = () => {
   const request = axios
     .post(`${END_POINTS}/users/signout`)
     .then((res) => {
-      return res.data.message;
+      return res.data;
     }).catch((err) => {
       console.log(err);
     })

@@ -21,7 +21,6 @@ export default function user_reducer(state = {}, action) {
     case USER_SIGNUP:
       return { ...state, signUp: action.payload };
     case USER_SIGNIN:
-      console.log("aciotnsignin", action.payload);
       return { ...state, ...action.payload };
     case USER_SIGNOUT:
       return (state = {});
@@ -34,7 +33,6 @@ export default function user_reducer(state = {}, action) {
     case USER_NAVER_SIGNOUT:
       return (state = {});
     case USER_EDIT:
-      console.log("===EDIT_USER===", action.payload);
       return { ...state, ...action.payload };
     case USER_DELETE:
       return (state = {});
@@ -42,7 +40,6 @@ export default function user_reducer(state = {}, action) {
       return { ...state, ...action.payload.data };
     }
     case USER_ADD_ORDER: {
-      console.log("addorder", action.payload);
       if (!state.order) {
         return { ...state, order: [action.payload] };
       } else {

@@ -1,5 +1,5 @@
 import styled,{keyframes} from 'styled-components'
-import { PointColor, TextLightGrey, TextDarkGrey, MainColor} from '../GlobalStyle'
+import { PointColor, TextLightGrey, TextDarkGrey, MainColor, UltraLargeFont} from '../GlobalStyle'
 
 const moving = keyframes`
   0% {
@@ -11,6 +11,7 @@ const moving = keyframes`
 `
 export const P = styled.p`
 font-size: 12px;
+letter-spacing: -1px;
 text-decoration: ${TextLightGrey};
 text-decoration: ${({cancleline})=> (cancleline ? 'line-through' : 'none')};
 color : ${({lightColorText})=> (lightColorText ? {TextLightGrey} : {TextDarkGrey})};
@@ -23,13 +24,41 @@ color : ${({lightColorText})=> (lightColorText ? {TextLightGrey} : {TextDarkGrey
 export const H3 = styled.h3`
 font-weight : 500;
 font-size : 16px;
+margin : 0 0 0 3px;
 `
 export const H4 = styled.h4`
 font-weight : 400;
 font-size : 14px;
-margin: 3px 0;
+margin: 3px;
 color : ${TextDarkGrey};
 `
+export const EmptyStore = styled.div`
+background-color: #f7f7f7;
+height : 200px;
+border-radius: 4px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+>i{
+  font-size: 40px;
+  color : rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
+>p{
+  color : rgba(0,0,0,0.6);
+}
+@media screen and (min-width: 767px) {
+  height: 400px;  
+  >i{
+    font-size: ${UltraLargeFont};
+  }
+    >p{
+    font-size: 14px;
+  }
+}
+`
+
 export const StoreInfoWrapper = styled.section`
 border-bottom: 2px solid #f3f3f3;
 padding : 0 8px 8px;
@@ -93,12 +122,10 @@ width: 100%;
 export const Category = styled.div`
 background-color: ${PointColor};
 color : #fff;
-width: 40px;
-height: 24px;
-border-radius: 4px;
+border-radius: 8px;
 text-align: center;
-padding:2px;
-font-size: 12px;
+padding: 3px 8px 4px;
+font-size: 12px ;
 `
 export const DetailTextArea = styled.textarea`
 height : 50px;

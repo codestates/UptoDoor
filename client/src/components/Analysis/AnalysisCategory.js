@@ -7,10 +7,12 @@ import
   ChartContentsWrapper,
   ChartTitle,
   ChartText,
+  Column1,Column2,
 } from './StyledAnalysis'
 
-function AnalysisCategory() {
-
+// eslint-disable-next-line react/prop-types
+function AnalysisCategory({chartStart,second}) {
+    console.log('=asdkfhslkdck==',chartStart,second)
     const options = { 
       labels: ["Food","Cafe",'Living/Home','Beauty','Etc'],
       plotOptions: {
@@ -90,20 +92,28 @@ function AnalysisCategory() {
 
   return (
       <ChartContainer id="chart">
-        <ChartContentsWrapper>
-          <ChartTitle>인기있는 구독아이템은?</ChartTitle>
-          <ChartText>UptoDoor 에서 가장많이 찾는 카테고리별 순위입니다.</ChartText>
-        </ChartContentsWrapper>
-        <ChartCategoryWrapper>
-        <Chart
-        className = 'category-chart' 
-        options={options} 
-        series={series} 
-        type="bar" 
-        height='420px' />
-        </ChartCategoryWrapper>
 
-    </ChartContainer>
+        <StyledCategoryChart chartStart = {chartStart}>
+          <Column1>
+            <ChartContentsWrapper second={second}>
+              <ChartTitle>인기있는 구독아이템은?</ChartTitle>
+              <ChartText>UptoDoor 에서 가장많이 찾는 카테고리별 순위입니다.</ChartText>
+            </ChartContentsWrapper>
+          </Column1>
+
+          <Column2>
+            <ChartCategoryWrapper second={second}>
+            <Chart
+            className = 'category-chart' 
+            options={options} 
+            series={series} 
+            type="bar" 
+            height='420px' />
+            </ChartCategoryWrapper>
+          </Column2>
+        </StyledCategoryChart>
+
+      </ChartContainer>
   )
 }
 

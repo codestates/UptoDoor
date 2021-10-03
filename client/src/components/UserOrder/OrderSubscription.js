@@ -7,6 +7,8 @@ import {
   SubscriptionInfoWrapper,
 } from "./StyledUserOrder";
 import { useSelector } from 'react-redux';
+import {stringToPrice} from '../../utils/validation'
+
 const OrderSubscription = () => {
   const state = useSelector((state) => state.cart);
 
@@ -19,7 +21,7 @@ const OrderSubscription = () => {
           <SubscriptionInfoWrapper>
             <div>
               <OrderP primary>구독 기간 : </OrderP>
-              <OrderP>{state.delivery_term}</OrderP>
+              <OrderP>{state.delivery_term}개월 ({state.delivery_term*4}주)</OrderP>
             </div>
             <div>
               <OrderP primary>배송 요일 : </OrderP>
@@ -36,13 +38,15 @@ const OrderSubscription = () => {
             </div>
             <div>
               <OrderP primary>추가 금액 : </OrderP>
-              <OrderP>{state.plus_money} 원</OrderP>
+              <OrderP>{stringToPrice(state.plus_money)} 원</OrderP>
             </div>
           </SubscriptionInfoWrapper>
 
           <SubscriptionInfoWrapper>
             <OrderP primary>주문 세부사항</OrderP>
-            <textarea defaultValue={state.delivery_detail} readOnly />
+            <textarea 
+            className = 'order-detail'
+            defaultValue={state.delivery_detail} readOnly />
           </SubscriptionInfoWrapper>
         </div>
       </SubscriptionWrapper>

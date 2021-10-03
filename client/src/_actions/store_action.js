@@ -97,7 +97,6 @@ export const getFitteredByClick = (address) => {
     let data;
     if (address) {
       data = info.filter((el) => {
-        console.log(el.address);
         return el.address === address;
       });
     }

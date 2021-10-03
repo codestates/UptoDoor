@@ -73,6 +73,7 @@ function AdminWrapper() {
     setFilteredData(filtered);
   }, []);
   const listItem = ["주문관리", "가게 정보"];
+
   return (
     <Container>
       <Title>관리자 페이지</Title>
@@ -90,7 +91,9 @@ function AdminWrapper() {
                     <p>{user.email}</p>
                     <p>{user.mobile}</p>
                     <p>{admin.address}</p>
-                    <p>({admin.address_detail})</p>
+                    <p>{admin.address_detail === null 
+                    ? '' 
+                    : (admin.address_detail)}</p>
                   </>
                 )}
               </PageContent>

@@ -3,7 +3,7 @@ import {
   MypageOrderListWrapper,
   OrderListContent,
   ListDate,ListInfo,
-  DeliveryState,P,
+  DeliveryState,EmptyStore,
   OrderListWrapper,ListInfoDetail } from './StyledMypage';
 import {NextBtn,ArrowBtn} from '../common/Button/Button';
 import {removeLastStr} from '../../utils/validation'
@@ -15,7 +15,10 @@ function MyOrderList({
   return (
     <MypageOrderListWrapper>
       {order.length === 0 ?
-        <p>구독중인 스토어가 없습니다.</p>
+        <EmptyStore>
+          <i className="fas fa-store-alt-slash"></i>
+          <p>구독중인 스토어가 없습니다.</p>
+        </EmptyStore>
         :
         <>
           {order && order.map((el: any, idx: any) => {

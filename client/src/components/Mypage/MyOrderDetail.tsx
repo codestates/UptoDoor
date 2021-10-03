@@ -23,9 +23,9 @@ function MyOrderDetail({
   user }:any, ) {
 
   // const dispatch:any = useDispatch();
-  // const [modalSuccess, setModalSuccess] = useState(false);
 
   const [openModal , setOpenModal] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
   const [cancleStoreModal, setCancleStoreModal] = useState(false);
 
   const cancelStoreHandler = () => {
@@ -40,9 +40,10 @@ function MyOrderDetail({
     //   }
     // })
     setOpenModal(false);
+    setModalSuccess(true)
     setCancleStoreModal(true);
   }
-  console.log(orderitem.totalprice)
+
   return (
     <MypageOrderListWrapper>
       <OrderListContent>
@@ -131,9 +132,11 @@ function MyOrderDetail({
       {cancleStoreModal ?
         <ConfirmModal
         openModal = {cancleStoreModal} 
+        modalSuccess={modalSuccess}
         modalTitleText = '구독 취소'
         modalText = '구독이 취소되었습니다. 감사합니다.'
         modalBtn='확인'
+        url="/"
         setOpenModal={setCancleStoreModal}
         />
         : 

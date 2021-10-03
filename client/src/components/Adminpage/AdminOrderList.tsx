@@ -20,8 +20,8 @@ function AdminOrderList({
   for (let i = 1; i <= Math.ceil(data.length / postsPerPage); i++) {
     pageNumbers.push(i);
   }
-
   const posts: any = currentPosts(data);
+  
   return (
     <AdminContainer>
       {posts.map((el:any,idx:any)=>{
@@ -32,18 +32,21 @@ function AdminOrderList({
                 <div>
                   <h5>주문자명: {el.user_name}</h5>
                   <h5>{el.selected_address}{" "}{el.selected_address_detail }</h5>
-                  <AdminOrderListInfoP><span>주문 내용:</span>{" "}{removeLastStr(el.order_menus.map((el1:any) => {
+                  <AdminOrderListInfoP>
+                    <span>주문 내용:</span>{" "}{removeLastStr(el.order_menus.map((el1:any) => {
                     return `${el1.menu.name} ${el1.quantity}개 ${" "}`
-                  }).join() )}</AdminOrderListInfoP>
-                  </div>
-                <DeliveryTime >
+                  }).join() )}
+                  </AdminOrderListInfoP>
+                </div>
+                <DeliveryTime>
                     배송시간: {el.order_deliveries.delivery_time}
                 </DeliveryTime>  
-            <NextBtn type="button" 
-            onClick={()=>{moveDetailHandler(el.id)}}>
-              <ArrowBtn className="fas fa-angle-double-right" ></ArrowBtn>            
-            </NextBtn>
-            </AdminOrderListItem>
+                <NextBtn 
+                type="button" 
+                onClick={()=>{moveDetailHandler(el.id)}}>
+                <ArrowBtn className="fas fa-angle-double-right" ></ArrowBtn>            
+                </NextBtn>
+              </AdminOrderListItem>
             </AdminOrderListContent>
         </AdminWrapper>
           )

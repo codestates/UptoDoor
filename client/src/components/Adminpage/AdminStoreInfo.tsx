@@ -18,12 +18,12 @@ const AdminStoreInfo = ({store}:any) => {
           <StoreDesc>
             <h3>스토어 정보</h3>
             <div>
-              <span>주소:</span>
+              <span>📍 주소:</span>
               <p>{store.address}</p>
             </div>
-            <div><span>연락처:</span><p>{store.number}</p></div>
-            <div><span>영업시간:</span><p>{store.open_time} - {store.close_time}</p></div>
-            <div><span>가게 설명:</span><p>{store.introduce } </p></div>
+            <div><span>📱 연락처:</span><p>{store.number}</p></div>
+            <div><span>⏰ 영업시간:</span><p>{store.open_time} - {store.close_time}</p></div>
+            <div><span>✍🏼 가게 설명:</span><p>{store.introduce } </p></div>
             <div></div>
           </StoreDesc>
           <StoreMenu>
@@ -46,7 +46,6 @@ const AdminStoreInfo = ({store}:any) => {
             
           </StoreMenu>
         </StoreDescContent> 
-         
         </AdminWrapper>
     </AdminContainer>
   )

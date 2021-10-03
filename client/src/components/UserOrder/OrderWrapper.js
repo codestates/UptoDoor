@@ -86,17 +86,21 @@ function OrderWrapper() {
       }
     }).error(function (data) {
       console.log('-- 결제 진행 에러 --',data);
+      setOpenModal(true)
       setPayFailModal(true)
     }).cancel(function (data) {
-      console.log('-- 결제 취소 에러 --',data);
+      console.log('-- 결제 취소 에러 --',data , payCancleModal);
+      setOpenModal(true)
       setPayCancleModal(true)
     }).ready(function (data) {
       console.log('-- 가상계좌 입금 계좌번호 발급 -- ',data);
+      setOpenModal(true)
       setIssueAccountModal(true)
     }).confirm(function (data) {
       //결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
       //주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
       console.log('-- confirm --',data);
+      setOpenModal(true)
       setModalSuccess(true)
       const enable = true; // 재고 수량 관리 로직 혹은 다른 처리
       if (enable) {
@@ -185,6 +189,7 @@ function OrderWrapper() {
         <ButtonWrapper>
           <MiddleButton 
           type="button" 
+          primary
           onClick={orderHander}>
             결제하기
           </MiddleButton>
@@ -196,38 +201,47 @@ function OrderWrapper() {
         <ConfirmModal
           openModal={openModal || payFailModal || payCancleModal || issueAccountModal}
           setOpenModal={setOpenModal}
-          modalSuccess={modalSuccess}
           url="/"
           modalTitleText={
-            modalSuccess
-            ?'주문 완료' 
-            :payFailModal
-            ?'결제 진행 에러'
+            payFailModal
+            ?'결제 진행'
             :payCancleModal
-            ?'결제 취소 에러'
+            ?'결제 취소'
             :issueAccountModal
             ?'가상계좌 입금 계좌번호 발급'
-            :
-            '주문 실패'
+            :''
           }
           modalText={
-            modalSuccess
-            ?'주문이 완료되었습니다. 감사합니다.'
-            :'모든 정보를 확인해주세요'
+            payFailModal
+            ?'결제 진행에 문제가 생겼습니다.'
+            :payCancleModal
+            ?'결제를 취소하셨습니다.'
+            :issueAccountModal
+            ?'가상계좌 입금 계좌번호 발급'
+            :''
           }
           modalBtn="확인"
         />
       ) : null}
 
-      {/* {optionsModal ? (
+      {openModal ? (
         <ConfirmModal
-          openModal={optionsModal}
-          setOpenModal={setOptionsModal}
-          modalTitleText="주문 실패"
-          modalText="모든 정보를 확인해주세요"
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          modalSuccess={modalSuccess}
           modalBtn="확인"
+          modalTitleText={
+            modalSuccess ?
+            '주문 완료' :
+            '주문 실패'
+            }
+          modalText={
+            modalSuccess ?
+            '주문이 완료되었습니다. 감사합니다.' :
+            '정보를 다시 확인해주세요.'
+          }
         />
-      ) : null} */}
+      ) : null}
     </Container>
   );
 }

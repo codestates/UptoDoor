@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     try {
     const data2 = await order.findOne({ where: { id : req.params.id}})
     const data1 = await order_delivery.findOne({ where: { order_id: data2.id }})
-        console.log('------ check 1------')
+        
     if(Number(data1.delivery_term) > data1.paycount){
     const BootPay = require('bootpay-backend-nodejs').Bootpay
     BootPay.setConfig(
@@ -15,13 +15,13 @@ module.exports = async (req, res) => {
     )
     const token = await BootPay.getAccessToken();
     if (token.status === 200){
-        console.log('------ check 2------')
+        
         console.log('--billing',data2.billingkey)
             //await BootPay.destroyReserveSubscribeBilling(data2.billingkey) //빌링키로 결제 예약한거 취소 요청하는거
              await BootPay.destroySubscribeBillingKey(data2.billingkey) //빌링키 삭제하는거고
     }
     }
-    console.log('------ check 3------')
+    
         await order.update({ state: 'cancel'}, { where: { id: req.params.id }})
         console.log('----- 결제 취소 및 빌링키 결제 예약 취소 성공 -----')
         res.status(200).send({ message: 'cancel for your order'});

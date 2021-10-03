@@ -11,13 +11,10 @@ interface AdminAddProps {
   adminAddressDetail : string,
   addressModal : boolean,
   setAddressModal : any,
-  changeAdminAddress : any,
-  changeAddDetailHandler : any,
 }
 
 function AdminEnrollStoreEdit({
   adminAddress,adminAddressDetail,
-  changeAddDetailHandler
   }:AdminAddProps) {
 
   return (
@@ -32,9 +29,9 @@ function AdminEnrollStoreEdit({
 
         <StoreInput 
         type="text"
-        onChange={(e:any)=>{changeAddDetailHandler(e)}}
         placeholder = '상세 주소 작성' 
-        value = {adminAddressDetail}
+          value={adminAddressDetail}
+          readOnly
         />
       </StoreAddressWrapper>
     </StoreInputBox>

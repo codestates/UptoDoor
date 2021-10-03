@@ -15,7 +15,7 @@ import {stringToPrice} from '../../utils/validation'
 
 const OrderInfo = (props:any) => {
   const {
-    paymentChecker,mobileChecker,mobileCheck,orderMobile,onChangeMobileHandler,onChangeDeliveryName
+    paymentChecker,mobileChecker,mobileCheck,orderMobile,onChangeMobileHandler,onChangeDeliveryUserName
   } = props;
   const cart = useSelector((state:any) => state.cart);
   const user = useSelector((state:any) => state.user);
@@ -44,7 +44,7 @@ const OrderInfo = (props:any) => {
             </div>
             <input
               type="text"
-              onChange={onChangeDeliveryName}
+              onChange={onChangeDeliveryUserName}
               required
             />
             <div>

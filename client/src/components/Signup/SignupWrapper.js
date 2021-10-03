@@ -193,6 +193,8 @@ function SignupWrapper() {
           />
         </SignupBox>
 
+          <Label>비밀번호</Label>
+          <SideSpan>*필수</SideSpan>
           <SignupBox>
             <SignUpInput
               required
@@ -277,7 +279,7 @@ function SignupWrapper() {
             }
             modalText={
               modalSuccess === true
-                ? "로그인 페이지로 이동합니다."
+                ? "메인 페이지로 이동합니다."
                 : "회원가입에 실패하셨습니다."
             }
             modalBtn="확인"

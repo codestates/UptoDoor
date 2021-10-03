@@ -9,6 +9,7 @@ import {
   InputNumberButton,
   UserCheckListDetailBox,
   CartMenuItemContainer,
+  EmptyCart,
 } from "./StyledUserCart";
 import {stringToPrice} from '../../utils/validation'
 
@@ -31,13 +32,19 @@ const CheckList = ({
       <CartCheckBoxAll>
         <CheckBox
           type="checkbox"
-          onChange={(e:any) => onChangeAllChecked(e.target.checked)}
+          onChange={(e:React.ChangeEvent<HTMLInputElement>) => onChangeAllChecked(e.target.checked)}
           checked={
             checkedItems.length === menu.length ? true : false
           }
         />
         <div>전체 선택</div>
       </CartCheckBoxAll>
+      {menu.length === 0 ? 
+      <EmptyCart>
+        <i className="fas fa-shopping-cart"></i>
+        <p>장바구니가 비었습니다.</p>
+      </EmptyCart> 
+      : 
       <CartMenuItemContainer>
         {menu &&
           menu.map((item:any) => {
@@ -100,6 +107,7 @@ const CheckList = ({
             );
           })}
       </CartMenuItemContainer>
+      }
       <PlusMoneyWrapper>
         <CheckBox
           type="checkbox"

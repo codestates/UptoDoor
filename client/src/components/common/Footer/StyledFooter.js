@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainColor } from "../../GlobalStyle";
+import { MainColor, TextDarkGrey , TextLightGrey } from "../../GlobalStyle";
 
 export const FooterContainer = styled.div`
   margin: 0;
@@ -16,20 +16,21 @@ export const FooterContainer = styled.div`
     padding: 40px 0 60px 0;
   }
   @media screen and (min-width: 1140px) {
-    padding: 40px 0 60px 0;
+    padding: 40px 0;
   }
 `;
 
 export const FooterWrapper = styled.div`
-  margin: 0 auto;
+  margin: 0 auto 10px;
   padding: 0 60px;
   display: flex;
   flex-direction: column;
+  color : ${TextDarkGrey};
   @media screen and (min-width: 600px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 0 60px 50px;
+    padding: 40px 60px 20px;
     width: 90%;
   }
 
@@ -51,6 +52,7 @@ export const FooterWrapper = styled.div`
 export const FooterTitle = styled.div`
   > h1 {
     margin-bottom: 12px;
+    font-size : 26px;
   }
   > h3 {
     font-weight: 500;
@@ -102,7 +104,7 @@ export const FooterLinkItems = styled.div`
   align-items: flex-start;
   margin-top: 10px;
   box-sizing: border-box;
-  color: #000;
+  color : ${TextDarkGrey};
   display: ${({ noapp }) => (noapp ? "none" : "flex")};
   @media screen and (min-width: 767px) {
     display: flex;
@@ -140,7 +142,7 @@ export const FooterLinkTitle = styled.h1`
 `;
 
 export const FooterLink = styled.a`
-  color: #000;
+  color: ${TextDarkGrey};
   text-decoration: none;
   margin-bottom: 0.5rem;
   font-size: 16px;
@@ -172,7 +174,7 @@ export const SocialIcons = styled.div`
 `;
 
 export const SocialIconLink = styled.a`
-  color: #000;
+  color: ${TextDarkGrey};
   font-size: 32px;
   margin-right: 5px;
 
@@ -187,10 +189,10 @@ export const SocialIconLink = styled.a`
 `;
 
 export const WebsiteRights = styled.p`
-  color: #000;
+  color: ${TextDarkGrey};
   width: 100%;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   
 
   @media screen and (max-width: 600px) {

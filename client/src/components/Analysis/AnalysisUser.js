@@ -11,11 +11,35 @@ import
 
 function AnalysisUser() {
 
+  const arr = [
+    {name : '10대 남자',number: 23},
+    {name : '20대 남자',number : 223},
+    {name : '30대 남자',number : 123},
+    {name : '40대 남자',number : 83},
+    {name : '50대 남자',number : 33},
+    {name : '60대 남자',number : 13},
+    {name : '10대 여자',number : 12},
+    {name : '20대 여자',number : 209},
+    {name : '30대 여자',number : 143},
+    {name : '40대 여자',number : 42},
+    {name : '50대 여자',number : 23},
+    {name : '60대 여자',number : 3},
+  ]
+
+  arr.sort((a,b)=>b.number-a.number)
+
+  const name = arr.map((el)=>el.name);
+  const number = arr.map((ele)=>ele.number);
+
+    //name
+    let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
+    let splicingNameFirst = name.splice(0,5).concat(['그 외']);
+    
+    console.log('splicingFirst::',splicingNameLast)
+    console.log('splicingFirst::',splicingNameFirst)
+
   const options = { 
-    labels: 
-    ['10대 남자','20대 남자' ,'30대 남자','40대 남자','50대 남자','60대 이상 남자',
-    '10대 여자','20대 여자' ,'30대 여자','40대 여자','50대 여자','60대 이상 여자'
-    ],
+    labels: splicingNameFirst,
     colors: [
       '#519ddb',
       '#6cafe6',
@@ -50,34 +74,46 @@ function AnalysisUser() {
       }
     },
     legend: {
-      show: false
-    }
+      show: false,
+      position : 'bottom',
+    },
+    responsive: [
+        {
+          breakpoint: 1140,
+          options: {
+            chart: {
+              width: 340,
+              height: 340,
+            },
+          },
+        },
+      ],
   };
-  const series = [
-    15, 115, 134, 61, 27, 11,
-    45, 105, 114, 75, 30, 8
-  ]; //실제 데이터 들어오는곳!! 배열로.
-
-  // console.log('chkkk',series , options.labels);
-  let splicing = series.sort((a,b)=>b-a).splice(0,5);
-  // console.log('splicing',splicing)
+  
+  // const series = number.splice(0,6) //실제 데이터 들어오는곳!! 배열로.
+  let splicingLast = number.splice(5).reduce((acc,cur)=>acc+cur);
+  // console.log('외 몇개 표시할 숫자들 더한고~!::',splicingLast)
+  // let splicingFirst = number.splice(0,5).concat([`외 ${splicingLast}`]);
+  let splicingFirst = number.splice(0,5).concat([splicingLast]);
+  console.log('splicingFirst::',splicingFirst)
+  const series = splicingFirst
 
   return (
       <ChartContainer>
-
-        <ChartContentsWrapper>
-          <ChartTitle>많이 찾는 사용자는?</ChartTitle>
-          <ChartText>UptoDoor와 함께하는 사용자의 성별 및 연령대별 순위입니다.</ChartText>
-        </ChartContentsWrapper>
-
-        <ChartUserWrapper id = 'chart'>
-          <Chart 
-          options={options} 
-          series={splicing} 
-          type="pie"
-          height='350px'/>
-        </ChartUserWrapper>
-
+          <ChartContentsWrapper>
+            <ChartTitle>많이 찾는 사용자는?</ChartTitle>
+            <ChartText>UptoDoor와 함께하는 사용자의 성별 및 연령대별 순위입니다.</ChartText>
+          </ChartContentsWrapper>
+  
+          <ChartUserWrapper id = 'chart'>
+            <Chart 
+            className = 'user-chart'
+            options={options} 
+            series={series} 
+            type="pie"
+            height ='430px'
+            />
+          </ChartUserWrapper>
       </ChartContainer>
   );
 }

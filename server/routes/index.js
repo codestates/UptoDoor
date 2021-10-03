@@ -30,4 +30,5 @@ router.post('/oatuh/naver/login', controllers.Naverlogin);
 router.post('/image', upload.single('file'), controllers.Image);
 router.post('/feedback', controllers.Feedback);
 router.post('/payment', controllers.Payment);
+router.delete("/cancel/:id", controllers.Cancel);
 module.exports = router;

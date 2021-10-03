@@ -22,27 +22,28 @@ function MyOrderDetail({
   listbackHandler,orderitem,
   user }:any, ) {
 
-  // const dispatch:any = useDispatch();
-  // const [modalSuccess, setModalSuccess] = useState(false);
+  const dispatch:any = useDispatch();
 
   const [openModal , setOpenModal] = useState(false);
-  const [cancleStoreModal, setCancleStoreModal] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(false);
+  const [cancelStoreModal, setCancelStoreModal] = useState(false);
+  const [selectOrder, setselectOrder] = useState('');
 
   const cancelStoreHandler = () => {
     setOpenModal(true);
   }
   const cancelOrderHandler = () => {
     //* 디스패치 주석풀어야함, 밑에 2줄 지우고,
-    // dispatch(cancelOrder()).then((res:any) => {
-    //   if (res.payload.message === "success delete order") {
-    //     setOpenModal(false);
-    //     setDeleteModal(true);
-    //   }
-    // })
-    setOpenModal(false);
-    setCancleStoreModal(true);
+    dispatch(cancelOrder(orderitem.id)).then((res:any) => {
+      if (res.payload.message === "success delete order") {
+        setOpenModal(false);
+        setModalSuccess(true)
+        setCancelStoreModal(true);
+      }
+    })
+    
   }
-  console.log(orderitem.totalprice)
+
   return (
     <MypageOrderListWrapper>
       <OrderListContent>
@@ -128,13 +129,15 @@ function MyOrderDetail({
         null
       }
 
-      {cancleStoreModal ?
+      {cancelStoreModal ?
         <ConfirmModal
-        openModal = {cancleStoreModal} 
+        openModal = {cancelStoreModal} 
+        modalSuccess={modalSuccess}
         modalTitleText = '구독 취소'
         modalText = '구독이 취소되었습니다. 감사합니다.'
         modalBtn='확인'
-        setOpenModal={setCancleStoreModal}
+        url="/"
+        setOpenModal={setCancelStoreModal}
         />
         : 
         null

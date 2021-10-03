@@ -120,7 +120,7 @@ export const AdminWrapper = styled.div`
 export const AdminOrderListContent = styled.div`
   width: 100%;
   border-bottom: 2px solid #f3f3f3;
-  padding: 8px;
+  padding: 20px 8px;
   :nth-child(1) {
     border-top: 2px solid #f3f3f3;
   }
@@ -257,6 +257,7 @@ export const StoreDescContent = styled.div`
 export const StoreTitle = styled.div`
   width: 95%;
   display: flex;
+  justify-content: space-between;
   align-items: flex-end;
   margin: 14px auto 20px;
   > h2 {
@@ -266,11 +267,9 @@ export const StoreTitle = styled.div`
   }
 
   > div {
-    width:40px;
-    height: 24px;
     background-color: ${PointColor};
     color: #fff;
-    padding: 3px 0;
+    padding: 3px 8px 4px;
     text-align: center;
     border-radius: 8px;
     font-size: 12px;
@@ -322,6 +321,7 @@ export const StoreDesc = styled.div`
     margin: 5px 0;
     > span {
       font-weight: 500;
+      font-size: 14px;
       margin-right: 10px;
       white-space: nowrap;
       color: ${TextDarkGrey};
@@ -329,32 +329,29 @@ export const StoreDesc = styled.div`
 
     > p {
       padding: 0 4px;
-      font-size: 14px;
+      font-size: 12px;
       letter-spacing: -1px;
       margin-bottom: 4px;
     }
   }
 
   @media screen and (min-width: 1140px) {
-    margin: 24px auto;
-    > h3 {
-      margin-bottom: 20px;
-      font-size: 24px;
-    }
-
-    > div {
-      padding: 0 6px;
-
-      > span {
-        font-size: 18px;
-        letter-spacing: -1px;
+  margin: 24px auto;
+  > h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  > div {
+    padding: 0 6px;
+    > span {
+      font-size: 18px;
+      letter-spacing: -1px;
       }
-
-      > p {
-        padding: 0 6px;
-        font-size: 18px;
-        margin-bottom: 8px;
-        letter-spacing: -1px;
+    > p {
+      padding: 0 6px;
+      font-size: 16px;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
       }
     }
   }
@@ -366,6 +363,9 @@ export const StoreMenu = styled.div`
   border-top: 4px solid #f7f7f7;
   > h3 {
     margin: 12px 0;
+    @media screen and (min-width: 1140px) {
+      font-size : 24px;
+    }
   }
 `;
 
@@ -415,6 +415,7 @@ export const MenuDesc = styled.div`
     }
     > p {
       font-size: 14px;
+      letter-spacing: -1px;
     }
   }
 `;

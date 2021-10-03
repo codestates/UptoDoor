@@ -1,5 +1,8 @@
 import React,{useCallback,useState,useEffect} from 'react'
 import Select from 'react-select';
+import TimePicker from "rc-time-picker";
+import moment from "moment";
+import './style.css'
 import {
   AdminForm,
   FlexBox,
@@ -17,10 +20,12 @@ import {  adminStoreEdit , adminStoreDelete } from '../../_actions/admin_action'
 
 import AdminUploadStoreEdit from './AdminUploadStoreEdit'
 import AdminEnrollStoreEdit from './AdminEnrollStoreEdit'
-import AdminFileUploadEdit from './AdminFileUploadEdit'
 import AdminUploadMenuEdit from './AdminUploadMenuEdit'
 import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal';
+
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
 
 import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
@@ -34,6 +39,7 @@ function AdminEditForm() {
   const user = useSelector((state:any) => state.user);
   const admin = useSelector((state:any) => state.admin);
   //모달 수정, 삭제
+  const [loginModal , setLoginModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteOkModal, setDeleteOkModal] = useState(false);
@@ -46,8 +52,7 @@ function AdminEditForm() {
   const [title , setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [description , setDescription] = useState('');
-  const [openTime, setOpenTime] = useState('');
-  const [closeTime, setCloseTime] = useState('')
+  
   const [mobile , setMobile] = useState('');
   const [storeinfo, setStoreinfo]:any = useState({});
   const [imageArr, setImageArr]:any = useState([]);
@@ -61,22 +66,12 @@ function AdminEditForm() {
     { value : 'hobby' , label : 'hobby'},
   ]
    //주소 
-  const [switched, setSwitched ] = useState("");
   const [adminAddress , setAdminAddress] = useState('');
   const [adminAddressDetail, setadminAddressDetail] = useState('');
   const [addressModal, setAddressModal] = useState(false);
-  const [xValue, setXValue] = useState('');
-  const [yValue, setYValue] = useState('');
   //menu
   const [menuArr, setMenuArr]:any = useState([]);
 
-  const changeTitleHandler = (e:any) => {
-    setTitle(e.target.value)
-  }
-  const changeCategoryHandler = (e:any) => {
-    setCategory(e.value)
-    // setCategory(e.target.value)
-  }
   const changeDescHandler = (e:any) => {
     const limitWord = e.target.value;
     //설명제한
@@ -85,15 +80,6 @@ function AdminEditForm() {
     }else{
       setDescription(limitWord);
     }
-  }
-  //admin address
-  const changeAdminAddress = useCallback((data) => {
-    switchAddress(data.address)
-    setAdminAddress(data.address);
-    setAddressModal((prev)=>!prev);
-  },[])
-  const changeAddDetailHandler = (e:any) => {
-    setadminAddressDetail(e.target.value)
   }
   const changeMobileHandler = useCallback((e) => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
@@ -121,12 +107,8 @@ function AdminEditForm() {
   const updateStoreImg = (storeImgs:any) => {
     setImageArr([...imageArr,storeImgs])
   }
-  const updateStoreFile = (addressFile:any) => {
-    setStoreFile(addressFile)
-  }
   //!폼제출 핸들러
   const submitHandler = (e:any) => {
-    console.log(e);
     e.preventDefault();   
     // if(!storeImgArr || !title || !category || !description || !time ||
       // ! adminAddress || !mobile || storeFile || !menuArr){
@@ -146,7 +128,6 @@ function AdminEditForm() {
         menuArr : menuArr
       }
       console.log("보내기전 데이터",sendInfo)
-      //history.push('/');
       dispatch(adminStoreEdit(sendInfo, storeinfo.id))
       .then((res:any)=>{
         if (res.payload.message === 'update success') {
@@ -159,30 +140,8 @@ function AdminEditForm() {
       })
   }
 
-  //kakao add
-  const switchAddress = useCallback((address) => {
-    const geocoder = new kakao.maps.services.Geocoder();
-    //! 주소를 좌표로
-    geocoder.addressSearch(address, function (result: any, status: any) {
-      // 정상적으로 검색이 완료됐으면 
-      if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        setYValue(result[0].x);
-        setXValue(result[0].y);
-        geocoder.coord2Address(coords.getLng(), coords.getLat(), callback)
-      }
-    });
-    const callback = (result:any, status:any) => {
-    if (status === kakao.maps.services.Status.OK) {
-      setSwitched(result[0].address.address_name.split(" ")[1]);
-    }
-  };
-  }, []);
-
   //! store 삭제
   const deleteStoreHandler = () => {
-    console.log('함수실행')
-    alert('가게삭제 성공')
     dispatch(adminStoreDelete(admin.id))   
     .then((res: any) => {
       if (res.payload.message  === 'good bye') {
@@ -227,6 +186,30 @@ function AdminEditForm() {
         setStoreFile(store_info.Business_paper)
         setMenuArr(store_info.menus)
     })
+  },[])
+  const [openTime, setOpenTime] = useState('');
+  const [closeTime, setCloseTime] = useState('')
+  const monent = moment();
+  const [changeOpenMoment, setChangeOpenMoment] = useState(monent);
+  const [changeCloseMoment, setChangeCloseMoment] = useState(monent);
+  const str =  "HH:mm";
+  const onChangeOpenTime = (value: any) => {
+    console.log(value && value.format(str));
+    setChangeOpenMoment(value);
+    setOpenTime(value && value.format(str));
+  }
+  const onChangeCloseTime = (value: any) => {
+    console.log(value);
+    console.log(value && value.format(str));
+    setChangeCloseMoment(value);
+    setCloseTime(value && value.format(str));
+  }
+
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
   },[])
 
   return (
@@ -273,19 +256,27 @@ function AdminEditForm() {
               <label>배달 가능시간<span>(ex.09:00-17:00)</span></label>
               
               <OpenCloseInputWrapper>
-            <input 
-            required
-            type = 'text'
-            defaultValue = {openTime} 
-            placeholder = 'Open Time' 
-            onChange={(e:any)=>{setOpenTime(e.target.value)}} />
-                <h1>-</h1>
-                <input
-                  required
-                  type='text'
-                  defaultValue={closeTime}
-                  placeholder='Close Time'
-                  onChange={(e:any)=>{setCloseTime(e.target.value)}} />
+            <TimePicker
+                  value={changeOpenMoment}
+                  showSecond={false}
+                  minuteStep={15}
+                  format="HH:mm"
+                  use12Hours
+                  inputReadOnly
+                  onChange={onChangeOpenTime}
+                  ></TimePicker>
+                  {" "}
+                  <h1>-</h1>
+                  {" "}
+                <TimePicker
+                  value={changeCloseMoment}
+                  showSecond={false}
+                  minuteStep={15}
+                  format="HH:mm"
+                  use12Hours
+                  inputReadOnly
+                  onChange={onChangeCloseTime}
+                ></TimePicker>
               </OpenCloseInputWrapper>
             
             </StoreInputBox>
@@ -298,8 +289,6 @@ function AdminEditForm() {
             setAddressModal = {setAddressModal}
             adminAddress = {adminAddress}
             adminAddressDetail = {adminAddressDetail}
-            changeAdminAddress = {changeAdminAddress}
-            changeAddDetailHandler = {changeAddDetailHandler}
           />
 
           <StoreInputBox>
@@ -389,6 +378,16 @@ function AdminEditForm() {
       :
       null
       }
+
+    {loginModal ? 
+    <Signin
+    modalOpen = {loginModal}
+    setModalOpen = {setLoginModal}
+    request = {Auth(true)===undefined}
+    url = '/adminedit'
+    />
+    :
+    null}
     </Container>
   )
 }

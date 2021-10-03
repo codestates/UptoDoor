@@ -14,6 +14,51 @@ function AnalysisCity() {
     legend: {
       show: false
     },
+    animations: {
+      enabled: true,
+      easing: 'easeinout',
+      speed: 1200,
+      animateGradually: {
+        enabled: true,
+        delay: 300,
+      },
+      dynamicAnimation: {
+        enabled: true,
+        speed: 1000,
+      },
+    },
+    // plotOptions: {
+    //   treemap: {
+    //     distributed: true,
+    //     enableShades: false,
+    //   },
+    // },
+    // responsive: [
+    //   {
+    //     breakpoint: 767,
+    //     options: {
+    //       chart: {
+    //         width: '460',
+    //         height: '460',
+    //       },
+    //       legend: {
+    //         position: 'bottom',
+    //       },
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 1140,
+    //     options: {
+    //       chart: {
+    //         width: '100%',
+    //         height: '300',
+    //       },
+    //       legend: {
+    //         position: 'bottom',
+    //       },
+    //     },
+    //   },
+    // ],
   };
 
   const series = [
@@ -51,12 +96,13 @@ function AnalysisCity() {
   return (
       <ChartContainer>
         <ChartContentsWrapper>
-          <ChartTitle>가장 많이 이용하는 지역은?</ChartTitle>
+          <ChartTitle>많이 이용하는 지역은?</ChartTitle>
           <ChartText>UptoDoor 에서 많이 사용하는 지역을 차트로 확인하세요.</ChartText>
         </ChartContentsWrapper>
 
         <ChartCityWrapper id="chart">
           <Chart 
+          className = 'city-chart' 
           options={options} 
           series={series} 
           type="treemap" 

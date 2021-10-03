@@ -8,6 +8,7 @@ import MapSelectModal from './MapSelectModal';
 import {useDispatch, useSelector } from 'react-redux'
 import {setAddress} from '../../_actions/cart_action'
 import ConfirmModal from '../common/Modal/ConfirmModal';
+import Auth from '../../hoc/auth'
 
 function MapSelectAddress({ selectAddress, setSelectAddress,selectAddressDetail,setSelectAddressDetail,setLoginModal }:any):any {
   //* 주소 가져오기

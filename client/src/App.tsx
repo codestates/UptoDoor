@@ -19,8 +19,6 @@ import MypageEdit from './pages/MypageEdit'
 import AdminPost from './pages/AdminPost'
 import AdminPage from './pages/AdminPage'
 import AdminEdit from './pages/AdminEdit'
-import SideBar from './components/common/SideBar/SideBar';
-
 //!로딩이 필요한 구간
 //map, advanced[데이터분석]
 // const Landing = React.lazy(()=> import('./pages/Landing'));
@@ -30,12 +28,12 @@ const UserOrder = React.lazy(()=> import('./pages/UserOrder'));
 // throlling 안할 시 직접 setTimeOut 으로 조정해도 됨.
 const Landing = lazy(
   () =>
-    new Promise((resolve) =>
+    new Promise((resolve:any) =>
       setTimeout(() => resolve(import('./pages/Landing')), 3000),
     ),
 );
 
-function App() {
+const App: React.FC =()=> {
 
   return (
     <>
@@ -43,7 +41,6 @@ function App() {
       <BrowserRouter>
         <Suspense fallback={<Loading />}>
           <ScrollToTop />
-          <SideBar />
           <NavBar />
           <Switch>
             <Route exact path="/">

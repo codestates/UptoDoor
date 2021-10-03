@@ -1,3 +1,5 @@
+import { Interface } from "readline";
+
 //user signUp/signIn/signOut/mypage/deleteUser
 export const USER_SEND_CERT_EMAIL = "USER_SEND_CERT_EMAIL";
 export const USER_SIGNUP = "USER_SIGNUP";
@@ -19,6 +21,7 @@ export const ADMIN_STORE_EDIT = "ADMIN_STORE_EDIT";
 export const ADMIN_STORE_DELETE = "ADMIN_STORE_DELETE";
 export const ADMIN_STORE_GET_DATA = "ADMIN_STORE_GET_DATA";
 export const ADMIN_STORE_RESET = "ADMIN_STORE_RESET";
+
 //Store
 export const STORE_DATAS = "STORE_DATAS";
 export const STORE_FILTER_BY_HASHTAG = "STORE_FILTER_BY_HASHTAG";

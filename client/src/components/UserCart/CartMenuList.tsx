@@ -31,7 +31,7 @@ const CheckList = ({
       <CartCheckBoxAll>
         <CheckBox
           type="checkbox"
-          onChange={(e:any) => onChangeAllChecked(e.target.checked)}
+          onChange={(e:React.ChangeEvent<HTMLInputElement>) => onChangeAllChecked(e.target.checked)}
           checked={
             checkedItems.length === menu.length ? true : false
           }

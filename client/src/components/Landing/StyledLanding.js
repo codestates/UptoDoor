@@ -331,7 +331,7 @@ export const InfoRow = styled.div`
   grid-auto-columns: minmax(1fr, 2fr);
   align-items: flex-start;
   grid-template-areas: ${({ imgStart }) =>
-    imgStart ? `'col1' 'col2'` : `'col1 col1' 'col2 col2'`};
+    imgStart ? `'col1' 'col2'` : `'col1' 'col2'`};
   @media screen and (min-width: 768px) {
     align-items: center;
 

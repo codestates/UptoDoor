@@ -346,22 +346,10 @@ export const OpenCloseInputWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  > input {
-    background-color: hsl(0, 0%, 100%);
-    border-color: hsl(0, 0%, 80%);
-    border-radius: 4px;
-    border-style: solid;
-    border-width: 1px;
-    height: 38px;
-    padding: 8px;
-    margin: 8px 0;
-    font-size: ${BaseFont};
-    width: 45%;
-  }
   > h1 {
+    width:50px;
+    text-align: center;
     font-weight: 500;
     margin: 8px 0 10px;
-    
-    
   }
 `;

@@ -1,12 +1,16 @@
 import React, {useCallback,useState } from "react";
 import {useSelector,useDispatch} from "react-redux";
 import { SmallButton } from "../common/Button/Button";
+
+import moment from "moment";
+
 import {
   CartContainer,
   UserCheckList,
   UserCheckListBox,
   ButtonWrapper,
   CartCheckListWrapper,
+  CartTimePicker
 } from "./StyledUserCart";
 import {
   setQuantity,
@@ -24,12 +28,14 @@ import CartMenuList from "./CartMenuList";
 import { useHistory } from "react-router";
 
 function CartWrapper() {
+  const monent = moment();
   const history = useHistory();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   
 
   const [timeOtions, setTimeOtions] = useState("");
+  const [changeMoment, setChangeMoment] = useState(monent);
   const [detailOption, setDetailOption] = useState("");
   const [plusMoney, setPlusMoney] = useState(0);
   const [plusMoneyChecked, setPlusMoneyChecked] = useState(false);
@@ -204,7 +210,13 @@ function CartWrapper() {
 
   const [openModal, setOpenModal] = useState(false);
   const [optionsModal, setOptionsModal] = useState(false);
-
+  const str =  "HH:mm";
+  const onChangeTime = (value) => {
+    console.log(value && value.format(str));
+    setChangeMoment(value);
+    setTimeOtions(value && value.format(str));
+    
+  }
   return (
     <Container>
       <Title>장바구니</Title>
@@ -293,13 +305,15 @@ function CartWrapper() {
               </UserCheckListBox>
               <UserCheckListBox>
                 <h4>몇 시에 받고 싶으신가요?</h4>
-                <input
-                  type="time"
-                  name="delivery_time"
-                  onChange={(e) => {
-                    setTimeOtions(e.target.value);
-                  }}
-                />
+                <CartTimePicker
+                  value={changeMoment}
+                  showSecond={false}
+                  minuteStep={15}
+                  format="HH:mm"
+                  use12Hours
+                  inputReadOnly
+                  onChange={onChangeTime}
+                ></CartTimePicker>
               </UserCheckListBox>
               <UserCheckListBox>
                 <h4 className="detail">세부사항</h4>

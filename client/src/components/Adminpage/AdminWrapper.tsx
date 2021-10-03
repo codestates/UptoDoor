@@ -27,12 +27,10 @@ import AdminOrderInfo from './AdminOrderInfo';
 import AdminStoreInfo from './AdminStoreInfo';
 
 function AdminWrapper() {
-  const admin = useSelector((state) => state.admin);
-  const user = useSelector((state) => state.user);
-  console.log(admin);
+  const admin = useSelector((state:any) => state.admin);
+  const user = useSelector((state:any) => state.user);
   const store = admin;
   const { orders } = store;
-  console.log(orders);
   const [filteredData, setFilteredData] = useState([]);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   const [selectedDay, setSelectedDay] = useState(days[new Date().getDay()]);
@@ -41,8 +39,8 @@ function AdminWrapper() {
   const [cur, setCur] = useState(0);
   const [changeListItem, setChangeListItem] = useState(0);
 
-  const moveDetailHandler = (id) => {
-    const filtered = filteredData.filter((el) => {
+  const moveDetailHandler = (id:number) => {
+    const filtered = filteredData.filter((el:any) => {
       return el.id === id;
     })[0];
     setOrderItem(filtered);
@@ -53,12 +51,11 @@ function AdminWrapper() {
     setCur(0);
   };
 
-  const changeDayList = (id, day) => {
+  const changeDayList = (id:any, day:string) => {
     setCur(0);
     setCurrentTab(id);
     setSelectedDay(day);
-    console.log("11111", orders);
-    const filtered = orders.filter((el) => {
+    const filtered = orders.filter((el:any) => {
       const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(day);
@@ -68,10 +65,9 @@ function AdminWrapper() {
 
   useEffect(() => {
     setCur(0);
-    const filtered = orders.filter((el) => {
+    const filtered = orders.filter((el:any) => {
       const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
-      console.log("22", deliveryDay);
       return deliveryDay.includes(selectedDay);
     });
     setFilteredData(filtered);

@@ -1,5 +1,8 @@
 import React,{useCallback,useState,useEffect} from 'react'
 import Select from 'react-select';
+import TimePicker from "rc-time-picker";
+import moment from "moment";
+import './style.css'
 import {
   AdminForm,
   FlexBox,
@@ -17,7 +20,6 @@ import {  adminStoreEdit , adminStoreDelete } from '../../_actions/admin_action'
 
 import AdminUploadStoreEdit from './AdminUploadStoreEdit'
 import AdminEnrollStoreEdit from './AdminEnrollStoreEdit'
-import AdminFileUploadEdit from './AdminFileUploadEdit'
 import AdminUploadMenuEdit from './AdminUploadMenuEdit'
 import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal';
@@ -46,8 +48,7 @@ function AdminEditForm() {
   const [title , setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [description , setDescription] = useState('');
-  const [openTime, setOpenTime] = useState('');
-  const [closeTime, setCloseTime] = useState('')
+  
   const [mobile , setMobile] = useState('');
   const [storeinfo, setStoreinfo]:any = useState({});
   const [imageArr, setImageArr]:any = useState([]);
@@ -228,6 +229,23 @@ function AdminEditForm() {
         setMenuArr(store_info.menus)
     })
   },[])
+  const [openTime, setOpenTime] = useState('');
+  const [closeTime, setCloseTime] = useState('')
+  const monent = moment();
+  const [changeOpenMoment, setChangeOpenMoment] = useState(monent);
+  const [changeCloseMoment, setChangeCloseMoment] = useState(monent);
+  const str =  "HH:mm";
+  const onChangeOpenTime = (value: any) => {
+    console.log(value && value.format(str));
+    setChangeOpenMoment(value);
+    setOpenTime(value && value.format(str));
+  }
+  const onChangeCloseTime = (value: any) => {
+    console.log(value);
+    console.log(value && value.format(str));
+    setChangeCloseMoment(value);
+    setCloseTime(value && value.format(str));
+  }
 
   return (
     <Container>
@@ -273,19 +291,27 @@ function AdminEditForm() {
               <label>배달 가능시간<span>(ex.09:00-17:00)</span></label>
               
               <OpenCloseInputWrapper>
-            <input 
-            required
-            type = 'text'
-            defaultValue = {openTime} 
-            placeholder = 'Open Time' 
-            onChange={(e:any)=>{setOpenTime(e.target.value)}} />
-                <h1>-</h1>
-                <input
-                  required
-                  type='text'
-                  defaultValue={closeTime}
-                  placeholder='Close Time'
-                  onChange={(e:any)=>{setCloseTime(e.target.value)}} />
+            <TimePicker
+                  value={changeOpenMoment}
+                  showSecond={false}
+                  minuteStep={15}
+                  format="HH:mm"
+                  use12Hours
+                  inputReadOnly
+                  onChange={onChangeOpenTime}
+                  ></TimePicker>
+                  {" "}
+                  <h1>-</h1>
+                  {" "}
+                <TimePicker
+                  value={changeCloseMoment}
+                  showSecond={false}
+                  minuteStep={15}
+                  format="HH:mm"
+                  use12Hours
+                  inputReadOnly
+                  onChange={onChangeCloseTime}
+                ></TimePicker>
               </OpenCloseInputWrapper>
             
             </StoreInputBox>

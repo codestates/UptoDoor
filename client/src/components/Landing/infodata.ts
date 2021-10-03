@@ -1,8 +1,5 @@
 export const homeObjOne = {
   id: "about",
-  lightBg: false,
-  lightText: true,
-  lightTextDesc: true,
   topLine: "Premium Bank",
   headline1: `구독 서비스를`,
   headline2: `찾아보세요`,
@@ -20,9 +17,6 @@ export const homeObjOne = {
 
 export const homeObjTwo = {
   id: "about",
-  lightBg: false,
-  lightText: true,
-  lightTextDesc: true,
   topLine: "Premium Bank",
   headline1: `원하는 서비스를`,
   headline2: `구독하세요`,
@@ -40,9 +34,6 @@ export const homeObjTwo = {
 
 export const homeObjThree = {
   id: "about",
-  lightBg: false,
-  lightText: true,
-  lightTextDesc: true,
   topLine: "Premium Bank",
   headline1: `구독 서비스를`,
   headline2: `판매하세요`,

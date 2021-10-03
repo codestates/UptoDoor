@@ -9,8 +9,10 @@ import {
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-export const adminStorePost = (adminposts) => {
-  const request = axios
+
+
+export const adminStorePost = async (adminposts:object) => {
+  const request = await axios
     .post(`${END_POINTS}/admin/store`, adminposts)
     .then((res) => {
       return res.data;
@@ -25,10 +27,11 @@ export const adminStorePost = (adminposts) => {
   };
 };
 
-export const adminStoreEdit = (sendInfo, id) => {
+export const adminStoreEdit = (sendInfo:object, id:number) => {
   const request = axios
     .patch(`http://localhost:3060/admin/store/${id}`, { sendInfo })
     .then((res) => {
+      console.log("AdminStoreGetData",res.data)
     return res.data
   })
   .catch((err)=>{
@@ -42,7 +45,7 @@ export const adminStoreEdit = (sendInfo, id) => {
 };
 
 //delete store 삭제 
-export const adminStoreDelete = (id) => {
+export const adminStoreDelete = (id:number) => {
   const request = axios
     .delete(`${END_POINTS}/admin/store/${id}`)
     .then((res)=>{
@@ -62,6 +65,7 @@ export const AdminStoreGetData = () => {
   const request = axios
     .get(`${END_POINTS}/admin/admininfo`)
     .then((res) => {
+      console.log("AdminStoreGetData",res.data.orderdata)
     return res.data;
   }).catch((err) => {
     console.log("getAdminData action", err);

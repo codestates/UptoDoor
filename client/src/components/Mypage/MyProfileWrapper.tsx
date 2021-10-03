@@ -47,8 +47,7 @@ function MyProfileWrapper(): any {
           const { 
             state, totalprice, order_menus, store, user_name, 
             selected_address, selected_address_detail, 
-            selected_mobile, createdAt, id, delivery_detail } = el.order;
-          const detail = delivery_detail.split(",")
+            selected_mobile, createdAt, id, delivery_detail,plus_money } = el.order;
 
           const year = Number(createdAt.split('-')[0]);
           const month = Number(createdAt.split('-')[1]);
@@ -72,7 +71,7 @@ function MyProfileWrapper(): any {
             id,state,user_name,totalprice,
             store,selected_address,selected_address_detail,
             selected_mobile,createdAt,
-            delivery_detail:detail[0],plusMoney:detail[1],
+            delivery_detail,plusMoney:plus_money,
             delivery_time,delivery_term,delivery_day:delivery_day_arr,
             menu:order_menus, nextPayDay,
           }

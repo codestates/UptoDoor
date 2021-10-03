@@ -58,14 +58,6 @@ function OrderWrapper() {
       pg: 'kcp',
       method: 'card_rebill', //결제수단, 입력하지 않으면 결제수단 선택
       show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
-      items: [
-        {
-          item_name: '정기구독권', //상품명
-          qty: 1, //수량
-          unique: '123', //해당 상품을 구분짓는 primary key
-          price: 1000, //상품 단가
-        }
-      ],
       user_info: {
         username: user.nickname,
         email: user.email,
@@ -73,12 +65,7 @@ function OrderWrapper() {
         phone: user.mobile
       },
       order_id: (new Date()).getTime(), //고유 주문번호
-      //params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
-      account_expire_at: '2020-10-25', // 가상계좌 입금기간 제한 ( yyyy-mm-dd )
       extra: {
-          start_at: '', // 정기 결제 시작일 - 시작일을 지정하지 않으면 그 날 당일로부터 결제가 가능한 Billing key 지급
-        end_at: '', // 정기결제 만료일 -  기간 없음 - 무제한
-            vbank_result: 0, // 가상계좌 사용시 사용, 가상계좌 결과창을 볼지(1), 말지(0), 미설정시 봄(1)
             quota: [0,2,3], // 결제금액이 5만원 이상시 할부개월 허용범위를 설정할 수 있음, [0(일시불), 2개월, 3개월] 허용, 미설정시 12개월까지 허용,
         theme: 'purple', // [ red, purple(기본), custom ]
         custom_background: '#00a086', // [ theme가 custom 일 때 background 색상 지정 가능 ]

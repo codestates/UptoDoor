@@ -263,7 +263,7 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
 //구독취소
 export const cancelOrder = (id) => {
   const request = axios
-    .patch(`${END_POINTS}/users/order:${id}`)
+    .delete(`${END_POINTS}/cancel/${id}`)
     .then((res) => {
       return res.data
     }).catch((err) => {

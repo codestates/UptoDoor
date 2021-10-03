@@ -1,33 +1,36 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('order_deliveries', {
+    await queryInterface.createTable("order_deliveries", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       delivery_time: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       delivery_day: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       delivery_term: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       paycount: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+      },
+      payday: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

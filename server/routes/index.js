@@ -30,10 +30,6 @@ router.post('/oatuh/naver/login', controllers.Naverlogin);
 router.post('/image', upload.single('file'), controllers.Image);
 router.post('/feedback', controllers.Feedback);
 router.post('/payment', controllers.Payment);
-<<<<<<< HEAD
 router.delete('/cancel/:id', controllers.Cancel);
 router.get('/term', controllers.Term);
-=======
-router.delete("/cancel/:id", controllers.Cancel);
->>>>>>> 7aa89294683145cec8f5ab5eca889c758cb2805d
 module.exports = router;

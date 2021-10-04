@@ -15,6 +15,7 @@ import {
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
 import { END_POINTS,END_POINT } from '../../_actions/type'
+import { LogoSrc } from '../dummyData'
 import ConfirmModal from '../common/Modal/ConfirmModal'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'
@@ -32,6 +33,7 @@ function SignupWrapper() {
   const [passwordChk, setPasswordChk] = useState('');
   const [passwordRegErr , setPasswordRegErr ] = useState(false);
   const [passwordErr , setPasswordErr ] = useState(false);
+  const [checkedInputs, setCheckedInputs] = useState([]);
 
   //optional
   const [gender, setGender] = useState("");
@@ -60,13 +62,11 @@ function SignupWrapper() {
         setCertModal(true);
       });
   };
-
   const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
     let pwRegExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,12}$/;
     setPasswordRegErr(!pwRegExp.test(e.target.value));
   }, []);
-
   const onChangePwChkHandler = useCallback(
     (e) => {
       setPasswordChk(e.target.value);
@@ -74,18 +74,15 @@ function SignupWrapper() {
     },
     [password]
   );
-
   const onChangeNicknameHandler = useCallback((e) => {
     setNickname(e.target.value);
   }, []);
-
   const onChangeMobileHandler = useCallback((e) => {
     let mobileRegExp = /^[0-9\b -]{0,13}$/;
     if (mobileRegExp.test(e.target.value)) {
       setMobile(e.target.value);
     }
   }, []);
-
   useEffect(() => {
     if (mobile.length === 10) {
       setMobile(mobile.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
@@ -96,7 +93,6 @@ function SignupWrapper() {
       );
     }
   }, [mobile]);
-
   const selectInputHandler = useCallback((e, name) => {
     if (name === "성별") {
       setGender(e.value);
@@ -104,9 +100,6 @@ function SignupWrapper() {
       setAge(e.value);
     }
   }, []);
-
-  //!약관
-  const [checkedInputs, setCheckedInputs] = useState([]);
   const onChangeTermHandler = (checked, idx) => {
     if (checked) {
       setCheckedInputs([...checkedInputs, idx]);
@@ -169,7 +162,7 @@ function SignupWrapper() {
     <Container>
       <SignupContainer>
         <SignupLogoBox className="signup-logo-box">
-          <SignupLogo src="./images/upToDoorLogo.png" alt="img" />
+          <SignupLogo src={LogoSrc} alt="img" />
         </SignupLogoBox>
 
         <Form onSubmit={signupSubmitHandler}>
@@ -252,7 +245,6 @@ function SignupWrapper() {
 
           <SignupOptions selectInputHandler={selectInputHandler} />
 
-          {/* 약관 */}
           <SignupTerm
             onChangeTermHandler={onChangeTermHandler}
             checkedInputs={checkedInputs}
@@ -299,12 +291,6 @@ function SignupWrapper() {
             modalBtn="확인"
           />
         ) : null}
-        {/* {signinModal ? (
-        <SigninModal
-          modalOpen={signinModal}
-          setModalOpen={setSigninModal}
-        />
-      ) : null}*/}
       </SignupContainer>
     </Container>
   );

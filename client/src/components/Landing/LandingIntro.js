@@ -19,11 +19,11 @@ import {
   CategoryTitle,
   CategoryImgWrapper,
   CategoryImgs,
-  GradientEdge,
-  FixI,AlarmI,
-  ArrowDisplay,
+  FixI,ArrowDisplay,
   ArrowChk, I,
+  GradientEdge,
 } from './StyledLanding'
+
 import {category, categoryDummy} from '../dummyData'
 import { AdminStoreGetData } from "../../_actions/admin_action";
 
@@ -49,10 +49,6 @@ const LandingIntro = () => {
     });
     setScrollY(0);
     setBtnStatus(false);
-  }
-  
-  const alarmHandler = () => {
-    history.push('/adminpage');
   }
 
 const moveAdminPageHandler = () => {
@@ -139,15 +135,6 @@ const moveAdminPageHandler = () => {
 
         <ArrowDisplay className="arrow-below-display">
           <FixI className="fas fa-angle-double-down"></FixI>
-          {user.position === "1" ? (
-            <AlarmI
-              title="관리자 페이지 이동"
-              className="far fa-bell alarm-btn click-icon"
-              onClick={moveAdminPageHandler}
-            >
-              <span>2</span>
-            </AlarmI>
-          ) : null}
         </ArrowDisplay>
 
         <ArrowChk>

@@ -37,9 +37,9 @@ const LandingEnd = () => {
 
       <LandingEndWrapper>
       <Fade bottom>
-        <EndingH3
-        endText>
-        Make your life easier</EndingH3>
+        <EndingH3 endText>
+        Make your life easier
+        </EndingH3>
         <Fade bottom>
         <p>UpToDoor와 함께 더 편한 생활을 누려보세요.</p>
         </Fade>

@@ -13,9 +13,8 @@ export const ArrowBtn = styled.i`
 color : ${MainColor};
 font-size: ${LargeFont};
 cursor: pointer;
-
   &:hover{
-    animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
+  animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
 }
 `
 export const NextBtn = styled.button`
@@ -47,6 +46,10 @@ export const SmallButton = styled.button`
   color: ${({ primary }) => (primary ? "#fff" : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : "#fff")};
   cursor: pointer;
+  transition: all .3s;
+  &:hover{
+  opacity: 0.9;
+  }
 `;
 
 export const MiddleButton = styled.button`
@@ -60,8 +63,12 @@ export const MiddleButton = styled.button`
   border-radius: 8px;
   border: 1px solid ${MainColor};
   margin: ${({ side }) => (side ? '5px' : 0)};
+  transition: all .3s;
   color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : "#FFF")};
+  &:hover{
+  opacity: 0.9;
+  }
 `;
 
 export const LagreButton = styled.button`
@@ -77,6 +84,10 @@ export const LagreButton = styled.button`
   text-align: center;
   color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : BackgroundColor)};
+  transition: all .3s;
+  &:hover{
+  opacity: 0.9;
+  }
 `;
 
 export const BtnBox = styled.div`

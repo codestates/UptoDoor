@@ -1,8 +1,13 @@
-import React, {useCallback,useState,useEffect } from "react";
-import {useSelector,useDispatch} from "react-redux";
+import React, { useCallback,useState,useEffect } from "react";
+import { useSelector,useDispatch } from "react-redux";
 import { SmallButton } from "../common/Button/Button";
 
 import moment from "moment";
+import {
+  setQuantity,
+  removeFromCart,
+  addAllCartToOrder,
+} from "../../_actions/cart_action";
 
 import {
   CartContainer,
@@ -12,11 +17,6 @@ import {
   CartCheckListWrapper,
   CartTimePicker
 } from "./StyledUserCart";
-import {
-  setQuantity,
-  removeFromCart,
-  addAllCartToOrder,
-} from "../../_actions/cart_action";
 import {
   Container,
   Wrapper,
@@ -140,8 +140,6 @@ function CartWrapper() {
 
   //*  지우는 핸들러
   const deleteHandler = useCallback((id) => {
-    // console.log("delete------", e, id)
-    // setCurrentItems(currentItems.filter((el) => el.id !== id));
     //! dispatch 해줘야함
     dispatch(removeFromCart(id));
   }, []);
@@ -223,6 +221,10 @@ function CartWrapper() {
   }
   useEffect(() => {
     const request = Auth(true);
+<<<<<<< HEAD
+=======
+    //로그인 성공시에도 카트에 물건이 없으면 메인으로 보내야한다.
+>>>>>>> 741855919253eddbb5ed326049eeac94648681ad
     if(request === undefined){
       setLoginModal(true);
     }

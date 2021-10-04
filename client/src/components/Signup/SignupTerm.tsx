@@ -7,6 +7,8 @@ import {
   TermSpan ,
   ErrMsgP } from './StyledSignup'
 
+import {terms} from '../dummyData'
+
 interface Term {
   checkedInputs : any,
   isAllchecked : any,
@@ -21,7 +23,6 @@ function SignupTerm({
   const [openModal , setOpenModal] = useState(false);
   const [modalTitleText , setModalTitleText] = useState(false);
   const [modalText , setModalText] = useState(false);
-  // const [checkedInputs, setCheckedInputs]:any = useState([]);
 
   const termModalHandler = (title : any , content : any) => {
     setModalTitleText(title);
@@ -33,15 +34,7 @@ function SignupTerm({
   };
 
   const termErr = !isAllchecked;
-  const terms = {
-    mandatory : [
-      {termTitle : '사용자 이용약관',termContent :'약관1 내용'},
-      {termTitle : '개인정보 취급정책',termContent :'약관2 내용'},
-      {termTitle : '위치기반 서비스',termContent :'약관3 내용'},
-    ],
-    optional : {termTitle : '마케팅 활용동의 및 광고수신',termContent : '약관4 옵셔널 내용'}
-  };
-
+  
   return (        
     <TermWrapper>
       <Label>이용약관 동의</Label><br/>
@@ -68,19 +61,21 @@ function SignupTerm({
       })}
 
           <input
-            type = 'checkbox'
-            name = 'terms'
-            value = 'terms'
-            className = 'optional-terms'
-            />
+          type = 'checkbox'
+          name = 'terms'
+          value = 'terms'
+          className = 'optional-terms'
+          />
 
-      <TermSpan 
+          <TermSpan 
           onClick={() => termModalHandler(terms.optional.termTitle,terms.optional.termContent)}
-          >{terms.optional.termTitle}</TermSpan>에 동의합니다.<SideSpan>선택</SideSpan>
-
-      {termErr ? 
+          >{terms.optional.termTitle}
+          </TermSpan>에 동의합니다.<SideSpan>선택</SideSpan>
+    
+          {termErr ? 
           <ErrMsgP>필수 약관에 모두 동의하셔야 합니다.</ErrMsgP> 
-          : null}
+          : 
+          null}
       </div>
 
       <TermModal

@@ -12,8 +12,11 @@ import { END_POINT } from '../../../_actions/type';
 import { RootReducerType } from '../../../store/store';
 import Signin from '../Signin/SigninModal';
 import SideBar from '../SideBar/SideBar';
+<<<<<<< HEAD
 import Alarm from '../Alarm/Alarm';
 import { User } from '../../../@type/userInfo';
+=======
+>>>>>>> 741855919253eddbb5ed326049eeac94648681ad
 
 function NavBar() {
   const history:any = useHistory();
@@ -28,7 +31,11 @@ function NavBar() {
   //로그인 모달
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
+<<<<<<< HEAD
   const signoutHandler = (e:React.MouseEvent<HTMLButtonElement>):void => {
+=======
+  const signoutHandler = (e:any) => {
+>>>>>>> 741855919253eddbb5ed326049eeac94648681ad
     e.preventDefault();
     if (user.login_type === 'kakao'){
       dispatch(AdminStoreReset());
@@ -36,7 +43,7 @@ function NavBar() {
       .then((res: any) => {
         if (res.payload.message === "signout success") {
           window.location.href = `${END_POINT}`
-      }
+      } 
     })
     }
     else if (user.login_type === 'naver') {
@@ -45,7 +52,7 @@ function NavBar() {
       .then((res: any) => {
         if (res.payload.message === "signout success") {
           window.location.href = `${END_POINT}`
-      } 
+      }
     });
     }
     else {
@@ -53,7 +60,12 @@ function NavBar() {
       dispatch(signOut())
       .then((res: any) => {
         if (res.payload.message === "signout success") {
+<<<<<<< HEAD
             window.location.href=`${END_POINT}`
+=======
+          console.log('res.payload======>',res.payload);
+          window.location.href=`${END_POINT}`
+>>>>>>> 741855919253eddbb5ed326049eeac94648681ad
         }
     });
   }
@@ -81,12 +93,6 @@ const accessInto = useCallback((name):void => {
       </NavWrapper>
       
       <ButtonWrapper>
-        <IconButton 
-        type="button" 
-        aria-label="알림 버튼" 
-        onClick={closeAlarmModal}>
-          <i className="far fa-bell"></i>
-        </IconButton>
         <IconButton
           onClick={() => { setIsOpen(true) }}
           type="button"
@@ -95,7 +101,7 @@ const accessInto = useCallback((name):void => {
           <i className="fas fa-bars"></i>
         </IconButton>
         
-        {message !== 'login success' ?
+        { message !== 'login success' ?
           <UL>
             <Listli 
             type="button" 
@@ -134,7 +140,10 @@ const accessInto = useCallback((name):void => {
             aria-label='로그아웃'
             className = 'icons'
             onClick={(e:any) => {signoutHandler(e)}}>
-              <i className="fas fa-sign-out-alt"></i>
+              <i 
+              className="fas fa-sign-out-alt"
+              // onClick={(e:any) => {signoutHandler(e)}}
+              ></i>
             </Listli>
           </UL>
         }
@@ -159,9 +168,7 @@ const accessInto = useCallback((name):void => {
         ? '/analysis':
         '/'}
       />
-      {alarmBtnModal ?
-      <Alarm />
-      : null}
+      
     </Header>
   );
 }

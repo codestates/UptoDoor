@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React,{useState} from 'react'
 import Chart from 'react-apexcharts'
 import Select from 'react-select'
@@ -12,8 +13,35 @@ import
   Column1,Column2,
 } from './StyledAnalysis'
 
-// eslint-disable-next-line react/prop-types
-function AnalysisTtlUser({chartStart,second}) {
+function AnalysisTtlUser({chartStart,second,chart}) {
+
+  // console.log('모든유저chart::',chart)
+  //[{…}, {…}]
+
+  let key = Object.keys(chart[0])
+  let ttlArr = [];
+  for(let i = 0; i<key.length; i++){
+    // let value = Object.values(chart[0][i])
+    // console.log('valueee',value)
+    ttlArr.push({name: key[i] , data : chart[0][key]})
+    // ttlArr.push({name: key[i] , data : chart[0][key][i][i]})
+  }
+  // console.log(ttlArr);
+  // console.log('keyyyy' , key)
+  //['food', 'cafe', 'living/home', 'beauty', 'etc']
+  // const arr = [];
+  // let value;
+
+  // for(let el of chart[0][key[1]]){
+  // value = Object.values(key[0])
+
+  // for(let el of chart[0][key[0]]){
+  //   value = Object.values(el)
+  //   arr.push(value[0]);
+  // }
+
+  // console.log('value',arr)
+  //[0, 0, 30, 0, 0, 0]
 
   const [selectGender , setSelectGender] = useState('')
   const gender = 
@@ -22,6 +50,7 @@ function AnalysisTtlUser({chartStart,second}) {
       { value : '여자' , label : '여자'},
     ]
   
+  //!mle data
   const options1 = { 
     //바 높이줄이기
     labels: ['10대','20대','30대','40대','50대','60대이상'],
@@ -36,6 +65,7 @@ function AnalysisTtlUser({chartStart,second}) {
       'rgba(117, 194, 253, 0.85)',
       'rgba(140, 204, 253, 0.85)',
     ],
+
     plotOptions: {
       bar: {
         horizontal: true,
@@ -54,11 +84,6 @@ function AnalysisTtlUser({chartStart,second}) {
         }
       }
     },
-    yaxis: {
-      title: {
-        text: ''
-      },
-    },
     tooltip: {
       y: {
         formatter: function (val) {
@@ -76,7 +101,8 @@ function AnalysisTtlUser({chartStart,second}) {
     }
   };
 
-  const series1 = [{
+  const series1 = [
+    {
     name: 'Food',
     data: [44, 55, 41, 37, 22, 43]
   }, {
@@ -91,8 +117,10 @@ function AnalysisTtlUser({chartStart,second}) {
   }, {
     name: 'Etc',
     data: [25, 12, 19, 32, 25, 24]
-  }];
+  }
+  ];
 
+  //!femle data
   const options2 = { 
     //바 높이줄이기
     labels: ['10대','20대','30대','40대','50대','60대이상'],
@@ -118,7 +146,6 @@ function AnalysisTtlUser({chartStart,second}) {
       colors: ['#fff']
     },
     xaxis: {
-      // categories: ['10대', '20대','30대','40대','50대','60대이상'],
       labels: {
         formatter: function (val) {
           return val
@@ -175,17 +202,19 @@ function AnalysisTtlUser({chartStart,second}) {
             <ChartContentsWrapper second = {second}>
               <ChartTitle>사용자 별, <br/>많이 찾는 카테고리는?</ChartTitle>
               <ChartText>성별 및 연령대별 많이찾는 카테고리를 차트로 확인하세요.</ChartText>
-            </ChartContentsWrapper>
-          </Column1>
-
-          <Column2>
-            <ChartTtlUseryWrapper second = {second}>
+            
               <Select 
                 className = 'gender-selection selection'
                 options = {gender}
                 placeholder = '성별을 선택해주세요'
                 onChange = {onChangeGender}
               />
+
+            </ChartContentsWrapper>
+          </Column1>
+
+          <Column2>
+            <ChartTtlUseryWrapper second = {second}>
               {selectGender === '여자' ? 
               <Chart 
               className = 'ttl-user-chart' 

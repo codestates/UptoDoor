@@ -16,15 +16,22 @@ export const upNdown = keyframes`
 //!intro
 export const LandingIntroContainer = styled.main`
 width: 100%;
-height:calc(100vh - 80px);
+height:calc(100vh - 115px);
 text-align: center;
+overflow: hidden;
+@media screen and (min-width: 767px) {
+height:calc(100vh - 80px);
+margin : 0 auto;
+padding-top : 100px;
+}
+
 `
 export const LandingIntroWrapper = styled.section`
 width: 100%;
 height : 100%;
-padding : 50px 0 20px;
+padding : 50px 0 0;
 overflow-y: hidden;
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
 margin : 0 auto;
 padding : 100px 0 20px;
 }
@@ -33,7 +40,7 @@ export const MainTitle = styled.h1`
 font-size: ${MediumFont};
 font-weight : 500;
 color : ${TextDarkGrey};
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   display : inline ;
   font-size: 30px;
   font-weight: 600;
@@ -43,7 +50,7 @@ export const MainSubTitle = styled.h2`
 font-size: 18px;
 font-weight : 400;
 color : ${TextLightGrey};
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   display : inline ;
   font-size: 32px;
   font-weight: 500;
@@ -53,18 +60,16 @@ color : ${TextLightGrey};
 }
 `
 export const MainContainer = styled.div`
-  margin : 0 auto;
-  text-align: center;
-  width: 375px;
-  border-radius : 50px;
-  padding :10px 0px;
-  box-sizing: border-box;
-  display: ${({flexable})=> (flexable ? 'flex' : 'unset')};
-  >div>ul>li>button:before{
-    opacity : 0.25;
-    color : mediumturquoise;
-  }
-@media screen and (min-width: 768px) {
+margin : 0 auto;
+text-align: center;
+width: 375px;
+border-radius : 50px;
+padding :10px 0px;
+box-sizing: border-box;
+display: ${({flexable})=> (flexable ? 'flex' : 'unset')};
+>div>ul>li>button:before{
+  opacity : 0.25;
+  color : mediumturquoise;
 }
 `
 export const FlexBox = styled.div`  
@@ -78,14 +83,14 @@ height : 50px;
 }
 >.slick-slider>.slick-list{
   height : 46px!important;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     height :80px!important;
   }
   @media screen and (min-width: 1140px) {
     height : 100px!important;
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   justify-content: center;
   /* align-items: center; */
   margin : 10px 0 60px 0;
@@ -108,7 +113,7 @@ export const CategoryTitleWrapper = styled.div`
 width: fit-content;
 text-align: center;
 margin : 10px auto ;
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   width: 800px;
   margin : 0px auto ;
 }
@@ -120,7 +125,7 @@ background: -webkit-linear-gradient(45deg, mediumturquoise, #5d9cec);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
 font-weight: 700;
 font-size: ${UltraLargeFont};
 text-align: center;
@@ -137,13 +142,14 @@ background:linear-gradient(#fff,rgba(0,0,0,0.1));
 export const ImgWrapper = styled.div`
 margin-top : 50px;
 visibility: hidden;
+overflow : hidden;
 >.slick-slider>.slick-list{
   height : 100%!important;
 }
 >.slick-slider>.slick-list>.slick-track>.slick-current{
   visibility: visible;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
 }
 `
 export const CategoryImgWrapper = styled.div`
@@ -152,8 +158,7 @@ grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
 grid-template-rows: 1fr 1fr ;
 grid-gap: 12px;
 margin-bottom : 20px;
-
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
 }
@@ -176,11 +181,11 @@ object-fit: cover;
   position : relative;
   top : 90px;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   width: 280px;height : 380px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   width: 270px;height : 370px;
   &:nth-child(1),&:nth-child(8),&:nth-child(14){
   position : relative;
@@ -230,29 +235,6 @@ color : rgba(0,0,0,0.5);
   color : rgba(0,0,0,0.7);
 }
 `
-export const AlarmI = styled.i`
-@media screen and (min-width: 767px) {
-width : 50px; height : 50px;
-line-height: 50px;
-position :fixed;
-right : 20px;
-bottom : 30px;
-font-size: 30px;
->span{
-  border-radius: 50%;
-  width: 18px; height : 18px;
-  background-color: ${PointColor};
-  color : #fff;
-  font-size: 15px;
-  line-height: 17px;
-  position: absolute;
-  left : 60%;
-  bottom: 12%;
-}
-}
-@media screen and (min-width: 1140px) {
-}
-`
 export const ArrowChk = styled.div`
 >.fa-angle-double-up{
   opacity: 0;
@@ -280,24 +262,21 @@ font-size: 30px;
 position :fixed;
 right : 30px;
 bottom : 30px;
-@media screen and (min-width: 767px) {
-right : 80px;
-}
 `
 export const GradientEdge = styled.div`
 position: absolute;
-bottom : -40px;
+bottom : 0px;
 height : 300px;
 max-height : 20%;
 width : 100%;
 background-image: 
 linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255));
 opacity : 1;
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   bottom : -10px;
 }
 @media screen and (min-width: 1140px) {
-  bottom : 0;
+  bottom : -20px;
 }
 `
 //!info
@@ -306,7 +285,7 @@ export const LandingInfoContainer = styled.div`
   padding: 100px 0;
   background-color: #f7f7f7;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     padding: 150px 0;
   }
 `;
@@ -314,7 +293,7 @@ export const LandingInfoWrapper = styled.div`
   /* border: 3px solid; */
   /* padding-bottom: 40px; */
   padding: 20px 0 0;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
   }
 `;
 export const InfoWrapper = styled.div`
@@ -326,7 +305,7 @@ display: grid;
     margin: 0 auto;
     padding: 0 10px;
     justify-content: center;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     height: 450px;
   }
 `;
@@ -336,7 +315,7 @@ export const InfoRow = styled.div`
   align-items: flex-start;
   grid-template-areas: ${({ imgStart }) =>
     imgStart ? `'col1' 'col2'` : `'col1' 'col2'`};
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     align-items: center;
 
     grid-template-areas: ${({ imgStart }) =>
@@ -347,7 +326,7 @@ export const Column1 = styled.div`
 
   grid-area: col1;
   margin-bottom: 0;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     margin-bottom: 15px;
     /* padding: 0 15px; */
   }
@@ -356,7 +335,7 @@ export const Column2 = styled.div`
   padding: 0 15px;
   grid-area: col2;
   margin-bottom: 0;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     margin-bottom: 15px;
   }
 `;
@@ -365,7 +344,7 @@ export const TextWrapper = styled.div`
   height: 100%;
   padding-top: 0;
   margin-bottom: 24px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     margin: ${({second})=> (second ? '0 30px 24px 0' : '0 0 24px 30px')}
   }
 `;
@@ -376,7 +355,7 @@ export const Heading = styled.h1`
   margin-bottom: 12px;
   line-height: 1.1;
   font-weight: 600;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     font-size: 28px;
     margin-bottom: 24px;
     text-align: left;
@@ -396,7 +375,7 @@ export const Subtitle = styled.p`
   /* font-size: 14px; */
   text-align: center;
   margin-bottom: 1px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     font-size: 22px;
     text-align: left;
   }
@@ -410,7 +389,7 @@ display: flex;
 justify-content: center;
   width: 90%;
   margin: 0 auto 24px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     height: 330px;
   }
 `;
@@ -418,7 +397,7 @@ export const Img = styled.img`
   width: 100%;
   padding-right: 0;
 
-  @media screen and (min-width:768px){
+  @media screen and (min-width:767px){
     width:430px;
     border: 2px solid white;
   }
@@ -426,18 +405,18 @@ export const Img = styled.img`
 //!Value
 export const LandingValueContainer = styled.main`
 width: 100%;
-@media screen and (min-width:768px){
-  height:calc(100vh - 80px);
-  box-sizing: border-box;
-  }
+@media screen and (min-width:767px){
+}
+@media screen and (min-width:1140px){
+height:calc(100vh - 80px);
+}
 `
 export const LandingValueWrapper = styled.section`
 display: flex;
 flex-direction: column;
 min-width: 375px;
 
-@media screen and (min-width: 768px) {
-
+@media screen and (min-width: 767px) {
 }
 @media screen and (min-width: 1140px) {
 flex-direction: row;
@@ -451,10 +430,8 @@ padding : 100px 200px;
 
 >.focus {
   height : 100%;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     >.textbox{
-    /* height : 220px;
-    border :3px solid; */
     }
   }
   @media screen and (min-width: 1140px) {
@@ -469,7 +446,7 @@ padding : 100px 200px;
 >.not{
   overflow: hidden;
   min-height : 120px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     min-height : 190px;
   }
   @media screen and (min-width: 1140px) {
@@ -483,7 +460,7 @@ padding : 100px 200px;
 `
 export const LandingValueBox = styled.div`
 height : 120px;
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   height : 170px;
   }
 @media screen and (min-width: 1140px) {
@@ -502,7 +479,6 @@ height : 120px;
 }
 `
 export const ValueImgBox = styled.div`
-
 background-size: cover;
 background-blend-mode: multiply;
 background-color : rgba(0,0,0,0.3);
@@ -530,7 +506,7 @@ transition : all 1s linear;
 export const H2 = styled.h2`
 font-size: ${LargeFont};
 color : #fff;
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
 font-size: 36px;
   }
 @media screen and (min-width: 1140px) {
@@ -554,11 +530,10 @@ padding : 20px;
 }
 `
 export const H3 = styled.h3`
-/* line-height: 30px; */
 margin-bottom: ${({endText})=> (endText ? '20px' : '10px')};
 color: ${({endText})=> (endText ? TextDarkGrey : 'unset')};
 font-weight: ${({endText})=> (endText ? '500' : '500')};
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   font-size: ${MediumFont}
   }
 @media screen and (min-width: 1140px) {
@@ -570,7 +545,7 @@ font-size: 12px;
 padding : 0 30px;
 line-height: 20px;
 margin : 5px 0 10px 0;
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   font-size: ${SmallFont}
   }
 @media screen and (min-width: 1140px) {
@@ -578,10 +553,10 @@ margin : 5px 0 10px 0;
   line-height: 25px;
 }
 `
-//!End
+//!End & map
 export const LandingEndContainer = styled.main`
 width: 100%;
-height: 100%;//footer 영역만큼 뺴주기.
+height: 100%;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -595,37 +570,6 @@ background-color: #f7f7f7;
 export const LanindgFindWrapper = styled.div`
 width: 100%;
 min-width: 375px;
-/* border : 3px solid pink; */
-/* margin : 20px 0; */
-@media screen and (min-width: 1140px) {
-
-}
-`
-export const LandingEndWrapper = styled.div`
-width: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin : 30px 0 0;  
->div>button{
-  background : linear-gradient(45deg , mediumturquoise ,#5d9cec);
-  color : #fff;
-  height : 50px;
-  margin-top : 20px;
-  font-weight : 600;
-  border: none;
-}
-@media screen and (min-width: 767px) {
-  margin : 100px 0 0;
-  color : black;
-  padding : 50px 0;
-  background-color: #fff;
-}
-
-@media screen and (min-width: 1140px) {
-  padding : 110px 0;
-}
 `
 // 랜딩지도 전체부분 스타일
 export const LandingMapWrapperContainer = styled.section`
@@ -641,20 +585,16 @@ max-width: 500px;
 export const LandingMapSelectContainer = styled.div`
 `
 export const LandingMapSelectWrapper = styled.div`
-/* display: flex;
-align-items: flex-end; */
 height : 50px;
 margin : 20px 0 0;
 >.city-selection{
-  /* border : 3px solid skyblue; */
   z-index : 1;
   @media screen and (min-width: 1140px) {
     width: 30%;
   }
   >div{
-    box-shadow : none !important;
+    box-shadow : 0 0 0 0.3px rgba(0,0,0,0.3) !important;
     border-color : rgba(0,0,0,0.3);
-
   }
   >div>div>div{
     color : ${TextDarkGrey};
@@ -678,7 +618,7 @@ animation: ${showModal} 0.4s;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
- @media screen and (min-width: 768px) {
+  @media screen and (min-width: 767px) {
     font-size: 36px;
   }
   @media screen and (min-width: 1140px) {
@@ -687,16 +627,16 @@ animation: ${showModal} 0.4s;
 }
 font-size: ${MediumFont};
 font-weight: 400;
-
 `
 // 랜딩지도부분 스타일
 export const LandingMapContainer = styled.div`
 /* border : 3px solid green; */
-margin : 10px auto;
+margin : 20px auto;
 width : 100%;
 height : 250px;
 border-radius : 8px;
 z-index : 0;
+
 @media screen and (min-width: 767px) {
     height : 450px; 
   }
@@ -704,12 +644,43 @@ z-index : 0;
     height : 550px; 
   }
 `
+export const LandingEndWrapper = styled.div`
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin : 30px 0 0;  
+>div>button{
+  background : linear-gradient(45deg , mediumturquoise ,#5d9cec);
+  color : #fff;
+  height : 50px;
+  margin-top : 20px;
+  font-weight : 600;
+  border: none;
+}
+>div>p{
+  color : ${TextDarkGrey};
+  @media screen and (min-width: 767px) {
+  margin-bottom: 10px;
+  }
+}
+@media screen and (min-width: 767px) {
+  margin : 100px 0 0;
+  color : black;
+  padding : 50px 0;
+  background-color: #fff;
+}
+
+@media screen and (min-width: 1140px) {
+  padding : 110px 0;
+}
+`
 export const EndingH3 = styled.h3`
 margin : 0 0 10px;
 font-size: 24px;
 color : ${TextDarkGrey};
 @media screen and (min-width: 767px) {
-  /* color : #fff; */
   margin : 0 0 30px;
   font-size: 38px;
   font-weight : 800;

@@ -1,7 +1,7 @@
 import styled,{keyframes} from 'styled-components'
 import { 
   MainColor, TextColor, TextDarkGrey,PointColor,
-  SmallFont, MediumFont,UltraLargeFont,
+  SmallFont, MediumFont,UltraLargeFont,TextLightGrey,
 } from '../../GlobalStyle'
 
 export const showModal = keyframes`
@@ -39,14 +39,11 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @media screen and (min-width: 767px) {
-  }
 `
 export const ModalWrapper = styled.div`
   padding: 40px 20px;
   margin: 0 auto;
   width: 90%;
-  height : 350px;
   max-width: 400px;
   background-color: white;
   border-radius: 8px;
@@ -65,9 +62,21 @@ export const ModalWrapper = styled.div`
 export const ModalTextBox = styled.div`
 text-align: center;
 margin : 0 0 15px;
->p{
-  margin: 6px 0;
+>h4{
+  margin: 20px 0;
+  font-weight: 500;
+  color : ${TextDarkGrey};
 }
+>p{
+  margin: 10px auto 0;
+  width : 300px;
+  /* text-align: left; */
+  color : ${TextLightGrey};
+  padding : 10px;
+  /* border: 1px solid rgba(0,0,0,0.2); */
+  border-radius: 8px;
+}
+
 `
 export const ModalTitleText = styled.div`
   color : ${TextColor};
@@ -117,7 +126,7 @@ export const TermModalWrapper = styled.div`
   }
 `
 export const TermModalTextWrapper = styled.div`
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color:  #f5f5f5;
   border-radius: 8px;
   width: 100%;
   height : 92%;

@@ -5,6 +5,7 @@ import LandingMap from './LandingMap';
 import LandingMapSelect from './LandingMapSelect'
 import { getStoreData,storeFilterByCity } from '../../_actions/store_action'
 import { RootReducerType } from '../../store/store';
+import { StoreInfo } from '../../@type/storeInfo';
 
 function LandingMapWrapper() {
 

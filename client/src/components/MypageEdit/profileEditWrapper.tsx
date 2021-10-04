@@ -238,10 +238,14 @@ function MyProfileEdit() {
       
       {openModal ?
       <WarningModal
+      cancle
       openModal = {openModal}
       setOpenModal={setOpenModal}
       modalTitleText = '정말 회원 탈퇴하시겠습니까?'
-      modalText = '회원탈퇴 해도 결제된 정기구독 상품은 배송됩니다.'
+      modalSubText = '관리중인 서비스는 자동 구독취소 처리됩니다.'
+      modalText = 
+      {`이미 결제된 정기구독 상품은 당 월까지 배송됩니다.\n
+      구독취소를 원하지 않으시면 회원탈퇴를 하지 말아주십시오`}
       yes = '회원탈퇴'
       no='취소'
       handler={withdrawalConfirm}

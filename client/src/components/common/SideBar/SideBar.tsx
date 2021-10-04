@@ -52,7 +52,10 @@ const state = useSelector((state) => state)
           <i className="fas fa-times"></i>
         </Icon>
         <Logo>UptoDoor</Logo>
-        {message === 'login success' ? <User>{nickname}</User>: <User onClick={() => {
+        {message === 'login success' ?
+        <User>{nickname}</User>
+        :
+        <User onClick={() => {
           setModalOpen(true);
         }}>로그인</User> }
         

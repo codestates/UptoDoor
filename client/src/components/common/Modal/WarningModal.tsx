@@ -8,7 +8,7 @@ import {
 function WarningModal(props: any) {
 
   const { 
-    openModal, url,
+    openModal, url, modalSubText,
     modalTitleText ,modalText,yes,no,setOpenModal,handler
     } = props;
 
@@ -25,6 +25,7 @@ function WarningModal(props: any) {
           <ModalTextBox>
             <I className="fas fa-exclamation"></I>
             <h2>{modalTitleText}</h2>
+            <h4>{modalSubText}</h4>
             <p>{modalText}</p>
           </ModalTextBox>
 

@@ -76,7 +76,7 @@ function AnalysisCity() {
     //   },
     // ],
   };
-
+  //address[0][0] , address[1][0]
   const series = [
     {
       data: [

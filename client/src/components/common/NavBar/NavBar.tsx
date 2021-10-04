@@ -20,7 +20,6 @@ import { END_POINT } from '../../../_actions/type';
 
 import Signin from '../Signin/SigninModal';
 import SideBar from '../SideBar/SideBar';
-import Alarm from '../Alarm/Alarm';
 
 function NavBar() {
   const history:any = useHistory();
@@ -92,12 +91,6 @@ const accessInto = useCallback((name) => {
       </NavWrapper>
       
       <ButtonWrapper>
-        <IconButton 
-        type="button" 
-        aria-label="알림 버튼" 
-        onClick={closeAlarmModal}>
-          <i className="far fa-bell"></i>
-        </IconButton>
         <IconButton
           onClick={() => { setIsOpen(true) }}
           type="button"
@@ -173,10 +166,7 @@ const accessInto = useCallback((name) => {
         ? '/analysis':
         '/'}
       />
-
-      {alarmBtnModal ?
-      <Alarm />
-      : null}
+      
     </Header>
   );
 }

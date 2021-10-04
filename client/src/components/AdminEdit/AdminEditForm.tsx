@@ -17,7 +17,7 @@ import { BtnBox, SmallButton } from '../common/Button/Button';
 
 import { useHistory } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux'
-import {  adminStoreEdit , adminStoreDelete } from '../../_actions/admin_action';
+import {  adminStoreEdit , adminStoreDelete,AdminStoreGetData } from '../../_actions/admin_action';
 
 import AdminUploadStoreEdit from './AdminUploadStoreEdit'
 import AdminUploadMenuEdit from './AdminUploadMenuEdit'
@@ -29,22 +29,14 @@ import Signin from '../common/Signin/SigninModal'
 
 import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
-import { AdminInfo } from '../../@type/adminInfo';
+import { AdminInfo,Menu } from '../../@type/adminInfo';
 import useInput from '../../utils/useInput'
 import { RootReducerType } from "../../store/store";
-
-export type Menu = {
-  detail: string;
-  id: number;
-  image: string;
-  name: string;
-  price: number;
-}
 
 function AdminEditForm() {
 
   const dispatch:any = useDispatch();
-  const admin = useSelector((state:RootReducerType) => state.admin);
+  const admin:AdminInfo = useSelector((state:RootReducerType) => state.admin);
   //모달 수정, 삭제
   const [loginModal , setLoginModal] = useState<boolean>(false);
   const [editModal, setEditModal] = useState<boolean>(false);
@@ -114,8 +106,12 @@ function AdminEditForm() {
       dispatch(adminStoreEdit(sendInfo, storeinfo.id))
       .then((res:any)=>{
         if (res.payload.message === 'update success') {
+          dispatch(AdminStoreGetData()).then((res: any) => {
+            if (res.payload.message === "ok") {
           setModalSuccess(true);
-          setEditModal(true)
+              setEditModal(true)
+      }
+          })
         }
       }).catch((err:void) => {
           setModalSuccess(false);
@@ -356,7 +352,7 @@ function AdminEditForm() {
     {editModal ?
       <ConfirmModal
       confirmModal = {editModal}
-      url="/"
+      url="/adminpage"
       modalSuccess={modalSuccess}
       setOpenModal={setEditModal}
       modalTitleText = '스토어 수정'

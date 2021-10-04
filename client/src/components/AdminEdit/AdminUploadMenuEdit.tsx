@@ -15,7 +15,7 @@ import {
 import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
 axios.defaults.withCredentials = true;
-import {Menu} from './AdminEditForm'      
+import { Menu } from '../../@type/adminInfo';
 
 type IProps = {
   addMenuHandler: (menus:{}) => void;

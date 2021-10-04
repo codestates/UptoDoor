@@ -29,7 +29,7 @@ function AdminUploadStoreEdit(
   loop = true,}:sliderProps) {
  
   // img 5개 제한
-  const [openModal , setOpenModal] = useState(false);
+  const [openModal , setOpenModal] = useState<boolean>(false);
   const [imgs , setImgs]:any = useState([]); 
 
   const dropHandler = async (files:any) => {
@@ -51,15 +51,12 @@ function AdminUploadStoreEdit(
         alert('파일저장실패')
       }
     })
-    .catch((err)=>{
-      return console.log('==file 가져오기 실패===',err)
-    })
     }
   }
-  const closeModal = () => {
+  const closeModal = ():void => {
     setOpenModal((prev)=>!prev)
   }
-  const deleteImgHandler = (files:any) => {
+  const deleteImgHandler = (files:any):void => {
     const copyArr = JSON.parse(JSON.stringify(props.imageArr));
     const curIdx = copyArr.indexOf(files)  
     copyArr.splice(curIdx,1);

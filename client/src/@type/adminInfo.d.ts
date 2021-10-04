@@ -18,14 +18,16 @@ export interface AdminInfo {
 
 export interface StoreMenus {
   menu_id: number;
-  menu: {
-    id: number,
+  menu: Menu;
+}
+
+export type Menu = {
+  id: number,
     name: string,
     image: string,
     price: number,
     detail: string
-  }
-}
+} 
 
 export interface Orders {
   billingkey?: any;

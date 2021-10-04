@@ -14,6 +14,13 @@ import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
 axios.defaults.withCredentials = true;
 
+type IProps = {
+  addMenuHandler: (menu: {}) => void;
+  menuArr: Object[];
+  setMenuArr: () => void;
+  removeMenuHandler: () => void;
+}
+
 function AdminUploadMenu({
   addMenuHandler,menuArr,
   setMenuArr,removeMenuHandler
@@ -129,7 +136,7 @@ function AdminUploadMenu({
                 type = 'button'
                 id = {idx}
                 onClick = 
-                {(e:any)=>removeMenuHandler(e)}
+                {(e: React.MouseEvent<HTMLButtonElement>)=>removeMenuHandler(e)}
                 >삭제</RemoveMenuBtn>
 
                 <label>메뉴이름</label>

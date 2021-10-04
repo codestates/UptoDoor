@@ -10,7 +10,7 @@ export interface User {
   position: string | null;
   subAddress: string;
   subAddressDetail: string ;
-  message: string;
+  message?: string;
   login_type: "self" | "kakao" | "naver" | null;
   actionMessage?: "",
 }

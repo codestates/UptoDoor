@@ -40,7 +40,7 @@ export interface Action {
 interface Payload {
 	message?: string;
   data?: User | null;
-  order?: Object[] | null;
+  order?: any;
 }
 
 export default function user_reducer(state = intitialState, action:Action) {

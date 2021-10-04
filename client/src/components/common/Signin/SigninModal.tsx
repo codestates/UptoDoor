@@ -3,55 +3,48 @@ import { LagreButton } from '../Button/Button';
 import {
   SigninContainer, SigninWrapper, SigninInput, LeadSignup, Icon, SignupLink, TextOr, Logo,
 } from './StyledSignin';
-import {useDispatch,useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import { signIn,naverSignIn, kakaoSignIn } from '../../../_actions/user_action';
 import axios from 'axios';
-axios.defaults.withCredentials = true
 import { END_POINT } from '../../../_actions/type';
 import ConfirmModal from '../Modal/ConfirmModal';
-
+import useInput from '../../../utils/useInput';
+axios.defaults.withCredentials = true;
 interface Iprops {
   modalOpen: boolean;
-  setModalOpen: any;
+  setModalOpen: (value: boolean)=>void;
   setIsOpen?: any;
-  request ? :any;
-  url ? :any;
+  request? :boolean;
+  url? :string| null;
 }
 
 function Signin({ setIsOpen, modalOpen,setModalOpen ,request,url }: Iprops):any {
   
   const history = useHistory();
   const dispatch: any = useDispatch();
-  const user = useSelector((state:any) => state.user);
-  // if (!modalOpen) return null;
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  // 실패시 모달
-  const [failModal, setFailModal] = useState(false);
 
-  const onChangePassword = useCallback((e) => {
-    setPassword(e.target.value);
-  }, [password]);
-  
-  const onChangeEmail = useCallback((e) => {
-    setEmail(e.target.value);
-  }, [email])
+  // if (!modalOpen) return null;
+  const [email, onChangeEmail] = useInput('');
+  const [password, onChangePassword] = useInput('');
+  // 실패시 모달
+  const [failModal, setFailModal] = useState<boolean>(false);
 
   const link = window.location.href
-  const signinHandler = useCallback((e) => {
+  const signinHandler = useCallback((e):void => {
     e.preventDefault();
     const userinfo = {email, password}
     dispatch(signIn(userinfo))
       .then((res: any) => {
         if (res.payload.message  === 'login success') {
-          // if(
-          //   link === 'http://localhost:3000/usercart'||
-          //   link ==='http://localhost:3000/userorder'){
-          //   history.push('/')
-          // }else{
-          //   window.location.reload();
-          // }
+          if(
+            link === 'http://localhost:3000/usercart'||
+            link ==='http://localhost:3000/userorder'){
+            history.push('/')
+          }
+          else {
+            window.location.reload();
+          }
         }
         else {
           setFailModal(true);
@@ -78,13 +71,12 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request,url }: Iprops):any 
     const state = url.searchParams.get('state')
     //인가코드,state값 둘다 있으면 네이버로그인
     if (authorizationCode && state) {
-      console.log("인가코드", authorizationCode)
-      console.log("state값", state)
       dispatch(naverSignIn(authorizationCode, state))
         .then((res:any) => {
         if (res.payload.message  === 'login success') {
           window.location.href=`${END_POINT}`
-        } else {
+        }
+        else {
           setFailModal(true);
         } 
       })
@@ -93,12 +85,12 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request,url }: Iprops):any 
       });
       //인가코드만 있으면 카카오 로그인        
     } else if (authorizationCode) {
-      console.log("인가코드", authorizationCode)
       dispatch(kakaoSignIn(authorizationCode))
         .then((res: any) => {
         if (res.payload.message  === 'login success') {
           window.location.href=`${END_POINT}`
-        } else {
+        }
+        else {
           setFailModal(true);
         } 
       })

@@ -1,7 +1,7 @@
 //import React from 'react'
 import Fade from 'react-reveal/Fade'
 import axios from 'axios'
-import { END_POINT } from '../../_actions/type'
+import { END_POINTS } from '../../_actions/type'
 import React , {useState, useEffect} from 'react'
 import { Container, Title, Wrapper } from '../GlobalStyle'
 import {
@@ -22,9 +22,10 @@ const AnalysisWrapper = () => {
   const [chart, setChart] = useState('');
 
   useEffect( () => {
-    axios.get(`${END_POINT}/analysis`)
+    axios.get(`${END_POINTS}/analysis`)
       .then(res => {
-        setChart(res.data.data);
+        console.log('------구독 분석 데이터------',res.data)
+        setChart(res.data);
       })
       .catch(err => console.log('받아오는거 에러',err));
   }, []);

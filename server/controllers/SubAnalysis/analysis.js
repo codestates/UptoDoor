@@ -1,4 +1,4 @@
-const { user, order_delivery, store, order } = require('../../models');
+const { user, order_delivery, store, user_order, order } = require('../../models');
 module.exports = async (req, res) => {
 
     const sendinfo = {
@@ -76,8 +76,95 @@ module.exports = async (req, res) => {
     for(let i=0; i<ages.length; i++){
         user_data[ages[i]] = gvalue[i]
     }
-
     sendinfo.age = [ages, gvalue];
-    console.log('---',sendinfo);
+
+    //! 연령대, 성별로 카테고리 주문량
+    const total_user_data = [
+        { food : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ],
+        cafe : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ],
+        'living/home' : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ],
+        beauty : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ],
+        etc : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ], 
+        },
+        { food : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ],
+        cafe : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ],
+        'living/home' : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ],
+        beauty : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ],
+        etc : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ], 
+        }
+    ]
+    
+    const mandata = await user.findAll({ where: { gender: '남자'}, 
+    attributes: ['age'], include: [{ model: user_order, attributes: ['user_id','order_id'],
+    include: [{ model: order, attributes: ['store_id'], include: [{ model: store , attributes: ['category']}]}]}],
+    })
+
+    for(let el of mandata){
+        if(el.user_orders.length > 0){
+            for(let x of el.user_orders){
+                total_user_data[0][x.order.store.category].map((y) => {
+                    if(y[el.age] !== undefined){
+                        y[el.age] += 1
+                    }
+                })
+            }
+        }
+    }
+
+    const womandata = await user.findAll({ where: { gender: '여자'}, 
+    attributes: ['age'], include: [{ model: user_order, attributes: ['user_id','order_id'],
+    include: [{ model: order, attributes: ['store_id'], include: [{ model: store , attributes: ['category']}]}]}],
+    })
+
+    for(let el of womandata){
+        if(el.user_orders.length > 0){
+            for(let x of el.user_orders){
+                total_user_data[1][x.order.store.category].map((y) => {
+                    if(y[el.age] !== undefined){
+                        y[el.age] += 1
+                    }
+                })
+            }
+        }
+    }
+
+    sendinfo.gender = total_user_data;
+
+    //! 많이 이용하는 지역
+
+    const addr = await order.findAll({raw:true, attributes:['selected_address']});
+    let arr5 = []; //주소
+    let arr6 = []; //주소 갯수
+    let arr7 = [];
+    let arr8 = [];
+
+    addr.map((el) => { el.selected_address = el.selected_address.split(' ')[1] })
+
+    addr.map((el) => {
+    if(arr5.includes(el.selected_address)){
+        let idx = arr5.indexOf(el.selected_address)
+            arr6[idx] += 1;
+        } else {
+            arr5.push(el.selected_address);
+            arr6.push(1)
+        }
+    })
+
+    //! top 10
+    for(let i=0; i<2; i++){
+        let idx;
+        let max = arr6.reduce((a, b) => {
+            return Math.max(a, b);
+        })
+        idx = arr6.indexOf(max);
+        arr7.push(arr5[idx]);
+        arr8.push(arr6[idx]);
+        arr5.splice(idx, 1);
+        arr6.splice(idx, 1);
+    }
+
+    sendinfo.address =  [arr7, arr8]
+
+    //console.log('---',addr);
     res.status(200).send({ message: 'ok' , data: sendinfo})
 }

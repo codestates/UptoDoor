@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const Router = require('./routes/index');
+const { logger } = require('./config/winston');
 require('dotenv').config();
 
 const app = express();
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', Router);
 
 app.get('/', (req, res) => {
-  res.send('OK');
+  res.sendStatus(200);
 });
 
 app.get('/health-check', (req,res) => {
@@ -27,5 +28,5 @@ app.get('/health-check', (req,res) => {
 });
 
 app.listen(port, () => {
-  console.log(`UptoDoor listening port at ${port}`);
+  logger.info(`UptoDoor listening port at ${port}`);
 });

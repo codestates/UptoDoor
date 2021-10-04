@@ -15,17 +15,30 @@ import
 
 function AnalysisTtlUser({chartStart,second,chart}) {
 
-  // console.log('모든유저chart::',chart)
-  //[{…}, {…}]
+  // console.log('모든유저chart::', chart)
+  
 
   let key = Object.keys(chart[0])
+  // console.log("22", key);
+  let values = Object.values(chart[0]);
   let ttlArr = [];
-  for(let i = 0; i<key.length; i++){
-    // let value = Object.values(chart[0][i])
-    // console.log('valueee',value)
-    ttlArr.push({name: key[i] , data : chart[0][key]})
-    // ttlArr.push({name: key[i] , data : chart[0][key][i][i]})
+  for (let i = 0; i < values.length; i++) {
+    let tmp = [];
+    for (let el of values[i]) {
+      let values = Object.values(el)[0];
+      tmp.push(values);
+    }
+    ttlArr.push({name: key[i], data: tmp});
   }
+  // console.log("ttlArr", ttlArr);
+  // for(let i = 0; i<chart[0].length; i++){
+  //   console.log("999911", chart[0].beauty);
+  //   let data = [];
+
+  //   ttlArr.push({name: key[i] , data : chart[0][key]})
+  //   // ttlArr.push({name: key[i] , data : chart[0][key][i][i]})
+  // }
+  // console.log("11", ttlArr)
   // console.log(ttlArr);
   // console.log('keyyyy' , key)
   //['food', 'cafe', 'living/home', 'beauty', 'etc']

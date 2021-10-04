@@ -53,14 +53,7 @@ const user:User = useSelector((state:RootReducerType) => state.user)
           <i className="fas fa-times"></i>
         </Icon>
         <Logo>UptoDoor</Logo>
-<<<<<<< HEAD
         {message === 'login success' ? <UserName>{nickname}</UserName>: <UserName onClick={() => {
-=======
-        {message === 'login success' ?
-        <User>{nickname}</User>
-        :
-        <User onClick={() => {
->>>>>>> 741855919253eddbb5ed326049eeac94648681ad
           setModalOpen(true);
         }}>로그인</UserName> }
         

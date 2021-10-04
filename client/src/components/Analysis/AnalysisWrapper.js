@@ -25,21 +25,21 @@ const AnalysisWrapper = () => {
     axios.get(`${END_POINTS}/analysis`)
       .then(res => {
         setChart(res.data.data)
-        // console.log(res.data.data.age);
+        console.log(res.data.data.age);
       })
       .catch(err => console.log('받아오는거 에러',err));
-  }, );
+  }, []);
 
   return (
     <Container>
       <Title>구독 데이터</Title>
       <Wrapper>
 
-        {/* <Fade bottom>
+        <Fade bottom>
         <AnalysisAverageMonth 
         chart={chart.term}
         />
-        </Fade> */}
+        </Fade>
 
         <Fade right >
         <AnalysisCategory 
@@ -49,15 +49,15 @@ const AnalysisWrapper = () => {
 
         <Fade left>
         <AnalysisUser
-        chart={chart.age}
+        chart={chart?.age}
         />
-        </Fade>
+        </Fade> 
 
-        {/* <Fade right>
+        <Fade right>
         <AnalysisTtlUser  
         chart={chart.gender}
         {...chartObjTwo}/>
-        </Fade> */}
+        </Fade>
 
         <Fade left>
         <AnalysisCity 

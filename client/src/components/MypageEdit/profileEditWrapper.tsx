@@ -24,11 +24,13 @@ import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal';
 import Auth from '../../hoc/auth'
 import Signin from '../common/Signin/SigninModal'
+import { RootReducerType } from '../../store/store';
+import { User } from '../../@type/userInfo';
 
 function MyProfileEdit() {
 
   const dispatch:any = useDispatch();
-  const user = useSelector((state:any) => state.user);
+  const user:User = useSelector((state:RootReducerType) => state.user);
 
   const [nickname , setNickname] = useState(user.nickname);
   const [password , setPassword] = useState('');
@@ -237,6 +239,7 @@ function MyProfileEdit() {
       </Wrapper>
       
       {openModal ?
+        
       <WarningModal
       cancle
       openModal = {openModal}

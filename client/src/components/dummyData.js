@@ -426,9 +426,6 @@ export const LandingValues = [
   'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value2.png',
   'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value3.png',
 ]
-<<<<<<< HEAD
-export const LogoSrc = 'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/uptodoor_logo.png'
-=======
 //맵퍼 해시태그 더미
 export const initialHash = [
   //id,category,name,address
@@ -555,4 +552,3 @@ export const terms = {
     방문자가 회원가입 시 이벤트/혜택 소식 수신여부 항목(E-Mail, SMS)이 생성됩니다. 
     `}
 };
->>>>>>> 741855919253eddbb5ed326049eeac94648681ad

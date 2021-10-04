@@ -221,10 +221,6 @@ function CartWrapper() {
   }
   useEffect(() => {
     const request = Auth(true);
-<<<<<<< HEAD
-=======
-    //로그인 성공시에도 카트에 물건이 없으면 메인으로 보내야한다.
->>>>>>> 741855919253eddbb5ed326049eeac94648681ad
     if(request === undefined){
       setLoginModal(true);
     }

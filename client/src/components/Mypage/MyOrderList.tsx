@@ -7,21 +7,37 @@ import {
   OrderListWrapper,ListInfoDetail } from './StyledMypage';
 import {NextBtn,ArrowBtn} from '../common/Button/Button';
 import {removeLastStr} from '../../utils/validation'
-function MyOrderList({ 
-  moveDetailHandler , 
-  order}:any):any {
-  console.log(order);
-  
+import {Orders} from './MypageWrapper'
+
+interface IProps {
+  moveDetailHandler: (id: number) => void;
+  orderList: Orders[];
+}
+
+function MyOrderList({ moveDetailHandler , orderList}:IProps): JSX.Element{
+  const newDate = new Date();
+  let year = newDate.getFullYear(); 
+  let month = newDate.getMonth() + 1; 
+  let date = newDate.getDate();
+  const today = `${year}.${month}.${date}`
+  orderList = orderList.map((el: any) => {
+    if (el.state === "cancel") {
+      if (new Date(el.nextPayDay) > new Date(today)) {
+        el.state = "canceling"
+      }
+    }
+    return el
+  })
   return (
     <MypageOrderListWrapper>
-      {order.length === 0 ?
+      {orderList.length === 0 ?
         <EmptyStore>
           <i className="fas fa-store-alt-slash"></i>
           <p>구독중인 스토어가 없습니다.</p>
         </EmptyStore>
         :
         <>
-          {order && order.map((el: any, idx: any) => {
+          {orderList && orderList.map((el: any, idx: number) => {
           return (
             <OrderListWrapper key={idx}>
               <OrderListContent>
@@ -36,7 +52,7 @@ function MyOrderList({
                       <DeliveryState blue>취소예정</DeliveryState>
                     : el.state === 'cancel' ?
                       <DeliveryState>취소됨</DeliveryState>
-                        : <DeliveryState yellow="#ffae00">기간만료</DeliveryState>
+                        : <DeliveryState>기간만료</DeliveryState>
                   }
                   <img 
                   src={el.menu[0].menu.image} 

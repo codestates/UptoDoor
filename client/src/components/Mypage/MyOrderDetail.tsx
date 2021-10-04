@@ -10,15 +10,17 @@ import {
   TtlPricemBox,
   MypageOrderListWrapper,
   OrderListContent,
+  P,Category,
+  DetailTextArea,
+  EachItemBox,
 } from './StyledMypage';
 import { stringToPrice } from '../../utils/validation';
 import { SmallButton,ArrowBtn } from '../common/Button/Button'
 import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal'
-import MyOrderItem from './MyOrderItem'
-import MyOrderStore from './MyOrderStore'
+import MyOrderItem from './MyOrderDetailItem'
 
-function MyOrderDetail({ 
+function MyOrderDetailItem({ 
   listbackHandler,orderitem,
   user }:any, ) {
 
@@ -27,7 +29,6 @@ function MyOrderDetail({
   const [openModal , setOpenModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   const [cancelStoreModal, setCancelStoreModal] = useState(false);
-  const [selectOrder, setselectOrder] = useState('');
 
   const cancelStoreHandler = () => {
     setOpenModal(true);
@@ -35,7 +36,7 @@ function MyOrderDetail({
   const cancelOrderHandler = () => {
     //* 디스패치 주석풀어야함, 밑에 2줄 지우고,
     dispatch(cancelOrder(orderitem.id)).then((res:any) => {
-      if (res.payload.message === "success delete order") {
+      if (res.payload.actionMessage === "success delete order") {
         setOpenModal(false);
         setModalSuccess(true)
         setCancelStoreModal(true);
@@ -71,10 +72,47 @@ function MyOrderDetail({
         </FlexBox>
 
         {/* 구독가게정보 component */}
-        <MyOrderStore
-        user = {user}
-        orderitem = {orderitem}
-        />
+        <StoreInfoWrapper className="storeinfo-wrapper">
+        <FlexBox between>
+          <H3>{orderitem.store.name}</H3>
+          <Category>{orderitem.store.category}</Category>
+        </FlexBox>
+          <FlexBox col>
+            <EachItemBox>
+              <H4>🗓 구독기간</H4>
+              {orderitem.state === 'cancel' ? 
+              <P cancleline lightColorText> 
+              {orderitem.delivery_term}개월({Number(orderitem.delivery_term) * 4}주) /
+              매주 {orderitem.delivery_day.map((ele:any)=>`${ele}요일 `)} / 
+              {orderitem.delivery_time} 시
+              </P>
+              :
+              <P>
+              {orderitem.delivery_term}개월({Number(orderitem.delivery_term * 4)}주) /
+              매주 {orderitem.delivery_day.map((ele:any)=>`${ele}요일 `)} / 
+              {orderitem.delivery_time} 시
+              </P>
+            }
+            </EachItemBox>
+            <EachItemBox>
+              <H4>📍 가게 주소</H4>
+              <P>{orderitem.store.address}</P>
+            </EachItemBox>
+            <EachItemBox>
+              <H4>📱 가게 연락처</H4>
+              <P>{orderitem.store.number}</P>
+            </EachItemBox>
+            <EachItemBox>
+              <H4>✍🏼 요청사항</H4>
+              <DetailTextArea 
+              defaultValue={
+                orderitem.delivery_detail === 'undefined' 
+              ? '요청사항이 없습니다.' : orderitem.delivery_detail}
+              readOnly>
+              </DetailTextArea>
+            </EachItemBox>
+          </FlexBox>
+        </StoreInfoWrapper>
 
         <OrderInfoWrapper className="orderinfo-wrapper">
           <FlexBox between>
@@ -146,5 +184,5 @@ function MyOrderDetail({
   );
 }
 
-export default MyOrderDetail
+export default MyOrderDetailItem
 

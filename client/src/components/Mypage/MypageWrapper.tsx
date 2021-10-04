@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import { Link ,useHistory } from 'react-router-dom'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { 
   ButtonWrapper, 
@@ -19,17 +19,46 @@ import MyOrderList from './MyOrderList';
 
 import Auth from '../../hoc/auth'
 import Signin from '../common/Signin/SigninModal'
+import {Menu} from '../../@type/adminInfo'
+import { StoreInfo } from '../../@type/storeInfo';
+import { RootReducerType } from '../../store/store';
 
-function MyProfileWrapper(): any {
-  const dispatch:any = useDispatch();
+type MenuArr = {
+  id: number;
+  menu_id: number;
+  quantity: number;
+  menu: Menu;
+}
+
+export interface Orders {
+  createdAt: string;
+delivery_day: string[],
+  delivery_detail: string;
+  delivery_term: string;
+  delivery_time: string;
+  id: number;
+  menu: MenuArr[];
+  nextPayDay: string;
+  plusMoney: number;
+  selected_address: string;
+  selected_address_detail: string;
+  selected_mobile: string;
+  state: string;
+  store: StoreInfo;
+  totalprice: number;
+  user_name: number;
+}
+
+function MyProfileWrapper(): JSX.Element {
+  const user = useSelector((state:RootReducerType) => state.user);
+  const dispatch: any = useDispatch();
   const history = useHistory();
-  const [user, setUser]: any = useState('')
-  const [orderList,setOrderList] = useState([])
-  const [orderitem , setOrderItem] = useState({})
-  const [cur,setCur] = useState(0)
-  const [loginModal , setLoginModal] = useState(false);
+  const [orderList, setOrderList] = useState < Orders[] | []>([])
+  const [orderitem , setOrderItem] = useState<Object | {}>({})
+  const [cur,setCur] = useState<number | 0>(0)
+  const [loginModal , setLoginModal] = useState<boolean>(false);
 
-  const moveDetailHandler = (id:any) => {
+  const moveDetailHandler = (id:number) => {
     const filtered = orderList.filter((el:any)=>{
       return el.id === id
     })[0]
@@ -40,15 +69,33 @@ function MyProfileWrapper(): any {
     setOrderItem('');
     setCur(0);
   }
+  
+
+  const moveAdminPageHandler = () => {
+    dispatch(AdminStoreGetData())
+    .then((res:any) => {
+      if (res.payload.message === "ok") {
+        history.push('/adminpage')
+      }
+    })
+  }
+
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  }, [])
+  
   useEffect(() => {
     setCur(0);
     setOrderItem({});
 
     axios.get(`${END_POINTS}/users/userinfo`)
       .then((res) => {
-        console.log('----',res.data.userdata.user_orders);
-        const order = res.data.userdata.user_orders.map((el:any) => {
-          const { delivery_day, delivery_term, delivery_time } = el.order.order_deliveries[0];
+        const order = res.data.userdata.user_orders.map((el: any) => {
+          const delivery_day = el.order.order_deliveries.map((el:any) =>  el.delivery_day )
+          const { delivery_term, delivery_time } = el.order.order_deliveries[0];
           const { 
             state, totalprice, order_menus, store, user_name, 
             selected_address, selected_address_detail, 
@@ -65,46 +112,20 @@ function MyProfileWrapper(): any {
           const newDay = String(date).split(' ')[2];
           const nextPayDay = `${newYear}.${newMonth}.${newDay}`
 
-          let delivery_day_arr 
-          if(delivery_day.length > 1){
-            delivery_day_arr = delivery_day.split(',')
-          }else{
-            delivery_day_arr = [delivery_day]
-          } 
-
           const final = {
             id,state,user_name,totalprice,
             store,selected_address,selected_address_detail,
             selected_mobile,createdAt,
             delivery_detail,plusMoney:plus_money,
-            delivery_time,delivery_term,delivery_day:delivery_day_arr,
+            delivery_time,delivery_term,delivery_day,
             menu:order_menus, nextPayDay,
           }
           return final;
         })
-        setOrderList(order);
-        setUser(res.data.userdata);
-      }).catch((err) => {
-        console.log(err);
-    })
+        setOrderList(order.reverse());
+      })
   },[])
 
-  const moveAdminPageHandler = () => {
-    dispatch(AdminStoreGetData())
-    .then((res:any) => {
-      if (res.payload.message === "ok") {
-        history.push('/adminpage')
-      }
-    })
-  }
-
-  useEffect(() => {
-    const request = Auth(true);
-    if(request === undefined){
-      setLoginModal(true);
-    }
-  },[])
-  
   return (
     <Container>
       <Title>프로필</Title>
@@ -161,7 +182,7 @@ function MyProfileWrapper(): any {
             /> 
             : 
             <MyOrderList 
-            order={orderList}
+            orderList={orderList}
             moveDetailHandler={moveDetailHandler} 
             />}
 

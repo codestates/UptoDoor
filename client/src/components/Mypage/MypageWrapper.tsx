@@ -22,8 +22,10 @@ import Signin from '../common/Signin/SigninModal'
 import {Menu} from '../../@type/adminInfo'
 import { StoreInfo } from '../../@type/storeInfo';
 import { RootReducerType } from '../../store/store';
+import { User } from '../../@type/userInfo';
+import {getNextPayDay,getToday} from '../../utils/calculateDate';
 
-type MenuArr = {
+export type MenuArr = {
   id: number;
   menu_id: number;
   quantity: number;
@@ -32,7 +34,7 @@ type MenuArr = {
 
 export interface Orders {
   createdAt: string;
-delivery_day: string[],
+  delivery_day: string[],
   delivery_detail: string;
   delivery_term: string;
   delivery_time: string;
@@ -50,14 +52,14 @@ delivery_day: string[],
 }
 
 function MyProfileWrapper(): JSX.Element {
-  const user = useSelector((state:RootReducerType) => state.user);
+  const user: User = useSelector((state: RootReducerType) => state.user);
   const dispatch: any = useDispatch();
   const history = useHistory();
-  const [orderList, setOrderList] = useState < Orders[] | []>([])
-  const [orderitem , setOrderItem] = useState<Object | {}>({})
+  const [orderList, setOrderList] = useState<Orders[] | []>([])
+  const [orderitem, setOrderItem] = useState<Orders | any>({})
   const [cur,setCur] = useState<number | 0>(0)
   const [loginModal , setLoginModal] = useState<boolean>(false);
-
+  console.log(orderList);
   const moveDetailHandler = (id:number) => {
     const filtered = orderList.filter((el:any)=>{
       return el.id === id
@@ -96,29 +98,30 @@ function MyProfileWrapper(): JSX.Element {
         const order = res.data.userdata.user_orders.map((el: any) => {
           const delivery_day = el.order.order_deliveries.map((el:any) =>  el.delivery_day )
           const { delivery_term, delivery_time } = el.order.order_deliveries[0];
+
+          const nextPayDay = getNextPayDay(el.order.createdAt)
+          const today = getToday();
+
+          if (el.order.state === "cancel") {
+            console.log("1");
+            if (new Date(nextPayDay) > new Date(today)) {
+              console.log(new Date(nextPayDay) > new Date(today))
+              el.order.state = 'canceling'
+            }
+          }
+
           const { 
             state, totalprice, order_menus, store, user_name, 
             selected_address, selected_address_detail, 
             selected_mobile, createdAt, id, delivery_detail,plus_money } = el.order;
-
-          const year = Number(createdAt.split('-')[0]);
-          const month = Number(createdAt.split('-')[1]);
-          const day = Number(createdAt.split('T')[0].split('-')[2]);
-          const date = new Date(year, month, day)
-          date.toLocaleString();
-          date.setDate(date.getDate()+28)
-          const newYear = date.getFullYear();
-          const newMonth = date.getMonth();
-          const newDay = String(date).split(' ')[2];
-          const nextPayDay = `${newYear}.${newMonth}.${newDay}`
-
           const final = {
             id,state,user_name,totalprice,
             store,selected_address,selected_address_detail,
             selected_mobile,createdAt,
             delivery_detail,plusMoney:plus_money,
             delivery_time,delivery_term,delivery_day,
-            menu:order_menus, nextPayDay,
+            menu: order_menus,
+            nextPayDay,
           }
           return final;
         })
@@ -176,7 +179,7 @@ function MyProfileWrapper(): JSX.Element {
 
             {cur === 1 ? 
             <MyOrderDetail 
-            user= {user}
+            userNickname= {user.nickname}
             orderitem = {orderitem}
             listbackHandler={listbackHandler}
             /> 

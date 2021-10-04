@@ -112,8 +112,9 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
     }
   }
   
-  return modalOpen ? (
-    <SigninContainer>
+  return (
+    <>{
+      modalOpen ?(<SigninContainer>
       <SigninWrapper>
           <Logo>UptoDoor</Logo>
         <Icon onClick={closeModal}>
@@ -164,9 +165,11 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
           modalBtn="확인"
         />:null }
 
-    </SigninContainer>
-  ) : null;
-  
+      </SigninContainer>)
+        : null
+    }
+      </>
+  )
 }
 
 export default Signin

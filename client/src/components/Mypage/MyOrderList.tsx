@@ -15,19 +15,6 @@ interface IProps {
 }
 
 function MyOrderList({ moveDetailHandler , orderList}:IProps): JSX.Element{
-  const newDate = new Date();
-  let year = newDate.getFullYear(); 
-  let month = newDate.getMonth() + 1; 
-  let date = newDate.getDate();
-  const today = `${year}.${month}.${date}`
-  orderList = orderList.map((el: any) => {
-    if (el.state === "cancel") {
-      if (new Date(el.nextPayDay) > new Date(today)) {
-        el.state = "canceling"
-      }
-    }
-    return el
-  })
   return (
     <MypageOrderListWrapper>
       {orderList.length === 0 ?

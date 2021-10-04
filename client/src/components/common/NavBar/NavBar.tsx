@@ -14,7 +14,7 @@ import Signin from '../Signin/SigninModal';
 import SideBar from '../SideBar/SideBar';
 import { User } from '../../../@type/userInfo';
 
-function NavBar() {
+function NavBar():JSX.Element {
   const history:any = useHistory();
   const dispatch:any = useDispatch()
   const user:User = useSelector((state:RootReducerType) => state.user)

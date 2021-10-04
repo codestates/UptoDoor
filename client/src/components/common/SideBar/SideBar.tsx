@@ -19,7 +19,7 @@ interface Iprops {
   signoutHandler: any;
 }
 
-const SideBar = ({ history,setIsOpen, isOpen,signoutHandler }: Iprops):any => {
+const SideBar = ({ history,setIsOpen, isOpen,signoutHandler }: Iprops):JSX.Element => {
 const user:User = useSelector((state:RootReducerType) => state.user)
   const { message,nickname } = user;
   

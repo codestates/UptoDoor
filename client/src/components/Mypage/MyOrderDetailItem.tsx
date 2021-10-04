@@ -7,12 +7,17 @@ import {
   EachItemBox,
 } from './StyledMypage'
 import { stringToPrice } from '../../utils/validation';
+import {MenuArr} from './MypageWrapper'
 
-function MyOrderItem({orderitem}:any) {
+type IProps = {
+  menus: MenuArr[]
+}
 
+function MyOrderDetailItem({menus}:IProps):JSX.Element {
+  console.log(11)
   return (
     <>
-      {orderitem.menu && orderitem.menu.map((el:any,idx:any)=>{
+      {menus && menus.map((el:any,idx:number)=>{
         return (
           <OrderSection key = {idx} shadow >
 
@@ -51,4 +56,4 @@ function MyOrderItem({orderitem}:any) {
   )
 }
 
-export default MyOrderItem
+export default MyOrderDetailItem

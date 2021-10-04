@@ -1,10 +1,12 @@
 const { default: axios } = require('axios');
 const { user,order,user_order,order_menu,order_delivery } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
-
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-    
+    logger.info(`USER ORDER -POST- (${requestIp.getClientIp(req)})`)
+
     let orderInfo = req.body.order;
 
     //현재 로그인한 유저의 정보 뽑기
@@ -70,6 +72,7 @@ module.exports = async (req, res) => {
                 res.status(201).send({message: 'Your order has been completed'});    
             })
         } catch (error) {
+            logger.error(`USER ORDER -POST- (${requestIp.getClientIp(req)})`)
             res.status(403).send({message: 'order fail, try again'});
         }
     }

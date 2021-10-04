@@ -1,7 +1,11 @@
 const { user, user_order, order_menu, menu, store, order, order_delivery } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
+
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
+    logger.info(`GET USER INFO -GET- (${requestIp.getClientIp(req)})`)
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const userInfo = checkAccess(access);
     const { id } = userInfo;
@@ -26,6 +30,7 @@ module.exports = async (req, res) => {
         res.status(200).send({ message: 'ok', userdata });
     }
     catch(err){
+        logger.error(`GET USER INFO -GET- (${requestIp.getClientIp(req)})`)
         console.log('--- user my page ---',err);
         res.status(404).send({ message: 'user info load fail' });
     }

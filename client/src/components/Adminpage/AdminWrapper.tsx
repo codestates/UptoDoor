@@ -25,14 +25,18 @@ import {
 import AdminOrderList from './AdminOrderList';
 import AdminOrderInfo from './AdminOrderInfo';
 import AdminStoreInfo from './AdminStoreInfo';
-import { Orders } from "../../@type/adminInfo";
+
 
 import Auth from '../../hoc/auth'
 import Signin from '../common/Signin/SigninModal'
+import { Orders } from "../../@type/adminInfo";
+import { User } from "../../@type/userInfo";
 
 function AdminWrapper() {
   const admin = useSelector((state:RootReducerType) => state.admin);
-  const user = useSelector((state:RootReducerType) => state.user);
+  const user:User = useSelector((state: RootReducerType) => state.user);
+
+  console.log("1111", user);
   const store = admin;
   const { orders } = store;
   const [filteredData, setFilteredData] = useState<Array<Orders> | []>([]);
@@ -97,7 +101,7 @@ function AdminWrapper() {
             <PageProfileWrapper>
               <PageContent>
                 <h3>안녕하세요. {user.nickname}님</h3>
-                {user.title === "" ? (
+                {admin.name === "" ? (
                   <p>가게를 등록해주세요.</p>
                 ) : (
                   <>

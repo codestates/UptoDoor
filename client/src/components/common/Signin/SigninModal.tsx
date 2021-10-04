@@ -45,13 +45,13 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request,url }: Iprops):any 
     dispatch(signIn(userinfo))
       .then((res: any) => {
         if (res.payload.message  === 'login success') {
-          if(
-            link === 'http://localhost:3000/usercart'||
-            link ==='http://localhost:3000/userorder'){
-            history.push('/')
-          }else{
-            window.location.reload();
-          }
+          // if(
+          //   link === 'http://localhost:3000/usercart'||
+          //   link ==='http://localhost:3000/userorder'){
+          //   history.push('/')
+          // }else{
+          //   window.location.reload();
+          // }
         }
         else {
           setFailModal(true);

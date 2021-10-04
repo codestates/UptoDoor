@@ -2,7 +2,7 @@ import React from 'react'
 import {TitleAddress} from './StyledAddress'
 
 interface Iprops {
-  deleteHandler?: any;
+  deleteHandler: (name: string) => void | undefined;
   name?: string;
 }
 

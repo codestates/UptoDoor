@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import Chart from 'react-apexcharts'
 import 
@@ -9,21 +10,39 @@ import
   ChartText,
 } from './StyledAnalysis'
 
-function AnalysisUser() {
+function AnalysisUser({chart}) {
+
+  // console.log('agechart',chart[1])
+
+  // const ageNum = chart[1];
+  // console.log(ageNum)
 
   const arr = [
-    {name : '10대 남자',number: 23},
-    {name : '20대 남자',number : 223},
-    {name : '30대 남자',number : 123},
-    {name : '40대 남자',number : 83},
-    {name : '50대 남자',number : 33},
-    {name : '60대 남자',number : 13},
+    // {name : '10대 남자',number : ageNum[0].man},
+    // {name : '20대 남자',number : ageNum[1].man},
+    // {name : '30대 남자',number : ageNum[2].man},
+    // {name : '40대 남자',number : ageNum[3].man},
+    // {name : '50대 남자',number : ageNum[4].man},
+    // {name : '60대 남자',number : ageNum[5].man},
+    // {name : '10대 여자',number : ageNum[0].woman},
+    // {name : '20대 여자',number : ageNum[1].woman},
+    // {name : '30대 여자',number : ageNum[2].woman},
+    // {name : '40대 여자',number : ageNum[3].woman},
+    // {name : '50대 여자',number : ageNum[4].woman},
+    // {name : '60대 여자',number : ageNum[5].woman},
+
+    {name : '10대 남자',number : 12},
+    {name : '20대 남자',number : 12},
+    {name : '30대 남자',number : 12},
+    {name : '40대 남자',number : 12},
+    {name : '50대 남자',number : 12},
+    {name : '60대 남자',number : 12},
     {name : '10대 여자',number : 12},
-    {name : '20대 여자',number : 209},
-    {name : '30대 여자',number : 143},
-    {name : '40대 여자',number : 42},
-    {name : '50대 여자',number : 23},
-    {name : '60대 여자',number : 3},
+    {name : '20대 여자',number : 12},
+    {name : '30대 여자',number : 12},
+    {name : '40대 여자',number : 12},
+    {name : '50대 여자',number : 12},
+    {name : '60대 여자',number : 12},
   ]
 
   arr.sort((a,b)=>b.number-a.number)
@@ -35,8 +54,6 @@ function AnalysisUser() {
     let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
     let splicingNameFirst = name.splice(0,5).concat(['그 외']);
     
-    // console.log('splicingFirst::',splicingNameLast)
-    // console.log('splicingFirst::',splicingNameFirst)
 
   const options = { 
     labels: splicingNameFirst,
@@ -99,12 +116,8 @@ function AnalysisUser() {
       ],
   };
   
-  // const series = number.splice(0,6) //실제 데이터 들어오는곳!! 배열로.
   let splicingLast = number.splice(5).reduce((acc,cur)=>acc+cur);
-  // console.log('외 몇개 표시할 숫자들 더한고~!::',splicingLast)
-  // let splicingFirst = number.splice(0,5).concat([`외 ${splicingLast}`]);
   let splicingFirst = number.splice(0,5).concat([splicingLast]);
-  console.log('splicingFirst::',splicingFirst)
   const series = splicingFirst
 
   return (

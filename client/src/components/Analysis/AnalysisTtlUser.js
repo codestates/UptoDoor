@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React,{useState} from 'react'
 import Chart from 'react-apexcharts'
 import Select from 'react-select'
@@ -13,7 +14,23 @@ import
 } from './StyledAnalysis'
 
 // eslint-disable-next-line react/prop-types
-function AnalysisTtlUser({chartStart,second}) {
+function AnalysisTtlUser({chartStart,second,chart}) {
+
+  // console.log('남자',chart[0])
+  // console.log('chart::',chart);
+  // console.log('namemmchart::',chart[0]);
+  // console.log('charrrrrmchart::',chart[0].food);
+
+  // let key = Object.keys(chart[0])
+  // console.log('keyyyy' , key)
+  // const arr = [];
+  // let value;
+  // for(let el of chart[0][key[0]]){
+  //   value = Object.values(el)
+  //   arr.push(value[0]);
+  // }
+
+  // console.log('value',arr)
 
   const [selectGender , setSelectGender] = useState('')
   const gender = 
@@ -73,7 +90,8 @@ function AnalysisTtlUser({chartStart,second}) {
     }
   };
 
-  const series1 = [{
+  const series1 = [
+    {
     name: 'Food',
     data: [44, 55, 41, 37, 22, 43]
   }, {
@@ -88,7 +106,8 @@ function AnalysisTtlUser({chartStart,second}) {
   }, {
     name: 'Etc',
     data: [25, 12, 19, 32, 25, 24]
-  }];
+  }
+  ];
 
   //!femle data
   const options2 = { 

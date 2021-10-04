@@ -88,24 +88,24 @@ function MyProfileEdit() {
 
   //!회원탈퇴 버튼
   const withdrawalConfirm = () => {
-    // alert('탈퇴성공')
     dispatch(deleteUser())
-    .then((res: any) => {
-      console.log(res);
-      console.log(res.payload);
-      if (res.payload  === 'good bye') {
+      .then((res: any) => {
+        console.log("payload",res.payload);
+      if (res.payload.message  === 'good bye') {
         setOpenModal(false);
+        setModalSuccess(true);
         setDeleteUserModal(true);
-        window.location.href=`${END_POINT}`
+        // window.location.href=`${END_POINT}`
       } else {
         alert('탈퇴 실패. 못벗어남.');
       }
     })
-    .catch((err: any) => {
-      console.log(err)
-    });
-    setOpenModal(false);
-    setDeleteUserModal(true);
+    // .catch((err: any) => {
+    //   console.log(err)
+    // });
+    // setOpenModal(false);
+    // setModalSuccess(true);
+    // setDeleteUserModal(true);
   }
 
   const withdrawalModalHandler = () => {
@@ -240,7 +240,6 @@ function MyProfileEdit() {
       <WarningModal
       cancle
       openModal = {openModal}
-      url='/'
       setOpenModal={setOpenModal}
       modalTitleText = '정말 회원 탈퇴하시겠습니까?'
       modalSubText = '관리중인 서비스는 자동 구독취소 처리됩니다.'
@@ -269,12 +268,13 @@ function MyProfileEdit() {
       }
       {deleteUserModal ?
       <ConfirmModal
-      confirmModal = {deleteUserModal}
-      url="/"
-      setOpenModal={setDeleteUserModal}
-      modalTitleText = '회원 탈퇴'
-      modalText = 'Good Bye'
-      modalBtn = '확인'
+          confirmModal={deleteUserModal}
+          url="/"
+          setOpenModal={setDeleteUserModal}
+          modalTitleText='회원 탈퇴'
+          modalText='Good Bye'
+          modalBtn='확인'
+          modalSuccess={modalSuccess}
       />
       :
       null

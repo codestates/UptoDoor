@@ -336,6 +336,7 @@ export const DeliveryState = styled.h5`
   padding: 2px;
   font-size: 10px;
   background-color: ${({ blue }) => (blue ? MainColor : PointColor)};
+  
   @media screen and (min-width: 767px) {
     width: 50px;
     height: 24px;
@@ -347,14 +348,14 @@ export const DeliveryState = styled.h5`
   }
   @media screen and (min-width: 1140px) {
     min-width: 60px;
-    width:60px;
+    width: 60px;
     margin-right: 15px;
     font-size: 14px;
     /* padding: 5px; */
-    height:25px;
+    height: 25px;
     border-radius: 8px;
     text-align: center;
-    line-height:-3rem;
+    line-height: -3rem;
   }
 `;
 

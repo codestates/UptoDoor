@@ -5,7 +5,6 @@ const { checkAccess } = require('../Tokenfunc');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
     
-    console.log("바디데이터",req.body)
     let orderInfo = req.body.order;
 
     //현재 로그인한 유저의 정보 뽑기
@@ -30,8 +29,6 @@ module.exports = async (req, res) => {
           selected_address_detail: orderInfo.selected_address_detail,
         }); 
 
-        console.log('----billing----',req.body.data.billing_key);
-        console.log('----orderid----',orderData.id)
         //user_order테이블에 데이터추가
         await user_order.create({
             user_id : id,
@@ -39,12 +36,20 @@ module.exports = async (req, res) => {
         })
          
         //order_delivery테이블에 지정요일의 개수만큼 데이터 저장
+        let date = new Date();
+        const newYear = date.getFullYear();
+        const newMonth = date.getMonth()+1;
+        const newDay = date.getDate();
+        const nextPayDay = `${newYear}.${newMonth}.${newDay}`
+        
         for(let el of orderInfo.delivery_day){
             await order_delivery.create({
                 order_id : orderData.id,
                 delivery_time :orderInfo.delivery_time,
                 delivery_day : el,
-                delivery_term : orderInfo.delivery_term
+                delivery_term : orderInfo.delivery_term,
+                paycount: 0,
+                payday: nextPayDay,
             })
         }
        //order_menu테이블에 지정메뉴의 개수만큼 데이터 저장
@@ -60,7 +65,6 @@ module.exports = async (req, res) => {
             order_id : orderData.id,
             data: req.body.data
           }
-            console.log('----orderinfo 아래----',sendinfo);
             await axios.post('http://localhost:3060/payment', sendinfo)
             .then(() => {
                 res.status(201).send({message: 'Your order has been completed'});    

@@ -28,7 +28,6 @@ function NavBar() {
   const { user }: any = state;
   const message = user.message;
   
-  const [logoutFailure , setLogoutFailure] = useState(false)
   //사이드바 모달창
   const [isOpen, setIsOpen] = useState(false);
   const [alarmBtnModal, setAlarmBtnModal] = useState(false);

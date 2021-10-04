@@ -424,7 +424,7 @@ export const categoryDummy = [
 export const LandingValues = [
   'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value1.png',
   'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value2.png',
-  'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value3.png'
+  'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value3.png',
 ]
 //맵퍼 해시태그 더미
 export const initialHash = [

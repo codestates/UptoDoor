@@ -1,8 +1,8 @@
-import React from 'react'
+//import React from 'react'
 import Fade from 'react-reveal/Fade'
 import axios from 'axios'
-import {ENDPOINT} from '../../_actions/type'
-
+import { END_POINTS } from '../../_actions/type'
+import React , {useState, useEffect} from 'react'
 import { Container, Title, Wrapper } from '../GlobalStyle'
 import {
   chartObjOne,
@@ -17,15 +17,16 @@ import AnalysisAverageMonth from './AnalysisAverageMonth'
 
 const AnalysisWrapper = () => {
 
-  // const [chart, setChart] = useState('');
+  const [chart, setChart] = useState('');
 
-  // useEffect( () => {
-  //   axios.get(`${ENDPOINT}/dataaaaaa`)
-  //     .then(res => {
-  //       setChart(res.data.data);
-  //     })
-  //     .catch(err => console.log('받아오는거 에러러러',err));
-  // }, []);
+  useEffect( () => {
+    axios.get(`${END_POINTS}/analysis`)
+      .then(res => {
+        console.log('------구독 분석 데이터------',res.data)
+        setChart(res.data);
+      })
+      .catch(err => console.log('받아오는거 에러',err));
+  }, []);
 
   return (
     <Container>
@@ -33,7 +34,7 @@ const AnalysisWrapper = () => {
       <Wrapper>
 
         <Fade bottom>
-        <AnalysisAverageMonth/>
+        <AnalysisAverageMonth />
         </Fade>
 
         <Fade right >

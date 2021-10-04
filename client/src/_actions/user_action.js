@@ -51,10 +51,10 @@ export const signUp = (userinfo) => {
 
 //유저 signin post 요청
 export const signIn = (userinfo) => {
+  console.log("22",userinfo)
   const request = axios
     .post(`${END_POINTS}/users/signin`, userinfo)
     .then((res) => {
-      console.log('resres',res.data)
       return {
         message: res.data.message,
         id: res.data.userinfo.id,
@@ -72,10 +72,9 @@ export const signIn = (userinfo) => {
         login_type: res.data.login_type,
       };
     })
-    .catch(() => {
-      return {
-        message: "error",
-      };
+    .catch((err) => {
+      console.log(err)
+      
     });
 
   return {
@@ -208,10 +207,10 @@ export const editUser = (userinfoEdit) => {
 //회원탈퇴 delete 요청 -> state 전부 초기화하기
 export const deleteUser = () => {
   const request = axios
-    .delete(`${END_POINTS}/users`,)
-    .then((res)=>{
-    console.log('rerere',res.data)
-      return res.data.message;
+    .delete(`${END_POINTS}/users`)
+    .then((res) => {
+      console.log("회원탈퇴", res.data);
+      return res.data;
     })
     .catch((err)=>{
       console.log('==userinfo 받아오기실패==',err)
@@ -264,7 +263,7 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
 //구독취소
 export const cancelOrder = (id) => {
   const request = axios
-    .patch(`${END_POINTS}/users/order:${id}`)
+    .delete(`${END_POINTS}/cancel/${id}`)
     .then((res) => {
       return res.data
     }).catch((err) => {

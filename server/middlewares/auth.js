@@ -11,7 +11,8 @@ module.exports = async (req, res, next) => {
     const { email, password } = req.body;
     const Password = crypto.createHash('sha512').update(password).digest('hex');
     //const Data = await user.findOne({ where: { email: email, password: Password } });
-    let Data =  await user.findOne({ where: { email: email }});
+    let Data = await user.findOne({ where: { email: email } });
+    console.log("data--------------", Data)
     if (Data) {
       if(Data.emailcheck === 'true'){
         if(Data.password === Password){
@@ -21,13 +22,16 @@ module.exports = async (req, res, next) => {
         sendAccessToken(res, accesstoken);
         sendRefreshToken(res, refreshtoken);
         next();
-        }else{
+        } else {
+          console.log("login fail password-------------");
           res.status(404).send({ message: "login fail password" });
         }    
-      }else{
+      } else {
+        console.log("login fail email_check-------------");
         res.status(404).send({ message: "login fail email_check" });
       }
-    }else{
+    } else {
+      console.log("login fail email-----------------");
       res.status(404).send({ message: "login fail email" });
     }    
   } else {

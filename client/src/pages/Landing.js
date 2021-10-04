@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import LandingIntro from '../components/Landing/LandingIntro';
 import LandingInfo from "../components/Landing/LandingInfo";
 import LandingValue from "../components/Landing/LandingValue";

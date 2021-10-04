@@ -45,7 +45,7 @@ function NavBar() {
       dispatch(AdminStoreReset());
       dispatch(kakaoSignOut())
       .then((res: any) => {
-        if (res.payload === "signout success") {
+        if (res.payload.message === "signout success") {
           window.location.href = `${END_POINT}`
       }
     })
@@ -54,7 +54,7 @@ function NavBar() {
       dispatch(AdminStoreReset());
       dispatch(naverSignOut())
       .then((res: any) => {
-        if (res.payload === "signout success") {
+        if (res.payload.message === "signout success") {
           window.location.href = `${END_POINT}`
       } 
     });
@@ -63,7 +63,7 @@ function NavBar() {
       dispatch(AdminStoreReset())
       dispatch(signOut())
       .then((res: any) => {
-        if (res.payload === "signout success") {
+        if (res.payload.message === "signout success") {
             window.location.href=`${END_POINT}`
         }
     });

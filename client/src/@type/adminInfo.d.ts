@@ -11,34 +11,36 @@ export interface AdminInfo {
   close_time: string;
 	profileImage: string | null;
   createdAt?: string;
-  message?: string;
   store_menus: StoreMenus[];
   orders: Orders[];
+  message?: string;
 }
 
 export interface StoreMenus {
   menu_id: number;
-  menu: {
-    id: number,
+  menu: Menu;
+}
+
+export type Menu = {
+  id: number,
     name: string,
     image: string,
     price: number,
     detail: string
-  }
-}
+} 
 
 export interface Orders {
   billingkey?: any;
   createdAt?: string;
   delivery_detail?: string;
-  id?: number;
-  order_deliveries?: OrderDeliveries;
-  order_menus?: OrderMenus[];
-  order_time?: string;
-  plus_check?: string;
-  plus_money?: number;
-  user_name?: string;
-  receipt?: any;
+  id: number;
+  order_deliveries: OrderDeliveries;
+  order_menus: OrderMenus[];
+  order_time: string;
+  plus_check: string;
+  plus_money: number;
+  user_name: string;
+  receipt: any;
   selected_mobile: string;
   selected_address: string;
   selected_address_detail: string;

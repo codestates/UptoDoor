@@ -457,5 +457,4 @@ export const LandingValues = [
   'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value2.png',
   'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/landing_value3.png',
 ]
-
 export const LogoSrc = 'https://uptodoor-imgs.s3.ap-northeast-2.amazonaws.com/uptodoor_logo.png'

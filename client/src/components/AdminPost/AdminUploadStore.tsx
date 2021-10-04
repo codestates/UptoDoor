@@ -17,19 +17,22 @@ import axios from 'axios';
 import MapSelectModal from '../Mapper/MapSelectModal'
 import { END_POINTS } from '../../_actions/type';
 
+type IProps = {
+  updateStoreImg: (storeImgs:any) => void;
+}
 interface sliderProps {
   autoplay?: boolean | number;
   speed?: number;
   loop?: boolean; 
 }
 function AdminUploadStore(
-  props : any,{
+  props : IProps,{
   autoplay = true,
   speed = 300,
   loop = true,}:sliderProps) {
 
   // img 5개 제한
-  const [openModal , setOpenModal] = useState(false);
+  const [openModal , setOpenModal] = useState<boolean>(false);
   const [imgs , setImgs]:any = useState([]); 
   const dropHandler = async (files:any) => {
     if(imgs.length === 5){
@@ -50,15 +53,12 @@ function AdminUploadStore(
         alert('파일저장실패')
       }
     })
-    .catch((err)=>{
-      return console.log('==file 가져오기 실패===',err)
-    })
     }
   }
-  const closeModal = () => {
+  const closeModal = ():void => {
     setOpenModal((prev)=>!prev)
   }
-  const deleteImgHandler = (files:any) => {
+  const deleteImgHandler = (files:any):void => {
     const curIdx = imgs.indexOf(files)  
     // console.log(curIdx);
     const newImgs = [...imgs]
@@ -133,49 +133,4 @@ function AdminUploadStore(
   )
 }
 
-export default AdminUploadStore
-// const settings = {
-//   dots: false,
-//   infinite: true,
-//   speed: 500,
-//   slidesToShow: 9,
-//   slidesToScroll: 9,
-//   initialSlide: 0,
-//   responsive: [
-//       {
-//           breakpoint: 1440,
-//           settings: {
-//               slidesToShow: 7,
-//               slidesToScroll: 7
-//           }
-//       },
-//       {
-//           breakpoint: 1024,
-//           settings: {
-//               slidesToShow: 5,
-//               slidesToScroll: 5
-//           }
-//       },
-//       {
-//           breakpoint: 720,
-//           settings: {
-//               slidesToShow: 3,
-//               slidesToScroll: 3
-//           }
-//       },
-//       {
-//           breakpoint: 480,
-//           settings: {
-//               slidesToShow: 2,
-//               slidesToScroll: 2
-//           }
-//       },
-//       {
-//           breakpoint: 320,
-//           settings: {
-//               slidesToShow: 1,
-//               slidesToScroll: 1
-//           }
-//       }
-//   ]
-// };
+export default AdminUploadStore;

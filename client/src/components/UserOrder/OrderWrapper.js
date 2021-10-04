@@ -148,6 +148,10 @@ return setOpenModal(true);
     }
   }, []);
 
+  const goBackHandler = () => {
+    history.back()
+  }
+
   useEffect(() => {
     if (orderMobile.length === 10) {
       setOrderMobile(orderMobile.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
@@ -157,7 +161,7 @@ return setOpenModal(true);
         orderMobile
           .replace(/-/g, "")
           .replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-      );
+      ); 
     }
   }, [orderMobile]);
 
@@ -195,7 +199,8 @@ return setOpenModal(true);
           <MiddleButton type="button" primary onClick={orderHander}>
             결제하기
           </MiddleButton>
-          <MiddleButton>뒤로가기</MiddleButton>
+          <MiddleButton type="button" onClick={goBackHandler}>뒤로가기</MiddleButton>
+          
         </ButtonWrapper>
       </Wrapper>
 

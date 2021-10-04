@@ -8,16 +8,16 @@ import {
 import { AddressModalContainer, Postcoder } from '../CertAddress/StyledAddress';
 
 interface AdminAddProps {
-  adminAddress : string,
-  addressModal : boolean,
-  setAddressModal : any,
-  changeAdminAddress : any,
-  changeAddDetailHandler : any,
+  adminAddress: string;
+  addressModal: boolean;
+  setAddressModal: (value: boolean)=> void;
+  changeAdminAddress: (value: string) => void;
+  onChangeAdminAddressDetail: (value: string) => void;
 }
 
 function AdminEnrollStore({
   adminAddress,addressModal,setAddressModal,
-  changeAdminAddress,changeAddDetailHandler
+  changeAdminAddress,onChangeAdminAddressDetail
   }:AdminAddProps) {
 
   const closeModal = () => {
@@ -32,18 +32,18 @@ function AdminEnrollStore({
         <StoreAddressBtn
         required
         type="button"
-        onClick={()=>setAddressModal((prev:any)=>!prev)}
+        onClick={()=>setAddressModal(true)}
         >가게 주소 등록하기</StoreAddressBtn>
         :
         <StoreAddressBtn
         type="button"
-        onClick={()=>setAddressModal((prev:any)=>!prev)}
+            onClick={setAddressModal(true)}
         >{adminAddress}</StoreAddressBtn>
         }
         
         <StoreInput 
         type="text"
-        onChange={changeAddDetailHandler}
+        onChange={onChangeAdminAddressDetail}
         placeholder = '상세 주소 작성' 
         />
       </StoreAddressWrapper>

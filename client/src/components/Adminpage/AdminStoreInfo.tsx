@@ -1,9 +1,13 @@
 import React from 'react'
 import { StoreTitle,StoreDesc,StoreDescContent,StoreDescImg,StoreMenu ,MenuDesc,MenuImg,MenuContent,AdminContainer,AdminWrapper} from './StyledAdminPage'
 import { stringToPrice } from '../../utils/validation';
+import { AdminInfo } from '../../@type/adminInfo';
 
-const AdminStoreInfo = ({store}:any) => {
-  console.log("11", store);
+type IProps = {
+  store: AdminInfo;
+};
+
+const AdminStoreInfo = ({ store }:IProps) => {
   return (
       <AdminContainer>
       <AdminWrapper >
@@ -24,7 +28,7 @@ const AdminStoreInfo = ({store}:any) => {
             <div><span>📱 연락처:</span><p>{store.number}</p></div>
             <div><span>⏰ 영업시간:</span><p>{store.open_time} - {store.close_time}</p></div>
             <div><span>✍🏼 가게 설명:</span><p>{store.introduce } </p></div>
-            <div></div>
+            
           </StoreDesc>
           <StoreMenu>
             <h3>메뉴 정보</h3>

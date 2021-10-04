@@ -39,20 +39,19 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request,url }: Iprops):any 
   }, [email])
 
   const link = window.location.href
-  console.log('link',link)
   const signinHandler = useCallback((e) => {
     e.preventDefault();
     const userinfo = {email, password}
     dispatch(signIn(userinfo))
       .then((res: any) => {
         if (res.payload.message  === 'login success') {
-          if(
-            link === 'http://localhost:3000/usercart'||
-            link ==='http://localhost:3000/userorder'){
-            history.push('/')
-          }else{
-            window.location.href=link
-          }
+          // if(
+          //   link === 'http://localhost:3000/usercart'||
+          //   link ==='http://localhost:3000/userorder'){
+          //   history.push('/')
+          // }else{
+          //   window.location.reload();
+          // }
         }
         else {
           setFailModal(true);

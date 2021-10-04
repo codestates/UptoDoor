@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from '../../_actions/user_action';
-
+import { RootReducerType } from '../../store/store';
 import {
   AddressContainer,
   AddressWrapper,
@@ -16,14 +16,14 @@ import {
 import { SmallButton } from "../common/Button/Button";
 import AddressTitle from "./AddressTitle";
 import ConfirmModal from "../common/Modal/ConfirmModal";
+import { User } from "../../@type/userInfo";
 
 const { kakao }:any = window;
 
 
 function EnrollAddress() {
-  const state = useSelector((state) => state);
+  const user:User = useSelector((state:RootReducerType) => state.user);
   const dispatch:any = useDispatch();
-  const { user }:any = state;
   //* 주소 값이 있을경우에 input창에 띄워줘야하기때문에 
   //* address 안붙임
   const { mainAddress, mainAddressDetail, subAddress, subAddressDetail, id } = user;
@@ -57,7 +57,7 @@ function EnrollAddress() {
   },[]);
   
   //* 지우는 함수
-  const deleteHandler = useCallback((name) => {
+  const deleteHandler = useCallback((name:string):void => {
     if (name === "main") {
       setMainPlaceDetail("");
       setMainPlace("");
@@ -194,7 +194,9 @@ function EnrollAddress() {
               주소 찾기
             </SmallButton>
           </AddressFormDiv>
-          <AddressTitle name="null" />
+          <AddressTitle name="null" deleteHandler={function (name: string): void | undefined {
+            throw new Error("Function not implemented.");
+          } } />
           <DetailAddress>
             <input
               type="text"
@@ -222,7 +224,9 @@ function EnrollAddress() {
               주소 찾기
             </SmallButton>
           </AddressFormDiv>
-          <AddressTitle name="no" />
+          <AddressTitle name="no" deleteHandler={function (name: string): void | undefined {
+            throw new Error("Function not implemented.");
+          } } />
           <DetailAddress>
             <input
               type="text"

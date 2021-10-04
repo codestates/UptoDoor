@@ -10,10 +10,7 @@ import
   ChartText,
 } from './StyledAnalysis'
 
-// eslint-disable-next-line react/prop-types
 function AnalysisCity({chart}) {
-
-  console.log('citychart',chart);
   
   //chart[0] 번째에 x 값 obj 로 추가
   // {x : chart[0]의 요소}
@@ -22,7 +19,7 @@ function AnalysisCity({chart}) {
   for(let i = 0 ; i<chart[0].length ; i++){
     data1.push({ x: chart[0][i],y: chart[1][i] })
   }
-  console.log('data1===',data1);
+  // console.log('data1===',data1);
 
   const options = { 
     legend: {
@@ -63,38 +60,11 @@ function AnalysisCity({chart}) {
         }
       },
     },
-    // responsive: [
-    //   {
-    //     breakpoint: 767,
-    //     options: {
-    //       chart: {
-    //         width: '460',
-    //         height: '460',
-    //       },
-    //       legend: {
-    //         position: 'bottom',
-    //       },
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 1140,
-    //     options: {
-    //       chart: {
-    //         width: '100%',
-    //         height: '300',
-    //       },
-    //       legend: {
-    //         position: 'bottom',
-    //       },
-    //     },
-    //   },
-    // ],
   };
-  //address[0][0] , address[1][0]
   const series = [
     {
       data : data1
-    }
+    },
   ]
 
   return (

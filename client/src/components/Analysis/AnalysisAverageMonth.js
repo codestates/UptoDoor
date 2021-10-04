@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React,{useState, useEffect} from 'react'
 import Fade from 'react-reveal/Fade'
 import {
@@ -5,7 +6,6 @@ import {
   AverageMonthWrapper,ArrowDisplay} 
 from './StyledAnalysis'
 
-// eslint-disable-next-line react/prop-types
 function AnalysisAverageMonth({chart}) {
 
   const [scrollY , setScrollY] = useState(0);
@@ -27,32 +27,32 @@ function AnalysisAverageMonth({chart}) {
     return () => {
       window.removeEventListener('scroll',showBelowArrow)
     }
-  })
-  // console.log(chart);
-  const count = {
-    id: 1 , label : '평균 구독 개월수', 
-    number : 2, duration : '1'
-  }
-  const [counting , setCounting] = useState('0');
+  },)
 
-  useEffect(() => {
-    let start = 0;
-    const end = count.number
-    if(start === end) return;
+  // const count = {
+  //   id: 1 , label : '평균 구독 개월수', 
+  //   number : chart, duration : '1'
+  // }
+  // const [counting , setCounting] = useState('0');
+
+  // useEffect(() => {
+  //   let start = 0;
+  //   const end = count.number
+  //   if(start === end) return;
     
-    //증가시 시간당 듀레이션
-    let totlaMilSecDur = parseInt(count.duration);
-    let incrementTime = (totlaMilSecDur / end) * 200;
+  //   //증가시 시간당 듀레이션
+  //   let totlaMilSecDur = parseInt(count.duration);
+  //   let incrementTime = (totlaMilSecDur / end) * 200;
 
-    let timer = setInterval(()=>{
-      start += 0.1;
-      setCounting(start.toFixed(1))
-      if(start.toFixed(1) === end.toFixed(1)) {
-        clearInterval(timer);
-      }
-    }, incrementTime);
+  //   let timer = setInterval(()=>{
+  //     start += 0.1;
+  //     setCounting(start.toFixed(1))
+  //     if(start.toFixed(1) === end.toFixed(1)) {
+  //       clearInterval(timer);
+  //     }
+  //   }, incrementTime);
 
-  }, [count.number,count.duration])
+  // }, [count.number,count.duration])
 
   return (
     <StyledAverageMonth>

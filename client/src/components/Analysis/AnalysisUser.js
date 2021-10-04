@@ -12,47 +12,37 @@ import
 
 function AnalysisUser({chart}) {
 
-  // console.log('agechart',chart[1])
+  // console.log('age chart:::',chart)
 
-  // const ageNum = chart[1];
+  const ageNum = chart[1];
   // console.log(ageNum)
 
   const arr = [
-    // {name : '10대 남자',number : ageNum[0].man},
-    // {name : '20대 남자',number : ageNum[1].man},
-    // {name : '30대 남자',number : ageNum[2].man},
-    // {name : '40대 남자',number : ageNum[3].man},
-    // {name : '50대 남자',number : ageNum[4].man},
-    // {name : '60대 남자',number : ageNum[5].man},
-    // {name : '10대 여자',number : ageNum[0].woman},
-    // {name : '20대 여자',number : ageNum[1].woman},
-    // {name : '30대 여자',number : ageNum[2].woman},
-    // {name : '40대 여자',number : ageNum[3].woman},
-    // {name : '50대 여자',number : ageNum[4].woman},
-    // {name : '60대 여자',number : ageNum[5].woman},
-
-    {name : '10대 남자',number : 12},
-    {name : '20대 남자',number : 12},
-    {name : '30대 남자',number : 12},
-    {name : '40대 남자',number : 12},
-    {name : '50대 남자',number : 12},
-    {name : '60대 남자',number : 12},
-    {name : '10대 여자',number : 12},
-    {name : '20대 여자',number : 12},
-    {name : '30대 여자',number : 12},
-    {name : '40대 여자',number : 12},
-    {name : '50대 여자',number : 12},
-    {name : '60대 여자',number : 12},
+    {name : '10대 남자',number : ageNum[0].man},
+    {name : '20대 남자',number : ageNum[1].man},
+    {name : '30대 남자',number : ageNum[2].man},
+    {name : '40대 남자',number : ageNum[3].man},
+    {name : '50대 남자',number : ageNum[4].man},
+    {name : '60대 남자',number : ageNum[5].man},
+    
+    {name : '10대 여자',number : ageNum[0].woman},
+    {name : '20대 여자',number : ageNum[1].woman},
+    {name : '30대 여자',number : ageNum[2].woman},
+    {name : '40대 여자',number : ageNum[3].woman},
+    {name : '50대 여자',number : ageNum[4].woman},
+    {name : '60대 여자',number : ageNum[5].woman},
   ]
 
   arr.sort((a,b)=>b.number-a.number)
 
   const name = arr.map((el)=>el.name);
+  // console.log('namenamename',name);
   const number = arr.map((ele)=>ele.number);
 
-    //name
-    let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
-    let splicingNameFirst = name.splice(0,5).concat(['그 외']);
+  //name
+  let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
+  // console.log('splicingNameLast',splicingNameLast)
+  let splicingNameFirst = name.splice(0,5).concat(['그 외']);
     
 
   const options = { 

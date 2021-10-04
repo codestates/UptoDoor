@@ -13,13 +13,10 @@ import
 // eslint-disable-next-line react/prop-types
 function AnalysisCategory({chartStart,second,chart}) {
 
-  // console.log('카테고리차트',chart)
   // eslint-disable-next-line react/prop-types
   const categoryName = chart.slice(0,5);
-  // console.log('categoryName::',categoryName);
   // eslint-disable-next-line react/prop-types
   const categoryData = chart.slice(5);
-  // console.log('categoryData::',categoryData);
 
     const options = { 
       labels: categoryName,

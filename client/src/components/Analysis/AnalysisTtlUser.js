@@ -13,24 +13,35 @@ import
   Column1,Column2,
 } from './StyledAnalysis'
 
-// eslint-disable-next-line react/prop-types
 function AnalysisTtlUser({chartStart,second,chart}) {
 
-  // console.log('남자',chart[0])
-  // console.log('chart::',chart);
-  // console.log('namemmchart::',chart[0]);
-  // console.log('charrrrrmchart::',chart[0].food);
+  // console.log('모든유저chart::',chart)
+  //[{…}, {…}]
 
-  // let key = Object.keys(chart[0])
+  let key = Object.keys(chart[0])
+  let ttlArr = [];
+  for(let i = 0; i<key.length; i++){
+    // let value = Object.values(chart[0][i])
+    // console.log('valueee',value)
+    ttlArr.push({name: key[i] , data : chart[0][key]})
+    // ttlArr.push({name: key[i] , data : chart[0][key][i][i]})
+  }
+  // console.log(ttlArr);
   // console.log('keyyyy' , key)
+  //['food', 'cafe', 'living/home', 'beauty', 'etc']
   // const arr = [];
   // let value;
+
+  // for(let el of chart[0][key[1]]){
+  // value = Object.values(key[0])
+
   // for(let el of chart[0][key[0]]){
   //   value = Object.values(el)
   //   arr.push(value[0]);
   // }
 
   // console.log('value',arr)
+  //[0, 0, 30, 0, 0, 0]
 
   const [selectGender , setSelectGender] = useState('')
   const gender = 
@@ -135,7 +146,6 @@ function AnalysisTtlUser({chartStart,second,chart}) {
       colors: ['#fff']
     },
     xaxis: {
-      // categories: ['10대', '20대','30대','40대','50대','60대이상'],
       labels: {
         formatter: function (val) {
           return val

@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, DispatchWithoutAction } from 'react'
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
+import { DispatchProp, useDispatch } from 'react-redux'
 import { adminStorePost } from '../../_actions/admin_action';
 import Select from 'react-select';
 import TimePicker from "rc-time-picker";

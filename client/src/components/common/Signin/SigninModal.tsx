@@ -39,7 +39,6 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request,url }: Iprops):any 
   }, [email])
 
   const link = window.location.href
-  console.log('link',link)
   const signinHandler = useCallback((e) => {
     e.preventDefault();
     const userinfo = {email, password}
@@ -51,7 +50,7 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request,url }: Iprops):any 
             link ==='http://localhost:3000/userorder'){
             history.push('/')
           }else{
-            window.location.href=link
+            window.location.reload();
           }
         }
         else {

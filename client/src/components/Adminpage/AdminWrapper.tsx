@@ -35,14 +35,13 @@ function AdminWrapper() {
   const user = useSelector((state:RootReducerType) => state.user);
   const store = admin;
   const { orders } = store;
-  
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState<Array<Orders> | []>([]);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
-  const [selectedDay, setSelectedDay] = useState(days[new Date().getDay()]);
-  const [currentTab, setCurrentTab] = useState(new Date().getDay());
-  const [orderitem, setOrderItem] = useState({});
-  const [cur, setCur] = useState(0);
-  const [changeListItem, setChangeListItem] = useState(0);
+  const [selectedDay, setSelectedDay] = useState<String>(days[new Date().getDay()]);
+  const [currentTab, setCurrentTab] = useState<number>(new Date().getDay());
+  const [orderItem, setOrderItem] = useState<Orders | any>({});
+  const [cur, setCur] = useState<number>(0);
+  const [changeListItem, setChangeListItem] = useState<number>(0);
 
   //모달
   const [loginModal , setLoginModal] = useState(false);
@@ -63,13 +62,12 @@ function AdminWrapper() {
     setCur(0);
     setCurrentTab(id);
     setSelectedDay(day);
-    let filtered = orders?.filter((el:any) => {
+    const filtered = orders.filter((el:any) => {
       const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(day);
     });
-    console.log("22222",filtered);
-    // setFilteredData(filtered);
+    setFilteredData(filtered);
   };
 
   useEffect(() => {
@@ -78,9 +76,8 @@ function AdminWrapper() {
       const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(selectedDay);
-    });
-    console.log("1111", filtered);
-    // setFilteredData(filtered);
+    }); 
+    setFilteredData(filtered);
   }, []);
   const listItem = ["주문관리", "가게 정보"];
 
@@ -161,7 +158,6 @@ function AdminWrapper() {
               <AdminOrderList
                 moveDetailHandler={moveDetailHandler}
                 data={filteredData}
-                selectedDay={selectedDay}
               />
             </AdminUlListWrapper>
           ) : (
@@ -184,7 +180,7 @@ function AdminWrapper() {
                 })}
               </AdimUl>
               <AdminOrderInfo
-                orderitem={orderitem}
+                orderItem={orderItem}
                 listbackHandler={listbackHandler}
               />
             </AdminUlListWrapper>

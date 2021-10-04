@@ -2,16 +2,22 @@ import React,{useState} from "react";
 import { PageNumberWrapper,AdminOrderListInfoP,DeliveryTime,AdminOrderListItem,AdminWrapper,AdminContainer,AdminOrderListContent, } from './StyledAdminPage'
 import {ArrowBtn ,NextBtn } from '../common/Button/Button'
 import { removeLastStr } from '../../utils/validation';
+import { Orders,OrderMenus } from '../../@type/adminInfo';
+
+type IProps = {
+  moveDetailHandler:(id: number) => void;
+  data: Array<Orders>;
+};
 
 function AdminOrderList({
-  moveDetailHandler, data,selectedDay }: any) {
-  const [currentPage, setCurrentPage] = useState(1);
+  moveDetailHandler, data }: IProps) {
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const postsPerPage = 10;
   
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
-  const currentPosts =( tmp:any ) => {
-    let currentPosts = 0;
+  const currentPosts =( tmp:Orders[] ) => {
+    let currentPosts = [];
     currentPosts = tmp.slice(indexOfFirst, indexOfLast);
     return currentPosts;
   }
@@ -20,11 +26,10 @@ function AdminOrderList({
   for (let i = 1; i <= Math.ceil(data.length / postsPerPage); i++) {
     pageNumbers.push(i);
   }
-  const posts: any = currentPosts(data);
-  
+  const posts = currentPosts(data);
   return (
     <AdminContainer>
-      {posts.map((el:any,idx:any)=>{
+      {posts.map((el:Orders,idx:number)=>{
         return (
           <AdminWrapper key = {idx}>
             <AdminOrderListContent>
@@ -33,7 +38,7 @@ function AdminOrderList({
                   <h5>주문자명: {el.user_name}</h5>
                   <h5>{el.selected_address}{" "}{el.selected_address_detail }</h5>
                   <AdminOrderListInfoP>
-                    <span>주문 내용:</span>{" "}{removeLastStr(el.order_menus.map((el1:any) => {
+                    <span>주문 내용:</span>{" "}{removeLastStr(el.order_menus.map((el1:OrderMenus) => {
                     return `${el1.menu.name} ${el1.quantity}개 ${" "}`
                   }).join() )}
                   </AdminOrderListInfoP>

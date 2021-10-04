@@ -14,29 +14,43 @@ import {
 } from '../AdminPost/StyledAdminPost'
 import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
-import { I } from '../common/Modal/styledModal';
 axios.defaults.withCredentials = true;
+import {Menu} from './AdminEditForm'      
+
+type IProps = {
+  addMenuHandler: (menus:{}) => void;
+  menuArr: Menu[] | [];
+  setMenuArr: (menu:[]) => void;
+}
 
 function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
-  }:any):any {
+}: IProps): any {
   const [menuImg , setMenuImg]:any = useState(''); 
   const [menuName , setMenuName] = useState('');
   const [price , setPrice] = useState(6000);
   const [menuDescription , setMenuDescription] = useState('');
 
-  const priceHandler = (e:any) => {
+  const priceHandler = (e:any):void => {
     setPrice(e.target.value)
     const copyArr = JSON.parse(JSON.stringify(menuArr));
     copyArr[e.target.id].price = e.target.value
     setMenuArr(copyArr)
   }
-  const changeMenuName = (e:any) => {
+  const changeMenuName = (e:any):void => {
     setMenuName(e.target.value)
     const copyArr = JSON.parse(JSON.stringify(menuArr));
     copyArr[e.target.id].name = e.target.value
     setMenuArr(copyArr)
   }
-    const dropHandler = (e:any) => {
+
+  const changeMenuDesc = (e:any):void => {
+    setMenuDescription(e.target.value)
+    const copyArr = JSON.parse(JSON.stringify(menuArr));
+    copyArr[e.target.id].detail = e.target.value
+    setMenuArr(copyArr)
+  }
+  
+    const dropHandler = (e:any):void => {
       const file = e.target.files
       const formData = new FormData();
       const config = {
@@ -58,21 +72,16 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
         }
       })
       .catch((err)=>{
-        return console.log('==file 가져오기 실패===',err)
+        console.log('==file 가져오기 실패===',err)
       })
     }
   
-    const changeMenuDesc = (e:any) => {
-      setMenuDescription(e.target.value)
-      const copyArr = JSON.parse(JSON.stringify(menuArr));
-      copyArr[e.target.id].detail = e.target.value
-      setMenuArr(copyArr)
-    }
 
-    const addMenuItemHandler = () => {
+    const addMenuItemHandler = ():void => {
       const idx = menuArr.length-1
-      if(menuArr[idx].image.includes('http') && menuArr[idx].price !== 0 && menuArr[idx].name !== '' && menuArr[idx].detail !== ''){
-        addMenuHandler();
+      if (menuArr[idx].image.includes('http')
+        && menuArr[idx].price !== 0 && menuArr[idx].name !== '' && menuArr[idx].detail !== '') {
+        addMenuHandler({});
         setMenuImg('');
         setPrice(0);
         setMenuName('');
@@ -82,15 +91,15 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
       }
     }
 
-    const uploadHandler = (e:any) => {
+    const uploadHandler = (e:any):void => {
       e.target.previousSibling.click();
     }
-    const checkHandler = (e:any) => {   
+    const checkHandler = (e:any):void => {   
       dropHandler(e)
     }
 
      //!remove menu onclick handler
-    const removeMenuHandler = (e:any) => {
+    const removeMenuHandler = (e:any):void => {
       const idx = parseInt(e.target.id)
       const copyArr = JSON.parse(JSON.stringify(menuArr));
     if(copyArr.length > 1){
@@ -106,8 +115,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
   return (
     <StoreInputBox>
       <label className = 'menu-enroll-label'>메뉴 등록</label>
-      {menuArr && menuArr.map((el:any,idx:number) => {
-      // console.log('-----el----',el);
+      {menuArr && menuArr.map((el:Menu,idx:number) => {
         return (
           <StoreMenuAddWrapper key={idx}>
             <MenuUploadContent >
@@ -117,7 +125,7 @@ function AdminUploadMenu({addMenuHandler,menuArr,setMenuArr
                   required
                   id={idx}
                   type = 'file' 
-                  onChange={(e:any)=>{checkHandler(e)}}
+                  onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{checkHandler(e)}}
                 />
                 <MenuImg 
                   onClick={(e:any)=>{uploadHandler(e)}}

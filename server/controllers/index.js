@@ -27,5 +27,5 @@ module.exports = {
     Feedback: require('./Payment/feedback'),
     Payment: require('./Payment/payment'),
     Cancel: require('./Payment/paycancel'),
-    Analysis: require('./SubAnalysis/analysis')
+    Analysis: require('./SubAnalysis/analysis'),
 }

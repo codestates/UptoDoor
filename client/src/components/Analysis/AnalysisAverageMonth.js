@@ -29,30 +29,30 @@ function AnalysisAverageMonth({chart}) {
     }
   },)
 
-  // const count = {
-  //   id: 1 , label : '평균 구독 개월수', 
-  //   number : chart, duration : '1'
-  // }
-  // const [counting , setCounting] = useState('0');
+  const count = {
+    id: 1 , label : '평균 구독 개월수', 
+    number : chart, duration : '1'
+  }
+  const [counting , setCounting] = useState('0');
 
-  // useEffect(() => {
-  //   let start = 0;
-  //   const end = count.number
-  //   if(start === end) return;
+  useEffect(() => {
+    let start = 0;
+    const end = count.number
+    if(start === end) return;
     
-  //   //증가시 시간당 듀레이션
-  //   let totlaMilSecDur = parseInt(count.duration);
-  //   let incrementTime = (totlaMilSecDur / end) * 200;
+    //증가시 시간당 듀레이션
+    let totlaMilSecDur = parseInt(count.duration);
+    let incrementTime = (totlaMilSecDur / end) * 200;
 
-  //   let timer = setInterval(()=>{
-  //     start += 0.1;
-  //     setCounting(start.toFixed(1))
-  //     if(start.toFixed(1) === end.toFixed(1)) {
-  //       clearInterval(timer);
-  //     }
-  //   }, incrementTime);
+    let timer = setInterval(()=>{
+      start += 0.1;
+      setCounting(start.toFixed(1))
+      if(start.toFixed(1) === end) {
+        clearInterval(timer);
+      }
+    }, incrementTime);
 
-  // }, [count.number,count.duration])
+  }, [count.number,count.duration])
 
   return (
     <StyledAverageMonth>

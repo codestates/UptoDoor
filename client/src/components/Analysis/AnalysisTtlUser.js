@@ -15,33 +15,35 @@ import
 
 function AnalysisTtlUser({chartStart,second,chart}) {
 
-  // console.log('모든유저chart::',chart)
+  console.log('모든유저 성별+나이 chart::',chart[1])
   //[{…}, {…}]
 
+  //male
   let key = Object.keys(chart[0])
+  let values = Object.values(chart[0]);
   let ttlArr = [];
-  for(let i = 0; i<key.length; i++){
-    // let value = Object.values(chart[0][i])
-    // console.log('valueee',value)
-    ttlArr.push({name: key[i] , data : chart[0][key]})
-    // ttlArr.push({name: key[i] , data : chart[0][key][i][i]})
+  for (let i = 0; i < values.length; i++) {
+    let tmp = [];
+    for (let el of values[i]) {
+      let values = Object.values(el)[0];
+      tmp.push(values);
+    }
+    ttlArr.push({name: key[i], data: tmp});
   }
-  // console.log(ttlArr);
-  // console.log('keyyyy' , key)
-  //['food', 'cafe', 'living/home', 'beauty', 'etc']
-  // const arr = [];
-  // let value;
 
-  // for(let el of chart[0][key[1]]){
-  // value = Object.values(key[0])
-
-  // for(let el of chart[0][key[0]]){
-  //   value = Object.values(el)
-  //   arr.push(value[0]);
-  // }
-
-  // console.log('value',arr)
-  //[0, 0, 30, 0, 0, 0]
+  //female
+  let femaleKey = Object.keys(chart[1])
+  console.log("22", key);
+  let femaleValues = Object.values(chart[1]);
+  let femaleTtlArr = [];
+  for (let i = 0; i < femaleValues.length; i++) {
+    let femaleTmp = [];
+    for (let el of femaleValues[i]) {
+      let femaleValues = Object.values(el)[0];
+      femaleTmp.push(femaleValues);
+    }
+    femaleTtlArr.push({name: femaleKey[i], data: femaleTmp});
+  }
 
   const [selectGender , setSelectGender] = useState('')
   const gender = 
@@ -101,24 +103,7 @@ function AnalysisTtlUser({chartStart,second,chart}) {
     }
   };
 
-  const series1 = [
-    {
-    name: 'Food',
-    data: [44, 55, 41, 37, 22, 43]
-  }, {
-    name: 'Cafe',
-    data: [53, 32, 33, 52, 13, 43]
-  }, {
-    name: 'Living/Home',
-    data: [12, 17, 11, 9, 15, 11]
-  }, {
-    name: 'Beauty',
-    data: [9, 7, 5, 8, 6, 9]
-  }, {
-    name: 'Etc',
-    data: [25, 12, 19, 32, 25, 24]
-  }
-  ];
+  const series1 = ttlArr;
 
   //!femle data
   const options2 = { 
@@ -173,22 +158,7 @@ function AnalysisTtlUser({chartStart,second,chart}) {
       offsetX: 10,
     }
   };
-  const series2 = [{
-    name: 'Food',
-    data: [14, 85, 91, 67, 22, 19],
-  }, {
-    name: 'Cafe',
-    data: [43, 72, 63, 22, 13, 6]
-  }, {
-    name: 'Living/Home',
-    data: [2, 77, 101, 69, 22, 24]
-  }, {
-    name: 'Beauty',
-    data: [39, 57, 75, 48, 16, 19]
-  }, {
-    name: 'Etc',
-    data: [25, 42, 29, 13, 5, 4]
-  }];
+  const series2 = femaleTtlArr;
 
   const onChangeGender = (e) => {
     setSelectGender(e.value);

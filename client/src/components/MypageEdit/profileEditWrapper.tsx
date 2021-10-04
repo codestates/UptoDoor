@@ -235,8 +235,20 @@ function MyProfileEdit() {
 
         </Form>
       </Wrapper>
-      
+
       {openModal ?
+      user.position === '1' ?
+      <ConfirmModal
+      cancle
+      openModal = {openModal}
+      setOpenModal={setOpenModal}
+      modalTitleText = '회원탈퇴가 불가합니다.'
+      modalSubText = '아직 구독중인 고객님들이 있습니다.'
+      modalText = 
+      {`문의는 고객센터로 연락주시기 바랍니다.`}
+      modalBtn='닫기'
+      />
+      :
       <WarningModal
       cancle
       openModal = {openModal}
@@ -253,6 +265,7 @@ function MyProfileEdit() {
       :
       null
       }
+
       {confirmModal ?
       <ConfirmModal
       confirmModal = {confirmModal}
@@ -268,13 +281,13 @@ function MyProfileEdit() {
       }
       {deleteUserModal ?
       <ConfirmModal
-          confirmModal={deleteUserModal}
-          url="/"
-          setOpenModal={setDeleteUserModal}
-          modalTitleText='회원 탈퇴'
-          modalText='Good Bye'
-          modalBtn='확인'
-          modalSuccess={modalSuccess}
+        confirmModal={deleteUserModal}
+        url="/"
+        setOpenModal={setDeleteUserModal}
+        modalTitleText='회원 탈퇴'
+        modalText='Good Bye'
+        modalBtn='확인'
+        modalSuccess={modalSuccess}
       />
       :
       null

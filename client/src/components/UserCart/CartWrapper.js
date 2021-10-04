@@ -316,13 +316,14 @@ function CartWrapper() {
               <UserCheckListBox>
                 <h4>몇 시에 받고 싶으신가요?</h4>
                 <CartTimePicker
-                  value={changeMoment}
-                  showSecond={false}
-                  minuteStep={15}
-                  format="HH:mm"
-                  use12Hours
-                  inputReadOnly
-                  onChange={onChangeTime}
+                className = 'time-picker-span'
+                value={changeMoment}
+                showSecond={false}
+                minuteStep={15}
+                format="HH:mm"
+                use12Hours
+                inputReadOnly
+                onChange={onChangeTime}
                 ></CartTimePicker>
               </UserCheckListBox>
               <UserCheckListBox>

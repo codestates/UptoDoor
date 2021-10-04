@@ -67,6 +67,12 @@ margin : 0 0 15px;
   font-weight: 500;
   color : ${TextDarkGrey};
 }
+>h3{
+  margin-top : 20px;
+  margin-bottom : -15px;
+  font-weight : 500;
+  color : ${TextDarkGrey};
+}
 >p{
   margin: 10px auto 0;
   width : 300px;

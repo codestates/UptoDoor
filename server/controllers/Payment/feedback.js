@@ -34,7 +34,6 @@ module.exports = async (req, res) => {
       feedback: "feedback",
     };
     console.log("------ 정기 결제 확인 -------");
-
     axios.post("https://uptodoors.shop/payment", orderinfo);
   } else {
     await order.update({ state: 'done'}, { where: { id: req.body.order_id }})

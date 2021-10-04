@@ -4,7 +4,6 @@ const { checkAccess } = require('../Tokenfunc');
 module.exports = async (req, res) => {
 
     try {
-        console.log('----req.body----', req.body)
         const orderData = req.body;
         const Bootpay = require('bootpay-backend-nodejs').Bootpay
         Bootpay.setConfig(
@@ -18,7 +17,7 @@ module.exports = async (req, res) => {
                 .then(async () => {
                     //console.log('---axios token---',response.data.token)
                     if (req.body.feedback) { //두번째 정기결제 요청이면?
-                        console.log('----if----')
+                        
                         const respon = await Bootpay.reserveSubscribeBilling({
                             billingKey: req.body.data.billing_key,
                             itemName: "테스트",
@@ -33,9 +32,9 @@ module.exports = async (req, res) => {
                             schedulerType: "oneshot",
                             executeAt: new Date().getTime() / 1000 + 60, //28일 2419200
                         });
-                        console.log('---- if pay -----')
+                        
                     } else {
-                        console.log('---- else ----');
+                        
                         const respon = await Bootpay.reserveSubscribeBilling({
                             billingKey: req.body.data.billing_key,
                             itemName: '테스트',
@@ -50,7 +49,7 @@ module.exports = async (req, res) => {
                             schedulerType: 'oneshot',
                             executeAt: ((new Date()).getTime() / 1000) + 5
                         })
-                        console.log('---- else pay -----')
+                        
                     }
                     res.status(200).send({ message: 'ok ' })
                 })

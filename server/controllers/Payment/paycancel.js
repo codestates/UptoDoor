@@ -15,7 +15,6 @@ module.exports = async (req, res) => {
     const token = await BootPay.getAccessToken();
     if (token.status === 200){
         
-        console.log('--billing',data2.billingkey)
             //await BootPay.destroyReserveSubscribeBilling(data2.billingkey) //빌링키로 결제 예약한거 취소 요청하는거
              await BootPay.destroySubscribeBillingKey(data2.billingkey) //빌링키 삭제하는거고
         }

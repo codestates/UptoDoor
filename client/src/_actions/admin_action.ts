@@ -65,7 +65,6 @@ export const AdminStoreGetData = () => {
   const request = axios
     .get(`${END_POINTS}/admin/admininfo`)
     .then((res) => {
-      console.log("AdminStoreGetData",res.data.orderdata)
     return res.data;
   }).catch((err) => {
     console.log("getAdminData action", err);

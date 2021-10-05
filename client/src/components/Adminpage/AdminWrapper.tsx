@@ -36,7 +36,6 @@ function AdminWrapper() {
   const admin = useSelector((state:RootReducerType) => state.admin);
   const user:User = useSelector((state: RootReducerType) => state.user);
 
-  console.log("1111", user);
   const store = admin;
   const { orders } = store;
   const [filteredData, setFilteredData] = useState<Array<Orders> | []>([]);

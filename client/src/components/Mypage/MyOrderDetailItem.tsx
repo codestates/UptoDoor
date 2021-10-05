@@ -13,7 +13,8 @@ type IProps = {
   menus: MenuArr[]
 }
 
-function MyOrderDetailItem({menus}:IProps):JSX.Element {
+function MyOrderDetailItem({ menus }: IProps): JSX.Element {
+  console.log(menus);
   return (
     <>
       {menus && menus.map((el:any,idx:number)=>{
@@ -36,7 +37,7 @@ function MyOrderDetailItem({menus}:IProps):JSX.Element {
                 
                 <EachItemBox>
                   <H4>가격/수량</H4>
-                  <P>{stringToPrice(el.menu.price)}원 / {el.menu.quantity}개</P>
+                  <P>{stringToPrice(el.menu.price)}원 / {el.quantity}개</P>
                 </EachItemBox>
               </div>
 

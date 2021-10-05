@@ -295,7 +295,7 @@ function CartWrapper() {
                 })}
               </UserCheckListBox>
               <UserCheckListBox>
-                <h4>받고 싶은 요일을 언제이신가요?</h4>
+                <h4>받고 싶은 요일은 언제이신가요?</h4>
                 {days.map((day) => {
                   return (
                     <label key={day}>

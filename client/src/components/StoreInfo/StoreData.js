@@ -28,7 +28,6 @@ const StoreData = ({id}) => {
   const [openModal , setOpenModal] = useState(false);
 
   const moreImgHandler = () => {
-    console.log('d')
     setOpenModal(true);
   }
 

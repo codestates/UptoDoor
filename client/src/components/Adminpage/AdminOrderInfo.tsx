@@ -25,7 +25,7 @@ function AdminOrderInfo({ orderItem, listbackHandler }: Iprops) {
   const { selected_address, selected_address_detail, selected_mobile, order_deliveries,delivery_detail, order_menus } = orderItem;
 
   const { delivery_term, delivery_day, delivery_time } = order_deliveries;
-  
+
   return (
     <AdminContainer>
       <AdminOrderListContent>

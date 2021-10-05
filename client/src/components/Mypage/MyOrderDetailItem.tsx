@@ -7,14 +7,13 @@ import {
   EachItemBox,
 } from './StyledMypage'
 import { stringToPrice } from '../../utils/validation';
-import {MenuArr} from './MypageWrapper'
+import {MenuArr} from '../../@type/userInfo'
 
 type IProps = {
   menus: MenuArr[]
 }
 
 function MyOrderDetailItem({menus}:IProps):JSX.Element {
-  console.log(11)
   return (
     <>
       {menus && menus.map((el:any,idx:number)=>{

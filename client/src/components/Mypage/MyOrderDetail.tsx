@@ -19,11 +19,10 @@ import { SmallButton,ArrowBtn } from '../common/Button/Button'
 import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal'
 import MyOrderDetailItem from './MyOrderDetailItem'
-import { Orders } from './MypageWrapper';
-
+import {UserOrders} from '../../@type/userInfo'
 interface IProps {
   listbackHandler: () => void;
-  orderitem: Orders;
+  orderitem: UserOrders;
   userNickname: string;
 }
 
@@ -41,7 +40,7 @@ function MyOrderDetail({
   const cancelOrderHandler = ():void => {
     //* 디스패치 주석풀어야함, 밑에 2줄 지우고,
     dispatch(cancelOrder(orderitem.id)).then((res:any) => {
-      if (res.payload.actionMessage === "success delete order") {
+      if (res.payload.successMessage === "success delete order") {
         setOpenModal(false);
         setModalSuccess(true)
         setCancelStoreModal(true);

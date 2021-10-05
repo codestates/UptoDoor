@@ -20,21 +20,20 @@ import ConfirmModal from '../common/Modal/ConfirmModal'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'
 
-function SignupWrapper() {
+function SignupWrapper():JSX.Element {
   let history = useHistory();
-  const dispatch = useDispatch();
+  const dispatch:any = useDispatch();
 
   //required
-  const [email, setEmail] = useState("");
-  const [certEmail, setCertEmail] = useState(false);
-  const [nickname , setNickname] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [password , setPassword] = useState('');
-  const [passwordChk, setPasswordChk] = useState('');
-  const [passwordRegErr , setPasswordRegErr ] = useState(false);
-  const [passwordErr , setPasswordErr ] = useState(false);
-  const [checkedInputs, setCheckedInputs] = useState([]);
-
+  const [email, setEmail] = useState<string | ''>('');
+  const [certEmail, setCertEmail] = useState<boolean>(false);
+  const [nickname, setNickname] = useState<string | ''>('');
+  const [mobile, setMobile] = useState<string |''>('');
+  const [password, setPassword] = useState<string |''>('');
+  const [passwordChk, setPasswordChk] = useState<string |''>('');
+  const [passwordRegErr , setPasswordRegErr ] = useState<boolean>(false);
+  const [passwordErr , setPasswordErr ] = useState<boolean>(false);
+  const [checkedInputs, setCheckedInputs] = useState<number[]|[]>([]);
   //optional
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
@@ -50,7 +49,7 @@ function SignupWrapper() {
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
     dispatch(sendCertEmail(email))
-      .then((res) => {
+      .then((res:any) => {
         if (res.payload.message === "send success") {
           setModalSuccess(true);
           setCertModal(true);
@@ -93,19 +92,19 @@ function SignupWrapper() {
       );
     }
   }, [mobile]);
-  const selectInputHandler = useCallback((e, name) => {
+  const selectInputHandler = useCallback((value: any, name: string): void => {
     if (name === "성별") {
-      setGender(e.value);
+      setGender(value);
     } else if (name === "연령대") {
-      setAge(e.value);
+      setAge(value);
     }
   }, []);
-  const onChangeTermHandler = (checked, idx) => {
+  const onChangeTermHandler = (checked: any, idx: number) => {
     if (checked) {
       setCheckedInputs([...checkedInputs, idx]);
       setIsAllchecked(checked)
     } else {
-      setCheckedInputs(checkedInputs.filter((el) => el !== idx));
+      setCheckedInputs(checkedInputs.filter((el:any) => el !== idx));
       setIsAllchecked(checked)
     }
   };
@@ -135,8 +134,7 @@ function SignupWrapper() {
         age,
       };
       dispatch(signUp(userinfo))
-        .then((res) => {
-          console.log("===", res.payload);
+        .then((res:any) => {
           if (res.payload.message === "Signup success") {
             setModalSuccess(true);
             setSignupModal(true);
@@ -145,8 +143,7 @@ function SignupWrapper() {
             setSignupModal(true);
           }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((err:never) => {
           setModalSuccess(false);
           setSignupModal(true);
         });
@@ -248,7 +245,6 @@ function SignupWrapper() {
           <SignupTerm
             onChangeTermHandler={onChangeTermHandler}
             checkedInputs={checkedInputs}
-            setIsAllchecked={setIsAllchecked}
             isAllchecked={isAllchecked}
           />
 

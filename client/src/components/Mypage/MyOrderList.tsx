@@ -7,11 +7,11 @@ import {
   OrderListWrapper,ListInfoDetail } from './StyledMypage';
 import {NextBtn,ArrowBtn} from '../common/Button/Button';
 import {removeLastStr} from '../../utils/validation'
-import {Orders} from './MypageWrapper'
+import {UserOrders} from '../../@type/userInfo'
 
 interface IProps {
   moveDetailHandler: (id: number) => void;
-  orderList: Orders[];
+  orderList: UserOrders[];
 }
 
 function MyOrderList({ moveDetailHandler , orderList}:IProps): JSX.Element{

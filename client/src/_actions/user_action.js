@@ -187,7 +187,8 @@ export const editUser = (userinfoEdit) => {
     .then((res)=>{
       const{nickname ,mobile,age,gender} =res.data.userinfo
         return {
-          nickname,mobile,age,gender
+          nickname, mobile, age, gender,
+          successMessage: res.data.message
         };
       })
     .catch((err)=>{

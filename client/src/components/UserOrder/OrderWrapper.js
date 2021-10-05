@@ -113,7 +113,9 @@ function OrderWrapper() {
               addOrder(cart, selected_mobile, deliveryUserName, data)
             )
               .then((res) => {
-                if (res.payload.actionMessage === "Your order has been completed") {
+                if (
+                  res.payload.successMessage === "Your order has been completed"
+                ) {
                   setModalSuccess(true);
                   setOpenModal(true);
                 }

@@ -19,47 +19,25 @@ import MyOrderList from './MyOrderList';
 
 import Auth from '../../hoc/auth'
 import Signin from '../common/Signin/SigninModal'
-import {Menu} from '../../@type/adminInfo'
+
 import { StoreInfo } from '../../@type/storeInfo';
 import { RootReducerType } from '../../store/store';
 import { User } from '../../@type/userInfo';
 import {getNextPayDay,getToday} from '../../utils/calculateDate';
+import {UserOrders} from '../../@type/userInfo'
 
-export type MenuArr = {
-  id: number;
-  menu_id: number;
-  quantity: number;
-  menu: Menu;
-}
 
-export interface Orders {
-  createdAt: string;
-  delivery_day: string[],
-  delivery_detail: string;
-  delivery_term: string;
-  delivery_time: string;
-  id: number;
-  menu: MenuArr[];
-  nextPayDay: string;
-  plusMoney: number;
-  selected_address: string;
-  selected_address_detail: string;
-  selected_mobile: string;
-  state: string;
-  store: StoreInfo;
-  totalprice: number;
-  user_name: number;
-}
+
 
 function MyProfileWrapper(): JSX.Element {
   const user: User = useSelector((state: RootReducerType) => state.user);
   const dispatch: any = useDispatch();
   const history = useHistory();
-  const [orderList, setOrderList] = useState<Orders[] | []>([])
-  const [orderitem, setOrderItem] = useState<Orders | any>({})
+  const [orderList, setOrderList] = useState<UserOrders[] | []>([])
+  const [orderitem, setOrderItem] = useState<UserOrders | any>({})
   const [cur,setCur] = useState<number | 0>(0)
-  const [loginModal , setLoginModal] = useState<boolean>(false);
-  console.log(orderList);
+  const [loginModal, setLoginModal] = useState<boolean>(false);
+  
   const moveDetailHandler = (id:number) => {
     const filtered = orderList.filter((el:any)=>{
       return el.id === id
@@ -103,9 +81,7 @@ function MyProfileWrapper(): JSX.Element {
           const today = getToday();
 
           if (el.order.state === "cancel") {
-            console.log("1");
             if (new Date(nextPayDay) > new Date(today)) {
-              console.log(new Date(nextPayDay) > new Date(today))
               el.order.state = 'canceling'
             }
           }

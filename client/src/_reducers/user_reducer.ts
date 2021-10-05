@@ -69,9 +69,9 @@ export default function user_reducer(state = intitialState, action:any) {
       return { ...state, ...action.payload.data };
     }
     case USER_ADD_ORDER: 
-        return { ...state, actionMessage: action.payload.message };
+        return { ...state, successMessage: action.payload.message };
     case USER_CALCEL_ORDER: {
-      return { ...state,actionMessage: action.payload.message };
+      return { ...state,successMessage: action.payload.message };
     }
 
     default:

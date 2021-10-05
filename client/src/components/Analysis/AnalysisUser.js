@@ -10,8 +10,7 @@ import
   ChartText,
 } from './StyledAnalysis'
 
-function AnalysisUser({chart}) {
-  console.log('chart===',chart)
+function AnalysisUser({chart}) {s
 
   const ageNum = chart[1];
 
@@ -103,7 +102,6 @@ function AnalysisUser({chart}) {
   };
   
   let splicingLast = number.splice(5).reduce((acc,cur)=>acc+cur);
-  console.log('====>',splicingLast)
   
   const series = [1,2,3,4,5,6];
   return (

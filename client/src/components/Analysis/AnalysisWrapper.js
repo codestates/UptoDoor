@@ -25,7 +25,6 @@ const AnalysisWrapper = () => {
     axios.get(`${END_POINTS}/analysis`)
       .then(res => {
         setChart(res.data.data)
-        // console.log(res.data.data.gender);
       })
       .catch(err => console.log('받아오는거 에러',err));
   },[]);

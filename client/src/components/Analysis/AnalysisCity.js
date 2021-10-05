@@ -19,7 +19,6 @@ function AnalysisCity({chart}) {
   for(let i = 0 ; i<chart[0].length ; i++){
     data1.push({ x: chart[0][i],y: chart[1][i] })
   }
-  // console.log('data1===',data1);
 
   const options = { 
     legend: {

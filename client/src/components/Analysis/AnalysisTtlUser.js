@@ -15,9 +15,6 @@ import
 
 function AnalysisTtlUser({chartStart,second,chart}) {
 
-  console.log('모든유저 성별+나이 chart::',chart[1])
-  //[{…}, {…}]
-
   //male
   let key = Object.keys(chart[0])
   let values = Object.values(chart[0]);
@@ -33,7 +30,6 @@ function AnalysisTtlUser({chartStart,second,chart}) {
 
   //female
   let femaleKey = Object.keys(chart[1])
-  console.log("22", key);
   let femaleValues = Object.values(chart[1]);
   let femaleTtlArr = [];
   for (let i = 0; i < femaleValues.length; i++) {

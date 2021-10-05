@@ -10,7 +10,6 @@ import {removeLastStr} from '../../utils/validation'
 function MyOrderList({ 
   moveDetailHandler , 
   order}:any):any {
-  console.log(order);
   
   return (
     <MypageOrderListWrapper>

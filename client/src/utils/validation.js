@@ -4,6 +4,5 @@ export const stringToPrice = (string) => {
 }
 
 export const removeLastStr = (string) => {
-  console.log(string);
   return string.slice(0,string.length-2)
 }

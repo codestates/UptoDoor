@@ -90,7 +90,6 @@ function MyProfileEdit() {
   const withdrawalConfirm = () => {
     dispatch(deleteUser())
       .then((res: any) => {
-        console.log("payload",res.payload);
       if (res.payload.message  === 'good bye') {
         setOpenModal(false);
         setModalSuccess(true);
@@ -100,12 +99,6 @@ function MyProfileEdit() {
         alert('탈퇴 실패. 못벗어남.');
       }
     })
-    // .catch((err: any) => {
-    //   console.log(err)
-    // });
-    // setOpenModal(false);
-    // setModalSuccess(true);
-    // setDeleteUserModal(true);
   }
 
   const withdrawalModalHandler = () => {

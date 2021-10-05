@@ -51,7 +51,6 @@ export const signUp = (userinfo) => {
 
 //유저 signin post 요청
 export const signIn = (userinfo) => {
-  console.log("22",userinfo)
   const request = axios
     .post(`${END_POINTS}/users/signin`, userinfo)
     .then((res) => {
@@ -209,7 +208,6 @@ export const deleteUser = () => {
   const request = axios
     .delete(`${END_POINTS}/users`)
     .then((res) => {
-      console.log("회원탈퇴", res.data);
       return res.data;
     })
     .catch((err)=>{

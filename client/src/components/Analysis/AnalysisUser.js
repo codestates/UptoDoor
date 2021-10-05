@@ -15,22 +15,23 @@ function AnalysisUser({chart}) {
   const ageNum = chart[1];
 
   const arr = [
-    {name : '10대 남자',number : ageNum[0].man && ageNum[0].man},
-    {name : '20대 남자',number : ageNum[0].man && ageNum[1].man},
-    {name : '30대 남자',number : ageNum[0].man && ageNum[2].man},
-    {name : '40대 남자',number : ageNum[0].man && ageNum[3].man},
-    {name : '50대 남자',number : ageNum[0].man && ageNum[4].man},
-    {name : '60대 남자',number : ageNum[0].man && ageNum[5].man},
+    {name : '10대 남자',number : ageNum[0].man === undefined || ageNum[0].man},
+    {name : '20대 남자',number : ageNum[0].man === undefined || ageNum[1].man},
+    {name : '30대 남자',number : ageNum[0].man === undefined || ageNum[2].man},
+    {name : '40대 남자',number : ageNum[0].man === undefined || ageNum[3].man},
+    {name : '50대 남자',number : ageNum[0].man === undefined || ageNum[4].man},
+    {name : '60대 남자',number : ageNum[0].man === undefined || ageNum[5].man},
     
-    {name : '10대 여자',number : ageNum[0].woman && ageNum[0].woman},
-    {name : '20대 여자',number : ageNum[0].woman && ageNum[1].woman},
-    {name : '30대 여자',number : ageNum[0].woman && ageNum[2].woman},
-    {name : '40대 여자',number : ageNum[0].woman && ageNum[3].woman},
-    {name : '50대 여자',number : ageNum[0].woman && ageNum[4].woman},
-    {name : '60대 여자',number : ageNum[0].woman && ageNum[5].woman},
+    {name : '10대 여자',number : ageNum[0].woman === undefined || ageNum[0].woman},
+    {name : '20대 여자',number : ageNum[0].woman === undefined || ageNum[1].woman},
+    {name : '30대 여자',number : ageNum[0].woman === undefined || ageNum[2].woman},
+    {name : '40대 여자',number : ageNum[0].woman === undefined || ageNum[3].woman},
+    {name : '50대 여자',number : ageNum[0].woman === undefined || ageNum[4].woman},
+    {name : '60대 여자',number : ageNum[0].woman === undefined || ageNum[5].woman},
   ]
 
   arr.sort((a,b)=>b.number-a.number)
+  // console.log('arrrr::',arr)
 
   const name = arr.map((el)=>el.name);
   const number = arr.map((ele)=>ele.number);
@@ -38,6 +39,9 @@ function AnalysisUser({chart}) {
   // //name
   let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
   let splicingNameFirst = name.splice(0,5).concat(['그 외']);
+
+  let splicingNum = number.splice(0,5)
+  // console.log('splicingNameFirst::',splicingNum)
     
   const options = { 
     labels: splicingNameFirst,
@@ -101,9 +105,9 @@ function AnalysisUser({chart}) {
       ],
   };
   
-  // const series = number;
+  const series = splicingNum;
   // 가라데이터
-  const series = [30,122,152,86,55,81]
+  // const series = [30,122,152,86,55,81]
 
   return (
     <ChartContainer>

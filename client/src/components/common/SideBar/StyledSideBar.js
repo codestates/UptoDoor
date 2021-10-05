@@ -77,7 +77,7 @@ export const Logo = styled.div`
   letter-spacing: -2px;
 `;
 
-export const User = styled.div`
+export const UserName = styled.div`
   width: 80%;
   height: 50px;
   color: black;

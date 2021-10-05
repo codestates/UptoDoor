@@ -37,7 +37,7 @@ export const getStoreData = () => {
   };
 };
 
-export const getFitteredByHastag = (hastag) => {
+export const getFitteredByHastag = (hastag:string) => {
   const request = axios
     .get(`${END_POINTS}/store`)
     .then((res) => {
@@ -45,7 +45,7 @@ export const getFitteredByHastag = (hastag) => {
     if (hastag === "all") {
       data = res.data.storeinfo;
     } else {
-      data = res.data.storeinfo.filter((el) => {
+      data = res.data.storeinfo.filter((el:any) => {
         return el.category === hastag;
       });
     }
@@ -58,7 +58,7 @@ export const getFitteredByHastag = (hastag) => {
   };
 };
 
-export const getFitteredBySearch = (keyword) => {
+export const getFitteredBySearch = (keyword:string) => {
 
   const request = axios
     .get(`${END_POINTS}/store`)
@@ -70,7 +70,7 @@ export const getFitteredBySearch = (keyword) => {
     } else {
       let RegExp1 = new RegExp(`${keyword}`, "g");
 
-      data = info.filter((el) => {
+      data = info.filter((el:any) => {
         if (
           RegExp1.test(el.name) ||
           RegExp1.test(el.introduce) ||
@@ -89,14 +89,14 @@ export const getFitteredBySearch = (keyword) => {
   };
 };
 
-export const getFitteredByClick = (address) => {
+export const getFitteredByClick = (address:string) => {
   const request = axios
     .get(`${END_POINTS}/store`)
     .then((res) => {
     const info = res.data.storeinfo
     let data;
     if (address) {
-      data = info.filter((el) => {
+      data = info.filter((el:any) => {
         return el.address === address;
       });
     }
@@ -109,14 +109,14 @@ export const getFitteredByClick = (address) => {
   };
 }
 
-export const storeFilterByCity = (data) => {
+export const storeFilterByCity = (data:string) => {
   const request = axios
     .get(`${END_POINTS}/store`)
     .then((res) => {
     if(data === 'ALL') {
       return res.data.storeinfo;
     }else{
-      const addressFilter = res.data.storeinfo.filter((el)=>{
+      const addressFilter = res.data.storeinfo.filter((el:any)=>{
         let splitAdd = el.address.split(' ')[1];
         return splitAdd === data
       })

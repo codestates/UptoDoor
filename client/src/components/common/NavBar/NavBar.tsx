@@ -1,16 +1,7 @@
 import React,{useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  Header,
-  Nav,
-  ButtonWrapper,
-  NavLogo,
-  NavWrapper,
-  UL,
-  IconButton,
-  BtnLink,
-  Listli
+import {Header,Nav,ButtonWrapper,NavLogo,NavWrapper,UL,IconButton,BtnLink,Listli
 } from "./StyledNavBar";
 
 import { AdminStoreReset } from '../../../_actions/admin_action';
@@ -18,36 +9,33 @@ import { signOut,naverSignOut,kakaoSignOut } from '../../../_actions/user_action
 import { useHistory } from 'react-router';
 import { END_POINT } from '../../../_actions/type';
 
+import { RootReducerType } from '../../../store/store';
 import Signin from '../Signin/SigninModal';
 import SideBar from '../SideBar/SideBar';
-import Alarm from '../Alarm/Alarm';
+import { User } from '../../../@type/userInfo';
 
-function NavBar() {
+function NavBar():JSX.Element {
   const history:any = useHistory();
   const dispatch:any = useDispatch()
-  const state = useSelector((state) => state)
-  const { user }: any = state;
-  const message = user.message;
+  const user:User = useSelector((state:RootReducerType) => state.user)
+  const message = user.message
   
   //사이드바 모달창
-  const [isOpen, setIsOpen] = useState(false);
-  const [alarmBtnModal, setAlarmBtnModal] = useState(false);
-  const closeAlarmModal = () => {setAlarmBtnModal(!alarmBtnModal) };
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [alarmBtnModal, setAlarmBtnModal] = useState<boolean>(false);
+  const closeAlarmModal = ():void => {setAlarmBtnModal(!alarmBtnModal) };
   //로그인 모달
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const [urls, setUrls] = useState()
-
-  const signoutHandler = (e:any) => {
+  const signoutHandler = (e:React.MouseEvent<HTMLButtonElement>):void => {
     e.preventDefault();
-    
     if (user.login_type === 'kakao'){
       dispatch(AdminStoreReset());
       dispatch(kakaoSignOut())
       .then((res: any) => {
         if (res.payload.message === "signout success") {
           window.location.href = `${END_POINT}`
-      }
+      } 
     })
     }
     else if (user.login_type === 'naver') {
@@ -56,7 +44,7 @@ function NavBar() {
       .then((res: any) => {
         if (res.payload.message === "signout success") {
           window.location.href = `${END_POINT}`
-      } 
+      }
     });
     }
     else {
@@ -69,7 +57,7 @@ function NavBar() {
     });
   }
 }
-const accessInto = useCallback((name) => {
+const accessInto = useCallback((name):void => {
   if (name === "mypage") {
       if (message) {
       history.push('/mypage');
@@ -92,12 +80,6 @@ const accessInto = useCallback((name) => {
       </NavWrapper>
       
       <ButtonWrapper>
-        <IconButton 
-        type="button" 
-        aria-label="알림 버튼" 
-        onClick={closeAlarmModal}>
-          <i className="far fa-bell"></i>
-        </IconButton>
         <IconButton
           onClick={() => { setIsOpen(true) }}
           type="button"
@@ -106,7 +88,7 @@ const accessInto = useCallback((name) => {
           <i className="fas fa-bars"></i>
         </IconButton>
         
-        {message !== 'login success' ?
+        { message !== 'login success' ?
           <UL>
             <Listli 
             type="button" 
@@ -145,7 +127,10 @@ const accessInto = useCallback((name) => {
             aria-label='로그아웃'
             className = 'icons'
             onClick={(e:any) => {signoutHandler(e)}}>
-              <i className="fas fa-sign-out-alt"></i>
+              <i 
+              className="fas fa-sign-out-alt"
+              // onClick={(e:any) => {signoutHandler(e)}}
+              ></i>
             </Listli>
           </UL>
         }
@@ -170,9 +155,7 @@ const accessInto = useCallback((name) => {
         ? '/analysis':
         '/'}
       />
-      {alarmBtnModal ?
-      <Alarm />
-      : null}
+      
     </Header>
   );
 }

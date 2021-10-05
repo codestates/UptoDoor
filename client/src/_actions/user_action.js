@@ -70,6 +70,10 @@ export const signIn = (userinfo) => {
         position: res.data.userinfo.position,
         login_type: res.data.login_type,
       };
+    }).catch((err) => {
+      return {
+        message: 'error'
+      }
     })
 
   return {
@@ -183,7 +187,8 @@ export const editUser = (userinfoEdit) => {
     .then((res)=>{
       const{nickname ,mobile,age,gender} =res.data.userinfo
         return {
-          nickname,mobile,age,gender
+          nickname, mobile, age, gender,
+          successMessage: res.data.message
         };
       })
     .catch((err)=>{
@@ -200,7 +205,6 @@ export const deleteUser = () => {
   const request = axios
     .delete(`${END_POINTS}/users`)
     .then((res) => {
-      console.log("회원탈퇴", res.data);
       return res.data;
     })
     .catch((err)=>{
@@ -232,14 +236,17 @@ export const addAddress = (address) => {
 export const addOrder = (order, selected_mobile, deliveryName, data) => {
   order.selected_mobile = selected_mobile;
   order.user_name = deliveryName;
+
+  console.log(order);
+  console.log(data);
   const orderinfo = {
     order: order,
     data: data
   }
   const request = axios
     .post(`${END_POINTS}/users/order`, orderinfo)
-    //.post(`https://uptodoors.shop/users/order`, orderinfo)
     .then((res) => {
+      console.log("action", res.data);
       return res.data;
     })
     .catch((err) => {
@@ -257,6 +264,7 @@ export const cancelOrder = (id) => {
   const request = axios
     .delete(`${END_POINTS}/cancel/${id}`)
     .then((res) => {
+      console.log(res.data);
       return res.data
     }).catch((err) => {
       console.log(err)

@@ -328,7 +328,7 @@ export const ListInfo = styled.div`
 export const DeliveryState = styled.h5`
   margin-right: 8px;
   color: #fff;
-  min-width: 40px;
+  min-width: 50px;
   font-weight: 400;
   height: 20px;
   border-radius: 4px;
@@ -338,7 +338,7 @@ export const DeliveryState = styled.h5`
   background-color: ${({ blue }) => (blue ? MainColor : PointColor)};
   
   @media screen and (min-width: 767px) {
-    width: 50px;
+    width: 60px;
     height: 24px;
     margin: 0 15px 0 0;
     font-size: 12px;
@@ -347,8 +347,8 @@ export const DeliveryState = styled.h5`
     line-height: -1.5rem;
   }
   @media screen and (min-width: 1140px) {
-    min-width: 60px;
-    width: 60px;
+    min-width: 70px;
+    width: 70px;
     margin-right: 15px;
     font-size: 14px;
     /* padding: 5px; */

@@ -1,18 +1,8 @@
 import React from 'react'
-import {
-  FaInstagram,
-  FaGithub,
-} from "react-icons/fa";
-import {
-  FooterContainer,
-  FooterWrapper,
-  FooterLinkTitle,
-  FooterLink,
-  FooterLinkItems,
-  SocialIcons,
-  SocialIconLink,
-  FooterTitle,
-  WebsiteRights,
+import { FaInstagram, FaGithub} from "react-icons/fa";
+import { FooterContainer, FooterWrapper, FooterLinkTitle,
+  FooterLink, FooterLinkItems, SocialIcons,
+  SocialIconLink, FooterTitle, WebsiteRights,
 } from "./StyledFooter";
 
 function Footer() {

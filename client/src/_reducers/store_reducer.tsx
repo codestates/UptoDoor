@@ -5,9 +5,23 @@ import {
   STORE_FILTER_BY_CLICK,
   STORE_FILTER_BY_CITY,
 } from "../_actions/type";
+import { StoreInfo } from '../@type/storeInfo';
 
 
-export default function admin_reducer(state = {}, action) {
+
+const initialState: StoreInfo[] = [];
+
+export interface Action {
+  type: string;
+  payload: Payload;
+}
+
+interface Payload {
+	message?: string;
+  data?: StoreInfo[]
+}
+
+export default function admin_reducer(state = initialState, action:Action) {
 
   switch (action.type) {
     case STORE_DATAS:

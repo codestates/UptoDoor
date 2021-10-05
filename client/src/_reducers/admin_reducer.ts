@@ -6,10 +6,6 @@ import {
   ADMIN_STORE_RESET,
 } from "../_actions/type";
 import { AdminInfo } from '../@type/adminInfo';
-// interface Action {
-//   type: string;
-//   payload: object;
-// }
 
 
 const initialState: AdminInfo = {
@@ -29,13 +25,13 @@ const initialState: AdminInfo = {
   orders: [],
 }
 
-interface Action {
+export interface Action {
   type: string;
   payload: Payload;
 }
 
 interface Payload {
-  message?: string;
+	message?: string;
   orderdata?: AdminInfo | null;
 }
 

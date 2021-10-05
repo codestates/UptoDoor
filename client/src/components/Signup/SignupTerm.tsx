@@ -10,9 +10,9 @@ import {
 import {terms} from '../dummyData'
 
 interface Term {
-  checkedInputs : any,
-  isAllchecked : any,
-  onChangeTermHandler : any,
+  checkedInputs : number[],
+  isAllchecked : boolean,
+  onChangeTermHandler : (checked :boolean, idx :number)=> void,
 }
 
 function SignupTerm({
@@ -49,7 +49,7 @@ function SignupTerm({
             className = 'terms'
             onChange = {e=>
               {onChangeTermHandler(e.currentTarget.checked ,idx )}}
-            checked={checkedInputs.includes(idx) ? true : false}
+              checked={checkedInputs.includes(idx) ? true : false}
             />
 
             <TermSpan 

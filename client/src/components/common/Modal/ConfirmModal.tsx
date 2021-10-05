@@ -8,7 +8,7 @@ import {
 import { END_POINT } from '../../../_actions/type';
 import { useHistory } from 'react-router-dom';
 
-function ConfirmModal(props: any) {
+function ConfirmModal(props: any):JSX.Element {
 
   const history:any = useHistory()
   const { 

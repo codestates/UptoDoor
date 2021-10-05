@@ -2,7 +2,7 @@ const { default: axios } = require('axios');
 const { order } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
 module.exports = async (req, res) => {
-
+    console.log("asdnfjkahs", req.body);
     try {
         const orderData = req.body;
         const Bootpay = require('bootpay-backend-nodejs').Bootpay

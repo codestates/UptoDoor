@@ -30,6 +30,15 @@ function AnalysisUser({chart}) {
     {name : '60대 여자',number : ageNum[0].woman && ageNum[5].woman},
   ]
 
+
+    { name: "10대 여자", number: ageNum[0]?.woman },
+    { name: "20대 여자", number: ageNum[1]?.woman },
+    { name: "30대 여자", number: ageNum[2]?.woman },
+    { name: "40대 여자", number: ageNum[3]?.woman },
+    { name: "50대 여자", number: ageNum[4]?.woman },
+    { name: "60대 여자", number: ageNum[5]?.woman },
+  ];
+  console.log("1234", arr);
   arr.sort((a,b)=>b.number-a.number)
 
   const name = arr.map((el)=>el.name);
@@ -102,25 +111,26 @@ function AnalysisUser({chart}) {
   };
   
   let splicingLast = number.splice(5).reduce((acc,cur)=>acc+cur);
-  
-  const series = [1,2,3,4,5,6];
+
   return (
-      <ChartContainer>
-          <ChartContentsWrapper>
-            <ChartTitle>많이 찾는 사용자는?</ChartTitle>
-            <ChartText>UptoDoor와 함께하는 사용자의 성별 및 연령대별 순위입니다.</ChartText>
-          </ChartContentsWrapper>
-  
-          <ChartUserWrapper id = 'chart'>
-            <Chart 
-            className = 'user-chart'
-            options={options} 
-            series={series} 
-            type="pie"
-            height ='500px'
-            />
-          </ChartUserWrapper>
-      </ChartContainer>
+    <ChartContainer>
+      <ChartContentsWrapper>
+        <ChartTitle>많이 찾는 사용자는?</ChartTitle>
+        <ChartText>
+          UptoDoor와 함께하는 사용자의 성별 및 연령대별 순위입니다.
+        </ChartText>
+      </ChartContentsWrapper>
+
+      <ChartUserWrapper id="chart">
+        <Chart
+          className="user-chart"
+          options={options}
+          series={splicingFirst}
+          type="pie"
+          height="500px"
+        />
+      </ChartUserWrapper>
+    </ChartContainer>
   );
 }
 

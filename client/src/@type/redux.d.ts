@@ -1,4 +1,10 @@
-export interface IAction<T extends string, P> {
-	type: T;
-	payload: P;
+export interface Action {
+  type: string;
+  payload: Payload;
+}
+
+interface Payload {
+	message?: string;
+	data?: Object;
+  orderdata?: AdminInfo | null;
 }

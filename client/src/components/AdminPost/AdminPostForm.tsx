@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, DispatchWithoutAction } from 'react'
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
+import { DispatchProp, useDispatch } from 'react-redux'
 import { adminStorePost } from '../../_actions/admin_action';
 import Select from 'react-select';
 import TimePicker from "rc-time-picker";
@@ -28,6 +28,13 @@ import ConfirmModal from '../common/Modal/ConfirmModal';
 
 import useInput from '../../utils/useInput'
 
+type MenuArr = {
+  menuImg: string;
+  menuName: string;
+  menuDescription: string;
+  price: number;
+}
+
 const { kakao }: any = window;
 function AdminPostForm() {
   // 가게 이미지,상호명,가게설명,동네인증.
@@ -44,25 +51,26 @@ function AdminPostForm() {
     { value: 'etc', label: 'etc' },
   ]
   //* 모달관련
-  const [loginModal , setLoginModal] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
-  const [modalSuccess, setModalSuccess] = useState(false);
+  const [loginModal , setLoginModal] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [modalSuccess, setModalSuccess] = useState<boolean>(false);
   //upload store img,file
-  const [storeImgArr , setStoreImgArr]:any = useState([]);
-  const [storeFile , setStoreFile]:any = useState('');
+  const [storeImgArr , setStoreImgArr] = useState<Object[] | []>([]);
+  const [storeFile, setStoreFile] = useState<string | ''>('');
+  const [category, setCategory] = useState<string | ''>('');
+  const [mobile , setMobile] = useState<string | ''>('');
   //store
   const [title, onChangeTitle] = useInput('');
-  const [category, setCategory] = useState('');
   const [description , onChangeDescription] = useInput('');
-  const [mobile , setMobile] = useState('');
+  
    //주소 
-  const [adminAddress , setAdminAddress] = useState('');
-  const [adminAddressDetail, onChangeAdminAddressDetail] = useInput('');
-  const [addressModal, setAddressModal] = useState(false);
-  const [xValue, setXValue] = useState('');
-  const [yValue, setYValue] = useState('');
+  const [adminAddress , setAdminAddress] = useState<string | ''>('');
+  const [adminAddressDetail, onChangeAdminAddressDetail]:any = useInput('');
+  const [addressModal, setAddressModal] = useState<boolean>(false);
+  const [xValue, setXValue] = useState<string | ''>('');
+  const [yValue, setYValue] = useState<string | ''>('');
   //menu
-  const [menuArr, setMenuArr]:any = useState([{
+  const [menuArr, setMenuArr] = useState<MenuArr[] | []>([{
     menuImg : './images/icon/menu-add.png',
     menuName:'', menuDescription:'', price:0
   }]);
@@ -71,14 +79,14 @@ function AdminPostForm() {
     setCategory(e.value)
   }
   
-  const changeAdminAddress = useCallback((data) => {
+  const changeAdminAddress = useCallback((data):void => {
     switchAddress(data.address);
     setAdminAddress(data.address);
     setAddressModal((prev)=>!prev);
   }, [])
   
   //모바일
-  const changeMobileHandler = useCallback((e) => {
+  const changeMobileHandler = useCallback((e):void => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
       setMobile(e.target.value);
@@ -95,15 +103,15 @@ function AdminPostForm() {
   }, [mobile]);
   
   //!add menu onchange handler
-  const addMenuHandler = (menu: any) => {
+  const addMenuHandler = (menu: any):void => {
     const bin = {
       menuImg: './images/icon/menu-add.png',
       menuName:'', price:0, menuDescription:''}
     setMenuArr([...menuArr, bin]);
   };
   //!remove menu onclick handler
-  const removeMenuHandler = (e:any) => {
-    // console.log('idx:',idx);
+  const removeMenuHandler = (e:any):void => {
+    console.log("11", e);
     if(menuArr.length > 1){
       const filtering = menuArr.filter((el:any) => el !== menuArr[e.target.id])
       setMenuArr(filtering);
@@ -113,14 +121,14 @@ function AdminPostForm() {
   }
 
   //!upload storeimg
-  const updateStoreImg = (storeImgs:any) => {
+  const updateStoreImg = (storeImgs:any):void => {
     setStoreImgArr(storeImgs)
   }
-  const updateStoreFile = (addressFile:any) => {
+  const updateStoreFile = (addressFile:any):void => {
     setStoreFile(addressFile)
   }
   //!폼제출 핸들러
-  const submitHandler = (e:any) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>):void => {
     e.preventDefault();
     if (adminAddressDetail.length === 0) return alert("상세 주소란을 입력해주세요.");
     if(
@@ -155,7 +163,7 @@ function AdminPostForm() {
     }
   }
   //!kakao add
-  const switchAddress = useCallback((address) => {
+  const switchAddress = useCallback((address):void => {
     const geocoder = new kakao.maps.services.Geocoder();
     //! 주소를 좌표로
     geocoder.addressSearch(address, function (result: any, status: any) {
@@ -167,23 +175,21 @@ function AdminPostForm() {
     });
   }, []);
 
-  const handleClickCancle = () => {
+  const handleClickCancel = ():void => {
     history.push('/');
   }
 
-  const [openTime, setOpenTime] = useState('');
-  const [closeTime, setCloseTime] = useState('')
+  const [openTime, setOpenTime] = useState<string | ''>('');
+  const [closeTime, setCloseTime] = useState<string | ''>('')
   const monent = moment();
   const [changeOpenMoment, setChangeOpenMoment] = useState(monent);
   const [changeCloseMoment, setChangeCloseMoment] = useState(monent);
   const str =  "HH:mm";
-  const onChangeOpenTime = (value: any) => {
-    console.log(value && value.format(str));
+  const onChangeOpenTime = (value: any):void => {
     setChangeOpenMoment(value);
     setOpenTime(value && value.format(str));
   }
-  const onChangeCloseTime = (value: any) => {
-    console.log(value && value.format(str));
+  const onChangeCloseTime = (value: any):void => {
     setChangeCloseMoment(value);
     setCloseTime(value && value.format(str));
   }
@@ -198,7 +204,7 @@ function AdminPostForm() {
 return (
   <Container>
     <Title>가게 등록</Title>
-    <form onSubmit = {(e:any)=>submitHandler(e)}>
+    <form onSubmit = {(e)=>submitHandler(e)}>
       <Wrapper>
       <FlexBox>
         <AdminForm>
@@ -272,7 +278,7 @@ return (
             setAddressModal = {setAddressModal}
             adminAddress = {adminAddress}
             changeAdminAddress = {changeAdminAddress}
-            changeAddDetailHandler = {onChangeAdminAddressDetail}
+            onChangeAdminAddressDetail = {onChangeAdminAddressDetail}
           />
 
           <StoreInputBox>
@@ -287,13 +293,11 @@ return (
 
           {/* 가게 사업자등록증 파일업로드 */}
             <AdminFileUpload
-            setMenuArr={setMenuArr}
-            setStoreFile={setStoreFile}
             updateStoreFile = {updateStoreFile}
           />
 
         <AdminUploadMenu
-          addMenuHandler={(menus: any)=>addMenuHandler(menus)}
+          addMenuHandler={addMenuHandler}
           removeMenuHandler = {removeMenuHandler}
           menuArr = {menuArr}
           setMenuArr = {setMenuArr}
@@ -306,7 +310,7 @@ return (
 
           <SmallButton 
           type = 'button'
-          onClick = {handleClickCancle}
+          onClick = {handleClickCancel}
           > 취소 </SmallButton>
         </StoreBtnBox>
         

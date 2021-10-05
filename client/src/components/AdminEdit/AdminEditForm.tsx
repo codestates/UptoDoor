@@ -6,20 +6,20 @@ import './style.css'
 import {
   AdminForm,
   FlexBox,
-  StoreInputBox,
-  StoreInput,
   StoreIntroTextArea,OpenCloseInputWrapper,
-  StoreBtnBox,
+  StoreBtnBox,StoreInputBox,
+  StoreInput,
+  StoreAddressWrapper,
+  StoreAddressBtn
 } from '../AdminPost/StyledAdminPost'
 import {Container,Wrapper,Title} from "../GlobalStyle";
 import { BtnBox, SmallButton } from '../common/Button/Button';
 
 import { useHistory } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux'
-import {  adminStoreEdit , adminStoreDelete } from '../../_actions/admin_action';
+import {  adminStoreEdit , adminStoreDelete,AdminStoreGetData } from '../../_actions/admin_action';
 
 import AdminUploadStoreEdit from './AdminUploadStoreEdit'
-import AdminEnrollStoreEdit from './AdminEnrollStoreEdit'
 import AdminUploadMenuEdit from './AdminUploadMenuEdit'
 import WarningModal from '../common/Modal/WarningModal'
 import ConfirmModal from '../common/Modal/ConfirmModal';
@@ -29,58 +29,35 @@ import Signin from '../common/Signin/SigninModal'
 
 import axios from 'axios';
 import { END_POINTS } from '../../_actions/type';
-
-const { kakao }: any = window;
+import { AdminInfo,Menu } from '../../@type/adminInfo';
+import useInput from '../../utils/useInput'
+import { RootReducerType } from "../../store/store";
 
 function AdminEditForm() {
 
   const dispatch:any = useDispatch();
-  const history = useHistory();
-  const user = useSelector((state:any) => state.user);
-  const admin = useSelector((state:any) => state.admin);
+  const admin:AdminInfo = useSelector((state:RootReducerType) => state.admin);
   //모달 수정, 삭제
-  const [loginModal , setLoginModal] = useState(false);
-  const [editModal, setEditModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [deleteOkModal, setDeleteOkModal] = useState(false);
-  const [modalSuccess , setModalSuccess] = useState(false);
+  const [loginModal , setLoginModal] = useState<boolean>(false);
+  const [editModal, setEditModal] = useState<boolean>(false);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const [deleteOkModal, setDeleteOkModal] = useState<boolean>(false);
+  const [modalSuccess , setModalSuccess] = useState<boolean>(false);
 
   //upload store img,file
-  const [storeImgArr , setStoreImgArr]:any = useState([]);
   const [storeFile , setStoreFile]:any = useState(null);
-  //store
-  const [title , setTitle] = useState('');
-  const [category, setCategory] = useState('');
-  const [description , setDescription] = useState('');
   
+  const [description , onChangeDescription, setDescription]:any = useInput('');
   const [mobile , setMobile] = useState('');
   const [storeinfo, setStoreinfo]:any = useState({});
-  const [imageArr, setImageArr]:any = useState([]);
-
-  const selectCategory: {value: string, label: string}[] = 
-  [ 
-    { value : 'food' , label : 'food'},
-    { value : 'cafe' , label : 'cafe'},
-    { value : 'living/home' , label : 'living/home'},
-    { value : 'beauty' , label : 'beauty'},
-    { value : 'hobby' , label : 'hobby'},
-  ]
-   //주소 
-  const [adminAddress , setAdminAddress] = useState('');
-  const [adminAddressDetail, setadminAddressDetail] = useState('');
-  const [addressModal, setAddressModal] = useState(false);
-  //menu
-  const [menuArr, setMenuArr]:any = useState([]);
-
-  const changeDescHandler = (e:any) => {
-    const limitWord = e.target.value;
-    //설명제한
-    if(limitWord.length > 150){
-      alert('글자는 150자까지유효성검사 ?')
-    }else{
-      setDescription(limitWord);
-    }
-  }
+  const [imageArr, setImageArr] = useState<Object[] | []>([]);
+  const [menuArr, setMenuArr] = useState<Menu[] | []>([]);
+   //주소, 카테고리, 가게이름
+  const title = admin.name;
+  const category = admin.category;
+  const adminAddress = admin.address;
+  const adminAddressDetail = admin.address_detail;
+  
   const changeMobileHandler = useCallback((e) => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
@@ -106,16 +83,14 @@ function AdminEditForm() {
     setImageArr([...imageArr,storeImgs])
   }
   //!폼제출 핸들러
-  const submitHandler = (e:any) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();   
-    // if(!storeImgArr || !title || !category || !description || !time ||
+    // if(!storeImgArr || !title || !description || !time ||
       // ! adminAddress || !mobile || storeFile || !menuArr){
-    //   //모달
-    //   return alert('all section must be filled')
     // }else{
-     
+
       // setConfirmModal(true);
-     
+
       const sendInfo = {
         image : imageArr,
         description : description,
@@ -128,8 +103,12 @@ function AdminEditForm() {
       dispatch(adminStoreEdit(sendInfo, storeinfo.id))
       .then((res:any)=>{
         if (res.payload.message === 'update success') {
+          dispatch(AdminStoreGetData()).then((res: any) => {
+            if (res.payload.message === "ok") {
           setModalSuccess(true);
-          setEditModal(true)
+              setEditModal(true)
+      }
+          })
         }
       }).catch((err:void) => {
           setModalSuccess(false);
@@ -170,13 +149,9 @@ function AdminEditForm() {
         console.log("2",store_info);
         setStoreinfo(store_info)
         setImageArr(store_info.image)
-        setTitle(store_info.name)
-        setCategory(store_info.category)
         setDescription(store_info.introduce) 
         setOpenTime(store_info.open_time)
         setCloseTime(store_info.close_time)
-        setAdminAddress(store_info.address)
-        setadminAddressDetail(store_info.address_detail)
         setMobile(store_info.number)
         setStoreFile(store_info.Business_paper)
         setMenuArr(store_info.menus)
@@ -185,9 +160,10 @@ function AdminEditForm() {
   // console.log('admin.opentime::',admin.open_time);
   const [openTime, setOpenTime] = useState('');
   const [closeTime, setCloseTime] = useState('')
-  const monent = moment();
-  const [changeOpenMoment, setChangeOpenMoment] = useState(monent);
-  const [changeCloseMoment, setChangeCloseMoment] = useState(monent);
+  const moment1 = moment();
+  console.log(moment1)
+  const [changeOpenMoment, setChangeOpenMoment] = useState(moment1);
+  const [changeCloseMoment, setChangeCloseMoment] = useState(moment1);
   const str =  "HH:mm";
 
   const onChangeOpenTime = (value: any) => {
@@ -244,9 +220,11 @@ function AdminEditForm() {
           <StoreInputBox>
             <label>가게 설명</label>
             <StoreIntroTextArea 
-            defaultValue = {description} 
-            placeholder = '150자 이내로 작성해주세요.' 
-            onChange = {changeDescHandler}/>
+              defaultValue = {description} 
+              placeholder='150자 이내로 작성해주세요.'
+              maxLength="150"
+              onChange={onChangeDescription}
+                />
           </StoreInputBox>
 
           <StoreInputBox>
@@ -281,12 +259,22 @@ function AdminEditForm() {
         </AdminForm>
 
         <AdminForm>
-          <AdminEnrollStoreEdit
-            addressModal = {addressModal}
-            setAddressModal = {setAddressModal}
-            adminAddress = {adminAddress}
-            adminAddressDetail = {adminAddressDetail}
-          />
+          <StoreInputBox>
+      <label>가게주소</label>
+      <StoreAddressWrapper>
+      <StoreInput 
+        readOnly
+        type="text"
+        defaultValue = {adminAddress} 
+        />
+
+        <StoreInput 
+        type="text"
+        defaultValue={adminAddressDetail}
+        readOnly
+        />
+      </StoreAddressWrapper>
+    </StoreInputBox>
 
           <StoreInputBox>
             <label>모바일</label>
@@ -299,7 +287,7 @@ function AdminEditForm() {
           </StoreInputBox>
 
         <AdminUploadMenuEdit
-          addMenuHandler={(menus: any)=>addMenuHandler(menus)}
+          addMenuHandler={(menus: {})=>addMenuHandler(menus)}
           menuArr = {menuArr}
           setMenuArr = {setMenuArr}
         />
@@ -365,7 +353,7 @@ function AdminEditForm() {
     {editModal ?
       <ConfirmModal
       confirmModal = {editModal}
-      url="/"
+      url="/adminpage"
       modalSuccess={modalSuccess}
       setOpenModal={setEditModal}
       modalTitleText = '스토어 수정'

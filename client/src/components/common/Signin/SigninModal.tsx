@@ -4,44 +4,36 @@ import { LagreButton } from '../Button/Button';
 import {
   SigninContainer, SigninWrapper, SigninInput, LeadSignup, Icon, SignupLink, TextOr, Logo,
 } from './StyledSignin';
-
-import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { END_POINT } from '../../../_actions/type';
+import {useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 import { signIn,naverSignIn, kakaoSignIn } from '../../../_actions/user_action';
 
-import ConfirmModal from '../Modal/ConfirmModal';
-
 import axios from 'axios';
-axios.defaults.withCredentials = true
-
+import { END_POINT } from '../../../_actions/type';
+import ConfirmModal from '../Modal/ConfirmModal';
+import useInput from '../../../utils/useInput';
+axios.defaults.withCredentials = true;
 interface Iprops {
   modalOpen: boolean;
-  setModalOpen: any;
+  setModalOpen: (value: boolean)=>void;
   setIsOpen?: any;
-  request ? :any;
-  url ? :any;
+  request? :boolean;
+  url? :string| null;
 }
 
 function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):any {
   
   const history = useHistory();
   const dispatch: any = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  // 실패시 모달
-  const [failModal, setFailModal] = useState(false);
 
-  const onChangePassword = useCallback((e) => {
-    setPassword(e.target.value);
-  }, [password]);
-  
-  const onChangeEmail = useCallback((e) => {
-    setEmail(e.target.value);
-  }, [email])
+  // if (!modalOpen) return null;
+  const [email, onChangeEmail] = useInput('');
+  const [password, onChangePassword] = useInput('');
+  // 실패시 모달
+  const [failModal, setFailModal] = useState<boolean>(false);
 
   const link = window.location.href
-  const signinHandler = useCallback((e) => {
+  const signinHandler = useCallback((e):void => {
     e.preventDefault();
     const userinfo = {email, password}
     dispatch(signIn(userinfo))
@@ -51,10 +43,9 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
             link === 'http://localhost:3000/usercart'||
             link ==='http://localhost:3000/userorder'){
             history.push('/')
-          }else{
-            // window.location.href=link
-            window.location.reload(); 
-            // window.location.href=`${END_POINT}${url}`
+          }
+          else {
+            window.location.reload();
           }
         }
         else {
@@ -88,7 +79,8 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
         .then((res:any) => {
         if (res.payload.message  === 'login success') {
           window.location.href=`${END_POINT}`
-        } else {
+        }
+        else {
           setFailModal(true);
         } 
       })
@@ -101,7 +93,8 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
         .then((res: any) => {
         if (res.payload.message  === 'login success') {
           window.location.href=`${END_POINT}`
-        } else {
+        }
+        else {
           setFailModal(true);
         } 
       })
@@ -119,8 +112,9 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
     }
   }
   
-  return modalOpen ? (
-    <SigninContainer>
+  return (
+    <>{
+      modalOpen ?(<SigninContainer>
       <SigninWrapper>
           <Logo>UptoDoor</Logo>
         <Icon onClick={closeModal}>
@@ -171,9 +165,11 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
           modalBtn="확인"
         />:null }
 
-    </SigninContainer>
-  ) : null;
-  
+      </SigninContainer>)
+        : null
+    }
+      </>
+  )
 }
 
 export default Signin

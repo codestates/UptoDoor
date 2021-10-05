@@ -48,9 +48,9 @@ const AnalysisWrapper = () => {
 
         <Fade left>
         <AnalysisUser
-        chart={chart.age}
+        chart={chart?.age}
         />
-        </Fade>
+        </Fade> 
 
         <Fade right>
         <AnalysisTtlUser  

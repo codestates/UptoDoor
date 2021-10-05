@@ -5,7 +5,7 @@ import {
   ModalWrapper,ModalTextBox} 
   from './styledModal'
 
-function WarningModal(props: any) {
+function WarningModal(props: any):JSX.Element {
 
   const { 
     openModal, url, modalSubText,

@@ -13,8 +13,37 @@ import {
   USER_ADD_ORDER,
   USER_CALCEL_ORDER,
 } from "../_actions/type";
+import { User } from "../@type/userInfo";
 
-export default function user_reducer(state = {}, action) {
+const intitialState: User = {
+  id: 0,
+  nickname: "",
+  email: "",
+  age: "",
+  mainAddress: "",
+  mainAddressDetail: "",
+  gender: "",
+  mobile: "",
+  position: "",
+  subAddress: "",
+  subAddressDetail: "",
+  message: "",
+  login_type: null,
+  actionMessage: ""
+};
+
+export interface Action {
+  type: string;
+  payload: Payload;
+}
+
+interface Payload {
+	message?: string;
+  data?: User | null;
+  order?: Object[] | null;
+}
+
+export default function user_reducer(state = intitialState, action:any) {
   switch (action.type) {
     case USER_SEND_CERT_EMAIL:
       return { ...state };
@@ -23,31 +52,26 @@ export default function user_reducer(state = {}, action) {
     case USER_SIGNIN:
       return { ...state, ...action.payload };
     case USER_SIGNOUT:
-      return (state = {});
+      return (state = intitialState);
     case USER_KAKAO_SIGNIN:
       return { ...state, ...action.payload };
     case USER_KAKAO_SIGNOUT:
-      return (state = {});
+      return (state = intitialState);
     case USER_NAVER_SIGNIN:
       return { ...state, ...action.payload };
     case USER_NAVER_SIGNOUT:
-      return (state = {});
+      return (state = intitialState);
     case USER_EDIT:
       return { ...state, ...action.payload };
     case USER_DELETE:
-      return (state = {});
+      return (state = intitialState);
     case USER_ADD_ADDRESS: {
       return { ...state, ...action.payload.data };
     }
-    case USER_ADD_ORDER: {
-      if (!state.order) {
-        return { ...state, order: [action.payload] };
-      } else {
-        return { ...state, order: [...state.order, action.payload] };
-      }
-    }
+    case USER_ADD_ORDER: 
+        return { ...state, successMessage: action.payload.message };
     case USER_CALCEL_ORDER: {
-      return { ...state };
+      return { ...state,successMessage: action.payload.message };
     }
 
     default:

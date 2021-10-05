@@ -14,13 +14,18 @@ import {
 } from '../Mypage/StyledMypage';
 import { stringToPrice } from '../../utils/validation';
 import { AdminContainer,AdminOrderListContent } from './StyledAdminPage';
+import { Orders } from '../../@type/adminInfo';
 
-function AdminOrderInfo({ orderitem, listbackHandler }:any) {
-  const { selected_address, selected_address_detail, selected_mobile, order_deliveries,delivery_detail, order_menus } = orderitem;
+type Iprops = {
+  listbackHandler: () => void;
+  orderItem: Orders;
+}
 
-  const {delivery_term,delivery_day,delivery_time} = order_deliveries
+function AdminOrderInfo({ orderItem, listbackHandler }: Iprops) {
+  const { selected_address, selected_address_detail, selected_mobile, order_deliveries,delivery_detail, order_menus } = orderItem;
 
-  console.log('delivery_detail:::',delivery_detail)
+  const { delivery_term, delivery_day, delivery_time } = order_deliveries;
+  
   return (
     <AdminContainer>
       <AdminOrderListContent>
@@ -36,7 +41,7 @@ function AdminOrderInfo({ orderitem, listbackHandler }:any) {
         </StoreInfoWrapper>
 
         <FlexBox distance>
-          <H3>주문자 {orderitem.user_name} 님</H3>
+          <H3>주문자 {orderItem.user_name} 님</H3>
           <span>의 구독내역입니다.</span>
         </FlexBox>
 
@@ -101,7 +106,7 @@ function AdminOrderInfo({ orderitem, listbackHandler }:any) {
     </>
           <TtlPricemBox className="ttl-price-box">
             <H4>총 결제금액</H4>
-            <h2>{stringToPrice(orderitem.totalprice)} 원</h2>
+            <h2>{stringToPrice(orderItem.totalprice)} 원</h2>
           </TtlPricemBox>
         </OrderInfoWrapper>
       </AdminOrderListContent>

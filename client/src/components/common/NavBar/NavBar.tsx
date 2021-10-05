@@ -1,16 +1,7 @@
 import React,{useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  Header,
-  Nav,
-  ButtonWrapper,
-  NavLogo,
-  NavWrapper,
-  UL,
-  IconButton,
-  BtnLink,
-  Listli
+import {Header,Nav,ButtonWrapper,NavLogo,NavWrapper,UL,IconButton,BtnLink,Listli
 } from "./StyledNavBar";
 
 import { AdminStoreReset } from '../../../_actions/admin_action';
@@ -18,31 +9,31 @@ import { signOut,naverSignOut,kakaoSignOut } from '../../../_actions/user_action
 import { useHistory } from 'react-router';
 import { END_POINT } from '../../../_actions/type';
 
+import { RootReducerType } from '../../../store/store';
 import Signin from '../Signin/SigninModal';
 import SideBar from '../SideBar/SideBar';
+import { User } from '../../../@type/userInfo';
 
-function NavBar() {
+function NavBar():JSX.Element {
   const history:any = useHistory();
   const dispatch:any = useDispatch()
-  const state = useSelector((state) => state)
-  const { user }: any = state;
-  const message = user.message;
+  const user:User = useSelector((state:RootReducerType) => state.user)
+  const message = user.message
   
   //사이드바 모달창
-  const [isOpen, setIsOpen] = useState(false);
-  const [alarmBtnModal, setAlarmBtnModal] = useState(false);
-  const closeAlarmModal = () => {setAlarmBtnModal(!alarmBtnModal) };
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [alarmBtnModal, setAlarmBtnModal] = useState<boolean>(false);
+  const closeAlarmModal = ():void => {setAlarmBtnModal(!alarmBtnModal) };
   //로그인 모달
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const signoutHandler = (e:any) => {
+  const signoutHandler = (e:React.MouseEvent<HTMLButtonElement>):void => {
     e.preventDefault();
-    
     if (user.login_type === 'kakao'){
       dispatch(AdminStoreReset());
       dispatch(kakaoSignOut())
       .then((res: any) => {
-        if (res.payload === "signout success") {
+        if (res.payload.message === "signout success") {
           window.location.href = `${END_POINT}`
       } 
     })
@@ -51,7 +42,7 @@ function NavBar() {
       dispatch(AdminStoreReset());
       dispatch(naverSignOut())
       .then((res: any) => {
-        if (res.payload === "signout success") {
+        if (res.payload.message === "signout success") {
           window.location.href = `${END_POINT}`
       }
     });
@@ -61,13 +52,12 @@ function NavBar() {
       dispatch(signOut())
       .then((res: any) => {
         if (res.payload.message === "signout success") {
-          console.log('res.payload======>',res.payload);
-          window.location.href=`${END_POINT}`
+            window.location.href=`${END_POINT}`
         }
     });
   }
 }
-const accessInto = useCallback((name) => {
+const accessInto = useCallback((name):void => {
   if (name === "mypage") {
       if (message) {
       history.push('/mypage');

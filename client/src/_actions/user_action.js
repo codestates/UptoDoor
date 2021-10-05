@@ -54,6 +54,7 @@ export const signIn = (userinfo) => {
   const request = axios
     .post(`${END_POINTS}/users/signin`, userinfo)
     .then((res) => {
+      console.log(res.data);
       return {
         message: res.data.message,
         id: res.data.userinfo.id,
@@ -67,14 +68,13 @@ export const signIn = (userinfo) => {
         age: res.data.userinfo.age,
         gender: res.data.userinfo.gender,
         position: res.data.userinfo.position,
-        billingkey: res.data.userinfo.billingkey,
         login_type: res.data.login_type,
       };
+    }).catch((err) => {
+      return {
+        message: 'error'
+      }
     })
-    .catch((err) => {
-      console.log(err)
-      
-    });
 
   return {
     type: USER_SIGNIN,
@@ -87,8 +87,6 @@ export const signOut = () => {
     .post(`${END_POINTS}/users/signout`)
     .then((res) => {
       return res.data;
-    }).catch((err) => {
-      console.log(err);
     })
     
   return {
@@ -116,7 +114,6 @@ export const kakaoSignIn = (authorizationCode) => {
         age: res.data.userinfo.age,
         gender: res.data.userinfo.gender,
         position: res.data.userinfo.position,
-        billingkey: res.data.userinfo.billingkey,
         login_type: res.data.login_type,
       };
     });
@@ -160,7 +157,6 @@ export const naverSignIn = (authorizationCode, state) => {
         age: res.data.userinfo.age,
         gender: res.data.userinfo.gender,
         position: res.data.userinfo.position,
-        billingkey: res.data.userinfo.billingkey,
         login_type: res.data.login_type,
       };
     });
@@ -191,7 +187,8 @@ export const editUser = (userinfoEdit) => {
     .then((res)=>{
       const{nickname ,mobile,age,gender} =res.data.userinfo
         return {
-          nickname,mobile,age,gender
+          nickname, mobile, age, gender,
+          successMessage: res.data.message
         };
       })
     .catch((err)=>{
@@ -225,6 +222,7 @@ export const addAddress = (address) => {
   const request = axios
     .post(`${END_POINTS}/users/address`, address)
     .then((res) => {
+      console.log(res.data);
       return res.data;
     })
   
@@ -238,14 +236,17 @@ export const addAddress = (address) => {
 export const addOrder = (order, selected_mobile, deliveryName, data) => {
   order.selected_mobile = selected_mobile;
   order.user_name = deliveryName;
+
+  console.log(order);
+  console.log(data);
   const orderinfo = {
     order: order,
     data: data
   }
   const request = axios
     .post(`${END_POINTS}/users/order`, orderinfo)
-    //.post(`https://uptodoors.shop/users/order`, orderinfo)
     .then((res) => {
+      console.log("action", res.data);
       return res.data;
     })
     .catch((err) => {
@@ -263,6 +264,7 @@ export const cancelOrder = (id) => {
   const request = axios
     .delete(`${END_POINTS}/cancel/${id}`)
     .then((res) => {
+      console.log(res.data);
       return res.data
     }).catch((err) => {
       console.log(err)

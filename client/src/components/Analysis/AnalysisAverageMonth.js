@@ -7,7 +7,6 @@ import {
 from './StyledAnalysis'
 
 function AnalysisAverageMonth({chart}) {
-
   const [scrollY , setScrollY] = useState(0);
   const [arrowStatus , setArrowStatus] = useState(false);
 

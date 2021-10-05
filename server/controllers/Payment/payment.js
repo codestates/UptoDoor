@@ -1,8 +1,10 @@
 const { default: axios } = require('axios');
 const { order } = require('../../models');
-const { checkAccess } = require('../Tokenfunc');
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
+
 module.exports = async (req, res) => {
-    console.log("asdnfjkahs", req.body);
+    logger.info(`USER PAYMENT -POST- (${requestIp.getClientIp(req)})`)
     try {
         const orderData = req.body;
         const Bootpay = require('bootpay-backend-nodejs').Bootpay
@@ -55,6 +57,7 @@ module.exports = async (req, res) => {
                 })
         }
     } catch (err) {
+        logger.error(`USER PAYMENT -POST- (${requestIp.getClientIp(req)})`)
         //console.log('--payment err--',err)
         res.status(404).send({ message: 'not ok' })
     }

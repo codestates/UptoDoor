@@ -5,10 +5,14 @@ const e = require('express');
 const {
   checkAccess, checkRefresh, sendAccessToken, generateAccessToken, generateRefreshToken, sendRefreshToken
 } = require('../Tokenfunc');
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
 require("dotenv").config();
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
+  logger.info(`USER LOGIN -POST- (${requestIp.getClientIp(req)})`)
+  
   const Email = req.body.email;
   const Password = crypto.createHash("sha512").update(req.body.password).digest("hex");
   

@@ -1,7 +1,11 @@
 const { user, order_menu, menu, store, store_menu, order, order_delivery } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
 /* eslint-disable no-unused-vars */
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
+
 module.exports = async (req, res) => {
+    logger.info(`ADMIN INFO -GET- (${requestIp.getClientIp(req)})`)
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const userInfo = checkAccess(access);
     const { id } = userInfo;

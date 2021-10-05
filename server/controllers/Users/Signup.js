@@ -1,9 +1,11 @@
 const { user } = require('../../models');
 const crypto = require('crypto');
-const { generateAccessToken, generateRefreshToken, sendAccessToken, sendRefreshToken } = require('../Tokenfunc/index');
-const { send } = require('process');
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
+
 module.exports = async (req, res) => {
     //이메일을 받아와서 DB를 확인하여 이메일 인증이 되었는지 체크
+    logger.info(`USER SIGNUP -POST- (${requestIp.getClientIp(req)})`)
     const Data = req.body
     const receiverEmail = Data.email
     let checkData = await user.findOne({ where: { email: receiverEmail }});

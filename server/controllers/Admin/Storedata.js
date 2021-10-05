@@ -1,7 +1,10 @@
-const { EKS } = require('aws-sdk');
 const {store,store_menu,menu} = require('./../../models')
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
+    logger.info(`GET STORE DATA -GET- (${requestIp.getClientIp(req)})`)
+
     const id = req.params.id;
     let storeData;
     let menuDate;

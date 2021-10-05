@@ -5,9 +5,12 @@ const {
 require('dotenv').config();
 const axios = require('axios');
 axios.defaults.withCredentials = true
+const { logger } = require('../../../config/winston');
+const requestIp = require('request-ip');
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
+    logger.info(`OAuth KAKAO LOGIN -POST- (${requestIp.getClientIp(req)})`)
     let Access_token;
     let userData;
     
@@ -29,6 +32,7 @@ module.exports = async (req, res) => {
             "Content-Type": "application/x-www-form-urlencoded;charset=utf-8" 
             }
     }).then((result)=>{
+        logger.error(`OAuth KAKAO LOGIN -POST- (${requestIp.getClientIp(req)})`)
         console.log  ('====result :: ===',result.data);
         userData = result.data;  
     })

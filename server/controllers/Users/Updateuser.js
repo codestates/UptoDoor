@@ -1,8 +1,12 @@
 const { user } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
 const crypto = require('crypto');
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
+
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
+    logger.info(`USER INFO UPDATE -PATCH- (${requestIp.getClientIp(req)})`)
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
     const { id } = checkAccessToken;

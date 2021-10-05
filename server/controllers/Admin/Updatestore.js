@@ -1,8 +1,11 @@
 const { user, store, store_menu, menu } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
+    logger.info(`UPDATE STORE -PATCH- (${requestIp.getClientIp(req)})`)
     //스토어의 정보를 아무나 변경하면 안되기 때문에 로그인 한사람이 가지고 있는 스토어인지 검증
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);

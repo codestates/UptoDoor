@@ -2,8 +2,12 @@
 const { user, store, store_menu } = require('../../models');
 const { checkAccess } = require('../Tokenfunc');
 const models = require('../../models');
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
+
 module.exports = async (req, res) => {
-    console.log('----------',req.body);
+    logger.info(`CREATE STORE -POST- (${requestIp.getClientIp(req)})`)
+    
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
     const { id } = checkAccessToken;
@@ -24,6 +28,7 @@ module.exports = async (req, res) => {
     await user.update({ position: 1, store_id: data1.id }, { where : { id: id }}); //일반 사용자 사장님 권한 변경
     }
     catch(err) {
+        logger.error(`CREATE STORE -POST- (${requestIp.getClientIp(req)})`)
         console.log('---- 가게 등록 실패 -----',err);
         res.status(404).send({ message: 'Store registration is fail' });
     }

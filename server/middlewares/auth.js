@@ -7,12 +7,13 @@ require('dotenv').config();
 const { user } = require('../models');
 
 module.exports = async (req, res, next) => {
+  
   if(!req.headers.cookie){
     const { email, password } = req.body;
     const Password = crypto.createHash('sha512').update(password).digest('hex');
     //const Data = await user.findOne({ where: { email: email, password: Password } });
     let Data = await user.findOne({ where: { email: email } });
-    console.log("data--------------", Data)
+    
     if (Data) {
       if(Data.emailcheck === 'true'){
         if(Data.password === Password){

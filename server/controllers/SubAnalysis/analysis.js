@@ -1,6 +1,9 @@
 const { user, order_delivery, store, user_order, order } = require('../../models');
-module.exports = async (req, res) => {
+const { logger } = require('../../config/winston');
+const requestIp = require('request-ip');
 
+module.exports = async (req, res) => {
+    logger.info(`Analysis DATA -GET- (${requestIp.getClientIp(req)})`)
     const sendinfo = {
         term:'',
         category:'',

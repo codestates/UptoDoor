@@ -15,10 +15,11 @@ function AnalysisCity({chart}) {
   //chart[0] 번째에 x 값 obj 로 추가
   // {x : chart[0]의 요소}
   // {y : chart[1]의 요소}
-  let data1 = [];
-  for(let i = 0 ; i<chart[0].length ; i++){
-    data1.push({ x: chart[0][i],y: chart[1][i] })
-  }
+  //!여기 주석풀기
+  // let data1 = [];
+  // for(let i = 0 ; i<chart[0].length ; i++){
+  //   data1.push({ x: chart[0][i],y: chart[1][i] })
+  // }
 
   const options = { 
     legend: {
@@ -60,11 +61,28 @@ function AnalysisCity({chart}) {
       },
     },
   };
+  // const series = [
+  //   {
+  //     data : data1
+  //   },
+  // ]
+
+  //가라데이터 여기지워.
   const series = [
-    {
-      data : data1
-    },
+    {data : [
+      { x: '용산구',y: 218 },
+      { x: '강남구',y: 128 },
+      { x: '강서구',y: 62 },
+      { x: '중구',y: 38 },
+      { x: '성동구',y: 88 },
+      { x: '성북구',y: 45 },
+      { x: '은평구',y: 78 },
+      { x: '종로구',y: 28 },
+      { x: '동작구',y: 38 },
+      { x: '송파구',y: 80 },
+    ]}
   ]
+  
 
   return (
       <ChartContainer>

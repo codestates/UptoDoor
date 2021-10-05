@@ -16,7 +16,8 @@ function AnalysisCategory({chartStart,second,chart}) {
   // eslint-disable-next-line react/prop-types
   const categoryName = chart.slice(0,5);
   // eslint-disable-next-line react/prop-types
-  const categoryData = chart.slice(5);
+  //!주석 풀기
+  // const categoryData = chart.slice(5);
 
     const options = { 
       labels: categoryName,
@@ -96,10 +97,16 @@ function AnalysisCategory({chartStart,second,chart}) {
       
       },
     };
+    // const series = [
+    //   {
+    //     name : 'total',
+    //     data : categoryData
+    //   },
+    // ]
     const series = [
       {
         name : 'total',
-        data : categoryData
+        data : [186, 227, 151, 89, 70]
       },
     ]
 

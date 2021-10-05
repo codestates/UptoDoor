@@ -10,7 +10,7 @@ import
   ChartText,
 } from './StyledAnalysis'
 
-function AnalysisUser({chart}) {s
+function AnalysisUser({chart}) {
 
   const ageNum = chart[1];
 

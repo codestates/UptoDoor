@@ -73,13 +73,11 @@ function AdminEditForm() {
     }
   }, [mobile]);
 
-  
   //!add menu onchange handler
   const addMenuHandler = (menu: any) => {
     const bin = {id:0, image: './images/icon/menu-add.png', name:'', price:0, detail:''}
     setMenuArr([...menuArr, bin]);
   };
-
   //!upload storeimg
   const updateStoreImg = (storeImgs:any) => {
     setImageArr([...imageArr,storeImgs])
@@ -102,7 +100,6 @@ function AdminEditForm() {
         mobile : mobile,
         menuArr : menuArr
       }
-      console.log("보내기전 데이터",sendInfo)
       dispatch(adminStoreEdit(sendInfo, storeinfo.id))
       .then((res:any)=>{
         if (res.payload.message === 'update success') {
@@ -118,7 +115,6 @@ function AdminEditForm() {
           setEditModal(true)
       })
   }
-
   //! store 삭제
   const deleteStoreHandler = () => {
     dispatch(adminStoreDelete(admin.id))   
@@ -140,11 +136,10 @@ function AdminEditForm() {
         setDeleteOkModal(true);
     });
   }
-
   const deleteModalHandler = () => {
     setDeleteModal(true)
   }
-  
+
   useEffect(() => {
     const store_id = admin.id
     axios.get(`${END_POINTS}/admin/store/${store_id}`)
@@ -162,6 +157,7 @@ function AdminEditForm() {
         setMenuArr(store_info.menus)
     })
   },[])
+  // console.log('admin.opentime::',admin.open_time);
   const [openTime, setOpenTime] = useState('');
   const [closeTime, setCloseTime] = useState('')
   const moment1 = moment();
@@ -169,6 +165,7 @@ function AdminEditForm() {
   const [changeOpenMoment, setChangeOpenMoment] = useState(moment1);
   const [changeCloseMoment, setChangeCloseMoment] = useState(moment1);
   const str =  "HH:mm";
+
   const onChangeOpenTime = (value: any) => {
     console.log(value && value.format(str));
     setChangeOpenMoment(value);
@@ -240,7 +237,7 @@ function AdminEditForm() {
                   minuteStep={15}
                   format="HH:mm"
                   use12Hours
-                  inputReadOnly
+                  // inputReadOnly
                   onChange={onChangeOpenTime}
                   ></TimePicker>
                   {" "}
@@ -289,13 +286,6 @@ function AdminEditForm() {
             onChange = {changeMobileHandler}/>
           </StoreInputBox>
 
-          {/* <AdminFileUploadEdit
-          storeFile={storeFile}
-          setMenuArr={setMenuArr}
-          setStoreFile={setStoreFile}
-          updateStoreFile = {updateStoreFile}
-          /> */}
-
         <AdminUploadMenuEdit
           addMenuHandler={(menus: {})=>addMenuHandler(menus)}
           menuArr = {menuArr}
@@ -319,6 +309,7 @@ function AdminEditForm() {
     </form>
 
     {deleteModal ?
+    admin.orders.length === 0 ?
       <WarningModal
       openModal = {deleteModal}
       url='/'
@@ -330,8 +321,18 @@ function AdminEditForm() {
       handler={deleteStoreHandler}
       />
       :
+      <ConfirmModal
+      openModal = {deleteModal}
+      setOpenModal={setDeleteModal}
+      modalTitleText = '가게 삭제가 불가합니다.'
+      modalSubText = '이미 구독중인 고객들이 있습니다.'
+      modalText = '더 자세한 사항은 고객센터를 통해 문의해주세요.'
+      modalBtn='닫기'
+      />
+      :
       null
       }
+
       {deleteOkModal ?
       <ConfirmModal
       confirmModal = {deleteOkModal}

@@ -36,21 +36,22 @@ function AnalysisAverageMonth({chart}) {
 
   useEffect(() => {
     let start = 0;
-    const end = count.number;
-    if (start === end) return;
-
+    const end = count.number
+    if(start === end) return;
+    
     //증가시 시간당 듀레이션
     let totlaMilSecDur = parseInt(count.duration);
     let incrementTime = (totlaMilSecDur / end) * 200;
 
-    let timer = setInterval(() => {
+    let timer = setInterval(()=>{
       start += 0.1;
-      setCounting(start.toFixed(1));
-      if (start.toFixed(1) === end) {
+      setCounting(start.toFixed(1))
+      if(start.toFixed(1) === end) {
         clearInterval(timer);
       }
     }, incrementTime);
-  }, [count.number, count.duration]);
+
+  }, [count.number,count.duration])
 
   return (
     <StyledAverageMonth>

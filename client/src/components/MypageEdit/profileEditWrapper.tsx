@@ -74,7 +74,6 @@ function MyProfileEdit():JSX.Element {
   const withdrawalConfirm = ():void => {
     dispatch(deleteUser())
       .then((res: any) => {
-        console.log("payload",res.payload);
       if (res.payload.message  === 'good bye') {
         setOpenModal(false);
         setModalSuccess(true);
@@ -84,12 +83,6 @@ function MyProfileEdit():JSX.Element {
         alert('탈퇴 실패. 못벗어남.');
       }
     })
-    // .catch((err: any) => {
-    //   console.log(err)
-    // });
-    // setOpenModal(false);
-    // setModalSuccess(true);
-    // setDeleteUserModal(true);
   }
 
   const withdrawalModalHandler = ():void => {
@@ -223,9 +216,20 @@ function MyProfileEdit():JSX.Element {
 
         </Form>
       </Wrapper>
-      
+
       {openModal ?
-        
+      user.position === '1' ?
+      <ConfirmModal
+      cancle
+      openModal = {openModal}
+      setOpenModal={setOpenModal}
+      modalTitleText = '회원탈퇴가 불가합니다.'
+      modalSubText = '아직 구독중인 고객님들이 있습니다.'
+      modalText = 
+      {`문의는 고객센터로 연락주시기 바랍니다.`}
+      modalBtn='닫기'
+      />
+      :
       <WarningModal
       cancle
       openModal = {openModal}
@@ -242,6 +246,7 @@ function MyProfileEdit():JSX.Element {
       :
       null
       }
+
       {confirmModal ?
       <ConfirmModal
       confirmModal = {confirmModal}
@@ -257,13 +262,13 @@ function MyProfileEdit():JSX.Element {
       }
       {deleteUserModal ?
       <ConfirmModal
-          confirmModal={deleteUserModal}
-          url="/"
-          setOpenModal={setDeleteUserModal}
-          modalTitleText='회원 탈퇴'
-          modalText='Good Bye'
-          modalBtn='확인'
-          modalSuccess={modalSuccess}
+        confirmModal={deleteUserModal}
+        url="/"
+        setOpenModal={setDeleteUserModal}
+        modalTitleText='회원 탈퇴'
+        modalText='Good Bye'
+        modalBtn='확인'
+        modalSuccess={modalSuccess}
       />
       :
       null

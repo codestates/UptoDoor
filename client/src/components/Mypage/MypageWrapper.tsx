@@ -73,6 +73,7 @@ function MyProfileWrapper(): JSX.Element {
 
     axios.get(`${END_POINTS}/users/userinfo`)
       .then((res) => {
+
         const order = res.data.userdata.user_orders.map((el: any) => {
           const delivery_day = el.order.order_deliveries.map((el:any) =>  el.delivery_day )
           const { delivery_term, delivery_time } = el.order.order_deliveries[0];
@@ -85,7 +86,6 @@ function MyProfileWrapper(): JSX.Element {
               el.order.state = 'canceling'
             }
           }
-
           const { 
             state, totalprice, order_menus, store, user_name, 
             selected_address, selected_address_detail, 

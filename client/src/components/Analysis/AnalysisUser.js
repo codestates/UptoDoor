@@ -11,17 +11,25 @@ import
 } from './StyledAnalysis'
 
 function AnalysisUser({chart}) {
-  console.log('age chart:::',chart)
 
-  const ageNum = chart[1] && chart[1];
-  console.log("1", ageNum)
+  const ageNum = chart[1];
+
   const arr = [
-    { name: "10대 남자", number: ageNum[0]?.man },
-    { name: "20대 남자", number: ageNum[1]?.man },
-    { name: "30대 남자", number: ageNum[2]?.man },
-    { name: "40대 남자", number: ageNum[3]?.man },
-    { name: "50대 남자", number: ageNum[4]?.man },
-    { name: "60대 남자", number: ageNum[5]?.man },
+    {name : '10대 남자',number : ageNum[0].man && ageNum[0].man},
+    {name : '20대 남자',number : ageNum[0].man && ageNum[1].man},
+    {name : '30대 남자',number : ageNum[0].man && ageNum[2].man},
+    {name : '40대 남자',number : ageNum[0].man && ageNum[3].man},
+    {name : '50대 남자',number : ageNum[0].man && ageNum[4].man},
+    {name : '60대 남자',number : ageNum[0].man && ageNum[5].man},
+    
+    {name : '10대 여자',number : ageNum[0].woman && ageNum[0].woman},
+    {name : '20대 여자',number : ageNum[0].woman && ageNum[1].woman},
+    {name : '30대 여자',number : ageNum[0].woman && ageNum[2].woman},
+    {name : '40대 여자',number : ageNum[0].woman && ageNum[3].woman},
+    {name : '50대 여자',number : ageNum[0].woman && ageNum[4].woman},
+    {name : '60대 여자',number : ageNum[0].woman && ageNum[5].woman},
+  ]
+
 
     { name: "10대 여자", number: ageNum[0]?.woman },
     { name: "20대 여자", number: ageNum[1]?.woman },
@@ -33,18 +41,16 @@ function AnalysisUser({chart}) {
   console.log("1234", arr);
   arr.sort((a,b)=>b.number-a.number)
 
-  const name = arr.map((el)=>el?.name);
-  console.log('namenamename',name);
-  const number = arr.map((ele)=>ele?.number);
-  console.log("numer",number)
-  //name
+  const name = arr.map((el)=>el.name);
+  const number = arr.map((ele)=>ele.number);
+
+  // //name
   let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
-  // console.log('splicingNameLast',splicingNameLast)
   let splicingNameFirst = name.splice(0,5).concat(['그 외']);
     
-
   const options = { 
     labels: splicingNameFirst,
+    // labels: chart[0],
     theme: {
       monochrome: {
         enabled: true
@@ -105,7 +111,6 @@ function AnalysisUser({chart}) {
   };
   
   let splicingLast = number.splice(5).reduce((acc,cur)=>acc+cur);
-  let splicingFirst = number.splice(0,5).concat([splicingLast]);
 
   return (
     <ChartContainer>

@@ -205,7 +205,6 @@ export const deleteUser = () => {
   const request = axios
     .delete(`${END_POINTS}/users`)
     .then((res) => {
-      console.log("회원탈퇴", res.data);
       return res.data;
     })
     .catch((err)=>{

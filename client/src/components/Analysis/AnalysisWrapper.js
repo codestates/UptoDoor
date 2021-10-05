@@ -18,17 +18,16 @@ const AnalysisWrapper = () => {
 
   const [chart, setChart] = useState(
     {term : 0 , category:[] ,address : [[]],
-    age:[[],[{}]] ,gender:[{}||[]],}
+    age:[[],[{}]] ,gender:[{},{}],}
   );
 
   useEffect(() => {
     axios.get(`${END_POINTS}/analysis`)
       .then(res => {
         setChart(res.data.data)
-        console.log(res.data.data.age);
       })
       .catch(err => console.log('받아오는거 에러',err));
-  }, []);
+  },[]);
 
   return (
     <Container>

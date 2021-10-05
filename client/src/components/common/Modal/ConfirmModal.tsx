@@ -12,7 +12,7 @@ function ConfirmModal(props: any):JSX.Element {
 
   const history:any = useHistory()
   const { 
-    openModal, url,confirmModal,modalSuccess,
+    openModal, url,confirmModal,modalSuccess,modalSubText,
     modalTitleText ,modalText,modalBtn,setOpenModal,setHandler
     } = props;
 
@@ -22,12 +22,10 @@ function ConfirmModal(props: any):JSX.Element {
       if (url) {
         window.location.href=`${END_POINT}${url}`
       }
-      
     } else {
       if (setHandler) {
         setHandler(false);
       }
-      
       setOpenModal(false);
     }
   }
@@ -50,6 +48,7 @@ function ConfirmModal(props: any):JSX.Element {
             className="far fa-check-circle"></I>
             } 
             <h2>{modalTitleText}</h2>
+            <h3>{modalSubText}</h3>
             <p>{modalText}</p>
           </ModalTextBox>
 

@@ -3,8 +3,9 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-    logger.info(`GET STORE DATA -GET- (${requestIp.getClientIp(req)})`)
+    //logger.info(`GET STORE DATA -GET- (${requestIp.getClientIp(req)})`)
 
+    try {
     const id = req.params.id;
     let storeData;
     let menuDate;
@@ -31,6 +32,8 @@ module.exports = async (req, res) => {
         storeData.menus = [...storeData.menus,{id:el.id, name:el.name, image:el.image, price:el.price, detail:el.detail}]
     }
  
-
-    res.send({message : "ok", storeData:storeData})
+    res.status(200).send({message : "ok", storeData:storeData})
+    } catch (err) {
+        res.status(403).send({ message: 'fail to load store info '})
+    }
 }

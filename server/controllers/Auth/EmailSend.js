@@ -5,7 +5,7 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 
 module.exports = async (req, res) => {
-  logger.info(`EMAIL SEND -POST- (${requestIp.getClientIp(req)})`) 
+  //logger.info(`EMAIL SEND -POST- (${requestIp.getClientIp(req)})`) 
 // 본인 Gmail 계정
   const EMAIL = 'omjcws@gmail.com';
   const EMAIL_PW = 'omjcws1531!';

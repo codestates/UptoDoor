@@ -5,7 +5,7 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-    logger.info(`USER ORDER -POST- (${requestIp.getClientIp(req)})`)
+    //logger.info(`USER ORDER -POST- (${requestIp.getClientIp(req)})`)
 
     let orderInfo = req.body.order;
 
@@ -72,7 +72,7 @@ module.exports = async (req, res) => {
                 res.status(201).send({message: 'Your order has been completed'});    
             })
         } catch (error) {
-            logger.error(`USER ORDER -POST- (${requestIp.getClientIp(req)})`)
+            //logger.error(`USER ORDER -POST- (${requestIp.getClientIp(req)})`)
             res.status(403).send({message: 'order fail, try again'});
         }
     }

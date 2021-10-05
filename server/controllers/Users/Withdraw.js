@@ -6,7 +6,7 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 
 module.exports = async (req, res) => {
-  logger.info(`USER WITHDRAW -DELETE- (${requestIp.getClientIp(req)})`)
+  //logger.info(`USER WITHDRAW -DELETE- (${requestIp.getClientIp(req)})`)
   if (req.headers.cookie) {
   const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
   const userInfo = checkAccess(access);
@@ -32,9 +32,9 @@ module.exports = async (req, res) => {
   })
     await user.destroy({ where : { id : id }})
   
-  res.status(200).send({ message: 'good bye', orderdata });
+  res.status(200).send({ message: 'good bye' });
   } else {
-      res.status(404).send({ message: 'sign out fail' });
+      res.status(404).send({ message: 'withdraw fail' });
   }
 
 }

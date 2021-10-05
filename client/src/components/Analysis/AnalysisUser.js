@@ -100,8 +100,8 @@ function AnalysisUser({chart}) {
       ],
   };
   
-  const series = number;
-
+  let splicingFirst = number.splice(5).reduce((acc, cur) => acc + cur);
+  
   return (
     <ChartContainer>
       <ChartContentsWrapper>
@@ -115,7 +115,7 @@ function AnalysisUser({chart}) {
         <Chart
           className="user-chart"
           options={options}
-          series={series}
+          series={splicingFirst}
           type="pie"
           height="500px"
         />

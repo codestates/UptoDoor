@@ -40,7 +40,7 @@ function MyOrderDetail({
   const cancelOrderHandler = ():void => {
     //* 디스패치 주석풀어야함, 밑에 2줄 지우고,
     dispatch(cancelOrder(orderitem.id)).then((res:any) => {
-      if (res.payload.successMessage === "success delete order") {
+      if (res.payload.message === "cancel for your order") {
         setOpenModal(false);
         setModalSuccess(true)
         setCancelStoreModal(true);
@@ -48,7 +48,7 @@ function MyOrderDetail({
     })
     
   }
-  console.log(orderitem);
+  
   const { state } = orderitem;
   return (
     <MypageOrderListWrapper>

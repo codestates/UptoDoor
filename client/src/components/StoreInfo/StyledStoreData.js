@@ -267,6 +267,7 @@ margin-top : ${({btnboxMargin})=> (btnboxMargin ? '18px' : 0)};
     width: 202px;
     height: 60px;
     margin : 0 5px;
+    font-weight:700;
   }
 }
 >.call-btn{

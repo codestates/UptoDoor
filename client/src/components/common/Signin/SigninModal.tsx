@@ -41,7 +41,9 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
         if (res.payload.message  === 'login success') {
           if(
             link === 'http://localhost:3000/usercart'||
-            link ==='http://localhost:3000/userorder'){
+            link ==='http://localhost:3000/userorder'||
+            link ==='http://localhost:3000/signup'
+            ){
             history.push('/')
           }
           else {

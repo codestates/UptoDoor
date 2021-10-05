@@ -44,7 +44,8 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
             link ==='http://localhost:3000/userorder'||
             link ==='http://localhost:3000/signup'
             ){
-            history.push('/')
+            setModalOpen(false);
+            window.location.href = `${END_POINT}`
           }
           else {
             window.location.reload();

@@ -51,14 +51,6 @@ const LandingIntro = () => {
     setBtnStatus(false);
   }
 
-const moveAdminPageHandler = () => {
-  dispatch(AdminStoreGetData()).then((res) => {
-    if (res.payload.message === "ok") {
-      history.push("/adminpage");
-    }
-  });
-};
-
   useEffect(() => {
     const chkScroll = () => {
       window.addEventListener('scroll',showScrollBtn)

@@ -22,7 +22,7 @@ overflow: hidden;
 @media screen and (min-width: 767px) {
 height:calc(100vh - 80px);
 margin : 0 auto;
-padding-top : 100px;
+padding-top : 70px;
 }
 
 `
@@ -33,23 +33,26 @@ padding : 50px 0 0;
 overflow-y: hidden;
 @media screen and (min-width: 767px) {
 margin : 0 auto;
-padding : 100px 0 20px;
+padding : 0 0 20px;
 }
 `
-export const MainTitle = styled.h1`
+export const MainTitle = styled.h3`
 font-size: ${MediumFont};
 font-weight : 500;
 color : ${TextDarkGrey};
+letter-spacing : -1px;
 @media screen and (min-width: 767px) {
   display : inline ;
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 500;
 }
 `
 export const MainSubTitle = styled.h2`
 font-size: 18px;
 font-weight : 400;
 color : ${TextLightGrey};
+font-weight: 700;
+letter-spacing : -2px;
 @media screen and (min-width: 767px) {
   display : inline ;
   font-size: 32px;
@@ -93,7 +96,7 @@ height : 50px;
 @media screen and (min-width: 767px) {
   justify-content: center;
   /* align-items: center; */
-  margin : 10px 0 60px 0;
+  margin : 0 0 100px 0;
   height : 90px;
   >div{
     width : 160px;

@@ -29,10 +29,13 @@ function MyOrderList({ moveDetailHandler , orderList}:IProps): JSX.Element{
           return (
             <OrderListWrapper key={idx}>
               <OrderListContent>
-                <ListDate>
+                {el.state === "order" ?
+                (<ListDate>
                   <p>다음 결제일: </p>
                   <h5>{el.nextPayDay}</h5>
                 </ListDate>
+                )
+                  :null}
                 <ListInfo>
                   {el.state === 'order' ? 
                   <DeliveryState blue>구독중</DeliveryState>

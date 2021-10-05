@@ -246,8 +246,9 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
   const request = axios
     .post(`${END_POINTS}/users/order`, orderinfo)
     .then((res) => {
-      console.log("action", res.data);
-      return res.data;
+      return {
+        successMessage:res.data.message
+      }
     })
     .catch((err) => {
       console.log("ordererr", err);
@@ -255,7 +256,7 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
 
   return {
     type: USER_ADD_ORDER,
-    payload: request,
+    payload: request
   };
 };
 
@@ -264,8 +265,9 @@ export const cancelOrder = (id) => {
   const request = axios
     .delete(`${END_POINTS}/cancel/${id}`)
     .then((res) => {
-      console.log(res.data);
-      return res.data
+      return {
+        successMessage: res.data.message,
+      };
     }).catch((err) => {
       console.log(err)
     });

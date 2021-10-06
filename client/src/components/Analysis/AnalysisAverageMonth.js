@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React,{useState, useEffect} from 'react'
 import Fade from 'react-reveal/Fade'
 import {
@@ -5,9 +6,7 @@ import {
   AverageMonthWrapper,ArrowDisplay} 
 from './StyledAnalysis'
 
-function AnalysisAverageMonth() {
-
-
+function AnalysisAverageMonth({chart}) {
   const [scrollY , setScrollY] = useState(0);
   const [arrowStatus , setArrowStatus] = useState(false);
 
@@ -27,11 +26,11 @@ function AnalysisAverageMonth() {
     return () => {
       window.removeEventListener('scroll',showBelowArrow)
     }
-  })
+  },)
 
   const count = {
     id: 1 , label : '평균 구독 개월수', 
-    number : 3.2 , duration : '1'
+    number : chart, duration : '1'
   }
   const [counting , setCounting] = useState('0');
 
@@ -42,12 +41,12 @@ function AnalysisAverageMonth() {
     
     //증가시 시간당 듀레이션
     let totlaMilSecDur = parseInt(count.duration);
-    let incrementTime = (totlaMilSecDur / end) * 300;
+    let incrementTime = (totlaMilSecDur / end) * 200;
 
     let timer = setInterval(()=>{
       start += 0.1;
       setCounting(start.toFixed(1))
-      if(start.toFixed(1) === end.toFixed(1)) {
+      if(start.toFixed(1) === end) {
         clearInterval(timer);
       }
     }, incrementTime);

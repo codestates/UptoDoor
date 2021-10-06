@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {
   StoreInputBox,
   StoreInput,
@@ -10,7 +10,7 @@ import { AddressModalContainer, Postcoder } from '../CertAddress/StyledAddress';
 interface AdminAddProps {
   adminAddress: string;
   addressModal: boolean;
-  setAddressModal: (value: boolean)=> void;
+  setAddressModal: any;
   changeAdminAddress: (value: string) => void;
   onChangeAdminAddressDetail: (value: string) => void;
 }
@@ -24,20 +24,39 @@ function AdminEnrollStore({
     setAddressModal(false);
   }
   
+const threeSecods = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("success");
+      }, 500);
+    });
+  };
+  const [loading, setLoading] =useState(false)
+  const onClick = (data: any):void => {
+    setLoading(true);
+    threeSecods()
+      .then(res => {
+        if (res === "success") {
+          changeAdminAddress(data)
+        }
+      })
+      .then(() => setLoading(false));
+  };
+
   return (
     <StoreInputBox>
       <label>가게주소</label>
       <StoreAddressWrapper>
-        {adminAddress.length === 0 ? 
+        {adminAddress === '' ? 
         <StoreAddressBtn
         required
         type="button"
-        onClick={()=>setAddressModal(true)}
+        onClick={() => { setAddressModal((prev: any) => !prev) }}
         >가게 주소 등록하기</StoreAddressBtn>
         :
         <StoreAddressBtn
         type="button"
-            onClick={setAddressModal(true)}
+            onClick={() => { setAddressModal((prev: any) => !prev) }}
         >{adminAddress}</StoreAddressBtn>
         }
         
@@ -52,7 +71,7 @@ function AdminEnrollStore({
         <AddressModalContainer onClick={closeModal}>
           <Postcoder
             autoClose
-            onComplete={(data:any) => { changeAdminAddress(data) }}
+            onComplete={(data:any) => { onClick(data) }}
             onError={function (error:any): void {
             throw new Error(`${error} Function not implemented.`);
             } }          />

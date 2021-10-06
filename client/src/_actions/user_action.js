@@ -70,6 +70,10 @@ export const signIn = (userinfo) => {
         position: res.data.userinfo.position,
         login_type: res.data.login_type,
       };
+    }).catch((err) => {
+      return {
+        message: 'error'
+      }
     })
 
   return {
@@ -124,7 +128,7 @@ export const kakaoSignOut = () => {
   const request = axios
     .post(`${END_POINTS}/oauth/kakao/signout`)
     .then((res) => {
-      return res.data.message;
+      return res.data;
     });
 
   return {
@@ -167,7 +171,7 @@ export const naverSignOut = () => {
   const request = axios
     .post(`${END_POINTS}/oauth/naver/signout`)
     .then((res) => {
-      return res.data.message;
+      return res.data;
     });
 
   return {
@@ -183,7 +187,8 @@ export const editUser = (userinfoEdit) => {
     .then((res)=>{
       const{nickname ,mobile,age,gender} =res.data.userinfo
         return {
-          nickname,mobile,age,gender
+          nickname, mobile, age, gender,
+          successMessage: res.data.message
         };
       })
     .catch((err)=>{
@@ -200,7 +205,6 @@ export const deleteUser = () => {
   const request = axios
     .delete(`${END_POINTS}/users`)
     .then((res) => {
-      console.log("회원탈퇴", res.data);
       return res.data;
     })
     .catch((err)=>{
@@ -232,15 +236,17 @@ export const addAddress = (address) => {
 export const addOrder = (order, selected_mobile, deliveryName, data) => {
   order.selected_mobile = selected_mobile;
   order.user_name = deliveryName;
+
+  console.log(order);
+  console.log(data);
   const orderinfo = {
     order: order,
     data: data
   }
   const request = axios
     .post(`${END_POINTS}/users/order`, orderinfo)
-    //.post(`https://uptodoors.shop/users/order`, orderinfo)
     .then((res) => {
-      return res.data;
+      return res.data
     })
     .catch((err) => {
       console.log("ordererr", err);
@@ -248,7 +254,7 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
 
   return {
     type: USER_ADD_ORDER,
-    payload: request,
+    payload: request
   };
 };
 
@@ -257,6 +263,7 @@ export const cancelOrder = (id) => {
   const request = axios
     .delete(`${END_POINTS}/cancel/${id}`)
     .then((res) => {
+      console.log("요청후 응답", res.data);
       return res.data
     }).catch((err) => {
       console.log(err)

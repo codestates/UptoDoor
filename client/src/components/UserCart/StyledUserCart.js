@@ -511,38 +511,33 @@ export const UserCheckListDetailBox = styled.div`
 `;
 
 export const CartTimePicker = styled(TimePicker)`
-  > .rc-time-picker {
-    display: inline-block;
-    position: relative;
-    box-sizing: border-box;
+
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  @media screen and (min-width: 767px) {
+    width : 50%;
   }
-  > .rc-time-picker * {
-    box-sizing: border-box;
+  >input{
+    width : 100%!important;
+    @media screen and (min-width: 1140px) {
+    width : 100%important;
+    }
   }
   > .rc-time-picker-clear {
-    position: relative;
-    /* right: 24px; */
+    position: absolute;
+    right: 0px;
+    line-height: 20px;
     cursor: pointer;
     overflow: hidden;
     width: 25px;
     height: 25px;
     text-align: center;
-    line-height: 20px;
-    right: 8%;
-    top: -2px;
-    /* @media screen and (min-width: 500px) {
-      right: 6%;
-    }
-    @media screen and (min-width: 767px) {
-      right: 5%;
-    }
-    @media screen and (min-width: 900px) {
-      right: 4%;
-    } */
+
     @media screen and (min-width: 1140px) {
       position: absolute;
       top: 6px;
-      right: 150px;
+      /* right: 150px; */
     }
   }
   > .rc-time-picker-clear-icon:after {

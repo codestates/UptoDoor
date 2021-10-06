@@ -2,8 +2,13 @@ import React from 'react'
 import Select from 'react-select';
 import {Label, SelectBox} from './StyledMypageEdit'
 
-function ProfileEditOptions({selectInputHandler,userGender,userAge}:any) {
+type IProps = {
+  selectInputHandler: (e: any, name: string) => void;
+  userGender: string;
+  userAge: string;
+}
 
+function ProfileEditOptions({selectInputHandler,userGender,userAge}:IProps):JSX.Element {
   const gender: [{value: string, label: string}[], string] = [
     [
       { value : '선택안함' , label : '선택안함'},
@@ -47,7 +52,7 @@ function ProfileEditOptions({selectInputHandler,userGender,userAge}:any) {
           name={gender[1]}
           placeholder = {userGender}
           defaultValue = {selectedGenderOption}
-          onChange = {(e)=>selectInputHandler(e,gender[1])}
+          onChange = {(e:any)=>selectInputHandler(e,gender[1])}
         />
 
         <Label>{age[1]}</Label>

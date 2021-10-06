@@ -1,10 +1,10 @@
-import React, { useState,useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector,useDispatch } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Fade from "react-reveal/Fade"
+import Fade from "react-reveal/Fade";
 
 import {
   LandingIntroContainer,
@@ -19,73 +19,63 @@ import {
   CategoryTitle,
   CategoryImgWrapper,
   CategoryImgs,
-  GradientEdge,
-  FixI,AlarmI,
+  FixI,
   ArrowDisplay,
-  ArrowChk, I,
-} from './StyledLanding'
-import {category, categoryDummy} from '../dummyData'
+  ArrowChk,
+  I,
+  GradientEdge,
+} from "./StyledLanding";
+
+import { category, categoryDummy } from "../dummyData";
 import { AdminStoreGetData } from "../../_actions/admin_action";
 
 const LandingIntro = () => {
   const dispatch = useDispatch();
-  const history = useHistory()
-  const user = useSelector((state) => state.user); 
-  const [scrollY , setScrollY] = useState(0);
-  const [btnStatus , setBtnStatus] = useState(false);
-  
+  const history = useHistory();
+  const user = useSelector((state) => state.user);
+  const [scrollY, setScrollY] = useState(0);
+  const [btnStatus, setBtnStatus] = useState(false);
+
   const showScrollBtn = () => {
     setScrollY(window.pageYOffset);
-    if(scrollY > 400){
+    if (scrollY > 400) {
       setBtnStatus(true);
-    }else{
+    } else {
       setBtnStatus(false);
     }
-  }
+  };
   const scrollTop = () => {
     window.scrollTo({
-      top : 0,
-      behavior: 'smooth'
+      top: 0,
+      behavior: "smooth",
     });
     setScrollY(0);
     setBtnStatus(false);
-  }
-  
-  const alarmHandler = () => {
-    history.push('/adminpage');
-  }
-
-const moveAdminPageHandler = () => {
-  dispatch(AdminStoreGetData()).then((res) => {
-    if (res.payload.message === "ok") {
-      history.push("/adminpage");
-    }
-  });
-};
+  };
 
   useEffect(() => {
     const chkScroll = () => {
-      window.addEventListener('scroll',showScrollBtn)
-    }
+      window.addEventListener("scroll", showScrollBtn);
+    };
     chkScroll();
     return () => {
-      window.removeEventListener('scroll',showScrollBtn)
-    }
-  })
+      window.removeEventListener("scroll", showScrollBtn);
+    };
+  });
 
   const settings = {
-    arrows : false,
-    infinite: true, 
+    arrows: false,
+    infinite: true,
     speed: 900,
     autoplay: true,
-    autoplaySpeed: 5000, 
-    slidesToShow: 1,  
-    slidesToScroll: 1,  
-    draggable : false,
+    autoplaySpeed: 5000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    draggable: false,
     centerMode: true,
-    centerPadding: '0px', 
-    pauseOnHover : false,	
-		vertical : true,
+    centerPadding: "0px",
+    pauseOnHover: false,
+    vertical: true,
   };
 
   return (
@@ -139,15 +129,6 @@ const moveAdminPageHandler = () => {
 
         <ArrowDisplay className="arrow-below-display">
           <FixI className="fas fa-angle-double-down"></FixI>
-          {user.position === "1" ? (
-            <AlarmI
-              title="관리자 페이지 이동"
-              className="far fa-bell alarm-btn click-icon"
-              onClick={moveAdminPageHandler}
-            >
-              <span>2</span>
-            </AlarmI>
-          ) : null}
         </ArrowDisplay>
 
         <ArrowChk>
@@ -166,6 +147,6 @@ const moveAdminPageHandler = () => {
       </LandingIntroWrapper>
     </LandingIntroContainer>
   );
-}
+};
 
-export default LandingIntro
+export default LandingIntro;

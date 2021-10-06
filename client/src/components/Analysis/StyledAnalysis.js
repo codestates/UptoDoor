@@ -16,16 +16,23 @@ width: 100%;
 border-radius: 8px;
 background-color: #f7f7f7;
 padding : 15px;
-margin : 30px 0 ;
+margin : 20px 0 ;
 display: flex;
 flex-direction: column;
 justify-content: center;
+>.selection {
+    margin : 15px 0 0px;
+    >div{
+      box-shadow : 0 0 0 0.3px rgba(0,0,0,0.3) !important;
+      border-color : rgba(0,0,0,0.3);
+    }
+  }
 @media screen and (min-width: 1140px) {
   background-color: #fff;
   width : 500px;
   padding : 50px;
-
 }
+
 `
 export const ChartTitle = styled.h1`
 color : rgba(0,0,0,0.8); 
@@ -174,11 +181,10 @@ align-content: center;
   bottom : -20px!important;
 }
 @media screen and (min-width: 1140px) {
-  width : 600px;
-  /* >.user-chart>div>svg{
-    border:3px solid;
-    width : 400px!important;
-  } */
+  >div>div>svg{
+    overflow: visible;
+    width : 450px!important;
+  }
 }
 `
 //!토탈유저 카테고리 섹션
@@ -204,10 +210,7 @@ export const ChartTtlUseryWrapper = styled.div`
 }
 @media screen and (min-width: 1140px) {
   width : 600px;
-  >.selection {
-    max-width: 540px;
-    margin-left: 40px;
-  }
+
 }
 `
 //!지역섹션

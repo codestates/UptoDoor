@@ -10,16 +10,17 @@ import {
 
 import {MiddleButton} from '../Button/Button'
 
-function Modal(props:any) {
+function Modal(props:any):JSX.Element {
 
   const { 
     openModal, modalTitleText ,modalText, 
     modalBtn,url,closeModal } = props;
 
   return (
-      openModal ? (
-        <TermModalContainer className = 'modal-container' >
-          <TermModalWrapper className = 'modal-wrapper'>
+    <>
+      {openModal ? (
+        <TermModalContainer className='modal-container' >
+          <TermModalWrapper className='modal-wrapper'>
             <TermModalTextWrapper >
               <TermModalTitleText>
                 {modalTitleText}
@@ -28,18 +29,20 @@ function Modal(props:any) {
               <TermModalText>{modalText}</TermModalText>
             </TermModalTextWrapper>
   
-            <MiddleButton 
-            primary
-            onClick = {closeModal}
-            className = 'modal-btn'>
-            {modalBtn}
+            <MiddleButton
+              primary
+              onClick={closeModal}
+              className='modal-btn'>
+              {modalBtn}
             </MiddleButton>
-            </TermModalWrapper>
+          </TermModalWrapper>
         </TermModalContainer>
       )
-      :
-      null
-  )
+        :
+        null}
+      </>
+      )
+      
 }
 
 export default Modal

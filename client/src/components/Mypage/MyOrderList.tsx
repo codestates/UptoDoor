@@ -7,28 +7,35 @@ import {
   OrderListWrapper,ListInfoDetail } from './StyledMypage';
 import {NextBtn,ArrowBtn} from '../common/Button/Button';
 import {removeLastStr} from '../../utils/validation'
-function MyOrderList({ 
-  moveDetailHandler , 
-  order}:any):any {
-  console.log(order);
-  
+import {UserOrders} from '../../@type/userInfo'
+
+interface IProps {
+  moveDetailHandler: (id: number) => void;
+  orderList: UserOrders[];
+}
+
+function MyOrderList({ moveDetailHandler , orderList}:IProps): JSX.Element{
+
   return (
     <MypageOrderListWrapper>
-      {order.length === 0 ?
+      {orderList.length === 0 ?
         <EmptyStore>
           <i className="fas fa-store-alt-slash"></i>
           <p>구독중인 스토어가 없습니다.</p>
         </EmptyStore>
         :
         <>
-          {order && order.map((el: any, idx: any) => {
+          {orderList && orderList.map((el: any, idx: number) => {
           return (
             <OrderListWrapper key={idx}>
               <OrderListContent>
-                <ListDate>
+                {el.state === "order" ?
+                (<ListDate>
                   <p>다음 결제일: </p>
                   <h5>{el.nextPayDay}</h5>
                 </ListDate>
+                )
+                  :null}
                 <ListInfo>
                   {el.state === 'order' ? 
                   <DeliveryState blue>구독중</DeliveryState>
@@ -36,7 +43,7 @@ function MyOrderList({
                       <DeliveryState blue>취소예정</DeliveryState>
                     : el.state === 'cancel' ?
                       <DeliveryState>취소됨</DeliveryState>
-                        : <DeliveryState yellow="#ffae00">기간만료</DeliveryState>
+                        : <DeliveryState>기간만료</DeliveryState>
                   }
                   <img 
                   src={el.menu[0].menu.image} 

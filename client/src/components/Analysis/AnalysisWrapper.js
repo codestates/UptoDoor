@@ -1,4 +1,3 @@
-//import React from 'react'
 import Fade from 'react-reveal/Fade'
 import axios from 'axios'
 import { END_POINTS } from '../../_actions/type'
@@ -7,8 +6,6 @@ import { Container, Title, Wrapper } from '../GlobalStyle'
 import {
   chartObjOne,
   chartObjTwo,
-  chartObjThree,
-  chartObjFour
 } from './chartProperty';
 
 import AnalysisCategory from './AnalysisCategory'
@@ -19,16 +16,18 @@ import AnalysisAverageMonth from './AnalysisAverageMonth'
 
 const AnalysisWrapper = () => {
 
-  const [chart, setChart] = useState('');
+  const [chart, setChart] = useState(
+    {term : 0 , category:[] ,address : [[]],
+    age:[[],[{}]] ,gender:[{},{}],}
+  );
 
-  useEffect( () => {
+  useEffect(() => {
     axios.get(`${END_POINTS}/analysis`)
       .then(res => {
-        console.log('------구독 분석 데이터------',res.data)
-        setChart(res.data);
+        setChart(res.data.data)
       })
       .catch(err => console.log('받아오는거 에러',err));
-  }, []);
+  },[]);
 
   return (
     <Container>
@@ -36,23 +35,33 @@ const AnalysisWrapper = () => {
       <Wrapper>
 
         <Fade bottom>
-        <AnalysisAverageMonth />
+        <AnalysisAverageMonth 
+        chart={chart.term}
+        />
         </Fade>
 
-        <Fade left >
-        <AnalysisCategory {...chartObjOne}/>
-        </Fade>
-
-        <Fade right>
-        <AnalysisUser {...chartObjTwo}/>
+        <Fade right >
+        <AnalysisCategory 
+        chart={chart.category}
+        {...chartObjOne}/>
         </Fade>
 
         <Fade left>
-        <AnalysisTtlUser {...chartObjThree}/>
+        <AnalysisUser
+        chart={chart?.age}
+        />
+        </Fade> 
+
+        <Fade right>
+        <AnalysisTtlUser  
+        chart={chart.gender}
+        {...chartObjTwo}/>
         </Fade>
 
-        <Fade bottom>
-        <AnalysisCity {...chartObjFour}/>
+        <Fade left>
+        <AnalysisCity 
+        chart={chart.address}
+        />
         </Fade>
         
       </Wrapper>

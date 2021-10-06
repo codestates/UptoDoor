@@ -11,10 +11,30 @@ import
 } from './StyledAnalysis'
 
 // eslint-disable-next-line react/prop-types
-function AnalysisCategory({chartStart,second}) {
-    console.log('=asdkfhslkdck==',chartStart,second)
+function AnalysisCategory({chartStart,second,chart}) {
+
+  // eslint-disable-next-line react/prop-types
+  const categoryName = chart.slice(0,5);
+  // eslint-disable-next-line react/prop-types
+  const categoryData = chart.slice(5);
+
     const options = { 
-      labels: ["Food","Cafe",'Living/Home','Beauty','Etc'],
+      labels: categoryName,
+      chart: {
+        animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 700,
+            animateGradually: {
+                enabled: true,
+                delay: 150
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 400
+            }
+        }
+      },
       plotOptions: {
         bar: {
           borderRadius: 10,
@@ -35,7 +55,7 @@ function AnalysisCategory({chartStart,second}) {
         }
       },
       xaxis: {
-        categories: ["Food","Cafe",'Living/Home','Beauty','Etc'],
+        categories: categoryName,
         position: 'top',
         axisBorder: {
           show: false
@@ -66,16 +86,7 @@ function AnalysisCategory({chartStart,second}) {
         axisTicks: {
           show: false,
         },
-        title: {
-          text: '구독수 카테고리 나타내기',
-          floating: true,
-          offsetY: 330,
-          align: 'center',
-          style: {
-            color: '#444'
-          }
-        },
-
+        
         labels: {
           show: true,
           formatter: function (val) {
@@ -85,10 +96,12 @@ function AnalysisCategory({chartStart,second}) {
       
       },
     };
-    const series = [{
-      name : '받아온데이터 ',
-      data : [106, 127, 91, 79, 30]
-    }]
+    const series = [
+      {
+        name : 'total',
+        data : categoryData
+      },
+    ]
 
   return (
       <ChartContainer id="chart">

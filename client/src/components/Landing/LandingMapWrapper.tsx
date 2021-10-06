@@ -4,11 +4,13 @@ import { LandingMapWrapperContainer } from './StyledLanding'
 import LandingMap from './LandingMap';
 import LandingMapSelect from './LandingMapSelect'
 import { getStoreData,storeFilterByCity } from '../../_actions/store_action'
+import { RootReducerType } from '../../store/store';
+import { StoreInfo } from '../../@type/storeInfo';
 
 function LandingMapWrapper() {
 
   const dispatch:any = useDispatch();
-  const store = useSelector((state:any) => state.store);
+  const store = useSelector((state:RootReducerType) => state.store);
   const [city , setCity] = useState('당신 동네')
   const [filterCityList , setFilterCityList] = useState([]);
   

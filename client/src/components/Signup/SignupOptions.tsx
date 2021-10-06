@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { Label ,SideSpan ,SelectBox } from './StyledSignup'
 
 interface OptionsProps {
-  selectInputHandler : any;
+  selectInputHandler : (e: string, name: string) => void;
 }
 
 function SignupOptions({selectInputHandler}:OptionsProps) {
@@ -37,7 +37,7 @@ function SignupOptions({selectInputHandler}:OptionsProps) {
           className = 'gender-selection selection'
           options = {gender[0]}
           name={gender[1]}
-          onChange = {(e)=>selectInputHandler(e,gender[1])}
+          onChange = {(e:any)=>selectInputHandler(e.value,gender[1])}
         />
 
         <Label>{age[1]}</Label><SideSpan>선택</SideSpan><br/>
@@ -45,7 +45,7 @@ function SignupOptions({selectInputHandler}:OptionsProps) {
           className = 'age-selection selection'
           options = {age[0]}
           name={age[1]}
-          onChange = {(e)=>selectInputHandler(e,age[1])}
+          onChange = {(e:any)=>selectInputHandler(e.value,age[1])}
         />
       </SelectBox>
 

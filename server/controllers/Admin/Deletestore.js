@@ -5,7 +5,7 @@ const requestIp = require('request-ip');
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-   logger.info(`DELETE STORE -DELETE- (${requestIp.getClientIp(req)})`)
+   //logger.info(`DELETE STORE -DELETE- (${requestIp.getClientIp(req)})`)
     //스토어의 정보를 아무나 변경하면 안되기 때문에 로그인 한사람이 가지고 있는 스토어인지 검증
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
 
         await user.update({ position: null, store_id: null }, { where : { id: id }}); 
     
-        res.send({message:'delete success'})
+        res.status(200).send({message:'delete success'})
     }else{
         res.status(401).send({message : 'delete fail'})
     }   

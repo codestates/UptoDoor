@@ -6,7 +6,7 @@ const { logger } = require('../../../config/winston');
 const requestIp = require('request-ip');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-    logger.info(`OAuth NAVER SIGNOUT -POST- (${requestIp.getClientIp(req)})`)
+ //logger.info(`OAuth NAVER SIGNOUT -POST- (${requestIp.getClientIp(req)})`)
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
     const { id } = checkAccessToken;
@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
     })
 
     } catch (error) {
-        logger.info(`OAuth NAVER SIGNOUT -POST- (${requestIp.getClientIp(req)})`)
+        //logger.info(`OAuth NAVER SIGNOUT -POST- (${requestIp.getClientIp(req)})`)
         console.log("에러내용",error.response.data)
         res.status(409).send({message : "naver logout fail", "error message": error.response.data})
     }

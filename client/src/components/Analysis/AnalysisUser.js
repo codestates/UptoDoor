@@ -40,8 +40,8 @@ function AnalysisUser({chart}) {
   let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
   let splicingNameFirst = name.splice(0,5).concat(['그 외']);
 
-  let splicingNum = number.splice(0,5)
-  // console.log('splicingNameFirst::',splicingNum)
+  let splicingNum = number.splice(0,6)
+  // console.log('splicingNum::',splicingNum)
     
   const options = { 
     labels: splicingNameFirst,

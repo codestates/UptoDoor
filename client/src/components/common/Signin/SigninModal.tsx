@@ -41,10 +41,14 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
         if (res.payload.message  === 'login success') {
           if(
             link === `${END_POINT}/usercart`||
-            link ===`${END_POINT}/userorder`){
-            history.push('/')
+            link === `${END_POINT}/userorder` ||
+            link === `${END_POINT}/signup`
+          ) {
+            setModalOpen(false);
+            window.location.href = `${END_POINT}`
           }
           else {
+            setModalOpen(false);
             window.location.reload();
           }
         }

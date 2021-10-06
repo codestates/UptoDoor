@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useEffect, DispatchWithoutAction } from 'react'
+import React, { useState, useCallback, useEffect} from 'react'
 import { useHistory } from 'react-router-dom';
-import { DispatchProp, useDispatch } from 'react-redux'
-import { adminStorePost } from '../../_actions/admin_action';
+import {  useDispatch } from 'react-redux'
+import { adminStorePost,AdminStoreGetData } from '../../_actions/admin_action';
 import Select from 'react-select';
 import TimePicker from "rc-time-picker";
 import moment from "moment";
@@ -79,12 +79,12 @@ function AdminPostForm() {
     setCategory(e.value)
   }
   
-  const changeAdminAddress = useCallback((data):void => {
+  
+  const changeAdminAddress = useCallback((data): void => {
+    setAddressModal(false);
     switchAddress(data.address);
     setAdminAddress(data.address);
-    setAddressModal((prev)=>!prev);
   }, [])
-  
   //모바일
   const changeMobileHandler = useCallback((e):void => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
@@ -156,8 +156,13 @@ function AdminPostForm() {
       dispatch(adminStorePost(adminPostInfo))
       .then((res:any) => {
         if (res.payload.message === 'Store registration is complete') {
-          setModalSuccess(true);
+          dispatch(AdminStoreGetData())
+            .then((res: any) => {
+              if (res.payload.message === "ok") {
+                setModalSuccess(true);
           setOpenModal(true);
+              }
+          })
         }
       })
     }

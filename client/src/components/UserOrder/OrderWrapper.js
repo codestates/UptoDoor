@@ -126,7 +126,12 @@ function OrderWrapper() {
         
     }
     else if (mobileCheck && paymentCheck) {
-      
+      const user_info = {
+        username: deliveryUserName,
+        email: user.email,
+        addr: cart.selected_address + cart.selected_address_detail,
+        phone: user.mobile,
+      };
         BootPay.request({
           price: 0, //실제 결제되는 가격
           application_id: "6152052e7b5ba4002352bc60",

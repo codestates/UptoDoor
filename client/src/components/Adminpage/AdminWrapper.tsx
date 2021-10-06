@@ -29,11 +29,11 @@ import AdminStoreInfo from './AdminStoreInfo';
 
 import Auth from '../../hoc/auth'
 import Signin from '../common/Signin/SigninModal'
-import { Orders } from "../../@type/adminInfo";
+import { AdminInfo, Orders } from "../../@type/adminInfo";
 import { User } from "../../@type/userInfo";
 
 function AdminWrapper() {
-  const admin = useSelector((state:RootReducerType) => state.admin);
+  const admin:AdminInfo = useSelector((state:RootReducerType) => state.admin);
   const user:User = useSelector((state: RootReducerType) => state.user);
 
   const store = admin;

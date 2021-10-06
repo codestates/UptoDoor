@@ -61,9 +61,12 @@ const user:User = useSelector((state:RootReducerType) => state.user)
           <SidebarLi onClick={()=>{accessInto("map")}}>구독찾기</SidebarLi>
           <SidebarLi onClick={()=>{accessInto("address")}}>동네인증</SidebarLi>
           <SidebarLi onClick={() => { accessInto("analysis") }}>구독 데이터</SidebarLi>
-          {message === 'login success' ?<SidebarLi onClick={() => { accessInto("mypage") }}>마이페이지</SidebarLi>: null }
-          {message === undefined ? null : <SidebarBtn onClick={(e:any) => { signoutHandler(e) }}>로그아웃</SidebarBtn>}
-          
+          {message === 'login success' ?
+            <SidebarLi onClick={() => { accessInto("mypage") }}>마이페이지</SidebarLi>
+            : null}
+          {message === 'login success' ? <SidebarBtn onClick={(e: any) => { signoutHandler(e) }}>로그아웃</SidebarBtn>
+            : null
+          }
         </SidebarUl>
       </SidebarWrapper>
       {modalOpen ? <SigninModal setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} /> : null}

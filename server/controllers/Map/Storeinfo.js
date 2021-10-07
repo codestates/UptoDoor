@@ -4,7 +4,7 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 
 module.exports = async (req, res) => {
-    logger.info(`GET STORE DETAIL DATA FOR MAP -GET- (${requestIp.getClientIp(req)})`)    
+    //logger.info(`GET STORE DETAIL DATA FOR MAP -GET- (${requestIp.getClientIp(req)})`)    
     try {
         const id = req.params.id
         const storedata = await store.findOne({ 
@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
         res.status(200).send({ storeinfo: storedata, storemenu });
     }
     catch(err) {
-        logger.error(`GET STORE DETAIL DATA FOR MAP -GET- (${requestIp.getClientIp(req)})`)    
+        //logger.error(`GET STORE DETAIL DATA FOR MAP -GET- (${requestIp.getClientIp(req)})`)    
         console.log('---- get storeinfo & menu ----',err)
         res.status(404).send({ message : 'store info load fail' });
     }

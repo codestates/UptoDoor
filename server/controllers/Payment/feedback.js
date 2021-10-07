@@ -5,7 +5,7 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-  logger.info(`Bootpay PAYMENT Feedback -POST- (${requestIp.getClientIp(req)})`)
+  //logger.info(`Bootpay PAYMENT Feedback -POST- (${requestIp.getClientIp(req)})`)
   const receiptdata = await order.findOne({ where: { id: req.body.order_id } });
   const count1 = await order_delivery.findOne({
     where: { order_id: req.body.order_id },

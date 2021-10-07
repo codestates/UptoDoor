@@ -4,7 +4,7 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 
 module.exports = async (req, res) => {
-    logger.info(`GET STORE DATA FOR MAP -POST- (${requestIp.getClientIp(req)})`)    
+    //logger.info(`GET STORE DATA FOR MAP -POST- (${requestIp.getClientIp(req)})`)    
     try {
         const storedata = await store.findAll({
             attributes: { exclude : ['yvalue','xvalue','createdAt','updatedAt','Business_paper']}
@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
         res.status(200).send({ message: 'ok', storeinfo : storedata1 });
     }
     catch(err){
-        logger.error(`GET STORE DATA FOR MAP -POST- (${requestIp.getClientIp(req)})`)    
+        //logger.error(`GET STORE DATA FOR MAP -POST- (${requestIp.getClientIp(req)})`)    
         console.log('----get all store----',err);
         res.status(404).send({ message: 'all store info load fail'});
     }

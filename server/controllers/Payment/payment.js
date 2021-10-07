@@ -4,9 +4,10 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 
 module.exports = async (req, res) => {
-    logger.info(`USER PAYMENT -POST- (${requestIp.getClientIp(req)})`)
+    //logger.info(`USER PAYMENT -POST- (${requestIp.getClientIp(req)})`)
     try {
         const orderData = req.body;
+        console.log('----',orderData)
         const Bootpay = require('bootpay-backend-nodejs').Bootpay
         Bootpay.setConfig(
             '6152052e7b5ba4002352bc63',
@@ -57,7 +58,7 @@ module.exports = async (req, res) => {
                 })
         }
     } catch (err) {
-        logger.error(`USER PAYMENT -POST- (${requestIp.getClientIp(req)})`)
+        //logger.error(`USER PAYMENT -POST- (${requestIp.getClientIp(req)})`)
         //console.log('--payment err--',err)
         res.status(404).send({ message: 'not ok' })
     }

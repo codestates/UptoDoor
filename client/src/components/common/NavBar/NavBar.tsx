@@ -69,7 +69,7 @@ const accessInto = useCallback((name):void => {
   return (
     <Header>
       <NavWrapper>
-        <NavLogo to="/"/> 
+        <NavLogo to="/"/>
         <Nav>
           <h2 className="visually-hidden">메뉴</h2>
           <UL>

@@ -24,13 +24,6 @@ const AnalysisWrapper = () => {
   const [btnStatus, setBtnStatus] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
-  useEffect(() => {
-    axios.get(`${END_POINTS}/analysis`)
-      .then(res => {
-        setChart(res.data.data)
-      })
-  },[]);
-  
   const showScrollBtn = () => {
     setScrollY(window.pageYOffset);
     if (scrollY > 400) {
@@ -47,6 +40,15 @@ const AnalysisWrapper = () => {
     setScrollY(0);
     setBtnStatus(false);
   }
+
+  const [loading, setLoading] = useState(false);
+  const pointThree = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("success");
+      }, 300);
+    });
+  };
   useEffect(() => {
     const chkScroll = () => {
       window.addEventListener("scroll", showScrollBtn);
@@ -56,6 +58,20 @@ const AnalysisWrapper = () => {
       window.removeEventListener("scroll", showScrollBtn);
     };
   });
+
+  useEffect(() => {
+    setLoading(true);
+    pointThree().then(() => {
+      axios.get(`${END_POINTS}/analysis`).then((res) => {
+        setChart(res.data.data);
+        setLoading(false);
+      });
+    })
+  }, []);
+
+  useEffect(() => {
+    return () => setLoading(false); // cleanup function을 이용
+  }, []);
 
   return (
     <Container>

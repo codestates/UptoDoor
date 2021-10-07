@@ -105,7 +105,7 @@ function AdminEditForm() {
         if (res.payload.message === 'update success') {
           dispatch(AdminStoreGetData()).then((res: any) => {
             if (res.payload.message === "ok") {
-          setModalSuccess(true);
+              setModalSuccess(true);
               setEditModal(true)
       }
           })

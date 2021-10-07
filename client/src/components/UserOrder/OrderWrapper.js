@@ -17,6 +17,7 @@ import Signin from '../common/Signin/SigninModal'
 import { addOrder } from '../../_actions/user_action';
 import BootPay from 'bootpay-js';
 import useInput from '../../utils/useInput';
+import { END_POINT } from "../../_actions/type";
 
 function OrderWrapper() {
   const state = useSelector((state) => state);
@@ -41,6 +42,7 @@ function OrderWrapper() {
   const [payCancelModal, setPayCancelModal] = useState(false);
   const [resErrorModal, setResErrorModal] = useState(false);
   const [validationModal, setValidationModal] = useState(false);
+  const [wrongPathModal, setWrongPathModal] = useState(false);
   const modalText = [
     "주문이 완료되었습니다. 감사합니다.",
     "결제에 실패했습니다. 다시 시도해주세요.",
@@ -221,12 +223,14 @@ return setOpenModal(true);
     }
   }, [orderMobile]);
 
-  if (state === undefined) return null;
-
   useEffect(() => {
     const request = Auth(true);
     if(request === undefined){
-      setLoginModal(true);
+      return setLoginModal(true);
+    }
+
+    if (cart.menu.length === 0) {
+      return setWrongPathModal(true);
     }
   },[])
 
@@ -298,6 +302,16 @@ return setOpenModal(true);
           modalOpen={loginModal}
           setModalOpen={setLoginModal}
           request={Auth(true) === undefined}
+          url="/"
+        />
+      ) : null}
+      {wrongPathModal ? (
+        <ConfirmModal
+          openModal={wrongPathModal}
+          setOpenModal={setWrongPathModal}
+          modalBtn="확인"
+          modalTitleText="접근 실패"
+          modalText="잘못된 접근입니다. 메인페이지로 이동합니다."
           url="/"
         />
       ) : null}

@@ -15,7 +15,7 @@ import {
   SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
 import {SmallButton} from '../common/Button/Button'
 import { END_POINTS,END_POINT } from '../../_actions/type'
-import { LogoSrc } from '../dummyData'
+import { LogoSrc } from '../Data'
 import ConfirmModal from '../common/Modal/ConfirmModal'
 import SignupOptions from './SignupOptions'
 import SignupTerm from './SignupTerm'

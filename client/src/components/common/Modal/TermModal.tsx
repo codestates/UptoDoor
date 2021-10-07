@@ -14,7 +14,7 @@ function Modal(props:any):JSX.Element {
 
   const { 
     openModal, modalTitleText ,modalText, 
-    modalBtn,url,closeModal } = props;
+    modalBtn,closeModal } = props;
 
   return (
     <>

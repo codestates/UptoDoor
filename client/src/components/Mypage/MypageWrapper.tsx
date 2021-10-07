@@ -137,7 +137,7 @@ function MyProfileWrapper(): JSX.Element {
                 }
               </PageContent>
               <ButtonWrapper>
-                {admin.id !== 0 ? 
+                {user.position !== undefined ? 
                 <button onClick={moveAdminPageHandler}>관리자 페이지
                 </button>
                 : 

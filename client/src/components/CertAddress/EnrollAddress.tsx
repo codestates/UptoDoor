@@ -43,17 +43,32 @@ function EnrollAddress() {
   const [modalSuccess, setModalSuccess] = useState(false);
   const [loginModal, setLoginModal] = useState(false)
 
-  
+  const [loading, setLoading] = useState(false);
+  const pointThree = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("success");
+      }, 300);
+    });
+  };
   const onChangeMainAddress = useCallback((data) => {
-    setMainPlace(data.address);
-    switchAddress(data.address);
-    setMainPlaceModal(false);
+    setLoading(true);
+    pointThree().then(() => {
+      setMainPlace(data.address);
+      switchAddress(data.address);
+      setMainPlaceModal(false);
+      setLoading(false); 
+    })
   }, [])
   
   const onChangeSubAddress = useCallback((data) => {
-    setSubPlace(data.address);
-    switchAddress(data.address);
-    setSubPlaceModal(false);
+    setLoading(true);
+    pointThree().then(() => {
+      setSubPlace(data.address);
+      switchAddress(data.address);
+      setSubPlaceModal(false);
+      setLoading(false); 
+    })
   },[]);
   
   //* 지우는 함수
@@ -153,24 +168,25 @@ function EnrollAddress() {
   }
 
   useEffect(() => {
+    setLoading(true);
     //현재위치
-    // const geocoder = new kakao.maps.services.Geocoder();
-    if (navigator.geolocation) {
+
+    pointThree().then(() => {
+      if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         const lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
         const coord = new kakao.maps.LatLng(lat, lon);
-        // geocoder.coord2Address(coord.getLng(), coord.getLat(), callback)
-        setCurrent([coord.getLat(),coord.getLng()])
-      });
-    }
-    // const callback = (result:any, status:any) => {
-    //   if (status === kakao.maps.services.Status.OK) {
-        // console.log("현위치", result[0])
-        // setCurrent(result[0].address.address_name.split(" ")[1]);
-    //   }
-    // };
+        setCurrent([coord.getLat(), coord.getLng()])
+        setLoading(false);
+        });
+      }
+    })
   },[]);
+
+  useEffect(() => {
+  return () => setLoading(false); // cleanup function을 이용
+}, []);
 
   return (
     <AddressContainer>

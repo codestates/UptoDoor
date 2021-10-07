@@ -25,8 +25,13 @@ function ConfirmModal(props: any):JSX.Element {
     } else {
       if (setHandler) {
         setHandler(false);
+        setOpenModal(false);
+      } else {
+        setOpenModal(false);
+        if (url) {
+          window.location.href = `${END_POINT}${url}`
+        }
       }
-      setOpenModal(false);
     }
   }
   

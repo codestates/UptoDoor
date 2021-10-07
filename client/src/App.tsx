@@ -1,7 +1,7 @@
 import React, { Suspense ,lazy} from "react";
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 import { GlobalStyle } from './components/GlobalStyle'
-import ScrollToTop from './ScrollToTop'
+import ScrollToTop from './components/common/Scroll/ScrollToTop';
 import Loading from './components/common/Loading/Loading'
 import Footer from './components/common/Footer/Footer'
 import NavBar from './components/common/NavBar/NavBar'
@@ -58,22 +58,22 @@ const App: React.FC =()=> {
             <Route path="/address">
               <Address />
             </Route>
-            <Route path="/mypageedit">
+            <Route path="/profile">
               <MypageEdit />
             </Route>
-            <Route path="/storeinfo/:id">
+            <Route path="/store/:id">
               <StoreInfo />
             </Route>
-            <Route path="/usercart">
+            <Route path="/cart">
               <UserCart />
             </Route>
-            <Route path="/userorder">
+            <Route path="/order">
               <UserOrder />
             </Route>
-            <Route path="/adminpost">
+            <Route path="/post">
               <AdminPost />
             </Route>
-            <Route path="/adminpage">
+            <Route path="/admin">
               <AdminPage />
             </Route>
             <Route path="/adminedit">

@@ -32,10 +32,8 @@ function AdminUploadMenu({
   
   const priceHandler = (e:any) => {
     if(Number(e.target.value) < 0 ){
-      console.log('0보다 작음', typeof e.target.value)
       setPrice(0)
     }else{
-      console.log('0보다 큼')
       setPrice(e.target.value)
       const copyArr = JSON.parse(JSON.stringify(menuArr));
       copyArr[e.target.id].price = e.target.value
@@ -74,7 +72,6 @@ function AdminUploadMenu({
   }
   const changeMenuDesc = (e:any) => {
     setMenuDescription(e.target.value)
-    // console.log('menuDescription',menuDescription)
     const copyArr = JSON.parse(JSON.stringify(menuArr));
     copyArr[e.target.id].menuDescription = e.target.value
     setMenuArr(copyArr)

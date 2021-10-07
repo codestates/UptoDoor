@@ -24,8 +24,6 @@ const initialState = {
   store_id: null,
 };
 export default function cart_reducer(state = initialState, action) {
-  // console.log("띠용", action.payload);
-  // console.log("reducer-action---", action);
   switch (action.type) {
     //* 주소선택하고 스토어들어가면 아이디 가져오기
     case SET_ADDRESS:

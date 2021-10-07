@@ -49,7 +49,6 @@ export const setAddress = (selected_address: string, selected_address_detail: st
 };
 
 export const selectStore = (id: any) => {
-  console.log("id", id);
   return {
     type: SELECT_STORE,
     payload: id

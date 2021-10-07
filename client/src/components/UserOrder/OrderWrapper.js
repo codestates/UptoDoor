@@ -15,9 +15,9 @@ import Auth from '../../hoc/auth'
 import Signin from '../common/Signin/SigninModal'
 
 import { addOrder } from '../../_actions/user_action';
-import { removeAllCart } from "../../_actions/cart_action";
 import BootPay from 'bootpay-js';
 import useInput from '../../utils/useInput';
+import { END_POINT } from "../../_actions/type";
 
 function OrderWrapper() {
   const state = useSelector((state) => state);
@@ -42,6 +42,7 @@ function OrderWrapper() {
   const [payCancelModal, setPayCancelModal] = useState(false);
   const [resErrorModal, setResErrorModal] = useState(false);
   const [validationModal, setValidationModal] = useState(false);
+  const [wrongPathModal, setWrongPathModal] = useState(false);
   const modalText = [
     "주문이 완료되었습니다. 감사합니다.",
     "결제에 실패했습니다. 다시 시도해주세요.",
@@ -81,18 +82,15 @@ function OrderWrapper() {
             setOpenModal(true);
           })
           .cancel(function (data) {
-            // console.log("-- 결제 취소 에러 --", data, payCancleModal);
             setPayCancelModal(true);
             setModalSuccess(false);
             setOpenModal(true);
           })
           .ready(function (data) {
-            console.log("-- 가상계좌 입금 계좌번호 발급 -- ", data);
           })
           .confirm(function (data) {
             //결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
             //주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
-            console.log("-- confirm --", data);
             setModalSuccess(true);
             const enable = true; // 재고 수량 관리 로직 혹은 다른 처리
             if (enable) {
@@ -154,18 +152,16 @@ function OrderWrapper() {
             setOpenModal(true);
           })
           .cancel(function (data) {
-            // console.log("-- 결제 취소 에러 --", data, payCancleModal);
             setPayCancelModal(true);
             setModalSuccess(false);
             setOpenModal(true);
           })
           .ready(function (data) {
-            console.log("-- 가상계좌 입금 계좌번호 발급 -- ", data);
+            // 가상계좌 입금 계좌번호 발급 
           })
           .confirm(function (data) {
             //결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
             //주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
-            console.log("-- confirm --", data);
             setModalSuccess(true);
             const enable = true; // 재고 수량 관리 로직 혹은 다른 처리
             if (enable) {
@@ -227,12 +223,14 @@ return setOpenModal(true);
     }
   }, [orderMobile]);
 
-  if (state === undefined) return null;
-
   useEffect(() => {
     const request = Auth(true);
     if(request === undefined){
-      setLoginModal(true);
+      return setLoginModal(true);
+    }
+
+    if (cart.menu.length === 0) {
+      return setWrongPathModal(true);
     }
   },[])
 
@@ -304,6 +302,16 @@ return setOpenModal(true);
           modalOpen={loginModal}
           setModalOpen={setLoginModal}
           request={Auth(true) === undefined}
+          url="/"
+        />
+      ) : null}
+      {wrongPathModal ? (
+        <ConfirmModal
+          openModal={wrongPathModal}
+          setOpenModal={setWrongPathModal}
+          modalBtn="확인"
+          modalTitleText="접근 실패"
+          modalText="잘못된 접근입니다. 메인페이지로 이동합니다."
           url="/"
         />
       ) : null}

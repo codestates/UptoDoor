@@ -19,9 +19,10 @@ interface Iprops {
   setIsOpen?: any;
   request? :boolean;
   url? :string| null;
+  id? :number;
 }
 
-function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):any {
+function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url, id }: Iprops):any {
   
   const history = useHistory();
   const dispatch: any = useDispatch();
@@ -42,6 +43,7 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
           if(
             link === `${END_POINT}/usercart`||
             link === `${END_POINT}/userorder` ||
+            link === `${END_POINT}/storeinfo/${id}` ||
             link === `${END_POINT}/signup`
           ) {
             setModalOpen(false);

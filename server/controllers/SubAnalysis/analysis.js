@@ -3,7 +3,7 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 
 module.exports = async (req, res) => {
-    logger.info(`Analysis DATA -GET- (${requestIp.getClientIp(req)})`)
+    //logger.info(`Analysis DATA -GET- (${requestIp.getClientIp(req)})`)
     const sendinfo = {
         term:'',
         category:'',

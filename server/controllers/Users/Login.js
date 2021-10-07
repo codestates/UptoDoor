@@ -11,7 +11,7 @@ require("dotenv").config();
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-  logger.info(`USER LOGIN -POST- (${requestIp.getClientIp(req)})`)
+  //logger.info(`USER LOGIN -POST- (${requestIp.getClientIp(req)})`)
   
   const Email = req.body.email;
   const Password = crypto.createHash("sha512").update(req.body.password).digest("hex");

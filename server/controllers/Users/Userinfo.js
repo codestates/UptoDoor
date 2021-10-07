@@ -5,7 +5,7 @@ const requestIp = require('request-ip');
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-    logger.info(`GET USER INFO -GET- (${requestIp.getClientIp(req)})`)
+    //logger.info(`GET USER INFO -GET- (${requestIp.getClientIp(req)})`)
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const userInfo = checkAccess(access);
     const { id } = userInfo;
@@ -30,8 +30,8 @@ module.exports = async (req, res) => {
         res.status(200).send({ message: 'ok', userdata });
     }
     catch(err){
-        logger.error(`GET USER INFO -GET- (${requestIp.getClientIp(req)})`)
+        //logger.error(`GET USER INFO -GET- (${requestIp.getClientIp(req)})`)
         console.log('--- user my page ---',err);
-        res.status(404).send({ message: 'user info load fail' });
+        res.status(401).send({ message: 'user info load fail' });
     }
 }

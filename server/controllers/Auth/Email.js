@@ -4,7 +4,7 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 
 module.exports = async (req, res) => {
-    logger.info(`EMAIL CHECK -GET- (${requestIp.getClientIp(req)})`)
+    //logger.info(`EMAIL CHECK -GET- (${requestIp.getClientIp(req)})`)
     //console.log("쿼리",req.query)
     let Email = req.query.email;
     

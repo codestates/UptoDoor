@@ -16,14 +16,18 @@
             "hash": "2d27f8b58858c807ad8cedd52a3bb35a"
         },
         {
-            "date": 1633448019298,
+            "date": 1633483025139,
             "name": "logs/2021-10-06.log",
+<<<<<<< HEAD
             "hash": "87443609b126a502dbfb5cb9bb3a23e9"
         },
         {
             "date": 1633536036671,
             "name": "logs/2021-10-07.log",
             "hash": "2672a42e118bb9e5df798b26f3a642ae"
+=======
+            "hash": "1a964c66475ce268b842942a41242e2d"
+>>>>>>> 24b14b0f6321e1c692f2d2bb4c28c0b9c73a9ce5
         }
     ]
 }

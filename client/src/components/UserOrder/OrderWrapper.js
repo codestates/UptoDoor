@@ -18,8 +18,6 @@ import { addOrder } from '../../_actions/user_action';
 import { removeAllCart } from "../../_actions/cart_action";
 import BootPay from 'bootpay-js';
 import useInput from '../../utils/useInput';
-import { RestClient } from "@bootpay/server-rest-client"
-import axios from "axios";
 
 function OrderWrapper() {
   const state = useSelector((state) => state);
@@ -61,7 +59,6 @@ function OrderWrapper() {
       phone: orderMobile,
     };
     if (!mobileCheck && orderMobile.length >= 11 && paymentCheck) {
-      console.log(paymentCheck, mobileCheck, orderMobile);
         BootPay.request({
           price: 0, //실제 결제되는 가격
           application_id: "6152052e7b5ba4002352bc60",
@@ -114,7 +111,7 @@ function OrderWrapper() {
             )
               .then((res) => {
                 if (
-                  res.payload.successMessage === "Your order has been completed"
+                  res.payload.message === "Your order has been completed"
                 ) {
                   setModalSuccess(true);
                   setOpenModal(true);
@@ -129,8 +126,12 @@ function OrderWrapper() {
         
     }
     else if (mobileCheck && paymentCheck) {
-      console.log(paymentCheck, mobileCheck);
-      
+      const user_info = {
+        username: deliveryUserName,
+        email: user.email,
+        addr: cart.selected_address + cart.selected_address_detail,
+        phone: user.mobile,
+      };
         BootPay.request({
           price: 0, //실제 결제되는 가격
           application_id: "6152052e7b5ba4002352bc60",
@@ -182,7 +183,7 @@ function OrderWrapper() {
               addOrder(cart, selected_mobile, deliveryUserName, data)
             )
               .then((res) => {
-                if (res.payload.actionMessage === "Your order has been completed") {
+                if (res.payload.message === "Your order has been completed") {
                   setModalSuccess(true);
                   setOpenModal(true);
                 }
@@ -260,8 +261,9 @@ return setOpenModal(true);
           <MiddleButton type="button" primary onClick={orderHander}>
             결제하기
           </MiddleButton>
-          <MiddleButton type="button" onClick={goBackHandler}>뒤로가기</MiddleButton>
-          
+          <MiddleButton type="button" onClick={goBackHandler}>
+            뒤로가기
+          </MiddleButton>
         </ButtonWrapper>
       </Wrapper>
 
@@ -293,18 +295,18 @@ return setOpenModal(true);
               ? setResErrorModal
               : validationModal
               ? setValidationModal
-              : null}
+              : null
+          }
         />
       ) : null}
-      {loginModal ? 
-      <Signin
-      modalOpen = {loginModal}
-      setModalOpen = {setLoginModal}
-      request = {Auth(true)===undefined}
-      url = '/'
-      />
-      :
-      null}
+      {loginModal ? (
+        <Signin
+          modalOpen={loginModal}
+          setModalOpen={setLoginModal}
+          request={Auth(true) === undefined}
+          url="/"
+        />
+      ) : null}
     </Container>
   );
 }

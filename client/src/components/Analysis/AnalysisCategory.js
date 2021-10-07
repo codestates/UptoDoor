@@ -87,15 +87,16 @@ function AnalysisCategory({chartStart,second,chart}) {
         axisTicks: {
           show: false,
         },
-        
         labels: {
           show: true,
           formatter: function (val) {
             return val;
           }
         }
-      
       },
+      noData: {
+        text: 'Loading...'
+      }
     };
     // const series = [
     //   {

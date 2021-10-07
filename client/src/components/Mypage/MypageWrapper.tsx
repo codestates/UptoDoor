@@ -25,12 +25,14 @@ import { RootReducerType } from '../../store/store';
 import { User } from '../../@type/userInfo';
 import {getNextPayDay,getToday} from '../../utils/calculateDate';
 import {UserOrders} from '../../@type/userInfo'
+import { AdminInfo } from '../../@type/adminInfo';
 
 
 
 
 function MyProfileWrapper(): JSX.Element {
   const user: User = useSelector((state: RootReducerType) => state.user);
+  const admin:AdminInfo = useSelector((state:RootReducerType)=>state.admin )
   const dispatch: any = useDispatch();
   const history = useHistory();
   const [orderList, setOrderList] = useState<UserOrders[] | []>([])
@@ -136,7 +138,7 @@ function MyProfileWrapper(): JSX.Element {
                 }
               </PageContent>
               <ButtonWrapper>
-                {user.position === "1" ? 
+                {admin.id !== 0 ? 
                 <button onClick={moveAdminPageHandler}>관리자 페이지
                 </button>
                 : 

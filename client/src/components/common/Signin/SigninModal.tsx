@@ -40,14 +40,15 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
       .then((res: any) => {
         if (res.payload.message  === 'login success') {
           if(
-            link === 'http://localhost:3000/usercart'||
-            link ==='http://localhost:3000/userorder'||
-            link ==='http://localhost:3000/signup'
-            ){
+            link === `${END_POINT}/usercart`||
+            link === `${END_POINT}/userorder` ||
+            link === `${END_POINT}/signup`
+          ) {
             setModalOpen(false);
             window.location.href = `${END_POINT}`
           }
           else {
+            setModalOpen(false);
             window.location.reload();
           }
         }
@@ -63,13 +64,13 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url }: Iprops):an
   const kakaoHandler = useCallback((e) => {
     e.preventDefault();
     window.location.href = 
-    "https://kauth.kakao.com/oauth/authorize?client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=http://localhost:3000/&response_type=code"; 
+    `https://kauth.kakao.com/oauth/authorize?client_id=a89491b2f53a7e437ff1a3f92347a22f&redirect_uri=${END_POINT}/&response_type=code`; 
   },[email,password])
 
   const naverHandler = useCallback((e) => {
     e.preventDefault();
     window.location.href = 
-    "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=NESPZSGxrp2Y8chEbfUk&state=a5VP580J66&redirect_uri=http://localhost:3000/"; 
+    `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=NESPZSGxrp2Y8chEbfUk&state=a5VP580J66&redirect_uri=${END_POINT}/`; 
   },[email,password])
   
   useEffect(()=>{

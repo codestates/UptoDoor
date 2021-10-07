@@ -113,7 +113,8 @@ function MyProfileEdit():JSX.Element {
     });
   }, [nickname, password, passwordChk, mobile, gender, age])
   
-  useEffect(():void => {
+  useEffect((): void => {
+    if (mobile === null) return setMobile('');
     if (mobile.length === 10) {
       setMobile(mobile.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
     }

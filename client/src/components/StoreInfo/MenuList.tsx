@@ -59,7 +59,9 @@ function MenuList({store}:any):any {
       <BtnBox>
         <MiddleButton
           onClick={moveOrderHandler}
-          className="middle cart-btn">
+          className="middle cart-btn"
+        primary
+        >
             장바구니
             <span> ({menu && menu.length})</span>
           </MiddleButton>

@@ -317,8 +317,9 @@ export const ListInfo = styled.div`
     padding: 2px 16px;
     
     > img {
-      min-width: 80px;
-      min-height: 80px;
+      min-width: 70px;
+      width:70px;
+      height:80px;
       margin-top: 10px;
       margin-right: 20px;
     }

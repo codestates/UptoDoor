@@ -1,17 +1,16 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
-import Chart from 'react-apexcharts'
-import 
-{ StyledUserChart ,
+import React from "react";
+import Chart from "react-apexcharts";
+import {
+  StyledUserChart,
   ChartContainer,
   ChartUserWrapper,
   ChartContentsWrapper,
   ChartTitle,
   ChartText,
-} from './StyledAnalysis'
+} from "./StyledAnalysis";
 
-function AnalysisUser({chart}) {
-
+function AnalysisUser({ chart }) {
   const ageNum = chart[1];
 
   const arr = [
@@ -33,8 +32,11 @@ function AnalysisUser({chart}) {
   arr.sort((a,b)=>b.number-a.number)
   // console.log('arrrr::',arr)
 
-  const name = arr.map((el)=>el.name);
-  const number = arr.map((ele)=>ele.number);
+  arr.sort((a, b) => b.number - a.number);
+  // console.log('arrrr::',arr)
+
+  const name = arr.map((el) => el.name);
+  const number = arr.map((ele) => ele.number);
 
   // //name
   let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
@@ -48,61 +50,64 @@ function AnalysisUser({chart}) {
     // labels: chart[0],
     theme: {
       monochrome: {
-        enabled: true
-      }
+        enabled: true,
+      },
     },
     chart: {
       animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 700,
+        animateGradually: {
           enabled: true,
-          easing: 'easeinout',
-          speed: 700,
-          animateGradually: {
-              enabled: true,
-              delay: 150
-          },
-          dynamicAnimation: {
-              enabled: true,
-              speed: 400
-          }
-      }
+          delay: 150,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 400,
+        },
+      },
     },
     plotOptions: {
       pie: {
         dataLabels: {
-          offset: 0
+          offset: 0,
         },
-      }
+      },
     },
     dataLabels: {
-      textAnchor: 'start',
-      style :{
-        fontSize : '20px',
+      textAnchor: "start",
+      style: {
+        fontSize: "20px",
       },
       formatter(val, opts) {
-        const name = opts.w.globals.labels[opts.seriesIndex]
-        return [name, val.toFixed(1) + '%']
-      }
+        const name = opts.w.globals.labels[opts.seriesIndex];
+        return [name, val.toFixed(1) + "%"];
+      },
     },
     legend: {
       show: false,
-      position : 'bottom',
+      position: "bottom",
+    },
+    noData: {
+      text: 'Loading...'
     },
     responsive: [
-        {
-          breakpoint: 1140,
-          options: {
-            chart: {
-              width: 340,
-              height: 340,
+      {
+        breakpoint: 1140,
+        options: {
+          chart: {
+            width: 340,
+            height: 340,
+          },
+          dataLabels: {
+            style: {
+              fontSize: "16px",
             },
-            dataLabels: {
-              style :{
-                fontSize : '16px',
-              },
-            }
           },
         },
-      ],
+      },
+    ],
   };
   
   const series = splicingNum;
@@ -131,5 +136,4 @@ function AnalysisUser({chart}) {
   );
 }
 
-
-export default AnalysisUser
+export default AnalysisUser;

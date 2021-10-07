@@ -15,6 +15,17 @@ import {
 } from "../_actions/type";
 import { User } from "../@type/userInfo";
 
+export interface Action {
+  type: string;
+  payload: Payload;
+}
+
+interface Payload {
+	message?: string;
+  data?: User | null;
+  order?: Object[] | null;
+}
+
 const intitialState: User = {
   id: 0,
   nickname: "",
@@ -29,21 +40,11 @@ const intitialState: User = {
   subAddressDetail: "",
   message: "",
   login_type: null,
-  actionMessage: ""
+  successMessage: ""
 };
 
-export interface Action {
-  type: string;
-  payload: Payload;
-}
-
-interface Payload {
-	message?: string;
-  data?: User | null;
-  order?: Object[] | null;
-}
-
-export default function user_reducer(state = intitialState, action:any) {
+export default function user_reducer(state = intitialState, action: any) {
+  console.log("리듀서 들어올때", action.payload)
   switch (action.type) {
     case USER_SEND_CERT_EMAIL:
       return { ...state };
@@ -71,9 +72,9 @@ export default function user_reducer(state = intitialState, action:any) {
     case USER_ADD_ORDER: 
         return { ...state, successMessage: action.payload.message };
     case USER_CALCEL_ORDER: {
-      return { ...state,successMessage: action.payload.message };
+      console.log("reducer", action.payload);
+      return { ...state, successMessage: action.payload.message };
     }
-
     default:
       return state;
   }

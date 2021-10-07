@@ -5,7 +5,7 @@ const { logger } = require('../../config/winston');
 const requestIp = require('request-ip');
 
 module.exports = async (req, res) => {
-    logger.info(`ADD USER ADDRESS -POST- (${requestIp.getClientIp(req)})`)    
+    //logger.info(`ADD USER ADDRESS -POST- (${requestIp.getClientIp(req)})`)    
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
     const { id } = checkAccessToken;
@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
         sub_Xvalue: sub_xvalue, sub_Yvalue: sub_yvalue }, { where: { id: id } });
     }
     catch(err) {
-        logger.error(`ADD USER ADDRESS -POST- (${requestIp.getClientIp(req)})`)    
+        //logger.error(`ADD USER ADDRESS -POST- (${requestIp.getClientIp(req)})`)    
         console.log('-- 주소 등록 실패 -- ',err);
         res.status(404).send({ message: 'address check fail'  });
     }

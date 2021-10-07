@@ -6,7 +6,7 @@ const requestIp = require('request-ip');
 
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-    logger.info(`USER INFO UPDATE -PATCH- (${requestIp.getClientIp(req)})`)
+    //logger.info(`USER INFO UPDATE -PATCH- (${requestIp.getClientIp(req)})`)
     const access = req.headers.cookie.split('accessToken=')[1].split(';')[0];
     const checkAccessToken = checkAccess(access);
     const { id } = checkAccessToken;
@@ -26,6 +26,6 @@ module.exports = async (req, res) => {
             }
             res.status(201).send({ message: 'user update success', userinfo: userinfo});
         } else {
-        res.status(404).send({ message: 'user update fail' });
+        res.status(403).send({ message: 'user update fail' });
         }
 }

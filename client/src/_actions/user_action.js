@@ -128,7 +128,7 @@ export const kakaoSignOut = () => {
   const request = axios
     .post(`${END_POINTS}/oauth/kakao/signout`)
     .then((res) => {
-      return res.data.message;
+      return res.data;
     });
 
   return {
@@ -171,7 +171,7 @@ export const naverSignOut = () => {
   const request = axios
     .post(`${END_POINTS}/oauth/naver/signout`)
     .then((res) => {
-      return res.data.message;
+      return res.data;
     });
 
   return {
@@ -246,8 +246,7 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
   const request = axios
     .post(`${END_POINTS}/users/order`, orderinfo)
     .then((res) => {
-      console.log("action", res.data);
-      return res.data;
+      return res.data
     })
     .catch((err) => {
       console.log("ordererr", err);
@@ -255,7 +254,7 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
 
   return {
     type: USER_ADD_ORDER,
-    payload: request,
+    payload: request
   };
 };
 
@@ -264,7 +263,7 @@ export const cancelOrder = (id) => {
   const request = axios
     .delete(`${END_POINTS}/cancel/${id}`)
     .then((res) => {
-      console.log(res.data);
+      console.log("요청후 응답", res.data);
       return res.data
     }).catch((err) => {
       console.log(err)

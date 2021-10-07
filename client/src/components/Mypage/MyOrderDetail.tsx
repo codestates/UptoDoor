@@ -40,7 +40,7 @@ function MyOrderDetail({
   const cancelOrderHandler = ():void => {
     //* 디스패치 주석풀어야함, 밑에 2줄 지우고,
     dispatch(cancelOrder(orderitem.id)).then((res:any) => {
-      if (res.payload.successMessage === "success delete order") {
+      if (res.payload.message === "cancel for your order") {
         setOpenModal(false);
         setModalSuccess(true)
         setCancelStoreModal(true);
@@ -48,6 +48,7 @@ function MyOrderDetail({
     })
     
   }
+  
   const { state } = orderitem;
   return (
     <MypageOrderListWrapper>
@@ -75,10 +76,12 @@ function MyOrderDetail({
 
         <FlexBox distance>
           <H3>{userNickname} 님</H3>
-          {orderitem.state === 'done' ?
+          {state === 'order' ?
             <span>의 구독내역을 확인하세요</span>
-          :
-          <span>의 취소내역을 확인하세요</span>
+            : state === 'done' ?
+            <span>의 만료된 구독 내역 입니다.</span>
+            :
+            <span>의 취소내역을 확인하세요</span>
           }
         </FlexBox>
 
@@ -117,7 +120,7 @@ function MyOrderDetail({
               <H4>✍🏼 요청사항</H4>
               <DetailTextArea 
               defaultValue={
-                orderitem.delivery_detail === 'undefined' 
+                orderitem.delivery_detail === '' 
               ? '요청사항이 없습니다.' : orderitem.delivery_detail}
               readOnly>
               </DetailTextArea>

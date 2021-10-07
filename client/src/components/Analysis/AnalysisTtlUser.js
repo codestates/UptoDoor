@@ -96,6 +96,9 @@ function AnalysisTtlUser({chartStart,second,chart}) {
       position: 'top',
       horizontalAlign: 'center',
       offsetX: 10,
+    },
+    noData: {
+      text: 'Loading...'
     }
   };
 

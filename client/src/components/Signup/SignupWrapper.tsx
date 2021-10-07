@@ -113,6 +113,10 @@ function SignupWrapper():JSX.Element {
     setIsAllchecked(checkedInputs.length === 3);
   }, [checkedInputs]);
 
+  useEffect(() => {
+    
+  }, []);
+
   //!form 제출핸들러.
   const signupSubmitHandler = useCallback((e) => {
     e.preventDefault();
@@ -287,6 +291,7 @@ function SignupWrapper():JSX.Element {
             modalBtn="확인"
           />
         ) : null}
+        
       </SignupContainer>
     </Container>
   );

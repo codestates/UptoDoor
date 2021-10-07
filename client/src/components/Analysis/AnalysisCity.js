@@ -60,6 +60,9 @@ function AnalysisCity({chart}) {
         }
       },
     },
+    noData: {
+      text: 'Loading...'
+    }
   };
   // const series = [
   //   {

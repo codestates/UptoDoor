@@ -14,7 +14,7 @@ export interface User {
   subAddressDetail: string ;
   message?: string;
   login_type: "self" | "kakao" | "naver" | null;
-  actionMessage?: "",
+  successMessage?: "",
 }
 
 export interface UserOrders {

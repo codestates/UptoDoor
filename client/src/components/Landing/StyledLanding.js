@@ -24,7 +24,6 @@ height:calc(100vh - 80px);
 margin : 0 auto;
 padding-top : 70px;
 }
-
 `
 export const LandingIntroWrapper = styled.section`
 width: 100%;
@@ -187,7 +186,6 @@ object-fit: cover;
 @media screen and (min-width: 767px) {
   width: 280px;height : 380px;
 }
-
 @media screen and (min-width: 767px) {
   width: 270px;height : 370px;
   &:nth-child(1),&:nth-child(8),&:nth-child(14){
@@ -265,6 +263,9 @@ font-size: 30px;
 position :fixed;
 right : 30px;
 bottom : 30px;
+&::before{
+  margin-left: ${({dataScroll})=> (dataScroll ? '15px' : 'unset')};
+}
 `
 export const GradientEdge = styled.div`
 position: absolute;
@@ -287,7 +288,6 @@ export const LandingInfoContainer = styled.div`
   min-width: 375px;
   padding: 100px 0;
   background-color: #f7f7f7;
-
   @media screen and (min-width: 767px) {
     padding: 150px 0;
   }
@@ -300,7 +300,6 @@ export const LandingInfoWrapper = styled.div`
   }
 `;
 export const InfoWrapper = styled.div`
-
 display: grid;
   height: 100%;
   width: 100%;
@@ -320,13 +319,11 @@ export const InfoRow = styled.div`
     imgStart ? `'col1' 'col2'` : `'col1' 'col2'`};
   @media screen and (min-width: 767px) {
     align-items: center;
-
     grid-template-areas: ${({ imgStart }) =>
       imgStart ? `'col2 col1'` : `'col1 col2'`};
   }
 `;
 export const Column1 = styled.div`
-
   grid-area: col1;
   margin-bottom: 0;
   @media screen and (min-width: 767px) {
@@ -372,7 +369,6 @@ export const Heading = styled.h1`
 export const Subtitle = styled.p`
   max-width: 440px;
   /* margin-bottom: 35px; */
-
   line-height: 24px;
   color: ${TextDarkGrey};
   /* font-size: 14px; */
@@ -399,7 +395,6 @@ justify-content: center;
 export const Img = styled.img`
   width: 100%;
   padding-right: 0;
-
   @media screen and (min-width:767px){
     width:430px;
     border: 2px solid white;
@@ -418,7 +413,6 @@ export const LandingValueWrapper = styled.section`
 display: flex;
 flex-direction: column;
 min-width: 375px;
-
 @media screen and (min-width: 767px) {
 }
 @media screen and (min-width: 1140px) {
@@ -430,7 +424,6 @@ padding : 100px;
 @media screen and (min-width: 1440px) {
 padding : 100px 200px;
 }
-
 >.focus {
   height : 100%;
   @media screen and (min-width: 767px) {
@@ -639,7 +632,6 @@ width : 100%;
 height : 250px;
 border-radius : 8px;
 z-index : 0;
-
 @media screen and (min-width: 767px) {
     height : 450px; 
   }
@@ -674,7 +666,6 @@ margin : 30px 0 0;
   padding : 50px 0;
   background-color: #fff;
 }
-
 @media screen and (min-width: 1140px) {
   padding : 110px 0;
 }

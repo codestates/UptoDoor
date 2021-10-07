@@ -149,11 +149,11 @@ export const MenuItemWrapper = styled.div`
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 
   > img {
-    width: 65px;
+    min-width: 65px;
     height: 65px;
     margin-left: 8px;
-    margin-right: 30px;
-    object-fit: contain;
+    margin-right: 8px;
+    object-fit: cover;
   }
 
   @media screen and (min-width: 1140px) {

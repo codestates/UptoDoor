@@ -9,7 +9,7 @@ const { logger } = require('../../../config/winston');
 const requestIp = require('request-ip');
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-    logger.info(`OAuth NAVER LOGIN -POST- (${requestIp.getClientIp(req)})`)
+    //logger.info(`OAuth NAVER LOGIN -POST- (${requestIp.getClientIp(req)})`)
     let authorizationCode = req.body.authorizationCode
     let state = req.body.state;
     let access_token;
@@ -85,7 +85,7 @@ module.exports = async (req, res) => {
     
         res.status(200).send({ message: "login success", userinfo: UserInfo, login_type: Data.login_type });
     } catch (error) {
-        logger.error(`OAuth NAVER LOGIN -POST- (${requestIp.getClientIp(req)})`)
+        //logger.error(`OAuth NAVER LOGIN -POST- (${requestIp.getClientIp(req)})`)
         res.status(409).send({message : "naver login fail"})
         console.log("에러내용",error.response.data)
     }

@@ -184,9 +184,6 @@ export default function Keyword(
                   });
                   const c1 = map.getCenter();
                   const c2 = marker.getPosition();
-                  console.log("c1", c1)
-                  console.log("c2", c2)
-                  console.log("marker", marker);
                   const poly = new kakao.maps.Polyline({
                     map: map,
                     path: [c1, c2],
@@ -214,7 +211,6 @@ export default function Keyword(
   // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
   function makeOverListener(map, marker, customoverlay) {
     return function () {
-      console.log(marker, customoverlay.Jh.outerHTML);
       customoverlay.open(map, marker);
     };
   }

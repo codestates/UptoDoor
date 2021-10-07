@@ -29,14 +29,13 @@ import AdminStoreInfo from './AdminStoreInfo';
 
 import Auth from '../../hoc/auth'
 import Signin from '../common/Signin/SigninModal'
-import { Orders } from "../../@type/adminInfo";
+import { AdminInfo, Orders } from "../../@type/adminInfo";
 import { User } from "../../@type/userInfo";
 
 function AdminWrapper() {
-  const admin = useSelector((state:RootReducerType) => state.admin);
+  const admin:AdminInfo = useSelector((state:RootReducerType) => state.admin);
   const user:User = useSelector((state: RootReducerType) => state.user);
 
-  console.log("1111", user);
   const store = admin;
   const { orders } = store;
   const [filteredData, setFilteredData] = useState<Array<Orders> | []>([]);

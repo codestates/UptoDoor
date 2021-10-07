@@ -9,7 +9,7 @@ const app = express();
 const port = 3060;
 
 app.use(cors({
-  origin: true,
+  origin: 'https://uptodoor.shop',
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
 }));

@@ -1,9 +1,6 @@
 const { user, order_delivery, store, user_order, order } = require('../../models');
-const { logger } = require('../../config/winston');
-const requestIp = require('request-ip');
-
 module.exports = async (req, res) => {
-    //logger.info(`Analysis DATA -GET- (${requestIp.getClientIp(req)})`)
+
     const sendinfo = {
         term:'',
         category:'',
@@ -17,6 +14,7 @@ module.exports = async (req, res) => {
     const avg = term.map((el) => { return Number(el.delivery_term) })
     const termavg = avg.reduce((a,b) => { return a+b })
     sendinfo.term = (termavg/avg.length).toFixed(1)//평균 구독 개월 소숫점 첫째자리
+
     //! 많이 찾는 카테고리별 순위
     const orderInstore = await order.findAll({raw: true, attributes : ['store_id']})
 

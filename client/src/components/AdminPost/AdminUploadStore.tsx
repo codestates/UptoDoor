@@ -14,8 +14,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
 
-import MapSelectModal from '../Mapper/MapSelectModal'
 import { END_POINTS } from '../../_actions/type';
+import ConfirmModal from '../common/Modal/ConfirmModal';
 
 type IProps = {
   updateStoreImg: (storeImgs:any) => void;
@@ -43,14 +43,13 @@ function AdminUploadStore(
       headers: { 'content-type' : 'multipart/form-data'}
     }
     formData.append('file',files[0]);
-    //dispatch action axios 관리된거 와야함.
     await axios.post(`${END_POINTS}/image`,formData,config)
     .then((res)=>{
       if(res.data.success){
         setImgs([...imgs,res.data.filePath])
         props.updateStoreImg([...imgs,res.data.filePath])
       }else{
-        alert('파일저장실패')
+        console.log('===파일저장 실패에러===')
       }
     })
     }
@@ -60,12 +59,12 @@ function AdminUploadStore(
   }
   const deleteImgHandler = (files:any):void => {
     const curIdx = imgs.indexOf(files)  
-    // console.log(curIdx);
     const newImgs = [...imgs]
     newImgs.splice(curIdx,1);
     setImgs(newImgs); 
     props.updateStoreImg(newImgs)
   }
+
   //img slider
   const settings = useMemo<Settings>(
     ()=>({
@@ -108,7 +107,7 @@ function AdminUploadStore(
               className = 'store-img-box'
               onClick = {()=>{deleteImgHandler(el)}}
               key = {idx}>
-                <img // src = {`http://localhost:3001/${el}`} 
+                <img 
                 src = {el}
                 alt = {`${idx+1}__${el}//`}
                 />
@@ -118,12 +117,15 @@ function AdminUploadStore(
         </Slider>
       </SliderWrapper>
       }
-      
+    <p>사진 클릭 시 삭제 가능</p>
+    
     {openModal ?
-      <MapSelectModal
+      <ConfirmModal
       openModal = {openModal}
+      setOpenModal = {setOpenModal}
       closeModal = {closeModal}
       modalTitleText = '사진은 5장까지 업로드 가능합니다.'
+      modalBtn = '확인'
       />
       :
       null

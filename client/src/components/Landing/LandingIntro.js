@@ -51,7 +51,7 @@ const LandingIntro = () => {
     });
     setScrollY(0);
     setBtnStatus(false);
-  };
+  }
 
   useEffect(() => {
     const chkScroll = () => {

@@ -1,9 +1,6 @@
 const { order, order_delivery } = require('../../models');
-const { logger } = require('../../config/winston');
-const requestIp = require('request-ip');
-
+const { checkAccess } = require('../Tokenfunc');
 module.exports = async (req, res) => {
-    //logger.info(`USER PAY CANCEL -DELETE- (${requestIp.getClientIp(req)})`)
 
     try {
     const data2 = await order.findOne({ where: { id : req.params.id}})
@@ -26,7 +23,6 @@ module.exports = async (req, res) => {
         console.log('----- 결제 취소 및 빌링키 결제 예약 취소 성공 -----')
         res.status(200).send({ message: 'cancel for your order'});
     } catch(err) {
-        //logger.error(`USER PAY CANCEL -DELETE- (${requestIp.getClientIp(req)})`)
         console.log('--- 결제 취소 실패 ---',err)
         res.status(401).send({ message: 'cancel fail, try again'});
     }

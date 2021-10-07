@@ -58,22 +58,22 @@ const App: React.FC =()=> {
             <Route path="/address">
               <Address />
             </Route>
-            <Route path="/mypageedit">
+            <Route path="/profile">
               <MypageEdit />
             </Route>
-            <Route path="/storeinfo/:id">
+            <Route path="/store/:id">
               <StoreInfo />
             </Route>
-            <Route path="/usercart">
+            <Route path="/cart">
               <UserCart />
             </Route>
-            <Route path="/userorder">
+            <Route path="/order">
               <UserOrder />
             </Route>
-            <Route path="/adminpost">
+            <Route path="/post">
               <AdminPost />
             </Route>
-            <Route path="/adminpage">
+            <Route path="/admin">
               <AdminPage />
             </Route>
             <Route path="/adminedit">

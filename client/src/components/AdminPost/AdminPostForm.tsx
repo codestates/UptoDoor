@@ -54,22 +54,23 @@ function AdminPostForm() {
   const [loginModal , setLoginModal] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalSuccess, setModalSuccess] = useState<boolean>(false);
+  const [removeRejectModal , setRemoveRejectModal] = useState<boolean>(false);
+
   //upload store img,file
   const [storeImgArr , setStoreImgArr] = useState<Object[] | []>([]);
   const [storeFile, setStoreFile] = useState<string | ''>('');
   const [category, setCategory] = useState<string | ''>('');
   const [mobile , setMobile] = useState<string | ''>('');
-  //store
+
   const [title, onChangeTitle] = useInput('');
   const [description , onChangeDescription] = useInput('');
   
-   //주소 
   const [adminAddress , setAdminAddress] = useState<string | ''>('');
   const [adminAddressDetail, onChangeAdminAddressDetail]:any = useInput('');
   const [addressModal, setAddressModal] = useState<boolean>(false);
   const [xValue, setXValue] = useState<string | ''>('');
   const [yValue, setYValue] = useState<string | ''>('');
-  //menu
+
   const [menuArr, setMenuArr] = useState<MenuArr[] | []>([{
     menuImg : './images/icon/menu-add.png',
     menuName:'', menuDescription:'', price:0
@@ -78,14 +79,13 @@ function AdminPostForm() {
   const changeCategoryHandler = (e:any) => {
     setCategory(e.value)
   }
-  
-  
+
   const changeAdminAddress = useCallback((data): void => {
     setAddressModal(false);
     switchAddress(data.address);
     setAdminAddress(data.address);
   }, [])
-  //모바일
+
   const changeMobileHandler = useCallback((e):void => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
     if(mobileRegExp.test(e.target.value)){
@@ -111,15 +111,16 @@ function AdminPostForm() {
   };
   //!remove menu onclick handler
   const removeMenuHandler = (e:any):void => {
-    console.log("11", e);
     if(menuArr.length > 1){
       const filtering = menuArr.filter((el:any) => el !== menuArr[e.target.id])
       setMenuArr(filtering);
     }else{
-      alert("최소한 1개의 메뉴는 있어야 합니다.")
+      console.log('최소 한개의 메뉴가 있어야합니다.')
+      // setOpenModal(true)
+      // setRemoveRejectModal(true)
+
     }
   }
-
   //!upload storeimg
   const updateStoreImg = (storeImgs:any):void => {
     setStoreImgArr(storeImgs)
@@ -324,7 +325,7 @@ return (
       </Wrapper>
     </form>
 
-    {openModal ?
+      {openModal ?
       <ConfirmModal
         modalSuccess={modalSuccess}
         openModal={openModal}
@@ -332,12 +333,27 @@ return (
         modalTitleText="스토어 등록"
         modalText={modalSuccess
           ? "가게 신청이 완료되었습니다. 승인까지 1-2일 걸립니다."
-          : "새로고침 후 다시 시도해주세요."}
-      modalBtn="확인"
-      url='/mypage'
-    />
-    : 
-    null}
+          : "새로고침 후 다시 시도해주세요."
+        }
+        modalBtn="확인"
+        url='/mypage'
+      />
+      : 
+      null}
+
+      {/* {openModal && removeRejectModal ?
+      <ConfirmModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        modalTitleText="삭제 불가"
+        modalText = {removeRejectModal 
+          ? '최소 한개의 메뉴가 있어야 합니다.'
+          :null
+        }
+        modalBtn="확인"
+      />
+      : 
+      null} */}
 
       {loginModal ? 
       <Signin

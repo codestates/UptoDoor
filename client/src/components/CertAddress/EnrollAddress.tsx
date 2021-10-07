@@ -28,8 +28,8 @@ function EnrollAddress() {
   //* address 안붙임
   const { mainAddress, mainAddressDetail, subAddress, subAddressDetail, id } = user;
   
-  const [current, setCurrent] = useState([])
-  const [switched, setSwitched ] = useState([]);
+  const [current, setCurrent] = useState<[number,number]| []>([])
+  const [switched, setSwitched ] = useState<[number,number]| []>([]);
   const [mainPlace , setMainPlace] = useState(mainAddress);
   const [mainPlaceDetail, setMainPlaceDetail] = useState(mainAddressDetail);
   const [subPlace, setSubPlace] = useState(subAddress);
@@ -43,7 +43,7 @@ function EnrollAddress() {
   const [modalSuccess, setModalSuccess] = useState(false);
   const [loginModal, setLoginModal] = useState(false)
 
-
+  
   const onChangeMainAddress = useCallback((data) => {
     setMainPlace(data.address);
     switchAddress(data.address);
@@ -73,7 +73,7 @@ function EnrollAddress() {
     if (!id) {
       setLoginModal(true);
     } else {
-      const radius = 2500;
+      const radius = 1000;
       if (name === "main") {
         if (mainAddressDetail === undefined) return alert("상세 주소란을 입력해주세요.");
           
@@ -142,7 +142,7 @@ function EnrollAddress() {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         setYValue(result[0].x);
         setXValue(result[0].y);
-        setSwitched(switched.concat(coords.getLat(), coords.getLng()))
+        setSwitched([coords.getLat(), coords.getLng()])
       }
     });
   }, []);
@@ -154,14 +154,14 @@ function EnrollAddress() {
 
   useEffect(() => {
     //현재위치
-    const geocoder = new kakao.maps.services.Geocoder();
+    // const geocoder = new kakao.maps.services.Geocoder();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         const lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
         const coord = new kakao.maps.LatLng(lat, lon);
         // geocoder.coord2Address(coord.getLng(), coord.getLat(), callback)
-        setCurrent(current.concat(coord.getLat(),coord.getLng()))
+        setCurrent([coord.getLat(),coord.getLng()])
       });
     }
     // const callback = (result:any, status:any) => {

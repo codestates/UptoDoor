@@ -59,17 +59,17 @@ export const getFitteredByHastag = (hastag:string) => {
 };
 
 export const getFitteredBySearch = (keyword:string) => {
-
   const request = axios
     .get(`${END_POINTS}/store`)
     .then((res) => {
     const info = res.data.storeinfo
-    let data;
+      let data;
+      
     if (keyword === "") {
       data = info;
     } else {
       let RegExp1 = new RegExp(`${keyword}`, "g");
-
+      
       data = info.filter((el:any) => {
         if (
           RegExp1.test(el.name) ||

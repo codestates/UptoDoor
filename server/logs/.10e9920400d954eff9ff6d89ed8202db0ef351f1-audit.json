@@ -18,12 +18,13 @@
         {
             "date": 1633483025139,
             "name": "logs/2021-10-06.log",
-            "hash": "1a964c66475ce268b842942a41242e2d"
+
+            "hash": "87443609b126a502dbfb5cb9bb3a23e9"
         },
         {
-            "date": 1633573087479,
+            "date": 1633536036671,
             "name": "logs/2021-10-07.log",
-            "hash": "25fced28adf84c1c5c2aef225930e5f3"
+            "hash": "2672a42e118bb9e5df798b26f3a642ae"
         }
     ]
 }

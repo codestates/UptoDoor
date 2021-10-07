@@ -54,7 +54,6 @@ export const signIn = (userinfo) => {
   const request = axios
     .post(`${END_POINTS}/users/signin`, userinfo)
     .then((res) => {
-      console.log(res.data);
       return {
         message: res.data.message,
         id: res.data.userinfo.id,
@@ -222,7 +221,6 @@ export const addAddress = (address) => {
   const request = axios
     .post(`${END_POINTS}/users/address`, address)
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
   
@@ -236,9 +234,6 @@ export const addAddress = (address) => {
 export const addOrder = (order, selected_mobile, deliveryName, data) => {
   order.selected_mobile = selected_mobile;
   order.user_name = deliveryName;
-
-  console.log(order);
-  console.log(data);
   const orderinfo = {
     order: order,
     data: data
@@ -263,7 +258,6 @@ export const cancelOrder = (id) => {
   const request = axios
     .delete(`${END_POINTS}/cancel/${id}`)
     .then((res) => {
-      console.log("요청후 응답", res.data);
       return res.data
     }).catch((err) => {
       console.log(err)

@@ -20,7 +20,6 @@ import MyOrderList from './MyOrderList';
 import Auth from '../../hoc/auth'
 import Signin from '../common/Signin/SigninModal'
 
-import { StoreInfo } from '../../@type/storeInfo';
 import { RootReducerType } from '../../store/store';
 import { User } from '../../@type/userInfo';
 import {getNextPayDay,getToday} from '../../utils/calculateDate';

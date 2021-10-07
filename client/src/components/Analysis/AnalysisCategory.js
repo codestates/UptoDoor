@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import Chart from 'react-apexcharts'
 import 
@@ -13,11 +14,8 @@ import
 // eslint-disable-next-line react/prop-types
 function AnalysisCategory({chartStart,second,chart}) {
 
-  // eslint-disable-next-line react/prop-types
   const categoryName = chart.slice(0,5);
-  // eslint-disable-next-line react/prop-types
-  //!주석 풀기
-  // const categoryData = chart.slice(5);
+  const categoryData = chart.slice(5);
 
     const options = { 
       labels: categoryName,
@@ -98,16 +96,10 @@ function AnalysisCategory({chartStart,second,chart}) {
         text: 'Loading...'
       }
     };
-    // const series = [
-    //   {
-    //     name : 'total',
-    //     data : categoryData
-    //   },
-    // ]
     const series = [
       {
         name : 'total',
-        data : [186, 227, 151, 89, 70]
+        data : categoryData
       },
     ]
 

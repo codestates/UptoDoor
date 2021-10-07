@@ -26,7 +26,7 @@ function AnalysisAverageMonth({chart}) {
     return () => {
       window.removeEventListener('scroll',showBelowArrow)
     }
-  },)
+  })
 
   const count = {
     id: 1 , label : '평균 구독 개월수', 

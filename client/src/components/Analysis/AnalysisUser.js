@@ -30,24 +30,20 @@ function AnalysisUser({ chart }) {
   ]
 
   arr.sort((a,b)=>b.number-a.number)
-  // console.log('arrrr::',arr)
-
-  arr.sort((a, b) => b.number - a.number);
-  // console.log('arrrr::',arr)
 
   const name = arr.map((el) => el.name);
   const number = arr.map((ele) => ele.number);
 
-  // //name
-  let splicingNameLast = name.splice(5).reduce((acc,cur)=>acc+cur);
+  //name
+  name.splice(5).reduce((acc,cur)=>acc+cur);
   let splicingNameFirst = name.splice(0,5).concat(['그 외']);
 
-  let splicingNum = number.splice(0,6)
-  // console.log('splicingNum::',splicingNum)
-    
+  //number
+  let addEtcNum = number.splice(5).reduce((acc,cur)=>acc+cur);
+  number.push(addEtcNum)
+
   const options = { 
     labels: splicingNameFirst,
-    // labels: chart[0],
     theme: {
       monochrome: {
         enabled: true,
@@ -109,10 +105,7 @@ function AnalysisUser({ chart }) {
       },
     ],
   };
-  
-  const series = splicingNum;
-  // 가라데이터
-  // const series = [30,122,152,86,55,81]
+  const series = number;
 
   return (
     <ChartContainer>

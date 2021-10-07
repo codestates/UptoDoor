@@ -44,7 +44,7 @@ const intitialState: User = {
 };
 
 export default function user_reducer(state = intitialState, action: any) {
-  console.log("리듀서 들어올때", action.payload)
+
   switch (action.type) {
     case USER_SEND_CERT_EMAIL:
       return { ...state };

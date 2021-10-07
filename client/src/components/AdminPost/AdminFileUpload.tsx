@@ -10,21 +10,20 @@ function AdminFileUpload({ updateStoreFile }:any):React.ReactElement {
   const [addressFile , setAddressFile] = useState<Object[] | []>([]); 
 
   const dropHandler = (files: any) => {
-  
     const formData = new FormData();
     const config = {
       headers: { 'content-type': 'multipart/form-data' }
     }
     formData.append('file', files[0]);
     axios.post(`${END_POINTS}/image`,formData,config)
-          .then((res)=>{
-            if(res.data.success){
-              setAddressFile([...addressFile,res.data.filePath])
-              updateStoreFile([...addressFile,res.data.filePath])
-            }else{
-              alert('파일저장실패')
-            }
-          })
+      .then((res)=>{
+        if(res.data.success){
+          setAddressFile([...addressFile,res.data.filePath])
+          updateStoreFile([...addressFile,res.data.filePath])
+        }else{
+          alert('파일저장실패')
+        }
+      })
     }
   return (
     <StoreInputBox>

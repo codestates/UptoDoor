@@ -15,7 +15,17 @@ import
 
 function AnalysisTtlUser({chartStart,second,chart}) {
 
-  //male
+  const [selectGender , setSelectGender] = useState('')
+  const gender = 
+  [
+    { value : '남자' , label : '남자'},
+    { value : '여자' , label : '여자'},
+  ]
+  const onChangeGender = (e) => {
+    setSelectGender(e.value);
+  }
+
+  //!male 
   let key = Object.keys(chart[0])
   let values = Object.values(chart[0]);
   let ttlArr = [];
@@ -28,7 +38,7 @@ function AnalysisTtlUser({chartStart,second,chart}) {
     ttlArr.push({name: key[i], data: tmp});
   }
 
-  //female
+  //!female
   let femaleKey = Object.keys(chart[1])
   let femaleValues = Object.values(chart[1]);
   let femaleTtlArr = [];
@@ -40,15 +50,8 @@ function AnalysisTtlUser({chartStart,second,chart}) {
     }
     femaleTtlArr.push({name: femaleKey[i], data: femaleTmp});
   }
-
-  const [selectGender , setSelectGender] = useState('')
-  const gender = 
-    [
-      { value : '남자' , label : '남자'},
-      { value : '여자' , label : '여자'},
-    ]
   
-  //!mle data
+  //!male data
   const options1 = { 
     //바 높이줄이기
     labels: ['10대','20대','30대','40대','50대','60대이상'],
@@ -75,7 +78,6 @@ function AnalysisTtlUser({chartStart,second,chart}) {
       colors: ['#fff']
     },
     xaxis: {
-      // categories: ['10대', '20대','30대','40대','50대','60대이상'],
       labels: {
         formatter: function (val) {
           return val
@@ -96,14 +98,15 @@ function AnalysisTtlUser({chartStart,second,chart}) {
       position: 'top',
       horizontalAlign: 'center',
       offsetX: 10,
+    },
+    noData: {
+      text: 'Loading...'
     }
   };
-
   const series1 = ttlArr;
 
   //!femle data
   const options2 = { 
-    //바 높이줄이기
     labels: ['10대','20대','30대','40대','50대','60대이상'],
     chart: {
       stacked: true,
@@ -156,26 +159,20 @@ function AnalysisTtlUser({chartStart,second,chart}) {
   };
   const series2 = femaleTtlArr;
 
-  const onChangeGender = (e) => {
-    setSelectGender(e.value);
-  }
-
   return (
       <ChartContainer id = 'chart'>
-
         <StyledTtlUserChart chartStart = {chartStart}>
+
           <Column1>
             <ChartContentsWrapper second = {second}>
               <ChartTitle>사용자 별, <br/>많이 찾는 카테고리는?</ChartTitle>
               <ChartText>성별 및 연령대별 많이찾는 카테고리를 차트로 확인하세요.</ChartText>
-            
               <Select 
                 className = 'gender-selection selection'
                 options = {gender}
                 placeholder = '성별을 선택해주세요'
                 onChange = {onChangeGender}
               />
-
             </ChartContentsWrapper>
           </Column1>
 

@@ -26,7 +26,6 @@ const AnalysisWrapper = () => {
       .then(res => {
         setChart(res.data.data)
       })
-      .catch(err => console.log('받아오는거 에러',err));
   },[]);
 
   return (

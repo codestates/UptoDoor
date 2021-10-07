@@ -8,7 +8,7 @@ import {
 import {
   MediumFont,
 } from "../../GlobalStyle";
-import { LogoSrc } from "../../dummyData";
+import { LogoSrc } from "../../Data";
 export const Header = styled.header`
   position: sticky;
   top: 0;

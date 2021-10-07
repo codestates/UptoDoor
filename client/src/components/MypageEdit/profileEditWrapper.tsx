@@ -102,15 +102,11 @@ function MyProfileEdit():JSX.Element {
     }
     dispatch(editUser(userinfoEdit))
     .then((res: any) => {
-      console.log('===',res.payload)
       if (res.payload.successMessage === 'user update success') {
         setModalSuccess(true)
         setConfirmModal(true)
       } 
     })
-    .catch((err: any) => {
-      console.log(err)
-    });
   }, [nickname, password, passwordChk, mobile, gender, age])
   
   useEffect((): void => {

@@ -9,7 +9,7 @@ import {
   PointColor,
 } from "../GlobalStyle";
 import { showModal } from "../common/Modal/styledModal";
-import { LandingValues } from "../dummyData";
+import { LandingValues } from "../Data";
 
 export const upNdown = keyframes`
   0%{

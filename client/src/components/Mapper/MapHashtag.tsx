@@ -1,5 +1,5 @@
 import React from 'react'
-import { initialHash } from '../dummyData'
+import { initialHash } from '../Data'
 import { 
   MapHashtagWrapper,
   MapHashTagBox } from './styledMap'

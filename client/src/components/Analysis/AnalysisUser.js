@@ -48,21 +48,18 @@ function AnalysisUser({ chart }) {
   ];
 
   arr.sort((a, b) => b.number - a.number);
-  // console.log('arrrr::',arr)
 
   const name = arr.map((el) => el.name);
   const number = arr.map((ele) => ele.number);
 
-  // //name
+  //name
   let splicingNameLast = name.splice(5).reduce((acc, cur) => acc + cur);
   let splicingNameFirst = name.splice(0, 5).concat(["그 외"]);
 
   let splicingNum = number.splice(0, 5);
-  // console.log('splicingNameFirst::',splicingNum)
 
   const options = {
     labels: splicingNameFirst,
-    // labels: chart[0],
     theme: {
       monochrome: {
         enabled: true,

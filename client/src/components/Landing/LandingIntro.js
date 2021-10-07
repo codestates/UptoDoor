@@ -26,7 +26,7 @@ import {
   GradientEdge,
 } from "./StyledLanding";
 
-import { category, categoryDummy } from "../dummyData";
+import { category, categoryDummy } from "../Data";
 import { AdminStoreGetData } from "../../_actions/admin_action";
 
 const LandingIntro = () => {

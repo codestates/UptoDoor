@@ -41,7 +41,6 @@ const StoreData = ({id}) => {
 
   useEffect(() => {
     axios.get(`${END_POINTS}/admin/store/${id}`).then((res) => {
-      console.log(res.data);
       setStore(res.data.storeData);
     });
   }, []);

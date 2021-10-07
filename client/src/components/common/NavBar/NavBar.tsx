@@ -30,7 +30,6 @@ function NavBar():JSX.Element {
   const signoutHandler = (e:React.MouseEvent<HTMLButtonElement>):void => {
     e.preventDefault();
     if (user.login_type === 'kakao') {
-      console.log("222222")
       dispatch(AdminStoreReset());
       dispatch(kakaoSignOut())
       .then((res: any) => {

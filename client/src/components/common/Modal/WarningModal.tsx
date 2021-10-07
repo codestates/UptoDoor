@@ -8,7 +8,7 @@ import {
 function WarningModal(props: any):JSX.Element {
 
   const { 
-    openModal, url, modalSubText,
+    openModal, modalSubText,
     modalTitleText ,modalText,yes,no,setOpenModal,handler
     } = props;
 

@@ -7,7 +7,7 @@ import {
   TermSpan ,
   ErrMsgP } from './StyledSignup'
 
-import {terms} from '../dummyData'
+import {terms} from '../Data'
 
 interface Term {
   checkedInputs : number[],

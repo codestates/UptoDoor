@@ -30,7 +30,6 @@ function NavBar():JSX.Element {
   const signoutHandler = (e:React.MouseEvent<HTMLButtonElement>):void => {
     e.preventDefault();
     if (user.login_type === 'kakao') {
-      console.log("222222")
       dispatch(AdminStoreReset());
       dispatch(kakaoSignOut())
       .then((res: any) => {
@@ -69,7 +68,7 @@ const accessInto = useCallback((name):void => {
   return (
     <Header>
       <NavWrapper>
-        <NavLogo to="/"/> 
+        <NavLogo to="/"/>
         <Nav>
           <h2 className="visually-hidden">메뉴</h2>
           <UL>

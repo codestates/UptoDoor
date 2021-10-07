@@ -214,7 +214,6 @@ function CartWrapper() {
   const [optionsModal, setOptionsModal] = useState(false);
   const str =  "HH:mm";
   const onChangeTime = (value) => {
-    console.log(value && value.format(str));
     setChangeMoment(value);
     setTimeOtions(value && value.format(str));
     

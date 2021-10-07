@@ -7,6 +7,7 @@ import {
   chartObjOne,
   chartObjTwo,
 } from './chartProperty';
+import {ArrowChk , I} from '../Landing/StyledLanding'
 
 import AnalysisCategory from './AnalysisCategory'
 import AnalysisUser from './AnalysisUser'
@@ -20,14 +21,41 @@ const AnalysisWrapper = () => {
     {term : 0 , category:[] ,address : [[]],
     age:[[],[{}]] ,gender:[{},{}],}
   );
+  const [btnStatus, setBtnStatus] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     axios.get(`${END_POINTS}/analysis`)
       .then(res => {
         setChart(res.data.data)
       })
-      .catch(err => console.log('받아오는거 에러',err));
   },[]);
+  
+  const showScrollBtn = () => {
+    setScrollY(window.pageYOffset);
+    if (scrollY > 400) {
+      setBtnStatus(true);
+    } else {
+      setBtnStatus(false);
+    }
+  };
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    setScrollY(0);
+    setBtnStatus(false);
+  }
+  useEffect(() => {
+    const chkScroll = () => {
+      window.addEventListener("scroll", showScrollBtn);
+    };
+    chkScroll();
+    return () => {
+      window.removeEventListener("scroll", showScrollBtn);
+    };
+  });
 
   return (
     <Container>
@@ -36,8 +64,7 @@ const AnalysisWrapper = () => {
 
         <Fade bottom>
         <AnalysisAverageMonth 
-        chart={chart.term}
-        />
+        chart={chart.term}/>
         </Fade>
 
         <Fade right >
@@ -48,8 +75,7 @@ const AnalysisWrapper = () => {
 
         <Fade left>
         <AnalysisUser
-        chart={chart?.age}
-        />
+        chart={chart?.age}/>
         </Fade> 
 
         <Fade right>
@@ -60,9 +86,20 @@ const AnalysisWrapper = () => {
 
         <Fade left>
         <AnalysisCity 
-        chart={chart.address}
-        />
+        chart={chart.address}/>
         </Fade>
+
+        <ArrowChk>
+          <I 
+            dataScroll
+            className={
+              btnStatus
+                ? "fas fa-angle-double-up click-icon active"
+                : "fas fa-angle-double-up click-icon"
+            }
+            onClick={scrollTop}
+          ></I>
+        </ArrowChk>
         
       </Wrapper>
       

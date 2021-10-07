@@ -15,7 +15,6 @@ import Auth from '../../hoc/auth'
 import Signin from '../common/Signin/SigninModal'
 
 import { addOrder } from '../../_actions/user_action';
-import { removeAllCart } from "../../_actions/cart_action";
 import BootPay from 'bootpay-js';
 import useInput from '../../utils/useInput';
 
@@ -81,18 +80,15 @@ function OrderWrapper() {
             setOpenModal(true);
           })
           .cancel(function (data) {
-            // console.log("-- 결제 취소 에러 --", data, payCancleModal);
             setPayCancelModal(true);
             setModalSuccess(false);
             setOpenModal(true);
           })
           .ready(function (data) {
-            console.log("-- 가상계좌 입금 계좌번호 발급 -- ", data);
           })
           .confirm(function (data) {
             //결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
             //주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
-            console.log("-- confirm --", data);
             setModalSuccess(true);
             const enable = true; // 재고 수량 관리 로직 혹은 다른 처리
             if (enable) {
@@ -154,18 +150,16 @@ function OrderWrapper() {
             setOpenModal(true);
           })
           .cancel(function (data) {
-            // console.log("-- 결제 취소 에러 --", data, payCancleModal);
             setPayCancelModal(true);
             setModalSuccess(false);
             setOpenModal(true);
           })
           .ready(function (data) {
-            console.log("-- 가상계좌 입금 계좌번호 발급 -- ", data);
+            // 가상계좌 입금 계좌번호 발급 
           })
           .confirm(function (data) {
             //결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
             //주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
-            console.log("-- confirm --", data);
             setModalSuccess(true);
             const enable = true; // 재고 수량 관리 로직 혹은 다른 처리
             if (enable) {

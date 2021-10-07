@@ -154,22 +154,14 @@ function EnrollAddress() {
 
   useEffect(() => {
     //현재위치
-    // const geocoder = new kakao.maps.services.Geocoder();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         const lat = position.coords.latitude, // 위도
           lon = position.coords.longitude; // 경도
         const coord = new kakao.maps.LatLng(lat, lon);
-        // geocoder.coord2Address(coord.getLng(), coord.getLat(), callback)
         setCurrent([coord.getLat(),coord.getLng()])
       });
     }
-    // const callback = (result:any, status:any) => {
-    //   if (status === kakao.maps.services.Status.OK) {
-        // console.log("현위치", result[0])
-        // setCurrent(result[0].address.address_name.split(" ")[1]);
-    //   }
-    // };
   },[]);
 
   return (

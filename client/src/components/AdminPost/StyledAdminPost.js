@@ -110,13 +110,15 @@ export const StoreImgBox = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-@media screen and (min-width: 767px) {
-  }
 >img{
   height : 220px;
   width: 100%;
   padding : 0 10px;
   object-fit: contain;
+  cursor: pointer;
+  &:hover{
+    opacity: 0.8;
+  }
 }
 `
 export const AdminForm = styled.div`

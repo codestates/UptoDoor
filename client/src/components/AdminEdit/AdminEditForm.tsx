@@ -144,9 +144,7 @@ function AdminEditForm() {
     const store_id = admin.id
     axios.get(`${END_POINTS}/admin/store/${store_id}`)
       .then((res) => {
-        console.log("1",res.data);
         const store_info = res.data.storeData
-        console.log("2",store_info);
         setStoreinfo(store_info)
         setImageArr(store_info.image)
         setDescription(store_info.introduce) 
@@ -157,23 +155,18 @@ function AdminEditForm() {
         setMenuArr(store_info.menus)
     })
   },[])
-  // console.log('admin.opentime::',admin.open_time);
   const [openTime, setOpenTime] = useState('');
   const [closeTime, setCloseTime] = useState('')
   const moment1 = moment();
-  console.log(moment1)
   const [changeOpenMoment, setChangeOpenMoment] = useState(moment1);
   const [changeCloseMoment, setChangeCloseMoment] = useState(moment1);
   const str =  "HH:mm";
 
   const onChangeOpenTime = (value: any) => {
-    console.log(value && value.format(str));
     setChangeOpenMoment(value);
     setOpenTime(value && value.format(str));
   }
   const onChangeCloseTime = (value: any) => {
-    console.log(value);
-    console.log(value && value.format(str));
     setChangeCloseMoment(value);
     setCloseTime(value && value.format(str));
   }

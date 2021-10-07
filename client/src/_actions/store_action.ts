@@ -63,7 +63,6 @@ export const getFitteredBySearch = (keyword:string) => {
     .get(`${END_POINTS}/store`)
     .then((res) => {
     const info = res.data.storeinfo
-      console.log(info);
       let data;
       
     if (keyword === "") {

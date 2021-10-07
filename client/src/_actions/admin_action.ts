@@ -9,8 +9,6 @@ import {
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-
-
 export const adminStorePost = async (adminposts:object) => {
   const request = await axios
     .post(`${END_POINTS}/admin/store`, adminposts)
@@ -31,7 +29,6 @@ export const adminStoreEdit = (sendInfo:object, id:number) => {
   const request = axios
     .patch(`http://localhost:3060/admin/store/${id}`, { sendInfo })
     .then((res) => {
-      console.log("AdminStoreGetData",res.data)
     return res.data
   })
   .catch((err)=>{

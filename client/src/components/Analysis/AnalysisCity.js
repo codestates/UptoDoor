@@ -12,9 +12,6 @@ import
 
 function AnalysisCity({chart}) {
   
-  //chart[0] 번째에 x 값 obj 로 추가
-  // {x : chart[0]의 요소}
-  // {y : chart[1]의 요소}
   let data1 = [];
   for(let i = 0 ; i<chart[0].length ; i++){
     data1.push({ x: chart[0][i],y: chart[1][i] })
@@ -59,13 +56,16 @@ function AnalysisCity({chart}) {
         }
       },
     },
+    noData: {
+      text: 'Loading...'
+    }
   };
   const series = [
     {
       data : data1
     },
   ]
-
+  
   return (
       <ChartContainer>
         <ChartContentsWrapper>

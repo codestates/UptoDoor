@@ -18,6 +18,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { END_POINTS } from "../../_actions/type";
 import StoreImgModal from './StoreImgModal'
 import MenuList from './MenuList'
+import Auth from '../../hoc/auth'
+import Signin from '../common/Signin/SigninModal'
 
 
 const StoreData = ({id}) => {
@@ -26,6 +28,7 @@ const StoreData = ({id}) => {
   
   const [store, setStore] = useState({image:[]})
   const [openModal , setOpenModal] = useState(false);
+  const [loginModal , setLoginModal] = useState(false);
 
   const moreImgHandler = () => {
     setOpenModal(true);
@@ -41,10 +44,16 @@ const StoreData = ({id}) => {
 
   useEffect(() => {
     axios.get(`${END_POINTS}/admin/store/${id}`).then((res) => {
-      console.log(res.data);
       setStore(res.data.storeData);
     });
   }, []);
+
+  useEffect(() => {
+    const request = Auth(true);
+    if(request === undefined){
+      setLoginModal(true);
+    }
+  },[])
   
   return (
     <Container>
@@ -103,6 +112,17 @@ const StoreData = ({id}) => {
           setOpenModal={setOpenModal}
         />
       ) : null}
+
+      {loginModal ? 
+        <Signin
+        modalOpen = {loginModal}
+        setModalOpen = {setLoginModal}
+        request = {Auth(true)===undefined}
+        url = '/'
+        id = {id}
+        />
+        :
+      null}
     </Container>
   );
 }

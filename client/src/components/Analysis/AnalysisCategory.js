@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import Chart from 'react-apexcharts'
 import 
@@ -13,9 +14,7 @@ import
 // eslint-disable-next-line react/prop-types
 function AnalysisCategory({chartStart,second,chart}) {
 
-  // eslint-disable-next-line react/prop-types
   const categoryName = chart.slice(0,5);
-  // eslint-disable-next-line react/prop-types
   const categoryData = chart.slice(5);
 
     const options = { 
@@ -86,15 +85,16 @@ function AnalysisCategory({chartStart,second,chart}) {
         axisTicks: {
           show: false,
         },
-        
         labels: {
           show: true,
           formatter: function (val) {
             return val;
           }
         }
-      
       },
+      noData: {
+        text: 'Loading...'
+      }
     };
     const series = [
       {

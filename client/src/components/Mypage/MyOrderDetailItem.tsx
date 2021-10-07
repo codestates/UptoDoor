@@ -14,7 +14,6 @@ type IProps = {
 }
 
 function MyOrderDetailItem({ menus }: IProps): JSX.Element {
-  console.log(menus);
   return (
     <>
       {menus && menus.map((el:any,idx:number)=>{

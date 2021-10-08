@@ -164,6 +164,15 @@ flex-direction: column;
     }
   }
 }
+>.category-selection{
+  >div{
+    box-shadow : 0 0 0 0.2px rgba(0,0,0,0.3) !important;
+    border-color : rgba(0,0,0,0.2);
+  }
+  >div>div>div{
+    color : ${TextDarkGrey};
+  }
+}
 >label{
   font-size: ${BaseFont};
   font-weight: 600;

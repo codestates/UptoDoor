@@ -18,17 +18,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       paycount: {
-<<<<<<< HEAD
-        type: Sequelize.INTEGER
-      },
-      payday: {
-        type: Sequelize.STRING
-=======
         type: Sequelize.INTEGER,
       },
       payday: {
         type: Sequelize.STRING,
->>>>>>> 7aa89294683145cec8f5ab5eca889c758cb2805d
       },
       createdAt: {
         allowNull: false,

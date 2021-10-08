@@ -115,10 +115,7 @@ function AdminPostForm() {
       const filtering = menuArr.filter((el:any) => el !== menuArr[e.target.id])
       setMenuArr(filtering);
     }else{
-      console.log('최소 한개의 메뉴가 있어야합니다.')
-      // setOpenModal(true)
-      // setRemoveRejectModal(true)
-
+      setRemoveRejectModal(true)
     }
   }
   //!upload storeimg
@@ -161,7 +158,7 @@ function AdminPostForm() {
             .then((res: any) => {
               if (res.payload.message === "ok") {
                 setModalSuccess(true);
-          setOpenModal(true);
+                setOpenModal(true);
               }
           })
         }
@@ -341,19 +338,16 @@ return (
       : 
       null}
 
-      {/* {openModal && removeRejectModal ?
+      {removeRejectModal ?
       <ConfirmModal
-        openModal={openModal}
-        setOpenModal={setOpenModal}
+        openModal={removeRejectModal}
+        setOpenModal={setRemoveRejectModal}
         modalTitleText="삭제 불가"
-        modalText = {removeRejectModal 
-          ? '최소 한개의 메뉴가 있어야 합니다.'
-          :null
-        }
+        modalText = '최소 한개의 메뉴가 있어야 합니다.'
         modalBtn="확인"
       />
       : 
-      null} */}
+      null}
 
       {loginModal ? 
       <Signin

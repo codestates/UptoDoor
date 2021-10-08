@@ -26,7 +26,7 @@ function SignupWrapper():JSX.Element {
 
   //required
   const [email, setEmail] = useState<string | ''>('');
-  const [certEmail, setCertEmail] = useState<boolean>(false);
+  
   const [nickname, setNickname] = useState<string | ''>('');
   const [mobile, setMobile] = useState<string |''>('');
   const [password, setPassword] = useState<string |''>('');
@@ -41,26 +41,27 @@ function SignupWrapper():JSX.Element {
 
   const [signupModal, setSignupModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
-  const [certModal, setCertModal] = useState(false);
-  const [noCertModal, setNoCertModal] =useState(false);
 
+  const [certEmail, setCertEmail] = useState<boolean>(false);
+  const [certModal, setCertModal] = useState(false);
+  const [certSuccess, setCertSuccess] = useState(false);
+  const [existMail, setExistMail] = useState(false);
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
   }, []);
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
     dispatch(sendCertEmail(email))
-      .then((res:any) => {
+      .then((res: any) => {
         if (res.payload.message === "send success") {
-          setModalSuccess(true);
-          setCertModal(true);
           setCertEmail(true);
+          setCertSuccess(true);
+          setCertModal(true);
+        } else if (res.payload.message === "email exists") {
+          setExistMail(true);
+          setCertModal(true);
         }
       })
-      .catch(() => {
-        setModalSuccess(false);
-        setCertModal(true);
-      });
   };
   const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
@@ -122,15 +123,10 @@ function SignupWrapper():JSX.Element {
   const signupSubmitHandler = useCallback((e) => {
     e.preventDefault();
     if(password !== passwordChk) return false;
-    if(passwordRegErr === true) return setPasswordRegErr(true);
+    // if(passwordRegErr === true) return setPasswordRegErr(true);
     if(isAllchecked === false ) return false;
     if(certEmail === false) {
-      setModalSuccess(false);
-<<<<<<< HEAD
       return setSignupModal(true);
-=======
-      return setNoCertModal(true);
->>>>>>> 0125dd082ab11ab161b10dc93d12192ef64003f9
     }
 
       let userinfo = {
@@ -289,27 +285,12 @@ function SignupWrapper():JSX.Element {
           <ConfirmModal
             openModal={certModal}
             setOpenModal={setCertModal}
-            modalSuccess={modalSuccess}
+            modalSuccess={certSuccess}
             modalTitleText="이메일 인증"
-            modalText={
-              modalSuccess === true
-                ? "10분안에 이메일을 인증해주세요."
-                : "새로고침 후 다시 해주세요."
-            }
+            modalText={ certSuccess && certEmail? "10분안에 이메일을 인증해주세요." : "이미 존재하는 메일입니다."}
             modalBtn="확인"
           />
         ) : null}
-        {noCertModal ? (
-          <ConfirmModal
-            openModal={noCertModal}
-            setOpenModal={setNoCertModal}
-            modalSuccess={false}
-            modalTitleText="회원가입 실패"
-            modalText="이메일 인증은 필수입니다."
-            modalBtn="확인"
-          />
-        )
-        :null}
       </SignupContainer>
     </Container>
   );

@@ -67,7 +67,7 @@ module.exports = async (req, res) => {
             order_id : orderData.id,
             data: req.body.data
         }
-            await axios.post('http://localhost:3060/payment', sendinfo)
+            await axios.post('https://uptodoors.shop/payment', sendinfo)
             .then(() => {
                 res.status(201).send({message: 'Your order has been completed'});    
             })

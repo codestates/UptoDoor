@@ -66,20 +66,23 @@ module.exports = async (req, res) => {
    
     const ages = Object.keys(user_data);
     const gvalue = Object.values(user_data);
+
     gender.map((el) => {
+        if(el.age && el.gender !== null){
         let idx = ages.indexOf(el.age.slice(0,2))
         if(el.gender === '남자'){
         gvalue[idx].man += 1
         } else {
         gvalue[idx].woman += 1
         }
+    }
     })
     
     for(let i=0; i<ages.length; i++){
         user_data[ages[i]] = gvalue[i]
     }
     sendinfo.age = [ages, gvalue];
-
+    
     //! 연령대, 성별로 카테고리 주문량
     const total_user_data = [
         { food : [ {'10대': 0}, {'20대': 0}, {'30대': 0}, {'40대': 0}, {'50대': 0}, {'60대': 0} ],
@@ -153,7 +156,7 @@ module.exports = async (req, res) => {
     })
 
     //! top 10
-    for(let i=0; i<2; i++){
+    for(let i=0; i<3; i++){
         let idx;
         let max = arr6.reduce((a, b) => {
             return Math.max(a, b);

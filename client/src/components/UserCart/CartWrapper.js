@@ -137,7 +137,7 @@ function CartWrapper() {
       total_price: total.price,
     };
     dispatch(addAllCartToOrder(data));
-    window.location.href = "/userorder";
+    window.location.href = "/order";
   });
 
   //*  지우는 핸들러

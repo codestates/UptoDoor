@@ -74,7 +74,6 @@ function MyProfileWrapper(): JSX.Element {
 
     axios.get(`${END_POINTS}/users/userinfo`)
       .then((res) => {
-
         const order = res.data.userdata.user_orders.map((el: any) => {
           const delivery_day = el.order.order_deliveries.map((el:any) =>  el.delivery_day )
           const { delivery_term, delivery_time } = el.order.order_deliveries[0];
@@ -105,7 +104,7 @@ function MyProfileWrapper(): JSX.Element {
         setOrderList(order.reverse());
       })
   },[])
-
+  console.log("333", admin.id, user.position);
   return (
     <Container>
       <Title>프로필</Title>
@@ -137,12 +136,12 @@ function MyProfileWrapper(): JSX.Element {
                 }
               </PageContent>
               <ButtonWrapper>
-                {user.position === null ?
-                <button><Link to="/post">가게 등록</Link>
-                </button>
+                {user.position === "1" || admin.id ?
+                <button onClick={moveAdminPageHandler}>관리자 페이지
+                  </button>
                   :
-                  <button onClick={moveAdminPageHandler}>관리자 페이지
-                  </button>}
+                  <button><Link to="/post">가게 등록</Link>
+                </button>}
                 <button><Link to="/profile">프로필 수정</Link>
                 </button>
               </ButtonWrapper>

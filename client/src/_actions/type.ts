@@ -40,7 +40,7 @@ export const SELECT_STORE = "SELECT_STORE";
 export const REMOVE_ALL_CART = "REMOVE_ALL_CART";
 
 //
-export const END_POINTS = "https://uptodoors.shop"
-export const END_POINT = "https://uptodoor.shop";
-// export const END_POINTS = "http://localhost:3060";
-// export const END_POINT = "http://localhost:3000";
+// export const END_POINTS = "https://uptodoors.shop"
+// export const END_POINT = "https://uptodoor.shop";
+export const END_POINTS = "http://localhost:3060";
+export const END_POINT = "http://localhost:3000";

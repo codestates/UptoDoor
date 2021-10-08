@@ -124,9 +124,8 @@ function SignupWrapper():JSX.Element {
     if(passwordRegErr === true) return setPasswordRegErr(true);
     if(isAllchecked === false ) return false;
     if(certEmail === false) {
-      setCertEmail(false);
-    }else if(certEmail === true){
-      setCertEmail(true);
+      setModalSuccess(false);
+      return setSignupModal(true);
     }
 
       let userinfo = {
@@ -141,7 +140,7 @@ function SignupWrapper():JSX.Element {
         .then((res:any) => {
           if (res.payload.message === "Signup success") {
             setModalSuccess(true);
-            setSignupModal(true);
+            return setSignupModal(true);
           } else {
             setModalSuccess(false);
             setSignupModal(true);
@@ -266,14 +265,18 @@ function SignupWrapper():JSX.Element {
             setOpenModal={setSignupModal}
             modalSuccess={modalSuccess}
             url="/"
-            modalTitleText={
-              modalSuccess === true ? "회원가입 성공" : "회원가입 실패"
-            }
-            modalText={
-              modalSuccess === true
-                ? "메인 페이지로 이동합니다."
-                : "회원가입에 실패하셨습니다."
-            }
+            modalTitleText="회원가입 성공"
+            modalText="메인 페이지로 이동합니다."
+            modalBtn="확인"
+          />
+        ) : null}
+        {signupModal ? (
+          <ConfirmModal
+            openModal={signupModal}
+            setOpenModal={setSignupModal}
+            modalSuccess={false}
+            modalTitleText="회원가입 실패"
+            modalText="회원가입에 실패하셨습니다."
             modalBtn="확인"
           />
         ) : null}

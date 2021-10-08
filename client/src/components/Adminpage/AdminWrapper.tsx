@@ -196,7 +196,7 @@ function AdminWrapper() {
       modalOpen = {loginModal}
       setModalOpen = {setLoginModal}
       request = {Auth(true)===undefined}
-      url = '/adminpage'
+      url = '/admin'
       />
       :
       null}

@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,47 +19,13 @@ import {
   CategoryImgs,
   FixI,
   ArrowDisplay,
-  ArrowChk,
-  I,
   GradientEdge,
 } from "./StyledLanding";
 
 import { category, categoryDummy } from "../Data";
-import { AdminStoreGetData } from "../../_actions/admin_action";
+import ScrollTopArrow from '../common/Scroll/ScrollTopArrow'
 
 const LandingIntro = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const user = useSelector((state) => state.user);
-  const [scrollY, setScrollY] = useState(0);
-  const [btnStatus, setBtnStatus] = useState(false);
-
-  const showScrollBtn = () => {
-    setScrollY(window.pageYOffset);
-    if (scrollY > 400) {
-      setBtnStatus(true);
-    } else {
-      setBtnStatus(false);
-    }
-  };
-  const scrollTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-    setScrollY(0);
-    setBtnStatus(false);
-  }
-
-  useEffect(() => {
-    const chkScroll = () => {
-      window.addEventListener("scroll", showScrollBtn);
-    };
-    chkScroll();
-    return () => {
-      window.removeEventListener("scroll", showScrollBtn);
-    };
-  });
 
   const settings = {
     arrows: false,
@@ -131,18 +95,7 @@ const LandingIntro = () => {
           <FixI className="fas fa-angle-double-down"></FixI>
         </ArrowDisplay>
 
-        <ArrowChk>
-          <I
-            className={
-              btnStatus
-                ? "fas fa-angle-double-up click-icon active"
-                : "fas fa-angle-double-up click-icon"
-            }
-            onClick={scrollTop}
-          ></I>
-        </ArrowChk>
-
-        {/* 흐림효과 */}
+        <ScrollTopArrow/>
         <GradientEdge />
       </LandingIntroWrapper>
     </LandingIntroContainer>

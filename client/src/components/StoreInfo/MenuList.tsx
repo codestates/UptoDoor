@@ -35,7 +35,7 @@ function MenuList({store}:any):any {
     if (cart.menu.length===0) {
       setOpenModal(true);
     } else {
-      history.push(`/usercart`)
+      history.push(`/cart`)
     }
   }
 

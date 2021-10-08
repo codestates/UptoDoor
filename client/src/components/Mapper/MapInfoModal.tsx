@@ -22,7 +22,7 @@ function MapInfoModal({cart, filterList, setLoginModal, message,setSelectAddress
         setSelectAddressModal(true)
       } else {
         dispatch(selectStore(id));
-        history.push(`/storeinfo/${id}`)
+        history.push(`/store/${id}`)
       }
     }
   }

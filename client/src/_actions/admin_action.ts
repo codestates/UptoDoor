@@ -27,7 +27,7 @@ export const adminStorePost = async (adminposts:object) => {
 
 export const adminStoreEdit = (sendInfo:object, id:number) => {
   const request = axios
-    .patch(`http://localhost:3060/admin/store/${id}`, { sendInfo })
+    .patch(`${END_POINTS}/admin/store/${id}`, { sendInfo })
     .then((res) => {
     return res.data
   })

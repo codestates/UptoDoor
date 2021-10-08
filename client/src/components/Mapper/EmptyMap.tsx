@@ -28,7 +28,7 @@ const moveStoreHandler = (id: number) => {
       setSelectAddressModal(true)
     } else {
       dispatch(selectStore(id));
-      history.push(`/storeinfo/${id}`)
+      history.push(`/store/${id}`)
     }
   }
 };

@@ -42,6 +42,7 @@ function SignupWrapper():JSX.Element {
   const [signupModal, setSignupModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   const [certModal, setCertModal] = useState(false);
+  const [noCertModal, setNoCertModal] =useState(false);
 
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
@@ -125,7 +126,11 @@ function SignupWrapper():JSX.Element {
     if(isAllchecked === false ) return false;
     if(certEmail === false) {
       setModalSuccess(false);
+<<<<<<< HEAD
       return setSignupModal(true);
+=======
+      return setNoCertModal(true);
+>>>>>>> 0125dd082ab11ab161b10dc93d12192ef64003f9
     }
 
       let userinfo = {
@@ -294,7 +299,17 @@ function SignupWrapper():JSX.Element {
             modalBtn="확인"
           />
         ) : null}
-        
+        {noCertModal ? (
+          <ConfirmModal
+            openModal={noCertModal}
+            setOpenModal={setNoCertModal}
+            modalSuccess={false}
+            modalTitleText="회원가입 실패"
+            modalText="이메일 인증은 필수입니다."
+            modalBtn="확인"
+          />
+        )
+        :null}
       </SignupContainer>
     </Container>
   );

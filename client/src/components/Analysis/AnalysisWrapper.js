@@ -22,6 +22,15 @@ const AnalysisWrapper = () => {
     age:[[],[{}]] ,gender:[{},{}],}
   );
 
+  const [loading, setLoading] = useState(false);
+  const pointThree = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("success");
+      }, 300);
+    });
+  };
+
   useEffect(() => {
     setLoading(true);
     pointThree().then(() => {

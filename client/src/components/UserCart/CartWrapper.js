@@ -27,8 +27,9 @@ import ConfirmModal from "../common/Modal/ConfirmModal";
 import CartMenuList from "./CartMenuList";
 import { useHistory } from "react-router";
 
-import Auth from '../../hoc/auth'
-import Signin from '../common/Signin/SigninModal'
+import Auth from '../../hoc/auth';
+import Signin from '../common/Signin/SigninModal';
+import { END_POINT } from "../../_actions/type";
 
 function CartWrapper() {
   const monent = moment();
@@ -36,7 +37,8 @@ function CartWrapper() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   
-  const [loginModal , setLoginModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+  const [wrongPathModal, setWrongPathModal] = useState(false);
   
   const [timeOtions, setTimeOtions] = useState("");
   const [changeMoment, setChangeMoment] = useState(monent);
@@ -221,10 +223,14 @@ function CartWrapper() {
   useEffect(() => {
     const request = Auth(true);
     if(request === undefined){
-      setLoginModal(true);
+      return setLoginModal(true);
     }
-  },[])
 
+    if (cart.menu.length === 0) {
+      return setWrongPathModal(true);
+    }
+  }, [])
+  
   return (
     <Container>
       <Title>장바구니</Title>
@@ -314,14 +320,14 @@ function CartWrapper() {
               <UserCheckListBox>
                 <h4>몇 시에 받고 싶으신가요?</h4>
                 <CartTimePicker
-                className = 'time-picker-span'
-                value={changeMoment}
-                showSecond={false}
-                minuteStep={15}
-                format="HH:mm"
-                use12Hours
-                inputReadOnly
-                onChange={onChangeTime}
+                  className="time-picker-span"
+                  value={changeMoment}
+                  showSecond={false}
+                  minuteStep={15}
+                  format="HH:mm"
+                  use12Hours
+                  inputReadOnly
+                  onChange={onChangeTime}
                 ></CartTimePicker>
               </UserCheckListBox>
               <UserCheckListBox>
@@ -335,14 +341,12 @@ function CartWrapper() {
               </UserCheckListBox>
 
               <h3>주문 합계</h3>
-              <UserCheckListBox 
-              cart 
-              className = 'cart-ttl-price'>
-                <MoneyCheck className = 'cart-ttl'>
+              <UserCheckListBox cart className="cart-ttl-price">
+                <MoneyCheck className="cart-ttl">
                   <h5>총 상품 개수</h5>
                   <p> {total.quantity} 개</p>
                 </MoneyCheck>
-                <MoneyCheck className = 'cart-ttl'>
+                <MoneyCheck className="cart-ttl">
                   <h5>구독 금액 / 월</h5>
                   <p>
                     +{" "}
@@ -352,9 +356,7 @@ function CartWrapper() {
                     원
                   </p>
                 </MoneyCheck>
-                <MoneyCheck 
-                cart
-                className = 'cart-ttl-price-text cart-ttl'>
+                <MoneyCheck cart className="cart-ttl-price-text cart-ttl">
                   <h4>
                     월 결제 금액은{" "}
                     {total.price
@@ -395,16 +397,24 @@ function CartWrapper() {
           setOpenModal={setOptionsModal}
         />
       ) : null}
-      {loginModal ? 
-      <Signin
-      modalOpen = {loginModal}
-      setModalOpen = {setLoginModal}
-      request = {Auth(true)===undefined}
-      
-      url = '/'
-      />
-      :
-      null}
+      {loginModal ? (
+        <Signin
+          modalOpen={loginModal}
+          setModalOpen={setLoginModal}
+          request={Auth(true) === undefined}
+          url="/"
+        />
+      ) : null}
+      {wrongPathModal ? (
+        <ConfirmModal
+          openModal={wrongPathModal}
+          setOpenModal={setWrongPathModal}
+          modalBtn="확인"
+          modalTitleText="접근 실패"
+          modalText="잘못된 접근입니다. 메인페이지로 이동합니다."
+          url="/"
+        />
+      ) : null}
     </Container>
   );
 }

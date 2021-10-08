@@ -23,11 +23,18 @@ const AnalysisWrapper = () => {
   );
 
   useEffect(() => {
-    axios.get(`${END_POINTS}/analysis`)
-      .then(res => {
-        setChart(res.data.data)
-      })
-  },[]);
+    setLoading(true);
+    pointThree().then(() => {
+      axios.get(`${END_POINTS}/analysis`).then((res) => {
+        setChart(res.data.data);
+        setLoading(false);
+      });
+    })
+  }, []);
+
+  useEffect(() => {
+    return () => setLoading(false); // cleanup function을 이용
+  }, []);
 
   return (
     <Container>

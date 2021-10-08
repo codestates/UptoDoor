@@ -73,15 +73,28 @@ function MapWrapper() {
     setFilterList(filtered);
     setOpenInfoModal(true);
   }
-  
+  const pointThree = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("success");
+      }, 100);
+    });
+  };
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    dispatch(getStoreData()).then(() => {
-      dispatch(removeAllCart());
+    setLoading(true)
+    pointThree().then(() => {
+      dispatch(getStoreData()).then(() => {
+        dispatch(removeAllCart());
+        setLoading(false);
+      })
+      
     })
+    
   }, [])
 
   useEffect(() => {
-    setFilterList(store);
+      setFilterList(store);
   }, [store])
   
   return (

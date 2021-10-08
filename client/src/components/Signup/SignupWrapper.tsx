@@ -42,6 +42,7 @@ function SignupWrapper():JSX.Element {
   const [signupModal, setSignupModal] = useState(false);
   const [modalSuccess, setModalSuccess] = useState(false);
   const [certModal, setCertModal] = useState(false);
+  const [noCertModal, setNoCertModal] =useState(false);
 
   const onChangeEmailHandler = useCallback((e) => {
     setEmail(e.target.value);
@@ -124,9 +125,8 @@ function SignupWrapper():JSX.Element {
     if(passwordRegErr === true) return setPasswordRegErr(true);
     if(isAllchecked === false ) return false;
     if(certEmail === false) {
-      setCertEmail(false);
-    }else if(certEmail === true){
-      setCertEmail(true);
+      setModalSuccess(false);
+      return setNoCertModal(true);
     }
 
       let userinfo = {
@@ -266,14 +266,18 @@ function SignupWrapper():JSX.Element {
             setOpenModal={setSignupModal}
             modalSuccess={modalSuccess}
             url="/"
-            modalTitleText={
-              modalSuccess === true ? "회원가입 성공" : "회원가입 실패"
-            }
-            modalText={
-              modalSuccess === true
-                ? "메인 페이지로 이동합니다."
-                : "회원가입에 실패하셨습니다."
-            }
+            modalTitleText="회원가입 성공"
+            modalText="메인 페이지로 이동합니다."
+            modalBtn="확인"
+          />
+        ) : null}
+        {signupModal ? (
+          <ConfirmModal
+            openModal={signupModal}
+            setOpenModal={setSignupModal}
+            modalSuccess={false}
+            modalTitleText="회원가입 실패"
+            modalText="회원가입에 실패하셨습니다."
             modalBtn="확인"
           />
         ) : null}
@@ -291,7 +295,17 @@ function SignupWrapper():JSX.Element {
             modalBtn="확인"
           />
         ) : null}
-        
+        {noCertModal ? (
+          <ConfirmModal
+            openModal={noCertModal}
+            setOpenModal={setNoCertModal}
+            modalSuccess={false}
+            modalTitleText="회원가입 실패"
+            modalText="이메일 인증은 필수입니다."
+            modalBtn="확인"
+          />
+        )
+        :null}
       </SignupContainer>
     </Container>
   );

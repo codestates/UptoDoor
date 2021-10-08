@@ -346,7 +346,7 @@ function AdminEditForm() {
     {editModal ?
       <ConfirmModal
       confirmModal = {editModal}
-      url="/adminpage"
+      url="/admin"
       modalSuccess={modalSuccess}
       setOpenModal={setEditModal}
       modalTitleText = '스토어 수정'

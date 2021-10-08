@@ -41,9 +41,9 @@ function Signin({ setIsOpen, modalOpen,setModalOpen ,request , url, id }: Iprops
       .then((res: any) => {
         if (res.payload.message  === 'login success') {
           if(
-            link === `${END_POINT}/usercart`||
-            link === `${END_POINT}/userorder` ||
-            link === `${END_POINT}/storeinfo/${id}` ||
+            link === `${END_POINT}/cart`||
+            link === `${END_POINT}/order` ||
+            link === `${END_POINT}/store/${id}` ||
             link === `${END_POINT}/signup`
           ) {
             setModalOpen(false);

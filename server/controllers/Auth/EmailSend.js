@@ -130,8 +130,10 @@ module.exports = async (req, res) => {
     //이메일이 존재하고 이메일인증이 안된상태인지 아니면 회원가입이 끝난 이메일인지 확인
     let date = await user.findOne({ where: { email: receiverEmail } });
 
-    if (date.emailcheck === "false" && date.nickname) {
+    if (date.emailcheck === "true" && date.nickname) {
       res.status(409).send({ message: "duplicate member" });
+    } else if (date.emailcheck === "true") {
+      res.status(409).send({ message: "require nickname" });
     } else {
       res.status(409).send({ message: "require email check" });
     }

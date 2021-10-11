@@ -10,4 +10,6 @@ export ACCESS_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --names AC
 export REFRESH_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --names REFRESH_SECRET --query Parameters[0].Value | sed 's/"//g')
 export accessKeyId=$(aws ssm get-parameters --region ap-northeast-2 --names accessKeyId --query Parameters[0].Value | sed 's/"//g')
 export secretAccessKey=$(aws ssm get-parameters --region ap-northeast-2 --names secretAccessKey --query Parameters[0].Value | sed 's/"//g')
+export EMAIL=$(aws ssm get-parameters --region ap-northeast-2 --names EMAIL --query Parameters[0].Value | sed 's/"//g')
+export EMAIL_PW=$(aws ssm get-parameters --region ap-northeast-2 --names EMAIL_PW --query Parameters[0].Value | sed 's/"//g')
 authbind --deep pm2 start index.js

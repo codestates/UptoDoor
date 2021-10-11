@@ -1,11 +1,11 @@
-const { default: axios } = require('axios');
-const { order, order_delivery, sequelize } = require('../../models');
-const { checkAccess } = require('../Tokenfunc');
-const { logger } = require('../../config/winston');
-const requestIp = require('request-ip');
+const { default: axios } = require("axios");
+const { order, order_delivery, sequelize } = require("../../models");
+const { checkAccess } = require("../Tokenfunc");
+const { logger } = require("../../config/winston");
+const requestIp = require("request-ip");
 /* eslint-disable no-unused-vars */
 module.exports = async (req, res) => {
-  //logger.info(`Bootpay PAYMENT Feedback -POST- (${requestIp.getClientIp(req)})`)
+  logger.info(`Bootpay PAYMENT Feedback -POST- (${requestIp.getClientIp(req)})`)
   const receiptdata = await order.findOne({ where: { id: req.body.order_id } });
   const count1 = await order_delivery.findOne({
     where: { order_id: req.body.order_id },
@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
     console.log("------ 정기 결제 확인 -------");
     axios.post("https://uptodoors.shop/payment", orderinfo);
   } else {
-    await order.update({ state: 'done'}, { where: { id: req.body.order_id }})
+    await order.update({ state: "done" }, { where: { id: req.body.order_id } });
   }
   res.send("OK");
 };

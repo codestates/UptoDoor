@@ -1,12 +1,12 @@
-import React from 'react'
-import AdminEditForm from '../components/AdminEdit/AdminEditForm'
+import React from "react";
+import AdminEditForm from "../components/AdminEdit/AdminEditForm";
 
 const AdminEdit = () => {
   return (
     <>
-      <AdminEditForm/>
+      <AdminEditForm />
     </>
-  )
-}
+  );
+};
 
 export default AdminEdit;

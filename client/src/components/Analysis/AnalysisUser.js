@@ -14,35 +14,53 @@ function AnalysisUser({ chart }) {
   const ageNum = chart[1];
 
   const arr = [
-    {name : '10대 남자',number : ageNum[0].man === undefined || ageNum[0].man},
-    {name : '20대 남자',number : ageNum[0].man === undefined || ageNum[1].man},
-    {name : '30대 남자',number : ageNum[0].man === undefined || ageNum[2].man},
-    {name : '40대 남자',number : ageNum[0].man === undefined || ageNum[3].man},
-    {name : '50대 남자',number : ageNum[0].man === undefined || ageNum[4].man},
-    {name : '60대 남자',number : ageNum[0].man === undefined || ageNum[5].man},
-    
-    {name : '10대 여자',number : ageNum[0].woman === undefined || ageNum[0].woman},
-    {name : '20대 여자',number : ageNum[0].woman === undefined || ageNum[1].woman},
-    {name : '30대 여자',number : ageNum[0].woman === undefined || ageNum[2].woman},
-    {name : '40대 여자',number : ageNum[0].woman === undefined || ageNum[3].woman},
-    {name : '50대 여자',number : ageNum[0].woman === undefined || ageNum[4].woman},
-    {name : '60대 여자',number : ageNum[0].woman === undefined || ageNum[5].woman},
-  ]
+    { name: "10대 남자", number: ageNum[0].man === undefined || ageNum[0].man },
+    { name: "20대 남자", number: ageNum[0].man === undefined || ageNum[1].man },
+    { name: "30대 남자", number: ageNum[0].man === undefined || ageNum[2].man },
+    { name: "40대 남자", number: ageNum[0].man === undefined || ageNum[3].man },
+    { name: "50대 남자", number: ageNum[0].man === undefined || ageNum[4].man },
+    { name: "60대 남자", number: ageNum[0].man === undefined || ageNum[5].man },
 
-  arr.sort((a,b)=>b.number-a.number)
+    {
+      name: "10대 여자",
+      number: ageNum[0].woman === undefined || ageNum[0].woman,
+    },
+    {
+      name: "20대 여자",
+      number: ageNum[0].woman === undefined || ageNum[1].woman,
+    },
+    {
+      name: "30대 여자",
+      number: ageNum[0].woman === undefined || ageNum[2].woman,
+    },
+    {
+      name: "40대 여자",
+      number: ageNum[0].woman === undefined || ageNum[3].woman,
+    },
+    {
+      name: "50대 여자",
+      number: ageNum[0].woman === undefined || ageNum[4].woman,
+    },
+    {
+      name: "60대 여자",
+      number: ageNum[0].woman === undefined || ageNum[5].woman,
+    },
+  ];
+
+  arr.sort((a, b) => b.number - a.number);
 
   const name = arr.map((el) => el.name);
   const number = arr.map((ele) => ele.number);
 
   //name
-  name.splice(5).reduce((acc,cur)=>acc+cur);
-  let splicingNameFirst = name.splice(0,5).concat(['그 외']);
+  name.splice(5).reduce((acc, cur) => acc + cur);
+  let splicingNameFirst = name.splice(0, 5).concat(["그 외"]);
 
   //number
-  let addEtcNum = number.splice(5).reduce((acc,cur)=>acc+cur);
-  number.push(addEtcNum)
+  let addEtcNum = number.splice(5).reduce((acc, cur) => acc + cur);
+  number.push(addEtcNum);
 
-  const options = { 
+  const options = {
     labels: splicingNameFirst,
     theme: {
       monochrome: {
@@ -86,7 +104,7 @@ function AnalysisUser({ chart }) {
       position: "bottom",
     },
     noData: {
-      text: 'Loading...'
+      text: "Loading...",
     },
     responsive: [
       {

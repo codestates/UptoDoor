@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import CartWrapper from "../components/UserCart/CartWrapper";
 
 const UserCart = () => {
@@ -7,6 +7,6 @@ const UserCart = () => {
       <CartWrapper />
     </>
   );
-}
+};
 
-export default UserCart
+export default UserCart;

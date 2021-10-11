@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 
 /* margin,padding 은 90% */
@@ -21,21 +21,21 @@ export const GlobalStyle = createGlobalStyle`
   button{
     cursor: pointer;
   }
-`
+`;
 /*color*/
-export const MainColor = '#245CCE';
-export const PointColor = '#ff5954';
-export const TextColor = '#000';
-export const TextDarkGrey = '#434A54';
-export const TextLightGrey = '#656D78';
+export const MainColor = "#245CCE";
+export const PointColor = "#ff5954";
+export const TextColor = "#000";
+export const TextDarkGrey = "#434A54";
+export const TextLightGrey = "#656D78";
 export const BackgroundColor = "#f7f7f7";
 
 /*font*/
-export const SmallFont = '14px';
-export const BaseFont = '16px';
-export const MediumFont = '20px';
-export const LargeFont = '24px';
-export const UltraLargeFont = '60px';
+export const SmallFont = "14px";
+export const BaseFont = "16px";
+export const MediumFont = "20px";
+export const LargeFont = "24px";
+export const UltraLargeFont = "60px";
 
 /*components*/
 export const Container = styled.section`
@@ -81,15 +81,16 @@ export const Title = styled.h1`
 `;
 
 //!컴포넌트 작성시 예제
-{/* 
+{
+  /* 
   <Container>
   <Title>제목</Title>
   <Wrapper>
     내용들어가기
 </Wrapper>
 </Container>  
-*/}
-
+*/
+}
 
 //*Mypage, adminpage
 export const PageWrapper = styled.div`
@@ -226,7 +227,7 @@ export const PageBtnWrapper = styled.div`
       }
     }
   }
-  
+
   @media screen and (min-width: 1140px) {
     > button {
       margin: 3px;

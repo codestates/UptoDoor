@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 import {
   InfoWrapper,
@@ -7,14 +7,23 @@ import {
   Heading,
   Subtitle,
   Img,
-  LandingInfoWrapper,Column1,Column2,ImgWrap
+  LandingInfoWrapper,
+  Column1,
+  Column2,
+  ImgWrap,
 } from "./StyledLanding";
 
 const LandingInfoDescription = ({
-  headline1,headline2,descriptionOne,descriptionTwo,
-  imgStart,img,alt,descriptionThree,second
-  }:any):any => {
-
+  headline1,
+  headline2,
+  descriptionOne,
+  descriptionTwo,
+  imgStart,
+  img,
+  alt,
+  descriptionThree,
+  second,
+}: any): any => {
   return (
     <LandingInfoWrapper>
       <InfoWrapper>
@@ -26,19 +35,20 @@ const LandingInfoDescription = ({
           </Column1>
           <Column2>
             <TextWrapper second={second}>
-              <Heading>{headline1}{" "}{ headline2}</Heading>
+              <Heading>
+                {headline1} {headline2}
+              </Heading>
               <Subtitle>{descriptionOne}</Subtitle>
               <Subtitle>{descriptionTwo}</Subtitle>
-              {descriptionThree ? 
-              <Subtitle>{descriptionThree}</Subtitle> 
-              :
-              null}
+              {descriptionThree ? (
+                <Subtitle>{descriptionThree}</Subtitle>
+              ) : null}
             </TextWrapper>
           </Column2>
         </InfoRow>
       </InfoWrapper>
     </LandingInfoWrapper>
-  )
-}
+  );
+};
 
-export default LandingInfoDescription
+export default LandingInfoDescription;

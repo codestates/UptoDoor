@@ -1,12 +1,12 @@
-import React from 'react'
-import MapWrapper from '../components/Mapper/MapWrapper'
+import React from "react";
+import MapWrapper from "../components/Mapper/MapWrapper";
 
 const Mapper = () => {
   return (
     <>
-      <MapWrapper/>
+      <MapWrapper />
     </>
-  )
-}
+  );
+};
 
-export default Mapper
+export default Mapper;

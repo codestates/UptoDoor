@@ -1,15 +1,15 @@
 export interface AdminInfo {
-	id: number;
-	name: string;
-	image: string;
-	number: string;
+  id: number;
+  name: string;
+  image: string;
+  number: string;
   address: string;
   address_detail: string;
   category: string;
   introduce: string;
   open_time: string;
   close_time: string;
-	profileImage: string | null;
+  profileImage: string | null;
   createdAt?: string;
   store_menus: StoreMenus[];
   orders: Orders[];
@@ -22,12 +22,12 @@ export interface StoreMenus {
 }
 
 export type Menu = {
-  id: number,
-    name: string,
-    image: string,
-    price: number,
-    detail: string
-} 
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  detail: string;
+};
 
 export interface Orders {
   billingkey?: any;
@@ -53,10 +53,10 @@ export interface Orders {
 export interface OrderMenus {
   quantity: number;
   menu: {
-    name: string,
-    image: string,
-    price: number,
-    detail: string
+    name: string;
+    image: string;
+    price: number;
+    detail: string;
   };
 }
 

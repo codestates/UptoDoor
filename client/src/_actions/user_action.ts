@@ -15,16 +15,18 @@ import {
   END_POINTS,
 } from "./type";
 
-import axios from 'axios'
-axios.defaults.withCredentials = true
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 //이메일 인증
-export const sendCertEmail = (email) => {
+export const sendCertEmail = (email:string) => {
   const request = axios
-    .post(`${END_POINTS}/auth/email`,
-      { email: email }, { credentials: "include" })
+    .post(`${END_POINTS}/auth/email`, { email: email })
     .then((res) => {
       return res.data;
+    })
+    .catch((err) => {
+      return err.response.data
     });
 
   return {
@@ -33,7 +35,7 @@ export const sendCertEmail = (email) => {
   };
 };
 //유저 signup post 요청
-export const signUp = (userinfo) => {
+export const signUp = (userinfo:any) => {
   const request = axios
     .post(`${END_POINTS}/users/signup`, userinfo)
     .then((res) => {
@@ -47,10 +49,10 @@ export const signUp = (userinfo) => {
     type: USER_SIGNUP,
     payload: request,
   };
-}
+};
 
 //유저 signin post 요청
-export const signIn = (userinfo) => {
+export const signIn = (userinfo:any) => {
   const request = axios
     .post(`${END_POINTS}/users/signin`, userinfo)
     .then((res) => {
@@ -69,11 +71,12 @@ export const signIn = (userinfo) => {
         position: res.data.userinfo.position,
         login_type: res.data.login_type,
       };
-    }).catch((err) => {
-      return {
-        message: 'error'
-      }
     })
+    .catch((err) => {
+      return {
+        message: "error",
+      };
+    });
 
   return {
     type: USER_SIGNIN,
@@ -82,19 +85,17 @@ export const signIn = (userinfo) => {
 };
 //유저 signout post 요청
 export const signOut = () => {
-  const request = axios
-    .post(`${END_POINTS}/users/signout`)
-    .then((res) => {
-      return res.data;
-    })
-    
+  const request = axios.post(`${END_POINTS}/users/signout`).then((res) => {
+    return res.data;
+  });
+
   return {
     type: USER_SIGNOUT,
     payload: request,
   };
-}
+};
 
-export const kakaoSignIn = (authorizationCode) => {
+export const kakaoSignIn = (authorizationCode:any) => {
   const request = axios
     .post(`${END_POINTS}/oauth/kakao/login`, {
       authorizationCode: authorizationCode,
@@ -136,7 +137,7 @@ export const kakaoSignOut = () => {
   };
 };
 
-export const naverSignIn = (authorizationCode, state) => {
+export const naverSignIn = (authorizationCode:any, state:any) => {
   const request = axios
     .post(`${END_POINTS}/oatuh/naver/login`, {
       authorizationCode: authorizationCode,
@@ -180,25 +181,28 @@ export const naverSignOut = () => {
 };
 
 //마이페이지 patch 요청
-export const editUser = (userinfoEdit) => {
+export const editUser = (userinfoEdit:any) => {
   const request = axios
-    .patch(`${END_POINTS}/users/userinfo`,userinfoEdit)
-    .then((res)=>{
-      const{nickname ,mobile,age,gender} =res.data.userinfo
-        return {
-          nickname, mobile, age, gender,
-          successMessage: res.data.message
-        };
-      })
-    .catch((err)=>{
-      console.log('==userinfo 받아오기실패==',err)
+    .patch(`${END_POINTS}/users/userinfo`, userinfoEdit)
+    .then((res) => {
+      const { nickname, mobile, age, gender } = res.data.userinfo;
+      return {
+        nickname,
+        mobile,
+        age,
+        gender,
+        successMessage: res.data.message,
+      };
     })
-  
+    .catch((err) => {
+      console.log("==userinfo 받아오기실패==", err);
+    });
+
   return {
     type: USER_EDIT,
     payload: request,
   };
-}
+};
 //회원탈퇴 delete 요청 -> state 전부 초기화하기
 export const deleteUser = () => {
   const request = axios
@@ -206,24 +210,24 @@ export const deleteUser = () => {
     .then((res) => {
       return res.data;
     })
-    .catch((err)=>{
-      console.log('==userinfo 받아오기실패==',err)
-    })
-  
+    .catch((err) => {
+      console.log("==userinfo 받아오기실패==", err);
+    });
+
   return {
     type: USER_DELETE,
     payload: request,
   };
-}
+};
 
 //main email 보내기
-export const addAddress = (address) => {
+export const addAddress = (address:any) => {
   const request = axios
     .post(`${END_POINTS}/users/address`, address)
     .then((res) => {
       return res.data;
-    })
-  
+    });
+
   return {
     type: USER_ADD_ADDRESS,
     payload: request,
@@ -231,17 +235,17 @@ export const addAddress = (address) => {
 };
 
 //order관련 구독하기, 취소하기
-export const addOrder = (order, selected_mobile, deliveryName, data) => {
+export const addOrder = (order:any, selected_mobile:string, deliveryName:string, data:any) => {
   order.selected_mobile = selected_mobile;
   order.user_name = deliveryName;
   const orderinfo = {
     order: order,
-    data: data
-  }
+    data: data,
+  };
   const request = axios
     .post(`${END_POINTS}/users/order`, orderinfo)
     .then((res) => {
-      return res.data
+      return res.data;
     })
     .catch((err) => {
       console.log("ordererr", err);
@@ -249,27 +253,23 @@ export const addOrder = (order, selected_mobile, deliveryName, data) => {
 
   return {
     type: USER_ADD_ORDER,
-    payload: request
+    payload: request,
   };
 };
 
 //구독취소
-export const cancelOrder = (id) => {
+export const cancelOrder = (id:number) => {
   const request = axios
     .delete(`${END_POINTS}/cancel/${id}`)
     .then((res) => {
-      return res.data
-    }).catch((err) => {
-      console.log(err)
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
     });
   //id랑 메시지 같이 받아오기
   return {
     type: USER_CALCEL_ORDER,
     payload: request,
   };
-}
-
-
-
-
-
+};

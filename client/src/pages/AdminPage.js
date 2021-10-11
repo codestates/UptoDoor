@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import AdminWrapper from "../components/AdminPage/AdminWrapper";
 
 const AdminPage = () => {
@@ -7,6 +7,6 @@ const AdminPage = () => {
       <AdminWrapper />
     </>
   );
-}
+};
 
-export default AdminPage
+export default AdminPage;

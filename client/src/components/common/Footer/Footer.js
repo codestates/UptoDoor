@@ -1,8 +1,15 @@
-import React from 'react'
-import { FaInstagram, FaGithub} from "react-icons/fa";
-import { FooterContainer, FooterWrapper, FooterLinkTitle,
-  FooterLink, FooterLinkItems, SocialIcons,
-  SocialIconLink, FooterTitle, WebsiteRights,
+import React from "react";
+import { FaInstagram, FaGithub } from "react-icons/fa";
+import {
+  FooterContainer,
+  FooterWrapper,
+  FooterLinkTitle,
+  FooterLink,
+  FooterLinkItems,
+  SocialIcons,
+  SocialIconLink,
+  FooterTitle,
+  WebsiteRights,
 } from "./StyledFooter";
 
 function Footer() {
@@ -76,10 +83,10 @@ function Footer() {
             target="_blank"
             aria-label="Facebook"
           >
-            <FaGithub title = 'UptoDoor_Github'/>
+            <FaGithub title="UptoDoor_Github" />
           </SocialIconLink>
           <SocialIconLink href="/" target="_blank" aria-label="Facebook">
-            <FaInstagram title = 'UptoDoor_WebSite' />
+            <FaInstagram title="UptoDoor_WebSite" />
           </SocialIconLink>
         </SocialIcons>
       </FooterWrapper>
@@ -90,4 +97,4 @@ function Footer() {
   );
 }
 
-export default Footer
+export default Footer;

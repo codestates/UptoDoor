@@ -29,6 +29,21 @@
             "date": 1633621678552,
             "name": "logs/2021-10-08.log",
             "hash": "794a4094ab94c2da4c2c88f53940824a"
+        },
+        {
+            "date": 1633752062105,
+            "name": "logs/2021-10-09.log",
+            "hash": "0e3ee2348107f437b95cf0a2d9216d52"
+        },
+        {
+            "date": 1633852468922,
+            "name": "logs/2021-10-10.log",
+            "hash": "e8c12cd3c1dd5182c51094acea84e49e"
+        },
+        {
+            "date": 1633914630242,
+            "name": "logs/2021-10-11.log",
+            "hash": "ee1dd447412da3feb2291881f23a9bd3"
         }
     ]
 }

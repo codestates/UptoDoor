@@ -1,5 +1,11 @@
-import styled,{keyframes} from 'styled-components'
-import { PointColor, TextLightGrey, TextDarkGrey, MainColor, UltraLargeFont} from '../GlobalStyle'
+import styled, { keyframes } from "styled-components";
+import {
+  PointColor,
+  TextLightGrey,
+  TextDarkGrey,
+  MainColor,
+  UltraLargeFont,
+} from "../GlobalStyle";
 
 const moving = keyframes`
   0% {
@@ -8,72 +14,74 @@ const moving = keyframes`
   100% {
     transform: translateX(10%);
   }
-`
+`;
 export const P = styled.p`
-font-size: 12px;
-letter-spacing: -1px;
-text-decoration: ${TextLightGrey};
-text-decoration: ${({cancleline})=> (cancleline ? 'line-through' : 'none')};
-color : ${({lightColorText})=> (lightColorText ? {TextLightGrey} : {TextDarkGrey})};
-`
+  font-size: 12px;
+  letter-spacing: -1px;
+  text-decoration: ${TextLightGrey};
+  text-decoration: ${({ cancleline }) =>
+    cancleline ? "line-through" : "none"};
+  color: ${({ lightColorText }) =>
+    lightColorText ? { TextLightGrey } : { TextDarkGrey }};
+`;
 export const H2 = styled.h2`
-text-decoration: ${TextLightGrey};
-text-decoration: ${({cancleline})=> (cancleline ? 'line-through' : 'none')};
-color : ${({lightColorText})=> (lightColorText ? {TextLightGrey} : {TextDarkGrey})};
-`
+  text-decoration: ${TextLightGrey};
+  text-decoration: ${({ cancleline }) =>
+    cancleline ? "line-through" : "none"};
+  color: ${({ lightColorText }) =>
+    lightColorText ? { TextLightGrey } : { TextDarkGrey }};
+`;
 export const H3 = styled.h3`
-font-weight : 500;
-font-size : 16px;
-margin : 0 0 0 3px;
-`
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0 0 0 3px;
+`;
 export const H4 = styled.h4`
-font-weight : 400;
-font-size : 14px;
-margin: 3px;
-color : ${TextDarkGrey};
-`
+  font-weight: 400;
+  font-size: 14px;
+  margin: 3px;
+  color: ${TextDarkGrey};
+`;
 export const EmptyStore = styled.div`
-background-color: #f7f7f7;
-height : 200px;
-border-radius: 4px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
->i{
-  font-size: 40px;
-  color : rgba(0,0,0,0.3);
-  margin-bottom: 20px;
-}
->p{
-  color : rgba(0,0,0,0.6);
-}
-@media screen and (min-width: 767px) {
-  height: 400px;  
-  >i{
-    font-size: ${UltraLargeFont};
+  background-color: #f7f7f7;
+  height: 200px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  > i {
+    font-size: 40px;
+    color: rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
   }
-    >p{
-    font-size: 14px;
+  > p {
+    color: rgba(0, 0, 0, 0.6);
   }
-}
-`
+  @media screen and (min-width: 767px) {
+    height: 400px;
+    > i {
+      font-size: ${UltraLargeFont};
+    }
+    > p {
+      font-size: 14px;
+    }
+  }
+`;
 
 export const StoreInfoWrapper = styled.section`
-border-bottom: 2px solid #f3f3f3;
-padding : 0 8px 8px;
-`
+  border-bottom: 2px solid #f3f3f3;
+  padding: 0 8px 8px;
+`;
 export const OrderInfoWrapper = styled.div`
-width: 100%;
-padding : 8px;
-`
+  width: 100%;
+  padding: 8px;
+`;
 export const OrderSection = styled.div`
-box-shadow: ${({shadow})=>(shadow ? 
-'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px'
-: 
-'none')};
-padding : 10px;
-`
+  box-shadow: ${({ shadow }) =>
+    shadow ? "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px" : "none"};
+  padding: 10px;
+`;
 export const FlexBox = styled.div`
   display: flex;
   align-items: ${({ align }) => (align ? "center" : "flex-start")};
@@ -116,48 +124,48 @@ export const FlexBox = styled.div`
   }
 `;
 export const EachItemBox = styled.div`
-margin : 5px 0;
-width: 100%;
-`
+  margin: 5px 0;
+  width: 100%;
+`;
 export const Category = styled.div`
-background-color: ${PointColor};
-color : #fff;
-border-radius: 8px;
-text-align: center;
-padding: 3px 8px 4px;
-font-size: 12px ;
-`
+  background-color: ${PointColor};
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  padding: 3px 8px 4px;
+  font-size: 12px;
+`;
 export const DetailTextArea = styled.textarea`
-height : 50px;
-width: 100%;
-resize: none;
-background-color: #f7f7f7;
-color : ${TextLightGrey};
-cursor: default;
-border : none;
-padding: 8px;
-margin : 8px 0 0;
-`
+  height: 50px;
+  width: 100%;
+  resize: none;
+  background-color: #f7f7f7;
+  color: ${TextLightGrey};
+  cursor: default;
+  border: none;
+  padding: 8px;
+  margin: 8px 0 0;
+`;
 export const TtlPricemBox = styled.div`
-margin : 20px 0 3px;
-width: 100%;
-display: flex;
-justify-content: flex-end;
-align-items: flex-end;
->h2{
-  margin-left: 10px; 
-}
-`
+  margin: 20px 0 3px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  > h2 {
+    margin-left: 10px;
+  }
+`;
 export const OrderDate = styled.p`
-color : ${TextLightGrey};
-font-size: 12px;
-`
+  color: ${TextLightGrey};
+  font-size: 12px;
+`;
 export const OrderImg = styled.img`
-width : 80px;
-height : 80px;
-border-radius: 4px;
-margin : 5px 10px 5px 0;
-`
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  margin: 5px 10px 5px 0;
+`;
 //Myprofile
 export const ButtonWrapper = styled.div`
   width: 40%;
@@ -205,41 +213,41 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const MypageUl = styled.ul`
-list-style: none;
-display: flex;
-width: 100%;
-height: 40px;
-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-> .focus {
-  background-color: #f7f7f7;
-}
-@media screen and (min-width: 767px) {
-  flex-direction: column;
-  height: 50px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-}
+  list-style: none;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  > .focus {
+    background-color: #f7f7f7;
+  }
+  @media screen and (min-width: 767px) {
+    flex-direction: column;
+    height: 50px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
 `;
 
 export const MypageLi = styled.li`
-width: 100%;
-height: 100%;
-text-align: center;
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: #fff;
-border: none;
-cursor: pointer;
-color: #656d78;
-letter-spacing: -1px;
-
-@media screen and (min-width: 767px) {
-  height: 50px;
   width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
   border: none;
-  font-size: 16px;
-}
+  cursor: pointer;
+  color: #656d78;
+  letter-spacing: -1px;
+
+  @media screen and (min-width: 767px) {
+    height: 50px;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+  }
 `;
 
 export const MypageOrderListWrapper = styled.div`
@@ -251,7 +259,7 @@ export const MypageOrderListWrapper = styled.div`
   flex-direction: column;
   margin: 0 0 20px;
   @media screen and (min-width: 767px) {
-    width:80%;
+    width: 80%;
   }
 
   @media screen and (min-width: 1140px) {
@@ -260,45 +268,45 @@ export const MypageOrderListWrapper = styled.div`
 `;
 
 export const OrderListContent = styled.div`
-width: 100%;
-border-bottom: 2px solid #f3f3f3;
-padding: 8px;
-:nth-child(1) {
-  border-top: 2px solid #f3f3f3;
-}
-@media screen and (min-width: 1140px) {
-  padding: 16px 8px;
-}
+  width: 100%;
+  border-bottom: 2px solid #f3f3f3;
+  padding: 8px;
+  :nth-child(1) {
+    border-top: 2px solid #f3f3f3;
+  }
+  @media screen and (min-width: 1140px) {
+    padding: 16px 8px;
+  }
 `;
 
 export const ListDate = styled.div`
-padding: 2px 6px;
-display: flex;
-align-items: center;
-justify-content: flex-start;
-> p {
-  font-size: 14px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-right: 12px;
-}
-> h5 {
-  font-weight: 500;
-}
-@media screen and (min-width: 1140px) {
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   > p {
-    font-size: 16px;
-    margin-right: 15px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 12px;
   }
   > h5 {
-    font-size: 18px;
+    font-weight: 500;
   }
-}
+  @media screen and (min-width: 1140px) {
+    > p {
+      font-size: 16px;
+      margin-right: 15px;
+    }
+    > h5 {
+      font-size: 18px;
+    }
+  }
 `;
 
 export const ListInfo = styled.div`
-  width:100%;
+  width: 100%;
   padding: 2px;
   display: flex;
   justify-content: flex-start;
@@ -311,15 +319,14 @@ export const ListInfo = styled.div`
   }
   @media screen and (min-width: 767px) {
     padding: 2px 10px;
-    
   }
   @media screen and (min-width: 1140px) {
     padding: 2px 16px;
-    
+
     > img {
       min-width: 70px;
-      width:70px;
-      height:80px;
+      width: 70px;
+      height: 80px;
       margin-top: 10px;
       margin-right: 20px;
     }
@@ -337,7 +344,7 @@ export const DeliveryState = styled.h5`
   padding: 2px;
   font-size: 10px;
   background-color: ${({ blue }) => (blue ? MainColor : PointColor)};
-  
+
   @media screen and (min-width: 767px) {
     width: 60px;
     height: 24px;
@@ -361,12 +368,12 @@ export const DeliveryState = styled.h5`
 `;
 
 export const OrderListWrapper = styled.div`
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 `;
 
 export const ListInfoDetail = styled.div`
-  width:100%;
+  width: 100%;
 
   > h4 {
     font-weight: 500;
@@ -389,12 +396,12 @@ export const ListInfoDetail = styled.div`
   }
 
   @media screen and (min-width: 1140px) {
-      font-size: 18px;
-      > p {
-        margin-top: 4px;
-        > span {
-          margin-right: 10px;
-        }
+    font-size: 18px;
+    > p {
+      margin-top: 4px;
+      > span {
+        margin-right: 10px;
       }
+    }
   }
 `;

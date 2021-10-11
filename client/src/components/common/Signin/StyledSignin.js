@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { TextLightGrey, MainColor } from "../../GlobalStyle";
-import {showModal , showModalBg} from '../Modal/styledModal'
+import { showModal, showModalBg } from "../Modal/styledModal";
 
 export const SigninContainer = styled.div`
   position: fixed;
-  width:100%;
+  width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   animation: ${showModalBg} 0.4s;
@@ -35,7 +35,7 @@ export const SigninWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
     > form {
       display: flex;
       flex-direction: column;
@@ -70,7 +70,7 @@ export const SigninWrapper = styled.div`
     height: 550px;
     border-radius: 25px;
 
-    >.sample {
+    > .sample {
       margin-top: 0;
     }
   }
@@ -96,7 +96,7 @@ export const Icon = styled.div`
   > i {
     color: #000;
   }
-  
+
   @media screen and (min-width: 767px) {
     left: 15rem;
   }

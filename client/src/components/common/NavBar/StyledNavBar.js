@@ -1,13 +1,7 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
-import {
-  MainColor,
-  TextColor,
-  TextDarkGrey,
-} from "../../GlobalStyle";
-import {
-  MediumFont,
-} from "../../GlobalStyle";
+import { Link } from "react-router-dom";
+import { MainColor, TextColor, TextDarkGrey } from "../../GlobalStyle";
+import { MediumFont } from "../../GlobalStyle";
 import { LogoSrc } from "../../Data";
 export const Header = styled.header`
   position: sticky;
@@ -17,7 +11,7 @@ export const Header = styled.header`
   height: 75px;
   display: flex;
   /* padding: 15px 12px 30px 12px; */
-  padding : 25px 12px;
+  padding: 25px 12px;
   justify-content: space-between;
   margin-bottom: 30px;
   transition: all 0.4s;
@@ -33,7 +27,6 @@ export const Header = styled.header`
     height: 80px;
     margin: 0px auto;
     padding: 15px 150px;
-    
   }
 `;
 
@@ -84,66 +77,72 @@ export const Nav = styled.nav`
   }
 `;
 export const UL = styled.ul`
-  display : none ;
+  display: none;
   @media screen and (min-width: 767px) {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: ${MediumFont};
-  font-weight: 500;
-  list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: ${MediumFont};
+    font-weight: 500;
+    list-style: none;
   }
->.icons{
-  margin : 13px 0;
-  /* color : ${MainColor}; */
-}
-`
+  > .icons {
+    margin: 13px 0;
+    /* color : ${MainColor}; */
+  }
+`;
 export const Listli = styled.li`
   color: ${TextDarkGrey};
   text-decoration: none;
   font-size: 16px;
   font-weight: 400;
   margin: 13px 12px;
-  cursor: ${({geeting}) => (geeting ? 'auto' : 'pointer')};
-  >a{color : ${TextDarkGrey}};
-  >span{font-weight:700; color : ${MainColor};}
-  >a>i,i{
+  cursor: ${({ geeting }) => (geeting ? "auto" : "pointer")};
+  > a {
+    color: ${TextDarkGrey};
+  }
+  > span {
+    font-weight: 700;
+    color: ${MainColor};
+  }
+  > a > i,
+  i {
     font-size: 20px;
-    width : 60px;
+    width: 60px;
     text-align: center;
     /* color : ${TextDarkGrey}; */
-    &:hover{    
-      transition : all 0.3s;
+    &:hover {
+      transition: all 0.3s;
       font-weight: 400;
-      &:before{
-        content : '프로필';
+      &:before {
+        content: "프로필";
         font-size: 16px;
         font-weight: 400;
-        color : ${TextDarkGrey};
+        color: ${TextDarkGrey};
       }
     }
   }
-  >a>i{
+  > a > i {
     /* color : ${MainColor}; */
-    &:hover{    
-      &:before{
-        content : '회원가입';
+    &:hover {
+      &:before {
+        content: "회원가입";
       }
     }
   }
-  >.fa-sign-in-alt{
-  font-size: 22px;
-    &:hover{    
-      &:before{
-        content : '로그인';
-      }
-    }
-  }
-  >.fa-sign-out-alt{
+  > .fa-sign-in-alt {
     font-size: 22px;
-    &:hover{    
-      &:before{
-        content : '로그아웃';
+    &:hover {
+      &:before {
+        content: "로그인";
+      }
+    }
+  }
+  > .fa-sign-out-alt {
+    font-size: 22px;
+    &:hover {
+      &:before {
+        content: "로그아웃";
       }
     }
   }

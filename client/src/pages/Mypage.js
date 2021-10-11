@@ -1,5 +1,5 @@
-import React from 'react'
-import MypageWrapper from '../components/Mypage/MypageWrapper'
+import React from "react";
+import MypageWrapper from "../components/Mypage/MypageWrapper";
 
 function Mypage() {
   return (
@@ -9,4 +9,4 @@ function Mypage() {
   );
 }
 
-export default Mypage
+export default Mypage;

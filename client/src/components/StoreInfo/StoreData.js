@@ -4,43 +4,42 @@ import axios from "axios";
 import {
   StoreDataWrapper,
   StoreIntro,
-  StoreName,StoreImgBox,
-  StoreImg, StoreBackImg,
+  StoreName,
+  StoreImgBox,
+  StoreImg,
+  StoreBackImg,
   StoreAddressP,
   StoreInfoP,
   StoreCategory,
   EmptyStoreImg,
-}
-from './StyledStoreData'
+} from "./StyledStoreData";
 import { Container, Title, Wrapper } from "../GlobalStyle";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { END_POINTS } from "../../_actions/type";
-import StoreImgModal from './StoreImgModal'
-import MenuList from './MenuList'
-import Auth from '../../hoc/auth'
-import Signin from '../common/Signin/SigninModal'
+import StoreImgModal from "./StoreImgModal";
+import MenuList from "./MenuList";
+import Auth from "../../hoc/auth";
+import Signin from "../common/Signin/SigninModal";
 
-
-const StoreData = ({id}) => {
+const StoreData = ({ id }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
-  
-  const [store, setStore] = useState({image:[]})
-  const [openModal , setOpenModal] = useState(false);
-  const [loginModal , setLoginModal] = useState(false);
+
+  const [store, setStore] = useState({ image: [] });
+  const [openModal, setOpenModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
 
   const moreImgHandler = () => {
     setOpenModal(true);
-  }
+  };
 
   useEffect(() => {
     if (state.message === undefined) {
-      
       window.location.href = `/`;
       alert("login need");
-    } 
-  }, [])
+    }
+  }, []);
 
   useEffect(() => {
     axios.get(`${END_POINTS}/admin/store/${id}`).then((res) => {
@@ -50,11 +49,11 @@ const StoreData = ({id}) => {
 
   useEffect(() => {
     const request = Auth(true);
-    if(request === undefined){
+    if (request === undefined) {
       setLoginModal(true);
     }
-  },[])
-  
+  }, []);
+
   return (
     <Container>
       <Title>가게 정보</Title>
@@ -113,19 +112,17 @@ const StoreData = ({id}) => {
         />
       ) : null}
 
-      {loginModal ? 
+      {loginModal ? (
         <Signin
-        modalOpen = {loginModal}
-        setModalOpen = {setLoginModal}
-        request = {Auth(true)===undefined}
-        url = '/'
-        id = {id}
+          modalOpen={loginModal}
+          setModalOpen={setLoginModal}
+          request={Auth(true) === undefined}
+          url="/"
+          id={id}
         />
-        :
-      null}
+      ) : null}
     </Container>
   );
-}
+};
 
-
-export default StoreData
+export default StoreData;

@@ -1,48 +1,37 @@
-import React from 'react'
+import React from "react";
 
-import { 
-  TermModalContainer , 
+import {
+  TermModalContainer,
   TermModalWrapper,
   TermModalTextWrapper,
   TermModalText,
-  TermModalTitleText
-} from './styledModal'
+  TermModalTitleText,
+} from "./styledModal";
 
-import {MiddleButton} from '../Button/Button'
+import { MiddleButton } from "../Button/Button";
 
-function Modal(props:any):JSX.Element {
-
-  const { 
-    openModal, modalTitleText ,modalText, 
-    modalBtn,closeModal } = props;
+function Modal(props: any): JSX.Element {
+  const { openModal, modalTitleText, modalText, modalBtn, closeModal } = props;
 
   return (
     <>
       {openModal ? (
-        <TermModalContainer className='modal-container' >
-          <TermModalWrapper className='modal-wrapper'>
-            <TermModalTextWrapper >
-              <TermModalTitleText>
-                {modalTitleText}
-              </TermModalTitleText>
+        <TermModalContainer className="modal-container">
+          <TermModalWrapper className="modal-wrapper">
+            <TermModalTextWrapper>
+              <TermModalTitleText>{modalTitleText}</TermModalTitleText>
               <hr></hr>
               <TermModalText>{modalText}</TermModalText>
             </TermModalTextWrapper>
-  
-            <MiddleButton
-              primary
-              onClick={closeModal}
-              className='modal-btn'>
+
+            <MiddleButton primary onClick={closeModal} className="modal-btn">
               {modalBtn}
             </MiddleButton>
           </TermModalWrapper>
         </TermModalContainer>
-      )
-        :
-        null}
-      </>
-      )
-      
+      ) : null}
+    </>
+  );
 }
 
-export default Modal
+export default Modal;

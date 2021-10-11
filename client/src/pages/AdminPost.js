@@ -1,12 +1,12 @@
-import React from 'react'
-import AdminPostForm from '../components/AdminPost/AdminPostForm'
+import React from "react";
+import AdminPostForm from "../components/AdminPost/AdminPostForm";
 
 const AdminPost = () => {
   return (
     <>
-      <AdminPostForm/>
+      <AdminPostForm />
     </>
-  )
-}
+  );
+};
 
 export default AdminPost;

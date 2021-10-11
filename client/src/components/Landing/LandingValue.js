@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import Fade from "react-reveal/Fade"
+import React, { useState } from "react";
+import Fade from "react-reveal/Fade";
 
 import {
   LandingValueContainer,
@@ -7,13 +7,14 @@ import {
   LandingValueBox,
   ValueImgBox,
   ValueTextBox,
-  H2,H3,P,
-} from './StyledLanding'
-import {landingValueDummy} from '../Data'
+  H2,
+  H3,
+  P,
+} from "./StyledLanding";
+import { landingValueDummy } from "../Data";
 
 const LandingValue = () => {
-
-  const [ currentValue, setCurrentValue ] = useState(0)
+  const [currentValue, setCurrentValue] = useState(0);
   return (
     <LandingValueContainer>
       <Fade Left Collapse>
@@ -50,6 +51,6 @@ const LandingValue = () => {
       </Fade>
     </LandingValueContainer>
   );
-}
+};
 
-export default LandingValue
+export default LandingValue;

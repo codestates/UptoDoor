@@ -1,13 +1,12 @@
-import React from 'react'
-import ProfileEditWrapper from '../components/MypageEdit/profileEditWrapper'
+import React from "react";
+import ProfileEditWrapper from "../components/MypageEdit/profileEditWrapper";
 
 function MypageEdit() {
   return (
     <>
-      <ProfileEditWrapper/>
+      <ProfileEditWrapper />
     </>
-  )
+  );
 }
 
-export default MypageEdit
-
+export default MypageEdit;

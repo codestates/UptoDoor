@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 //*공통
 export const OrderWrapper = styled.div`
@@ -38,8 +38,7 @@ export const OrderP = styled.p`
 
   @media screen and (min-width: 1140px) {
     font-size: 16px;
-    margin: ${({ money }) =>
-      money ? "0" : "0 16px 0 10px"};
+    margin: ${({ money }) => (money ? "0" : "0 16px 0 10px")};
   }
 `;
 
@@ -135,7 +134,6 @@ export const MenuUl = styled.ul`
   }
 `;
 
-
 export const MenuItemWrapper = styled.div`
   border-radius: 8px;
   width: 95%;
@@ -214,7 +212,6 @@ export const MenuItemDetail = styled.div`
   }
 `;
 
-
 //* SubscriptAndOrderInfoWrapper
 export const SubscriptAndOrderInfoWrapper = styled.div`
   width: 100%;
@@ -237,7 +234,6 @@ export const SubscriptAndOrderInfoWrapper = styled.div`
 
 //* OrderSubscription
 
-
 export const SubscriptionWrapper = styled.div`
   padding: 14px 12px;
   background-color: #f7f7f7;
@@ -245,7 +241,7 @@ export const SubscriptionWrapper = styled.div`
   > h5 {
     font-size: 14px;
     margin-bottom: 8px;
-  }  
+  }
   @media screen and (min-width: 767px) {
     padding: 28px 26px;
     > div {
@@ -392,7 +388,7 @@ export const OrderInfoWrraper = styled.div`
 export const OrderUserInfoContent = styled.div`
   width: 95%;
   display: flex;
-  margin-left : 10px;
+  margin-left: 10px;
   line-height: 25px;
   > h4 {
     font-size: 12px;
@@ -415,7 +411,7 @@ export const InfoCheck = styled.div`
   > div {
     display: flex;
     align-items: flex-start;
-    
+
     > span {
       display: flex;
       justify-content: flex-start;
@@ -496,7 +492,7 @@ export const MoneyCheck = styled.div`
 export const CardCheck = styled.div`
   border-top: 2px solid #fff;
   width: 100%;
-  padding: 10px 0 8px ;
+  padding: 10px 0 8px;
   margin: 10px 4px 4px 4px;
   > h4 {
     letter-spacing: -1px;
@@ -504,7 +500,7 @@ export const CardCheck = styled.div`
   }
   > input {
     margin: 2px 8px 0 0;
-    font-size : 16px;
+    font-size: 16px;
   }
   @media screen and (min-width: 767px) {
     margin: 20px 0 0 0;
@@ -534,5 +530,3 @@ export const CardCheck = styled.div`
     }
   }
 `;
-
-

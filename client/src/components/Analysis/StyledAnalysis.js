@@ -120,7 +120,6 @@ export const AverageMonthWrapper = styled.div`
 `;
 export const ArrowDisplay = styled.div`
   width: 100%;
-  /* height : 200px; */
   text-align: center;
   opacity: 1;
   position: relative;
@@ -135,9 +134,6 @@ export const ArrowDisplay = styled.div`
     transition: all 0.3s;
     &:hover {
       color: rgba(0, 0, 0, 0.7);
-    }
-    @media screen and (min-width: 1140px) {
-      bottom: -100px;
     }
   }
   > .active {

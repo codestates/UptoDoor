@@ -257,14 +257,14 @@ export const FixI = styled.i`
   left: 46%;
   font-size: 50px;
   z-index: 1;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.8);
   &:hover {
     color: rgba(0, 0, 0, 0.7);
   }
 `;
 export const GradientEdge = styled.div`
   visibility: hidden;
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 1140px) {
     visibility: visible;
     position: absolute;
     bottom: 0px;

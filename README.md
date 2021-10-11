@@ -35,15 +35,17 @@ UptoDoor 에서는 작은 개인가게부터 프랜차이즈까지, <br/>
 
  # 🏡 Development
  
-Frontend Stack
-=====
-### JavaScript / React / Redux / Styled-components / Axios / TypeScript <br/> <br/>
-Backend Stack
-=====
-### Node.js / Express / crypto /  Sequelize /  MYsql/  JWT  / 부트페이 /  winston / Nodemailer <br/> <br/>
-Deploy Stack
-=====
-### AWS(CodePipeline, CloudFront, CodeDeploy, CodeBuild, Router53, S3, RDS, EC2, ELB)<br/> cafe24(도메인 구입)
+## Frontend Stack
+
+#### JavaScript / React / Redux / Styled-components / Axios / TypeScript <br/> <br/>
+
+## Backend Stack
+
+#### Node.js / Express / crypto /  Sequelize /  MYsql/  JWT  / 부트페이 /  winston / Nodemailer <br/> <br/>
+
+## Deploy Stack
+
+#### AWS(CodePipeline, CloudFront, CodeDeploy, CodeBuild, Router53, S3, RDS, EC2, ELB)<br/> cafe24(도메인 구입)<br/><br/>
 
  # 🏡Member
  

@@ -1,7 +1,7 @@
 import React from "react";
 import MypageWrapper from "../components/Mypage/MypageWrapper";
 
-function Mypage() {
+function Mypage(): JSX.Element {
   return (
     <>
       <MypageWrapper />

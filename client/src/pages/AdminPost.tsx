@@ -1,7 +1,7 @@
 import React from "react";
 import AdminPostForm from "../components/AdminPost/AdminPostForm";
 
-const AdminPost = () => {
+const AdminPost = (): JSX.Element => {
   return (
     <>
       <AdminPostForm />

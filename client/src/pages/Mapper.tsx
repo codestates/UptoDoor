@@ -1,7 +1,7 @@
 import React from "react";
 import MapWrapper from "../components/Mapper/MapWrapper";
 
-const Mapper = () => {
+const Mapper = (): JSX.Element => {
   return (
     <>
       <MapWrapper />

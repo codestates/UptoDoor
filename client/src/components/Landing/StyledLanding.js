@@ -254,6 +254,7 @@ export const FixI = styled.i`
   animation: ${upNdown} 0.7s 0s ease infinite alternate-reverse;
   position: absolute;
   bottom: 30px;
+  left: 46%;
   font-size: 50px;
   z-index: 1;
   color: rgba(0, 0, 0, 0.5);
@@ -262,18 +263,19 @@ export const FixI = styled.i`
   }
 `;
 export const GradientEdge = styled.div`
-  position: absolute;
-  bottom: 0px;
-  height: 300px;
-  max-height: 20%;
-  width: 100%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255));
-  opacity: 1;
+  visibility: hidden;
   @media screen and (min-width: 767px) {
-    bottom: -10px;
-  }
-  @media screen and (min-width: 1140px) {
-    bottom: -20px;
+    visibility: visible;
+    position: absolute;
+    bottom: 0px;
+    height: 300px;
+    max-height: 20%;
+    width: 100%;
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgb(255, 255, 255)
+    );
+    opacity: 1;
   }
 `;
 //!info

@@ -1,7 +1,7 @@
 import React from "react";
 import CartWrapper from "../components/UserCart/CartWrapper";
 
-const UserCart = () => {
+const UserCart = (): JSX.Element => {
   return (
     <>
       <CartWrapper />

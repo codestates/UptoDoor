@@ -49,23 +49,21 @@ function SignupWrapper(): JSX.Element {
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
     if (email === "") return null;
-    dispatch(sendCertEmail(email))
-      .then((res: any) => {
-        if (res.payload.message === "send success") {
-          setModalSuccess(true);
-          setCertModal(true);
-          setCertEmail(true);
-        } else if(res.payload.message === "duplicate member") {
-          setModalSuccess(false);
-          setCertModal(true);
-          setCertEmail(true);
-        } else {
-          setModalSuccess(true);
-          setCertModal(true);
-          setCertEmail(true);
-        }
-      })
-
+    dispatch(sendCertEmail(email)).then((res: any) => {
+      if (res.payload.message === "send success") {
+        setModalSuccess(true);
+        setCertModal(true);
+        setCertEmail(true);
+      } else if (res.payload.message === "duplicate member") {
+        setModalSuccess(false);
+        setCertModal(true);
+        setCertEmail(true);
+      } else {
+        setModalSuccess(true);
+        setCertModal(true);
+        setCertEmail(true);
+      }
+    });
   };
   const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
@@ -144,8 +142,7 @@ function SignupWrapper(): JSX.Element {
           if (res.payload.message === "Signup success") {
             setModalSuccess(true);
             setSignupModal(true);
-          } 
-          else {
+          } else {
             setModalSuccess(false);
             setSignupModal(true);
           }
@@ -292,7 +289,7 @@ function SignupWrapper(): JSX.Element {
             modalText={
               modalSuccess === true
                 ? "10분안에 이메일을 인증해주세요."
-                :  "이미 존재하는 회원입니다."
+                : "이미 존재하는 회원입니다."
             }
             modalBtn="확인"
           />

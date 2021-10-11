@@ -1,7 +1,7 @@
 import React from "react";
 import AnalysisWrapper from "../components/Analysis/AnalysisWrapper";
 
-const Analysis = () => {
+const Analysis = (): JSX.Element => {
   return <AnalysisWrapper />;
 };
 

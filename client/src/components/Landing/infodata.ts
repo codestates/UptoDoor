@@ -4,7 +4,7 @@ export const homeObjOne = {
   headline1: `구독 서비스를`,
   headline2: `찾아보세요`,
   descriptionOne: `동네 인증하면 반경 2km의`,
-  descriptionTwo:`모든 구독서비스를 볼 수 있어요`,
+  descriptionTwo: `모든 구독서비스를 볼 수 있어요`,
   buttonLabel: "Get started",
   imgStart: false,
   img: "./images/gif/gif_1.gif",
@@ -12,7 +12,7 @@ export const homeObjOne = {
   dark: true,
   primary: true,
   darkText: false,
-  second: false
+  second: false,
 };
 
 export const homeObjTwo = {
@@ -21,7 +21,7 @@ export const homeObjTwo = {
   headline1: `원하는 서비스를`,
   headline2: `구독하세요`,
   descriptionOne: `구독 결제부터 관리까지 한번에`,
-  descriptionTwo:`UptoDoor에서 해결하세요`,
+  descriptionTwo: `UptoDoor에서 해결하세요`,
   buttonLabel: "Get started",
   imgStart: true,
   img: "./images/gif/gif_2.gif",
@@ -29,7 +29,7 @@ export const homeObjTwo = {
   dark: true,
   primary: true,
   darkText: false,
-  second: true
+  second: true,
 };
 
 export const homeObjThree = {
@@ -39,7 +39,7 @@ export const homeObjThree = {
   headline2: `판매하세요`,
   descriptionOne: `사장님이세요? `,
   descriptionTwo: `가게 등록을 통해 이웃들에게`,
-  descriptionThree:`우리가게 구독서비스를 알릴 수 있어요`,
+  descriptionThree: `우리가게 구독서비스를 알릴 수 있어요`,
   buttonLabel: "Get started",
   imgStart: false,
   img: "./images/gif/gif_3.gif",
@@ -47,5 +47,5 @@ export const homeObjThree = {
   dark: true,
   primary: true,
   darkText: false,
-  second:false
+  second: false,
 };

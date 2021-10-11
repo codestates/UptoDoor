@@ -81,19 +81,19 @@ function AnalysisAverageMonth({ chart }) {
             <h2>동안 꾸준히 이용중입니다.</h2>
           </div>
         </Fade>
-
-        <Fade bottom>
-          <ArrowDisplay>
-            <i
-              className={
-                arrowStatus
-                  ? "fas fa-angle-double-down active"
-                  : "fas fa-angle-double-down"
-              }
-            ></i>
-          </ArrowDisplay>
-        </Fade>
       </AverageMonthWrapper>
+
+      <Fade bottom>
+        <ArrowDisplay>
+          <i
+            className={
+              arrowStatus
+                ? "fas fa-angle-double-down active"
+                : "fas fa-angle-double-down"
+            }
+          ></i>
+        </ArrowDisplay>
+      </Fade>
     </StyledAverageMonth>
   );
 }

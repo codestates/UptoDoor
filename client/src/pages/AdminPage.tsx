@@ -1,7 +1,7 @@
 import React from "react";
 import AdminWrapper from "../components/AdminPage/AdminWrapper";
 
-const AdminPage = () => {
+const AdminPage = (): JSX.Element => {
   return (
     <>
       <AdminWrapper />

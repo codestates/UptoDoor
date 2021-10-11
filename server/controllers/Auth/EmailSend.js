@@ -2,9 +2,9 @@ const nodemailer = require("nodemailer");
 const { user } = require("../../models");
 const { logger } = require("../../config/winston");
 const requestIp = require("request-ip");
-require('dotenv').config();
+require("dotenv").config();
 module.exports = async (req, res) => {
-  logger.info(`EMAIL SEND -POST- (${requestIp.getClientIp(req)})`)
+  logger.info(`EMAIL SEND -POST- (${requestIp.getClientIp(req)})`);
   // 본인 Gmail 계정
   const EMAIL = process.env.EMAIL;
   const EMAIL_PW = process.env.EMAIL_PW;
@@ -127,6 +127,13 @@ module.exports = async (req, res) => {
 
     res.status(200).send({ message: "send success" });
   } else {
-    res.status(409).send({ message: "email exists" });
+    //이메일이 존재하고 이메일인증이 안된상태인지 아니면 회원가입이 끝난 이메일인지 확인
+    let date = await user.findOne({ where: { email: receiverEmail } });
+
+    if (date.emailcheck === "false" && date.nickname) {
+      res.status(409).send({ message: "duplicate member" });
+    } else {
+      res.status(409).send({ message: "require email check" });
+    }
   }
 };

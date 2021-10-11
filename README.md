@@ -1,8 +1,9 @@
 # UptoDoor - EteamMerge
-UpToDoor에 주소를 등록하기만 하면 고객이 있는곳 그 어디든<br/>
-문 앞까지 동네 구독서비스를 받을 수 있음을 의미합니다.<br/>
+![136078714-049c7539-994f-4b04-a501-1a7170184abb](https://user-images.githubusercontent.com/74406343/136718164-6563dd03-a736-4936-abe6-29bcf2227701.gif)<br/><br/>
+### UpToDoor에 주소를 등록하기만 하면 고객이 있는곳 그 어디든 문 앞까지 동네 구독서비스를 받을 수 있습니다.<br/>
 
-![136078714-049c7539-994f-4b04-a501-1a7170184abb](https://user-images.githubusercontent.com/74406343/136718164-6563dd03-a736-4936-abe6-29bcf2227701.gif)
+### 지금 당장 여러분의 일상을 UPgrade해보세요.<br/><br/>
+
 
 # 🏡 배포 링크
 👉🏻 [UptoDoor](https://uptodoor.shop/)

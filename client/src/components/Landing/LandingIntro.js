@@ -23,15 +23,14 @@ import {
 } from "./StyledLanding";
 
 import { category, categoryDummy } from "../Data";
-import ScrollTopArrow from '../common/Scroll/ScrollTopArrow'
+import ScrollTopArrow from "../common/Scroll/ScrollTopArrow";
 
 const LandingIntro = () => {
-
   const settings = {
     arrows: false,
     infinite: true,
     speed: 900,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -95,7 +94,7 @@ const LandingIntro = () => {
           <FixI className="fas fa-angle-double-down"></FixI>
         </ArrowDisplay>
 
-        <ScrollTopArrow/>
+        <ScrollTopArrow />
         <GradientEdge />
       </LandingIntroWrapper>
     </LandingIntroContainer>

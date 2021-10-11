@@ -12,9 +12,7 @@ import {
   PageContent,
   PageBtnWrapper,
 } from "../GlobalStyle";
-import {
-  MypageLi,
-} from '../Mypage/StyledMypage';
+import { MypageLi } from "../Mypage/StyledMypage";
 import {
   AdimUl,
   AdminLi,
@@ -22,35 +20,36 @@ import {
   AminpageUl,
 } from "./StyledAdminPage";
 
-import AdminOrderList from './AdminOrderList';
-import AdminOrderInfo from './AdminOrderInfo';
-import AdminStoreInfo from './AdminStoreInfo';
+import AdminOrderList from "./AdminOrderList";
+import AdminOrderInfo from "./AdminOrderInfo";
+import AdminStoreInfo from "./AdminStoreInfo";
 
-
-import Auth from '../../hoc/auth'
-import Signin from '../common/Signin/SigninModal'
+import Auth from "../../hoc/auth";
+import Signin from "../common/Signin/SigninModal";
 import { AdminInfo, Orders } from "../../@type/adminInfo";
 import { User } from "../../@type/userInfo";
 
 function AdminWrapper() {
-  const admin:AdminInfo = useSelector((state:RootReducerType) => state.admin);
-  const user:User = useSelector((state: RootReducerType) => state.user);
+  const admin: AdminInfo = useSelector((state: RootReducerType) => state.admin);
+  const user: User = useSelector((state: RootReducerType) => state.user);
 
   const store = admin;
   const { orders } = store;
   const [filteredData, setFilteredData] = useState<Array<Orders> | []>([]);
   const days = ["일", "월", "화", "수", "목", "금", "토"];
-  const [selectedDay, setSelectedDay] = useState<String>(days[new Date().getDay()]);
+  const [selectedDay, setSelectedDay] = useState<String>(
+    days[new Date().getDay()]
+  );
   const [currentTab, setCurrentTab] = useState<number>(new Date().getDay());
   const [orderItem, setOrderItem] = useState<Orders | any>({});
   const [cur, setCur] = useState<number>(0);
   const [changeListItem, setChangeListItem] = useState<number>(0);
 
   //모달
-  const [loginModal , setLoginModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
 
-  const moveDetailHandler = (id:number) => {
-    const filtered = filteredData.filter((el:any) => {
+  const moveDetailHandler = (id: number) => {
+    const filtered = filteredData.filter((el: any) => {
       return el.id === id;
     })[0];
     setOrderItem(filtered);
@@ -61,11 +60,11 @@ function AdminWrapper() {
     setCur(0);
   };
 
-  const changeDayList = (id:any, day:string) => {
+  const changeDayList = (id: any, day: string) => {
     setCur(0);
     setCurrentTab(id);
     setSelectedDay(day);
-    const filtered = orders.filter((el:any) => {
+    const filtered = orders.filter((el: any) => {
       const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(day);
@@ -75,21 +74,21 @@ function AdminWrapper() {
 
   useEffect(() => {
     setCur(0);
-    const filtered = orders.filter((el:any) => {
+    const filtered = orders.filter((el: any) => {
       const { delivery_day } = el.order_deliveries;
       const deliveryDay = delivery_day.split(",");
       return deliveryDay.includes(selectedDay);
-    }); 
+    });
     setFilteredData(filtered);
   }, []);
   const listItem = ["주문관리", "가게 정보"];
 
   useEffect(() => {
     const request = Auth(true);
-    if(request === undefined){
+    if (request === undefined) {
       setLoginModal(true);
     }
-  },[])
+  }, []);
 
   return (
     <Container>
@@ -108,9 +107,11 @@ function AdminWrapper() {
                     <p>{user.email}</p>
                     <p>{user.mobile}</p>
                     <p>{admin.address}</p>
-                    <p>{admin.address_detail === null 
-                    ? '' 
-                    : (admin.address_detail)}</p>
+                    <p>
+                      {admin.address_detail === null
+                        ? ""
+                        : admin.address_detail}
+                    </p>
                   </>
                 )}
               </PageContent>
@@ -191,15 +192,14 @@ function AdminWrapper() {
         </PageWrapper>
       </Wrapper>
 
-      {loginModal ? 
-      <Signin
-      modalOpen = {loginModal}
-      setModalOpen = {setLoginModal}
-      request = {Auth(true)===undefined}
-      url = '/admin'
-      />
-      :
-      null}
+      {loginModal ? (
+        <Signin
+          modalOpen={loginModal}
+          setModalOpen={setLoginModal}
+          request={Auth(true) === undefined}
+          url="/admin"
+        />
+      ) : null}
     </Container>
   );
 }

@@ -1,39 +1,39 @@
-import React, { useState , useCallback, useEffect} from 'react'
-import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useCallback, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { signUp, sendCertEmail } from "../../_actions/user_action";
+import { Container } from "../GlobalStyle";
 import {
-  Container,
-} 
-from '../GlobalStyle';
-import { 
-  Form ,
-  SignUpInput ,
+  Form,
+  SignUpInput,
   Label,
   SignupLogoBox,
-  SignupLogo,SignupBox,
-  SignupContainer ,SideSpan, ErrMsgP } from './StyledSignup'
-import {SmallButton} from '../common/Button/Button'
-import { END_POINTS,END_POINT } from '../../_actions/type'
-import { LogoSrc } from '../Data'
-import ConfirmModal from '../common/Modal/ConfirmModal'
-import SignupOptions from './SignupOptions'
-import SignupTerm from './SignupTerm'
+  SignupLogo,
+  SignupBox,
+  SignupContainer,
+  SideSpan,
+  ErrMsgP,
+} from "./StyledSignup";
+import { SmallButton } from "../common/Button/Button";
+import { LogoSrc } from "../Data";
+import ConfirmModal from "../common/Modal/ConfirmModal";
+import SignupOptions from "./SignupOptions";
+import SignupTerm from "./SignupTerm";
 
-function SignupWrapper():JSX.Element {
+function SignupWrapper(): JSX.Element {
   let history = useHistory();
-  const dispatch:any = useDispatch();
+  const dispatch: any = useDispatch();
 
   //required
-  const [email, setEmail] = useState<string | ''>('');
+  const [email, setEmail] = useState<string | "">("");
   const [certEmail, setCertEmail] = useState<boolean>(false);
-  const [nickname, setNickname] = useState<string | ''>('');
-  const [mobile, setMobile] = useState<string |''>('');
-  const [password, setPassword] = useState<string |''>('');
-  const [passwordChk, setPasswordChk] = useState<string |''>('');
-  const [passwordRegErr , setPasswordRegErr ] = useState<boolean>(false);
-  const [passwordErr , setPasswordErr ] = useState<boolean>(false);
-  const [checkedInputs, setCheckedInputs] = useState<number[]|[]>([]);
+  const [nickname, setNickname] = useState<string | "">("");
+  const [mobile, setMobile] = useState<string | "">("");
+  const [password, setPassword] = useState<string | "">("");
+  const [passwordChk, setPasswordChk] = useState<string | "">("");
+  const [passwordRegErr, setPasswordRegErr] = useState<boolean>(false);
+  const [passwordErr, setPasswordErr] = useState<boolean>(false);
+  const [checkedInputs, setCheckedInputs] = useState<number[] | []>([]);
   //optional
   const [gender, setGender] = useState("");
   const [age, setAge] = useState("");
@@ -48,18 +48,22 @@ function SignupWrapper():JSX.Element {
   }, []);
   //email 인증버튼 핸들러
   const certEmailHandler = () => {
-    dispatch(sendCertEmail(email))
-      .then((res:any) => {
-        if (res.payload.message === "send success") {
-          setModalSuccess(true);
-          setCertModal(true);
-          setCertEmail(true);
-        }
-      })
-      .catch(() => {
+    if (email === "") return null;
+    dispatch(sendCertEmail(email)).then((res: any) => {
+      if (res.payload.message === "send success") {
+        setModalSuccess(true);
+        setCertModal(true);
+        setCertEmail(true);
+      } else if (res.payload.message === "duplicate member") {
         setModalSuccess(false);
         setCertModal(true);
-      });
+        setCertEmail(true);
+      } else {
+        setModalSuccess(true);
+        setCertModal(true);
+        setCertEmail(true);
+      }
+    });
   };
   const onChangePwHandler = useCallback((e) => {
     setPassword(e.target.value);
@@ -102,10 +106,10 @@ function SignupWrapper():JSX.Element {
   const onChangeTermHandler = (checked: any, idx: number) => {
     if (checked) {
       setCheckedInputs([...checkedInputs, idx]);
-      setIsAllchecked(checked)
+      setIsAllchecked(checked);
     } else {
-      setCheckedInputs(checkedInputs.filter((el:any) => el !== idx));
-      setIsAllchecked(checked)
+      setCheckedInputs(checkedInputs.filter((el: any) => el !== idx));
+      setIsAllchecked(checked);
     }
   };
 
@@ -113,22 +117,18 @@ function SignupWrapper():JSX.Element {
     setIsAllchecked(checkedInputs.length === 3);
   }, [checkedInputs]);
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
 
   //!form 제출핸들러.
-  const signupSubmitHandler = useCallback((e) => {
-    e.preventDefault();
-    if(password !== passwordChk) return false;
-    if(passwordRegErr === true) return setPasswordRegErr(true);
-    if(isAllchecked === false ) return false;
-    if(certEmail === false) {
-      setCertEmail(false);
-    }else if(certEmail === true){
-      setCertEmail(true);
-    }
-
+  const signupSubmitHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (password !== passwordChk) return false;
+      if (passwordRegErr === true) return setPasswordRegErr(true);
+      if (isAllchecked === false) return false;
+      if (certEmail === false) {
+        return setSignupModal(true);
+      }
       let userinfo = {
         email,
         password,
@@ -138,7 +138,7 @@ function SignupWrapper():JSX.Element {
         age,
       };
       dispatch(signUp(userinfo))
-        .then((res:any) => {
+        .then((res: any) => {
           if (res.payload.message === "Signup success") {
             setModalSuccess(true);
             setSignupModal(true);
@@ -147,7 +147,7 @@ function SignupWrapper():JSX.Element {
             setSignupModal(true);
           }
         })
-        .catch((err:never) => {
+        .catch((err: never) => {
           setModalSuccess(false);
           setSignupModal(true);
         });
@@ -156,8 +156,8 @@ function SignupWrapper():JSX.Element {
   );
 
   const cancleHandler = () => {
-    history.push('/');
-  }
+    history.push("/");
+  };
 
   return (
     <Container>
@@ -167,25 +167,26 @@ function SignupWrapper():JSX.Element {
         </SignupLogoBox>
 
         <Form onSubmit={signupSubmitHandler}>
-        <Label>E-mail</Label>
-        <SideSpan>*필수</SideSpan>
-        <SmallButton
-          className="cert-email-btn"
-          type="button"
-          onClick={certEmailHandler}>
-          이메일 인증
-        </SmallButton>
+          <Label>E-mail</Label>
+          <SideSpan>*필수</SideSpan>
+          <SmallButton
+            className="cert-email-btn"
+            type="button"
+            onClick={certEmailHandler}
+          >
+            이메일 인증
+          </SmallButton>
 
-        <SignupBox>
-          <SignUpInput
-            required
-            type="email"
-            className="email-input"
-            placeholder="email@email.com"
-            value={email}
-            onChange={onChangeEmailHandler}
-          />
-        </SignupBox>
+          <SignupBox>
+            <SignUpInput
+              required
+              type="email"
+              className="email-input"
+              placeholder="email@email.com"
+              value={email}
+              onChange={onChangeEmailHandler}
+            />
+          </SignupBox>
 
           <Label>비밀번호</Label>
           <SideSpan>*필수</SideSpan>
@@ -272,6 +273,8 @@ function SignupWrapper():JSX.Element {
             modalText={
               modalSuccess === true
                 ? "메인 페이지로 이동합니다."
+                : !certEmail
+                ? "이메일 인증은 필수입니다."
                 : "회원가입에 실패하셨습니다."
             }
             modalBtn="확인"
@@ -286,15 +289,14 @@ function SignupWrapper():JSX.Element {
             modalText={
               modalSuccess === true
                 ? "10분안에 이메일을 인증해주세요."
-                : "새로고침 후 다시 해주세요."
+                : "이미 존재하는 회원입니다."
             }
             modalBtn="확인"
           />
         ) : null}
-        
       </SignupContainer>
     </Container>
   );
 }
 
-export default SignupWrapper
+export default SignupWrapper;

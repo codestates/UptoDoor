@@ -10,4 +10,3 @@ export interface StoreInfo {
   open_time: string;
   close_time: string;
 }
-

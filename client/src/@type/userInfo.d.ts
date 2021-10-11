@@ -1,4 +1,4 @@
-import {Menu} from './adminInfo'
+import { Menu } from "./adminInfo";
 
 export interface User {
   age: string | null;
@@ -11,15 +11,15 @@ export interface User {
   nickname: string;
   position: string | null;
   subAddress: string;
-  subAddressDetail: string ;
+  subAddressDetail: string;
   message?: string;
   login_type: "self" | "kakao" | "naver" | null;
-  successMessage?: "",
+  successMessage?: "";
 }
 
 export interface UserOrders {
   createdAt: string;
-  delivery_day: string[],
+  delivery_day: string[];
   delivery_detail: string;
   delivery_term: string;
   delivery_time: string;
@@ -41,4 +41,4 @@ export type MenuArr = {
   menu_id: number;
   quantity: number;
   menu: Menu;
-}
+};

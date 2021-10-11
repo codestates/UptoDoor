@@ -4,7 +4,7 @@ export interface Action {
 }
 
 interface Payload {
-	message?: string;
-	data?: Object;
+  message?: string;
+  data?: Object;
   orderdata?: AdminInfo | null;
 }

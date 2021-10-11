@@ -1,8 +1,7 @@
-import React,{useState,useEffect} from 'react'
-import { ArrowChk,I,} from './StyledScroll'
+import React, { useState, useEffect } from "react";
+import { ArrowChk, I } from "./StyledScroll";
 
 function ScrollTopArrow() {
-
   const [btnStatus, setBtnStatus] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
@@ -21,7 +20,7 @@ function ScrollTopArrow() {
     });
     setScrollY(0);
     setBtnStatus(false);
-  }
+  };
   useEffect(() => {
     const chkScroll = () => {
       window.addEventListener("scroll", showScrollBtn);
@@ -34,16 +33,16 @@ function ScrollTopArrow() {
 
   return (
     <ArrowChk>
-      <I 
+      <I
         className={
-        btnStatus
-          ? "fas fa-angle-double-up click-icon active"
-          : "fas fa-angle-double-up click-icon"
+          btnStatus
+            ? "fas fa-angle-double-up click-icon active"
+            : "fas fa-angle-double-up click-icon"
         }
-        onClick={scrollTop}>
-      </I>
+        onClick={scrollTop}
+      ></I>
     </ArrowChk>
-  )
+  );
 }
 
-export default ScrollTopArrow
+export default ScrollTopArrow;

@@ -1,12 +1,11 @@
 const { kakao } = window;
 //1. [앱] 홈 눌렀을때 모든 메뉴가 지도에 표시가 나온다. -> 마커표시
-//2. [앱] 마커를 눌렀을때가 모달이고 
+//2. [앱] 마커를 눌렀을때가 모달이고
 
 //1. 우리가 갖고있는 지도 : 내데이터 기반 전체마커를 찍는게 우선.
 //2. 현위치 찍었을때 내가찍은 데이터가 마커로 보이냐.
 //3. 마커롤 눌렀을때 모달로 뜨냐.
-//4. 카테고리별 
-
+//4. 카테고리별
 
 //searchPlace,dataSet => search 자체
 export default function Keyword(
@@ -131,28 +130,7 @@ export default function Keyword(
                   marker = new kakao.maps.Marker({
                     map: map,
                     position: coords,
-                    
                   });
-                  
-                  // var customOverlay = new kakao.maps.CustomOverlay({
-                  //   position: coords,
-                  //   content: `<div>${initialStore[i].name}</div>`,
-                  //   xAnchor: 0.3,
-                  //   yAnchor: 0.91,
-                  // });
-//                   var infowindow = new kakao.maps.InfoWindow({
-//                     content: `<div>${initialStore[i].name}</div>`, // 인포윈도우에 표시할 내용
-//                   });
-// kakao.maps.event.addListener(
-//   marker,
-//   "mouseover",
-//   makeOverListener(map, marker, customOverlay)
-// );
-// kakao.maps.event.addListener(
-//   marker,
-//   "mouseout",
-//   makeOutListener(customOverlay)
-// );
                   kakao.maps.event.addListener(marker, "click", () => {
                     geocoder.coord2Address(
                       coords.getLng(),
@@ -173,11 +151,9 @@ export default function Keyword(
                   if (dist < radius) {
                     markers.push(initialStore[i]);
                     marker.setMap(map);
-                    
                   } else {
                     marker.setMap(null);
                   }
-                  
                 }
                 hashtagClickHandler(markers);
               }
@@ -198,7 +174,7 @@ export default function Keyword(
   //   };
   // }
 
-  // // // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+  // 인포윈도우를 닫는 클로저를 만드는 함수입니다
   // function makeOutListener(infowindow) {
   //   return function () {
   //     infowindow.setVisible(false);

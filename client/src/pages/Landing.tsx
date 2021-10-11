@@ -1,11 +1,10 @@
-import React from 'react'
-import LandingIntro from '../components/Landing/LandingIntro';
+import React from "react";
+import LandingIntro from "../components/Landing/LandingIntro";
 import LandingInfo from "../components/Landing/LandingInfo";
 import LandingValue from "../components/Landing/LandingValue";
 import LandingEnd from "../components/Landing/LandingEnd";
 
-const Landing = () => {
-
+const Landing = (): JSX.Element => {
   return (
     <>
       <LandingIntro />
@@ -14,6 +13,6 @@ const Landing = () => {
       <LandingEnd />
     </>
   );
-}
+};
 
 export default Landing;

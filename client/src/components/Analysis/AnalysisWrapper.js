@@ -1,26 +1,25 @@
-import Fade from 'react-reveal/Fade'
-import axios from 'axios'
-import { END_POINTS } from '../../_actions/type'
-import React , {useState, useEffect} from 'react'
-import { Container, Title, Wrapper } from '../GlobalStyle'
-import {
-  chartObjOne,
-  chartObjTwo,
-} from './chartProperty';
+import Fade from "react-reveal/Fade";
+import axios from "axios";
+import { END_POINTS } from "../../_actions/type";
+import React, { useState, useEffect } from "react";
+import { Container, Title, Wrapper } from "../GlobalStyle";
+import { chartObjOne, chartObjTwo } from "./chartProperty";
 
-import AnalysisCategory from './AnalysisCategory'
-import AnalysisUser from './AnalysisUser'
-import AnalysisTtlUser from './AnalysisTtlUser'
-import AnalysisCity from './AnalysisCity'
-import AnalysisAverageMonth from './AnalysisAverageMonth'
-import ScrollTopArrow from '../common/Scroll/ScrollTopArrow'
+import AnalysisCategory from "./AnalysisCategory";
+import AnalysisUser from "./AnalysisUser";
+import AnalysisTtlUser from "./AnalysisTtlUser";
+import AnalysisCity from "./AnalysisCity";
+import AnalysisAverageMonth from "./AnalysisAverageMonth";
+import ScrollTopArrow from "../common/Scroll/ScrollTopArrow";
 
 const AnalysisWrapper = () => {
-
-  const [chart, setChart] = useState(
-    {term : 0 , category:[] ,address : [[]],
-    age:[[],[{}]] ,gender:[{},{}],}
-  );
+  const [chart, setChart] = useState({
+    term: 0,
+    category: [],
+    address: [[]],
+    age: [[], [{}]],
+    gender: [{}, {}],
+  });
 
   const [loading, setLoading] = useState(false);
   const pointThree = () => {
@@ -38,7 +37,7 @@ const AnalysisWrapper = () => {
         setChart(res.data.data);
         setLoading(false);
       });
-    })
+    });
   }, []);
 
   useEffect(() => {
@@ -49,39 +48,30 @@ const AnalysisWrapper = () => {
     <Container>
       <Title>구독 데이터</Title>
       <Wrapper>
-
         <Fade bottom>
-        <AnalysisAverageMonth 
-        chart={chart.term}/>
+          <AnalysisAverageMonth chart={chart.term} />
         </Fade>
-
-        <Fade right >
-        <AnalysisCategory 
-        chart={chart.category}
-        {...chartObjOne}/>
-        </Fade>
-
-        <Fade left>
-        <AnalysisUser
-        chart={chart?.age}/>
-        </Fade> 
 
         <Fade right>
-        <AnalysisTtlUser  
-        chart={chart.gender}
-        {...chartObjTwo}/>
+          <AnalysisCategory chart={chart.category} {...chartObjOne} />
         </Fade>
 
         <Fade left>
-        <AnalysisCity 
-        chart={chart.address}/>
+          <AnalysisUser chart={chart?.age} />
         </Fade>
 
-        <ScrollTopArrow/>
-      </Wrapper>
-      
-    </Container>
-  )
-}
+        <Fade right>
+          <AnalysisTtlUser chart={chart.gender} {...chartObjTwo} />
+        </Fade>
 
-export default AnalysisWrapper
+        <Fade left>
+          <AnalysisCity chart={chart.address} />
+        </Fade>
+
+        <ScrollTopArrow />
+      </Wrapper>
+    </Container>
+  );
+};
+
+export default AnalysisWrapper;

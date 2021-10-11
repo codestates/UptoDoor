@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { PointColor, TextDarkGrey } from '../GlobalStyle';
+import styled from "styled-components";
+import { PointColor, TextDarkGrey } from "../GlobalStyle";
 
 //* 주문관리, 가게정보 탭
 export const AdminUlListWrapper = styled.div`
@@ -51,9 +51,8 @@ export const AdimUl = styled.ul`
   width: 100%;
   height: 40px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  
+
   @media screen and (min-width: 767px) {
-    
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
@@ -75,7 +74,7 @@ export const AdminLi = styled.li`
     border: none;
     cursor: pointer;
   }
-  
+
   > .focus {
     background-color: #f7f7f7;
     color: #656d78;
@@ -172,7 +171,7 @@ export const AdminOrderListItem = styled.div`
 
   @media screen and (min-width: 1140px) {
     > div {
-      width:100%;
+      width: 100%;
       max-width: 580px;
       > div {
         margin-bottom: 6px;
@@ -237,11 +236,11 @@ export const PageNumberWrapper = styled.ul`
   text-align: center;
   margin-top: 10px;
   padding: 20px;
-  list-style:none;
+  list-style: none;
   display: flex;
   justify-content: center;
-  
-  >li {
+
+  > li {
     padding: 0 10px;
     cursor: pointer;
   }
@@ -276,7 +275,7 @@ export const StoreTitle = styled.div`
     margin-bottom: 2px;
   }
 
-  @media screen and (min-width: 1140px){
+  @media screen and (min-width: 1140px) {
     margin-bottom: 24px;
     > h2 {
       font-size: 32px;
@@ -336,22 +335,22 @@ export const StoreDesc = styled.div`
   }
 
   @media screen and (min-width: 1140px) {
-  margin: 24px auto;
-  > h3 {
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-  > div {
-    padding: 0 6px;
-    > span {
-      font-size: 18px;
-      letter-spacing: -1px;
-      }
-    > p {
+    margin: 24px auto;
+    > h3 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    > div {
       padding: 0 6px;
-      font-size: 16px;
-      margin-bottom: 8px;
-      letter-spacing: -1px;
+      > span {
+        font-size: 18px;
+        letter-spacing: -1px;
+      }
+      > p {
+        padding: 0 6px;
+        font-size: 16px;
+        margin-bottom: 8px;
+        letter-spacing: -1px;
       }
     }
   }
@@ -364,7 +363,7 @@ export const StoreMenu = styled.div`
   > h3 {
     margin: 12px 0;
     @media screen and (min-width: 1140px) {
-      font-size : 24px;
+      font-size: 24px;
     }
   }
 `;
@@ -374,7 +373,7 @@ export const MenuContent = styled.div`
   background-color: #f7f7f7;
   display: flex;
   align-items: center;
-  padding: 12px ;
+  padding: 12px;
   border-radius: 8px;
   margin-bottom: 6px;
 `;
@@ -382,7 +381,7 @@ export const MenuContent = styled.div`
 export const MenuImg = styled.div`
   width: 65px;
   height: 65px;
-  min-width:65px;
+  min-width: 65px;
   > img {
     width: 100%;
     height: 100%;
@@ -419,4 +418,3 @@ export const MenuDesc = styled.div`
     }
   }
 `;
-

@@ -21,7 +21,7 @@ export interface Action {
 }
 
 interface Payload {
-	message?: string;
+  message?: string;
   data?: User | null;
   order?: Object[] | null;
 }
@@ -40,11 +40,10 @@ const intitialState: User = {
   subAddressDetail: "",
   message: "",
   login_type: null,
-  successMessage: ""
+  successMessage: "",
 };
 
 export default function user_reducer(state = intitialState, action: any) {
-
   switch (action.type) {
     case USER_SEND_CERT_EMAIL:
       return { ...state };
@@ -69,8 +68,8 @@ export default function user_reducer(state = intitialState, action: any) {
     case USER_ADD_ADDRESS: {
       return { ...state, ...action.payload.data };
     }
-    case USER_ADD_ORDER: 
-        return { ...state, successMessage: action.payload.message };
+    case USER_ADD_ORDER:
+      return { ...state, successMessage: action.payload.message };
     case USER_CALCEL_ORDER: {
       console.log("reducer", action.payload);
       return { ...state, successMessage: action.payload.message };

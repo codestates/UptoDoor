@@ -62,6 +62,8 @@ function AdminEditForm() {
   const category = admin.category;
   const adminAddress = admin.address;
   const adminAddressDetail = admin.address_detail;
+  const [openTime, setOpenTime] = useState(admin.open_time);
+  const [closeTime, setCloseTime] = useState(admin.close_time);
 
   const changeMobileHandler = useCallback((e) => {
     const mobileRegExp = /^[0-9\b -]{0,13}$/;
@@ -160,19 +162,19 @@ function AdminEditForm() {
       setStoreinfo(store_info);
       setImageArr(store_info.image);
       setDescription(store_info.introduce);
-      setOpenTime(store_info.open_time);
-      setCloseTime(store_info.close_time);
       setMobile(store_info.number);
       setStoreFile(store_info.Business_paper);
       setMenuArr(store_info.menus);
     });
   }, []);
-  const [openTime, setOpenTime] = useState("");
-  const [closeTime, setCloseTime] = useState("");
-  const moment1 = moment();
-  const [changeOpenMoment, setChangeOpenMoment] = useState(moment1);
-  const [changeCloseMoment, setChangeCloseMoment] = useState(moment1);
+  
   const str = "HH:mm";
+  const [changeOpenMoment, setChangeOpenMoment] = useState<
+    moment.Moment | undefined
+  >(moment(`2021-01-01T${openTime}`));
+  const [changeCloseMoment, setChangeCloseMoment] = useState<
+    moment.Moment | undefined
+  >(moment(`2021-01-01T${closeTime}`));
 
   const onChangeOpenTime = (value: any) => {
     setChangeOpenMoment(value);

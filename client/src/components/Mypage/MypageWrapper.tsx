@@ -137,12 +137,12 @@ function MyProfileWrapper(): JSX.Element {
                 }
               </PageContent>
               <ButtonWrapper>
-                {user.position === null ?
-                <button><Link to="/post">가게 등록</Link>
-                </button>
+                {user.position === "1" || admin.id ?
+                <button onClick={moveAdminPageHandler}>관리자 페이지
+                  </button>
                   :
-                  <button onClick={moveAdminPageHandler}>관리자 페이지
-                  </button>}
+                  <button><Link to="/post">가게 등록</Link>
+                </button>}
                 <button><Link to="/profile">프로필 수정</Link>
                 </button>
               </ButtonWrapper>

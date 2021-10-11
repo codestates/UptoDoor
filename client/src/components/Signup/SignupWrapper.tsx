@@ -124,11 +124,8 @@ function SignupWrapper():JSX.Element {
     if(passwordRegErr === true) return setPasswordRegErr(true);
     if(isAllchecked === false ) return false;
     if(certEmail === false) {
-      setCertEmail(false);
-    }else if(certEmail === true){
-      setCertEmail(true);
+      return setSignupModal(true);
     }
-
       let userinfo = {
         email,
         password,
@@ -271,12 +268,13 @@ function SignupWrapper():JSX.Element {
             }
             modalText={
               modalSuccess === true
-                ? "메인 페이지로 이동합니다."
-                : "회원가입에 실패하셨습니다."
+                ? "메인 페이지로 이동합니다." 
+                : !certEmail ? "이메일 인증은 필수입니다." : "회원가입에 실패하셨습니다."
             }
             modalBtn="확인"
           />
-        ) : null}
+        )
+            : null}
         {certModal ? (
           <ConfirmModal
             openModal={certModal}
@@ -291,7 +289,6 @@ function SignupWrapper():JSX.Element {
             modalBtn="확인"
           />
         ) : null}
-        
       </SignupContainer>
     </Container>
   );

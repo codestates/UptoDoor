@@ -67,8 +67,12 @@ function MapWrapper() {
     setOpenInfoModal(true);
   }
   const filterClickHandler = (address: string) => {
+    const newAddress = address.split(" ").map((el) => {
+      if (el === "서울특별시") return "서울";
+      else return el
+    }).join(" ")
     const filtered = store.filter((el: any) => {
-      return el.address === address
+      return el.address === newAddress
     })
     setFilterList(filtered);
     setOpenInfoModal(true);

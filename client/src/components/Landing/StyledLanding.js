@@ -18,246 +18,267 @@ export const upNdown = keyframes`
   100%{
     margin-bottom: 5px;
   }
-`
+`;
 //!intro
 export const LandingIntroContainer = styled.main`
-width: 100%;
-height:calc(100vh - 115px);
-text-align: center;
-overflow: hidden;
-@media screen and (min-width: 767px) {
-height:calc(100vh - 80px);
-margin : 0 auto;
-padding-top : 70px;
-}
-`
-export const LandingIntroWrapper = styled.section`
-width: 100%;
-height : 100%;
-padding : 50px 0 0;
-overflow-y: hidden;
-@media screen and (min-width: 767px) {
-margin : 0 auto;
-padding : 0 0 20px;
-}
-`
-export const MainTitle = styled.h3`
-font-size: ${MediumFont};
-font-weight : 500;
-color : ${TextDarkGrey};
-letter-spacing : -1px;
-@media screen and (min-width: 767px) {
-  display : inline ;
-  font-size: 28px;
-  font-weight: 500;
-}
-`
-export const MainSubTitle = styled.h2`
-font-size: 18px;
-font-weight : 400;
-color : ${TextLightGrey};
-font-weight: 700;
-letter-spacing : -2px;
-@media screen and (min-width: 767px) {
-  display : inline ;
-  font-size: 32px;
-  font-weight: 500;
-}
-@media screen and (min-width: 1140px) {
-  font-size: 40px;
-}
-`
-export const MainContainer = styled.div`
-margin : 0 auto;
-text-align: center;
-width: 375px;
-border-radius : 50px;
-padding :10px 0px;
-box-sizing: border-box;
-display: ${({flexable})=> (flexable ? 'flex' : 'unset')};
->div>ul>li>button:before{
-  opacity : 0.25;
-  color : mediumturquoise;
-}
-`
-export const FlexBox = styled.div`  
-display: flex;
-justify-content:center;
-align-items: flex-end;
-width: 100%;
-height : 50px;
->div{
-  width: 70px;
-}
->.slick-slider>.slick-list{
-  height : 46px!important;
+  width: 100%;
+  height: calc(100vh - 115px);
+  text-align: center;
+  overflow: hidden;
   @media screen and (min-width: 767px) {
-    height :80px!important;
+    height: calc(100vh - 80px);
+    margin: 0 auto;
+    padding-top: 70px;
+  }
+`;
+export const LandingIntroWrapper = styled.section`
+  width: 100%;
+  height: 100%;
+  padding: 50px 0 0;
+  overflow-y: hidden;
+  @media screen and (min-width: 767px) {
+    margin: 0 auto;
+    padding: 0 0 20px;
+  }
+`;
+export const MainTitle = styled.h3`
+  font-size: ${MediumFont};
+  font-weight: 500;
+  color: ${TextDarkGrey};
+  letter-spacing: -1px;
+  @media screen and (min-width: 767px) {
+    display: inline;
+    font-size: 28px;
+    font-weight: 500;
+  }
+`;
+export const MainSubTitle = styled.h2`
+  font-size: 18px;
+  font-weight: 400;
+  color: ${TextLightGrey};
+  font-weight: 700;
+  letter-spacing: -2px;
+  @media screen and (min-width: 767px) {
+    display: inline;
+    font-size: 32px;
+    font-weight: 500;
   }
   @media screen and (min-width: 1140px) {
-    height : 100px!important;
+    font-size: 40px;
   }
-}
-@media screen and (min-width: 767px) {
+`;
+export const MainContainer = styled.div`
+  margin: 0 auto;
+  text-align: center;
+  width: 375px;
+  border-radius: 50px;
+  padding: 10px 0px;
+  box-sizing: border-box;
+  display: ${({ flexable }) => (flexable ? "flex" : "unset")};
+  > div > ul > li > button:before {
+    opacity: 0.25;
+    color: mediumturquoise;
+  }
+`;
+export const FlexBox = styled.div`
+  display: flex;
   justify-content: center;
-  /* align-items: center; */
-  margin : 0 0 100px 0;
-  height : 90px;
-  >div{
-    width : 160px;
-    text-align: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 50px;
+  > div {
+    width: 70px;
   }
-}
-@media screen and (min-width: 1140px) {
-  align-items: flex-end;  
-  height : 100px;
-  >div{
-    width : 160px;
-    text-align: center;
+  > .slick-slider > .slick-list {
+    height: 46px !important;
+    @media screen and (min-width: 767px) {
+      height: 80px !important;
+    }
+    @media screen and (min-width: 1140px) {
+      height: 100px !important;
+    }
   }
-}
-`
+  @media screen and (min-width: 767px) {
+    justify-content: center;
+    /* align-items: center; */
+    margin: 0 0 100px 0;
+    height: 90px;
+    > div {
+      width: 160px;
+      text-align: center;
+    }
+  }
+  @media screen and (min-width: 1140px) {
+    align-items: flex-end;
+    height: 100px;
+    > div {
+      width: 160px;
+      text-align: center;
+    }
+  }
+`;
 export const CategoryTitleWrapper = styled.div`
-width: fit-content;
-text-align: center;
-margin : 10px auto ;
-@media screen and (min-width: 767px) {
-  width: 800px;
-  margin : 0px auto ;
-}
-`
+  width: fit-content;
+  text-align: center;
+  margin: 10px auto;
+  @media screen and (min-width: 767px) {
+    width: 800px;
+    margin: 0px auto;
+  }
+`;
 export const CategoryTitle = styled.h2`
-font-weight: 800;
-font-size: 28px;
-background: -webkit-linear-gradient(45deg, mediumturquoise, #5d9cec);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-@media screen and (min-width: 767px) {
-font-weight: 700;
-font-size: ${UltraLargeFont};
-text-align: center;
-}
-@media screen and (min-width: 1140px) {
-font-weight: 700;
-font-size: 72px;
-text-align: center;
-}
-`
+  font-weight: 800;
+  font-size: 28px;
+  background: -webkit-linear-gradient(45deg, mediumturquoise, #5d9cec);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  @media screen and (min-width: 767px) {
+    font-weight: 700;
+    font-size: ${UltraLargeFont};
+    text-align: center;
+  }
+  @media screen and (min-width: 1140px) {
+    font-weight: 700;
+    font-size: 72px;
+    text-align: center;
+  }
+`;
 export const SliderWrapper = styled.div`
-background:linear-gradient(#fff,rgba(0,0,0,0.1));
-`
+  background: linear-gradient(#fff, rgba(0, 0, 0, 0.1));
+`;
 export const ImgWrapper = styled.div`
-margin-top : 50px;
-visibility: hidden;
-overflow : hidden;
->.slick-slider>.slick-list{
-  height : 100%!important;
-}
+  margin-top: 50px;
+  visibility: hidden;
+  overflow: hidden;
+  > .slick-slider > .slick-list {
+    height: 100% !important;
+  }
 
->.slick-slider>.slick-list>.slick-track>.slick-current{
-  visibility: visible;
-}
-@media screen and (min-width: 767px) {
-}
-`
+  > .slick-slider > .slick-list > .slick-track > .slick-current {
+    visibility: visible;
+  }
+  @media screen and (min-width: 767px) {
+  }
+`;
 export const CategoryImgWrapper = styled.div`
-display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
-grid-template-rows: 1fr 1fr ;
-grid-gap: 12px;
-margin-bottom : 20px;
-@media screen and (min-width: 767px) {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 15px;
-}
-`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 12px;
+  margin-bottom: 20px;
+  @media screen and (min-width: 767px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+  }
+`;
 export const CategoryImgs = styled.img`
-position : relative;
-transition : all .3s;
-top :0;
-left : -100px;
-width: 180px;
-height : 260px;
-border-radius : 8px;
-object-fit: cover;
-&:nth-child(1),&:nth-child(7),&:nth-child(13){
-  position : relative;
-  top : 40px;
-}
-&:nth-child(2),&:nth-child(4),&:nth-child(6)
-,&:nth-child(8),&:nth-child(10),&:nth-child(12),&:nth-child(14),&:nth-child(16){
-  position : relative;
-  top : 90px;
-}
-@media screen and (min-width: 767px) {
-  width: 280px;height : 380px;
-}
-@media screen and (min-width: 767px) {
-  width: 270px;height : 370px;
-  &:nth-child(1),&:nth-child(8),&:nth-child(14){
-  position : relative;
-  top : 40px;
+  position: relative;
+  transition: all 0.3s;
+  top: 0;
+  left: -100px;
+  width: 180px;
+  height: 260px;
+  border-radius: 8px;
+  object-fit: cover;
+  &:nth-child(1),
+  &:nth-child(7),
+  &:nth-child(13) {
+    position: relative;
+    top: 40px;
   }
-  &:nth-child(2),&:nth-child(4),&:nth-child(6)
-  ,&:nth-child(9),&:nth-child(11),&:nth-child(13){
-  position : relative;
-  top : 90px;
+  &:nth-child(2),
+  &:nth-child(4),
+  &:nth-child(6),
+  &:nth-child(8),
+  &:nth-child(10),
+  &:nth-child(12),
+  &:nth-child(14),
+  &:nth-child(16) {
+    position: relative;
+    top: 90px;
   }
-  &:nth-child(10),&:nth-child(12){
-  top : 0;
+  @media screen and (min-width: 767px) {
+    width: 280px;
+    height: 380px;
   }
-}
-@media screen and (min-width: 1140px) {
-  left : 0;
-}
-`
+  @media screen and (min-width: 767px) {
+    width: 270px;
+    height: 370px;
+    &:nth-child(1),
+    &:nth-child(8),
+    &:nth-child(14) {
+      position: relative;
+      top: 40px;
+    }
+    &:nth-child(2),
+    &:nth-child(4),
+    &:nth-child(6),
+    &:nth-child(9),
+    &:nth-child(11),
+    &:nth-child(13) {
+      position: relative;
+      top: 90px;
+    }
+    &:nth-child(10),
+    &:nth-child(12) {
+      top: 0;
+    }
+  }
+  @media screen and (min-width: 1140px) {
+    left: 0;
+  }
+`;
 export const H1 = styled.h1`
-font-size: 45px;
-padding : 0;
-margin : 0;
-`
+  font-size: 45px;
+  padding: 0;
+  margin: 0;
+`;
 export const ArrowDisplay = styled.div`
->.click-icon{
-  cursor: pointer;
-  z-index: 1;
-  border-radius:10px;
-  background:#f7f7f7;
-  &:hover{
-    background: linear-gradient(45deg, mediumturquoise,#5d9cec);
-    color : #fff;
-    border-radius:50%;
-    transition: all 0.1s;
-    >span{display:none}
+  > .click-icon {
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 10px;
+    background: #f7f7f7;
+    &:hover {
+      background: linear-gradient(45deg, mediumturquoise, #5d9cec);
+      color: #fff;
+      border-radius: 50%;
+      transition: all 0.1s;
+      > span {
+        display: none;
+      }
+    }
   }
-}
-`
+`;
 export const FixI = styled.i`
-animation: ${upNdown} 0.7s 0s ease infinite alternate-reverse;
-position :absolute;
-bottom : 30px;
-left : 46%;
-font-size: 50px;
-z-index: 1;
-color : rgba(0,0,0,0.5);
-&:hover{
-  color : rgba(0,0,0,0.7);
-}
-`
-export const GradientEdge = styled.div`
-visibility: hidden;
-@media screen and (min-width: 767px) {
-  visibility: visible;
+  animation: ${upNdown} 0.7s 0s ease infinite alternate-reverse;
   position: absolute;
-  bottom : 0px;
-  height : 300px;
-  max-height : 20%;
-  width : 100%;
-  background-image: 
-  linear-gradient(rgba(255, 255, 255, 0), rgb(255, 255, 255));
-  opacity : 1;
-}
-`
+  bottom: 30px;
+  left: 46%;
+  font-size: 50px;
+  z-index: 1;
+  color: rgba(0, 0, 0, 0.5);
+  &:hover {
+    color: rgba(0, 0, 0, 0.7);
+  }
+`;
+export const GradientEdge = styled.div`
+  visibility: hidden;
+  @media screen and (min-width: 767px) {
+    visibility: visible;
+    position: absolute;
+    bottom: 0px;
+    height: 300px;
+    max-height: 20%;
+    width: 100%;
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgb(255, 255, 255)
+    );
+    opacity: 1;
+  }
+`;
 //!info
 export const LandingInfoContainer = styled.div`
   min-width: 375px;
@@ -275,13 +296,13 @@ export const LandingInfoWrapper = styled.div`
   }
 `;
 export const InfoWrapper = styled.div`
-display: grid;
+  display: grid;
   height: 100%;
   width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 10px;
-    justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 10px;
+  justify-content: center;
   @media screen and (min-width: 767px) {
     height: 450px;
   }
@@ -320,7 +341,7 @@ export const TextWrapper = styled.div`
   padding-top: 0;
   margin-bottom: 24px;
   @media screen and (min-width: 767px) {
-    margin: ${({second})=> (second ? '0 30px 24px 0' : '0 0 24px 30px')}
+    margin: ${({ second }) => (second ? "0 30px 24px 0" : "0 0 24px 30px")};
   }
 `;
 export const Heading = styled.h1`
@@ -359,8 +380,8 @@ export const Subtitle = styled.p`
   }
 `;
 export const ImgWrap = styled.div`
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
   width: 90%;
   margin: 0 auto 24px;
   @media screen and (min-width: 767px) {
@@ -370,97 +391,97 @@ justify-content: center;
 export const Img = styled.img`
   width: 100%;
   padding-right: 0;
-  @media screen and (min-width:767px){
-    width:430px;
+  @media screen and (min-width: 767px) {
+    width: 430px;
     border: 2px solid white;
   }
 `;
 //!Value
 export const LandingValueContainer = styled.main`
-width: 100%;
-@media screen and (min-width:767px){
-}
-@media screen and (min-width:1140px){
-height:calc(100vh - 80px);
-}
-`
-export const LandingValueWrapper = styled.section`
-display: flex;
-flex-direction: column;
-min-width: 375px;
-@media screen and (min-width: 767px) {
-}
-@media screen and (min-width: 1140px) {
-flex-direction: row;
-justify-content: center;
-height:calc(100vh - 80px);
-padding : 100px;
-}
-@media screen and (min-width: 1440px) {
-padding : 100px 200px;
-}
->.focus {
-  height : 100%;
+  width: 100%;
   @media screen and (min-width: 767px) {
-    >.textbox{
+  }
+  @media screen and (min-width: 1140px) {
+    height: calc(100vh - 80px);
+  }
+`;
+export const LandingValueWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  min-width: 375px;
+  @media screen and (min-width: 767px) {
+  }
+  @media screen and (min-width: 1140px) {
+    flex-direction: row;
+    justify-content: center;
+    height: calc(100vh - 80px);
+    padding: 100px;
+  }
+  @media screen and (min-width: 1440px) {
+    padding: 100px 200px;
+  }
+  > .focus {
+    height: 100%;
+    @media screen and (min-width: 767px) {
+      > .textbox {
+      }
+    }
+    @media screen and (min-width: 1140px) {
+      > .imgbox {
+        flex: 2;
+      }
+      > .textbox {
+        flex: 1.5;
+      }
     }
   }
-  @media screen and (min-width: 1140px) {
-    >.imgbox{
-    flex : 2;
+  > .not {
+    overflow: hidden;
+    min-height: 120px;
+    @media screen and (min-width: 767px) {
+      min-height: 190px;
+    }
+    @media screen and (min-width: 1140px) {
+      min-height: none;
+      height: 100%;
+    }
+    > .textbox {
+      display: none;
+    }
   }
-  >.textbox{
-    flex : 1.5;
-  }
-  }
-}
->.not{
-  overflow: hidden;
-  min-height : 120px;
-  @media screen and (min-width: 767px) {
-    min-height : 190px;
-  }
-  @media screen and (min-width: 1140px) {
-  min-height :none;
-  height : 100%;
-  }
-  >.textbox{
-    display: none;
-  }
-}
-`
+`;
 export const LandingValueBox = styled.div`
-height : 120px;
-@media screen and (min-width: 767px) {
-  height : 170px;
+  height: 120px;
+  @media screen and (min-width: 767px) {
+    height: 170px;
   }
-@media screen and (min-width: 1140px) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-&:nth-child(1)>.unstressful-imgbox{
-  background-image: url(${LandingValues[0]});  
-}
-&:nth-child(2)>.comfortable-imgbox{
-  background-image: url(${LandingValues[1]});
-}
-&:nth-child(3)>.winwin-imgbox{
-  background-image: url(${LandingValues[2]});
-}
-`
+  @media screen and (min-width: 1140px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &:nth-child(1) > .unstressful-imgbox {
+    background-image: url(${LandingValues[0]});
+  }
+  &:nth-child(2) > .comfortable-imgbox {
+    background-image: url(${LandingValues[1]});
+  }
+  &:nth-child(3) > .winwin-imgbox {
+    background-image: url(${LandingValues[2]});
+  }
+`;
 export const ValueImgBox = styled.div`
-background-size: cover;
-background-blend-mode: multiply;
-background-color : rgba(0,0,0,0.3);
-height : 120px;
-display: flex;
-align-items: flex-end;
-justify-content: flex-end;
-padding : 10px;
-cursor: pointer;  
-transition : all 1s linear;
-&:hover{
+  background-size: cover;
+  background-blend-mode: multiply;
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 1s linear;
+  &:hover {
     background-color: grey;
     background-blend-mode: multiply;
     transition: all 1s linear;
@@ -475,183 +496,182 @@ transition : all 1s linear;
   }
 `;
 export const H2 = styled.h2`
-font-size: ${LargeFont};
-color : #fff;
-@media screen and (min-width: 767px) {
-font-size: 36px;
-  }
-@media screen and (min-width: 1140px) {
-  position : absolute;
-  bottom : 170px;
-  right: -160px;
-  width : 400px;
-  transform: rotate(270deg);
-  font-size: ${UltraLargeFont};
-}
-`
-export const ValueTextBox = styled.div`
-padding : 20px;
-@media screen and (min-width: 767px) {
-  padding : 45px;
-  height : 100%;
-  }
-@media screen and (min-width: 1140px) {
-  padding : 0 35px;
-  height: 50%;
-}
-`
-export const H3 = styled.h3`
-margin-bottom: ${({endText})=> (endText ? '20px' : '10px')};
-color: ${({endText})=> (endText ? TextDarkGrey : 'unset')};
-font-weight: ${({endText})=> (endText ? '500' : '500')};
-@media screen and (min-width: 767px) {
-  font-size: ${MediumFont}
-  }
-@media screen and (min-width: 1140px) {
-}
-`
-export const P = styled.p`
-color : ${TextLightGrey};
-font-size: 12px;
-padding : 0 30px;
-line-height: 20px;
-margin : 5px 0 10px 0;
-@media screen and (min-width: 767px) {
-  font-size: ${SmallFont}
-  }
-@media screen and (min-width: 1140px) {
-  padding : 10px 20px;
-  line-height: 25px;
-}
-`
-//!End & map
-export const LandingEndContainer = styled.main`
-width: 100%;
-height: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding : 100px 0 ;
-background-color: #f7f7f7;
-@media screen and (min-width: 767px) {
-  padding : 100px 0 0;
-}
-`
-export const LanindgFindWrapper = styled.div`
-width: 100%;
-min-width: 375px;
-`
-// 랜딩지도 전체부분 스타일
-export const LandingMapWrapperContainer = styled.section`
-transition: all 0.3;
-margin : 0 auto;
-width : 80%;
-max-width: 500px;
-@media screen and (min-width: 1140px) {
-  max-width: 950px;
-  }
-`
-// 랜딩셀렉트부분 스타일
-export const LandingMapSelectContainer = styled.div`
-`
-export const LandingMapSelectWrapper = styled.div`
-height : 50px;
-margin : 20px 0 0;
->.city-selection{
-  z-index : 1;
-  @media screen and (min-width: 1140px) {
-    width: 30%;
-  }
-  >div{
-    box-shadow : 0 0 0 0.3px rgba(0,0,0,0.3) !important;
-    border-color : rgba(0,0,0,0.3);
-  }
-  >div>div>div{
-    color : ${TextDarkGrey};
-  }
-}
-`
-export const H4 = styled.h4`
-animation: ${showModal} 0.4s;
-@media screen and (min-width: 1140px) {
   font-size: ${LargeFont};
-  }
->span{
-  font-size: ${MediumFont};
-  font-weight: 400;
-  color : #000;
-}
-&:nth-child(1){
-  font-size: 34px;
-  font-weight: 800;
-  background: -webkit-linear-gradient(45deg, mediumturquoise,#5d9cec);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+  color: #fff;
   @media screen and (min-width: 767px) {
     font-size: 36px;
   }
   @media screen and (min-width: 1140px) {
-    font-size: 42px;
+    position: absolute;
+    bottom: 170px;
+    right: -160px;
+    width: 400px;
+    transform: rotate(270deg);
+    font-size: ${UltraLargeFont};
   }
-}
-font-size: ${MediumFont};
-font-weight: 400;
-`
+`;
+export const ValueTextBox = styled.div`
+  padding: 20px;
+  @media screen and (min-width: 767px) {
+    padding: 45px;
+    height: 100%;
+  }
+  @media screen and (min-width: 1140px) {
+    padding: 0 35px;
+    height: 50%;
+  }
+`;
+export const H3 = styled.h3`
+  margin-bottom: ${({ endText }) => (endText ? "20px" : "10px")};
+  color: ${({ endText }) => (endText ? TextDarkGrey : "unset")};
+  font-weight: ${({ endText }) => (endText ? "500" : "500")};
+  @media screen and (min-width: 767px) {
+    font-size: ${MediumFont};
+  }
+  @media screen and (min-width: 1140px) {
+  }
+`;
+export const P = styled.p`
+  color: ${TextLightGrey};
+  font-size: 12px;
+  padding: 0 30px;
+  line-height: 20px;
+  margin: 5px 0 10px 0;
+  @media screen and (min-width: 767px) {
+    font-size: ${SmallFont};
+  }
+  @media screen and (min-width: 1140px) {
+    padding: 10px 20px;
+    line-height: 25px;
+  }
+`;
+//!End & map
+export const LandingEndContainer = styled.main`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
+  background-color: #f7f7f7;
+  @media screen and (min-width: 767px) {
+    padding: 100px 0 0;
+  }
+`;
+export const LanindgFindWrapper = styled.div`
+  width: 100%;
+  min-width: 375px;
+`;
+// 랜딩지도 전체부분 스타일
+export const LandingMapWrapperContainer = styled.section`
+  transition: all 0.3;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 500px;
+  @media screen and (min-width: 1140px) {
+    max-width: 950px;
+  }
+`;
+// 랜딩셀렉트부분 스타일
+export const LandingMapSelectContainer = styled.div``;
+export const LandingMapSelectWrapper = styled.div`
+  height: 50px;
+  margin: 20px 0 0;
+  > .city-selection {
+    z-index: 1;
+    @media screen and (min-width: 1140px) {
+      width: 30%;
+    }
+    > div {
+      box-shadow: 0 0 0 0.3px rgba(0, 0, 0, 0.3) !important;
+      border-color: rgba(0, 0, 0, 0.3);
+    }
+    > div > div > div {
+      color: ${TextDarkGrey};
+    }
+  }
+`;
+export const H4 = styled.h4`
+  animation: ${showModal} 0.4s;
+  @media screen and (min-width: 1140px) {
+    font-size: ${LargeFont};
+  }
+  > span {
+    font-size: ${MediumFont};
+    font-weight: 400;
+    color: #000;
+  }
+  &:nth-child(1) {
+    font-size: 34px;
+    font-weight: 800;
+    background: -webkit-linear-gradient(45deg, mediumturquoise, #5d9cec);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    @media screen and (min-width: 767px) {
+      font-size: 36px;
+    }
+    @media screen and (min-width: 1140px) {
+      font-size: 42px;
+    }
+  }
+  font-size: ${MediumFont};
+  font-weight: 400;
+`;
 // 랜딩지도부분 스타일
 export const LandingMapContainer = styled.div`
-/* border : 3px solid green; */
-margin : 20px auto;
-width : 100%;
-height : 250px;
-border-radius : 8px;
-z-index : 0;
-@media screen and (min-width: 767px) {
-    height : 450px; 
-  }
-@media screen and (min-width: 1140px) {
-    height : 550px; 
-  }
-`
-export const LandingEndWrapper = styled.div`
-width: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin : 30px 0 0;  
->div>button{
-  background : linear-gradient(45deg , mediumturquoise ,#5d9cec);
-  color : #fff;
-  height : 50px;
-  margin-top : 20px;
-  font-weight : 600;
-  border: none;
-}
->div>p{
-  color : ${TextDarkGrey};
+  /* border : 3px solid green; */
+  margin: 20px auto;
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+  z-index: 0;
   @media screen and (min-width: 767px) {
-  margin-bottom: 10px;
+    height: 450px;
   }
-}
-@media screen and (min-width: 767px) {
-  margin : 100px 0 0;
-  color : black;
-  padding : 50px 0;
-  background-color: #fff;
-}
-@media screen and (min-width: 1140px) {
-  padding : 110px 0;
-}
-`
+  @media screen and (min-width: 1140px) {
+    height: 550px;
+  }
+`;
+export const LandingEndWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0 0;
+  > div > button {
+    background: linear-gradient(45deg, mediumturquoise, #5d9cec);
+    color: #fff;
+    height: 50px;
+    margin-top: 20px;
+    font-weight: 600;
+    border: none;
+  }
+  > div > p {
+    color: ${TextDarkGrey};
+    @media screen and (min-width: 767px) {
+      margin-bottom: 10px;
+    }
+  }
+  @media screen and (min-width: 767px) {
+    margin: 100px 0 0;
+    color: black;
+    padding: 50px 0;
+    background-color: #fff;
+  }
+  @media screen and (min-width: 1140px) {
+    padding: 110px 0;
+  }
+`;
 export const EndingH3 = styled.h3`
-margin : 0 0 10px;
-font-size: 24px;
-color : ${TextDarkGrey};
-@media screen and (min-width: 767px) {
-  margin : 0 0 30px;
-  font-size: 38px;
-  font-weight : 800;
-}
-`
+  margin: 0 0 10px;
+  font-size: 24px;
+  color: ${TextDarkGrey};
+  @media screen and (min-width: 767px) {
+    margin: 0 0 30px;
+    font-size: 38px;
+    font-weight: 800;
+  }
+`;

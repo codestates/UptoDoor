@@ -196,10 +196,15 @@ function AdminPostForm(): React.ReactElement {
 
   const [openTime, setOpenTime] = useState<string | "">("");
   const [closeTime, setCloseTime] = useState<string | "">("");
-  const monent = moment();
-  const [changeOpenMoment, setChangeOpenMoment] = useState(monent);
-  const [changeCloseMoment, setChangeCloseMoment] = useState(monent);
   const str = "HH:mm";
+  const [changeOpenMoment, setChangeOpenMoment] = useState<
+    moment.Moment | undefined
+  >(moment("2020-01-01T00:00:00"));
+  // console.log(typeof moment().hours(0).minutes(0).format("HH:mm"));
+  const [changeCloseMoment, setChangeCloseMoment] = useState<
+    moment.Moment | undefined
+  >(moment("2020-01-01T00:00:00"));
+
   const onChangeOpenTime = (value: any): void => {
     setChangeOpenMoment(value);
     setOpenTime(value && value.format(str));

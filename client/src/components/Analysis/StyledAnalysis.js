@@ -121,13 +121,15 @@ padding-bottom: 80px;
 `
 export const ArrowDisplay = styled.div`
 width: 100%;
+/* height : 200px; */
 text-align: center;
 opacity : 1;
+position :relative;
   >i{
   animation: ${upNdown} 0.7s 0s ease infinite alternate-reverse;
   position :absolute;
-  bottom : 50px;
-  left : 47%;
+  bottom : 0px;
+  right : -15px;
   font-size: 50px;
   z-index: 1;
   color : rgba(0,0,0,0.5);
@@ -135,11 +137,15 @@ opacity : 1;
   &:hover{
     color : rgba(0,0,0,0.7);
   }
+  @media screen and (min-width: 1140px) {
+    bottom : -100px;
+  }
 }
 >.active{
   transition: all 0.3s;
   opacity : 0;
 }
+
 `
 //!카테고리 섹션
 export const StyledCategoryChart = styled.section`
@@ -225,3 +231,4 @@ export const ChartCityWrapper = styled.div`
   width : 600px;
 }
 `
+

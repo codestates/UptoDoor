@@ -31,7 +31,7 @@ const LandingIntro = () => {
     arrows: false,
     infinite: true,
     speed: 900,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,

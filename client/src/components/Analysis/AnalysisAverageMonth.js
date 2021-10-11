@@ -83,7 +83,9 @@ useEffect(() => {
         </div>
         </Fade>
 
-        <Fade bottom>
+      </AverageMonthWrapper>
+
+      <Fade bottom>
           <ArrowDisplay>
           <i className=
           {arrowStatus 
@@ -93,7 +95,7 @@ useEffect(() => {
           ></i>
           </ArrowDisplay>
         </Fade>
-      </AverageMonthWrapper>
+        
     </StyledAverageMonth>
   )
 }

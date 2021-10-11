@@ -1,5 +1,5 @@
-import React, { useCallback,useState,useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import React, { useCallback, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { SmallButton } from "../common/Button/Button";
 
 import moment from "moment";
@@ -15,20 +15,16 @@ import {
   UserCheckListBox,
   ButtonWrapper,
   CartCheckListWrapper,
-  CartTimePicker
+  CartTimePicker,
 } from "./StyledUserCart";
-import {
-  Container,
-  Wrapper,
-  Title
-} from "../GlobalStyle";
-import { MoneyCheck } from '../UserOrder/StyledUserOrder';
+import { Container, Wrapper, Title } from "../GlobalStyle";
+import { MoneyCheck } from "../UserOrder/StyledUserOrder";
 import ConfirmModal from "../common/Modal/ConfirmModal";
 import CartMenuList from "./CartMenuList";
 import { useHistory } from "react-router";
 
-import Auth from '../../hoc/auth';
-import Signin from '../common/Signin/SigninModal';
+import Auth from "../../hoc/auth";
+import Signin from "../common/Signin/SigninModal";
 import { END_POINT } from "../../_actions/type";
 
 function CartWrapper() {
@@ -36,10 +32,10 @@ function CartWrapper() {
   const history = useHistory();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  
+
   const [loginModal, setLoginModal] = useState(false);
   const [wrongPathModal, setWrongPathModal] = useState(false);
-  
+
   const [timeOtions, setTimeOtions] = useState("");
   const [changeMoment, setChangeMoment] = useState(monent);
   const [detailOption, setDetailOption] = useState("");
@@ -214,23 +210,22 @@ function CartWrapper() {
 
   const [openModal, setOpenModal] = useState(false);
   const [optionsModal, setOptionsModal] = useState(false);
-  const str =  "HH:mm";
+  const str = "HH:mm";
   const onChangeTime = (value) => {
     setChangeMoment(value);
     setTimeOtions(value && value.format(str));
-    
-  }
+  };
   useEffect(() => {
     const request = Auth(true);
-    if(request === undefined){
+    if (request === undefined) {
       return setLoginModal(true);
     }
 
     if (cart.menu.length === 0) {
       return setWrongPathModal(true);
     }
-  }, [])
-  
+  }, []);
+
   return (
     <Container>
       <Title>장바구니</Title>

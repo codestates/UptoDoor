@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MainColor, TextDarkGrey , TextLightGrey } from "../../GlobalStyle";
+import { MainColor, TextDarkGrey, TextLightGrey } from "../../GlobalStyle";
 
 export const FooterContainer = styled.div`
   margin: 0;
@@ -25,7 +25,7 @@ export const FooterWrapper = styled.div`
   padding: 0 60px;
   display: flex;
   flex-direction: column;
-  color : ${TextDarkGrey};
+  color: ${TextDarkGrey};
   @media screen and (min-width: 600px) {
     flex-direction: row;
     justify-content: space-between;
@@ -52,7 +52,7 @@ export const FooterWrapper = styled.div`
 export const FooterTitle = styled.div`
   > h1 {
     margin-bottom: 12px;
-    font-size : 26px;
+    font-size: 26px;
   }
   > h3 {
     font-weight: 500;
@@ -104,7 +104,7 @@ export const FooterLinkItems = styled.div`
   align-items: flex-start;
   margin-top: 10px;
   box-sizing: border-box;
-  color : ${TextDarkGrey};
+  color: ${TextDarkGrey};
   display: ${({ noapp }) => (noapp ? "none" : "flex")};
   @media screen and (min-width: 767px) {
     display: flex;
@@ -193,7 +193,6 @@ export const WebsiteRights = styled.p`
   width: 100%;
   text-align: center;
   font-size: 14px;
-  
 
   @media screen and (max-width: 600px) {
     padding: 0 60px;

@@ -8,18 +8,24 @@ import {
   CardCheck,
   OrderWrapper,
   OrderUserInfoContent,
-  OrderP,OrderH5
+  OrderP,
+  OrderH5,
 } from "./StyledUserOrder";
-import { useSelector} from "react-redux";
-import {stringToPrice} from '../../utils/validation'
+import { useSelector } from "react-redux";
+import { stringToPrice } from "../../utils/validation";
 
-const OrderInfo = (props:any) => {
+const OrderInfo = (props: any): JSX.Element => {
   const {
-    paymentChecker,mobileChecker,mobileCheck,orderMobile,onChangeMobileHandler,onChangeDeliveryUserName
+    paymentChecker,
+    mobileChecker,
+    mobileCheck,
+    orderMobile,
+    onChangeMobileHandler,
+    onChangeDeliveryUserName,
   } = props;
-  const cart = useSelector((state:any) => state.cart);
-  const user = useSelector((state:any) => state.user);
-  
+  const cart = useSelector((state: any) => state.cart);
+  const user = useSelector((state: any) => state.user);
+
   return (
     <OrderWrapper>
       <OrderH3>결제 & 배송 정보</OrderH3>
@@ -40,23 +46,23 @@ const OrderInfo = (props:any) => {
           </OrderUserInfoContent>
           <InfoCheck>
             <div>
-              <OrderH5>주문자명<span>(입력)</span></OrderH5>
+              <OrderH5>
+                주문자명<span>(입력)</span>
+              </OrderH5>
             </div>
-            <input
-              type="text"
-              onChange={onChangeDeliveryUserName}
-              required
-            />
+            <input type="text" onChange={onChangeDeliveryUserName} required />
             <div>
-              <OrderH5>받으실 연락처<span>(입력)</span></OrderH5>
-              <span >
-                <input type="checkbox"onClick={mobileChecker} />
+              <OrderH5>
+                받으실 연락처<span>(입력)</span>
+              </OrderH5>
+              <span>
+                <input type="checkbox" onClick={mobileChecker} />
                 기존 번호와 일치
               </span>
             </div>
             <input
               type="text"
-              value = {mobileCheck ? user.mobile : orderMobile} 
+              value={mobileCheck ? user.mobile : orderMobile}
               required
               name="모바일"
               readOnly={mobileCheck ? true : false}
@@ -93,15 +99,12 @@ const OrderInfo = (props:any) => {
           </MoneyCheck>
           <CardCheck>
             <h4>결제 수단 선택</h4>
-
-            <input 
-            onClick={paymentChecker}
-            type="checkbox" /> 일반 카드 결제
+            <input onClick={paymentChecker} type="checkbox" /> 일반 카드 결제
           </CardCheck>
         </OrderInfoWrraper>
       </OrderInfoContainer>
     </OrderWrapper>
   );
-}
+};
 
-export default OrderInfo
+export default OrderInfo;

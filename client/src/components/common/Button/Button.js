@@ -1,5 +1,10 @@
-import styled,{keyframes} from 'styled-components';
-import { MainColor, BackgroundColor,TextLightGrey, LargeFont } from "../../GlobalStyle";
+import styled, { keyframes } from "styled-components";
+import {
+  MainColor,
+  BackgroundColor,
+  TextLightGrey,
+  LargeFont,
+} from "../../GlobalStyle";
 
 const moving = keyframes`
   0% {
@@ -8,15 +13,15 @@ const moving = keyframes`
   100% {
     transform: translateX(10%);
   }
-`
+`;
 export const ArrowBtn = styled.i`
-color : ${MainColor};
-font-size: ${LargeFont};
-cursor: pointer;
-  &:hover{
-  animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
-}
-`
+  color: ${MainColor};
+  font-size: ${LargeFont};
+  cursor: pointer;
+  &:hover {
+    animation: ${moving} 0.3s 0s ease infinite alternate-reverse;
+  }
+`;
 export const NextBtn = styled.button`
   width: 20px;
   height: 30px;
@@ -46,9 +51,9 @@ export const SmallButton = styled.button`
   color: ${({ primary }) => (primary ? "#fff" : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : "#fff")};
   cursor: pointer;
-  transition: all .3s;
-  &:hover{
-  opacity: 0.9;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 0.9;
   }
 `;
 
@@ -62,12 +67,12 @@ export const MiddleButton = styled.button`
   text-align: center;
   border-radius: 8px;
   border: 1px solid ${MainColor};
-  margin: ${({ side }) => (side ? '5px' : 0)};
-  transition: all .3s;
+  margin: ${({ side }) => (side ? "5px" : 0)};
+  transition: all 0.3s;
   color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : "#FFF")};
-  &:hover{
-  opacity: 0.9;
+  &:hover {
+    opacity: 0.9;
   }
 `;
 
@@ -77,28 +82,28 @@ export const LagreButton = styled.button`
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-  margin:6px;
+  margin: 6px;
   text-align: center;
   border-radius: 8px;
   border: 1px solid ${MainColor};
   text-align: center;
   color: ${({ primary }) => (primary ? BackgroundColor : MainColor)};
   background-color: ${({ primary }) => (primary ? MainColor : BackgroundColor)};
-  transition: all .3s;
-  &:hover{
-  opacity: 0.9;
+  transition: all 0.3s;
+  &:hover {
+    opacity: 0.9;
   }
 `;
 
 export const BtnBox = styled.div`
-text-align: center;
-width: 300px;
-margin-top : ${({btnboxMargin})=> (btnboxMargin ? '18px' : 0)};
-display: ${({flexable})=> (flexable ?'flex' : 'unset')};
-justify-content: center;
-align-items: center;
-@media screen and (min-width: 1140px) {
-  display: flex;
+  text-align: center;
+  width: 300px;
+  margin-top: ${({ btnboxMargin }) => (btnboxMargin ? "18px" : 0)};
+  display: ${({ flexable }) => (flexable ? "flex" : "unset")};
   justify-content: center;
-}
-`
+  align-items: center;
+  @media screen and (min-width: 1140px) {
+    display: flex;
+    justify-content: center;
+  }
+`;

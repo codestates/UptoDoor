@@ -1,4 +1,5 @@
 // import { initialCart } from "../components/dummyData";
+import { CartInfo } from "../@type/cart";
 import {
   SET_QUANTITY,
   REMOVE_FROM_CART,
@@ -10,7 +11,8 @@ import {
 } from "../_actions/type";
 
 
-const initialState = {
+
+const initialState:CartInfo = {
   menu: [],
   selected_address: "",
   selected_address_detail: "",
@@ -23,7 +25,7 @@ const initialState = {
   plus_money: 0,
   store_id: null,
 };
-export default function cart_reducer(state = initialState, action) {
+export default function cart_reducer(state = initialState, action:any) {
   switch (action.type) {
     //* 주소선택하고 스토어들어가면 아이디 가져오기
     case SET_ADDRESS:

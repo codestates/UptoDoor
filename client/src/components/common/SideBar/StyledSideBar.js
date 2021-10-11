@@ -1,7 +1,6 @@
-import styled,{keyframes} from "styled-components";
-import { TextLightGrey } from '../../GlobalStyle';
-import {showModal,showModalBg} from '../Modal/styledModal'
-
+import styled, { keyframes } from "styled-components";
+import { TextLightGrey } from "../../GlobalStyle";
+import { showModal, showModalBg } from "../Modal/styledModal";
 
 export const showSidebar = keyframes`
   from {
@@ -12,7 +11,7 @@ export const showSidebar = keyframes`
     margin-left: 0%;
     width: 100%;
   }
-`
+`;
 
 export const SidebarContainer = styled.aside`
   position: fixed;
@@ -45,7 +44,7 @@ export const SidebarWrapper = styled.div`
   background: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;  
+  justify-content: flex-start;
   /* opacity:1; */
   z-index: 20;
   /* animation: ${showSidebar} 0.3s ease;   */
@@ -94,7 +93,6 @@ export const UserName = styled.div`
   white-space: nowrap;
 `;
 
-
 export const SidebarUl = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
@@ -132,5 +130,5 @@ export const SidebarBtn = styled.button`
   list-style: none;
   text-decoration: none;
   cursor: pointer;
-  border: none; 
+  border: none;
 `;

@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { MediumFont, SmallFont, UltraLargeFont } from '../GlobalStyle';
+import styled from "styled-components";
+import { MediumFont, SmallFont, UltraLargeFont } from "../GlobalStyle";
 // import { TextLightGrey } from '../GlobalStyle';
 import TimePicker from "rc-time-picker";
 //* CartWrapper
@@ -45,17 +45,17 @@ export const UserCheckList = styled.section`
     margin: 3px 0 4px 10px;
     font-size: 18px;
   }
-  >.cart-ttl-price{
-    width : 100%;
-    margin : 10px 0;
-    padding : 0;
-    >.cart-ttl-price-text{
-    display: flex;
-    justify-content: right;
-    margin-top : 20px;       
-    max-width: none;
+  > .cart-ttl-price {
+    width: 100%;
+    margin: 10px 0;
+    padding: 0;
+    > .cart-ttl-price-text {
+      display: flex;
+      justify-content: right;
+      margin-top: 20px;
+      max-width: none;
     }
-    >.cart-ttl{
+    > .cart-ttl {
       max-width: none;
     }
   }
@@ -184,7 +184,6 @@ export const ButtonWrapper = styled.div`
   }
 `;
 
-
 //* CartMenuList
 export const CartMenuListWrapper = styled.div`
   width: 100%;
@@ -217,30 +216,30 @@ export const CheckBox = styled.input`
   height: 15px;
 `;
 export const EmptyCart = styled.div`
-  height : 190px;
+  height: 190px;
   background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin : 10px;
-  >i{
+  margin: 10px;
+  > i {
     font-size: 40px;
-    color : rgba(0,0,0,0.3);
+    color: rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
   }
-  >p{
-    color : rgba(0,0,0,0.7);
+  > p {
+    color: rgba(0, 0, 0, 0.7);
     font-size: 14px;
   }
   @media screen and (min-width: 1140px) {
-    height : 340px;
-    >i{
-    font-size: ${UltraLargeFont};
-  }
-  >p{
-    font-size: ${SmallFont};
-  }
+    height: 340px;
+    > i {
+      font-size: ${UltraLargeFont};
+    }
+    > p {
+      font-size: ${SmallFont};
+    }
   }
 `;
 export const CartMenuItemContainer = styled.div`
@@ -296,8 +295,6 @@ export const CartMenuItemWrapper = styled.div`
   }
 `;
 
-
-
 export const CartMenuItemDetail = styled.div`
   width: 65%;
 
@@ -305,13 +302,12 @@ export const CartMenuItemDetail = styled.div`
     > h4 {
       margin-bottom: 2px;
       font-weight: 500;
-      
     }
     > p {
       font-size: 12px;
       white-space: normal;
       margin-left: 1px;
-      width:95%;
+      width: 95%;
     }
   }
 
@@ -329,7 +325,6 @@ export const CartMenuItemDetail = styled.div`
       }
       > p {
         font-size: 14px;
-        
       }
     }
   }
@@ -399,7 +394,6 @@ export const InputNumberButton = styled.div`
   }
 `;
 
-
 export const PlusMoneyWrapper = styled.div`
   margin-bottom: 6px;
   padding: 8px 0;
@@ -411,45 +405,45 @@ export const PlusMoneyWrapper = styled.div`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
-    > span {
-      font-size: 10px;
-    }
-      > label {
-        margin-left: 4px;
-        margin-right: 16px;
-        font-weight: 400;
-        letter-spacing: -1px;
-        margin-bottom:2px;
-      }
-      > .money {
-        background-color: #fff;
-        width: 70px;
-        height: 24px;
-        border-radius: 4px;
-        border: 2px solid #ededed;
-        text-align: right;
-        padding-right: 8px;
-        margin-right: 4px;
-        /* margin-top: 2px;s */
-      }
+  > span {
+    font-size: 10px;
+  }
+  > label {
+    margin-left: 4px;
+    margin-right: 16px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 2px;
+  }
+  > .money {
+    background-color: #fff;
+    width: 70px;
+    height: 24px;
+    border-radius: 4px;
+    border: 2px solid #ededed;
+    text-align: right;
+    padding-right: 8px;
+    margin-right: 4px;
+    /* margin-top: 2px;s */
+  }
 
-      > input::-webkit-inner-spin-button,
-      input::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-      > p {
-        margin-right: 6px;
-      }
+  > input::-webkit-inner-spin-button,
+  input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  > p {
+    margin-right: 6px;
+  }
   @media screen and (min-width: 767px) {
-      > span {
-        margin-left: 15px;
-        font-size: 12px;
-      }
-        label {
-          margin-right: 22px;
-        }
-      }
+    > span {
+      margin-left: 15px;
+      font-size: 12px;
+    }
+    label {
+      margin-right: 22px;
+    }
+  }
 
   @media screen and (min-width: 1140px) {
     width: 95%;
@@ -457,7 +451,7 @@ export const PlusMoneyWrapper = styled.div`
     margin: 0 auto;
     > div {
       > span {
-        font-size:12px;
+        font-size: 12px;
       }
       > div {
         > label {
@@ -502,7 +496,7 @@ export const UserCheckListDetailBox = styled.div`
     outline: none;
     resize: none;
     border: 2px solid #ededed;
-    font-size:18px;
+    font-size: 18px;
   }
 
   @media screen and (max-width: 1140px) {
@@ -511,17 +505,16 @@ export const UserCheckListDetailBox = styled.div`
 `;
 
 export const CartTimePicker = styled(TimePicker)`
-
   display: inline-block;
   position: relative;
   box-sizing: border-box;
   @media screen and (min-width: 767px) {
-    width : 50%;
+    width: 50%;
   }
-  >input{
-    width : 100%!important;
+  > input {
+    width: 100% !important;
     @media screen and (min-width: 1140px) {
-    width : 100%important;
+      width: 100%important;
     }
   }
   > .rc-time-picker-clear {

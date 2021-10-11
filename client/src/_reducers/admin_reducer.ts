@@ -5,25 +5,24 @@ import {
   ADMIN_STORE_GET_DATA,
   ADMIN_STORE_RESET,
 } from "../_actions/type";
-import { AdminInfo } from '../@type/adminInfo';
-
+import { AdminInfo } from "../@type/adminInfo";
 
 const initialState: AdminInfo = {
   id: 0,
-	name: "",
-	image: "",
-	number: "",
+  name: "",
+  image: "",
+  number: "",
   address: "",
   address_detail: "",
   category: "",
   introduce: "",
   open_time: "",
   close_time: "",
-	profileImage: null,
+  profileImage: null,
   createdAt: "",
   store_menus: [],
   orders: [],
-}
+};
 
 export interface Action {
   type: string;
@@ -31,11 +30,14 @@ export interface Action {
 }
 
 interface Payload {
-	message?: string;
+  message?: string;
   orderdata?: AdminInfo | null;
 }
 
-export default function admin_reducer(state = initialState, action:Action):AdminInfo {
+export default function admin_reducer(
+  state = initialState,
+  action: Action
+): AdminInfo {
   switch (action.type) {
     case ADMIN_STORE_POST:
       return { ...state, ...action.payload };

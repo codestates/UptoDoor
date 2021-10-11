@@ -28,7 +28,7 @@ export const STORE_FILTER_BY_HASHTAG = "STORE_FILTER_BY_HASHTAG";
 export const STORE_FILTER_BY_SEARCH = "STORE_FILTER_BY_SEARCH";
 export const STORE_FILTER_BY_CLICK = "STORE_FILTER_BY_CLICK";
 export const STORE_FILTER_BY_SELECTED = "STORE_FILTER_BY_SELECTED";
-export const STORE_FILTER_BY_CITY = 'STORE_FILTER_BY_CITY'
+export const STORE_FILTER_BY_CITY = "STORE_FILTER_BY_CITY";
 
 //cart action
 export const SET_QUANTITY = "SET_QUANTITY";
@@ -40,7 +40,7 @@ export const SELECT_STORE = "SELECT_STORE";
 export const REMOVE_ALL_CART = "REMOVE_ALL_CART";
 
 //
-export const END_POINTS = "https://uptodoors.shop"
-export const END_POINT = "https://uptodoor.shop";
-// export const END_POINTS = "http://localhost:3060";
-// export const END_POINT = "http://localhost:3000";
+// export const END_POINTS = "https://uptodoors.shop"
+// export const END_POINT = "https://uptodoor.shop";
+export const END_POINTS = "http://localhost:3060";
+export const END_POINT = "http://localhost:3000";

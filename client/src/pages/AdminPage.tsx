@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 import AdminWrapper from "../components/AdminPage/AdminWrapper";
 
-const AdminPage = () => {
+const AdminPage = (): JSX.Element => {
   return (
     <>
       <AdminWrapper />
     </>
   );
-}
+};
 
-export default AdminPage
+export default AdminPage;

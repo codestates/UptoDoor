@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-export const adminStorePost = async (adminposts:object) => {
+export const adminStorePost = async (adminposts: object) => {
   const request = await axios
     .post(`${END_POINTS}/admin/store`, adminposts)
     .then((res) => {
@@ -25,32 +25,32 @@ export const adminStorePost = async (adminposts:object) => {
   };
 };
 
-export const adminStoreEdit = (sendInfo:object, id:number) => {
+export const adminStoreEdit = (sendInfo: object, id: number) => {
   const request = axios
     .patch(`${END_POINTS}/admin/store/${id}`, { sendInfo })
     .then((res) => {
-    return res.data
-  })
-  .catch((err)=>{
-    console.log('==수정 실패==',err)
-  })
+      return res.data;
+    })
+    .catch((err) => {
+      console.log("==수정 실패==", err);
+    });
 
   return {
     type: ADMIN_STORE_EDIT,
-    payload: request
+    payload: request,
   };
 };
 
-//delete store 삭제 
-export const adminStoreDelete = (id:number) => {
+//delete store 삭제
+export const adminStoreDelete = (id: number) => {
   const request = axios
     .delete(`${END_POINTS}/admin/store/${id}`)
-    .then((res)=>{
-    return res.data;
-  })
-  .catch((err)=>{
-    console.log("deleteAdminPost action", err);
-  })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.log("deleteAdminPost action", err);
+    });
 
   return {
     type: ADMIN_STORE_DELETE,
@@ -62,20 +62,20 @@ export const AdminStoreGetData = () => {
   const request = axios
     .get(`${END_POINTS}/admin/admininfo`)
     .then((res) => {
-    return res.data;
-  }).catch((err) => {
-    console.log("getAdminData action", err);
-  })
+      return res.data;
+    })
+    .catch((err) => {
+      console.log("getAdminData action", err);
+    });
 
   return {
     type: ADMIN_STORE_GET_DATA,
-    payload: request
-  }
-}
+    payload: request,
+  };
+};
 
 export const AdminStoreReset = () => {
-  
   return {
-    type: ADMIN_STORE_RESET
-  }
-}
+    type: ADMIN_STORE_RESET,
+  };
+};

@@ -251,7 +251,7 @@ function MyProfileEdit():JSX.Element {
       setOpenModal={setOpenModal}
       modalSuccess = {modalSuccess}
       modalTitleText = '수정이 완료되었습니다.'
-      modalText = '확인 후 메인페이지로 이동합니다.'
+      modalText = '확인 후 마이페이지로 이동합니다.'
       modalBtn = '확인'
       />
       :

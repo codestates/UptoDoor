@@ -1,71 +1,57 @@
-import React , {useMemo} from 'react'
-import { 
-  ModalContainer , 
-} from '../common/Modal/styledModal'
+import React, { useMemo } from "react";
+import { ModalContainer } from "../common/Modal/styledModal";
 import {
-  ModalStoreWrapper ,
+  ModalStoreWrapper,
   CloseBtnIcon,
   ModalStoreImgSlideBox,
   ModalStoreImgs,
-} from './StyledStoreData'
+} from "./StyledStoreData";
 
-import { useHistory } from 'react-router-dom';
-import Slider,{Settings} from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { useHistory } from "react-router-dom";
+import Slider, { Settings } from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-function StoreImgModal(
-  props:any
-) 
-{
-  console.log('props',props);
-  const history:any = useHistory()
+function StoreImgModal(props: any) {
+  const history: any = useHistory();
 
   const settings = useMemo<Settings>(
-    ()=>({
+    () => ({
       dots: true,
-      arrows : true,
+      arrows: true,
       slidesToShow: 1,
-      slidesToScroll: 1,  
+      slidesToScroll: 1,
       centerMode: true,
-      centerPadding: '0px',  
-    }),[]);
+      centerPadding: "0px",
+    }),
+    []
+  );
 
-  const { openModal, setOpenModal, 
-    modalTitleText ,modalText, modalBtn,url } = props;
+  const { openModal, setOpenModal } = props;
 
   const closeModal = () => {
-    if (url) {
-      history.push(url);
-    } else {
-      setOpenModal(false);
-    }
-  }
+    setOpenModal(false);
+  };
   //여기는 가게 이미지슬라이더만 보여지는 모달입니덩.
-  return (
-      openModal ? (
-        <ModalContainer 
-        className = 'modal-container' >            
-          <ModalStoreWrapper className = 'modal-wrapper'>
-          <CloseBtnIcon  
-            onClick = {closeModal}>
-            <i className="fas fa-times"></i>
-          </CloseBtnIcon>  
-            <Slider {...settings}>
-              {props.store.image&&props.store.image.map((el:any,idx:any)=>{
-                return (
-                  <ModalStoreImgSlideBox key = {idx}>
-                  <ModalStoreImgs src = {el} alt = 'store-imgs'/>
-                  </ModalStoreImgSlideBox>
-                )
-              })}
-            </Slider>
-            </ModalStoreWrapper>
-        </ModalContainer>
-      )
-      :
-      null
-  )
+  return openModal ? (
+    <ModalContainer className="modal-container">
+      <ModalStoreWrapper className="modal-wrapper">
+        <CloseBtnIcon onClick={closeModal}>
+          <i className="fas fa-times"></i>
+        </CloseBtnIcon>
+        <Slider {...settings}>
+          {props.store.image &&
+            props.store.image.map((el: any, idx: any) => {
+              return (
+                <ModalStoreImgSlideBox key={idx}>
+                  <ModalStoreImgs src={el} alt="store-imgs" />
+                </ModalStoreImgSlideBox>
+              );
+            })}
+        </Slider>
+      </ModalStoreWrapper>
+    </ModalContainer>
+  ) : null;
 }
 
-export default StoreImgModal
+export default StoreImgModal;

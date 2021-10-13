@@ -1,22 +1,19 @@
 const { kakao } = window;
-
 //1. [앱] 홈 눌렀을때 모든 메뉴가 지도에 표시가 나온다. -> 마커표시
-//2. [앱] 마커를 눌렀을때가 모달이고 
+//2. [앱] 마커를 눌렀을때가 모달이고
 
 //1. 우리가 갖고있는 지도 : 내데이터 기반 전체마커를 찍는게 우선.
 //2. 현위치 찍었을때 내가찍은 데이터가 마커로 보이냐.
 //3. 마커롤 눌렀을때 모달로 뜨냐.
-//4. 카테고리별 
+//4. 카테고리별
 
 //searchPlace,dataSet => search 자체
 export default function Keyword(
   initialStore,
   selectAddress,
   filterClickHandler,
-  clickHashtagHandler
+  hashtagClickHandler
 ) {
-  // console.log(initialStore);
-  // console.log("selected", selectAddress);
   const mapContainer = document.getElementById("map"); // 지도를 표시할 div
   //* 위치를 선택하면 확대레벨이 달라짐
   let mapOption;
@@ -38,10 +35,6 @@ export default function Keyword(
   // 주소-좌표 변환 객체를 생성합니다
   const geocoder = new kakao.maps.services.Geocoder();
 
-  // const mapping = initialMap.map((el)=>{
-  //   return el.address;
-  // })
-  // console.log('====map======',mapping);
   if (!selectAddress) {
     //! 실렉트 주소가 없을경우
     //* 전체 위치 가져오는 좌표, 필터된 좌표가져오기
@@ -55,10 +48,12 @@ export default function Keyword(
           // 정상적으로 검색이 완료됐으면
           if (status === kakao.maps.services.Status.OK) {
             const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            // 결과값으로 받은 위치를 마커로 표시합니다
+
+            //! ------------
             marker = new kakao.maps.Marker({
               map: map,
               position: coords,
+              // image: markerImage,
             });
 
             kakao.maps.event.addListener(marker, "click", () => {
@@ -75,12 +70,11 @@ export default function Keyword(
     //! 콜백함수 클릭한 가게
   } else {
     var marker;
-const markers = [];
+    const markers = [];
     geocoder.addressSearch(selectAddress, function (result, status) {
       // 정상적으로 검색이 완료됐으면
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        // console.log("result", result);
         // 결과값으로 받은 위치를 마커로 표시합니다
         const selected = new kakao.maps.Marker({
           map: map,
@@ -90,13 +84,17 @@ const markers = [];
         if (selected) {
           selected.setMap(map);
           const iwContent =
-            '<div style="width:60px; margin:0; padding:0;z-index:2000;">현위치</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            '<div class="customoverlay" style="color: #ff5954; background-color:#fff;border: 2px solid; margin-bottom: 110px;  font-size: 12px; border-radius: 8px; padding: 4px; z-index: 200; ">' +
+            '    <span class="title">현위치</span>' +
+            "</div>";
+          // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
           const iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
-          const infowindow = new kakao.maps.InfoWindow({
+          const customoverlay = new kakao.maps.CustomOverlay({
             position: iwPosition,
             content: iwContent,
           });
-          infowindow.open(map, selected);
+          customoverlay.setZIndex(120);
+          customoverlay.setMap(map, selected);
 
           map.setCenter(new kakao.maps.LatLng(result[0].y, result[0].x));
           const circle = new kakao.maps.Circle({
@@ -110,13 +108,13 @@ const markers = [];
             fillOpacity: 0.5, // 채우기 불투명도 입니다
           });
 
-          // // 지도에 원을 표시합니다
+          // 지도에 원을 표시합니다
           circle.setMap(map);
 
-          // //! 3km 내의 마커만 표시------
-          // // 원(Circle)의 옵션으로 넣어준 반지름
+          // //! 2.5km 내의 마커만 표시------
+          // 원(Circle)의 옵션으로 넣어준 반지름
           const radius = 2500;
-          
+
           for (let i = 0; i < initialStore.length; i++) {
             // 주소로 좌표를 검색합니다
             geocoder.addressSearch(
@@ -133,7 +131,6 @@ const markers = [];
                     map: map,
                     position: coords,
                   });
-
                   kakao.maps.event.addListener(marker, "click", () => {
                     geocoder.coord2Address(
                       coords.getLng(),
@@ -141,6 +138,7 @@ const markers = [];
                       callback
                     );
                   });
+
                   const c1 = map.getCenter();
                   const c2 = marker.getPosition();
                   const poly = new kakao.maps.Polyline({
@@ -157,34 +155,32 @@ const markers = [];
                     marker.setMap(null);
                   }
                 }
-                clickHashtagHandler(markers);
-                
+                hashtagClickHandler(markers);
               }
-              
             );
           }
-          
         } else {
           map.setCenter(marker);
         }
       }
     });
-
-    // for (let i = 0; i < marker.length - 1; i++) {
-    //   const c1 = map.getCenter();
-    //   const c2 = marker[i].getPosition();
-    //   const poly = new Polyline({ path: [c1, c2] });
-    //   const dist = poly.getLength();
-    //   console.log(dist, poly);
-    //   if (dist < radius) {
-    //     marker[i].setMap(map);
-    //   } else {
-    //     marker[i].setMap(null);
-    //   }
-    // }
-    
   }
-  
+  // customOverlay.setMap(map);
+  // customOverlay.setVisible(false);
+  // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+  // function makeOverListener(map, marker, infowindow) {
+  //   return function () {
+  //     infowindow.setVisible(true);
+  //   };
+  // }
+
+  // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+  // function makeOutListener(infowindow) {
+  //   return function () {
+  //     infowindow.setVisible(false);
+  //   };
+  // }
+
   const callback = function (result, status) {
     if (status === kakao.maps.services.Status.OK) {
       filterClickHandler(result[0].road_address.address_name);

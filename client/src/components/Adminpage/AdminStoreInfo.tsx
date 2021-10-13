@@ -1,50 +1,82 @@
-import React from 'react'
+import React from "react";
 import {
-  MypageOrderListWrapper,
-  OrderListWrapper
-} from "../Mypage/StyledMypage";
-import { StoreTitle,StoreDesc,StoreDescContent,StoreDescImg,StoreMenu ,MenuDesc,MenuImg} from './StyledAdminPage'
+  StoreTitle,
+  StoreDesc,
+  StoreDescContent,
+  StoreDescImg,
+  StoreMenu,
+  MenuDesc,
+  MenuImg,
+  MenuContent,
+  AdminContainer,
+  AdminWrapper,
+} from "./StyledAdminPage";
+import { stringToPrice } from "../../utils/validation";
+import { AdminInfo } from "../../@type/adminInfo";
 
-const AdminStoreInfo = () => {
+type IProps = {
+  store: AdminInfo;
+};
+
+const AdminStoreInfo = ({ store }: IProps) => {
   return (
-      <MypageOrderListWrapper>
-      <OrderListWrapper >
+    <AdminContainer>
+      <AdminWrapper>
         <StoreDescContent>
           <StoreTitle>
-            <h2>쑥이네 공방</h2>
-            <div>food</div>
+            <h2>{store.name}</h2>
+            <div>{store.category}</div>
           </StoreTitle>
           <StoreDescImg>
-            <img src="" alt="store"></img>
+            <img
+              src={store.image.split(",")[0]}
+              alt="store"
+              width="100%"
+              height="100%"
+            ></img>
           </StoreDescImg>
           <StoreDesc>
             <h3>스토어 정보</h3>
             <div>
-              <span>주소:</span>
-              <p> 서울시 용산구 신흥로32길 4-33(용산동2가)</p>
+              <span>📍 주소:</span>
+              <p>{store.address}</p>
             </div>
-            <div><span>연락처:</span><p> 010-7185-2791</p></div>
-            <div><span>영업시간:</span><p> 11:00 - 21:00</p></div>
-            <div><span>가게 설명:</span><p> 녹사평역이나 이태원역 아무데서나 와도 접근성이 좋은 녹9 입니다. 깔끔하고 안전한 왁싱샵에 맞기세요 영업시간 : 11:00 - 21:00  </p></div>
-            <div></div>
+            <div>
+              <span>📱 연락처:</span>
+              <p>{store.number}</p>
+            </div>
+            <div>
+              <span>⏰ 영업시간:</span>
+              <p>
+                {store.open_time} - {store.close_time}
+              </p>
+            </div>
+            <div>
+              <span>✍🏼 가게 설명:</span>
+              <p>{store.introduce} </p>
+            </div>
           </StoreDesc>
           <StoreMenu>
             <h3>메뉴 정보</h3>
-            <div>
-              <MenuImg src="" alt="menu" />
-              <MenuDesc>
-                <h4>녹구녹구</h4>
-                <p>가격</p>
-                <p>설명asdjlaksdjklafjklafjkl</p>
-              </MenuDesc>
-              
-            </div>
+            {store.store_menus.map((item: any) => {
+              return (
+                <MenuContent key={item.menu.name}>
+                  <MenuImg>
+                    <img src={item.menu.image} alt="menu" />
+                  </MenuImg>
+                  <MenuDesc>
+                    <h4>{item.menu.name}</h4>
+                    <p>{stringToPrice(item.menu.price)} 원</p>
+                    <p>{item.menu.detail}</p>
+                  </MenuDesc>
+                </MenuContent>
+              );
+            })}
           </StoreMenu>
-        </StoreDescContent> 
-         
-        </OrderListWrapper>
-    </MypageOrderListWrapper>
-  )
-}
+        </StoreDescContent>
+      </AdminWrapper>
+    </AdminContainer>
+  );
+};
 
-export default AdminStoreInfo
+export default AdminStoreInfo;

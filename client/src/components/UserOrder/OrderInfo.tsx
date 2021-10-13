@@ -8,24 +8,24 @@ import {
   CardCheck,
   OrderWrapper,
   OrderUserInfoContent,
+  OrderP,
+  OrderH5,
 } from "./StyledUserOrder";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import { stringToPrice } from "../../utils/validation";
 
-
-const OrderInfo = (props:any) => {
+const OrderInfo = (props: any): JSX.Element => {
   const {
-    paymentChecker,mobileChecker,mobileCheck,orderMobile,onChangeMobileHandler,onChangeDeliveryName
+    paymentChecker,
+    mobileChecker,
+    mobileCheck,
+    orderMobile,
+    onChangeMobileHandler,
+    onChangeDeliveryUserName,
   } = props;
-  // console.log(orderMobile);
-  const cart = useSelector((state:any) => state.cart);
-  const user = useSelector((state:any) => state.user);
-  
-  // const price = cart.menu.reduce((acc:any, cur:any) => {
-  //   return acc + (Number(cur.price) * Number(cur.quantity))
-  // }, 0);
-  // const total_price = price + cart.plus_money + cart.delivery_fee;
+  const cart = useSelector((state: any) => state.cart);
+  const user = useSelector((state: any) => state.user);
 
-  
   return (
     <OrderWrapper>
       <OrderH3>결제 & 배송 정보</OrderH3>
@@ -33,36 +33,36 @@ const OrderInfo = (props:any) => {
         <OrderInfoWrraper>
           <h5>주문자 정보</h5>
           <OrderUserInfoContent>
-            <h4>닉네임 </h4>
-            <p>{user.nickname}</p>
+            <OrderP primary>닉네임: </OrderP>
+            <OrderP>{user.nickname}</OrderP>
           </OrderUserInfoContent>
           <OrderUserInfoContent>
-            <h4>이메일: </h4>
-            <p>{user.email}</p>
+            <OrderP primary>이메일: </OrderP>
+            <OrderP>{user.email}</OrderP>
           </OrderUserInfoContent>
           <OrderUserInfoContent>
-            <h4>연락처: </h4>
-            <p>{user.mobile}</p>
+            <OrderP primary>연락처: </OrderP>
+            <OrderP>{user.mobile}</OrderP>
           </OrderUserInfoContent>
           <InfoCheck>
             <div>
-              <h5>주문자명<span>(입력)</span></h5>
+              <OrderH5>
+                주문자명<span>(입력)</span>
+              </OrderH5>
             </div>
-            <input
-              type="text"
-              onChange={onChangeDeliveryName}
-              required
-            />
+            <input type="text" onChange={onChangeDeliveryUserName} required />
             <div>
-              <h5>받으실 연락처<span>(입력)</span></h5>
-              <span >
-                <input type="checkbox"onClick={mobileChecker} />
+              <OrderH5>
+                받으실 연락처<span>(입력)</span>
+              </OrderH5>
+              <span>
+                <input type="checkbox" onClick={mobileChecker} />
                 기존 번호와 일치
               </span>
             </div>
             <input
               type="text"
-              value = {mobileCheck ? user.mobile : orderMobile} 
+              value={mobileCheck ? user.mobile : orderMobile}
               required
               name="모바일"
               readOnly={mobileCheck ? true : false}
@@ -70,7 +70,7 @@ const OrderInfo = (props:any) => {
             ></input>
           </InfoCheck>
           <InfoCheck>
-            <h5>배송지</h5>
+            <OrderH5>배송지</OrderH5>
             <input type="text" value={cart.selected_address} readOnly></input>
             <input
               type="text"
@@ -82,32 +82,29 @@ const OrderInfo = (props:any) => {
         <OrderInfoWrraper>
           <h5>결제 금액</h5>
           <MoneyCheck>
-            <h5>상품 금액</h5>
-            <p>{cart.total_price} 원</p>
+            <OrderH5 money>상품 금액</OrderH5>
+            <OrderP money>{stringToPrice(cart.total_price)} 원</OrderP>
           </MoneyCheck>
           <MoneyCheck>
-            <h5>추가 금액</h5>
-            <p>+ {cart.plus_money} 원</p>
+            <OrderH5 money>추가 금액</OrderH5>
+            <OrderP money>+ {stringToPrice(cart.plus_money)} 원</OrderP>
           </MoneyCheck>
           <MoneyCheck>
-            <h5>배송비</h5>
-            <p>+ {cart.delivery_fee} 원</p>
+            <OrderH5 money>배송비</OrderH5>
+            <OrderP money>+ {stringToPrice(cart.delivery_fee)} 원</OrderP>
           </MoneyCheck>
           <MoneyCheck>
-            <h4>월 결제 금액</h4>
-            <p>{cart.total_price} 원</p>
+            <OrderH5 money>월 결제 금액</OrderH5>
+            <OrderP money>{stringToPrice(cart.total_price)} 원</OrderP>
           </MoneyCheck>
           <CardCheck>
             <h4>결제 수단 선택</h4>
-
-            <label onClick={paymentChecker}>
-              <input type="checkbox" /> 일반 카드 결제
-            </label>
+            <input onClick={paymentChecker} type="checkbox" /> 일반 카드 결제
           </CardCheck>
         </OrderInfoWrraper>
       </OrderInfoContainer>
     </OrderWrapper>
   );
-}
+};
 
-export default OrderInfo
+export default OrderInfo;

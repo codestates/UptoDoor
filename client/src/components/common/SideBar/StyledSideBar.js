@@ -1,5 +1,17 @@
-import styled from "styled-components";
-import { TextLightGrey } from '../../GlobalStyle';
+import styled, { keyframes } from "styled-components";
+import { TextLightGrey } from "../../GlobalStyle";
+import { showModal, showModalBg } from "../Modal/styledModal";
+
+export const showSidebar = keyframes`
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+`;
 
 export const SidebarContainer = styled.aside`
   position: fixed;
@@ -11,8 +23,11 @@ export const SidebarContainer = styled.aside`
   align-items: center;
   left: 0;
   z-index: 19;
+  animation: ${showModalBg} 0.4s;
   opacity: ${({ isOpen }) => (isOpen ? "100%" : "0")};
   top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
+
+  /* animation: ${showSidebar} 0.7s ease;   */
   @media screen and (min-width: 767px) {
     display: none;
   }
@@ -32,6 +47,7 @@ export const SidebarWrapper = styled.div`
   justify-content: flex-start;
   /* opacity:1; */
   z-index: 20;
+  /* animation: ${showSidebar} 0.3s ease;   */
 `;
 
 export const Icon = styled.div`
@@ -60,7 +76,7 @@ export const Logo = styled.div`
   letter-spacing: -2px;
 `;
 
-export const User = styled.div`
+export const UserName = styled.div`
   width: 80%;
   height: 50px;
   color: black;
@@ -76,7 +92,6 @@ export const User = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
-
 
 export const SidebarUl = styled.ul`
   display: grid;
@@ -115,5 +130,5 @@ export const SidebarBtn = styled.button`
   list-style: none;
   text-decoration: none;
   cursor: pointer;
-  border: none; 
+  border: none;
 `;

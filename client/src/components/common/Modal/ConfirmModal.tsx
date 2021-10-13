@@ -1,62 +1,70 @@
-import React from 'react'
-import { BtnBox, MiddleButton } from '../Button/Button';
-import {
-  ModalSelectAddContainer,I,
-  ModalSelectAddWrapper,ModalTextBox} 
-  from './styledModal'
-import { useHistory } from 'react-router-dom';
+import React from "react";
 
-//주문이완료되었습니다 / 수정이 완료되었습니다 / 회원가입이 완료되었습니다.
-function ConfirmModal(props: any) {
+import { BtnBox, MiddleButton } from "../Button/Button";
+import { ModalContainer, I, ModalWrapper, ModalTextBox } from "./styledModal";
+import { END_POINT } from "../../../_actions/type";
+import { useHistory } from "react-router-dom";
 
-  const history:any = useHistory()
-  const { 
-    openModal, url,confirmModal,
+function ConfirmModal(props: any): JSX.Element {
+  const history: any = useHistory();
+  const {
+    openModal,
+    url,
+    confirmModal,
     modalSuccess,
-    modalTitleText ,modalText,modalBtn,setOpenModal
-    } = props;
+    modalSubText,
+    modalTitleText,
+    modalText,
+    modalBtn,
+    setOpenModal,
+    setHandler,
+  } = props;
 
   const closeModal = () => {
-    setOpenModal(false);
-    history.push(url);
-  }
-  
+    if (modalSuccess === true) {
+      setOpenModal(false);
+      if (url) {
+        window.location.href = `${END_POINT}${url}`;
+      }
+    } else {
+      if (setHandler) {
+        setHandler(false);
+        setOpenModal(false);
+      } else {
+        setOpenModal(false);
+        if (url) {
+          window.location.href = `${END_POINT}${url}`;
+        }
+      }
+    }
+  };
+
   return (
     <>
-      {openModal || confirmModal? (
-      <ModalSelectAddContainer >
-        <ModalSelectAddWrapper flexable >
-          
-          <ModalTextBox >
-            {!modalSuccess ? 
-            <I 
-            bigger
-            className="fas fa-exclamation"></I>
-            :
-            <I 
-            confirm
-            bigger
-            className="far fa-check-circle"></I>
-            } 
-            <h2>{modalTitleText}</h2>
-            <p>{modalText}</p>
-          </ModalTextBox>
+      {openModal || confirmModal ? (
+        <ModalContainer>
+          <ModalWrapper flexable>
+            <ModalTextBox>
+              {!modalSuccess ? (
+                <I bigger className="fas fa-exclamation"></I>
+              ) : (
+                <I confirm bigger className="far fa-check-circle"></I>
+              )}
+              <h2>{modalTitleText}</h2>
+              <h3>{modalSubText}</h3>
+              <p>{modalText}</p>
+            </ModalTextBox>
 
-          <BtnBox>
-          <MiddleButton 
-          side
-          primary
-          onClick = {closeModal}>{modalBtn}</MiddleButton>
-          </BtnBox>
-
-          </ModalSelectAddWrapper>
-      </ModalSelectAddContainer>
-      )
-      :
-      null
-    }
-  </>
-  )
+            <BtnBox>
+              <MiddleButton side primary onClick={closeModal}>
+                {modalBtn}
+              </MiddleButton>
+            </BtnBox>
+          </ModalWrapper>
+        </ModalContainer>
+      ) : null}
+    </>
+  );
 }
 
-export default ConfirmModal
+export default ConfirmModal;

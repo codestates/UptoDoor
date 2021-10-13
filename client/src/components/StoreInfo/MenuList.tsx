@@ -1,52 +1,45 @@
-import React,{useState} from 'react'
-import {useSelector, useDispatch} from "react-redux";
-import {addCart} from '../../_actions/cart_action'
-import {MiddleButton} from '../common/Button/Button'
-import { Link, useHistory } from 'react-router-dom'
-import {
-  MenuOrderContainer,
-  MenuContainer,
-  BtnBox
-} from './StyledStoreData'
-import Item from './Item';
-import ConfirmModal from '../common/Modal/ConfirmModal';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addCart } from "../../_actions/cart_action";
+import { MiddleButton } from "../common/Button/Button";
+import { useHistory } from "react-router-dom";
+import { MenuOrderContainer, MenuContainer, BtnBox } from "./StyledStoreData";
+import Item from "./Item";
+import ConfirmModal from "../common/Modal/ConfirmModal";
 
-function MenuList({store}:any):any {
-
-  const history = useHistory();  
+function MenuList({ store }: any): any {
+  const history = useHistory();
   const state = useSelector((state) => state);
   const { cart }: any = state;
-  const { menu} = cart
-  const [openModal,setOpenModal] = useState(false);
-  const dispatch:any = useDispatch()
+  const { menu } = cart;
+  const [openModal, setOpenModal] = useState(false);
+  const dispatch: any = useDispatch();
 
-  const addCartHandler = (item:any) => {
-    // 메뉴의 id와 item.id 가 같으면 quantity 만 추가, 아니면 디스패치 애드카트에 아이템추가.
-    if (!cart.menu.map((el:any) => el.id).includes(item.id)) {
-      item = {...item, quantity : 1 }
-      dispatch(addCart(item))
-    }else{
-      // console.log('=장바구니담겼지만 이미 카트에 상품있음=',item)
+  const addCartHandler = (item: any) => {
+    if (!cart.menu.map((el: any) => el.id).includes(item.id)) {
+      item = { ...item, quantity: 1 };
+      dispatch(addCart(item));
+    } else {
     }
-  }
+  };
   const cancleClickHandler = () => {
     history.go(-1);
-  }
+  };
 
   const moveOrderHandler = () => {
-    if (cart.menu.length===0) {
+    if (cart.menu.length === 0) {
       setOpenModal(true);
     } else {
-      history.push(`/usercart`)
+      history.push(`/cart`);
     }
-  }
+  };
 
   return (
     <MenuOrderContainer>
       <span>🍽 MENU</span>
       <MenuContainer>
         {store.menus &&
-          store.menus.map((item:{}, idx:number) => {
+          store.menus.map((item: {}, idx: number) => {
             return (
               <Item
                 item={item}
@@ -61,10 +54,12 @@ function MenuList({store}:any):any {
       <BtnBox>
         <MiddleButton
           onClick={moveOrderHandler}
-          className="middle cart-btn">
-            장바구니
-            <span> ({menu && menu.length})</span>
-          </MiddleButton>
+          className="middle cart-btn"
+          primary
+        >
+          장바구니
+          <span> ({menu && menu.length})</span>
+        </MiddleButton>
 
         <MiddleButton
           onClick={cancleClickHandler}
@@ -74,7 +69,7 @@ function MenuList({store}:any):any {
         </MiddleButton>
         <br />
       </BtnBox>
-      {openModal ? 
+      {openModal ? (
         <ConfirmModal
           openModal={openModal}
           modalTitleText="메뉴 선택"
@@ -82,9 +77,9 @@ function MenuList({store}:any):any {
           modalBtn="확인"
           setOpenModal={setOpenModal}
         />
-      : null}
+      ) : null}
     </MenuOrderContainer>
   );
 }
 
-export default MenuList
+export default MenuList;

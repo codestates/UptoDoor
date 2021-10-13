@@ -1,163 +1,191 @@
-import React,{useCallback, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import SideBar from '../SideBar/SideBar';
-import Signin from '../Signin/SigninModal';
+import React, { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   Header,
   Nav,
   ButtonWrapper,
   NavLogo,
-  //ListLink,
   NavWrapper,
-  MiddleButton,
+  UL,
   IconButton,
   BtnLink,
-  Listli
+  Listli,
 } from "./StyledNavBar";
-import {  signOut,naverSignOut,kakaoSignOut } from '../../../_actions/user_action';
-import Modal from '../Modal/Modal';
-import { useHistory } from 'react-router';
-import { END_POINT } from '../../../_actions/type';
-import ConfirmModal from '../Modal/ConfirmModal';
 
-function NavBar() {
-  const history:any = useHistory();
-  const dispatch:any = useDispatch()
-  const state = useSelector((state) => state)
-  const { user }: any = state;
+import { AdminStoreReset } from "../../../_actions/admin_action";
+import {
+  signOut,
+  naverSignOut,
+  kakaoSignOut,
+} from "../../../_actions/user_action";
+import { useHistory } from "react-router";
+import { END_POINT } from "../../../_actions/type";
+
+import { RootReducerType } from "../../../store/store";
+import Signin from "../Signin/SigninModal";
+import SideBar from "../SideBar/SideBar";
+import { User } from "../../../@type/userInfo";
+
+function NavBar(): JSX.Element {
+  const history: any = useHistory();
+  const dispatch: any = useDispatch();
+  const user: User = useSelector((state: RootReducerType) => state.user);
   const message = user.message;
+
   //사이드바 모달창
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [alarmBtnModal, setAlarmBtnModal] = useState<boolean>(false);
+  const closeAlarmModal = (): void => {
+    setAlarmBtnModal(!alarmBtnModal);
+  };
   //로그인 모달
-  const [modalOpen, setModalOpen] = useState(false);
-  const [needLoginModal, setNeedLoginModal] = useState(false);
-  const closeModal = () => { setNeedLoginModal(false) };
-  //사인아웃 핸들러
-  const signoutHandler = (e:any) => {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+  const signoutHandler = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    
-    if (user.login_type === 'kakao') {
-      dispatch(kakaoSignOut())
-      .then((res: any) => {
-        console.log(res);
-      if (res.payload === "signout success") {
-        window.location.href=`${END_POINT}`
-      } else {
-        alert("로그아웃에 실패했습니다.")
-      }
-    })
-    }
-    else if (user.login_type === 'naver') {
-      dispatch(naverSignOut())
-      .then((res: any) => {
-        console.log(res);
-      if (res.payload === "signout success") {
-        window.location.href=`${END_POINT}`
-      } else {
-        alert("로그아웃에 실패했습니다.")
-      }
-    });
-    }
-    else {
-      console.log("d여기까지")
-      dispatch(signOut())
-      .then((res: any) => {
-        console.log("여기서 찍히녀", res);
-      if (res.payload === "signout success") {
-        window.location.href=`${END_POINT}`
-      } else {
-        alert("로그아웃에 실패했습니다.")
-      }
-    });
-  }
-    
-    
-  }
-
-const accessInto = useCallback((name) => {
-  
-  if (name === "mypage") {
-      if (message) {
-      history.push('/mypage');
+    if (user.login_type === "kakao") {
+      dispatch(AdminStoreReset());
+      dispatch(kakaoSignOut()).then((res: any) => {
+        if (res.payload.message === "signout success") {
+          window.location.href = `${END_POINT}`;
+        }
+      });
+    } else if (user.login_type === "naver") {
+      dispatch(AdminStoreReset());
+      dispatch(naverSignOut()).then((res: any) => {
+        if (res.payload.message === "signout success") {
+          window.location.href = `${END_POINT}`;
+        }
+      });
     } else {
-      setNeedLoginModal(true);
+      dispatch(AdminStoreReset());
+      dispatch(signOut()).then((res: any) => {
+        if (res.payload.message === "signout success") {
+          window.location.href = `${END_POINT}`;
+        }
+      });
     }
-  }
-  }, [history, message]);
-
+  };
+  const accessInto = useCallback(
+    (name): void => {
+      if (name === "mypage") {
+        if (message) {
+          history.push("/mypage");
+        }
+      }
+    },
+    [history, message]
+  );
 
   return (
     <Header>
       <NavWrapper>
-        {/* 로고 */}
-        <NavLogo to="/"> 
-          {/* <img src="./images/UptoDoorFavicon.png" alt="s" style={{
-            width: "150px", height: "35px" ,
-            objectFit : 'contain'}} 
-            /> */}
-        
-        </NavLogo> 
-    
-        {/* nav */}
+        <NavLogo to="/" />
         <Nav>
           <h2 className="visually-hidden">메뉴</h2>
-          <ul>
-              <Listli onClick={()=> history.push("/mapper")}>구독찾기</Listli>
-              <Listli onClick={()=> history.push("/address")}>동네인증</Listli>
-            <Listli onClick={() => { accessInto("mypage") }}>마이페이지</Listli>
-          </ul>
+          <UL>
+            <Listli onClick={() => history.push("/mapper")}>구독찾기</Listli>
+            <Listli onClick={() => history.push("/address")}>동네인증</Listli>
+            <Listli onClick={() => history.push("/analysis")}>
+              구독 데이터
+            </Listli>
+          </UL>
         </Nav>
       </NavWrapper>
+
       <ButtonWrapper>
-        {/* 알림 버튼 */}
-        <IconButton type="button" aria-label="알림 버튼">
-          <i className="far fa-bell"></i>
-        </IconButton>
-        {/* 메뉴 버튼 */}
         <IconButton
-          onClick={() => { setIsOpen(true) }}
+          onClick={() => {
+            setIsOpen(true);
+          }}
           type="button"
           aria-label="메뉴 열기 버튼"
         >
           <i className="fas fa-bars"></i>
         </IconButton>
-        
-        {message === undefined ?
-          (
-          <div>
-          <MiddleButton type="button" aria-label="로그인"
-        onClick={()=>{setModalOpen(true)}}
-        >
-          로그인
-        </MiddleButton>
-        <MiddleButton type="button" aria-label="회원가입">
-          <BtnLink to="/signup">회원가입</BtnLink>
-        </MiddleButton></div>)
-          :
-        ( <div><MiddleButton type="button" aria-label="로그인"
-            onClick={() => { accessInto("mypage") }}
-        >
-          프로필
-        </MiddleButton>
-        <MiddleButton type="button" aria-label="회원가입" onClick={(e:any) => { signoutHandler(e) }}>
-          로그아웃
-        </MiddleButton></div>) }
-        
+
+        {message !== "login success" ? (
+          <UL>
+            <Listli
+              type="button"
+              aria-label="로그인"
+              className="icons"
+              title="log-in"
+              onClick={() => {
+                setModalOpen(true);
+              }}
+            >
+              <i className="fas fa-sign-in-alt"></i>
+            </Listli>
+            <Listli
+              type="button"
+              aria-label="회원가입"
+              className="icons"
+              title="sign-up"
+            >
+              <BtnLink to="/signup">
+                <i className="fas fa-user-plus"></i>
+              </BtnLink>
+            </Listli>
+          </UL>
+        ) : (
+          <UL>
+            <Listli>
+              <span>{user.nickname}님,</span> 반갑습니다.
+            </Listli>
+            <Listli
+              type="button"
+              aria-label="프로필"
+              title="profile"
+              className="icons"
+              onClick={() => {
+                accessInto("mypage");
+              }}
+            >
+              <i className="fas fa-user"></i>
+            </Listli>
+            <Listli
+              type="button"
+              title="log-out"
+              aria-label="로그아웃"
+              className="icons"
+              onClick={(e: any) => {
+                signoutHandler(e);
+              }}
+            >
+              <i
+                className="fas fa-sign-out-alt"
+                // onClick={(e:any) => {signoutHandler(e)}}
+              ></i>
+            </Listli>
+          </UL>
+        )}
       </ButtonWrapper>
-      <SideBar history={ history} setIsOpen={setIsOpen} isOpen={isOpen} signoutHandler={signoutHandler} />
-      <Signin 
-      setIsOpen={setIsOpen} modalOpen={modalOpen} setModalOpen={setModalOpen} />
-      {!user.message && needLoginModal ? 
-      <ConfirmModal 
-        closeModal={closeModal}
-        openModal={needLoginModal} 
-        modalTitleText="UptoDoor"
-        modalText="로그인이 필요한 서비스 입니다."
-        modalBtn="확인"
-        setOpenModal={setNeedLoginModal}
-      /> : null}
+
+      <SideBar
+        history={history}
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
+        signoutHandler={signoutHandler}
+      />
+
+      <Signin
+        setIsOpen={setIsOpen}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        url={
+          `${END_POINT}/address`
+            ? "/address"
+            : `${END_POINT}/mapper`
+            ? "/mapper"
+            : `${END_POINT}/analysis`
+            ? "/analysis"
+            : "/"
+        }
+      />
     </Header>
   );
 }
 
-export default NavBar
+export default NavBar;

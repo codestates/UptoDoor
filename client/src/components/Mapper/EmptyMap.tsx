@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useDispatch } from "react-redux";
 import {
   EmptyMapContainer,
   MapInfoWrapper,
@@ -10,29 +10,33 @@ import {
   MapInfoWebContainer,
   MoveBtn,
 } from "./styledMap";
-import {ArrowBtn} from '../common/Button/Button'
-import { selectStore } from '../../_actions/cart_action';
+import { ArrowBtn } from "../common/Button/Button";
+import { selectStore } from "../../_actions/cart_action";
 
-import { useHistory } from 'react-router';
+import { useHistory } from "react-router";
 
-function EmptyMap({ filterList, openInfoModal, message, 
-  cart, setLoginModal,setSelectAddressModal }:any) {
-const dispatch:any = useDispatch()
-const history: any = useHistory();
-const moveStoreHandler = (id: number) => {
-  
-  if (!message) {
-    setLoginModal(true);
-  } else {
-    if (!cart.selected_address) {
-      setSelectAddressModal(true)
+function EmptyMap({
+  filterList,
+  openInfoModal,
+  message,
+  cart,
+  setLoginModal,
+  setSelectAddressModal,
+}: any) {
+  const dispatch: any = useDispatch();
+  const history: any = useHistory();
+  const moveStoreHandler = (id: number) => {
+    if (!message) {
+      setLoginModal(true);
     } else {
-      dispatch(selectStore(id));
-      history.push(`/storeinfo/${id}`)
+      if (!cart.selected_address) {
+        setSelectAddressModal(true);
+      } else {
+        dispatch(selectStore(id));
+        history.push(`/store/${id}`);
+      }
     }
-  }
-};
-
+  };
 
   return (
     <EmptyMapContainer>
@@ -44,11 +48,11 @@ const moveStoreHandler = (id: number) => {
       ) : (
         <MapInfoWebContainer>
           {filterList &&
-            filterList.map((el:any) => {
+            filterList.map((el: any) => {
               return (
                 <MapInfoWrapper key={el.id} className="mapinfo-wrapper">
                   <StoreImg
-                    src={el.image.length === 0 ? "" : el.image[0]}
+                    src={el.image.length === 0 ? "" : el.image}
                     alt="업체사진"
                   />
                   <div>
@@ -73,4 +77,4 @@ const moveStoreHandler = (id: number) => {
   );
 }
 
-export default EmptyMap
+export default EmptyMap;

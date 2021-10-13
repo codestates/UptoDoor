@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   order_delivery.init({
     delivery_time: DataTypes.STRING,
     delivery_day: DataTypes.STRING,
-    delivery_term: DataTypes.STRING
+    delivery_term: DataTypes.STRING,
+    paycount: DataTypes.INTEGER,
+    payday: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'order_delivery',

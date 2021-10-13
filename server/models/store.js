@@ -20,11 +20,13 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.TEXT,
     number: DataTypes.STRING,
     address: DataTypes.STRING,
+    address_detail: DataTypes.STRING,
     xvalue: DataTypes.FLOAT,
     yvalue: DataTypes.FLOAT,
     category: DataTypes.STRING,
     introduce: DataTypes.STRING,
-    delivery_time: DataTypes.STRING,
+    open_time: DataTypes.STRING,
+    close_time: DataTypes.STRING,
     Business_paper: DataTypes.STRING
   }, {
     sequelize,
